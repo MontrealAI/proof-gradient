@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proof Gradient Foundation",
+  "type": "object",
+  "required": ["systems", "demo", "civilization_scale_thesis"],
+  "properties": {
+    "systems": {"type": "array"},
+    "demo": {"type": "object"},
+    "civilization_scale_thesis": {"type": "object"}
+  }
+}

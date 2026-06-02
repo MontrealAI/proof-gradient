@@ -1,12 +1,12 @@
 # Quickstart
 
-## Run the demo
+## Run the sovereign swarm demo
 
 ```bash
 python -m proof_gradient demo --out data/proof_gradient_foundation.json
 ```
 
-## Run the tests
+## Run tests
 
 ```bash
 python -m unittest tests/test_proof_gradient_foundation.py

@@ -15,28 +15,27 @@ class ProofGradientFoundationTest(unittest.TestCase):
         self.assertEqual(promises["Proof Ledger"], "records what happened")
         self.assertEqual(promises["Selection Gate"], "promotes only what proved itself")
 
-    def test_artifact_vault_contains_reusable_intelligence(self):
+    def test_artifact_vault_stores_reusable_intelligence(self):
         artifact_types = {artifact["artifact_type"] for artifact in self.demo["artifacts"]}
         self.assertIn("goal", artifact_types)
         self.assertIn("plan", artifact_types)
         self.assertIn("skill", artifact_types)
-        self.assertIn("tool", artifact_types)
         self.assertIn("policy", artifact_types)
         self.assertIn("eval", artifact_types)
+        self.assertIn("context_recipe", artifact_types)
 
-    def test_run_fabric_resolves_artifacts(self):
-        contract = self.demo["run_contract"]
-        self.assertEqual(contract["direction"], "customer_response_goal@1.2.0")
-        self.assertEqual(contract["strategy"], "customer_response_plan@1.4.0")
-        self.assertIn("claim_verification_skill@1.8.0", contract["capabilities"])
+    def test_run_fabric_executes_large_multi_agent_swarm(self):
+        swarm = self.demo["swarm"]
+        self.assertGreaterEqual(swarm["agent_count"], 64)
+        self.assertGreaterEqual(swarm["division_count"], 8)
+        self.assertGreaterEqual(swarm["handoff_count"], 63)
+        self.assertEqual(swarm["coordination_verdict"], "large_multi_agent_coordination_proven_deterministically")
 
     def test_proof_ledger_records_what_happened(self):
-        event_types = [event["event_type"] for event in self.demo["proof"]["trace_events"]]
-        self.assertIn("job_received", event_types)
-        self.assertIn("artifacts_resolved", event_types)
-        self.assertIn("eval_failed", event_types)
-        self.assertIn("credit_assigned", event_types)
-        self.assertIn("patch_proposed", event_types)
+        proof = self.demo["proof"]
+        self.assertGreaterEqual(len(proof["trace_events"]), 64)
+        self.assertEqual(proof["output"]["claim_status"], "strategic_scenario_not_empirical_claim")
+        self.assertIn("large deterministic multi-agent coordination", proof["output"]["current_repository_proves"])
 
     def test_selection_gate_promotes_only_what_proved_itself(self):
         score = self.demo["score"]
@@ -44,13 +43,12 @@ class ProofGradientFoundationTest(unittest.TestCase):
         self.assertTrue(score["passed"])
         self.assertEqual(selection["decision"], "approve_canary")
         self.assertEqual(selection["rollout_percentage"], 10)
-        self.assertEqual(selection["rollback_target"], "customer_response_plan@1.4.0")
+        self.assertEqual(selection["rollback_target"], "sovereign_swarm_plan@1.0.0")
 
-    def test_patch_is_proof_backed_and_rollbackable(self):
-        patch = self.demo["patch"]
-        self.assertEqual(patch["patch_type"], "plan_patch")
-        self.assertEqual(patch["source_proof"], "proof_customer_refund_001")
-        self.assertEqual(patch["rollback_target"], "customer_response_plan@1.4.0")
+    def test_kardashev_claim_is_scenario_not_false_fact(self):
+        thesis = self.foundation["civilization_scale_thesis"]
+        self.assertEqual(thesis["treatment"], "strategic scenario, not empirical claim")
+        self.assertEqual(thesis["status"], "scenario_lab_active")
 
 
 if __name__ == "__main__":

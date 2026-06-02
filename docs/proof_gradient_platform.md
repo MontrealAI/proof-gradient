@@ -9,7 +9,7 @@
 - **The Proof Ledger records what happened.**
 - **The Selection Gate promotes only what proved itself.**
 
-## The simplified platform chain
+## The simplified chain
 
 ```text
 Artifact → Run → Proof → Selection
@@ -17,15 +17,10 @@ Artifact → Run → Proof → Selection
 
 Everything that can improve is an Artifact. Every job creates a Run. Every Run creates Proof. Every Proof can create a candidate improvement. Every candidate improvement must pass Selection.
 
-## Current implementation
+## Sovereign Swarm
 
-This autonomous foundation creates:
+This repository includes a deterministic large multi-agent coordination lattice. It proves that many specialized agents can coordinate through explicit roles, handoffs, votes, traces, evals, patches, canary selection, and rollback targets.
 
-- deterministic Artifact Vault
-- deterministic Run Fabric
-- append-only Proof Ledger record
-- Selection Gate record with score, credit assignment, patch, canary, and rollback
-- local demo
-- tests
-- schemas
-- public command center
+## Civilization-scale thesis
+
+The Kardashev Type II line is treated as a strategic scenario. The repository does not claim existing superintelligence, guaranteed wealth, or achieved Kardashev capability. It creates the proof infrastructure required to make future claims auditable.

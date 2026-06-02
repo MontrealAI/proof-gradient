@@ -9,7 +9,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(prog="proof-gradient")
     sub = parser.add_subparsers(dest="command", required=True)
 
-    demo = sub.add_parser("demo", help="Run the deterministic Proof Gradient demo.")
+    demo = sub.add_parser("demo", help="Run the deterministic Proof Gradient sovereign swarm demo.")
     demo.add_argument("--out", default="", help="Optional JSON output path.")
 
     args = parser.parse_args()
