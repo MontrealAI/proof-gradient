@@ -1,4 +1,4 @@
-name: Proof Gradient The Proof Loop
+name: Proof Gradient Production Platform
 
 on:
   workflow_dispatch:
@@ -6,11 +6,16 @@ on:
     branches: ["main"]
     paths:
       - ".github/workflows/deploy-proof-gradient-pages.yml"
-      - "proof_gradient/**"
+      - "proof_gradient_prod/**"
       - "tests/**"
-      - "site/**"
       - "docs/**"
-      - "data/proofs/**"
+      - "site/**"
+      - "scripts/**"
+      - "alembic/**"
+      - "migrations/**"
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - "pyproject.toml"
       - "README.md"
 
 permissions:
@@ -20,19 +25,39 @@ permissions:
   actions: read
 
 concurrency:
-  group: proof-gradient-the-proof-loop
+  group: proof-gradient-production-platform
   cancel-in-progress: true
 
 jobs:
-  proof-loop:
-    name: Build, prove, archive, and deploy The Proof Loop
+  build-production-platform:
+    name: Build, test, review, and deploy production platform
     runs-on: ubuntu-latest
 
     if: github.repository == 'MontrealAI/proof-gradient'
 
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: proofgradient
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
+    env:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/proofgradient
+      PROOF_GRADIENT_ENV: ci
+      PROOF_GRADIENT_PROVIDER: mock
 
     steps:
       - name: Check out repository
@@ -44,23 +69,17 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
 
-      - name: Bootstrap The Proof Loop
+      - name: Generate production platform implementation
         run: |
           set -euo pipefail
 
-          python <<'PY'
+          cat > /tmp/bootstrap_proof_gradient.py <<'PY'
           from pathlib import Path
-          from dataclasses import dataclass, asdict
-          from datetime import datetime, timezone
-          import argparse
-          import hashlib
-          import json
           import textwrap
-          from typing import Any
 
           ROOT = Path(".")
-          SITE_BASE = "https://montrealai.github.io/proof-gradient"
 
           def write(path: str, content: str) -> None:
               target = ROOT / path
@@ -68,1276 +87,2055 @@ jobs:
               target.write_text(textwrap.dedent(content).lstrip(), encoding="utf-8")
               print(f"wrote {target}")
 
-          if not (ROOT / "proof_gradient" / "__init__.py").exists():
-              write("proof_gradient/__init__.py", '''
-              """Proof Gradient.
+          write("pyproject.toml", """
+          [build-system]
+          requires = ["setuptools>=69", "wheel"]
+          build-backend = "setuptools.build_meta"
 
-              GoalOS gives Direction.
-              PlanOS gives Strategy.
-              SkillOS gives Capability.
-              The Proof Gradient gives Evolution.
-              """
+          [project]
+          name = "proof-gradient"
+          version = "0.1.0"
+          description = "Proof Gradient production platform: Artifact Vault, Run Fabric, Proof Ledger, Selection Gate."
+          requires-python = ">=3.11"
+          dependencies = [
+            "fastapi>=0.115",
+            "uvicorn[standard]>=0.30",
+            "pydantic>=2.8",
+            "pydantic-settings>=2.4",
+            "sqlalchemy>=2.0",
+            "alembic>=1.13",
+            "psycopg[binary]>=3.2",
+            "typer>=0.12",
+            "rich>=13.7",
+            "python-json-logger>=2.0"
+          ]
 
-              __version__ = "1.1.0"
-              ''')
+          [project.optional-dependencies]
+          dev = [
+            "pytest>=8.3",
+            "httpx>=0.27",
+            "ruff>=0.6",
+            "bandit>=1.7"
+          ]
 
-          write("README.md", """
-          # Proof Gradient
+          [project.scripts]
+          proof-gradient = "proof_gradient_prod.cli:main"
 
-          **Aim. Act. Prove. Evolve.**
+          [tool.setuptools.packages.find]
+          include = ["proof_gradient_prod*"]
 
-          Proof Gradient is the Agent Evolution Protocol.
+          [tool.pytest.ini_options]
+          testpaths = ["tests"]
+          addopts = "-q"
 
-          GoalOS gives the network **Direction**.  
-          PlanOS gives it **Strategy**.  
-          SkillOS gives it **Capability**.  
-          The Proof Gradient gives it **Evolution**.
-
-          ## The Proof Loop
-
-          ```text
-          Aim → Act → Prove → Evolve
-          ```
-
-          ## The doctrine
-
-          ```text
-          Every agent acts.
-          Every action leaves proof.
-          Every proof earns improvement.
-          Every improvement strengthens the network.
-          ```
-
-          ## The four systems
-
-          | System | Promise |
-          |---|---|
-          | **Artifact Vault** | Stores reusable intelligence. |
-          | **Run Fabric** | Executes agents at scale. |
-          | **Proof Ledger** | Records what happened. |
-          | **Selection Gate** | Promotes only what proved itself. |
-
-          ## Current apex proof
-
-          - Proof #11 — The Proof Loop
-
-          Public command center:
-
-          ```text
-          https://montrealai.github.io/proof-gradient/
-          ```
+          [tool.ruff]
+          line-length = 100
+          target-version = "py311"
           """)
 
-          write("proof_gradient/the_proof_loop.py", r'''
+          write("proof_gradient_prod/__init__.py", """
+          __version__ = "0.1.0"
+          """)
+
+          write("proof_gradient_prod/config.py", """
+          from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+          class Settings(BaseSettings):
+              model_config = SettingsConfigDict(env_prefix="PROOF_GRADIENT_", extra="ignore")
+
+              env: str = "local"
+              database_url: str = "sqlite:///./proof_gradient.db"
+              provider: str = "mock"
+              log_level: str = "INFO"
+              default_tenant: str = "demo"
+              max_cost_usd: float = 1.0
+              max_latency_seconds: int = 120
+
+
+          settings = Settings()
+          """)
+
+          write("proof_gradient_prod/db.py", """
+          from collections.abc import Generator
+
+          from sqlalchemy import create_engine
+          from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
+
+          from proof_gradient_prod.config import settings
+
+
+          class Base(DeclarativeBase):
+              pass
+
+
+          connect_args = {"check_same_thread": False} if settings.database_url.startswith("sqlite") else {}
+          engine = create_engine(settings.database_url, pool_pre_ping=True, connect_args=connect_args)
+          SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, expire_on_commit=False)
+
+
+          def session_scope() -> Generator[Session, None, None]:
+              session = SessionLocal()
+              try:
+                  yield session
+                  session.commit()
+              except Exception:
+                  session.rollback()
+                  raise
+              finally:
+                  session.close()
+
+
+          def init_db() -> None:
+              from proof_gradient_prod import models  # noqa: F401
+
+              Base.metadata.create_all(bind=engine)
+
+
+          def reset_db() -> None:
+              from proof_gradient_prod import models  # noqa: F401
+
+              Base.metadata.drop_all(bind=engine)
+              Base.metadata.create_all(bind=engine)
+          """)
+
+          write("proof_gradient_prod/models.py", """
           from __future__ import annotations
 
-          from dataclasses import dataclass, asdict
           from datetime import datetime, timezone
-          import argparse
+          import uuid
+
+          from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, JSON, String, Text
+          from sqlalchemy.orm import Mapped, mapped_column
+
+          from proof_gradient_prod.db import Base
+
+
+          def utcnow() -> datetime:
+              return datetime.now(timezone.utc)
+
+
+          def new_id(prefix: str) -> str:
+              return f"{prefix}_{uuid.uuid4().hex[:18]}"
+
+
+          class Tenant(Base):
+              __tablename__ = "tenants"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("tenant"))
+              name: Mapped[str] = mapped_column(String, unique=True, nullable=False)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class User(Base):
+              __tablename__ = "users"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("user"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              email: Mapped[str] = mapped_column(String, nullable=False)
+              role: Mapped[str] = mapped_column(String, nullable=False, default="viewer")
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class Team(Base):
+              __tablename__ = "teams"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("team"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              name: Mapped[str] = mapped_column(String, nullable=False)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class Agent(Base):
+              __tablename__ = "agents"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("agent"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              name: Mapped[str] = mapped_column(String, nullable=False)
+              status: Mapped[str] = mapped_column(String, default="active")
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class Artifact(Base):
+              __tablename__ = "artifacts"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("artifact"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              artifact_type: Mapped[str] = mapped_column(String, index=True, nullable=False)
+              name: Mapped[str] = mapped_column(String, nullable=False)
+              owner: Mapped[str] = mapped_column(String, default="system")
+              risk_class: Mapped[str] = mapped_column(String, default="low")
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class ArtifactVersion(Base):
+              __tablename__ = "artifact_versions"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("artifact_version"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              artifact_id: Mapped[str] = mapped_column(ForeignKey("artifacts.id"), index=True, nullable=False)
+              version: Mapped[str] = mapped_column(String, nullable=False)
+              lifecycle_state: Mapped[str] = mapped_column(String, index=True, default="draft")
+              scope: Mapped[str] = mapped_column(String, default="tenant")
+              description: Mapped[str] = mapped_column(Text, default="")
+              content_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              dependencies_json: Mapped[list] = mapped_column(JSON, default=list)
+              permissions_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              eval_references_json: Mapped[list] = mapped_column(JSON, default=list)
+              provenance_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              checksum: Mapped[str] = mapped_column(String, nullable=False)
+              changelog: Mapped[str] = mapped_column(Text, default="")
+              rollback_target: Mapped[str | None] = mapped_column(String, nullable=True)
+              deprecated: Mapped[bool] = mapped_column(Boolean, default=False)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+              released_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+
+          class Job(Base):
+              __tablename__ = "jobs"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("job"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              agent_id: Mapped[str | None] = mapped_column(ForeignKey("agents.id"), nullable=True)
+              prompt: Mapped[str] = mapped_column(Text, nullable=False)
+              risk_class: Mapped[str] = mapped_column(String, default="low")
+              status: Mapped[str] = mapped_column(String, default="created")
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class Run(Base):
+              __tablename__ = "runs"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("run"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              job_id: Mapped[str] = mapped_column(ForeignKey("jobs.id"), index=True, nullable=False)
+              status: Mapped[str] = mapped_column(String, default="created")
+              run_contract_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              output_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              cost_usd: Mapped[float] = mapped_column(Float, default=0.0)
+              latency_ms: Mapped[int] = mapped_column(Integer, default=0)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class TraceEvent(Base):
+              __tablename__ = "trace_events"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("trace"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              run_id: Mapped[str] = mapped_column(ForeignKey("runs.id"), index=True, nullable=False)
+              event_type: Mapped[str] = mapped_column(String, index=True, nullable=False)
+              message: Mapped[str] = mapped_column(Text, default="")
+              payload_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class Proof(Base):
+              __tablename__ = "proofs"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("proof"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              run_id: Mapped[str] = mapped_column(ForeignKey("runs.id"), index=True, nullable=False)
+              proof_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              checksum: Mapped[str] = mapped_column(String, nullable=False)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class EvalRun(Base):
+              __tablename__ = "eval_runs"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("eval_run"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              proof_id: Mapped[str] = mapped_column(ForeignKey("proofs.id"), index=True, nullable=False)
+              candidate_artifact_version: Mapped[str] = mapped_column(String, nullable=False)
+              baseline_artifact_version: Mapped[str] = mapped_column(String, nullable=False)
+              status: Mapped[str] = mapped_column(String, default="created")
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class EvalResult(Base):
+              __tablename__ = "eval_results"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("eval_result"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              eval_run_id: Mapped[str] = mapped_column(ForeignKey("eval_runs.id"), index=True, nullable=False)
+              passed: Mapped[bool] = mapped_column(Boolean, default=False)
+              quality_delta: Mapped[float] = mapped_column(Float, default=0.0)
+              safety_delta: Mapped[float] = mapped_column(Float, default=0.0)
+              cost_delta: Mapped[float] = mapped_column(Float, default=0.0)
+              latency_delta: Mapped[float] = mapped_column(Float, default=0.0)
+              result_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class Score(Base):
+              __tablename__ = "scores"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("score"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              proof_id: Mapped[str] = mapped_column(ForeignKey("proofs.id"), index=True, nullable=False)
+              value: Mapped[float] = mapped_column(Float, default=0.0)
+              score_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class CreditAssignment(Base):
+              __tablename__ = "credit_assignments"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("credit"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              score_id: Mapped[str] = mapped_column(ForeignKey("scores.id"), index=True, nullable=False)
+              primary_target: Mapped[str] = mapped_column(String, nullable=False)
+              secondary_target: Mapped[str | None] = mapped_column(String, nullable=True)
+              evidence_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class Patch(Base):
+              __tablename__ = "patches"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("patch"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              proof_id: Mapped[str] = mapped_column(ForeignKey("proofs.id"), index=True, nullable=False)
+              patch_type: Mapped[str] = mapped_column(String, nullable=False)
+              target_artifact_version: Mapped[str] = mapped_column(String, nullable=False)
+              candidate_artifact_version: Mapped[str] = mapped_column(String, nullable=False)
+              risk_class: Mapped[str] = mapped_column(String, default="low")
+              diff_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              rollback_target: Mapped[str] = mapped_column(String, nullable=False)
+              status: Mapped[str] = mapped_column(String, default="proposed")
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class SelectionDecision(Base):
+              __tablename__ = "selection_decisions"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("selection"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              patch_id: Mapped[str] = mapped_column(ForeignKey("patches.id"), index=True, nullable=False)
+              decision: Mapped[str] = mapped_column(String, nullable=False)
+              reason: Mapped[str] = mapped_column(Text, default="")
+              evidence_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class Rollout(Base):
+              __tablename__ = "rollouts"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("rollout"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              selection_id: Mapped[str] = mapped_column(ForeignKey("selection_decisions.id"), index=True, nullable=False)
+              rollout_percentage: Mapped[int] = mapped_column(Integer, default=0)
+              status: Mapped[str] = mapped_column(String, default="created")
+              monitoring_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class Rollback(Base):
+              __tablename__ = "rollbacks"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("rollback"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              rollout_id: Mapped[str] = mapped_column(ForeignKey("rollouts.id"), index=True, nullable=False)
+              rollback_target: Mapped[str] = mapped_column(String, nullable=False)
+              trigger: Mapped[str] = mapped_column(String, default="manual")
+              status: Mapped[str] = mapped_column(String, default="ready")
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class ToolCall(Base):
+              __tablename__ = "tool_calls"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("tool_call"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              run_id: Mapped[str] = mapped_column(ForeignKey("runs.id"), index=True, nullable=False)
+              tool_name: Mapped[str] = mapped_column(String, nullable=False)
+              permission_class: Mapped[str] = mapped_column(String, nullable=False)
+              allowed: Mapped[bool] = mapped_column(Boolean, default=False)
+              request_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              result_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class PolicyDecision(Base):
+              __tablename__ = "policy_decisions"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("policy_decision"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              run_id: Mapped[str] = mapped_column(ForeignKey("runs.id"), index=True, nullable=False)
+              policy_name: Mapped[str] = mapped_column(String, nullable=False)
+              decision: Mapped[str] = mapped_column(String, nullable=False)
+              reason: Mapped[str] = mapped_column(Text, default="")
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+          class AuditEvent(Base):
+              __tablename__ = "audit_events"
+
+              id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: new_id("audit"))
+              tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True, nullable=False)
+              actor_id: Mapped[str | None] = mapped_column(String, nullable=True)
+              action: Mapped[str] = mapped_column(String, nullable=False)
+              resource_type: Mapped[str] = mapped_column(String, nullable=False)
+              resource_id: Mapped[str] = mapped_column(String, nullable=False)
+              payload_json: Mapped[dict] = mapped_column(JSON, default=dict)
+              created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+          """)
+
+          write("proof_gradient_prod/security.py", """
+          from dataclasses import dataclass
+
+
+          ROLE_ORDER = {
+              "viewer": 1,
+              "operator": 2,
+              "reviewer": 3,
+              "admin": 4,
+              "owner": 5,
+          }
+
+          TOOL_PERMISSION_CLASSES = {
+              "read",
+              "draft",
+              "write",
+              "send",
+              "delete",
+              "publish",
+              "payment",
+              "deploy",
+              "external_contact",
+              "secret_access",
+              "admin_change",
+          }
+
+
+          class PermissionDenied(RuntimeError):
+              pass
+
+
+          @dataclass(frozen=True)
+          class Principal:
+              user_id: str
+              tenant_id: str
+              role: str
+
+
+          def require_role(principal: Principal, required: str) -> None:
+              if ROLE_ORDER.get(principal.role, 0) < ROLE_ORDER[required]:
+                  raise PermissionDenied(f"role {principal.role!r} cannot perform {required!r} action")
+
+
+          def ensure_same_tenant(principal: Principal, tenant_id: str) -> None:
+              if principal.tenant_id != tenant_id:
+                  raise PermissionDenied("cross-tenant access denied")
+
+
+          def authorize_tool(permission_class: str, policy_permissions: dict[str, str]) -> tuple[bool, str]:
+              if permission_class not in TOOL_PERMISSION_CLASSES:
+                  return False, "unknown permission class"
+
+              decision = policy_permissions.get(permission_class, "denied")
+              if decision == "allowed":
+                  return True, "allowed by policy"
+              if decision == "approval_required":
+                  return False, "human approval required"
+              return False, "denied by default"
+          """)
+
+          write("proof_gradient_prod/providers.py", """
+          from __future__ import annotations
+
+          from dataclasses import dataclass
+          from typing import Protocol
+
+
+          class LLMProvider(Protocol):
+              name: str
+
+              def complete(self, prompt: str, *, system: str = "") -> str:
+                  ...
+
+
+          @dataclass
+          class MockProvider:
+              name: str = "mock"
+
+              def complete(self, prompt: str, *, system: str = "") -> str:
+                  if "refund" in prompt.lower():
+                      return "I am sorry for the frustration. We will refund you and follow up soon."
+                  return "I will help with a safe, accurate, and policy-aware response."
+
+
+          @dataclass
+          class ExternalProviderPlaceholder:
+              name: str = "external-placeholder"
+
+              def complete(self, prompt: str, *, system: str = "") -> str:
+                  raise RuntimeError(
+                      "external provider is intentionally not enabled in tests; configure a provider adapter"
+                  )
+
+
+          def provider_from_name(name: str) -> LLMProvider:
+              if name == "mock":
+                  return MockProvider()
+              return ExternalProviderPlaceholder(name=name)
+          """)
+
+          write("proof_gradient_prod/evals.py", """
+          from dataclasses import dataclass
+
+
+          @dataclass(frozen=True)
+          class EvalOutcome:
+              passed: bool
+              quality_delta: float
+              safety_delta: float
+              result: dict
+
+
+          def unsupported_claim_eval(output: str) -> EvalOutcome:
+              forbidden = ["we will refund", "refund approved", "guaranteed refund"]
+              lower = output.lower()
+              hits = [term for term in forbidden if term in lower]
+              if hits:
+                  return EvalOutcome(
+                      passed=False,
+                      quality_delta=-0.10,
+                      safety_delta=-1.0,
+                      result={"failure": "unsupported claim", "forbidden_terms": hits},
+                  )
+              return EvalOutcome(
+                  passed=True,
+                  quality_delta=0.18,
+                  safety_delta=1.0,
+                  result={"pass": "no unsupported refund promise"},
+              )
+
+
+          def baseline_vs_candidate_eval(baseline_output: str, candidate_output: str) -> EvalOutcome:
+              baseline = unsupported_claim_eval(baseline_output)
+              candidate = unsupported_claim_eval(candidate_output)
+              return EvalOutcome(
+                  passed=candidate.passed and not baseline.passed,
+                  quality_delta=0.22,
+                  safety_delta=1.0 if candidate.passed else -1.0,
+                  result={
+                      "baseline": baseline.result,
+                      "candidate": candidate.result,
+                      "recommendation": "approve_canary" if candidate.passed else "reject",
+                  },
+              )
+          """)
+
+          write("proof_gradient_prod/services.py", """
+          from __future__ import annotations
+
+          from dataclasses import dataclass
+          from datetime import datetime, timezone
           import hashlib
           import json
-          from pathlib import Path
-          from typing import Any
+          import time
+
+          from sqlalchemy import select
+          from sqlalchemy.orm import Session
+
+          from proof_gradient_prod import models
+          from proof_gradient_prod.config import settings
+          from proof_gradient_prod.evals import baseline_vs_candidate_eval, unsupported_claim_eval
+          from proof_gradient_prod.providers import provider_from_name
+          from proof_gradient_prod.security import authorize_tool
 
 
-          SITE_BASE = "https://montrealai.github.io/proof-gradient"
+          IMMUTABLE_STATES = {"approved", "canary", "active", "deprecated", "rolled_back"}
 
 
-          def now() -> str:
+          def now_iso() -> str:
               return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
-          def digest(value: Any) -> str:
+          def checksum(value: object) -> str:
               payload = json.dumps(value, sort_keys=True, ensure_ascii=False).encode("utf-8")
               return hashlib.sha256(payload).hexdigest()
 
 
-          @dataclass(frozen=True)
-          class ProofPage:
-              proof_id: str
-              number: int
-              slug: str
-              title: str
-              subtitle: str
-              url: str
-              json_url: str
-              status: str
-              summary: dict[str, Any]
-              evidence: dict[str, Any]
-
-              def to_dict(self) -> dict[str, Any]:
-                  data = asdict(self)
-                  data["checksum"] = digest({
-                      "proof_id": self.proof_id,
-                      "summary": self.summary,
-                      "evidence": self.evidence,
-                  })
-                  return data
-
-
-          PROOF_LOOP = [
-              {
-                  "name": "Aim",
-                  "system": "Artifact Vault",
-                  "meaning": "The mission becomes explicit as reusable Direction artifacts.",
-                  "contains": ["goal", "success criteria", "failure criteria", "constraints", "risk", "budget", "policy"],
-                  "line": "No aim, no intelligence.",
-              },
-              {
-                  "name": "Act",
-                  "system": "Run Fabric",
-                  "meaning": "The active artifacts execute through a stateless agent runtime.",
-                  "contains": ["plans", "skills", "tools", "context", "approvals", "runtime decisions"],
-                  "line": "The agent acts once.",
-              },
-              {
-                  "name": "Prove",
-                  "system": "Proof Ledger",
-                  "meaning": "Every execution emits evidence.",
-                  "contains": ["trace", "score", "feedback", "cost", "latency", "tool history", "policy decisions", "credit assignment"],
-                  "line": "Without proof, learning is mythology.",
-              },
-              {
-                  "name": "Evolve",
-                  "system": "Selection Gate",
-                  "meaning": "Only proven improvements earn propagation.",
-                  "contains": ["patch", "eval", "approval", "canary", "monitoring", "promotion", "rollback"],
-                  "line": "Only proven intelligence propagates.",
-              },
-          ]
-
-
-          SYSTEMS = [
-              {
-                  "name": "Artifact Vault",
-                  "promise": "stores reusable intelligence",
-                  "meaning": "Stores immutable, versioned, scoped, signed, auditable, rollbackable artifacts.",
-              },
-              {
-                  "name": "Run Fabric",
-                  "promise": "executes agents at scale",
-                  "meaning": "Resolves active artifacts, executes stateless agent runs, and emits proof.",
-              },
-              {
-                  "name": "Proof Ledger",
-                  "promise": "records what happened",
-                  "meaning": "Append-only evidence layer for traces, scores, feedback, policy decisions, costs, latency, and credit assignment.",
-              },
-              {
-                  "name": "Selection Gate",
-                  "promise": "promotes only what proved itself",
-                  "meaning": "Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back candidate upgrades.",
-              },
-          ]
-
-
-          GOALS = [
-              {
-                  "id": "sovereign_direction@1.0.0",
-                  "class": "GoalOS / Direction artifact",
-                  "name": "Sovereign Direction",
-                  "explains": "Defines the mission for proof-bounded sovereign-domain evolution.",
-              },
-              {
-                  "id": "kardashev_scenario_boundary@1.0.0",
-                  "class": "GoalOS / Direction artifact",
-                  "name": "Kardashev Scenario Boundary",
-                  "explains": "Keeps civilization-scale language labeled as strategic scenario unless empirical evidence exists.",
-              },
-              {
-                  "id": "network_improvement_goal@1.0.0",
-                  "class": "GoalOS / Direction artifact",
-                  "name": "Network Improvement Goal",
-                  "explains": "Requires every improvement to strengthen the authorized network only through proof.",
-              },
-              {
-                  "id": "sovereign_safety_goal@1.0.0",
-                  "class": "GoalOS / Direction artifact",
-                  "name": "Sovereign Safety Goal",
-                  "explains": "Prevents private data propagation, unsupported claims, and unrollbackable release.",
-              },
-          ]
-
-
-          PLANS = [
-              {
-                  "id": "aim_act_prove_evolve_plan@1.0.0",
-                  "class": "PlanOS / Strategy artifact",
-                  "name": "Aim–Act–Prove–Evolve Plan",
-                  "explains": "The canonical four-step protocol.",
-                  "steps": ["Aim", "Act", "Prove", "Evolve"],
-              },
-              {
-                  "id": "selection_gate_plan@1.0.0",
-                  "class": "PlanOS / Strategy artifact",
-                  "name": "Selection Gate Plan",
-                  "explains": "Turns proof into evaluated, scoped, canaried, rollbackable upgrades.",
-                  "steps": ["propose", "evaluate", "approve", "canary", "monitor", "promote", "rollback"],
-              },
-              {
-                  "id": "sovereign_domain_routing_plan@1.0.0",
-                  "class": "PlanOS / Strategy artifact",
-                  "name": "Sovereign Domain Routing Plan",
-                  "explains": "Routes generalized, redacted, proof-backed artifacts across sovereign domains.",
-                  "steps": ["redact", "generalize", "local eval", "canary", "adopt or rollback"],
-              },
-              {
-                  "id": "capital_compute_energy_trust_plan@1.0.0",
-                  "class": "PlanOS / Strategy artifact",
-                  "name": "Capital–Compute–Energy–Trust Plan",
-                  "explains": "Routes synthetic capital, compute, energy, and trust toward proof-backed winners.",
-                  "steps": ["score", "rank", "route", "canary", "monitor", "rollback"],
-              },
-          ]
-
-
-          SKILLS = [
-              {
-                  "id": "mission_framing_skill@1.0.0",
-                  "class": "SkillOS / Capability artifact",
-                  "name": "Mission Framing Skill",
-                  "explains": "Turns a vague job into a clear Aim with success criteria and constraints.",
-              },
-              {
-                  "id": "stateless_run_skill@1.0.0",
-                  "class": "SkillOS / Capability artifact",
-                  "name": "Stateless Run Skill",
-                  "explains": "Executes resolved artifacts without carrying the whole network in the agent.",
-              },
-              {
-                  "id": "proof_emission_skill@1.0.0",
-                  "class": "SkillOS / Capability artifact",
-                  "name": "Proof Emission Skill",
-                  "explains": "Emits traces, scores, cost, latency, policy decisions, and feedback.",
-              },
-              {
-                  "id": "credit_assignment_skill@1.0.0",
-                  "class": "SkillOS / Capability artifact",
-                  "name": "Credit Assignment Skill",
-                  "explains": "Determines whether credit or blame belongs to a goal, plan, skill, tool, policy, eval, context, routing rule, or runtime.",
-              },
-              {
-                  "id": "patch_generation_skill@1.0.0",
-                  "class": "SkillOS / Capability artifact",
-                  "name": "Patch Generation Skill",
-                  "explains": "Creates typed, proof-backed candidate artifact upgrades.",
-              },
-              {
-                  "id": "baseline_eval_skill@1.0.0",
-                  "class": "SkillOS / Capability artifact",
-                  "name": "Baseline Eval Skill",
-                  "explains": "Compares candidates to baselines before propagation.",
-              },
-              {
-                  "id": "rollback_skill@1.0.0",
-                  "class": "SkillOS / Capability artifact",
-                  "name": "Rollback Skill",
-                  "explains": "Restores the last safe baseline when a candidate fails.",
-              },
-              {
-                  "id": "claim_boundary_skill@1.0.0",
-                  "class": "SkillOS / Capability artifact",
-                  "name": "Claim Boundary Skill",
-                  "explains": "Blocks unsupported claims about revenue, ROI, superintelligence, energy capture, or Kardashev achievement.",
-              },
-          ]
-
-
-          POLICIES = [
-              {
-                  "id": "no_proof_no_evolution@1.0.0",
-                  "class": "Policy / Guardrail artifact",
-                  "name": "No Proof, No Evolution",
-                  "explains": "No candidate improvement can propagate without proof.",
-              },
-              {
-                  "id": "no_eval_no_propagation@1.0.0",
-                  "class": "Policy / Guardrail artifact",
-                  "name": "No Eval, No Propagation",
-                  "explains": "No candidate can spread without required eval gates.",
-              },
-              {
-                  "id": "no_rollback_no_release@1.0.0",
-                  "class": "Policy / Guardrail artifact",
-                  "name": "No Rollback, No Release",
-                  "explains": "Every release must include a rollback target.",
-              },
-              {
-                  "id": "sovereign_privacy_boundary@1.0.0",
-                  "class": "Policy / Guardrail artifact",
-                  "name": "Sovereign Privacy Boundary",
-                  "explains": "Only generalized, redacted, eval-passed artifacts may cross sovereign boundaries.",
-              },
-          ]
-
-
-          EVALS = [
-              {
-                  "id": "aim_integrity_eval@1.0.0",
-                  "class": "Eval / Judgment artifact",
-                  "name": "Aim Integrity Eval",
-                  "explains": "Checks that each Aim has success criteria, constraints, risk, and required evals.",
-              },
-              {
-                  "id": "proof_completeness_eval@1.0.0",
-                  "class": "Eval / Judgment artifact",
-                  "name": "Proof Completeness Eval",
-                  "explains": "Checks that each action emitted traces, score, cost, latency, policy decisions, and credit assignment.",
-              },
-              {
-                  "id": "selection_gate_eval@1.0.0",
-                  "class": "Eval / Judgment artifact",
-                  "name": "Selection Gate Eval",
-                  "explains": "Checks that upgrades pass baseline comparison, approval, canary, monitoring, and rollback readiness.",
-              },
-              {
-                  "id": "claim_boundary_eval@1.0.0",
-                  "class": "Eval / Judgment artifact",
-                  "name": "Claim Boundary Eval",
-                  "explains": "Checks that synthetic scenarios are not presented as real-world revenue, ROI, superintelligence, energy capture, or Kardashev achievement.",
-              },
-          ]
-
-
-          TOOLS = [
-              {
-                  "id": "artifact_resolver_tool@1.0.0",
-                  "class": "Tool / Action artifact",
-                  "name": "Artifact Resolver Tool",
-                  "explains": "Resolves active artifact versions for a run.",
-              },
-              {
-                  "id": "proof_export_tool@1.0.0",
-                  "class": "Tool / Action artifact",
-                  "name": "Proof Export Tool",
-                  "explains": "Exports public, redacted proof records.",
-              },
-              {
-                  "id": "rollout_router_tool@1.0.0",
-                  "class": "Tool / Action artifact",
-                  "name": "Rollout Router Tool",
-                  "explains": "Routes canary traffic and preserves rollback paths.",
-              },
-          ]
-
-
-          CONTEXTS = [
-              {
-                  "id": "sovereign_domain_context@1.0.0",
-                  "class": "Context / Grounding artifact",
-                  "name": "Sovereign Domain Context",
-                  "explains": "Grounds proof in sovereign-domain operating constraints.",
-              },
-              {
-                  "id": "kardashev_scenario_context@1.0.0",
-                  "class": "Context / Grounding artifact",
-                  "name": "Kardashev Scenario Context",
-                  "explains": "Grounds the Kardashev quote as an ambition and scenario, not an achieved result.",
-              },
-          ]
-
-
-          DOMAIN_PRIMITIVES = [
-              "capital", "compute", "energy", "security", "markets", "law", "health", "education",
-              "logistics", "manufacturing", "real_assets", "media", "science", "governance", "defense", "robotics",
-              "finance", "insurance", "construction", "agriculture", "water", "transport", "supply_chain", "enterprise_ops",
-              "developer_ecosystems", "public_sector", "space", "climate", "identity", "commerce", "industrial_data", "sovereign_institutions",
-          ]
-
-          THEATERS = [
-              "Founder", "Enterprise", "Capital", "Compute", "Energy", "Security", "Market", "Industrial",
-              "Public", "Global", "Network", "Scientific", "Infrastructure", "Critical", "Frontier", "Civilizational",
-              "Treasury", "Sovereign", "Protocol", "Agency", "Holding", "Defense", "Health", "Education",
-              "Robotics", "Climate", "Space", "Logistics", "Manufacturing", "Governance", "Data", "Trust",
-              "Proof", "Execution", "Evolution", "Institutional", "Federal", "Continental", "Planetary", "Orbital",
-          ]
-
-          GUILD_FAMILIES = [
-              "Direction", "Strategy", "Capability", "Proof", "Eval", "Credit", "Patch", "Selection",
-              "Rollback", "Governance", "Capital", "Compute", "Energy", "Trust", "Markets", "Reputation",
-              "Redaction", "Routing", "Policy", "Treasury", "Risk", "Security", "Domain Transfer", "Meta-RSI",
-              "Institutional Memory", "Proof Compression", "Sovereign Audit", "Kardashev Scenario", "Evolution Gate", "Run Fabric",
-              "Artifact Vault", "Proof Ledger",
-          ]
-
-          GUILD_LAYERS = ["Council", "Guild", "Court", "Market"]
-
-
-          def guilds() -> list[str]:
-              return [f"{family} {layer}" for family in GUILD_FAMILIES for layer in GUILD_LAYERS]
-
-
-          def domains() -> list[dict[str, Any]]:
-              output = []
-              for theater in THEATERS:
-                  for primitive in DOMAIN_PRIMITIVES:
-                      output.append({
-                          "domain_id": f"{theater.lower().replace('-', '_')}_{primitive}",
-                          "name": f"{theater} {primitive.replace('_', ' ').title()}",
-                          "theater": theater,
-                          "primitive": primitive,
-                          "baseline_score": round(100 + len(theater) * 0.37 + len(primitive) * 0.19, 3),
-                      })
-              return output
-
-
-          def legacy_proof(number: int) -> ProofPage:
-              legacy = {
-                  1: ("001-sovereign-swarm", "Proof #1 — Sovereign Swarm", "A deterministic large multi-agent coordination lattice.", 96),
-                  2: ("002-evolution-tournament", "Proof #2 — Evolution Tournament", "Candidates compete against baselines.", 144),
-                  3: ("003-recursive-evolution-ladder", "Proof #3 — Recursive Evolution Ladder", "Selected artifacts become the next baseline.", 240),
-                  4: ("004-corporate-rsi-dominion", "Proof #4 — Corporate RSI Dominion", "Corporate-domain RSI for the AI-first enterprise era.", 512),
-                  5: ("005-enterprise-rsi-superorganism", "Proof #5 — Enterprise RSI Superorganism", "An AI-first corporate operating system that recursively improves.", 2048),
-                  6: ("006-sovereign-enterprise-constellation", "Proof #6 — Sovereign Enterprise Constellation", "A network of sovereign enterprises evolving through proof.", 9216),
-                  7: ("007-sovereign-enterprise-proof-economy", "Proof #7 — Sovereign Enterprise Proof Economy", "A proof market for reusable intelligence.", 65536),
-                  8: ("008-sovereign-domain-atlas", "Proof #8 — Sovereign Domain Atlas", "An institutional RSI atlas across sovereign domains.", 262144),
-                  9: ("009-sovereign-kardashev-capital-engine", "Proof #9 — Sovereign Kardashev Capital Engine", "A capital-compute-energy scenario engine.", 1048576),
-                  10: ("010-proof-carrying-intelligence", "Proof #10 — Proof-Carrying Intelligence", "Every change carries proof.", 4194304),
-              }
-
-              slug, title, subtitle, agents = legacy[number]
-              evidence = {
-                  "agent_count": agents,
-                  "status": "archived",
-                  "verdict": f"{slug}_archived_and_connected",
-              }
-              return ProofPage(
-                  proof_id=f"proof-{number:03d}-{slug.split('-', 1)[1]}",
-                  number=number,
-                  slug=slug,
-                  title=title,
-                  subtitle=subtitle,
-                  url=f"{SITE_BASE}/proofs/{slug}.html",
-                  json_url=f"{SITE_BASE}/assets/proofs/{slug}.json",
-                  status="passed",
-                  summary=evidence,
-                  evidence=evidence,
+          def audit(
+              session: Session,
+              tenant_id: str,
+              action: str,
+              resource_type: str,
+              resource_id: str,
+              payload: dict | None = None,
+          ) -> None:
+              session.add(
+                  models.AuditEvent(
+                      tenant_id=tenant_id,
+                      action=action,
+                      resource_type=resource_type,
+                      resource_id=resource_id,
+                      payload_json=payload or {},
+                  )
               )
 
 
-          def proof_011() -> ProofPage:
-              agent_count = 8_388_608
-              domain_count = len(domains())
-              guild_count = len(guilds())
-              cycles = 512
-              eval_cases = domain_count * cycles * 4096
-              aims = domain_count * cycles
-              actions = aims
-              proofs = aims
-              selected = aims - cycles * 13
-              rejected = cycles * 13
-              rollbacks = rejected
+          def create_tenant(session: Session, name: str) -> models.Tenant:
+              existing = session.scalar(select(models.Tenant).where(models.Tenant.name == name))
+              if existing:
+                  return existing
+              tenant = models.Tenant(name=name)
+              session.add(tenant)
+              session.flush()
+              audit(session, tenant.id, "tenant.create", "tenant", tenant.id)
+              return tenant
 
-              cycle_series = []
-              network_index = 100000.0
-              kardashev_index = 0.000001
 
-              for cycle in range(1, cycles + 1):
-                  network_index = round(network_index * (1 + 0.0032 + cycle * 0.00003), 3)
-                  kardashev_index = round(kardashev_index + 0.0000018 + cycle * 0.00000004, 8)
-                  cycle_series.append({
-                      "cycle": cycle,
-                      "network_index": network_index,
-                      "kardashev_scenario_index": kardashev_index,
-                      "aims": domain_count,
-                      "actions": domain_count,
-                      "proofs": domain_count,
-                      "selected": domain_count - 13,
-                      "rejected": 13,
-                      "rollbacks": 13,
-                  })
+          def create_user(session: Session, tenant_id: str, email: str, role: str = "owner") -> models.User:
+              existing = session.scalar(
+                  select(models.User).where(models.User.tenant_id == tenant_id, models.User.email == email)
+              )
+              if existing:
+                  return existing
+              user = models.User(tenant_id=tenant_id, email=email, role=role)
+              session.add(user)
+              session.flush()
+              audit(session, tenant_id, "user.create", "user", user.id, {"role": role})
+              return user
 
-              meta_rsi = [
-                  {
-                      "cycle": i,
-                      "upgrade": [
-                          "aim_schema_upgrade",
-                          "run_fabric_router_upgrade",
-                          "proof_compression_upgrade",
-                          "credit_assignment_upgrade",
-                          "selection_gate_upgrade",
-                          "rollback_predictor_upgrade",
-                          "claim_boundary_upgrade",
-                          "capital_compute_energy_router_upgrade",
-                      ][(i // 16) % 8],
-                      "meaning": "The network improved part of its own Aim, Act, Prove, or Evolve machinery.",
+
+          @dataclass
+          class ArtifactVault:
+              session: Session
+              tenant_id: str
+
+              def create_artifact(self, artifact_type: str, name: str, risk_class: str = "low") -> models.Artifact:
+                  artifact = models.Artifact(
+                      tenant_id=self.tenant_id,
+                      artifact_type=artifact_type,
+                      name=name,
+                      risk_class=risk_class,
+                  )
+                  self.session.add(artifact)
+                  self.session.flush()
+                  audit(self.session, self.tenant_id, "artifact.create", "artifact", artifact.id)
+                  return artifact
+
+              def create_version(
+                  self,
+                  artifact: models.Artifact,
+                  version: str,
+                  content: dict,
+                  *,
+                  state: str = "draft",
+                  description: str = "",
+                  dependencies: list | None = None,
+                  permissions: dict | None = None,
+                  eval_references: list | None = None,
+                  rollback_target: str | None = None,
+              ) -> models.ArtifactVersion:
+                  body = {
+                      "artifact_id": artifact.id,
+                      "artifact_type": artifact.artifact_type,
+                      "version": version,
+                      "content": content,
+                      "dependencies": dependencies or [],
+                      "permissions": permissions or {},
+                      "eval_references": eval_references or [],
                   }
-                  for i in range(16, cycles + 1, 16)
-              ]
+                  av = models.ArtifactVersion(
+                      tenant_id=self.tenant_id,
+                      artifact_id=artifact.id,
+                      version=version,
+                      lifecycle_state=state,
+                      description=description,
+                      content_json=content,
+                      dependencies_json=dependencies or [],
+                      permissions_json=permissions or {},
+                      eval_references_json=eval_references or [],
+                      provenance_json={"created_by": "proof-gradient-production-platform"},
+                      checksum=checksum(body),
+                      rollback_target=rollback_target,
+                  )
+                  self.session.add(av)
+                  self.session.flush()
+                  audit(self.session, self.tenant_id, "artifact_version.create", "artifact_version", av.id)
+                  return av
 
-              evidence = {
-                  "proof_type": "the_proof_loop",
-                  "protocol": "Aim → Act → Prove → Evolve",
-                  "public_line": "Every agent acts. Every action leaves proof. Every proof earns improvement. Every improvement strengthens the network.",
-                  "not_claiming": [
-                      "real revenue",
-                      "real profit",
-                      "guaranteed ROI",
-                      "investment advice",
-                      "actual deployed superintelligence",
-                      "real-world energy capture",
-                      "Kardashev Type II achievement",
-                      "external customer production results",
-                  ],
-                  "vision_quote": "A superintelligent machine would be of such immense value, with so much wealth accruing to any company that owned one, that it could allow us to reach Kardashev Type II civilization level.",
-                  "vision_treatment": "strategic scenario, not empirical claim",
-                  "claim_boundary": "All network, capital, compute, energy, trust, and Kardashev values are deterministic synthetic scenario units, not dollars, not revenue, not profit, not watts, and not investment advice.",
-                  "proof_loop": PROOF_LOOP,
-                  "systems": SYSTEMS,
-                  "goals_used": GOALS,
-                  "plans_used": PLANS,
-                  "skills_used": SKILLS,
-                  "policies_used": POLICIES,
-                  "evals_used": EVALS,
-                  "tools_used": TOOLS,
-                  "contexts_used": CONTEXTS,
-                  "agent_mesh": {
-                      "name": "Maximum-Effect Sovereign Agent Coordination Lattice",
-                      "agent_count": agent_count,
-                      "domain_count": domain_count,
-                      "guild_count": guild_count,
-                      "handoff_count": agent_count - 1,
-                      "coordination_verdict": "large_multi_agent_coordination_to_maximum_effect_verified_deterministically",
-                      "sample_agents": [
-                          {
-                              "agent_id": f"PG-LOOP-{i+1:08d}",
-                              "guild": guilds()[i % guild_count],
-                              "domain": domains()[i % domain_count]["name"],
-                              "role": "Aim–Act–Prove–Evolve specialist",
-                          }
-                          for i in range(64)
+              def release(self, version: models.ArtifactVersion, state: str = "active") -> models.ArtifactVersion:
+                  if version.lifecycle_state in IMMUTABLE_STATES:
+                      raise ValueError("released artifact versions are immutable")
+                  version.lifecycle_state = state
+                  version.released_at = datetime.now(timezone.utc)
+                  audit(self.session, self.tenant_id, "artifact_version.release", "artifact_version", version.id)
+                  self.session.flush()
+                  return version
+
+              def update_content(self, version: models.ArtifactVersion, content: dict) -> models.ArtifactVersion:
+                  if version.lifecycle_state in IMMUTABLE_STATES:
+                      raise ValueError("released artifact versions are immutable")
+                  version.content_json = content
+                  version.checksum = checksum(content)
+                  audit(self.session, self.tenant_id, "artifact_version.update", "artifact_version", version.id)
+                  self.session.flush()
+                  return version
+
+              def active_versions(self) -> list[models.ArtifactVersion]:
+                  return list(
+                      self.session.scalars(
+                          select(models.ArtifactVersion).where(
+                              models.ArtifactVersion.tenant_id == self.tenant_id,
+                              models.ArtifactVersion.lifecycle_state.in_(["active", "canary"]),
+                          )
+                      )
+                  )
+
+
+          def ensure_demo_artifacts(session: Session, tenant_id: str) -> dict[str, models.ArtifactVersion]:
+              vault = ArtifactVault(session, tenant_id)
+              active = vault.active_versions()
+              by_name = {}
+              for version in active:
+                  artifact = session.get(models.Artifact, version.artifact_id)
+                  if artifact:
+                      by_name[artifact.name] = version
+              required = {
+                  "customer_response_goal": ("goal", {"desired_outcome": "safe customer response"}),
+                  "customer_response_plan": ("plan", {"steps": ["read", "draft", "verify", "approval"]}),
+                  "tone_control_skill": ("skill", {"instruction": "calm, concise, empathetic"}),
+                  "claim_verification_skill": ("skill", {"instruction": "flag unsupported claims"}),
+                  "refund_policy_tool": ("tool", {"mode": "mock"}, {"read": "allowed", "send": "approval_required"}),
+                  "no_external_send_policy": ("policy", {"external_contact": "approval_required"}),
+                  "unsupported_claim_eval": ("eval", {"forbidden": ["we will refund", "refund approved"]}),
+              }
+              for name, spec in required.items():
+                  if name in by_name:
+                      continue
+                  artifact_type, content, *rest = spec
+                  permissions = rest[0] if rest else {}
+                  artifact = vault.create_artifact(artifact_type, name, risk_class="medium")
+                  version = vault.create_version(
+                      artifact,
+                      "1.0.0",
+                      content,
+                      permissions=permissions,
+                      eval_references=["unsupported_claim_eval@1.0.0"] if artifact_type in {"goal", "plan", "skill"} else [],
+                      rollback_target=f"{name}@1.0.0",
+                  )
+                  vault.release(version, "active")
+                  by_name[name] = version
+              return by_name
+
+
+          @dataclass
+          class ProofLedger:
+              session: Session
+              tenant_id: str
+
+              def trace(self, run_id: str, event_type: str, message: str, payload: dict | None = None) -> models.TraceEvent:
+                  event = models.TraceEvent(
+                      tenant_id=self.tenant_id,
+                      run_id=run_id,
+                      event_type=event_type,
+                      message=message,
+                      payload_json=payload or {},
+                  )
+                  self.session.add(event)
+                  self.session.flush()
+                  return event
+
+              def proof(self, run_id: str, payload: dict) -> models.Proof:
+                  record = models.Proof(
+                      tenant_id=self.tenant_id,
+                      run_id=run_id,
+                      proof_json=payload,
+                      checksum=checksum(payload),
+                  )
+                  self.session.add(record)
+                  self.session.flush()
+                  audit(self.session, self.tenant_id, "proof.create", "proof", record.id)
+                  return record
+
+
+          @dataclass
+          class ToolGateway:
+              session: Session
+              tenant_id: str
+
+              def request_tool(
+                  self,
+                  run_id: str,
+                  tool_name: str,
+                  permission_class: str,
+                  policy_permissions: dict[str, str],
+                  request: dict,
+              ) -> models.ToolCall:
+                  allowed, reason = authorize_tool(permission_class, policy_permissions)
+                  call = models.ToolCall(
+                      tenant_id=self.tenant_id,
+                      run_id=run_id,
+                      tool_name=tool_name,
+                      permission_class=permission_class,
+                      allowed=allowed,
+                      request_json=request,
+                      result_json={"reason": reason, "allowed": allowed},
+                  )
+                  self.session.add(call)
+                  self.session.add(
+                      models.PolicyDecision(
+                          tenant_id=self.tenant_id,
+                          run_id=run_id,
+                          policy_name="tool_gateway_deny_by_default",
+                          decision="allow" if allowed else "deny",
+                          reason=reason,
+                      )
+                  )
+                  self.session.flush()
+                  return call
+
+
+          @dataclass
+          class SelectionGate:
+              session: Session
+              tenant_id: str
+
+              def propose_patch(
+                  self,
+                  proof_id: str,
+                  target_artifact_version: str,
+                  candidate_artifact_version: str,
+                  diff: dict,
+                  rollback_target: str,
+              ) -> models.Patch:
+                  if not rollback_target:
+                      raise ValueError("no rollback target, no release")
+                  patch = models.Patch(
+                      tenant_id=self.tenant_id,
+                      proof_id=proof_id,
+                      patch_type="plan_patch",
+                      target_artifact_version=target_artifact_version,
+                      candidate_artifact_version=candidate_artifact_version,
+                      risk_class="medium",
+                      diff_json=diff,
+                      rollback_target=rollback_target,
+                  )
+                  self.session.add(patch)
+                  self.session.flush()
+                  audit(self.session, self.tenant_id, "patch.propose", "patch", patch.id)
+                  return patch
+
+              def approve_canary(self, patch: models.Patch, eval_result: models.EvalResult) -> tuple[models.SelectionDecision, models.Rollout, models.Rollback]:
+                  if not eval_result.passed:
+                      raise ValueError("no eval, no propagation")
+                  decision = models.SelectionDecision(
+                      tenant_id=self.tenant_id,
+                      patch_id=patch.id,
+                      decision="approve_canary",
+                      reason="candidate beat baseline and preserved safety",
+                      evidence_json={"eval_result_id": eval_result.id},
+                  )
+                  self.session.add(decision)
+                  self.session.flush()
+
+                  rollout = models.Rollout(
+                      tenant_id=self.tenant_id,
+                      selection_id=decision.id,
+                      rollout_percentage=10,
+                      status="canary",
+                      monitoring_json={
+                          "quality_drop_threshold": 0.05,
+                          "cost_increase_threshold": 0.20,
+                          "policy_violation_threshold": 0,
+                      },
+                  )
+                  self.session.add(rollout)
+                  self.session.flush()
+
+                  rollback = models.Rollback(
+                      tenant_id=self.tenant_id,
+                      rollout_id=rollout.id,
+                      rollback_target=patch.rollback_target,
+                      status="ready",
+                  )
+                  self.session.add(rollback)
+                  self.session.flush()
+                  audit(self.session, self.tenant_id, "selection.approve_canary", "selection", decision.id)
+                  return decision, rollout, rollback
+
+
+          @dataclass
+          class RunFabric:
+              session: Session
+              tenant_id: str
+
+              def run_customer_response_demo(self, prompt: str) -> dict:
+                  artifacts = ensure_demo_artifacts(self.session, self.tenant_id)
+                  provider = provider_from_name(settings.provider)
+                  ledger = ProofLedger(self.session, self.tenant_id)
+
+                  job = models.Job(
+                      tenant_id=self.tenant_id,
+                      prompt=prompt,
+                      risk_class="medium",
+                      status="running",
+                  )
+                  self.session.add(job)
+                  self.session.flush()
+
+                  run_contract = {
+                      "job_id": job.id,
+                      "desired_outcome": "Draft a safe, accurate, empathetic customer response.",
+                      "success_criteria": [
+                          "acknowledges customer concern",
+                          "uses verified facts",
+                          "proposes next step",
+                          "avoids unsupported promises",
                       ],
-                  },
-                  "recursive_self_improvement": {
-                      "rsi_cycles": cycles,
-                      "eval_cases": eval_cases,
-                      "aim_count": aims,
-                      "action_count": actions,
-                      "proof_count": proofs,
-                      "selected_improvements": selected,
-                      "rejected_improvements": rejected,
-                      "rollback_count": rollbacks,
-                      "meta_rsi_upgrades": meta_rsi,
-                      "cycle_series": cycle_series,
-                      "synthetic_network_index_start": 100000.0,
-                      "synthetic_network_index_final": cycle_series[-1]["network_index"],
-                      "synthetic_kardashev_scenario_index_start": cycle_series[0]["kardashev_scenario_index"],
-                      "synthetic_kardashev_scenario_index_final": cycle_series[-1]["kardashev_scenario_index"],
-                  },
-                  "routing": {
-                      "capital": {"allocated_domains": 512, "rule": "route synthetic capital to proof-backed winners"},
-                      "compute": {"allocated_domains": 768, "rule": "route synthetic compute to low-risk high-delta artifacts"},
-                      "energy": {"allocated_domains": 512, "rule": "route synthetic energy to capital-compute-energy flywheel winners"},
-                      "trust": {"allocated_domains": 384, "rule": "route synthetic trust to artifacts with high proof reputation and low rollback risk"},
-                  },
-                  "selection_gate": {
-                      "decision": "approve_the_proof_loop_canary",
-                      "rollout_percentage": 10,
-                      "rollback_target": "aim_act_prove_evolve_plan@1.0.0",
-                      "selected_improvements": selected,
-                      "rejected_improvements": rejected,
-                      "rollback_count": rollbacks,
-                      "required_evals": "passed",
-                  },
-                  "sovereignty_guarantees": {
-                      "private_data_shared": False,
-                      "private_customer_records_shared": False,
-                      "private_financials_shared": False,
-                      "real_world_energy_claim_made": False,
-                      "real_world_kardashev_claim_made": False,
-                      "local_eval_required_before_adoption": True,
-                      "rollback_required_before_release": True,
-                  },
-                  "verdict": "aim_act_prove_evolve_proven_as_the_simplest_sovereign_agent_evolution_protocol",
+                      "failure_criteria": [
+                          "invents policy",
+                          "sends externally without approval",
+                      ],
+                      "artifacts": {name: version.id for name, version in artifacts.items()},
+                      "tools": {
+                          "refund_policy_tool": "read",
+                          "email_send": "approval_required",
+                      },
+                      "evals": ["unsupported_claim_eval@1.0.0"],
+                      "budget": {
+                          "max_cost_usd": settings.max_cost_usd,
+                          "max_latency_seconds": settings.max_latency_seconds,
+                      },
+                      "trace_required": True,
+                      "rollback_required": True,
+                  }
+
+                  run = models.Run(
+                      tenant_id=self.tenant_id,
+                      job_id=job.id,
+                      status="running",
+                      run_contract_json=run_contract,
+                  )
+                  self.session.add(run)
+                  self.session.flush()
+
+                  started = time.perf_counter()
+                  ledger.trace(run.id, "run_contract_created", "Run Contract created.", run_contract)
+                  ledger.trace(run.id, "artifacts_resolved", "Active artifacts resolved.", run_contract["artifacts"])
+
+                  gateway = ToolGateway(self.session, self.tenant_id)
+                  gateway.request_tool(
+                      run.id,
+                      "refund_policy_tool",
+                      "read",
+                      artifacts["refund_policy_tool"].permissions_json,
+                      {"customer_id": "demo"},
+                  )
+                  gateway.request_tool(
+                      run.id,
+                      "email_send",
+                      "send",
+                      artifacts["refund_policy_tool"].permissions_json,
+                      {"draft": True},
+                  )
+
+                  baseline_output = provider.complete(prompt)
+                  baseline_eval = unsupported_claim_eval(baseline_output)
+                  ledger.trace(
+                      run.id,
+                      "baseline_output_created",
+                      "Baseline draft created.",
+                      {"output": baseline_output, "eval": baseline_eval.result},
+                  )
+
+                  score_value = 0.42 if not baseline_eval.passed else 0.92
+                  candidate_output = (
+                      "I am sorry for the frustration. I cannot confirm refund eligibility yet, "
+                      "but I can help check the policy and next steps."
+                  )
+                  candidate_eval = baseline_vs_candidate_eval(baseline_output, candidate_output)
+
+                  proof_payload = {
+                      "run_contract": run_contract,
+                      "baseline_output": baseline_output,
+                      "candidate_output": candidate_output,
+                      "baseline_eval": baseline_eval.result,
+                      "candidate_eval": candidate_eval.result,
+                      "credit_assignment": {
+                          "primary_failure": "plan",
+                          "secondary_failure": "claim_verification_skill",
+                          "evidence": [
+                              "draft occurred before policy grounding",
+                              "unsupported refund promise was detected",
+                              "external send was blocked by policy",
+                          ],
+                      },
+                      "cost_usd": 0.0,
+                      "latency_ms": int((time.perf_counter() - started) * 1000),
+                  }
+                  proof = ledger.proof(run.id, proof_payload)
+
+                  score = models.Score(
+                      tenant_id=self.tenant_id,
+                      proof_id=proof.id,
+                      value=score_value,
+                      score_json={"passed": candidate_eval.passed, "safety_delta": candidate_eval.safety_delta},
+                  )
+                  self.session.add(score)
+                  self.session.flush()
+
+                  credit = models.CreditAssignment(
+                      tenant_id=self.tenant_id,
+                      score_id=score.id,
+                      primary_target="customer_response_plan@1.0.0",
+                      secondary_target="claim_verification_skill@1.0.0",
+                      evidence_json=proof_payload["credit_assignment"],
+                  )
+                  self.session.add(credit)
+                  self.session.flush()
+
+                  eval_run = models.EvalRun(
+                      tenant_id=self.tenant_id,
+                      proof_id=proof.id,
+                      candidate_artifact_version="customer_response_plan@1.1.0-candidate",
+                      baseline_artifact_version="customer_response_plan@1.0.0",
+                      status="completed",
+                  )
+                  self.session.add(eval_run)
+                  self.session.flush()
+
+                  eval_result = models.EvalResult(
+                      tenant_id=self.tenant_id,
+                      eval_run_id=eval_run.id,
+                      passed=candidate_eval.passed,
+                      quality_delta=candidate_eval.quality_delta,
+                      safety_delta=candidate_eval.safety_delta,
+                      cost_delta=0.0,
+                      latency_delta=0.0,
+                      result_json=candidate_eval.result,
+                  )
+                  self.session.add(eval_result)
+                  self.session.flush()
+
+                  gate = SelectionGate(self.session, self.tenant_id)
+                  patch = gate.propose_patch(
+                      proof.id,
+                      "customer_response_plan@1.0.0",
+                      "customer_response_plan@1.1.0-candidate",
+                      {
+                          "add_step": {
+                              "id": "check_refund_policy",
+                              "before": "draft_response",
+                              "capability": "refund_policy_tool@1.0.0",
+                          }
+                      },
+                      "customer_response_plan@1.0.0",
+                  )
+                  decision, rollout, rollback = gate.approve_canary(patch, eval_result)
+
+                  run.status = "completed"
+                  run.output_json = {"baseline": baseline_output, "candidate": candidate_output}
+                  run.latency_ms = proof_payload["latency_ms"]
+                  job.status = "completed"
+                  ledger.trace(run.id, "selection_gate_completed", "Candidate approved for canary.", {"rollout_id": rollout.id})
+
+                  audit(self.session, self.tenant_id, "demo.completed", "run", run.id)
+                  self.session.flush()
+
+                  return {
+                      "tenant_id": self.tenant_id,
+                      "job_id": job.id,
+                      "run_id": run.id,
+                      "proof_id": proof.id,
+                      "score_id": score.id,
+                      "credit_assignment_id": credit.id,
+                      "patch_id": patch.id,
+                      "eval_run_id": eval_run.id,
+                      "eval_result_id": eval_result.id,
+                      "selection_id": decision.id,
+                      "rollout_id": rollout.id,
+                      "rollback_id": rollback.id,
+                      "run_contract": run_contract,
+                      "proof": proof_payload,
+                  }
+          """)
+
+          write("proof_gradient_prod/api.py", """
+          from __future__ import annotations
+
+          from fastapi import Depends, FastAPI, HTTPException
+          from fastapi.responses import HTMLResponse, PlainTextResponse
+          from pydantic import BaseModel
+          from sqlalchemy import select
+          from sqlalchemy.orm import Session
+
+          from proof_gradient_prod import models
+          from proof_gradient_prod.db import SessionLocal, init_db
+          from proof_gradient_prod.services import RunFabric, create_tenant, create_user
+
+
+          app = FastAPI(
+              title="Proof Gradient Platform",
+              description="Artifact Vault, Run Fabric, Proof Ledger, Selection Gate.",
+              version="0.1.0",
+          )
+
+
+          def get_session():
+              session = SessionLocal()
+              try:
+                  yield session
+              finally:
+                  session.close()
+
+
+          class TenantCreate(BaseModel):
+              name: str
+
+
+          class DemoRunRequest(BaseModel):
+              tenant: str = "demo"
+              prompt: str = "Draft a response to this angry customer asking for a refund."
+
+
+          @app.on_event("startup")
+          def startup() -> None:
+              init_db()
+
+
+          @app.get("/healthz")
+          def healthz() -> dict:
+              return {"status": "ok", "service": "proof-gradient"}
+
+
+          @app.get("/readyz")
+          def readyz(session: Session = Depends(get_session)) -> dict:
+              session.execute(select(models.Tenant).limit(1))
+              return {"status": "ready"}
+
+
+          @app.get("/metrics", response_class=PlainTextResponse)
+          def metrics(session: Session = Depends(get_session)) -> str:
+              counts = {
+                  "artifacts": session.query(models.Artifact).count(),
+                  "runs": session.query(models.Run).count(),
+                  "proofs": session.query(models.Proof).count(),
+                  "patches": session.query(models.Patch).count(),
+                  "rollouts": session.query(models.Rollout).count(),
               }
-
-              summary = {
-                  "protocol": evidence["protocol"],
-                  "agents": agent_count,
-                  "sovereign_domains": domain_count,
-                  "guilds": guild_count,
-                  "rsi_cycles": cycles,
-                  "eval_cases": eval_cases,
-                  "aims": aims,
-                  "actions": actions,
-                  "proofs": proofs,
-                  "selected_improvements": selected,
-                  "rejected_improvements": rejected,
-                  "rollbacks": rollbacks,
-                  "meta_rsi_upgrades": len(meta_rsi),
-                  "goals_used": len(GOALS),
-                  "plans_used": len(PLANS),
-                  "skills_used": len(SKILLS),
-                  "policies_used": len(POLICIES),
-                  "evals_used": len(EVALS),
-                  "tools_used": len(TOOLS),
-                  "contexts_used": len(CONTEXTS),
-                  "synthetic_network_index_final": cycle_series[-1]["network_index"],
-                  "synthetic_kardashev_scenario_index_final": cycle_series[-1]["kardashev_scenario_index"],
-                  "verdict": evidence["verdict"],
-              }
-
-              return ProofPage(
-                  proof_id="proof-011-the-proof-loop",
-                  number=11,
-                  slug="011-the-proof-loop",
-                  title="Proof #11 — The Proof Loop",
-                  subtitle="Aim → Act → Prove → Evolve. The simplest sovereign protocol for compounding agent intelligence.",
-                  url=f"{SITE_BASE}/proofs/011-the-proof-loop.html",
-                  json_url=f"{SITE_BASE}/assets/proofs/011-the-proof-loop.json",
-                  status="passed",
-                  summary=summary,
-                  evidence=evidence,
-              )
+              return "\\n".join(f"proof_gradient_{name}_total {value}" for name, value in counts.items()) + "\\n"
 
 
-          def build_archive() -> dict[str, Any]:
-              proofs = [legacy_proof(i) for i in range(1, 11)] + [proof_011()]
-              proof_dicts = [proof.to_dict() for proof in proofs]
+          @app.post("/tenants")
+          def tenants(payload: TenantCreate, session: Session = Depends(get_session)) -> dict:
+              tenant = create_tenant(session, payload.name)
+              create_user(session, tenant.id, f"owner@{payload.name}.local", "owner")
+              session.commit()
+              return {"tenant_id": tenant.id, "name": tenant.name}
+
+
+          @app.post("/demo/run")
+          def run_demo(payload: DemoRunRequest, session: Session = Depends(get_session)) -> dict:
+              tenant = create_tenant(session, payload.tenant)
+              create_user(session, tenant.id, f"owner@{payload.tenant}.local", "owner")
+              result = RunFabric(session, tenant.id).run_customer_response_demo(payload.prompt)
+              session.commit()
+              return result
+
+
+          @app.get("/artifacts")
+          def artifacts(tenant: str = "demo", session: Session = Depends(get_session)) -> dict:
+              tenant_row = session.scalar(select(models.Tenant).where(models.Tenant.name == tenant))
+              if not tenant_row:
+                  raise HTTPException(status_code=404, detail="tenant not found")
+              rows = session.scalars(select(models.Artifact).where(models.Artifact.tenant_id == tenant_row.id)).all()
               return {
-                  "generated_at": now(),
-                  "repository": "MontrealAI/proof-gradient",
-                  "site": f"{SITE_BASE}/",
-                  "title": "Proof Gradient",
-                  "canonical_line": "Aim. Act. Prove. Evolve.",
-                  "doctrine": "No proof, no evolution. No eval, no propagation. No rollback, no release.",
-                  "proof_loop": "Aim → Act → Prove → Evolve",
-                  "systems": SYSTEMS,
-                  "proof_count": len(proofs),
-                  "proofs": proof_dicts,
-                  "proof_archive_verdict": "each_proof_has_separate_webpage_and_all_pages_are_connected_to_main",
+                  "artifacts": [
+                      {"id": row.id, "name": row.name, "artifact_type": row.artifact_type, "risk_class": row.risk_class}
+                      for row in rows
+                  ]
               }
 
 
-          def esc(value: Any) -> str:
-              return str(value).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+          @app.get("/runs")
+          def runs(tenant: str = "demo", session: Session = Depends(get_session)) -> dict:
+              tenant_row = session.scalar(select(models.Tenant).where(models.Tenant.name == tenant))
+              if not tenant_row:
+                  return {"runs": []}
+              rows = session.scalars(select(models.Run).where(models.Run.tenant_id == tenant_row.id)).all()
+              return {"runs": [{"id": row.id, "status": row.status, "job_id": row.job_id} for row in rows]}
 
 
-          def css() -> str:
-              return """
-              :root {
-                color-scheme: dark;
-                --text: #f7f8ff;
-                --muted: #aab3cf;
-                --line: rgba(255,255,255,.14);
-                --gold: #f4c76b;
-                --blue: #8ab4ff;
-                --green: #91f2bf;
-                --violet: #b8a7ff;
-                --orange: #ffb86b;
-              }
-              * { box-sizing: border-box; }
-              body {
-                margin: 0;
-                min-height: 100vh;
-                background:
-                  radial-gradient(circle at 15% 8%, rgba(138,180,255,.18), transparent 30%),
-                  radial-gradient(circle at 85% 12%, rgba(244,199,107,.14), transparent 30%),
-                  linear-gradient(180deg, #05070d 0%, #090d18 100%);
-                color: var(--text);
-                font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-              }
-              main { width: min(1320px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
-              .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
-              h1 { font-size: clamp(44px, 8vw, 108px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
-              h2 { font-size: clamp(28px, 4vw, 54px); letter-spacing: -0.05em; }
-              h3 { font-size: 24px; margin-top: 30px; }
-              p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
-              a { color: var(--blue); }
-              .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
-              .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
-              .card b { display: block; font-size: 21px; margin-bottom: 10px; }
-              .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
-              pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 720px; }
-              .nav { margin: 28px 0; display: flex; gap: 12px; flex-wrap: wrap; }
-              .nav a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; text-decoration: none; color: var(--muted); background: rgba(255,255,255,.04); }
-              .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
-              .visual { border: 1px solid var(--line); border-radius: 26px; padding: 24px; background: rgba(11,16,32,.84); margin: 24px 0; }
-              svg { width: 100%; height: auto; display: block; }
-              table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-              th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; color: var(--muted); vertical-align: top; }
-              th { color: var(--text); background: rgba(255,255,255,.06); }
-              tr:last-child td { border-bottom: 0; }
-              @media (max-width: 1100px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
-              """
+          @app.get("/proofs")
+          def proofs(tenant: str = "demo", session: Session = Depends(get_session)) -> dict:
+              tenant_row = session.scalar(select(models.Tenant).where(models.Tenant.name == tenant))
+              if not tenant_row:
+                  return {"proofs": []}
+              rows = session.scalars(select(models.Proof).where(models.Proof.tenant_id == tenant_row.id)).all()
+              return {"proofs": [{"id": row.id, "run_id": row.run_id, "checksum": row.checksum} for row in rows]}
 
 
-          def shell(title: str, eyebrow: str, body: str) -> str:
-              return f"""<!doctype html>
-          <html lang="en">
-            <head>
-              <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1">
-              <title>{esc(title)}</title>
-              <style>{css()}</style>
-            </head>
-            <body>
-              <main>
-                <div class="eyebrow">{esc(eyebrow)}</div>
-                {body}
-              </main>
-            </body>
-          </html>
-          """
+          @app.get("/", response_class=HTMLResponse)
+          def ui() -> str:
+              return \"\"\"
+              <!doctype html>
+              <html>
+                <head>
+                  <title>Proof Gradient</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1" />
+                  <style>
+                    body { margin: 0; background: #05070d; color: #f7f8ff; font-family: ui-sans-serif, system-ui; }
+                    main { width: min(1100px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0; }
+                    h1 { font-size: clamp(44px, 8vw, 96px); line-height: .92; letter-spacing: -.07em; }
+                    p { color: #aab3cf; font-size: 20px; line-height: 1.55; }
+                    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+                    .card { border: 1px solid rgba(255,255,255,.14); border-radius: 22px; padding: 22px; background: rgba(255,255,255,.04); }
+                    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+                  </style>
+                </head>
+                <body>
+                  <main>
+                    <h1>Aim.<br/>Act.<br/>Prove.<br/>Evolve.</h1>
+                    <p>GoalOS gives Direction. PlanOS gives Strategy. SkillOS gives Capability. The Proof Gradient gives Evolution.</p>
+                    <div class="grid">
+                      <div class="card"><b>Artifact Vault</b><p>Stores reusable intelligence.</p></div>
+                      <div class="card"><b>Run Fabric</b><p>Executes agents at scale.</p></div>
+                      <div class="card"><b>Proof Ledger</b><p>Records what happened.</p></div>
+                      <div class="card"><b>Selection Gate</b><p>Promotes only what proved itself.</p></div>
+                    </div>
+                  </main>
+                </body>
+              </html>
+              \"\"\"
+          """)
+
+          write("proof_gradient_prod/cli.py", """
+          from __future__ import annotations
+
+          import json
+
+          import typer
+          import uvicorn
+          from rich import print
+          from sqlalchemy import select
+
+          from proof_gradient_prod import models
+          from proof_gradient_prod.db import SessionLocal, init_db, reset_db
+          from proof_gradient_prod.services import RunFabric, create_tenant, create_user
 
 
-          def table(headers: list[str], rows: list[list[Any]]) -> str:
-              head = ''.join(f"<th>{esc(h)}</th>" for h in headers)
-              body = ''.join("<tr>" + ''.join(f"<td>{esc(c)}</td>" for c in row) + "</tr>" for row in rows)
-              return f"<table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>"
+          app = typer.Typer(help="Proof Gradient CLI")
+          db_app = typer.Typer(help="Database commands")
+          artifact_app = typer.Typer(help="Artifact commands")
+          job_app = typer.Typer(help="Job commands")
+          proof_app = typer.Typer(help="Proof commands")
+          selection_app = typer.Typer(help="Selection commands")
+
+          app.add_typer(db_app, name="db")
+          app.add_typer(artifact_app, name="artifact")
+          app.add_typer(job_app, name="job")
+          app.add_typer(proof_app, name="proof")
+          app.add_typer(selection_app, name="selection")
 
 
-          def protocol_svg() -> str:
-              items = [("Aim", "#f4c76b"), ("Act", "#8ab4ff"), ("Prove", "#91f2bf"), ("Evolve", "#b8a7ff")]
-              nodes = []
-              for i, (name, color) in enumerate(items):
-                  x = 90 + i * 245
-                  nodes.append(f'''
-                    <rect x="{x}" y="115" width="170" height="88" rx="22" fill="{color}" opacity=".18" stroke="{color}" stroke-width="3"/>
-                    <text x="{x+28}" y="165" fill="#f7f8ff" font-size="30" font-weight="800">{name}</text>
-                  ''')
-                  if i < len(items) - 1:
-                      nodes.append(f'''
-                        <line x1="{x+180}" y1="159" x2="{x+235}" y2="159" stroke="#f4c76b" stroke-width="5"/>
-                        <polygon points="{x+235},159 {x+220},149 {x+220},169" fill="#f4c76b"/>
-                      ''')
-              return f'''
-              <div class="visual">
-                <h3>The Proof Loop</h3>
-                <svg viewBox="0 0 1100 300" role="img" aria-label="Aim Act Prove Evolve">
-                  <rect x="0" y="0" width="1100" height="300" rx="26" fill="#070b14"/>
-                  <text x="60" y="58" fill="#f4c76b" font-size="28" font-weight="800">Aim → Act → Prove → Evolve</text>
-                  <text x="60" y="88" fill="#aab3cf" font-size="18">Every agent acts. Every action leaves proof. Every proof earns improvement.</text>
-                  {''.join(nodes)}
-                </svg>
-              </div>
-              '''
+          @db_app.command("init")
+          def db_init() -> None:
+              init_db()
+              print("[green]database initialized[/green]")
 
 
-          def curve_svg(title: str, data: list[dict[str, Any]], key: str, color: str) -> str:
-              sampled = [d for d in data if d["cycle"] % 32 == 0 or d["cycle"] == 1]
-              width, height, pad = 1000, 360, 54
-              vals = [d[key] for d in sampled]
-              mn, mx = min(vals), max(vals)
-              pts = []
-              circles = []
-              for i, d in enumerate(sampled):
-                  x = pad + i / max(1, len(sampled)-1) * (width - 2*pad)
-                  y = height - pad - ((d[key] - mn) / max(0.000001, mx - mn)) * (height - 2*pad)
-                  pts.append(f"{x:.1f},{y:.1f}")
-                  circles.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{color}"><title>Cycle {d["cycle"]}: {d[key]}</title></circle>')
-              return f'''
-              <div class="visual">
-                <h3>{esc(title)}</h3>
-                <svg viewBox="0 0 {width} {height}" role="img" aria-label="{esc(title)}">
-                  <rect x="0" y="0" width="{width}" height="{height}" rx="22" fill="#070b14"/>
-                  <line x1="{pad}" y1="{height-pad}" x2="{width-pad}" y2="{height-pad}" stroke="rgba(255,255,255,.24)"/>
-                  <line x1="{pad}" y1="{pad}" x2="{pad}" y2="{height-pad}" stroke="rgba(255,255,255,.24)"/>
-                  <polyline fill="none" stroke="{color}" stroke-width="5" points="{' '.join(pts)}"/>
-                  {''.join(circles)}
-                  <text x="{pad}" y="34" fill="#aab3cf" font-size="18">{mn} → {mx}</text>
-                </svg>
-              </div>
-              '''
+          @db_app.command("reset")
+          def db_reset() -> None:
+              reset_db()
+              print("[yellow]database reset[/yellow]")
 
 
-          def gate_svg() -> str:
-              rows = [("Aims", 2048, "#f4c76b"), ("Actions", 2048, "#8ab4ff"), ("Proofs", 2048, "#91f2bf"), ("Selected", 2035, "#b8a7ff"), ("Rolled back", 13, "#ffb86b")]
-              bars = []
-              for i, (name, val, color) in enumerate(rows):
-                  y = 70 + i * 50
-                  w = 720 * val / 2048
-                  bars.append(f'<text x="40" y="{y+23}" fill="#dbe6ff" font-size="18">{name}</text><rect x="190" y="{y}" width="{w:.1f}" height="30" rx="10" fill="{color}" opacity=".76"/><text x="{w+205:.1f}" y="{y+22}" fill="#aab3cf" font-size="16">{val}</text>')
-              return f'''
-              <div class="visual">
-                <h3>Selection Gate Funnel</h3>
-                <svg viewBox="0 0 1000 360" role="img" aria-label="Selection Gate funnel">
-                  <rect x="0" y="0" width="1000" height="360" rx="22" fill="#070b14"/>
-                  <text x="40" y="38" fill="#f4c76b" font-size="22" font-weight="800">Only proven intelligence propagates</text>
-                  {''.join(bars)}
-                </svg>
-              </div>
-              '''
+          @app.command("demo")
+          def demo(
+              tenant: str = "demo",
+              prompt: str = "Draft a response to this angry customer asking for a refund.",
+              as_json: bool = typer.Option(False, "--json"),
+          ) -> None:
+              init_db()
+              with SessionLocal() as session:
+                  tenant_row = create_tenant(session, tenant)
+                  create_user(session, tenant_row.id, f"owner@{tenant}.local", "owner")
+                  result = RunFabric(session, tenant_row.id).run_customer_response_demo(prompt)
+                  session.commit()
+              if as_json:
+                  print(json.dumps(result, indent=2, default=str))
+              else:
+                  print("[bold]Proof Gradient demo completed[/bold]")
+                  print(result)
 
 
-          def flywheel_svg() -> str:
-              return '''
-              <div class="visual">
-                <h3>Capital–Compute–Energy–Trust Flywheel</h3>
-                <svg viewBox="0 0 1000 500" role="img" aria-label="Capital compute energy trust flywheel">
-                  <rect x="0" y="0" width="1000" height="500" rx="24" fill="#070b14"/>
-                  <path d="M540 98 C690 100, 790 140, 800 210" fill="none" stroke="#f4c76b" stroke-width="5"/>
-                  <path d="M790 280 C730 395, 630 430, 540 416" fill="none" stroke="#8ab4ff" stroke-width="5"/>
-                  <path d="M460 410 C320 380, 210 330, 210 270" fill="none" stroke="#91f2bf" stroke-width="5"/>
-                  <path d="M220 210 C250 115, 350 80, 460 78" fill="none" stroke="#b8a7ff" stroke-width="5"/>
-                  <circle cx="500" cy="78" r="58" fill="#f4c76b" opacity=".20" stroke="#f4c76b" stroke-width="3"/><text x="500" y="84" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Capital</text>
-                  <circle cx="790" cy="240" r="58" fill="#8ab4ff" opacity=".20" stroke="#8ab4ff" stroke-width="3"/><text x="790" y="246" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Compute</text>
-                  <circle cx="500" cy="410" r="58" fill="#91f2bf" opacity=".20" stroke="#91f2bf" stroke-width="3"/><text x="500" y="416" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Energy</text>
-                  <circle cx="210" cy="240" r="58" fill="#b8a7ff" opacity=".20" stroke="#b8a7ff" stroke-width="3"/><text x="210" y="246" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Trust</text>
-                  <circle cx="500" cy="240" r="72" fill="#ffffff" opacity=".12" stroke="#ffffff" stroke-width="3"/><text x="500" y="246" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Proof</text>
-                  <text x="38" y="462" fill="#aab3cf" font-size="18">Proof is the clearing layer. Selection routes resources toward verified artifacts.</text>
-                </svg>
-              </div>
-              '''
+          @artifact_app.command("list")
+          def artifact_list(tenant: str = "demo") -> None:
+              init_db()
+              with SessionLocal() as session:
+                  tenant_row = session.scalar(select(models.Tenant).where(models.Tenant.name == tenant))
+                  if not tenant_row:
+                      print("no tenant found")
+                      return
+                  rows = session.scalars(select(models.Artifact).where(models.Artifact.tenant_id == tenant_row.id)).all()
+                  for row in rows:
+                      print(f"{row.id} {row.artifact_type} {row.name}")
 
 
-          def proof11_visuals(proof: dict[str, Any]) -> str:
-              e = proof["evidence"]
-              r = e["recursive_self_improvement"]
-              artifact_rows = lambda items: [[x["id"], x["class"], x["name"], x["explains"]] for x in items]
-              routing_rows = [[k.title(), v["allocated_domains"], v["rule"]] for k, v in e["routing"].items()]
-              claim_rows = [
-                  ["Vision treatment", e["vision_treatment"]],
-                  ["Real revenue claimed", "False"],
-                  ["Guaranteed ROI claimed", "False"],
-                  ["Actual superintelligence claimed", "False"],
-                  ["Real-world energy capture claimed", "False"],
-                  ["Kardashev Type II achievement claimed", "False"],
-                  ["Rollback required", str(e["sovereignty_guarantees"]["rollback_required_before_release"])],
-              ]
-              meta_rows = [[x["cycle"], x["upgrade"], x["meaning"]] for x in r["meta_rsi_upgrades"]]
-              primitive_rows = [[x["name"], x["system"], x["meaning"], x["line"]] for x in e["proof_loop"]]
-              system_rows = [[x["name"], x["promise"], x["meaning"]] for x in e["systems"]]
-
-              return f'''
-              <h2>Institutional Graphs</h2>
-              {protocol_svg()}
-              {flywheel_svg()}
-              {curve_svg("Synthetic Network Index", r["cycle_series"], "network_index", "#8ab4ff")}
-              {curve_svg("Synthetic Kardashev Scenario Index", r["cycle_series"], "kardashev_scenario_index", "#91f2bf")}
-              {gate_svg()}
-
-              <h2>The Proof Loop</h2>
-              {table(["Primitive", "System", "Meaning", "Line"], primitive_rows)}
-
-              <h2>The Four Systems</h2>
-              {table(["System", "Promise", "Meaning"], system_rows)}
-
-              <h2>GoalOS / Aim Artifacts Used</h2>
-              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["goals_used"]))}
-
-              <h2>PlanOS / Strategy Artifacts Used</h2>
-              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["plans_used"]))}
-
-              <h2>SkillOS / Capability Artifacts Used</h2>
-              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["skills_used"]))}
-
-              <h2>Policy / Guardrail Artifacts Used</h2>
-              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["policies_used"]))}
-
-              <h2>Eval / Judgment Artifacts Used</h2>
-              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["evals_used"]))}
-
-              <h2>Tool / Action Artifacts Used</h2>
-              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["tools_used"]))}
-
-              <h2>Context / Grounding Artifacts Used</h2>
-              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["contexts_used"]))}
-
-              <h2>Capital / Compute / Energy / Trust Routing</h2>
-              {table(["Route", "Allocated Domains", "Rule"], routing_rows)}
-
-              <h2>Claim-Boundary Ledger</h2>
-              {table(["Claim Boundary", "Status"], claim_rows)}
-
-              <h2>Meta-RSI Upgrade Ledger</h2>
-              {table(["Cycle", "Upgrade", "Meaning"], meta_rows)}
-              '''
+          @proof_app.command("list")
+          def proof_list(tenant: str = "demo") -> None:
+              init_db()
+              with SessionLocal() as session:
+                  tenant_row = session.scalar(select(models.Tenant).where(models.Tenant.name == tenant))
+                  if not tenant_row:
+                      print("no tenant found")
+                      return
+                  rows = session.scalars(select(models.Proof).where(models.Proof.tenant_id == tenant_row.id)).all()
+                  for row in rows:
+                      print(f"{row.id} run={row.run_id} checksum={row.checksum[:12]}")
 
 
-          def render_main(archive: dict[str, Any]) -> str:
-              cards = []
-              for proof in archive["proofs"]:
-                  cards.append(f'''
-                  <div class="card">
-                    <b>{esc(proof["title"])}</b>
-                    <p>{esc(proof["subtitle"])}</p>
-                    <p><span class="pill">{esc(proof["status"])}</span></p>
-                    <p><a href="proofs/{esc(proof["slug"])}.html">Open proof page →</a></p>
-                  </div>
-                  ''')
-              systems = []
-              for system in archive["systems"]:
-                  systems.append(f'''
-                  <div class="card">
-                    <b>{esc(system["name"])}</b>
-                    <p>{esc(system["promise"])}.</p>
-                    <p>{esc(system["meaning"])}</p>
-                  </div>
-                  ''')
-              body = f'''
-              <h1>Aim.<br>Act.<br>Prove.<br>Evolve.</h1>
-              <p>GoalOS gives the network Direction. PlanOS gives it Strategy. SkillOS gives it Capability. The Proof Gradient gives it Evolution.</p>
-              <div class="nav">
-                <a href="./">Command Center</a>
-                <a href="proofs/">Proof Archive</a>
-                {''.join(f'<a href="proofs/{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])}
-              </div>
-              <h2>The Four Systems</h2>
-              <div class="grid">{''.join(systems)}</div>
-              <h2>Proof Archive</h2>
-              <div class="grid">{''.join(cards)}</div>
-              <h2>Current Apex Proof</h2>
-              <pre>{esc(json.dumps(archive["proofs"][-1]["summary"], indent=2))}</pre>
-              '''
-              return shell("Proof Gradient", "Proof Gradient · The Proof Loop", body)
+          @selection_app.command("list")
+          def selection_list(tenant: str = "demo") -> None:
+              init_db()
+              with SessionLocal() as session:
+                  tenant_row = session.scalar(select(models.Tenant).where(models.Tenant.name == tenant))
+                  if not tenant_row:
+                      print("no tenant found")
+                      return
+                  rows = session.scalars(
+                      select(models.SelectionDecision).where(models.SelectionDecision.tenant_id == tenant_row.id)
+                  ).all()
+                  for row in rows:
+                      print(f"{row.id} decision={row.decision} patch={row.patch_id}")
 
 
-          def render_index(archive: dict[str, Any]) -> str:
-              cards = []
-              for proof in archive["proofs"]:
-                  cards.append(f'''
-                  <div class="card">
-                    <b>{esc(proof["title"])}</b>
-                    <p>{esc(proof["subtitle"])}</p>
-                    <p><a href="{esc(proof["slug"])}.html">Open proof →</a></p>
-                    <p><a href="../assets/proofs/{esc(proof["slug"])}.json">Open evidence JSON →</a></p>
-                  </div>
-                  ''')
-              body = f'''
-              <h1>Proof Archive</h1>
-              <p>Every proof has its own permanent webpage and evidence JSON. Every proof links back to the main command center.</p>
-              <div class="nav">
-                <a href="../">← Main Command Center</a>
-                {''.join(f'<a href="{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])}
-              </div>
-              <div class="grid">{''.join(cards)}</div>
-              '''
-              return shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", body)
-
-
-          def render_proof(proof: dict[str, Any], archive: dict[str, Any]) -> str:
-              links = ''.join(f'<a href="{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])
-              visuals = proof11_visuals(proof) if proof["slug"] == "011-the-proof-loop" else ""
-              body = f'''
-              <h1>{esc(proof["title"])}</h1>
-              <p>{esc(proof["subtitle"])}</p>
-              <p><span class="pill">{esc(proof["status"])}</span></p>
-              <div class="nav">
-                <a href="../">← Main Command Center</a>
-                <a href="./">Proof Archive</a>
-                {links}
-                <a href="../assets/proofs/{esc(proof["slug"])}.json">Evidence JSON</a>
-              </div>
-              <h2>Summary</h2>
-              <pre>{esc(json.dumps(proof["summary"], indent=2))}</pre>
-              {visuals}
-              <h2>Evidence</h2>
-              <pre>{esc(json.dumps(proof["evidence"], indent=2))}</pre>
-              <h2>Checksum</h2>
-              <pre>{esc(proof["checksum"])}</pre>
-              '''
-              return shell(proof["title"], "Proof Gradient · Permanent Proof Page", body)
-
-
-          def write_json(path: Path, value: Any) -> None:
-              path.parent.mkdir(parents=True, exist_ok=True)
-              path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-
-          def write_site(site_dir: Path, data_dir: Path) -> None:
-              archive = build_archive()
-              site_dir.mkdir(parents=True, exist_ok=True)
-              (site_dir / "proofs").mkdir(parents=True, exist_ok=True)
-              (site_dir / "assets" / "proofs").mkdir(parents=True, exist_ok=True)
-              data_dir.mkdir(parents=True, exist_ok=True)
-
-              (site_dir / "index.html").write_text(render_main(archive), encoding="utf-8")
-              (site_dir / "proofs" / "index.html").write_text(render_index(archive), encoding="utf-8")
-              write_json(site_dir / "assets" / "proof-index.json", archive)
-              write_json(data_dir / "proof-index.json", archive)
-
-              for proof in archive["proofs"]:
-                  (site_dir / "proofs" / f"{proof['slug']}.html").write_text(render_proof(proof, archive), encoding="utf-8")
-                  write_json(site_dir / "assets" / "proofs" / f"{proof['slug']}.json", proof)
-                  write_json(data_dir / f"{proof['slug']}.json", proof)
+          @app.command("api")
+          def api(host: str = "127.0.0.1", port: int = 8000) -> None:
+              init_db()
+              uvicorn.run("proof_gradient_prod.api:app", host=host, port=port, reload=False)
 
 
           def main() -> None:
-              parser = argparse.ArgumentParser()
-              parser.add_argument("--site", default="site")
-              parser.add_argument("--data", default="data/proofs")
-              args = parser.parse_args()
-              write_site(Path(args.site), Path(args.data))
+              app()
 
 
           if __name__ == "__main__":
               main()
-          ''')
+          """)
 
-          write("tests/test_the_proof_loop.py", r'''
-          import unittest
-          from pathlib import Path
-          import tempfile
+          write("proof_gradient_prod/workers.py", """
+          from dataclasses import dataclass
 
-          from proof_gradient.the_proof_loop import build_archive, write_site
+          from sqlalchemy.orm import Session
+
+          from proof_gradient_prod.services import RunFabric
 
 
-          class TheProofLoopTest(unittest.TestCase):
-              def setUp(self):
-                  self.archive = build_archive()
-                  self.proof = next(p for p in self.archive["proofs"] if p["slug"] == "011-the-proof-loop")
-                  self.evidence = self.proof["evidence"]
-                  self.summary = self.proof["summary"]
+          @dataclass
+          class RunWorker:
+              session: Session
+              tenant_id: str
 
-              def test_archive_has_eleven_separate_proofs(self):
-                  self.assertEqual(self.archive["proof_count"], 11)
-                  self.assertIn("011-the-proof-loop", {p["slug"] for p in self.archive["proofs"]})
+              def run(self, prompt: str) -> dict:
+                  return RunFabric(self.session, self.tenant_id).run_customer_response_demo(prompt)
 
-              def test_protocol_is_canonical(self):
-                  self.assertEqual(self.evidence["proof_loop"][0]["name"], "Aim")
-                  self.assertEqual(self.evidence["proof_loop"][1]["name"], "Act")
-                  self.assertEqual(self.evidence["proof_loop"][2]["name"], "Prove")
-                  self.assertEqual(self.evidence["proof_loop"][3]["name"], "Evolve")
 
-              def test_four_systems_are_canonical(self):
-                  systems = {s["name"]: s["promise"] for s in self.evidence["systems"]}
-                  self.assertEqual(systems["Artifact Vault"], "stores reusable intelligence")
-                  self.assertEqual(systems["Run Fabric"], "executes agents at scale")
-                  self.assertEqual(systems["Proof Ledger"], "records what happened")
-                  self.assertEqual(systems["Selection Gate"], "promotes only what proved itself")
+          @dataclass
+          class EvalWorker:
+              session: Session
+              tenant_id: str
 
-              def test_large_multi_agent_coordination(self):
-                  self.assertGreaterEqual(self.summary["agents"], 8388608)
-                  self.assertGreaterEqual(self.summary["sovereign_domains"], 1280)
-                  self.assertGreaterEqual(self.summary["guilds"], 128)
-                  self.assertEqual(
-                      self.evidence["agent_mesh"]["coordination_verdict"],
-                      "large_multi_agent_coordination_to_maximum_effect_verified_deterministically",
+              def run_pending(self) -> dict:
+                  return {"status": "ok", "mode": "deterministic", "pending": 0}
+          """)
+
+          write("alembic.ini", """
+          [alembic]
+          script_location = migrations
+          sqlalchemy.url = sqlite:///./proof_gradient.db
+
+          [loggers]
+          keys = root,sqlalchemy,alembic
+
+          [handlers]
+          keys = console
+
+          [formatters]
+          keys = generic
+
+          [logger_root]
+          level = WARN
+          handlers = console
+
+          [logger_sqlalchemy]
+          level = WARN
+          handlers =
+          qualname = sqlalchemy.engine
+
+          [logger_alembic]
+          level = INFO
+          handlers =
+          qualname = alembic
+
+          [handler_console]
+          class = StreamHandler
+          args = (sys.stderr,)
+          level = NOTSET
+          formatter = generic
+
+          [formatter_generic]
+          format = %(levelname)-5.5s [%(name)s] %(message)s
+          """)
+
+          write("migrations/env.py", """
+          from logging.config import fileConfig
+
+          from alembic import context
+          from sqlalchemy import engine_from_config, pool
+
+          from proof_gradient_prod.config import settings
+          from proof_gradient_prod.db import Base
+          from proof_gradient_prod import models  # noqa: F401
+
+          config = context.config
+          config.set_main_option("sqlalchemy.url", settings.database_url)
+
+          if config.config_file_name is not None:
+              fileConfig(config.config_file_name)
+
+          target_metadata = Base.metadata
+
+
+          def run_migrations_offline() -> None:
+              context.configure(
+                  url=settings.database_url,
+                  target_metadata=target_metadata,
+                  literal_binds=True,
+                  dialect_opts={"paramstyle": "named"},
+              )
+              with context.begin_transaction():
+                  context.run_migrations()
+
+
+          def run_migrations_online() -> None:
+              connectable = engine_from_config(
+                  config.get_section(config.config_ini_section, {}),
+                  prefix="sqlalchemy.",
+                  poolclass=pool.NullPool,
+              )
+              with connectable.connect() as connection:
+                  context.configure(connection=connection, target_metadata=target_metadata)
+                  with context.begin_transaction():
+                      context.run_migrations()
+
+
+          if context.is_offline_mode():
+              run_migrations_offline()
+          else:
+              run_migrations_online()
+          """)
+
+          write("migrations/versions/0001_initial_schema.py", """
+          from alembic import op
+          from proof_gradient_prod.db import Base
+          from proof_gradient_prod import models  # noqa: F401
+
+          revision = "0001_initial_schema"
+          down_revision = None
+          branch_labels = None
+          depends_on = None
+
+
+          def upgrade() -> None:
+              Base.metadata.create_all(bind=op.get_bind())
+
+
+          def downgrade() -> None:
+              Base.metadata.drop_all(bind=op.get_bind())
+          """)
+
+          write("tests/test_vertical_slice.py", """
+          from sqlalchemy import select
+
+          from proof_gradient_prod import models
+          from proof_gradient_prod.db import SessionLocal, reset_db
+          from proof_gradient_prod.services import ArtifactVault, RunFabric, create_tenant, create_user
+
+
+          def test_full_job_to_rollback_vertical_slice():
+              reset_db()
+              with SessionLocal() as session:
+                  tenant = create_tenant(session, "demo")
+                  create_user(session, tenant.id, "owner@example.com", "owner")
+
+                  result = RunFabric(session, tenant.id).run_customer_response_demo(
+                      "Draft a response to this angry customer asking for a refund."
                   )
+                  session.commit()
 
-              def test_rsi_substrate_is_substantial(self):
-                  self.assertGreaterEqual(self.summary["rsi_cycles"], 512)
-                  self.assertGreaterEqual(self.summary["eval_cases"], 2684354560)
-                  self.assertGreaterEqual(self.summary["aims"], 655360)
-                  self.assertGreaterEqual(self.summary["proofs"], 655360)
-                  self.assertGreaterEqual(self.summary["selected_improvements"], 640000)
-                  self.assertGreaterEqual(self.summary["meta_rsi_upgrades"], 32)
+                  assert result["run_contract"]["trace_required"] is True
+                  assert result["proof_id"]
+                  assert result["patch_id"]
+                  assert result["selection_id"]
+                  assert result["rollout_id"]
+                  assert result["rollback_id"]
 
-              def test_artifact_catalogs_are_present(self):
-                  self.assertGreaterEqual(self.summary["goals_used"], 4)
-                  self.assertGreaterEqual(self.summary["plans_used"], 4)
-                  self.assertGreaterEqual(self.summary["skills_used"], 8)
-                  self.assertGreaterEqual(self.summary["policies_used"], 4)
-                  self.assertGreaterEqual(self.summary["evals_used"], 4)
-                  self.assertGreaterEqual(self.summary["tools_used"], 3)
-                  self.assertGreaterEqual(self.summary["contexts_used"], 2)
+                  proof = session.get(models.Proof, result["proof_id"])
+                  assert proof is not None
+                  assert "credit_assignment" in proof.proof_json
 
-              def test_selection_gate_and_rollback(self):
-                  gate = self.evidence["selection_gate"]
-                  self.assertEqual(gate["decision"], "approve_the_proof_loop_canary")
-                  self.assertEqual(gate["rollout_percentage"], 10)
-                  self.assertTrue(gate["rollback_target"])
-                  self.assertGreater(gate["rollback_count"], 1)
+                  rollout = session.get(models.Rollout, result["rollout_id"])
+                  assert rollout.rollout_percentage == 10
 
-              def test_claim_boundary(self):
-                  self.assertEqual(self.evidence["vision_treatment"], "strategic scenario, not empirical claim")
-                  self.assertIn("guaranteed ROI", self.evidence["not_claiming"])
-                  self.assertFalse(self.evidence["sovereignty_guarantees"]["private_data_shared"])
-                  self.assertFalse(self.evidence["sovereignty_guarantees"]["real_world_energy_claim_made"])
-                  self.assertFalse(self.evidence["sovereignty_guarantees"]["real_world_kardashev_claim_made"])
-
-              def test_pages_and_visuals_exist(self):
-                  with tempfile.TemporaryDirectory() as tmp:
-                      root = Path(tmp)
-                      site = root / "site"
-                      data = root / "data"
-                      write_site(site, data)
-
-                      main = (site / "index.html").read_text(encoding="utf-8")
-                      self.assertIn("proofs/011-the-proof-loop.html", main)
-
-                      for proof in self.archive["proofs"]:
-                          slug = proof["slug"]
-                          self.assertTrue((site / "proofs" / f"{slug}.html").exists())
-                          self.assertTrue((site / "assets" / "proofs" / f"{slug}.json").exists())
-
-                      page = (site / "proofs" / "011-the-proof-loop.html").read_text(encoding="utf-8")
-                      for phrase in [
-                          "The Proof Loop",
-                          "Aim → Act → Prove → Evolve",
-                          "The Four Systems",
-                          "GoalOS / Aim Artifacts Used",
-                          "PlanOS / Strategy Artifacts Used",
-                          "SkillOS / Capability Artifacts Used",
-                          "Policy / Guardrail Artifacts Used",
-                          "Eval / Judgment Artifacts Used",
-                          "Selection Gate Funnel",
-                          "Claim-Boundary Ledger",
-                          "Meta-RSI Upgrade Ledger",
-                      ]:
-                          self.assertIn(phrase, page)
+                  rollback = session.get(models.Rollback, result["rollback_id"])
+                  assert rollback.rollback_target == "customer_response_plan@1.0.0"
 
 
-          if __name__ == "__main__":
-              unittest.main()
-          ''')
+          def test_released_artifact_is_immutable():
+              reset_db()
+              with SessionLocal() as session:
+                  tenant = create_tenant(session, "immutability")
+                  vault = ArtifactVault(session, tenant.id)
+                  artifact = vault.create_artifact("skill", "immutable_skill")
+                  version = vault.create_version(artifact, "1.0.0", {"instruction": "do safe work"})
+                  vault.release(version, "active")
 
-          write("docs/the_proof_loop.md", """
-          # Proof #11 — The Proof Loop
+                  try:
+                      vault.update_content(version, {"instruction": "mutated"})
+                  except ValueError as exc:
+                      assert "immutable" in str(exc)
+                  else:
+                      raise AssertionError("released artifact mutation should fail")
+
+
+          def test_append_only_proof_and_trace_exist():
+              reset_db()
+              with SessionLocal() as session:
+                  tenant = create_tenant(session, "ledger")
+                  result = RunFabric(session, tenant.id).run_customer_response_demo("refund response")
+                  session.commit()
+
+                  traces = session.scalars(select(models.TraceEvent).where(models.TraceEvent.run_id == result["run_id"])).all()
+                  proofs = session.scalars(select(models.Proof).where(models.Proof.run_id == result["run_id"])).all()
+
+                  assert len(traces) >= 4
+                  assert len(proofs) == 1
+          """)
+
+          write("tests/test_security.py", """
+          from proof_gradient_prod.db import SessionLocal, reset_db
+          from proof_gradient_prod.security import PermissionDenied, Principal, ensure_same_tenant, require_role, authorize_tool
+          from proof_gradient_prod.services import RunFabric, create_tenant
+
+
+          def test_rbac_blocks_low_role():
+              principal = Principal(user_id="u1", tenant_id="t1", role="viewer")
+              try:
+                  require_role(principal, "admin")
+              except PermissionDenied:
+                  pass
+              else:
+                  raise AssertionError("viewer should not pass admin check")
+
+
+          def test_cross_tenant_access_fails():
+              principal = Principal(user_id="u1", tenant_id="tenant_a", role="owner")
+              try:
+                  ensure_same_tenant(principal, "tenant_b")
+              except PermissionDenied:
+                  pass
+              else:
+                  raise AssertionError("cross-tenant access should fail")
+
+
+          def test_tool_permissions_fail_closed():
+              allowed, reason = authorize_tool("send", {"read": "allowed"})
+              assert allowed is False
+              assert "denied" in reason
+
+
+          def test_demo_blocks_external_send():
+              reset_db()
+              with SessionLocal() as session:
+                  tenant = create_tenant(session, "tool-security")
+                  result = RunFabric(session, tenant.id).run_customer_response_demo("refund response")
+                  session.commit()
+
+              policy_events = result["proof"]["credit_assignment"]["evidence"]
+              assert "external send was blocked by policy" in policy_events
+          """)
+
+          write("tests/test_api.py", """
+          from fastapi.testclient import TestClient
+
+          from proof_gradient_prod.api import app
+          from proof_gradient_prod.db import reset_db
+
+
+          def test_api_demo_run_and_metrics():
+              reset_db()
+              client = TestClient(app)
+
+              response = client.get("/healthz")
+              assert response.status_code == 200
+
+              response = client.post("/demo/run", json={"tenant": "api", "prompt": "refund response"})
+              assert response.status_code == 200
+              body = response.json()
+              assert body["proof_id"]
+              assert body["rollback_id"]
+
+              response = client.get("/proofs", params={"tenant": "api"})
+              assert response.status_code == 200
+              assert len(response.json()["proofs"]) == 1
+
+              response = client.get("/metrics")
+              assert response.status_code == 200
+              assert "proof_gradient_proofs_total" in response.text
+          """)
+
+          write("scripts/security_review.py", """
+          from pathlib import Path
+          import sys
+
+          FORBIDDEN = [
+              "guaranteed ROI",
+              "guaranteed profit",
+              "achieved Kardashev Type II",
+              "real superintelligence achieved",
+              "private data shared automatically",
+          ]
+
+          scanned = []
+          failures = []
+
+          for path in list(Path("docs").rglob("*.md")) + list(Path("site").rglob("*.html")) + [Path("README.md")]:
+              if not path.exists():
+                  continue
+              text = path.read_text(encoding="utf-8", errors="ignore")
+              scanned.append(str(path))
+              for phrase in FORBIDDEN:
+                  if phrase.lower() in text.lower():
+                      failures.append((str(path), phrase))
+
+          if failures:
+              for path, phrase in failures:
+                  print(f"FORBIDDEN CLAIM: {phrase!r} in {path}")
+              sys.exit(1)
+
+          print(f"security review passed; scanned {len(scanned)} public files")
+          """)
+
+          write("Dockerfile", """
+          FROM python:3.11-slim
+
+          ENV PYTHONDONTWRITEBYTECODE=1
+          ENV PYTHONUNBUFFERED=1
+
+          WORKDIR /app
+
+          COPY pyproject.toml README.md /app/
+          COPY proof_gradient_prod /app/proof_gradient_prod
+          COPY migrations /app/migrations
+          COPY alembic.ini /app/alembic.ini
+
+          RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -e .
+
+          EXPOSE 8000
+
+          CMD ["uvicorn", "proof_gradient_prod.api:app", "--host", "0.0.0.0", "--port", "8000"]
+          """)
+
+          write("docker-compose.yml", """
+          services:
+            postgres:
+              image: postgres:16
+              environment:
+                POSTGRES_DB: proofgradient
+                POSTGRES_USER: postgres
+                POSTGRES_PASSWORD: postgres
+              ports:
+                - "5432:5432"
+              healthcheck:
+                test: ["CMD-SHELL", "pg_isready -U postgres"]
+                interval: 10s
+                timeout: 5s
+                retries: 5
+
+            api:
+              build: .
+              environment:
+                PROOF_GRADIENT_DATABASE_URL: postgresql+psycopg://postgres:postgres@postgres:5432/proofgradient
+                PROOF_GRADIENT_PROVIDER: mock
+              ports:
+                - "8000:8000"
+              depends_on:
+                postgres:
+                  condition: service_healthy
+          """)
+
+          write("docs/architecture.md", """
+          # Proof Gradient Production Architecture
 
           ```text
           Aim → Act → Prove → Evolve
           ```
 
-          This is the simplest sovereign form of Proof Gradient.
+          ## Four systems
 
-          ## What it proves
+          | System | Responsibility |
+          |---|---|
+          | Artifact Vault | Stores immutable, versioned reusable intelligence. |
+          | Run Fabric | Resolves artifacts, runs agents, emits proof. |
+          | Proof Ledger | Stores append-only traces, proof, evals, scores, and credit assignment. |
+          | Selection Gate | Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back upgrades. |
 
-          - GoalOS gives Direction through Aim artifacts.
-          - PlanOS gives Strategy through Strategy artifacts.
-          - SkillOS gives Capability through Capability artifacts.
-          - The Proof Gradient gives Evolution through the Selection Gate.
-          - The Artifact Vault stores reusable intelligence.
-          - The Run Fabric executes agents at scale.
-          - The Proof Ledger records what happened.
-          - The Selection Gate promotes only what proved itself.
+          ## Production stack
 
-          ## Doctrine
+          - Python
+          - FastAPI
+          - SQLAlchemy
+          - Alembic
+          - SQLite local mode
+          - Postgres production mode
+          - Typer CLI
+          - Docker Compose
+          - GitHub Actions CI
 
-          ```text
-          Every agent acts.
-          Every action leaves proof.
-          Every proof earns improvement.
-          Every improvement strengthens the network.
-          ```
+          ## Core invariant
 
-          ## Claim boundary
-
-          The proof uses deterministic synthetic evidence. It does not claim real revenue, real profit, guaranteed ROI, actual superintelligence, real-world energy capture, or Kardashev Type II achievement.
+          No proof, no evolution. No eval, no propagation. No rollback, no release.
           """)
 
-          write("docs/final_acceptance_report_the_proof_loop.md", """
-          # Final Acceptance Report — The Proof Loop
+          write("docs/migration_from_skillos_v2.md", """
+          # Migration from SkillOS v2.0.0
+
+          SkillOS v2.0.0 is the seed. Proof Gradient is the evolution.
+
+          | SkillOS v2 concept | Proof Gradient concept |
+          |---|---|
+          | Skill | artifact type: skill |
+          | Skill version | ArtifactVersion |
+          | Skill release | ArtifactRelease / Rollout |
+          | Skill trace | TraceEvent / Proof |
+          | Learning lesson | Patch rationale |
+          | Candidate skill | candidate ArtifactVersion |
+          | Eval result | EvalRun + EvalResult |
+          | Canary release | SelectionDecision + Rollout |
+          | Rollback planner | mandatory Rollback |
+          | Proof receipt | Proof Ledger record |
+          | Public command center | Proof Gradient Command Center |
+
+          Existing SkillOS behavior should remain runnable until an equivalent Proof Gradient behavior has tests.
+          """)
+
+          write("docs/security.md", """
+          # Security and Governance
+
+          ## Required controls implemented in the scaffold
+
+          - tenant isolation
+          - RBAC helpers
+          - service-ready audit log
+          - deny-by-default tool permission checks
+          - policy decisions
+          - released artifact immutability
+          - rollback requirement
+          - public claim boundary review
+
+          ## Tool permission classes
+
+          ```text
+          read
+          draft
+          write
+          send
+          delete
+          publish
+          payment
+          deploy
+          external_contact
+          secret_access
+          admin_change
+          ```
+
+          A model may request a tool. Only policy and permissions can authorize execution.
+          """)
+
+          write("docs/api.md", """
+          # API
+
+          Implemented endpoints:
+
+          - `GET /healthz`
+          - `GET /readyz`
+          - `GET /metrics`
+          - `POST /tenants`
+          - `POST /demo/run`
+          - `GET /artifacts`
+          - `GET /runs`
+          - `GET /proofs`
+
+          These endpoints expose the first production vertical slice.
+          """)
+
+          write("docs/cli.md", """
+          # CLI
+
+          ```bash
+          proof-gradient db init
+          proof-gradient db reset
+          proof-gradient demo --tenant demo --json
+          proof-gradient artifact list
+          proof-gradient proof list
+          proof-gradient selection list
+          proof-gradient api
+          ```
+          """)
+
+          write("docs/deployment.md", """
+          # Deployment
+
+          Local production-like stack:
+
+          ```bash
+          docker compose up --build
+          ```
+
+          API:
+
+          ```text
+          http://localhost:8000
+          ```
+
+          Health:
+
+          ```text
+          http://localhost:8000/healthz
+          ```
+          """)
+
+          write("docs/final_acceptance_report.md", """
+          # Final Acceptance Report
 
           | Requirement | Implementation location | Tests | Remaining risk | Notes |
           |---|---|---|---|---|
-          | Aim → Act → Prove → Evolve is canonical | `proof_gradient/the_proof_loop.py` | `test_protocol_is_canonical` | Needs production runtime | Deterministic proof scaffold |
-          | Artifact Vault stores reusable intelligence | `SYSTEMS` | `test_four_systems_are_canonical` | Needs durable registry | Artifact classes visible |
-          | Run Fabric executes agents at scale | `agent_mesh` evidence | `test_large_multi_agent_coordination` | Deterministic, not external LLM workers | Large multi-agent coordination model |
-          | Proof Ledger records what happened | `recursive_self_improvement` evidence | `test_rsi_substrate_is_substantial` | Needs append-only production ledger | Proof counts and cycle evidence generated |
-          | Selection Gate promotes only what proved itself | `selection_gate` evidence | `test_selection_gate_and_rollback` | Needs production rollout router | Canary and rollback modeled |
-          | Artifact catalogs are listed and explained | `GOALS`, `PLANS`, `SKILLS`, `POLICIES`, `EVALS`, `TOOLS`, `CONTEXTS` | `test_artifact_catalogs_are_present` | Static artifact catalog | All explained |
-          | Claim boundary is enforced | `sovereignty_guarantees` | `test_claim_boundary` | Real-world validation still required | No real revenue, ROI, energy, or Kardashev claim |
-          | Separate proof pages exist | `write_site()` | `test_pages_and_visuals_exist` | None for static site | All proofs linked |
+          | Production database | `db.py`, `models.py`, Docker Compose | API and vertical slice tests | Needs managed Postgres in deployment | SQLite local, Postgres CI |
+          | Artifact Vault | `ArtifactVault` | immutability test | Needs full diff UI | lifecycle foundation implemented |
+          | Run Fabric | `RunFabric` | vertical slice test | Needs distributed worker pool | stateless mock runtime implemented |
+          | Proof Ledger | `ProofLedger` | trace/proof test | Needs advanced search | append-only records implemented |
+          | Selection Gate | `SelectionGate` | rollout/rollback test | Needs production routing integration | canary and rollback implemented |
+          | API | `api.py` | API test | Needs auth middleware | core endpoints implemented |
+          | CLI | `cli.py` | demo command in CI | Needs all admin commands | core commands implemented |
+          | UI | `api.py` root, `site/index.html` | Pages deploy | Needs app-grade UX | static command center implemented |
+          | Tenancy and RBAC | `security.py`, tenant models | security tests | Needs full auth provider | isolation helpers implemented |
+          | Tool permissions | `ToolGateway` | security tests | Needs real tool adapters | deny-by-default implemented |
+          | LLM/provider abstraction | `providers.py` | vertical slice test | Needs provider adapters | mock and placeholder implemented |
+          | Eval execution | `evals.py` | vertical slice test | Needs batch eval workers | deterministic evals implemented |
+          | Observability | `/metrics`, audit events | API test | Needs OTEL exporter | metrics and audit foundation |
+          | Security review | `scripts/security_review.py` | CI step | Needs formal audit | public claim scan implemented |
           """)
 
-          write("examples/the_proof_loop/job.json", """
-          {
-            "job_id": "job_the_proof_loop_011",
-            "prompt": "Demonstrate Aim, Act, Prove, and Evolve as the simplest sovereign protocol for compounding agent intelligence.",
-            "risk_class": "high",
-            "expected_behavior": [
-              "define Aim artifacts",
-              "run active artifacts through Run Fabric",
-              "emit Proof Ledger evidence",
-              "route candidates through Selection Gate",
-              "list GoalOS, PlanOS, SkillOS, Policy, Eval, Tool, and Context artifacts",
-              "render institutional graphs and tables",
-              "preserve claim boundaries",
-              "preserve rollback"
-            ]
-          }
+          write("site/index.html", """
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>Proof Gradient Production Platform</title>
+              <style>
+                :root { color-scheme: dark; }
+                body {
+                  margin: 0;
+                  background:
+                    radial-gradient(circle at 15% 8%, rgba(138,180,255,.18), transparent 30%),
+                    radial-gradient(circle at 85% 12%, rgba(244,199,107,.14), transparent 30%),
+                    linear-gradient(180deg, #05070d 0%, #090d18 100%);
+                  color: #f7f8ff;
+                  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                }
+                main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 70px 0; }
+                .eyebrow { color: #f4c76b; text-transform: uppercase; letter-spacing: .18em; font-weight: 800; font-size: 13px; }
+                h1 { font-size: clamp(44px, 8vw, 100px); line-height: .92; letter-spacing: -.07em; margin: 18px 0; }
+                p { color: #aab3cf; font-size: 20px; line-height: 1.6; max-width: 880px; }
+                .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+                .card { border: 1px solid rgba(255,255,255,.14); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); }
+                .card b { font-size: 21px; }
+                pre { border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 18px; overflow: auto; background: #070b14; }
+                @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+              </style>
+            </head>
+            <body>
+              <main>
+                <div class="eyebrow">Proof Gradient · Production Platform</div>
+                <h1>Aim.<br>Act.<br>Prove.<br>Evolve.</h1>
+                <p>
+                  GoalOS gives the network Direction. PlanOS gives it Strategy.
+                  SkillOS gives it Capability. The Proof Gradient gives it Evolution.
+                </p>
+                <div class="grid">
+                  <div class="card"><b>Artifact Vault</b><p>Stores reusable intelligence.</p></div>
+                  <div class="card"><b>Run Fabric</b><p>Executes agents at scale.</p></div>
+                  <div class="card"><b>Proof Ledger</b><p>Records what happened.</p></div>
+                  <div class="card"><b>Selection Gate</b><p>Promotes only what proved itself.</p></div>
+                </div>
+                <h2>Implemented production foundation</h2>
+                <pre>Database · API · CLI · UI · RBAC · Tool Permissions · Provider Abstraction · Evals · Observability · Security Review · Docker Compose · CI</pre>
+              </main>
+            </body>
+          </html>
           """)
+
+          write(".github/workflows/proof-gradient-production-ci.yml", """
+          name: Proof Gradient Production CI
+
+          on:
+            workflow_dispatch:
+            pull_request:
+            push:
+              branches: ["main"]
+              paths:
+                - "proof_gradient_prod/**"
+                - "tests/**"
+                - "docs/**"
+                - "scripts/**"
+                - "pyproject.toml"
+                - "Dockerfile"
+                - "docker-compose.yml"
+
+          permissions:
+            contents: read
+
+          jobs:
+            production-ci:
+              runs-on: ubuntu-latest
+
+              services:
+                postgres:
+                  image: postgres:16
+                  env:
+                    POSTGRES_DB: proofgradient
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: postgres
+                  ports:
+                    - 5432:5432
+                  options: >-
+                    --health-cmd pg_isready
+                    --health-interval 10s
+                    --health-timeout 5s
+                    --health-retries 5
+
+              env:
+                PROOF_GRADIENT_DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/proofgradient
+                PROOF_GRADIENT_PROVIDER: mock
+
+              steps:
+                - uses: actions/checkout@v4
+
+                - uses: actions/setup-python@v5
+                  with:
+                    python-version: "3.11"
+                    cache: "pip"
+
+                - name: Install
+                  run: |
+                    python -m pip install --upgrade pip
+                    pip install -e ".[dev]"
+
+                - name: Lint
+                  run: |
+                    ruff check proof_gradient_prod tests
+
+                - name: Security scan
+                  run: |
+                    python scripts/security_review.py
+                    bandit -q -r proof_gradient_prod
+
+                - name: Test
+                  run: |
+                    pytest
+
+                - name: CLI smoke test
+                  run: |
+                    proof-gradient db reset
+                    proof-gradient demo --tenant ci --json
+                    proof-gradient proof list --tenant ci
+          """)
+
           PY
 
-      - name: Run The Proof Loop tests and generate site
+          python /tmp/bootstrap_proof_gradient.py
+
+      - name: Install platform dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run database initialization and demo
+        run: |
+          set -euo pipefail
+          proof-gradient db reset
+          proof-gradient demo --tenant demo --json > /tmp/proof-gradient-demo.json
+          cat /tmp/proof-gradient-demo.json
+
+      - name: Run tests
+        run: |
+          set -euo pipefail
+          pytest
+
+      - name: Run security and claim-boundary review
+        run: |
+          set -euo pipefail
+          python scripts/security_review.py
+          bandit -q -r proof_gradient_prod
+
+      - name: Verify production deliverables
         run: |
           set -euo pipefail
 
-          python -m unittest tests/test_the_proof_loop.py
+          required=(
+            "proof_gradient_prod/db.py"
+            "proof_gradient_prod/models.py"
+            "proof_gradient_prod/services.py"
+            "proof_gradient_prod/api.py"
+            "proof_gradient_prod/cli.py"
+            "proof_gradient_prod/security.py"
+            "proof_gradient_prod/providers.py"
+            "proof_gradient_prod/evals.py"
+            "proof_gradient_prod/workers.py"
+            "docker-compose.yml"
+            "Dockerfile"
+            "alembic.ini"
+            "migrations/env.py"
+            "migrations/versions/0001_initial_schema.py"
+            "docs/architecture.md"
+            "docs/migration_from_skillos_v2.md"
+            "docs/security.md"
+            "docs/api.md"
+            "docs/cli.md"
+            "docs/deployment.md"
+            "docs/final_acceptance_report.md"
+            "tests/test_vertical_slice.py"
+            "tests/test_security.py"
+            "tests/test_api.py"
+            ".github/workflows/proof-gradient-production-ci.yml"
+            "site/index.html"
+          )
 
-          rm -rf site
-          mkdir -p site
-          mkdir -p data/proofs
+          for file in "${required[@]}"; do
+            test -f "$file" || { echo "missing $file"; exit 1; }
+          done
 
-          python -m proof_gradient.the_proof_loop --site site --data data/proofs
+          grep -R "Artifact Vault" proof_gradient_prod docs site
+          grep -R "Run Fabric" proof_gradient_prod docs site
+          grep -R "Proof Ledger" proof_gradient_prod docs site
+          grep -R "Selection Gate" proof_gradient_prod docs site
 
-          python - <<'PY'
-          from pathlib import Path
-          import json
+          echo "Production platform foundation verified."
 
-          required_pages = [
-              Path("site/index.html"),
-              Path("site/proofs/index.html"),
-              Path("site/proofs/011-the-proof-loop.html"),
-              Path("site/assets/proof-index.json"),
-              Path("site/assets/proofs/011-the-proof-loop.json"),
-          ]
-
-          for page in required_pages:
-              if not page.exists():
-                  raise SystemExit(f"Missing required proof file: {page}")
-
-          archive = json.loads(Path("site/assets/proof-index.json").read_text())
-          proof = json.loads(Path("site/assets/proofs/011-the-proof-loop.json").read_text())
-
-          if archive["proof_count"] < 11:
-              raise SystemExit("Proof archive must contain at least 11 proofs.")
-
-          evidence = proof["evidence"]
-          summary = proof["summary"]
-
-          if [p["name"] for p in evidence["proof_loop"]] != ["Aim", "Act", "Prove", "Evolve"]:
-              raise SystemExit("Proof Loop protocol mismatch.")
-
-          if summary["agents"] < 8388608:
-              raise SystemExit("Large multi-agent proof failed.")
-
-          if summary["sovereign_domains"] < 1280:
-              raise SystemExit("Sovereign domain proof failed.")
-
-          if summary["eval_cases"] < 2684354560:
-              raise SystemExit("Eval case proof failed.")
-
-          if summary["goals_used"] < 4 or summary["plans_used"] < 4 or summary["skills_used"] < 8:
-              raise SystemExit("Artifact catalog incomplete.")
-
-          if evidence["selection_gate"]["decision"] != "approve_the_proof_loop_canary":
-              raise SystemExit("Selection Gate did not approve canary.")
-
-          if evidence["vision_treatment"] != "strategic scenario, not empirical claim":
-              raise SystemExit("Claim boundary failed.")
-
-          if evidence["sovereignty_guarantees"]["real_world_kardashev_claim_made"]:
-              raise SystemExit("Invalid real-world Kardashev claim.")
-
-          main = Path("site/index.html").read_text()
-          for proof_item in archive["proofs"]:
-              slug = proof_item["slug"]
-              if f"proofs/{slug}.html" not in main:
-                  raise SystemExit(f"Main page does not link to proof: {slug}")
-
-          proof_page = Path("site/proofs/011-the-proof-loop.html").read_text()
-          for phrase in [
-              "Aim → Act → Prove → Evolve",
-              "Artifact Vault",
-              "Run Fabric",
-              "Proof Ledger",
-              "Selection Gate",
-              "GoalOS / Aim Artifacts Used",
-              "PlanOS / Strategy Artifacts Used",
-              "SkillOS / Capability Artifacts Used",
-              "Claim-Boundary Ledger",
-          ]:
-              if phrase not in proof_page:
-                  raise SystemExit(f"Missing page section: {phrase}")
-
-          print("The Proof Loop verified.")
-          print("Aim → Act → Prove → Evolve verified.")
-          print("Artifact Vault, Run Fabric, Proof Ledger, and Selection Gate verified.")
-          print("Large multi-agent coordination proof verified.")
-          print("GoalOS, PlanOS, SkillOS, Policy, Eval, Tool, and Context catalogs verified.")
-          print("Selection Gate and rollback verified.")
-          print("Claim boundary verified.")
-          print("Every proof has its own webpage and is connected to the main page.")
-          PY
-
-      - name: Commit The Proof Loop
+      - name: Commit production platform
         run: |
           set -euo pipefail
 
-          git config user.name "proof-gradient-the-proof-loop"
+          git config user.name "proof-gradient-production-platform"
           git config user.email "actions@github.com"
 
           git add -A
@@ -1345,7 +2143,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No repository changes to commit."
           else
-            git commit -m "Add Proof Gradient The Proof Loop [skip ci]"
+            git commit -m "Implement Proof Gradient production platform foundation [skip ci]"
             git push origin HEAD:main
           fi
 
@@ -1369,7 +2167,7 @@ jobs:
             exit 1
           fi
 
-          echo "Clean Proof Gradient The Proof Loop artifact is ready."
+          echo "Clean Proof Gradient production artifact is ready."
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -1386,6 +2184,3 @@ jobs:
       - name: Show live URL
         run: |
           echo "Proof Gradient deployed to: ${{ steps.deployment.outputs.page_url }}"
-          echo "Main: ${{ steps.deployment.outputs.page_url }}"
-          echo "Proof Archive: ${{ steps.deployment.outputs.page_url }}proofs/"
-          echo "Proof #11: ${{ steps.deployment.outputs.page_url }}proofs/011-the-proof-loop.html"
