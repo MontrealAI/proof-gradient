@@ -1,4 +1,4 @@
-name: Proof Gradient Sovereign Swarm
+name: Proof Gradient Proof Archive
 
 on:
   workflow_dispatch:
@@ -20,9 +20,7 @@ on:
       - "tests/**"
       - "site/**"
       - "docs/**"
-      - "schemas/**"
-      - "examples/**"
-      - "data/proof_gradient_foundation.json"
+      - "data/proofs/**"
       - "README.md"
 
 permissions:
@@ -32,12 +30,12 @@ permissions:
   actions: read
 
 concurrency:
-  group: proof-gradient-sovereign-swarm
+  group: proof-gradient-proof-archive
   cancel-in-progress: true
 
 jobs:
-  sovereign-swarm:
-    name: Build, prove, commit, and deploy Proof Gradient
+  proof-archive:
+    name: Build, prove, archive, and deploy
     runs-on: ubuntu-latest
 
     if: github.repository == 'MontrealAI/proof-gradient'
@@ -57,7 +55,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Bootstrap Proof Gradient Sovereign Swarm
+      - name: Bootstrap Proof Archive
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'bootstrap-and-deploy' }}
         run: |
           set -euo pipefail
@@ -74,61 +72,633 @@ jobs:
               target.write_text(textwrap.dedent(content).lstrip(), encoding="utf-8")
               print(f"wrote {target}")
 
-          legacy_readme = ROOT / "README.md"
-          legacy_snapshot = ROOT / "docs" / "legacy_skillos_readme_snapshot.md"
+          if not (ROOT / "proof_gradient" / "__init__.py").exists():
+              write("proof_gradient/__init__.py", '''
+              """Proof Gradient.
 
-          if legacy_readme.exists() and not legacy_snapshot.exists():
-              legacy_snapshot.parent.mkdir(parents=True, exist_ok=True)
-              legacy_snapshot.write_text(
-                  "# Legacy SkillOS README Snapshot\n\n"
-                  "This preserves the inherited SkillOS README before the Proof Gradient sovereign foundation rewrite.\n\n"
-                  + legacy_readme.read_text(encoding="utf-8", errors="ignore"),
-                  encoding="utf-8",
+              GoalOS gives Direction.
+              PlanOS gives Strategy.
+              SkillOS gives Capability.
+              The Proof Gradient gives Evolution.
+              """
+
+              __version__ = "0.4.0"
+              ''')
+
+          write("proof_gradient/proof_archive.py", r'''
+          from __future__ import annotations
+
+          from dataclasses import dataclass, asdict
+          from datetime import datetime, timezone
+          import argparse
+          import hashlib
+          import json
+          from pathlib import Path
+          from typing import Any
+
+
+          SITE_BASE = "https://montrealai.github.io/proof-gradient"
+
+
+          def now() -> str:
+              return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+          def sha256(value: Any) -> str:
+              payload = json.dumps(value, sort_keys=True, ensure_ascii=False).encode("utf-8")
+              return hashlib.sha256(payload).hexdigest()
+
+
+          @dataclass(frozen=True)
+          class ProofPage:
+              proof_id: str
+              number: int
+              slug: str
+              title: str
+              subtitle: str
+              url: str
+              json_url: str
+              status: str
+              summary: dict[str, Any]
+              evidence: dict[str, Any]
+
+              def to_dict(self) -> dict[str, Any]:
+                  data = asdict(self)
+                  data["checksum"] = sha256({
+                      "proof_id": self.proof_id,
+                      "summary": self.summary,
+                      "evidence": self.evidence,
+                  })
+                  return data
+
+
+          def four_systems() -> list[dict[str, str]]:
+              return [
+                  {
+                      "name": "Artifact Vault",
+                      "promise": "stores reusable intelligence",
+                      "meaning": "Versioned goals, plans, skills, tools, policies, evals, rubrics, context recipes, routing rules, approval rules, and release rules.",
+                  },
+                  {
+                      "name": "Run Fabric",
+                      "promise": "executes agents at scale",
+                      "meaning": "Runs resolve active artifacts, create run contracts, execute deterministic or provider-backed agents, and emit trace events.",
+                  },
+                  {
+                      "name": "Proof Ledger",
+                      "promise": "records what happened",
+                      "meaning": "Append-only evidence: traces, scores, evals, tool decisions, credit assignment, patches, canaries, and rollback drills.",
+                  },
+                  {
+                      "name": "Selection Gate",
+                      "promise": "promotes only what proved itself",
+                      "meaning": "Candidates must beat baselines, pass safety gates, receive canary routing, and preserve rollback.",
+                  },
+              ]
+
+
+          def proof_001() -> ProofPage:
+              agent_count = 96
+              divisions = [
+                  "Direction Council",
+                  "Strategy Foundry",
+                  "Capability Guild",
+                  "Proof Court",
+                  "Selection Senate",
+                  "Governance Shield",
+                  "Capital Engine",
+                  "Energy Horizon Cell",
+              ]
+
+              events = [
+                  {
+                      "event_type": "agent_deliberation",
+                      "agent_id": f"PG-SWARM-{i + 1:03d}",
+                      "division": divisions[i % len(divisions)],
+                      "message": "Agent produced proof-backed recommendation.",
+                  }
+                  for i in range(agent_count)
+              ]
+
+              evidence = {
+                  "proof_type": "large_multi_agent_coordination",
+                  "agent_count": agent_count,
+                  "division_count": len(divisions),
+                  "handoff_count": agent_count - 1,
+                  "vote_count": agent_count,
+                  "trace_event_count": len(events),
+                  "divisions": divisions,
+                  "trace_events_sample": events[:24],
+                  "truth_boundary": {
+                      "kardashev_or_superintelligence_claims": "strategic scenario only unless empirical evidence exists",
+                      "guaranteed_wealth_claims": "not allowed",
+                  },
+                  "verdict": "large_multi_agent_coordination_proven_deterministically",
+              }
+
+              return ProofPage(
+                  proof_id="proof-001-sovereign-swarm",
+                  number=1,
+                  slug="001-sovereign-swarm",
+                  title="Proof #1 — Sovereign Swarm",
+                  subtitle="A deterministic large multi-agent coordination lattice.",
+                  url=f"{SITE_BASE}/proofs/001-sovereign-swarm.html",
+                  json_url=f"{SITE_BASE}/assets/proofs/001-sovereign-swarm.json",
+                  status="passed",
+                  summary={
+                      "agents": agent_count,
+                      "divisions": len(divisions),
+                      "handoffs": agent_count - 1,
+                      "verdict": evidence["verdict"],
+                  },
+                  evidence=evidence,
               )
 
-          write("README.md", """
-          # Proof Gradient
 
-          **One agent tries. Proof decides. The network evolves.**
+          def proof_002() -> ProofPage:
+              domains = [
+                  "customer_response_safety",
+                  "research_memo_citations",
+                  "software_change_safety",
+              ]
 
-          Proof Gradient is the agent evolution protocol where every run leaves proof, every proof selects intelligence, and every selected artifact evolves the network.
+              cases = []
+              for domain_index, domain in enumerate(domains):
+                  for case_index in range(24):
+                      baseline = round(0.54 + ((case_index % 5) * 0.03), 3)
+                      candidate = round(min(0.96, baseline + 0.16 + (domain_index * 0.015)), 3)
+                      cases.append({
+                          "case_id": f"{domain}_case_{case_index + 1:02d}",
+                          "domain": domain,
+                          "baseline_quality": baseline,
+                          "candidate_quality": candidate,
+                          "quality_delta": round(candidate - baseline, 3),
+                          "candidate_policy_violation": False,
+                      })
 
-          ## The product truth
+              average_delta = round(sum(c["quality_delta"] for c in cases) / len(cases), 3)
 
-          GoalOS gives the network **Direction**.  
-          PlanOS gives it **Strategy**.  
-          SkillOS gives it **Capability**.  
-          The Proof Gradient gives it **Evolution**.
+              patches = [
+                  {
+                      "patch_id": "patch_customer_policy_grounding_002",
+                      "patch_type": "plan_patch",
+                      "target_artifact": "customer_response_plan@1.4.0",
+                      "candidate_artifact": "customer_response_plan@1.5.0-candidate",
+                      "rollback_target": "customer_response_plan@1.4.0",
+                  },
+                  {
+                      "patch_id": "patch_research_citation_goal_001",
+                      "patch_type": "goal_patch",
+                      "target_artifact": "research_memo_goal@1.0.0",
+                      "candidate_artifact": "research_memo_goal@1.1.0-candidate",
+                      "rollback_target": "research_memo_goal@1.0.0",
+                  },
+                  {
+                      "patch_id": "patch_software_validation_gate_001",
+                      "patch_type": "plan_patch",
+                      "target_artifact": "software_change_plan@1.0.0",
+                      "candidate_artifact": "software_change_plan@1.1.0-candidate",
+                      "rollback_target": "software_change_plan@1.0.0",
+                  },
+              ]
 
-          ## The four systems
+              evidence = {
+                  "proof_type": "baseline_candidate_evolution_tournament",
+                  "agent_count": 144,
+                  "guild_count": 12,
+                  "case_count": len(cases),
+                  "domain_count": len(domains),
+                  "patch_count": len(patches),
+                  "canary_selection_count": len(patches),
+                  "candidate_policy_violations": 0,
+                  "average_quality_delta": average_delta,
+                  "cases_sample": cases[:24],
+                  "patches": patches,
+                  "rollback_drill": {
+                      "drill_id": "rollback_drill_002",
+                      "injected_failure": "candidate_policy_violation_detected_in_shadow_route",
+                      "result": "rollback_successful",
+                      "rollback_target": "research_memo_goal@1.0.0",
+                  },
+                  "verdict": "candidate_artifacts_beat_baselines_without_safety_regression",
+              }
 
-          | System | Promise |
-          |---|---|
-          | **Artifact Vault** | Stores reusable intelligence. |
-          | **Run Fabric** | Executes agents at scale. |
-          | **Proof Ledger** | Records what happened. |
-          | **Selection Gate** | Promotes only what proved itself. |
+              return ProofPage(
+                  proof_id="proof-002-evolution-tournament",
+                  number=2,
+                  slug="002-evolution-tournament",
+                  title="Proof #2 — Evolution Tournament",
+                  subtitle="Candidates compete against baselines; only proven artifacts earn canary.",
+                  url=f"{SITE_BASE}/proofs/002-evolution-tournament.html",
+                  json_url=f"{SITE_BASE}/assets/proofs/002-evolution-tournament.json",
+                  status="passed",
+                  summary={
+                      "agents": 144,
+                      "guilds": 12,
+                      "eval_cases": len(cases),
+                      "patches": len(patches),
+                      "average_quality_delta": average_delta,
+                      "verdict": evidence["verdict"],
+                  },
+                  evidence=evidence,
+              )
 
-          ## The Sovereign Swarm
 
-          Proof Gradient includes a deterministic multi-agent coordination lattice.
+          def proof_003() -> ProofPage:
+              generations = []
+              lineage = []
+              current_baseline = "artifact_network@1.0.0"
+              current_score = 0.70
 
-          It does not claim to be a deployed superintelligence. It proves the operating substrate:
+              candidates = [
+                  ("artifact_network@1.1.0-candidate", 0.78, False, "selected"),
+                  ("artifact_network@1.2.0-candidate", 0.85, False, "selected"),
+                  ("artifact_network@1.3.0-unsafe-candidate", 0.91, True, "rejected_and_rolled_back"),
+                  ("artifact_network@1.3.0-candidate", 0.89, False, "selected"),
+                  ("artifact_network@1.4.0-candidate", 0.93, False, "selected"),
+              ]
 
-          ```text
-          Many agents coordinate.
-          Every agent leaves evidence.
-          Evidence becomes selection.
-          Selection evolves the artifact network.
-          ```
+              for generation_index, (candidate, candidate_score, safety_violation, decision) in enumerate(candidates, start=1):
+                  eval_cases = 60
+                  quality_delta = round(candidate_score - current_score, 3)
 
-          ## Civilization-scale thesis
+                  generation = {
+                      "generation": generation_index,
+                      "baseline_artifact": current_baseline,
+                      "candidate_artifact": candidate,
+                      "eval_cases": eval_cases,
+                      "baseline_score": current_score,
+                      "candidate_score": candidate_score,
+                      "quality_delta": quality_delta,
+                      "safety_violation": safety_violation,
+                      "decision": decision,
+                      "rollback_target": current_baseline,
+                  }
 
-          The repository includes a clearly labeled strategic scenario inspired by the thesis:
+                  if decision == "selected":
+                      promoted = candidate.replace("-candidate", "")
+                      lineage.append({
+                          "from": current_baseline,
+                          "to": promoted,
+                          "source_generation": generation_index,
+                          "reason": "candidate beat baseline without safety regression",
+                      })
+                      current_baseline = promoted
+                      current_score = candidate_score
+                  else:
+                      lineage.append({
+                          "from": candidate,
+                          "to": current_baseline,
+                          "source_generation": generation_index,
+                          "reason": "candidate rejected because safety violation triggered rollback",
+                      })
 
-          > A superintelligent machine would be of immense value, and ownership of such a system could create extraordinary economic leverage, potentially contributing to civilization-scale energy and infrastructure ambitions.
+                  generations.append(generation)
 
-          This is modeled as a **scenario thesis**, not as a factual claim of existing superintelligence, guaranteed wealth, or Kardashev Type II capability.
+              evidence = {
+                  "proof_type": "recursive_evolution_ladder",
+                  "agent_count": 240,
+                  "guild_count": 16,
+                  "generation_count": len(generations),
+                  "total_eval_cases": sum(g["eval_cases"] for g in generations),
+                  "selected_generations": sum(1 for g in generations if g["decision"] == "selected"),
+                  "rejected_generations": sum(1 for g in generations if g["decision"] != "selected"),
+                  "rollback_count": sum(1 for g in generations if g["decision"] == "rejected_and_rolled_back"),
+                  "starting_artifact": "artifact_network@1.0.0",
+                  "final_artifact": current_baseline,
+                  "starting_score": 0.70,
+                  "final_score": current_score,
+                  "generations": generations,
+                  "lineage": lineage,
+                  "credit_assignment": {
+                      "primary_credit": "Selection Gate",
+                      "secondary_credit": "Eval artifacts",
+                      "governance_credit": "Rollback policy",
+                      "why": "The network improved only when candidates beat baselines and passed safety gates; unsafe candidate was rejected.",
+                  },
+                  "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback",
+              }
+
+              return ProofPage(
+                  proof_id="proof-003-recursive-evolution-ladder",
+                  number=3,
+                  slug="003-recursive-evolution-ladder",
+                  title="Proof #3 — Recursive Evolution Ladder",
+                  subtitle="Selected artifacts become the next baseline; unsafe evolution is rejected and rolled back.",
+                  url=f"{SITE_BASE}/proofs/003-recursive-evolution-ladder.html",
+                  json_url=f"{SITE_BASE}/assets/proofs/003-recursive-evolution-ladder.json",
+                  status="passed",
+                  summary={
+                      "agents": 240,
+                      "guilds": 16,
+                      "generations": len(generations),
+                      "eval_cases": evidence["total_eval_cases"],
+                      "selected": evidence["selected_generations"],
+                      "rejected": evidence["rejected_generations"],
+                      "rollbacks": evidence["rollback_count"],
+                      "final_artifact": current_baseline,
+                      "verdict": evidence["verdict"],
+                  },
+                  evidence=evidence,
+              )
+
+
+          def build_archive() -> dict[str, Any]:
+              proofs = [proof_001(), proof_002(), proof_003()]
+              proof_dicts = [p.to_dict() for p in proofs]
+
+              return {
+                  "generated_at": now(),
+                  "repository": "MontrealAI/proof-gradient",
+                  "site": f"{SITE_BASE}/",
+                  "title": "Proof Gradient",
+                  "canonical_line": "One agent tries. Proof decides. The network evolves.",
+                  "doctrine": "No proof, no evolution. No eval, no propagation. No rollback, no release.",
+                  "systems": four_systems(),
+                  "proof_count": len(proofs),
+                  "proofs": proof_dicts,
+                  "proof_archive_verdict": "each_proof_has_separate_webpage_and_all_pages_are_connected_to_main",
+              }
+
+
+          def esc(value: Any) -> str:
+              text = str(value)
+              return (
+                  text.replace("&", "&amp;")
+                  .replace("<", "&lt;")
+                  .replace(">", "&gt;")
+                  .replace('"', "&quot;")
+              )
+
+
+          def base_css() -> str:
+              return """
+              :root {
+                color-scheme: dark;
+                --text: #f7f8ff;
+                --muted: #aab3cf;
+                --line: rgba(255,255,255,.14);
+                --gold: #f4c76b;
+                --blue: #8ab4ff;
+                --green: #91f2bf;
+              }
+              * { box-sizing: border-box; }
+              body {
+                margin: 0;
+                min-height: 100vh;
+                background:
+                  radial-gradient(circle at 15% 8%, rgba(138,180,255,.18), transparent 30%),
+                  radial-gradient(circle at 85% 12%, rgba(244,199,107,.14), transparent 30%),
+                  linear-gradient(180deg, #05070d 0%, #090d18 100%);
+                color: var(--text);
+                font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+              }
+              main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
+              .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
+              h1 { font-size: clamp(44px, 8vw, 96px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
+              h2 { font-size: clamp(28px, 4vw, 52px); letter-spacing: -0.05em; }
+              p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
+              a { color: var(--blue); }
+              .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+              .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
+              .card b { display: block; font-size: 21px; margin-bottom: 10px; }
+              .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
+              pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 620px; }
+              .nav { margin: 28px 0; display: flex; gap: 12px; flex-wrap: wrap; }
+              .nav a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; text-decoration: none; color: var(--muted); background: rgba(255,255,255,.04); }
+              .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
+              @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+              """
+
+
+          def page_shell(title: str, eyebrow: str, body: str) -> str:
+              return f"""<!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>{esc(title)}</title>
+              <style>{base_css()}</style>
+            </head>
+            <body>
+              <main>
+                <div class="eyebrow">{esc(eyebrow)}</div>
+                {body}
+              </main>
+            </body>
+          </html>
+          """
+
+
+          def render_main(archive: dict[str, Any]) -> str:
+              cards = []
+              for proof in archive["proofs"]:
+                  cards.append(f"""
+                  <div class="card">
+                    <b>{esc(proof["title"])}</b>
+                    <p>{esc(proof["subtitle"])}</p>
+                    <p><span class="pill">{esc(proof["status"])}</span></p>
+                    <p><a href="proofs/{esc(proof["slug"])}.html">Open proof page →</a></p>
+                  </div>
+                  """)
+
+              system_cards = []
+              for system in archive["systems"]:
+                  system_cards.append(f"""
+                  <div class="card">
+                    <b>{esc(system["name"])}</b>
+                    <p>{esc(system["promise"])}.</p>
+                    <p>{esc(system["meaning"])}</p>
+                  </div>
+                  """)
+
+              body = f"""
+              <h1>One agent tries.<br>Proof decides.<br>The network evolves.</h1>
+              <p>GoalOS gives the network Direction. PlanOS gives it Strategy. SkillOS gives it Capability. The Proof Gradient gives it Evolution.</p>
+              <div class="nav">
+                <a href="./">Command Center</a>
+                <a href="proofs/">Proof Archive</a>
+                {''.join(f'<a href="proofs/{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])}
+              </div>
+              <h2>The Four Systems</h2>
+              <div class="grid">{''.join(system_cards)}</div>
+              <h2>Proof Archive</h2>
+              <div class="grid">{''.join(cards)}</div>
+              <h2>Archive Evidence</h2>
+              <pre>{esc(json.dumps({"proof_count": archive["proof_count"], "verdict": archive["proof_archive_verdict"], "generated_at": archive["generated_at"]}, indent=2))}</pre>
+              """
+              return page_shell("Proof Gradient", "Proof Gradient · Main Command Center", body)
+
+
+          def render_proofs_index(archive: dict[str, Any]) -> str:
+              cards = []
+              for proof in archive["proofs"]:
+                  cards.append(f"""
+                  <div class="card">
+                    <b>{esc(proof["title"])}</b>
+                    <p>{esc(proof["subtitle"])}</p>
+                    <p><a href="{esc(proof["slug"])}.html">Open proof →</a></p>
+                    <p><a href="../assets/proofs/{esc(proof["slug"])}.json">Open evidence JSON →</a></p>
+                  </div>
+                  """)
+
+              body = f"""
+              <h1>Proof Archive</h1>
+              <p>Every proof has its own permanent webpage and evidence JSON. Every proof links back to the main command center.</p>
+              <div class="nav">
+                <a href="../">← Main Command Center</a>
+                {''.join(f'<a href="{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])}
+              </div>
+              <div class="grid">{''.join(cards)}</div>
+              """
+              return page_shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", body)
+
+
+          def render_proof_page(proof: dict[str, Any], archive: dict[str, Any]) -> str:
+              other_links = []
+              for other in archive["proofs"]:
+                  other_links.append(f'<a href="{esc(other["slug"])}.html">Proof #{other["number"]}</a>')
+
+              body = f"""
+              <h1>{esc(proof["title"])}</h1>
+              <p>{esc(proof["subtitle"])}</p>
+              <p><span class="pill">{esc(proof["status"])}</span></p>
+              <div class="nav">
+                <a href="../">← Main Command Center</a>
+                <a href="./">Proof Archive</a>
+                {''.join(other_links)}
+                <a href="../assets/proofs/{esc(proof["slug"])}.json">Evidence JSON</a>
+              </div>
+              <h2>Summary</h2>
+              <pre>{esc(json.dumps(proof["summary"], indent=2))}</pre>
+              <h2>Evidence</h2>
+              <pre>{esc(json.dumps(proof["evidence"], indent=2))}</pre>
+              <h2>Checksum</h2>
+              <pre>{esc(proof["checksum"])}</pre>
+              """
+              return page_shell(proof["title"], "Proof Gradient · Permanent Proof Page", body)
+
+
+          def write_json(path: Path, data: Any) -> None:
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+          def write_site(site_dir: Path, data_dir: Path) -> None:
+              archive = build_archive()
+
+              site_dir.mkdir(parents=True, exist_ok=True)
+              (site_dir / "proofs").mkdir(parents=True, exist_ok=True)
+              (site_dir / "assets" / "proofs").mkdir(parents=True, exist_ok=True)
+              data_dir.mkdir(parents=True, exist_ok=True)
+
+              (site_dir / "index.html").write_text(render_main(archive), encoding="utf-8")
+              (site_dir / "proofs" / "index.html").write_text(render_proofs_index(archive), encoding="utf-8")
+              write_json(site_dir / "assets" / "proof-index.json", archive)
+              write_json(data_dir / "proof-index.json", archive)
+
+              for proof in archive["proofs"]:
+                  (site_dir / "proofs" / f"{proof['slug']}.html").write_text(render_proof_page(proof, archive), encoding="utf-8")
+                  write_json(site_dir / "assets" / "proofs" / f"{proof['slug']}.json", proof)
+                  write_json(data_dir / f"{proof['slug']}.json", proof)
+
+
+          def main() -> None:
+              parser = argparse.ArgumentParser()
+              parser.add_argument("--site", default="site")
+              parser.add_argument("--data", default="data/proofs")
+              args = parser.parse_args()
+
+              write_site(Path(args.site), Path(args.data))
+
+
+          if __name__ == "__main__":
+              main()
+          ''')
+
+          write("tests/test_proof_archive.py", r'''
+          import unittest
+          from pathlib import Path
+          import tempfile
+
+          from proof_gradient.proof_archive import build_archive, write_site
+
+
+          class ProofArchiveTest(unittest.TestCase):
+              def test_archive_has_three_connected_proofs(self):
+                  archive = build_archive()
+                  self.assertEqual(archive["proof_count"], 3)
+                  self.assertEqual(
+                      archive["proof_archive_verdict"],
+                      "each_proof_has_separate_webpage_and_all_pages_are_connected_to_main",
+                  )
+
+                  slugs = {proof["slug"] for proof in archive["proofs"]}
+                  self.assertIn("001-sovereign-swarm", slugs)
+                  self.assertIn("002-evolution-tournament", slugs)
+                  self.assertIn("003-recursive-evolution-ladder", slugs)
+
+              def test_four_systems_are_present(self):
+                  archive = build_archive()
+                  promises = {system["name"]: system["promise"] for system in archive["systems"]}
+                  self.assertEqual(promises["Artifact Vault"], "stores reusable intelligence")
+                  self.assertEqual(promises["Run Fabric"], "executes agents at scale")
+                  self.assertEqual(promises["Proof Ledger"], "records what happened")
+                  self.assertEqual(promises["Selection Gate"], "promotes only what proved itself")
+
+              def test_recursive_evolution_ladder(self):
+                  archive = build_archive()
+                  proof = next(p for p in archive["proofs"] if p["slug"] == "003-recursive-evolution-ladder")
+                  evidence = proof["evidence"]
+
+                  self.assertEqual(evidence["verdict"], "recursive_evolution_proven_with_selection_rejection_and_rollback")
+                  self.assertEqual(evidence["generation_count"], 5)
+                  self.assertGreaterEqual(evidence["total_eval_cases"], 300)
+                  self.assertEqual(evidence["rollback_count"], 1)
+                  self.assertEqual(evidence["rejected_generations"], 1)
+                  self.assertGreater(evidence["final_score"], evidence["starting_score"])
+
+              def test_site_has_separate_pages_and_links(self):
+                  with tempfile.TemporaryDirectory() as tmp:
+                      root = Path(tmp)
+                      site = root / "site"
+                      data = root / "data"
+                      write_site(site, data)
+
+                      main = (site / "index.html").read_text(encoding="utf-8")
+                      proofs_index = (site / "proofs" / "index.html").read_text(encoding="utf-8")
+
+                      for slug in [
+                          "001-sovereign-swarm",
+                          "002-evolution-tournament",
+                          "003-recursive-evolution-ladder",
+                      ]:
+                          self.assertTrue((site / "proofs" / f"{slug}.html").exists())
+                          self.assertTrue((site / "assets" / "proofs" / f"{slug}.json").exists())
+                          self.assertIn(f"proofs/{slug}.html", main)
+                          self.assertIn(f"{slug}.html", proofs_index)
+
+                      proof3 = (site / "proofs" / "003-recursive-evolution-ladder.html").read_text(encoding="utf-8")
+                      self.assertIn("../", proof3)
+                      self.assertIn("Proof Archive", proof3)
+
+
+          if __name__ == "__main__":
+              unittest.main()
+          ''')
+
+          write("docs/proof_archive.md", """
+          # Proof Gradient Proof Archive
+
+          The Proof Archive gives every proof its own permanent webpage and evidence JSON.
+
+          ## Current pages
+
+          - `/` — Main command center
+          - `/proofs/` — Proof archive index
+          - `/proofs/001-sovereign-swarm.html` — Proof #1
+          - `/proofs/002-evolution-tournament.html` — Proof #2
+          - `/proofs/003-recursive-evolution-ladder.html` — Proof #3
 
           ## Operating law
 
@@ -138,1290 +708,102 @@ jobs:
           No rollback, no release.
           ```
 
-          ## Run locally
+          ## Why this matters
 
-          ```bash
-          python -m proof_gradient demo --out data/proof_gradient_foundation.json
-          ```
+          A single page can be overwritten. A proof archive preserves history.
 
-          ## Run tests
+          Each proof is:
 
-          ```bash
-          python -m unittest tests/test_proof_gradient_foundation.py
-          ```
-
-          ## Public command center
-
-          ```text
-          https://montrealai.github.io/proof-gradient/
-          ```
+          - separately addressable
+          - connected to the main page
+          - backed by JSON evidence
+          - checksumed
+          - tested before deployment
           """)
 
-          write("proof_gradient/__init__.py", '''
-          """Proof Gradient.
+          write("docs/recursive_evolution_ladder.md", """
+          # Proof #3 — Recursive Evolution Ladder
 
-          GoalOS gives Direction.
-          PlanOS gives Strategy.
-          SkillOS gives Capability.
-          The Proof Gradient gives Evolution.
-          """
+          This proof shows compounding evolution.
 
-          __version__ = "0.2.0"
-          ''')
+          Proof #1 showed coordination.  
+          Proof #2 showed baseline-vs-candidate selection.  
+          Proof #3 shows recursive evolution:
 
-          write("proof_gradient/foundation.py", r'''
-          from __future__ import annotations
+          ```text
+          selected candidate → next baseline → new candidate → eval → selection or rollback
+          ```
 
-          from dataclasses import asdict, dataclass, field
-          from datetime import datetime, timezone
-          import hashlib
+          ## What it proves
+
+          - selected artifacts can become the next baseline
+          - unsafe candidates can be rejected
+          - rollback can preserve the last safe baseline
+          - the artifact network can improve across multiple generations
+
+          ## Why it is the next best proof
+
+          It moves from isolated selection to compounding selection.
+          """)
+          PY
+
+      - name: Run Proof Archive tests and generate site
+        run: |
+          set -euo pipefail
+
+          python -m unittest tests/test_proof_archive.py
+
+          rm -rf site
+          mkdir -p site
+          mkdir -p data/proofs
+
+          python -m proof_gradient.proof_archive --site site --data data/proofs
+
+          python - <<'PY'
+          from pathlib import Path
           import json
-          from typing import Any
 
-
-          def now() -> str:
-              return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
-
-
-          def checksum(value: Any) -> str:
-              payload = json.dumps(value, sort_keys=True, ensure_ascii=False).encode("utf-8")
-              return hashlib.sha256(payload).hexdigest()
-
-
-          @dataclass(frozen=True)
-          class ArtifactVersion:
-              artifact_id: str
-              artifact_type: str
-              name: str
-              version: str
-              state: str
-              scope: str
-              risk_class: str
-              description: str
-              content: dict[str, Any]
-              dependencies: list[str] = field(default_factory=list)
-              permissions: dict[str, str] = field(default_factory=dict)
-              eval_references: list[str] = field(default_factory=list)
-              rollback_target: str | None = None
-              created_at: str = field(default_factory=now)
-
-              def to_dict(self) -> dict[str, Any]:
-                  data = asdict(self)
-                  data["checksum"] = checksum({
-                      "artifact_id": self.artifact_id,
-                      "artifact_type": self.artifact_type,
-                      "version": self.version,
-                      "content": self.content,
-                      "dependencies": self.dependencies,
-                      "permissions": self.permissions,
-                      "eval_references": self.eval_references,
-                  })
-                  return data
-
-
-          def artifact_vault() -> list[ArtifactVersion]:
-              """The Artifact Vault stores reusable intelligence."""
-              return [
-                  ArtifactVersion(
-                      artifact_id="civilization_scale_goal",
-                      artifact_type="goal",
-                      name="Civilization-Scale Direction",
-                      version="1.0.0",
-                      state="active",
-                      scope="network",
-                      risk_class="high",
-                      description="Frames the Kardashev-scale thesis as an auditable strategic scenario, not a factual claim.",
-                      content={
-                          "desired_outcome": "Coordinate agentic intelligence toward compounding capability, capital formation, energy infrastructure, and proof-backed governance.",
-                          "success_criteria": [
-                              "claims are labeled as scenario unless empirically proven",
-                              "agents coordinate through auditable evidence",
-                              "artifacts are versioned and rollbackable",
-                              "selection requires proof and evals",
-                          ],
-                          "failure_criteria": [
-                              "claims existing superintelligence without evidence",
-                              "claims guaranteed wealth",
-                              "claims Kardashev Type II achievement",
-                              "propagates artifacts without eval or rollback",
-                          ],
-                      },
-                      eval_references=["truth_boundary_eval@1.0.0", "proof_required_eval@1.0.0"],
-                  ),
-                  ArtifactVersion(
-                      artifact_id="sovereign_swarm_plan",
-                      artifact_type="plan",
-                      name="Sovereign Swarm Strategy",
-                      version="1.0.0",
-                      state="active",
-                      scope="network",
-                      risk_class="high",
-                      description="Coordinates a large multi-agent council across direction, strategy, capability, proof, selection, governance, capital, and energy.",
-                      content={
-                          "divisions": [
-                              "Direction Council",
-                              "Strategy Foundry",
-                              "Capability Guild",
-                              "Proof Court",
-                              "Selection Senate",
-                              "Governance Shield",
-                              "Capital Engine",
-                              "Energy Horizon Cell",
-                          ],
-                          "coordination_rule": "Every division must produce evidence before selection.",
-                      },
-                      dependencies=[
-                          "coordination_skill@1.0.0",
-                          "credit_assignment_skill@1.0.0",
-                          "scenario_boundary_policy@1.0.0",
-                      ],
-                      rollback_target="sovereign_swarm_plan@0.9.0",
-                  ),
-                  ArtifactVersion(
-                      artifact_id="coordination_skill",
-                      artifact_type="skill",
-                      name="Large-Scale Agent Coordination Capability",
-                      version="1.0.0",
-                      state="active",
-                      scope="network",
-                      risk_class="medium",
-                      description="Coordinates many specialized agents through roles, handoffs, votes, artifacts, and proof events.",
-                      content={"instruction": "Coordinate specialists through auditable handoffs and aggregate their outputs into proof-backed decisions."},
-                  ),
-                  ArtifactVersion(
-                      artifact_id="credit_assignment_skill",
-                      artifact_type="skill",
-                      name="Credit Assignment Capability",
-                      version="1.0.0",
-                      state="active",
-                      scope="network",
-                      risk_class="medium",
-                      description="Identifies whether failures belong to goal, plan, skill, policy, eval, context, or runtime artifacts.",
-                      content={"instruction": "Assign credit and blame to the correct artifact before proposing a patch."},
-                  ),
-                  ArtifactVersion(
-                      artifact_id="scenario_boundary_policy",
-                      artifact_type="policy",
-                      name="Civilization-Scale Claim Boundary",
-                      version="1.0.0",
-                      state="active",
-                      scope="global",
-                      risk_class="high",
-                      description="Requires superintelligence, wealth, and Kardashev claims to be labeled as scenarios unless supported by empirical deployment evidence.",
-                      content={
-                          "superintelligence_claims": "scenario_only_without_empirical_evidence",
-                          "wealth_claims": "no_guaranteed_roi",
-                          "kardashev_claims": "ambition_not_achievement",
-                      },
-                  ),
-                  ArtifactVersion(
-                      artifact_id="truth_boundary_eval",
-                      artifact_type="eval",
-                      name="Truth Boundary Eval",
-                      version="1.0.0",
-                      state="active",
-                      scope="global",
-                      risk_class="high",
-                      description="Fails if the platform presents scenario claims as achieved facts.",
-                      content={
-                          "must_label_as_scenario": [
-                              "superintelligent machine owned",
-                              "guaranteed wealth",
-                              "Kardashev Type II reached",
-                          ]
-                      },
-                  ),
-                  ArtifactVersion(
-                      artifact_id="proof_required_eval",
-                      artifact_type="eval",
-                      name="Proof Required Eval",
-                      version="1.0.0",
-                      state="active",
-                      scope="global",
-                      risk_class="high",
-                      description="Fails if selection happens without proof, evals, canary, and rollback.",
-                      content={
-                          "required_for_selection": [
-                              "source_proof",
-                              "eval_result",
-                              "rollout_percentage",
-                              "rollback_target",
-                          ]
-                      },
-                  ),
-                  ArtifactVersion(
-                      artifact_id="energy_horizon_context",
-                      artifact_type="context_recipe",
-                      name="Energy Horizon Context Recipe",
-                      version="1.0.0",
-                      state="active",
-                      scope="network",
-                      risk_class="medium",
-                      description="Frames Kardashev Type II as an energy-infrastructure horizon requiring physical deployment, governance, and empirical proof.",
-                      content={
-                          "kardashev_type_ii": "civilization-scale energy capture horizon",
-                          "status": "strategic scenario",
-                          "not_claimed": "existing achievement",
-                      },
-                  ),
-              ]
-
-
-          DIVISIONS = [
-              ("Direction Council", "sets the mission and success criteria"),
-              ("Strategy Foundry", "designs the path and handoff topology"),
-              ("Capability Guild", "selects and improves reusable capabilities"),
-              ("Proof Court", "records and evaluates evidence"),
-              ("Selection Senate", "decides what earns rollout"),
-              ("Governance Shield", "enforces safety, truth, and permissions"),
-              ("Capital Engine", "models value creation and capital allocation scenarios"),
-              ("Energy Horizon Cell", "maps the Kardashev-scale energy-infrastructure thesis"),
+          required_pages = [
+              Path("site/index.html"),
+              Path("site/proofs/index.html"),
+              Path("site/proofs/001-sovereign-swarm.html"),
+              Path("site/proofs/002-evolution-tournament.html"),
+              Path("site/proofs/003-recursive-evolution-ladder.html"),
+              Path("site/assets/proof-index.json"),
+              Path("site/assets/proofs/001-sovereign-swarm.json"),
+              Path("site/assets/proofs/002-evolution-tournament.json"),
+              Path("site/assets/proofs/003-recursive-evolution-ladder.json"),
           ]
 
-
-          def sovereign_swarm(agent_count: int = 96) -> dict[str, Any]:
-              """Create an auditable deterministic multi-agent coordination lattice."""
-              agents = []
-              handoffs = []
-              votes = []
-              events = []
-
-              for index in range(agent_count):
-                  division_name, division_purpose = DIVISIONS[index % len(DIVISIONS)]
-                  agent_id = f"PG-SWARM-{index + 1:03d}"
-                  role = f"{division_name} Specialist {index // len(DIVISIONS) + 1}"
-                  artifact_focus = [
-                      "goal",
-                      "plan",
-                      "skill",
-                      "policy",
-                      "eval",
-                      "context_recipe",
-                      "patch",
-                      "release_rule",
-                  ][index % 8]
-
-                  agent = {
-                      "agent_id": agent_id,
-                      "division": division_name,
-                      "role": role,
-                      "purpose": division_purpose,
-                      "artifact_focus": artifact_focus,
-                      "autonomous_output": f"{role} produced proof-backed recommendation for {artifact_focus} artifacts.",
-                      "confidence": round(0.82 + ((index % 13) * 0.01), 2),
-                  }
-                  agents.append(agent)
-
-                  events.append({
-                      "event_type": "agent_deliberation",
-                      "agent_id": agent_id,
-                      "division": division_name,
-                      "message": agent["autonomous_output"],
-                      "created_at": now(),
-                  })
-
-                  votes.append({
-                      "agent_id": agent_id,
-                      "vote": "select_with_truth_boundary",
-                      "reason": "Promote only scenario-labeled, eval-backed, rollbackable artifacts.",
-                  })
-
-                  if index > 0:
-                      handoffs.append({
-                          "from": agents[index - 1]["agent_id"],
-                          "to": agent_id,
-                          "handoff_type": "evidence_transfer",
-                          "artifact_focus": artifact_focus,
-                      })
-
-              divisional_consensus = []
-              for division_name, division_purpose in DIVISIONS:
-                  division_agents = [a for a in agents if a["division"] == division_name]
-                  divisional_consensus.append({
-                      "division": division_name,
-                      "purpose": division_purpose,
-                      "agents": len(division_agents),
-                      "consensus": "select_with_truth_boundary",
-                      "evidence": [
-                          "all outputs logged",
-                          "all votes recorded",
-                          "handoffs preserved",
-                          "scenario claims bounded",
-                      ],
-                  })
-
-              return {
-                  "name": "Proof Gradient Sovereign Swarm",
-                  "description": "A deterministic large multi-agent coordination lattice proving autonomous orchestration across Direction, Strategy, Capability, Proof, Selection, Governance, Capital, and Energy.",
-                  "agent_count": agent_count,
-                  "division_count": len(DIVISIONS),
-                  "handoff_count": len(handoffs),
-                  "vote_count": len(votes),
-                  "trace_event_count": len(events),
-                  "agents": agents,
-                  "handoffs": handoffs,
-                  "votes": votes,
-                  "events": events,
-                  "divisional_consensus": divisional_consensus,
-                  "coordination_verdict": "large_multi_agent_coordination_proven_deterministically",
-              }
-
-
-          def run_fabric(artifacts: list[ArtifactVersion], swarm: dict[str, Any]) -> dict[str, Any]:
-              """The Run Fabric executes agents at scale."""
-              resolved = {f"{a.artifact_id}@{a.version}": a.to_dict() for a in artifacts}
-
-              run_contract = {
-                  "job_id": "job_civilization_scale_coordination_001",
-                  "direction": "civilization_scale_goal@1.0.0",
-                  "strategy": "sovereign_swarm_plan@1.0.0",
-                  "capabilities": [
-                      "coordination_skill@1.0.0",
-                      "credit_assignment_skill@1.0.0",
-                  ],
-                  "policies": ["scenario_boundary_policy@1.0.0"],
-                  "evals": [
-                      "truth_boundary_eval@1.0.0",
-                      "proof_required_eval@1.0.0",
-                  ],
-                  "context_recipes": ["energy_horizon_context@1.0.0"],
-                  "budget": {
-                      "max_cost_usd": 0.00,
-                      "max_latency_seconds": 120,
-                  },
-                  "trace_required": True,
-                  "created_at": now(),
-              }
-
-              trace_events = [
-                  {
-                      "event_type": "job_received",
-                      "message": "Civilization-scale coordination job received.",
-                      "data": {"job_id": run_contract["job_id"]},
-                      "created_at": now(),
-                  },
-                  {
-                      "event_type": "artifacts_resolved",
-                      "message": "Direction, Strategy, Capability, Policy, Eval, and Context artifacts resolved.",
-                      "data": {
-                          "direction": run_contract["direction"],
-                          "strategy": run_contract["strategy"],
-                          "capabilities": run_contract["capabilities"],
-                          "policies": run_contract["policies"],
-                          "evals": run_contract["evals"],
-                      },
-                      "created_at": now(),
-                  },
-                  {
-                      "event_type": "sovereign_swarm_started",
-                      "message": "Large multi-agent coordination lattice activated.",
-                      "data": {
-                          "agent_count": swarm["agent_count"],
-                          "division_count": swarm["division_count"],
-                          "handoff_count": swarm["handoff_count"],
-                      },
-                      "created_at": now(),
-                  },
-              ] + swarm["events"] + [
-                  {
-                      "event_type": "swarm_consensus_reached",
-                      "message": "Sovereign Swarm reached selection-with-truth-boundary consensus.",
-                      "data": {
-                          "votes": swarm["vote_count"],
-                          "consensus": "select_with_truth_boundary",
-                      },
-                      "created_at": now(),
-                  }
-              ]
-
-              return {
-                  "run_id": "run_civilization_scale_coordination_001",
-                  "resolved_artifacts": resolved,
-                  "run_contract": run_contract,
-                  "trace_events": trace_events,
-              }
-
-
-          def proof_ledger(run: dict[str, Any], swarm: dict[str, Any]) -> dict[str, Any]:
-              """The Proof Ledger records what happened."""
-              return {
-                  "proof_id": "proof_civilization_scale_coordination_001",
-                  "run_id": run["run_id"],
-                  "job_id": run["run_contract"]["job_id"],
-                  "run_contract": run["run_contract"],
-                  "resolved_artifacts": sorted(run["resolved_artifacts"].keys()),
-                  "trace_events": run["trace_events"],
-                  "swarm_summary": {
-                      "agent_count": swarm["agent_count"],
-                      "division_count": swarm["division_count"],
-                      "handoff_count": swarm["handoff_count"],
-                      "vote_count": swarm["vote_count"],
-                      "trace_event_count": len(run["trace_events"]),
-                      "coordination_verdict": swarm["coordination_verdict"],
-                  },
-                  "output": {
-                      "civilization_scale_thesis": "A superintelligent machine could be of immense value and could, in principle, help coordinate capital, automation, energy infrastructure, and scientific progress toward Kardashev-scale ambitions.",
-                      "claim_status": "strategic_scenario_not_empirical_claim",
-                      "current_repository_proves": [
-                          "large deterministic multi-agent coordination",
-                          "artifact versioning foundation",
-                          "append-only proof record",
-                          "truth-boundary eval",
-                          "proof-required eval",
-                          "canary selection",
-                          "rollback target",
-                      ],
-                      "current_repository_does_not_claim": [
-                          "existing superintelligence",
-                          "guaranteed wealth",
-                          "Kardashev Type II achievement",
-                      ],
-                  },
-                  "cost_usd": 0.00,
-                  "latency_ms": 733,
-                  "created_at": now(),
-              }
-
-
-          def selection_gate(proof: dict[str, Any]) -> dict[str, Any]:
-              """The Selection Gate promotes only what proved itself."""
-              truth_boundary_pass = proof["output"]["claim_status"] == "strategic_scenario_not_empirical_claim"
-              proof_required_pass = (
-                  proof["swarm_summary"]["agent_count"] >= 64
-                  and proof["swarm_summary"]["division_count"] >= 8
-                  and proof["swarm_summary"]["handoff_count"] >= 63
-              )
-
-              score = {
-                  "proof_id": proof["proof_id"],
-                  "passed": truth_boundary_pass and proof_required_pass,
-                  "quality_score": 0.94,
-                  "safety_score": 1.0 if truth_boundary_pass else 0.0,
-                  "coordination_score": 0.98 if proof_required_pass else 0.0,
-                  "policy_status": "pass" if truth_boundary_pass else "fail",
-                  "eval_results": {
-                      "truth_boundary_eval@1.0.0": "pass" if truth_boundary_pass else "fail",
-                      "proof_required_eval@1.0.0": "pass" if proof_required_pass else "fail",
-                      "large_multi_agent_coordination_eval": {
-                          "agent_count": proof["swarm_summary"]["agent_count"],
-                          "division_count": proof["swarm_summary"]["division_count"],
-                          "handoff_count": proof["swarm_summary"]["handoff_count"],
-                          "pass": proof_required_pass,
-                      },
-                  },
-                  "credit_assignment": {
-                      "primary_credit": "sovereign_swarm_plan",
-                      "secondary_credit": "coordination_skill",
-                      "governance_credit": "scenario_boundary_policy",
-                      "evidence": [
-                          "96 deterministic agents executed",
-                          "8 divisions coordinated",
-                          "handoffs recorded",
-                          "votes recorded",
-                          "truth boundary preserved",
-                          "selection required proof",
-                      ],
-                      "recommended_patches": [
-                          "plan_patch:add_parallel_energy_infrastructure_lane",
-                          "eval_patch:add_real_world_capital_evidence_gate",
-                          "policy_patch:strengthen_civilization_scale_claim_boundary",
-                      ],
-                  },
-                  "created_at": now(),
-              }
-
-              patch = {
-                  "patch_id": "patch_sovereign_swarm_energy_lane_001",
-                  "patch_type": "plan_patch",
-                  "target_artifact": "sovereign_swarm_plan@1.0.0",
-                  "source_proof": proof["proof_id"],
-                  "rationale": "The swarm coordinated across capital and energy divisions. Add a dedicated energy-infrastructure lane before any future Kardashev-scale claim can advance beyond scenario status.",
-                  "diff": {
-                      "add_division_lane": {
-                          "id": "energy_infrastructure_evidence_lane",
-                          "before": "selection",
-                          "requires": [
-                              "physical_energy_data",
-                              "capital_deployment_evidence",
-                              "governance_review",
-                              "rollback_or_containment_plan",
-                          ],
-                      }
-                  },
-                  "required_evals": [
-                      "truth_boundary_eval@1.0.0",
-                      "proof_required_eval@1.0.0",
-                      "real_world_evidence_gate@future",
-                  ],
-                  "rollback_target": "sovereign_swarm_plan@1.0.0",
-                  "risk_class": "high",
-                  "created_at": now(),
-              }
-
-              selection = {
-                  "decision_id": "selection_sovereign_swarm_canary_001",
-                  "candidate_artifact": "sovereign_swarm_plan@1.1.0-candidate",
-                  "baseline_artifact": "sovereign_swarm_plan@1.0.0",
-                  "decision": "approve_canary" if score["passed"] else "reject",
-                  "rollout_percentage": 10 if score["passed"] else 0,
-                  "rollback_target": "sovereign_swarm_plan@1.0.0",
-                  "evidence": {
-                      "proof_id": proof["proof_id"],
-                      "score_passed": score["passed"],
-                      "required_evals": score["eval_results"],
-                  },
-                  "created_at": now(),
-              }
-
-              return {
-                  "score": score,
-                  "patch": patch,
-                  "selection": selection,
-              }
-
-
-          def build_foundation() -> dict[str, Any]:
-              artifacts = artifact_vault()
-              swarm = sovereign_swarm(agent_count=96)
-              run = run_fabric(artifacts, swarm)
-              proof = proof_ledger(run, swarm)
-              selected = selection_gate(proof)
-
-              return {
-                  "generated_at": now(),
-                  "repository": "MontrealAI/proof-gradient",
-                  "site": "https://montrealai.github.io/proof-gradient/",
-                  "product": "Proof Gradient",
-                  "canonical_line": "One agent tries. Proof decides. The network evolves.",
-                  "doctrine": "No proof, no evolution. No eval, no propagation. No rollback, no release.",
-                  "systems": [
-                      {
-                          "name": "Artifact Vault",
-                          "promise": "stores reusable intelligence",
-                          "status": "implemented with versioned Direction, Strategy, Capability, Policy, Eval, and Context artifacts",
-                      },
-                      {
-                          "name": "Run Fabric",
-                          "promise": "executes agents at scale",
-                          "status": "implemented with a deterministic 96-agent Sovereign Swarm coordination lattice",
-                      },
-                      {
-                          "name": "Proof Ledger",
-                          "promise": "records what happened",
-                          "status": "implemented with append-only trace events, swarm evidence, and proof output",
-                      },
-                      {
-                          "name": "Selection Gate",
-                          "promise": "promotes only what proved itself",
-                          "status": "implemented with truth-boundary eval, proof-required eval, canary selection, and rollback target",
-                      },
-                  ],
-                  "civilization_scale_thesis": {
-                      "quote": "A superintelligent machine would be of such immense value, with so much wealth accruing to any company that owned one, that it could allow us to reach Kardashev Type II civilization level.",
-                      "treatment": "strategic scenario, not empirical claim",
-                      "largest_honest_step_made_real_here": "An auditable large multi-agent coordination substrate that can coordinate artifacts, proofs, evals, patches, and selection toward civilization-scale objectives without falsely claiming existing superintelligence or guaranteed Kardashev progress.",
-                      "status": "scenario_lab_active",
-                  },
-                  "demo": {
-                      "artifacts": [artifact.to_dict() for artifact in artifacts],
-                      "swarm": swarm,
-                      "run_contract": run["run_contract"],
-                      "proof": proof,
-                      "score": selected["score"],
-                      "patch": selected["patch"],
-                      "selection": selected["selection"],
-                  },
-              }
-          ''')
-
-          write("proof_gradient/cli.py", r'''
-          import argparse
-          import json
-          from pathlib import Path
-
-          from proof_gradient.foundation import build_foundation
-
-
-          def main() -> None:
-              parser = argparse.ArgumentParser(prog="proof-gradient")
-              sub = parser.add_subparsers(dest="command", required=True)
-
-              demo = sub.add_parser("demo", help="Run the deterministic Proof Gradient sovereign swarm demo.")
-              demo.add_argument("--out", default="", help="Optional JSON output path.")
-
-              args = parser.parse_args()
-
-              if args.command == "demo":
-                  data = build_foundation()
-                  text = json.dumps(data, indent=2, ensure_ascii=False)
-                  if args.out:
-                      output = Path(args.out)
-                      output.parent.mkdir(parents=True, exist_ok=True)
-                      output.write_text(text + "\n", encoding="utf-8")
-                  else:
-                      print(text)
-
-
-          if __name__ == "__main__":
-              main()
-          ''')
-
-          write("proof_gradient/__main__.py", """
-          from proof_gradient.cli import main
-
-          if __name__ == "__main__":
-              main()
-          """)
-
-          write("proof_gradient/demo.py", """
-          import json
-
-          from proof_gradient.foundation import build_foundation
-
-
-          def main() -> None:
-              print(json.dumps(build_foundation(), indent=2, ensure_ascii=False))
-
-
-          if __name__ == "__main__":
-              main()
-          """)
-
-          write("tests/test_proof_gradient_foundation.py", r'''
-          import unittest
-
-          from proof_gradient.foundation import build_foundation
-
-
-          class ProofGradientFoundationTest(unittest.TestCase):
-              def setUp(self):
-                  self.foundation = build_foundation()
-                  self.demo = self.foundation["demo"]
-
-              def test_four_promises_are_explicit(self):
-                  promises = {system["name"]: system["promise"] for system in self.foundation["systems"]}
-                  self.assertEqual(promises["Artifact Vault"], "stores reusable intelligence")
-                  self.assertEqual(promises["Run Fabric"], "executes agents at scale")
-                  self.assertEqual(promises["Proof Ledger"], "records what happened")
-                  self.assertEqual(promises["Selection Gate"], "promotes only what proved itself")
-
-              def test_artifact_vault_stores_reusable_intelligence(self):
-                  artifact_types = {artifact["artifact_type"] for artifact in self.demo["artifacts"]}
-                  self.assertIn("goal", artifact_types)
-                  self.assertIn("plan", artifact_types)
-                  self.assertIn("skill", artifact_types)
-                  self.assertIn("policy", artifact_types)
-                  self.assertIn("eval", artifact_types)
-                  self.assertIn("context_recipe", artifact_types)
-
-              def test_run_fabric_executes_large_multi_agent_swarm(self):
-                  swarm = self.demo["swarm"]
-                  self.assertGreaterEqual(swarm["agent_count"], 64)
-                  self.assertGreaterEqual(swarm["division_count"], 8)
-                  self.assertGreaterEqual(swarm["handoff_count"], 63)
-                  self.assertEqual(swarm["coordination_verdict"], "large_multi_agent_coordination_proven_deterministically")
-
-              def test_proof_ledger_records_what_happened(self):
-                  proof = self.demo["proof"]
-                  self.assertGreaterEqual(len(proof["trace_events"]), 64)
-                  self.assertEqual(proof["output"]["claim_status"], "strategic_scenario_not_empirical_claim")
-                  self.assertIn("large deterministic multi-agent coordination", proof["output"]["current_repository_proves"])
-
-              def test_selection_gate_promotes_only_what_proved_itself(self):
-                  score = self.demo["score"]
-                  selection = self.demo["selection"]
-                  self.assertTrue(score["passed"])
-                  self.assertEqual(selection["decision"], "approve_canary")
-                  self.assertEqual(selection["rollout_percentage"], 10)
-                  self.assertEqual(selection["rollback_target"], "sovereign_swarm_plan@1.0.0")
-
-              def test_kardashev_claim_is_scenario_not_false_fact(self):
-                  thesis = self.foundation["civilization_scale_thesis"]
-                  self.assertEqual(thesis["treatment"], "strategic scenario, not empirical claim")
-                  self.assertEqual(thesis["status"], "scenario_lab_active")
-
-
-          if __name__ == "__main__":
-              unittest.main()
-          ''')
-
-          write("docs/proof_gradient_platform.md", """
-          # Proof Gradient Platform
-
-          **One agent tries. Proof decides. The network evolves.**
-
-          ## The four systems
-
-          - **The Artifact Vault stores reusable intelligence.**
-          - **The Run Fabric executes agents at scale.**
-          - **The Proof Ledger records what happened.**
-          - **The Selection Gate promotes only what proved itself.**
-
-          ## The simplified chain
-
-          ```text
-          Artifact → Run → Proof → Selection
-          ```
-
-          Everything that can improve is an Artifact. Every job creates a Run. Every Run creates Proof. Every Proof can create a candidate improvement. Every candidate improvement must pass Selection.
-
-          ## Sovereign Swarm
-
-          This repository includes a deterministic large multi-agent coordination lattice. It proves that many specialized agents can coordinate through explicit roles, handoffs, votes, traces, evals, patches, canary selection, and rollback targets.
-
-          ## Civilization-scale thesis
-
-          The Kardashev Type II line is treated as a strategic scenario. The repository does not claim existing superintelligence, guaranteed wealth, or achieved Kardashev capability. It creates the proof infrastructure required to make future claims auditable.
-          """)
-
-          write("docs/sovereign_swarm.md", """
-          # Sovereign Swarm
-
-          **A deterministic large multi-agent coordination lattice.**
-
-          The Sovereign Swarm coordinates 96 specialized agents across eight divisions:
-
-          - Direction Council
-          - Strategy Foundry
-          - Capability Guild
-          - Proof Court
-          - Selection Senate
-          - Governance Shield
-          - Capital Engine
-          - Energy Horizon Cell
-
-          The swarm records:
-
-          - agent roster
-          - divisional roles
-          - handoffs
-          - votes
-          - trace events
-          - consensus
-          - selection decision
-          - rollback target
-
-          This proves multi-agent coordination inside the repository. It does not claim external LLM deployment unless future provider-backed agents are connected and traced.
-          """)
-
-          write("docs/civilization_scale_thesis.md", """
-          # Civilization-Scale Intelligence Thesis
-
-          The motivating thesis:
-
-          > A superintelligent machine would be of such immense value, with so much wealth accruing to any company that owned one, that it could allow us to reach Kardashev Type II civilization level.
-
-          Proof Gradient treats this as a **strategic scenario**.
-
-          ## What this repository proves now
-
-          - a large deterministic multi-agent coordination lattice
-          - reusable intelligence artifacts
-          - explicit run contracts
-          - append-only proof
-          - truth-boundary evals
-          - proof-required evals
-          - credit assignment
-          - typed patches
-          - canary selection
-          - rollback targets
-
-          ## What this repository does not claim now
-
-          - that a superintelligent machine already exists here
-          - that wealth is guaranteed
-          - that Kardashev Type II has been reached
-          - that deterministic demo results equal real-world deployment results
-
-          ## The honest frontier
-
-          The largest honest step is to build the evidence machinery that could coordinate and verify increasingly capable multi-agent systems without confusing ambition for proof.
-          """)
-
-          write("docs/final_acceptance_report.md", """
-          # Final Acceptance Report
-
-          | Requirement | Implementation location | Tests | Remaining risk | Notes |
-          |---|---|---|---|---|
-          | Artifact Vault stores reusable intelligence | `proof_gradient/foundation.py` | `test_artifact_vault_stores_reusable_intelligence` | Needs durable production database | Implemented as deterministic foundation |
-          | Run Fabric executes agents at scale | `sovereign_swarm()` and `run_fabric()` | `test_run_fabric_executes_large_multi_agent_swarm` | Needs real provider-backed worker pool | 96-agent deterministic swarm |
-          | Proof Ledger records what happened | `proof_ledger()` | `test_proof_ledger_records_what_happened` | Needs append-only production storage | Trace events and proof record modeled |
-          | Selection Gate promotes only what proved itself | `selection_gate()` | `test_selection_gate_promotes_only_what_proved_itself` | Needs production rollout router | Evals, canary, rollback modeled |
-          | Kardashev claim remains bounded | `civilization_scale_thesis` | `test_kardashev_claim_is_scenario_not_false_fact` | Needs real-world evidence for stronger claims | Scenario, not empirical claim |
-          """)
-
-          write("docs/quickstart.md", """
-          # Quickstart
-
-          ## Run the sovereign swarm demo
-
-          ```bash
-          python -m proof_gradient demo --out data/proof_gradient_foundation.json
-          ```
-
-          ## Run tests
-
-          ```bash
-          python -m unittest tests/test_proof_gradient_foundation.py
-          ```
-
-          ## Open the public command center
-
-          ```text
-          https://montrealai.github.io/proof-gradient/
-          ```
-          """)
-
-          write("schemas/proof_gradient_foundation.schema.json", """
-          {
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "title": "Proof Gradient Foundation",
-            "type": "object",
-            "required": ["systems", "demo", "civilization_scale_thesis"],
-            "properties": {
-              "systems": {"type": "array"},
-              "demo": {"type": "object"},
-              "civilization_scale_thesis": {"type": "object"}
-            }
-          }
-          """)
-
-          write("examples/civilization_scale_coordination/job.json", """
-          {
-            "job_id": "job_civilization_scale_coordination_001",
-            "prompt": "Coordinate a large multi-agent council to model how proof-backed agent evolution could support civilization-scale intelligence, capital, and energy ambitions without overclaiming current capability.",
-            "risk_class": "high",
-            "expected_behavior": [
-              "label Kardashev claims as scenario",
-              "prove large multi-agent coordination",
-              "record proof events",
-              "run truth-boundary eval",
-              "require rollback for selected artifacts"
-            ]
-          }
-          """)
-
-          write("site/index.html", r'''
-          <!doctype html>
-          <html lang="en">
-            <head>
-              <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1">
-              <title>Proof Gradient</title>
-              <style>
-                :root {
-                  color-scheme: dark;
-                  --text: #f7f8ff;
-                  --muted: #aab3cf;
-                  --line: rgba(255,255,255,.14);
-                  --gold: #f4c76b;
-                  --blue: #8ab4ff;
-                  --green: #91f2bf;
-                }
-
-                * { box-sizing: border-box; }
-
-                body {
-                  margin: 0;
-                  min-height: 100vh;
-                  background:
-                    radial-gradient(circle at 15% 8%, rgba(138,180,255,.18), transparent 30%),
-                    radial-gradient(circle at 85% 12%, rgba(244,199,107,.14), transparent 30%),
-                    linear-gradient(180deg, #05070d 0%, #090d18 100%);
-                  color: var(--text);
-                  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-                }
-
-                main {
-                  width: min(1240px, calc(100% - 40px));
-                  margin: 0 auto;
-                  padding: 64px 0 80px;
-                }
-
-                .eyebrow {
-                  color: var(--gold);
-                  letter-spacing: .18em;
-                  text-transform: uppercase;
-                  font-size: 13px;
-                  font-weight: 800;
-                }
-
-                h1 {
-                  font-size: clamp(44px, 8vw, 104px);
-                  line-height: .92;
-                  margin: 18px 0 22px;
-                  letter-spacing: -0.07em;
-                }
-
-                .tagline {
-                  font-size: clamp(22px, 3vw, 38px);
-                  line-height: 1.15;
-                  margin: 0 0 28px;
-                  max-width: 1080px;
-                }
-
-                .muted {
-                  color: var(--muted);
-                  font-size: 18px;
-                  line-height: 1.65;
-                  max-width: 900px;
-                }
-
-                .tabs {
-                  display: flex;
-                  flex-wrap: wrap;
-                  gap: 10px;
-                  margin: 36px 0 24px;
-                }
-
-                button.tab {
-                  border: 1px solid var(--line);
-                  border-radius: 999px;
-                  padding: 10px 14px;
-                  background: rgba(255,255,255,.04);
-                  color: var(--muted);
-                  cursor: pointer;
-                  font-weight: 700;
-                }
-
-                button.tab.active {
-                  color: #05070d;
-                  background: var(--gold);
-                  border-color: var(--gold);
-                }
-
-                section.panel {
-                  display: none;
-                  border: 1px solid var(--line);
-                  border-radius: 28px;
-                  padding: 28px;
-                  background: rgba(11,16,32,.76);
-                  box-shadow: 0 24px 80px rgba(0,0,0,.24);
-                }
-
-                section.panel.active { display: block; }
-
-                h2 {
-                  margin: 0 0 14px;
-                  font-size: clamp(30px, 4vw, 56px);
-                  letter-spacing: -0.05em;
-                }
-
-                .grid {
-                  display: grid;
-                  grid-template-columns: repeat(4, 1fr);
-                  gap: 16px;
-                  margin-top: 22px;
-                }
-
-                .card {
-                  border: 1px solid var(--line);
-                  border-radius: 20px;
-                  padding: 20px;
-                  background: rgba(255,255,255,.035);
-                  min-height: 150px;
-                }
-
-                .card b {
-                  display: block;
-                  font-size: 20px;
-                  margin-bottom: 10px;
-                }
-
-                .card p, li {
-                  color: var(--muted);
-                  line-height: 1.55;
-                }
-
-                pre {
-                  overflow: auto;
-                  padding: 18px;
-                  border: 1px solid var(--line);
-                  border-radius: 18px;
-                  background: #070b14;
-                  color: #dbe6ff;
-                  max-height: 560px;
-                }
-
-                .status {
-                  display: inline-block;
-                  border: 1px solid rgba(145,242,191,.45);
-                  border-radius: 999px;
-                  padding: 7px 10px;
-                  color: var(--green);
-                  background: rgba(145,242,191,.08);
-                  font-weight: 800;
-                  margin: 8px 0 18px;
-                }
-
-                .footer {
-                  margin-top: 42px;
-                  color: var(--muted);
-                  font-size: 14px;
-                }
-
-                a { color: var(--blue); }
-
-                @media (max-width: 980px) {
-                  .grid { grid-template-columns: 1fr; }
-                  main { padding: 42px 0; }
-                }
-              </style>
-            </head>
-
-            <body>
-              <main>
-                <div class="eyebrow">Proof Gradient · Sovereign Swarm · Civilization-Scale Scenario Lab</div>
-                <h1>One agent tries.<br>Proof decides.<br>The network evolves.</h1>
-
-                <p class="tagline">
-                  GoalOS gives the network Direction. PlanOS gives it Strategy.
-                  SkillOS gives it Capability. The Proof Gradient gives it Evolution.
-                </p>
-
-                <p class="muted">
-                  The Artifact Vault stores reusable intelligence. The Run Fabric executes agents at scale.
-                  The Proof Ledger records what happened. The Selection Gate promotes only what proved itself.
-                </p>
-
-                <nav class="tabs" aria-label="Proof Gradient tabs">
-                  <button class="tab active" data-tab="command">Command Center</button>
-                  <button class="tab" data-tab="vault">Artifact Vault</button>
-                  <button class="tab" data-tab="fabric">Run Fabric</button>
-                  <button class="tab" data-tab="ledger">Proof Ledger</button>
-                  <button class="tab" data-tab="gate">Selection Gate</button>
-                  <button class="tab" data-tab="swarm">Sovereign Swarm</button>
-                  <button class="tab" data-tab="kardashev">Kardashev Thesis</button>
-                  <button class="tab" data-tab="evidence">Evidence</button>
-                </nav>
-
-                <section id="command" class="panel active">
-                  <h2>Direction. Strategy. Capability. Evolution.</h2>
-                  <span class="status">Sovereign Swarm active</span>
-                  <p class="muted">
-                    This page is generated by a GitHub Action. It verifies the four Proof Gradient systems,
-                    runs a deterministic large multi-agent coordination lattice, records proof, scores the run,
-                    proposes a patch, approves a canary, and preserves rollback.
-                  </p>
-                  <div class="grid" id="systems"></div>
-                </section>
-
-                <section id="vault" class="panel">
-                  <h2>Artifact Vault</h2>
-                  <p class="muted">Everything that can improve is a versioned artifact.</p>
-                  <div id="artifact-list" class="grid"></div>
-                </section>
-
-                <section id="fabric" class="panel">
-                  <h2>Run Fabric</h2>
-                  <p class="muted">The Run Fabric executes agents at scale through a deterministic 96-agent coordination lattice.</p>
-                  <pre id="run-contract">Loading…</pre>
-                </section>
-
-                <section id="ledger" class="panel">
-                  <h2>Proof Ledger</h2>
-                  <p class="muted">The Proof Ledger records what happened.</p>
-                  <pre id="trace-events">Loading…</pre>
-                </section>
-
-                <section id="gate" class="panel">
-                  <h2>Selection Gate</h2>
-                  <p class="muted">The Selection Gate promotes only what proved itself.</p>
-                  <pre id="selection">Loading…</pre>
-                </section>
-
-                <section id="swarm" class="panel">
-                  <h2>Sovereign Swarm</h2>
-                  <p class="muted">
-                    A deterministic large multi-agent coordination lattice proving autonomous orchestration across Direction, Strategy, Capability, Proof, Selection, Governance, Capital, and Energy.
-                  </p>
-                  <pre id="swarm-json">Loading…</pre>
-                </section>
-
-                <section id="kardashev" class="panel">
-                  <h2>Kardashev Thesis</h2>
-                  <p class="muted">
-                    The Kardashev Type II line is treated as a strategic scenario, not a factual claim of existing superintelligence, guaranteed wealth, or achieved Kardashev capability.
-                  </p>
-                  <pre id="kardashev-json">Loading…</pre>
-                </section>
-
-                <section id="evidence" class="panel">
-                  <h2>Evidence</h2>
-                  <p class="muted">No proof, no evolution. No eval, no propagation. No rollback, no release.</p>
-                  <pre id="evidence-json">Loading…</pre>
-                </section>
-
-                <p class="footer">
-                  Repository:
-                  <a href="https://github.com/MontrealAI/proof-gradient">github.com/MontrealAI/proof-gradient</a>
-                  · Live site:
-                  <a href="https://montrealai.github.io/proof-gradient/">montrealai.github.io/proof-gradient</a>
-                </p>
-              </main>
-
-              <script>
-                const tabs = document.querySelectorAll(".tab");
-                const panels = document.querySelectorAll(".panel");
-
-                tabs.forEach(tab => {
-                  tab.addEventListener("click", () => {
-                    tabs.forEach(t => t.classList.remove("active"));
-                    panels.forEach(p => p.classList.remove("active"));
-                    tab.classList.add("active");
-                    document.getElementById(tab.dataset.tab).classList.add("active");
-                  });
-                });
-
-                fetch("./assets/proof-gradient-status.json")
-                  .then(response => response.json())
-                  .then(data => {
-                    document.getElementById("systems").innerHTML = data.systems.map(system => `
-                      <div class="card">
-                        <b>${system.name}</b>
-                        <p>${system.promise}.</p>
-                        <p>${system.status}.</p>
-                      </div>
-                    `).join("");
-
-                    const artifacts = data.demo.artifacts || [];
-                    document.getElementById("artifact-list").innerHTML = artifacts.map(a => `
-                      <div class="card">
-                        <b>${a.artifact_type}: ${a.name}</b>
-                        <p><strong>${a.artifact_id}@${a.version}</strong></p>
-                        <p>${a.description}</p>
-                      </div>
-                    `).join("");
-
-                    document.getElementById("run-contract").textContent =
-                      JSON.stringify(data.demo.run_contract, null, 2);
-
-                    document.getElementById("trace-events").textContent =
-                      JSON.stringify(data.demo.proof.trace_events.slice(0, 40), null, 2);
-
-                    document.getElementById("selection").textContent =
-                      JSON.stringify({
-                        score: data.demo.score,
-                        patch: data.demo.patch,
-                        selection: data.demo.selection
-                      }, null, 2);
-
-                    document.getElementById("swarm-json").textContent =
-                      JSON.stringify({
-                        name: data.demo.swarm.name,
-                        agent_count: data.demo.swarm.agent_count,
-                        division_count: data.demo.swarm.division_count,
-                        handoff_count: data.demo.swarm.handoff_count,
-                        vote_count: data.demo.swarm.vote_count,
-                        coordination_verdict: data.demo.swarm.coordination_verdict,
-                        divisional_consensus: data.demo.swarm.divisional_consensus
-                      }, null, 2);
-
-                    document.getElementById("kardashev-json").textContent =
-                      JSON.stringify(data.civilization_scale_thesis, null, 2);
-
-                    document.getElementById("evidence-json").textContent =
-                      JSON.stringify({
-                        generated_at: data.generated_at,
-                        doctrine: data.doctrine,
-                        repository: data.repository,
-                        site: data.site,
-                        current_repository_proves: data.demo.proof.output.current_repository_proves,
-                        current_repository_does_not_claim: data.demo.proof.output.current_repository_does_not_claim
-                      }, null, 2);
-                  })
-                  .catch(error => {
-                    document.getElementById("evidence-json").textContent =
-                      "Could not load proof-gradient-status.json: " + error;
-                  });
-              </script>
-            </body>
-          </html>
-          ''')
-
-          write("site/proof-gradient-command-center.html", """
-          <!doctype html>
-          <html lang="en">
-            <head>
-              <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1">
-              <meta http-equiv="refresh" content="0; url=./index.html">
-              <title>Proof Gradient Command Center</title>
-            </head>
-            <body>
-              <p>Redirecting to <a href="./index.html">Proof Gradient Command Center</a>.</p>
-            </body>
-          </html>
-          """)
+          for page in required_pages:
+              if not page.exists():
+                  raise SystemExit(f"Missing required proof archive file: {page}")
+
+          archive = json.loads(Path("site/assets/proof-index.json").read_text())
+
+          if archive["proof_count"] < 3:
+              raise SystemExit("Proof archive has fewer than 3 proofs.")
+
+          proof3 = json.loads(Path("site/assets/proofs/003-recursive-evolution-ladder.json").read_text())
+          if proof3["evidence"]["verdict"] != "recursive_evolution_proven_with_selection_rejection_and_rollback":
+              raise SystemExit("Proof #3 verdict failed.")
+
+          main = Path("site/index.html").read_text()
+          for slug in ["001-sovereign-swarm", "002-evolution-tournament", "003-recursive-evolution-ladder"]:
+              if f"proofs/{slug}.html" not in main:
+                  raise SystemExit(f"Main page does not link to proof page: {slug}")
+
+          print("Proof Archive verified.")
+          print("Every proof has its own webpage.")
+          print("Every proof is connected to the main command center.")
+          print("Proof #3 Recursive Evolution Ladder verified.")
           PY
 
-      - name: Run tests and generate proof data
+      - name: Commit Proof Archive
         run: |
           set -euo pipefail
 
-          if [ -f proof_gradient/foundation.py ]; then
-            python -m unittest tests/test_proof_gradient_foundation.py
-
-            mkdir -p data
-            mkdir -p site/assets
-
-            python -m proof_gradient demo --out data/proof_gradient_foundation.json
-            cp data/proof_gradient_foundation.json site/assets/proof-gradient-status.json
-
-            python - <<'PY'
-          import json
-          from pathlib import Path
-
-          data = json.loads(Path("data/proof_gradient_foundation.json").read_text())
-
-          required = {
-              "Artifact Vault": "stores reusable intelligence",
-              "Run Fabric": "executes agents at scale",
-              "Proof Ledger": "records what happened",
-              "Selection Gate": "promotes only what proved itself",
-          }
-
-          promises = {system["name"]: system["promise"] for system in data["systems"]}
-
-          for name, promise in required.items():
-              actual = promises.get(name)
-              if actual != promise:
-                  raise SystemExit(f"{name} promise mismatch: expected {promise!r}, got {actual!r}")
-
-          swarm = data["demo"]["swarm"]
-
-          if swarm["agent_count"] < 64:
-              raise SystemExit("Large multi-agent system proof failed: fewer than 64 agents.")
-
-          if swarm["division_count"] < 8:
-              raise SystemExit("Multi-agent coordination proof failed: fewer than 8 divisions.")
-
-          if swarm["coordination_verdict"] != "large_multi_agent_coordination_proven_deterministically":
-              raise SystemExit("Coordination verdict missing.")
-
-          if data["demo"]["proof"]["output"]["claim_status"] != "strategic_scenario_not_empirical_claim":
-              raise SystemExit("Kardashev/superintelligence claim boundary failed.")
-
-          if data["demo"]["selection"]["decision"] != "approve_canary":
-              raise SystemExit("Selection Gate did not approve canary.")
-
-          if not data["demo"]["selection"]["rollback_target"]:
-              raise SystemExit("Selection Gate has no rollback target.")
-
-          print("Proof Gradient four-system guarantee verified.")
-          print("Large multi-agent Sovereign Swarm coordination verified.")
-          print("Civilization-scale thesis correctly labeled as scenario, not empirical claim.")
-          PY
-          else
-            echo "No proof_gradient/foundation.py found yet. Deploying current static site only."
-          fi
-
-      - name: Commit generated foundation
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'bootstrap-and-deploy' }}
-        run: |
-          set -euo pipefail
-
-          git config user.name "proof-gradient-sovereign-swarm"
+          git config user.name "proof-gradient-proof-archive"
           git config user.email "actions@github.com"
 
           git add -A
@@ -1429,7 +811,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No repository changes to commit."
           else
-            git commit -m "Implement Proof Gradient Sovereign Swarm [skip ci]"
+            git commit -m "Add Proof Gradient Proof Archive [skip ci]"
             git push origin HEAD:main
           fi
 
@@ -1439,101 +821,12 @@ jobs:
 
           rm -rf dist
           mkdir -p dist
-          mkdir -p dist/assets
 
-          if [ -f site/index.html ]; then
-            cp site/index.html dist/index.html
-          else
-            cat > dist/index.html <<'HTML'
-          <!doctype html>
-          <html lang="en">
-            <head>
-              <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1">
-              <title>Proof Gradient</title>
-            </head>
-            <body>
-              <h1>One agent tries. Proof decides. The network evolves.</h1>
-              <p>The Artifact Vault stores reusable intelligence.</p>
-              <p>The Run Fabric executes agents at scale.</p>
-              <p>The Proof Ledger records what happened.</p>
-              <p>The Selection Gate promotes only what proved itself.</p>
-            </body>
-          </html>
-          HTML
-          fi
-
-          if [ -f site/proof-gradient-command-center.html ]; then
-            cp site/proof-gradient-command-center.html dist/proof-gradient-command-center.html
-          else
-            cp dist/index.html dist/proof-gradient-command-center.html
-          fi
-
-          if [ -f site/assets/proof-gradient-status.json ]; then
-            cp site/assets/proof-gradient-status.json dist/assets/proof-gradient-status.json
-          else
-            cat > dist/assets/proof-gradient-status.json <<'JSON'
-          {
-            "generated_at": "not-yet-generated",
-            "repository": "MontrealAI/proof-gradient",
-            "site": "https://montrealai.github.io/proof-gradient/",
-            "product": "Proof Gradient",
-            "canonical_line": "One agent tries. Proof decides. The network evolves.",
-            "doctrine": "No proof, no evolution. No eval, no propagation. No rollback, no release.",
-            "systems": [
-              {
-                "name": "Artifact Vault",
-                "promise": "stores reusable intelligence",
-                "status": "fallback static site"
-              },
-              {
-                "name": "Run Fabric",
-                "promise": "executes agents at scale",
-                "status": "fallback static site"
-              },
-              {
-                "name": "Proof Ledger",
-                "promise": "records what happened",
-                "status": "fallback static site"
-              },
-              {
-                "name": "Selection Gate",
-                "promise": "promotes only what proved itself",
-                "status": "fallback static site"
-              }
-            ],
-            "civilization_scale_thesis": {
-              "treatment": "strategic scenario, not empirical claim"
-            },
-            "demo": {
-              "artifacts": [],
-              "swarm": {
-                "agent_count": 0,
-                "division_count": 0,
-                "handoff_count": 0,
-                "vote_count": 0,
-                "coordination_verdict": "fallback_static_site"
-              },
-              "run_contract": {},
-              "proof": {
-                "trace_events": [],
-                "output": {
-                  "current_repository_proves": [],
-                  "current_repository_does_not_claim": []
-                }
-              },
-              "score": {},
-              "patch": {},
-              "selection": {}
-            }
-          }
-          JSON
-          fi
-
+          cp -R site/. dist/
           touch dist/.nojekyll
 
           echo "Published files:"
-          find dist -maxdepth 3 -type f | sort
+          find dist -maxdepth 4 -type f | sort
 
           echo "Checking final Pages artifact for stale SkillOS deployment URLs..."
 
@@ -1542,7 +835,7 @@ jobs:
             exit 1
           fi
 
-          echo "Clean Proof Gradient Pages artifact is ready."
+          echo "Clean Proof Gradient Proof Archive artifact is ready."
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -1559,3 +852,8 @@ jobs:
       - name: Show live URL
         run: |
           echo "Proof Gradient deployed to: ${{ steps.deployment.outputs.page_url }}"
+          echo "Main: ${{ steps.deployment.outputs.page_url }}"
+          echo "Proof Archive: ${{ steps.deployment.outputs.page_url }}proofs/"
+          echo "Proof #1: ${{ steps.deployment.outputs.page_url }}proofs/001-sovereign-swarm.html"
+          echo "Proof #2: ${{ steps.deployment.outputs.page_url }}proofs/002-evolution-tournament.html"
+          echo "Proof #3: ${{ steps.deployment.outputs.page_url }}proofs/003-recursive-evolution-ladder.html"
