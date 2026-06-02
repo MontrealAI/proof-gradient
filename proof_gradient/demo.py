@@ -1,10 +1,10 @@
 import json
 
-from proof_gradient.models import run_customer_response_demo
+from proof_gradient.foundation import build_foundation
 
 
 def main() -> None:
-    print(json.dumps(run_customer_response_demo(), indent=2, ensure_ascii=False))
+    print(json.dumps(build_foundation(), indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":

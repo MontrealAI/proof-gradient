@@ -1,4 +1,4 @@
-"""Proof Gradient reference foundation.
+"""Proof Gradient.
 
 GoalOS gives Direction.
 PlanOS gives Strategy.

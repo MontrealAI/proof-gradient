@@ -2,31 +2,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Proof Gradient Proof",
   "type": "object",
-  "required": [
-    "proof_id",
-    "job_id",
-    "run_contract",
-    "trace_events",
-    "output"
-  ],
+  "required": ["proof_id", "run_id", "run_contract", "trace_events", "output"],
   "properties": {
-    "proof_id": {
-      "type": "string"
-    },
-    "job_id": {
-      "type": "string"
-    },
-    "run_contract": {
-      "type": "object"
-    },
-    "trace_events": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      }
-    },
-    "output": {
-      "type": "object"
-    }
+    "proof_id": {"type": "string"},
+    "run_id": {"type": "string"},
+    "run_contract": {"type": "object"},
+    "trace_events": {"type": "array", "items": {"type": "object"}},
+    "output": {"type": "object"}
   }
 }

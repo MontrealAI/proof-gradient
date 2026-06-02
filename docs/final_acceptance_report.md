@@ -1,13 +1,8 @@
 # Final Acceptance Report
 
-This is the initial autonomous foundation acceptance report.
-
 | Requirement | Implementation location | Tests | Remaining risk | Notes |
 |---|---|---|---|---|
-| Everything that can improve is an artifact | `proof_gradient/models.py` | `test_four_system_artifacts_exist` | Needs database persistence | Deterministic foundation only |
-| Every run creates a contract | `RunContract` | `test_run_contract_resolves_versions` | Needs API/runtime integration | Contract is immutable dataclass |
-| Every run emits proof | `Proof` | `test_proof_contains_trace_events` | Needs durable ledger | Append-only concept modeled |
-| Scores include credit assignment | `Score` | `test_score_assigns_credit` | Needs richer attribution engine | Deterministic demo only |
-| Patches are typed | `Patch` | `test_patch_has_rollback_target` | Needs diff viewer | Plan patch modeled |
-| Selection supports canary and rollback | `SelectionDecision` | `test_selection_gate_canary` | Needs rollout router | Canary modeled |
-| Public command center exists | `site/index.html` | Pages workflow | Needs full UI | Static command center |
+| Artifact Vault stores reusable intelligence | `proof_gradient/foundation.py` | `test_artifact_vault_contains_reusable_intelligence` | Needs durable database | Deterministic foundation |
+| Run Fabric executes agents at scale | `run_fabric()` | `test_run_fabric_resolves_artifacts` | Needs real worker pool | Mock runtime |
+| Proof Ledger records what happened | `proof_ledger()` | `test_proof_ledger_records_what_happened` | Needs append-only storage | Proof record modeled |
+| Selection Gate promotes only what proved itself | `selection_gate()` | `test_selection_gate_promotes_only_what_proved_itself` | Needs production rollout router | Canary + rollback modeled |

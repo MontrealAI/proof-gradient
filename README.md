@@ -13,7 +13,7 @@ The Proof Gradient gives it **Evolution**.
 
 ## The four systems
 
-| System | Role |
+| System | Promise |
 |---|---|
 | **Artifact Vault** | Stores reusable intelligence. |
 | **Run Fabric** | Executes agents at scale. |
@@ -28,37 +28,20 @@ No eval, no propagation.
 No rollback, no release.
 ```
 
-## What this repository now contains
-
-This repository now includes the first deterministic Proof Gradient foundation:
-
-- a small no-dependency Python reference package
-- versioned artifact models
-- run contract model
-- proof ledger demo
-- score and credit-assignment record
-- typed patch example
-- canary release and rollback example
-- JSON schemas
-- documentation
-- a public tabbed command center
-
-## Local demo
+## Run the deterministic demo
 
 ```bash
-python -m proof_gradient.demo
+python -m proof_gradient demo --out data/proof_gradient_foundation.json
 ```
 
-## Tests
+## Run tests
 
 ```bash
 python -m unittest tests/test_proof_gradient_foundation.py
 ```
 
-## Public site
+## Public command center
 
+```text
 https://montrealai.github.io/proof-gradient/
-
-## Status
-
-This is a deterministic foundation and north-star vertical slice. It is not yet the complete production backend, API, database, UI, or worker system. The next phases are documented in `docs/architecture.md` and `docs/proof_gradient_platform.md`.
+```

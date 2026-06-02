@@ -1,18 +1,12 @@
 # Quickstart
 
-## Run the deterministic demo
+## Run the demo
 
 ```bash
-python -m proof_gradient.demo
+python -m proof_gradient demo --out data/proof_gradient_foundation.json
 ```
 
-## Save the demo proof to JSON
-
-```bash
-python -m proof_gradient demo --out data/demo-proof.json
-```
-
-## Run tests
+## Run the tests
 
 ```bash
 python -m unittest tests/test_proof_gradient_foundation.py
@@ -20,4 +14,6 @@ python -m unittest tests/test_proof_gradient_foundation.py
 
 ## Open the public command center
 
+```text
 https://montrealai.github.io/proof-gradient/
+```

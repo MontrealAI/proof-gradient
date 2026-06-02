@@ -2,24 +2,25 @@ import argparse
 import json
 from pathlib import Path
 
-from proof_gradient.models import run_customer_response_demo
+from proof_gradient.foundation import build_foundation
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(prog="proof-gradient")
     sub = parser.add_subparsers(dest="command", required=True)
 
-    demo = sub.add_parser("demo", help="Run the deterministic customer-response safety demo.")
+    demo = sub.add_parser("demo", help="Run the deterministic Proof Gradient demo.")
     demo.add_argument("--out", default="", help="Optional JSON output path.")
 
     args = parser.parse_args()
 
     if args.command == "demo":
-        data = run_customer_response_demo()
+        data = build_foundation()
         text = json.dumps(data, indent=2, ensure_ascii=False)
         if args.out:
-            Path(args.out).parent.mkdir(parents=True, exist_ok=True)
-            Path(args.out).write_text(text + "\n", encoding="utf-8")
+            output = Path(args.out)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(text + "\n", encoding="utf-8")
         else:
             print(text)
 
