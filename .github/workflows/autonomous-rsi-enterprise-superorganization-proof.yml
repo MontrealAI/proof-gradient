@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: https://montrealai.github.io/skillos/
+      url: https://montrealai.github.io/proof-gradient/
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

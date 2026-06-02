@@ -41,7 +41,7 @@
       "value_capture_rate": 0.8381479092262307
     }
   ],
-  "badge_url": "https://montrealai.github.io/skillos/badges/rsi-proof-forge-meta-coordination-proof.svg",
+  "badge_url": "https://montrealai.github.io/proof-gradient/badges/rsi-proof-forge-meta-coordination-proof.svg",
   "baseline_summaries": [
     {
       "bootstrap_delta": {
@@ -140,7 +140,7 @@
       "value_capture_rate": 0.4404863833559218
     }
   ],
-  "data_url": "https://montrealai.github.io/skillos/data/rsi-proof-forge-meta-coordination-proof.json",
+  "data_url": "https://montrealai.github.io/proof-gradient/data/rsi-proof-forge-meta-coordination-proof.json",
   "forbidden_public_claims_checked": [
     "achieved superintelligence",
     "achieved kardashev",
@@ -225,7 +225,7 @@
   "proof_title": "Autonomous RSI Proof Forge Meta-Coordination Proof",
   "proof_version": "12.0",
   "proved": true,
-  "public_url": "https://montrealai.github.io/skillos/rsi-proof-forge-meta-coordination-proof.html",
+  "public_url": "https://montrealai.github.io/proof-gradient/rsi-proof-forge-meta-coordination-proof.html",
   "release_curve": [
     {
       "accepted": false,
@@ -438,7 +438,7 @@
       "validation_value_capture_rate": 0.9919529542623121
     }
   ],
-  "report_url": "https://montrealai.github.io/skillos/docs/rsi-proof-forge-meta-coordination-proof.md",
+  "report_url": "https://montrealai.github.io/proof-gradient/docs/rsi-proof-forge-meta-coordination-proof.md",
   "sample_holdout_cases": [
     {
       "capital_equivalent_value_at_stake": 8581099961.96,
@@ -1058,5 +1058,5 @@
     "mechanism": "hypothesis \u2192 decomposition \u2192 specialist-agent proof market \u2192 adversarial red teams \u2192 verifier courts \u2192 locked holdout evaluation \u2192 public artifacts \u2192 release selection \u2192 reinvestment \u2192 better future proof generation",
     "public_safe_boundary": "benchmark-only; no claim of achieved superintelligence, live revenue, investment advice, legal advice, policy advice, medical advice, token recommendation, or Kardashev Type II achievement"
   },
-  "workflow_url": "https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml"
+  "workflow_url": "https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml"
 }

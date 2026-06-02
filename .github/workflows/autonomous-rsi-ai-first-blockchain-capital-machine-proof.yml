@@ -35,7 +35,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: skillos-rsi-ai-first-blockchain-capital-machine
+  group: -rsi-ai-first-blockchain-capital-machine
   cancel-in-progress: true
 
 jobs:

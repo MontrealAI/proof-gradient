@@ -1,4 +1,4 @@
-name: _SkillOS Public Proof Command Center Refresh Reusable
+name: _Proof Gradient Public Proof Command Center Refresh Reusable
 
 on:
   workflow_call:

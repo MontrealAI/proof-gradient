@@ -9,8 +9,8 @@ from pathlib import Path
 
 PROOF_ID = "rsi-governance-frontier-proof"
 PROOF_PAGE = f"{PROOF_ID}.html"
-BASE_URL = "https://montrealai.github.io/skillos/"
-REPO_URL = "https://github.com/MontrealAI/skillos"
+BASE_URL = "https://montrealai.github.io/proof-gradient/"
+REPO_URL = "https://github.com/MontrealAI/proof-gradient"
 WORKFLOW = ".github/workflows/autonomous-rsi-governance-frontier-proof.yml"
 WORKFLOW_URL = f"{REPO_URL}/actions/workflows/autonomous-rsi-governance-frontier-proof.yml"
 

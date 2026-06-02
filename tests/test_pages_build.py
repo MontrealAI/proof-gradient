@@ -27,7 +27,7 @@ class PagesBuildTest(unittest.TestCase):
         data = json.loads((DIST / "data" / "demo.json").read_text(encoding="utf-8"))
         self.assertTrue(data["release"])
         self.assertTrue(data["wealth_proof"]["conclusion"]["proved"])
-        self.assertIn("MontrealAI/skillos", data["generated_for"])
+        self.assertIn("MontrealAI/proof-gradient", data["generated_for"])
         proof = json.loads((DIST / "data" / "wealth_proof.json").read_text(encoding="utf-8"))
         self.assertTrue(proof["conclusion"]["proved"])
         self.assertLess(proof["final_skillos_metrics"]["cost_per_job_usd"], proof["initial_agent_metrics"]["cost_per_job_usd"])

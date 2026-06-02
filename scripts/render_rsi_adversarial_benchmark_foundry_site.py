@@ -108,10 +108,10 @@ def render_page(proof: dict[str, Any]) -> str:
 </style>
 </head>
 <body>
-<nav><strong><a href='index.html'>SkillOS Proof Command Center</a></strong><span><a href='index.html'>Home</a><a href='proof-registry.json'>Registry</a><a href='data/{PROOF_ID}.json'>JSON</a><a href='docs/{PROOF_ID}.md'>Report</a><a href='https://github.com/MontrealAI/skillos/actions'>Run / Regenerate</a><a href='https://github.com/MontrealAI/skillos'>GitHub</a></span></nav>
+<nav><strong><a href='index.html'>SkillOS Proof Command Center</a></strong><span><a href='index.html'>Home</a><a href='proof-registry.json'>Registry</a><a href='data/{PROOF_ID}.json'>JSON</a><a href='docs/{PROOF_ID}.md'>Report</a><a href='https://github.com/MontrealAI/proof-gradient/actions'>Run / Regenerate</a><a href='https://github.com/MontrealAI/proof-gradient'>GitHub</a></span></nav>
 <main class='wrap'>
 <section class='hero'>
-<div><div class='eyebrow'>adversarial benchmark foundry · autonomous RSI proof</div><h1>Can SkillOS generate its own hardest tests?</h1><p>{html.escape(proof['thesis'])}</p><p class='note'>This proof asks whether a large specialist-agent organization can attack its own benchmark surface, reject leaked tasks, release repairs, and prove causal lift on locked hidden holdouts.</p><a class='btn' href='https://github.com/MontrealAI/skillos/actions'>Run on GitHub</a><a class='btn secondary' href='data/{PROOF_ID}.json'>Open receipt</a></div>
+<div><div class='eyebrow'>adversarial benchmark foundry · autonomous RSI proof</div><h1>Can SkillOS generate its own hardest tests?</h1><p>{html.escape(proof['thesis'])}</p><p class='note'>This proof asks whether a large specialist-agent organization can attack its own benchmark surface, reject leaked tasks, release repairs, and prove causal lift on locked hidden holdouts.</p><a class='btn' href='https://github.com/MontrealAI/proof-gradient/actions'>Run on GitHub</a><a class='btn secondary' href='data/{PROOF_ID}.json'>Open receipt</a></div>
 <div class='card'><span class='pill'>proof passed</span><h3>{html.escape(TITLE)}</h3><p><b>{proof['scale']['virtual_specialist_agents']:,}</b> virtual specialist agents · <b>{proof['scale']['specialist_roles']:,}</b> roles · <b>{proof['scale']['adversarial_benchmark_cells']:,}</b> adversarial benchmark cells.</p><p>Selected release: <code>{html.escape(proof['selected_release'])}</code></p><p>Receipt tree root:<br><code>{html.escape(proof['receipt_tree']['root'][:32])}…</code></p></div>
 </section>
 <section class='metrics'>
@@ -131,7 +131,7 @@ def render_page(proof: dict[str, Any]) -> str:
 <h2>Sample generated adversarial benchmarks</h2>
 <table><thead><tr><th>Challenge</th><th>Domain</th><th>Failure mode</th><th>Difficulty</th><th>Hidden signature</th></tr></thead><tbody>{sample_rows}</tbody></table>
 <h2>Run / regenerate</h2>
-<section class='card'><p>Open the GitHub Action and run <b>Autonomous RSI Adversarial Benchmark Foundry Proof</b>. The action regenerates the receipt, report, badge, proof webpage, registry, command center, sitemap, and robots file autonomously.</p><a class='btn' href='https://github.com/MontrealAI/skillos/actions'>Run proof</a><a class='btn secondary' href='docs/{PROOF_ID}.md'>Read report</a></section>
+<section class='card'><p>Open the GitHub Action and run <b>Autonomous RSI Adversarial Benchmark Foundry Proof</b>. The action regenerates the receipt, report, badge, proof webpage, registry, command center, sitemap, and robots file autonomously.</p><a class='btn' href='https://github.com/MontrealAI/proof-gradient/actions'>Run proof</a><a class='btn secondary' href='docs/{PROOF_ID}.md'>Read report</a></section>
 </main>
 </body></html>"""
 

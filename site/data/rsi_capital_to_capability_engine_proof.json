@@ -1022,8 +1022,8 @@
   "receipts": {
     "generated_at_utc": "2026-05-31T14:54:20Z",
     "commit_sha": "94d451dfa30061bf7b8338e982d9483d42948765",
-    "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26715886403",
-    "repository": "MontrealAI/skillos",
+    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26715886403",
+    "repository": "MontrealAI/proof-gradient",
     "workflow": "Autonomous RSI Capital-to-Capability Engine Proof",
     "seed": 20260530,
     "python": "3.14.5",

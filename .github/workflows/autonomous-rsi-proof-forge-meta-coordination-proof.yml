@@ -31,7 +31,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: skillos-rsi-proof-forge-meta-coordination
+  group: -rsi-proof-forge-meta-coordination
   cancel-in-progress: false
 
 jobs:

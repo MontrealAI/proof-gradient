@@ -12,7 +12,7 @@ WORKFLOW_NAME = "Sales follow-up email from call notes"
 HOURLY_FULLY_LOADED_RATE = 75.0
 MODEL_COST_PER_JOB = 0.045
 ANNUAL_VOLUME = 10000
-PAGES_URL = "https://montrealai.github.io/skillos/"
+PAGES_URL = "https://montrealai.github.io/proof-gradient/"
 
 
 @dataclass(frozen=True)

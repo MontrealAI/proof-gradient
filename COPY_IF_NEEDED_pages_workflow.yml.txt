@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: skillos-pages-${{ github.ref }}
+  group: proof-gradient-pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
           include-hidden-files: true
 
   deploy:
-    name: Publish to https://montrealai.github.io/skillos/
+    name: Publish to https://montrealai.github.io/proof-gradient/
     needs: build
     runs-on: ubuntu-latest
     permissions:

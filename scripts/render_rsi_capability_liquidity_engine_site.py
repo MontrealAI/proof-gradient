@@ -8,7 +8,7 @@ import math
 from pathlib import Path
 
 PROOF_ID = "rsi-capability-liquidity-engine-proof"
-REPO_URL = "https://github.com/MontrealAI/skillos"
+REPO_URL = "https://github.com/MontrealAI/proof-gradient"
 WORKFLOW_URL = f"{REPO_URL}/actions/workflows/autonomous-rsi-capability-liquidity-engine-proof.yml"
 
 

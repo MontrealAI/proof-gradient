@@ -14,8 +14,8 @@ def contains(rel,snippet):
     if snippet not in req(rel).read_text(encoding="utf-8",errors="ignore"): fail(f"missing {snippet!r} in site/{rel}")
 def main():
     for rel in REQUIRED: req(rel)
-    for s in ["Public SkillOS Command Center","SkillOS Public Command Center v2","Every job can become a reusable skill","Operational skill stack","Run or regenerate","command-center-manifest.json"]: contains("index.html",s)
-    for s in ["Run / Regenerate","SkillOS Command Center Autopublisher v2","deploy_pages=true"]: contains("actions.html",s)
+    for s in ["Proof Gradient Command Center","Proof Gradient Public Command Center v2","Every job can become a reusable skill","Operational skill stack","Run or regenerate","command-center-manifest.json"]: contains("index.html",s)
+    for s in ["Run / Regenerate","Proof Gradient Command Center Autopublisher v2","deploy_pages=true"]: contains("actions.html",s)
     for s in ["Many agents are not the moat","Verified skill compounding is the moat","Skills Used across the network"]: contains("multi-agent.html",s)
     manifest=json.loads(req("data/command-center-manifest.json").read_text())
     registry=json.loads(req("proof-registry.json").read_text())
@@ -25,7 +25,7 @@ def main():
     if manifest.get("counts",{}).get("workflows_indexed",0)<1: fail("no workflows indexed")
     if manifest.get("counts",{}).get("skills_surfaced",0)<9: fail("too few skills surfaced")
     if health.get("status")!="fresh": fail("health not fresh")
-    wf=ROOT/".github/workflows/skillos-command-center-autopublisher-v2.yml"
+    wf=ROOT/".github/workflows/proof-gradient-command-center-autopublisher-v2.yml"
     if wf.exists():
         text=wf.read_text()
         for s in ["workflow_dispatch","schedule","push","actions/deploy-pages@v4","publish_to_repo","deploy_pages"]:

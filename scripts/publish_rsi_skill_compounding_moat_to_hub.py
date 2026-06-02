@@ -54,7 +54,7 @@ def main() -> None:
     else:
         atomic_write(index, f'<!doctype html><html><body><main>{card}</main></body></html>')
     sitemap=SITE/'sitemap.xml'
-    urls=['https://montrealai.github.io/skillos/', f'https://montrealai.github.io/skillos/{HTML}']
+    urls=['https://montrealai.github.io/proof-gradient/', f'https://montrealai.github.io/proof-gradient/{HTML}']
     if sitemap.exists():
         old=sitemap.read_text(encoding='utf-8')
         for url in urls:
@@ -64,7 +64,7 @@ def main() -> None:
     else:
         atomic_write(sitemap, '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9)">' + ''.join(f'<url><loc>{u}</loc></url>' for u in urls) + '</urlset>')
     if not (SITE/'robots.txt').exists():
-        atomic_write(SITE/'robots.txt', 'User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n')
+        atomic_write(SITE/'robots.txt', 'User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n')
     print(json.dumps({'status':'PUBLISHED_TO_HUB','proof':PROOF_ID}, indent=2))
 if __name__ == '__main__':
     main()

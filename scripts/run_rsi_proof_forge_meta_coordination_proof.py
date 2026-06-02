@@ -14,8 +14,8 @@ PROOF_ID = "rsi-proof-forge-meta-coordination-proof"
 PROOF_TITLE = "Autonomous RSI Proof Forge Meta-Coordination Proof"
 PROOF_VERSION = "12.0"
 DEFAULT_SEED = 2026053107
-BASE_URL = "https://montrealai.github.io/skillos/"
-REPO_URL = "https://github.com/MontrealAI/skillos"
+BASE_URL = "https://montrealai.github.io/proof-gradient/"
+REPO_URL = "https://github.com/MontrealAI/proof-gradient"
 WORKFLOW_FILE = "autonomous-rsi-proof-forge-meta-coordination-proof.yml"
 WORKFLOW_URL = f"{REPO_URL}/actions/workflows/{WORKFLOW_FILE}"
 

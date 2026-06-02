@@ -1,4 +1,4 @@
-# SkillOS Public Command Center Autopublisher v3
+# Proof Gradient Public Command Center Autopublisher v3
 
 This is the elevated public-site autopublisher for the SkillOS proof ecosystem.
 
@@ -33,7 +33,7 @@ force_rebuild: true
 Open:
 
 ```text
-https://montrealai.github.io/skillos/data/command-center-manifest.json
+https://montrealai.github.io/proof-gradient/data/command-center-manifest.json
 ```
 
 It should contain:
@@ -45,7 +45,7 @@ schema: skillos.command_center.v3
 Then open:
 
 ```text
-https://montrealai.github.io/skillos/?v=latest
+https://montrealai.github.io/proof-gradient/?v=latest
 ```
 
-The homepage should say `SkillOS Public Command Center v3`.
+The homepage should say `Proof Gradient Public Command Center v3`.

@@ -1,4 +1,4 @@
-# SkillOS Public Command Center
+# Proof Gradient Public Command Center
 
 Generated: `2026-06-01T16:23:01Z`
 
@@ -41,7 +41,7 @@ workflow files indexed: 52
 
 ## Viewer instructions
 
-1. Open `https://montrealai.github.io/skillos/`.
+1. Open `https://montrealai.github.io/proof-gradient/`.
 2. Click a proof card.
 3. Read the visual proof page and Skills Used section.
 4. Open the JSON receipt for machine-readable evidence.

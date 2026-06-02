@@ -33,13 +33,13 @@ def main():
         if PROOF_ID not in text:
             text=text.replace('</main>',card+'\n</main>',1) if '</main>' in text else text+card; atomic_write(idx,text)
     else: atomic_write(idx,f'<!doctype html><html><body><main>{card}</main></body></html>')
-    sm=SITE/'sitemap.xml'; urls=['https://montrealai.github.io/skillos/',f'https://montrealai.github.io/skillos/{HTML}']
+    sm=SITE/'sitemap.xml'; urls=['https://montrealai.github.io/proof-gradient/',f'https://montrealai.github.io/proof-gradient/{HTML}']
     if sm.exists():
         s=sm.read_text(encoding='utf-8')
         for u in urls:
             if u not in s: s=s.replace('</urlset>',f'<url><loc>{u}</loc></url>\n</urlset>') if '</urlset>' in s else s+f'\n{u}\n'
         atomic_write(sm,s)
     else: atomic_write(sm,'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{u}</loc></url>' for u in urls)+'</urlset>')
-    if not (SITE/'robots.txt').exists(): atomic_write(SITE/'robots.txt','User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n')
+    if not (SITE/'robots.txt').exists(): atomic_write(SITE/'robots.txt','User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n')
     print(json.dumps({'status':'PUBLISHED_TO_HUB','proof':PROOF_ID},indent=2))
 if __name__=='__main__': main()

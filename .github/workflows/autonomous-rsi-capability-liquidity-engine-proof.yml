@@ -31,7 +31,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: skillos-capability-liquidity-engine-proof-${{ github.ref }}
+  group: -capability-liquidity-engine-proof-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: https://montrealai.github.io/skillos/
+      url: https://montrealai.github.io/proof-gradient/
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

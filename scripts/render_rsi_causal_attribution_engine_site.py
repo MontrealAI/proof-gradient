@@ -8,7 +8,7 @@ from typing import Any
 
 PROOF_ID = "rsi-causal-attribution-engine-proof"
 TITLE = "Autonomous RSI Causal Attribution Engine Proof"
-SITE_BASE_URL = "https://montrealai.github.io/skillos/"
+SITE_BASE_URL = "https://montrealai.github.io/proof-gradient/"
 
 
 def fail(message: str) -> None:
@@ -137,7 +137,7 @@ def render(proof: dict[str, Any]) -> str:
 </style>
 </head>
 <body>
-<nav><strong><a href='index.html'>SkillOS Proof Command Center</a></strong><span><a href='#method'>Method</a><a href='proof-registry.json'>Registry</a><a href='https://github.com/MontrealAI/skillos/actions'>Run on GitHub</a><a href='https://github.com/MontrealAI/skillos'>GitHub</a></span></nav>
+<nav><strong><a href='index.html'>SkillOS Proof Command Center</a></strong><span><a href='#method'>Method</a><a href='proof-registry.json'>Registry</a><a href='https://github.com/MontrealAI/proof-gradient/actions'>Run on GitHub</a><a href='https://github.com/MontrealAI/proof-gradient'>GitHub</a></span></nav>
 <main>
   <section class='hero'>
     <div class='eyebrow'>Causal attribution proof • validation-gated RSI • counterfactual replay</div>
@@ -149,7 +149,7 @@ def render(proof: dict[str, Any]) -> str:
       <div class='metric'><b>{pct(m['frontier_correct_rate'])}</b><span>frontier-correct rate</span></div>
       <div class='metric'><b>{pct(m['risk_breach_rate'])}</b><span>risk breach rate</span></div>
     </div>
-    <div class='links'><a class='button' href='data/{PROOF_ID}.json'>Inspect JSON receipt</a><a class='button secondary' href='docs/{PROOF_ID}.md'>Read report</a><a class='button secondary' href='https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-causal-attribution-engine-proof.yml'>Run / regenerate</a></div>
+    <div class='links'><a class='button' href='data/{PROOF_ID}.json'>Inspect JSON receipt</a><a class='button secondary' href='docs/{PROOF_ID}.md'>Read report</a><a class='button secondary' href='https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-causal-attribution-engine-proof.yml'>Run / regenerate</a></div>
   </section>
 
   <section class='callout'>

@@ -12,8 +12,8 @@ SCHEMA = "skillos.flagship.capability_governance_twin.launch.v1"
 OLD_PHRASES = [
     "Autonomous Proof Command Center",
     "SkillOS Proof Command Center",
-    "Public SkillOS Command Center v2",
-    "SkillOS Public Command Center v3",
+    "Proof Gradient Command Center v2",
+    "Proof Gradient Public Command Center v3",
 ]
 REQUIRED_FILES = [
     "index.html",

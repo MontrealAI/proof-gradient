@@ -9,7 +9,7 @@ from typing import Any
 
 PROOF_ID = "rsi-open-replication-mesh-proof"
 TITLE = "Autonomous RSI Open Replication Mesh Proof"
-SITE_BASE_URL = "https://montrealai.github.io/skillos/"
+SITE_BASE_URL = "https://montrealai.github.io/proof-gradient/"
 
 
 def esc(value: Any) -> str:
@@ -146,7 +146,7 @@ def render(proof: dict[str, Any]) -> str:
 </style>
 </head>
 <body>
-<nav><strong><a href='index.html'>SkillOS Proof Command Center</a></strong><span><a href='#replication'>Replication</a><a href='proof-registry.json'>Registry</a><a href='https://github.com/MontrealAI/skillos/actions'>Run on GitHub</a><a href='https://github.com/MontrealAI/skillos'>GitHub</a></span></nav>
+<nav><strong><a href='index.html'>SkillOS Proof Command Center</a></strong><span><a href='#replication'>Replication</a><a href='proof-registry.json'>Registry</a><a href='https://github.com/MontrealAI/proof-gradient/actions'>Run on GitHub</a><a href='https://github.com/MontrealAI/proof-gradient'>GitHub</a></span></nav>
 <main>
   <section class='hero'>
     <span class='pill'>Proof passed</span>
@@ -159,7 +159,7 @@ def render(proof: dict[str, Any]) -> str:
       <div class='metric'><b>{pct(m['locked_holdout_value_capture'])}</b><span>holdout value capture</span></div>
       <div class='metric'><b>+{pct(m['causal_uplift_vs_best_control'])}</b><span>uplift vs strongest control</span></div>
     </div>
-    <div class='links'><a class='button' href='data/{PROOF_ID}.json'>Inspect JSON receipt</a><a class='button secondary' href='docs/{PROOF_ID}.md'>Read report</a><a class='button secondary' href='https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-open-replication-mesh-proof.yml'>Run / regenerate</a></div>
+    <div class='links'><a class='button' href='data/{PROOF_ID}.json'>Inspect JSON receipt</a><a class='button secondary' href='docs/{PROOF_ID}.md'>Read report</a><a class='button secondary' href='https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-open-replication-mesh-proof.yml'>Run / regenerate</a></div>
   </section>
 
   <section class='callout'>

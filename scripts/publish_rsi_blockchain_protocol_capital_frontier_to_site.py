@@ -13,7 +13,7 @@ FEATURE_ID = "rsi-blockchain-protocol-capital-frontier-feature"
 
 def base_home(proof: dict) -> str:
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SkillOS Proof Command Center</title><style>
-body{{margin:0;background:linear-gradient(135deg,#061727,#152049 70%,#0b4c59);color:#ecf7ff;font-family:Inter,system-ui,sans-serif}}a{{color:#7df9ff;text-decoration:none}}.wrap{{max-width:1180px;margin:0 auto;padding:40px 24px}}.nav{{padding:12px 22px;background:#061422;position:sticky;top:0;display:flex;justify-content:space-between;font-weight:900}}.hero{{padding:42px;border:1px solid rgba(255,255,255,.18);border-radius:28px;background:rgba(255,255,255,.08);margin:40px 0}}h1{{font-size:72px;line-height:.9;letter-spacing:-.07em;margin:0 0 18px}}.grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}}.card{{padding:24px;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:rgba(255,255,255,.08)}}.big{{color:#6dffac;font-size:34px;font-weight:900}}@media(max-width:800px){{.grid{{grid-template-columns:1fr}}h1{{font-size:48px}}}}</style></head><body><div class="nav"><a href="index.html">SkillOS Proof Command Center</a><a href="https://github.com/MontrealAI/skillos/actions">Run proofs on GitHub</a></div><main class="wrap"><section class="hero"><h1>Autonomous public proofs.</h1><p>Every proof is generated, verified, published, and refreshed by GitHub Actions.</p></section>{feature_block(proof)}</main></body></html>'''
+body{{margin:0;background:linear-gradient(135deg,#061727,#152049 70%,#0b4c59);color:#ecf7ff;font-family:Inter,system-ui,sans-serif}}a{{color:#7df9ff;text-decoration:none}}.wrap{{max-width:1180px;margin:0 auto;padding:40px 24px}}.nav{{padding:12px 22px;background:#061422;position:sticky;top:0;display:flex;justify-content:space-between;font-weight:900}}.hero{{padding:42px;border:1px solid rgba(255,255,255,.18);border-radius:28px;background:rgba(255,255,255,.08);margin:40px 0}}h1{{font-size:72px;line-height:.9;letter-spacing:-.07em;margin:0 0 18px}}.grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}}.card{{padding:24px;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:rgba(255,255,255,.08)}}.big{{color:#6dffac;font-size:34px;font-weight:900}}@media(max-width:800px){{.grid{{grid-template-columns:1fr}}h1{{font-size:48px}}}}</style></head><body><div class="nav"><a href="index.html">SkillOS Proof Command Center</a><a href="https://github.com/MontrealAI/proof-gradient/actions">Run proofs on GitHub</a></div><main class="wrap"><section class="hero"><h1>Autonomous public proofs.</h1><p>Every proof is generated, verified, published, and refreshed by GitHub Actions.</p></section>{feature_block(proof)}</main></body></html>'''
 
 
 def feature_block(proof: dict) -> str:
@@ -29,7 +29,7 @@ def feature_block(proof: dict) -> str:
     <div class="card"><div class="big">{scale['virtual_specialist_agents']:,}</div><div>virtual specialist agents</div></div>
     <div class="card"><div class="big">{hr['value_over_static_dao_committee']}</div><div>over static DAO committee</div></div>
   </div>
-  <p style="margin-top:24px"><a class="card" style="display:inline-block;font-weight:900" href="{SLUG}.html">Open the proof webpage →</a> <a class="card" style="display:inline-block;font-weight:900" href="https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml">Run / regenerate on GitHub →</a></p>
+  <p style="margin-top:24px"><a class="card" style="display:inline-block;font-weight:900" href="{SLUG}.html">Open the proof webpage →</a> <a class="card" style="display:inline-block;font-weight:900" href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml">Run / regenerate on GitHub →</a></p>
 </section>'''
 
 
@@ -78,9 +78,9 @@ def write_sitemap() -> None:
                     pages.append(p["page_url"])
         except Exception:
             pass
-    urls = "\n".join(f"  <url><loc>https://montrealai.github.io/skillos/{html.escape(p)}</loc></url>" for p in pages)
+    urls = "\n".join(f"  <url><loc>https://montrealai.github.io/proof-gradient/{html.escape(p)}</loc></url>" for p in pages)
     SITEMAP.write_text(f"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n{urls}\n</urlset>\n", encoding="utf-8")
-    ROBOTS.write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n", encoding="utf-8")
+    ROBOTS.write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n", encoding="utf-8")
 
 
 def main() -> None:

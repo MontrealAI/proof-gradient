@@ -11,8 +11,8 @@ SLUG = "rsi-corporate-strategy-frontier-proof"
 PROOF_JSON = ROOT / "data" / f"{SLUG}.json"
 OUT_HTML = ROOT / "site" / f"{SLUG}.html"
 OUT_BADGE = ROOT / "badges" / f"{SLUG}.svg"
-BASE_URL = "https://montrealai.github.io/skillos/"
-ACTION_URL = "https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-corporate-strategy-frontier-proof.yml"
+BASE_URL = "https://montrealai.github.io/proof-gradient/"
+ACTION_URL = "https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-corporate-strategy-frontier-proof.yml"
 
 
 def dollars(x: float) -> str:

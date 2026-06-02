@@ -3,8 +3,8 @@
   "generated_by": "scripts/build_pages.py",
   "generated_at": "2026-05-27T00:42:27Z",
   "entrypoint": "index.html",
-  "pages_url": "https://montrealai.github.io/skillos/",
-  "repository": "https://github.com/MontrealAI/skillos",
+  "pages_url": "https://montrealai.github.io/proof-gradient/",
+  "repository": "https://github.com/MontrealAI/proof-gradient",
   "required_files": [
     "index.html",
     "styles.css",

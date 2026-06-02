@@ -23,7 +23,7 @@ REQUIRED_FILES = [
 ]
 
 REQUIRED_INDEX_SNIPPETS = [
-    "Public SkillOS Command Center",
+    "Proof Gradient Command Center",
     "Autonomous proof, always refreshed",
     "How to see the proof",
     "Skills Used",

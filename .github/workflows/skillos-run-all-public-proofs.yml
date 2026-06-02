@@ -1,4 +1,4 @@
-name: SkillOS Run All Public Proofs
+name: Proof Gradient Run All Public Proofs
 
 on:
   workflow_dispatch:
@@ -40,5 +40,5 @@ jobs:
       - name: Summary
         run: |
           echo "Public proof workflows were selected and dispatched."
-          echo "Open https://github.com/MontrealAI/skillos/actions to watch them run."
+          echo "Open https://github.com/MontrealAI/proof-gradient/actions to watch them run."
           echo "The public proof command center will refresh automatically."

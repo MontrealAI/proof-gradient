@@ -1004,7 +1004,7 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <main>
 <section class="hero">
 <div>
-<div class="eyebrow">MONTREAL.AI / SKILLOS</div>
+<div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div>
 <h1>Adversarial RSI Multi-Agent Market Command Center</h1>
 <p>Recursive self-improvement on large-scale specialist-agent coordination for profitable market capture.</p>
 </div>
@@ -1059,9 +1059,9 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <strong>Boundary:</strong> This is a fully autonomous market-readiness benchmark using deterministic synthetic/redacted-style business data and benchmark assumptions. It is not audited customer ROI, financial advice, investment advice, live customer adoption, or a guarantee of future outcomes.
 </section>
 <p class="links">
-<a href="https://github.com/MontrealAI/skillos/actions/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml">Run in GitHub Actions</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/docs/rsi_adversarial_multi_agent_market_command_center_proof.md">Markdown report</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/data/rsi_adversarial_multi_agent_market_command_center_proof.json">JSON proof</a>
+<a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml">Run in GitHub Actions</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_adversarial_multi_agent_market_command_center_proof.md">Markdown report</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_adversarial_multi_agent_market_command_center_proof.json">JSON proof</a>
 </p>
 </main>
 </body>

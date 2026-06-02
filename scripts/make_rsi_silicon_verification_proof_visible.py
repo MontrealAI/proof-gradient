@@ -12,7 +12,7 @@ CARD = """
   <p style="color:#aab8c8;font-size:18px;max-width:880px">A 100% autonomous GitHub Actions proof for semiconductor RTL verification, bug triage, assertion selection, and fix-plan recommendation. No human review, no emails, no invoices, no CloudOps or cyber reuse, no customers, no private data, no API keys.</p>
   <p>
     <a href="rsi-silicon-verification-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View silicon verification proof</a>
-    <a href="https://github.com/MontrealAI/skillos/actions/workflows/rsi-silicon-verification-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-silicon-verification-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
   </p>
 </section>
 """.strip()

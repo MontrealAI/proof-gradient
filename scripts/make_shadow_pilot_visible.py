@@ -87,7 +87,7 @@ def ensure_shadow_proof_page() -> None:
         <div><strong>+{accepted_lift} pts</strong><span>accepted-rate lift</span></div>
       </div>
       <p class="shadow-proof-note">Safe interpretation: this is a reproducible reference workflow proof, not audited customer results, financial advice, or a guarantee of future outcomes.</p>
-      <p><a href="./" class="button">Back to SkillOS</a> <a href="https://github.com/MontrealAI/skillos/actions/workflows/shadow-pilot-proof.yml" class="button secondary">Run proof on GitHub</a></p>
+      <p><a href="./" class="button">Back to SkillOS</a> <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/shadow-pilot-proof.yml" class="button secondary">Run proof on GitHub</a></p>
     </section>
   </main>
 </body>
@@ -127,7 +127,7 @@ def card_snippet() -> str:
     <p class="shadow-pilot-safe-note">No emails sent. No customers contacted. No private data. No API keys. Anyone can rerun the proof in GitHub Actions.</p>
     <div class="shadow-pilot-actions">
       <a class="button" href="./shadow-pilot-proof.html">View visual proof</a>
-      <a class="button secondary" href="https://github.com/MontrealAI/skillos/actions/workflows/shadow-pilot-proof.yml">Run on GitHub</a>
+      <a class="button secondary" href="https://github.com/MontrealAI/proof-gradient/actions/workflows/shadow-pilot-proof.yml">Run on GitHub</a>
     </div>
   </div>
   <div class="shadow-pilot-metrics" aria-label="Shadow pilot proof metrics">
@@ -146,8 +146,8 @@ def inject_nav(text: str) -> str:
 
     for marker in [
         '<a class="github',
-        '<a href="https://github.com/MontrealAI/skillos"',
-        '<a href="https://github.com/MontrealAI/skillos/"',
+        '<a href="https://github.com/MontrealAI/proof-gradient"',
+        '<a href="https://github.com/MontrealAI/proof-gradient/"',
         'GitHub</a>',
     ]:
         if marker in text:
@@ -333,8 +333,8 @@ def patch_readme() -> bool:
 
 SkillOS now includes a public GitHub Actions proof that runs without sending emails, contacting customers, using private data, or requiring API keys.
 
-- Visual proof page: https://montrealai.github.io/skillos/shadow-pilot-proof.html
-- GitHub Action: https://github.com/MontrealAI/skillos/actions/workflows/shadow-pilot-proof.yml
+- Visual proof page: https://montrealai.github.io/proof-gradient/shadow-pilot-proof.html
+- GitHub Action: https://github.com/MontrealAI/proof-gradient/actions/workflows/shadow-pilot-proof.yml
 - Proof report: [`docs/shadow_pilot_proof.md`](docs/shadow_pilot_proof.md)
 
 Safe interpretation: this is a reproducible reference workflow proof, not audited customer results, financial advice, or a guarantee of future outcomes.

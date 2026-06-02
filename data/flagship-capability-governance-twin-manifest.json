@@ -15,15 +15,15 @@
   },
   "generated_at_utc": "2026-06-01T21:14:57Z",
   "marker": "SKILLOS_FLAGSHIP_GOVERNANCE_TWIN_LAUNCH_V1",
-  "pages_base": "https://montrealai.github.io/skillos/",
-  "repo": "MontrealAI/skillos",
+  "pages_base": "https://montrealai.github.io/proof-gradient/",
+  "repo": "MontrealAI/proof-gradient",
   "root_policy": {
     "deploys_pages_artifact_directly": true,
     "old_phrases_blocked": [
       "Autonomous Proof Command Center",
       "SkillOS Proof Command Center",
-      "Public SkillOS Command Center v2",
-      "SkillOS Public Command Center v3"
+      "Proof Gradient Command Center v2",
+      "Proof Gradient Public Command Center v3"
     ],
     "root_and_index_must_match": true
   },

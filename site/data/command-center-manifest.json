@@ -4,13 +4,13 @@
   "marker": "SKILLOS_COMMAND_CENTER_V5_1_CANONICAL_ROOT",
   "old_phrases_forbidden": [
     "Autonomous Proof Command Center",
-    "SkillOS Public Command Center v2",
-    "SkillOS Public Command Center v3",
-    "Public SkillOS Command Center v2"
+    "Proof Gradient Public Command Center v2",
+    "Proof Gradient Public Command Center v3",
+    "Proof Gradient Command Center v2"
   ],
   "proof_count": 104,
   "proved_count": 37,
-  "repository": "MontrealAI/skillos",
+  "repository": "MontrealAI/proof-gradient",
   "root_fix": {
     "deploys_pages_artifact": true,
     "no_cache_meta_tags": true,

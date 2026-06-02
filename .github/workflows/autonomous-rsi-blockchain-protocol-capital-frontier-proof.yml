@@ -26,7 +26,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: skillos-pages
+  group: proof-gradient-pages
   cancel-in-progress: false
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: https://montrealai.github.io/skillos/
+      url: https://montrealai.github.io/proof-gradient/
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

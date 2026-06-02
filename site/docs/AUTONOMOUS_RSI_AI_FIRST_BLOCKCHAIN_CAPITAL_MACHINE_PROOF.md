@@ -44,13 +44,13 @@ GitHub → Actions → Autonomous RSI AI-First Blockchain Capital Machine Proof 
 Keep `deploy_pages` set to `true` to publish:
 
 ```text
-https://montrealai.github.io/skillos/rsi-ai-first-blockchain-capital-machine-proof.html
+https://montrealai.github.io/proof-gradient/rsi-ai-first-blockchain-capital-machine-proof.html
 ```
 
 The same run refreshes:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 ## Generated artifacts

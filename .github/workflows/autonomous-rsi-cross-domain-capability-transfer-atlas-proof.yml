@@ -31,7 +31,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: skillos-rsi-cross-domain-capability-transfer-atlas-${{ github.ref }}
+  group: -rsi-cross-domain-capability-transfer-atlas-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

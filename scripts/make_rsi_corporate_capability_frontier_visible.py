@@ -214,7 +214,7 @@ def main() -> None:
 <main>
 <section class="hero">
   <div>
-    <div class="eyebrow">MONTREAL.AI / SKILLOS / EDGE OF CORPORATE CAPABILITY</div>
+    <div class="eyebrow">MONTREAL.AI / PROOF GRADIENT / EDGE OF CORPORATE CAPABILITY</div>
     <h1>Corporate Capability Frontier.</h1>
     <p>Autonomous, validation-gated proof that a large specialist-agent superorganization can recursively improve the coordination layer that converts resources into compounding productive capability.</p>
   </div>
@@ -275,7 +275,7 @@ def main() -> None:
     <h2>Re-run the proof from GitHub Actions.</h2>
     <p>Open the workflow, click <span class="mono">Run workflow</span>, and the Action regenerates the JSON receipt, Markdown report, visual proof page, public badge, and SkillOS homepage integration.</p>
   </div>
-  <div><a class="btn" href="https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml">Run on GitHub</a></div>
+  <div><a class="btn" href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml">Run on GitHub</a></div>
 </section>
 
 <section class="notice">

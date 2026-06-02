@@ -751,7 +751,7 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <main>
 <section class="hero">
 <div>
-<div class="eyebrow">MONTREAL.AI / SKILLOS</div>
+<div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div>
 <h1>Autonomous RSI Revenue Experiment Factory</h1>
 <p>Recursive self-improvement on causal revenue experiments, growth guardrails, and scalable profit capture.</p>
 </div>
@@ -799,9 +799,9 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <strong>Boundary:</strong> This is a fully autonomous reference proof using deterministic synthetic/redacted-style business data and benchmark assumptions. It is not audited customer ROI, financial advice, investment advice, or a guarantee of future outcomes.
 </section>
 <p class="links">
-<a href="https://github.com/MontrealAI/skillos/actions/workflows/rsi-revenue-experiment-factory-proof.yml">Run in GitHub Actions</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/docs/rsi_revenue_experiment_factory_market_proof.md">Markdown report</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/data/rsi_revenue_experiment_factory_market_proof.json">JSON proof</a>
+<a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-revenue-experiment-factory-proof.yml">Run in GitHub Actions</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_revenue_experiment_factory_market_proof.md">Markdown report</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_revenue_experiment_factory_market_proof.json">JSON proof</a>
 </p>
 </main>
 </body>

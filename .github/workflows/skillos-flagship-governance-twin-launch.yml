@@ -17,11 +17,11 @@ jobs:
       - name: Explain safe flagship contract
         run: |
           echo "Capability Governance Twin is a flagship proof subpage."
-          echo "The root remains the Public SkillOS Command Center."
+          echo "The root remains the Proof Gradient Command Center."
           echo "Dispatching root authority workflow."
       - name: Dispatch canonical Command Center rebuild
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
         run: |
-          gh api repos/$REPO/dispatches -f event_type=skillos-command-center-refresh -f client_payload='{"source":"flagship-governance-twin"}'
+          gh api repos/$REPO/dispatches -f event_type=proof-gradient-command-center-refresh -f client_payload='{"source":"flagship-governance-twin"}'

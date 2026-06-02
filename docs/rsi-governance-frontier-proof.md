@@ -3,8 +3,8 @@
 **Status:** PASSED  
 **Version:** 10.0  
 **Proof id:** `rsi-governance-frontier-proof`  
-**Public page:** https://montrealai.github.io/skillos/rsi-governance-frontier-proof.html  
-**Run on GitHub:** https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-governance-frontier-proof.yml
+**Public page:** https://montrealai.github.io/proof-gradient/rsi-governance-frontier-proof.html  
+**Run on GitHub:** https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-governance-frontier-proof.yml
 
 ## Plain-English claim
 

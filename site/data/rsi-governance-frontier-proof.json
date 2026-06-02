@@ -20,7 +20,7 @@
     "strategy_councils": 256,
     "virtual_specialist_agents": 1048576
   },
-  "base_url": "https://montrealai.github.io/skillos/",
+  "base_url": "https://montrealai.github.io/proof-gradient/",
   "baseline_metrics": {
     "no_rsi_governance_org": {
       "capital_equivalent_value_at_stake": 145404963763904.75,
@@ -75161,8 +75161,8 @@
   "proof_sha256": "5a8ba04e7b308521fe58487644e28535c6b36ac85a99d36f9af2dd3e33c5d915",
   "proof_title": "Autonomous RSI Governance Frontier Proof",
   "proof_version": "10.0",
-  "public_page": "https://montrealai.github.io/skillos/rsi-governance-frontier-proof.html",
-  "repository": "https://github.com/MontrealAI/skillos",
+  "public_page": "https://montrealai.github.io/proof-gradient/rsi-governance-frontier-proof.html",
+  "repository": "https://github.com/MontrealAI/proof-gradient",
   "rsi_release_trace": [
     {
       "accepted": true,
@@ -75324,5 +75324,5 @@
   "seed": 2026053101,
   "thesis": "AI-first governance becomes a capital engine when evidence, role quorum, incentives, policy, permissions, capital, compute, energy, execution, audit, risk courts, and reinvestment recursively improve the institution's ability to improve itself.",
   "workflow_file": ".github/workflows/autonomous-rsi-governance-frontier-proof.yml",
-  "workflow_url": "https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-governance-frontier-proof.yml"
+  "workflow_url": "https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-governance-frontier-proof.yml"
 }

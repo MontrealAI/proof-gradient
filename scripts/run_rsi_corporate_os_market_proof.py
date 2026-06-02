@@ -667,7 +667,7 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <main>
 <section class="hero">
 <div>
-<div class="eyebrow">MONTREAL.AI / SKILLOS</div>
+<div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div>
 <h1>Autonomous RSI Corporate Operating System Proof</h1>
 <p>Recursive self-improvement on board-ready operating-plan diagnosis and intervention selection.</p>
 </div>
@@ -713,9 +713,9 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <strong>Boundary:</strong> This is a fully autonomous reference proof using deterministic synthetic/redacted-style corporate data. It is not audited customer ROI, financial advice, investment advice, or a guarantee of future outcomes.
 </section>
 <p class="links">
-<a href="https://github.com/MontrealAI/skillos/actions/workflows/rsi-corporate-os-proof.yml">Run in GitHub Actions</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/docs/rsi_corporate_os_market_proof.md">Markdown report</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/data/rsi_corporate_os_market_proof.json">JSON proof</a>
+<a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-corporate-os-proof.yml">Run in GitHub Actions</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_corporate_os_market_proof.md">Markdown report</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_corporate_os_market_proof.json">JSON proof</a>
 </p>
 </main>
 </body>

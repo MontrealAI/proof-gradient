@@ -15,5 +15,5 @@ dist/data/demo.json
 GitHub Actions then publishes `dist/` to:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```

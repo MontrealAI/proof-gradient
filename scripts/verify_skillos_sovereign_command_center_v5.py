@@ -10,9 +10,9 @@ SITE = ROOT / "site"
 MARKER = "SKILLOS_COMMAND_CENTER_V5_1_CANONICAL_ROOT"
 FORBIDDEN = [
     "Autonomous Proof Command Center",
-    "SkillOS Public Command Center v2",
-    "SkillOS Public Command Center v3",
-    "Public SkillOS Command Center v2",
+    "Proof Gradient Public Command Center v2",
+    "Proof Gradient Public Command Center v3",
+    "Proof Gradient Command Center v2",
 ]
 REQUIRED = [
     "index.html", "executive.html", "proofs.html", "actions.html", "skills.html",
@@ -40,7 +40,7 @@ def main() -> None:
     for phrase in FORBIDDEN:
         if phrase in index:
             fail(f"index.html contains forbidden legacy phrase: {phrase}")
-    for snippet in ["Sovereign SkillOS Command Center", "Every job can become a reusable skill", "one artifact", "Skills Used", "Large multi-agent coordination"]:
+    for snippet in ["Sovereign Proof Gradient Command Center", "Every job can become a reusable skill", "one artifact", "Skills Used", "Large multi-agent coordination"]:
         if snippet not in index:
             fail(f"index.html missing required snippet: {snippet}")
     manifest = json.loads(read(SITE / "data" / "command-center-manifest.json"))

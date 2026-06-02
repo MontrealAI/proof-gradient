@@ -6,14 +6,14 @@
   "workflow": "adversarial large-scale agentic coordination for profitable market-capture portfolio selection, resource allocation, risk control, and compounding business strategy",
   "receipts": {
     "generated_at_utc": "2026-05-30T17:59:09Z",
-    "repository": "MontrealAI/skillos",
+    "repository": "MontrealAI/proof-gradient",
     "commit_sha": "075865a8f8da6e5467c3ca8974d17a8ab14fba22",
     "ref_name": "main",
     "workflow": "Autonomous RSI Adversarial Multi-Agent Market Command Center Proof",
     "run_id": "26690951657",
     "run_number": "4",
     "run_attempt": "1",
-    "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26690951657",
+    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26690951657",
     "benchmark_seed": 20260530
   },
   "agent_system": {

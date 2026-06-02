@@ -54,7 +54,7 @@ def main() -> None:
 </style></head>
 <body><nav><strong>SkillOS Continual Capability Frontier</strong><div><a href="index.html">Command Center</a><a href="proofs.html">Proofs</a><a href="data/rsi-continual-capability-frontier-proof.json">JSON</a></div></nav>
 <main>
-<section class="hero"><div><div class="eyebrow">MONTREAL.AI / SKILLOS</div><h1>Continual Capability Frontier.</h1><p>Autonomous proof that SkillOS can recursively improve capability routing under drift while avoiding catastrophic forgetting, risk breach, and unauthorized actions.</p></div>
+<section class="hero"><div><div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div><h1>Continual Capability Frontier.</h1><p>Autonomous proof that SkillOS can recursively improve capability routing under drift while avoiding catastrophic forgetting, risk breach, and unauthorized actions.</p></div>
 <div class="card"><div class="eyebrow">proof passed</div><div class="quote">{proof['agent_system']['virtual_specialist_agents']:,} agents. {proof['agent_system']['specialist_roles']:,} roles. {proof['rsi_release_count']} RSI releases. {proof['benchmark_public']['locked_holdout_count']} locked holdout cases.</div><p>{esc(proof['safe_interpretation'])}</p></div></section>
 <section class="grid">
 <div class="metric"><strong>{final['value_capture_rate_percent']}%</strong><span>value capture</span></div>

@@ -76,38 +76,38 @@ jobs:
           }
 
           GENERAL_REPLACEMENTS = [
-              ("https://montrealai.github.io/skillos/index.html", "https://montrealai.github.io/proof-gradient/index.html"),
-              ("https://montrealai.github.io/skillos/", "https://montrealai.github.io/proof-gradient/"),
-              ("https://montrealai.github.io/skillos", "https://montrealai.github.io/proof-gradient"),
-              ("https://github.com/MontrealAI/skillos", "https://github.com/MontrealAI/proof-gradient"),
-              ("github.com/MontrealAI/skillos", "github.com/MontrealAI/proof-gradient"),
-              ("MontrealAI/skillos", "MontrealAI/proof-gradient"),
+              ("https://montrealai.github.io/proof-gradient/index.html", "https://montrealai.github.io/proof-gradient/index.html"),
+              ("https://montrealai.github.io/proof-gradient/", "https://montrealai.github.io/proof-gradient/"),
+              ("https://montrealai.github.io/proof-gradient", "https://montrealai.github.io/proof-gradient"),
+              ("https://github.com/MontrealAI/proof-gradient", "https://github.com/MontrealAI/proof-gradient"),
+              ("github.com/MontrealAI/proof-gradient", "github.com/MontrealAI/proof-gradient"),
+              ("MontrealAI/proof-gradient", "MontrealAI/proof-gradient"),
 
-              ("SKILLOS_LIVE_URL", "PROOF_GRADIENT_LIVE_URL"),
-              ("SKILLOS_PUBLIC_URL", "PROOF_GRADIENT_PUBLIC_URL"),
-              ("SKILLOS_REPOSITORY", "PROOF_GRADIENT_REPOSITORY"),
-              ("SKILLOS_SITE_URL", "PROOF_GRADIENT_SITE_URL"),
+              ("PROOF_GRADIENT_LIVE_URL", "PROOF_GRADIENT_LIVE_URL"),
+              ("PROOF_GRADIENT_PUBLIC_URL", "PROOF_GRADIENT_PUBLIC_URL"),
+              ("PROOF_GRADIENT_REPOSITORY", "PROOF_GRADIENT_REPOSITORY"),
+              ("PROOF_GRADIENT_SITE_URL", "PROOF_GRADIENT_SITE_URL"),
 
-              ("skillos-public", "proof-gradient-public"),
-              ("skillos-command-center", "proof-gradient-command-center"),
-              ("skillos-pages", "proof-gradient-pages"),
-              ("skillos-site", "proof-gradient-site"),
+              ("proof-gradient-public", "proof-gradient-public"),
+              ("proof-gradient-command-center", "proof-gradient-command-center"),
+              ("proof-gradient-pages", "proof-gradient-pages"),
+              ("proof-gradient-site", "proof-gradient-site"),
 
-              ("Public SkillOS Command Center", "Proof Gradient Command Center"),
-              ("SkillOS Command Center", "Proof Gradient Command Center"),
-              ("SkillOS Public", "Proof Gradient Public"),
-              ("Public SkillOS", "Public Proof Gradient"),
-              ("MONTREAL.AI / SKILLOS", "MONTREAL.AI / PROOF GRADIENT"),
+              ("Proof Gradient Command Center", "Proof Gradient Command Center"),
+              ("Proof Gradient Command Center", "Proof Gradient Command Center"),
+              ("Proof Gradient Public", "Proof Gradient Public"),
+              ("Public Proof Gradient", "Public Proof Gradient"),
+              ("MONTREAL.AI / PROOF GRADIENT", "MONTREAL.AI / PROOF GRADIENT"),
           ]
 
           WORKFLOW_NAME_REPLACEMENTS = [
-              ("Public SkillOS Command Center Root Authority", "Proof Gradient Command Center Root Authority"),
-              ("SkillOS Public Site Refresh", "Proof Gradient Public Site Refresh"),
-              ("SkillOS Public Proof Command Center", "Proof Gradient Command Center"),
-              ("Retired legacy SkillOS site workflow", "Retargeted legacy Proof Gradient site workflow"),
-              ("Retired legacy SkillOS site refresh", "Retargeted legacy Proof Gradient site refresh"),
-              ("SkillOS Tests", "Proof Gradient Tests"),
-              ("SkillOS Run All Public Proofs", "Proof Gradient Run All Public Proofs"),
+              ("Proof Gradient Command Center Root Authority", "Proof Gradient Command Center Root Authority"),
+              ("Proof Gradient Public Site Refresh", "Proof Gradient Public Site Refresh"),
+              ("Proof Gradient Public Proof Command Center", "Proof Gradient Command Center"),
+              ("Retargeted legacy Proof Gradient site workflow", "Retargeted legacy Proof Gradient site workflow"),
+              ("Retargeted legacy Proof Gradient site refresh", "Retargeted legacy Proof Gradient site refresh"),
+              ("Proof Gradient Tests", "Proof Gradient Tests"),
+              ("Proof Gradient Run All Public Proofs", "Proof Gradient Run All Public Proofs"),
           ]
 
           def should_skip(path: Path) -> bool:
@@ -437,7 +437,7 @@ jobs:
 
                     touch dist/.nojekyll
 
-                    if grep -R "montrealai.github.io/skillos\|github.com/MontrealAI/skillos\|MontrealAI/skillos" dist; then
+                    if grep -R "montrealai.github.io/skillos\|github.com/MontrealAI/proof-gradient\|MontrealAI/proof-gradient" dist; then
                       echo "Old SkillOS URL found in generated Proof Gradient site. Stopping."
                       exit 1
                     fi
@@ -491,9 +491,9 @@ jobs:
                     from pathlib import Path
 
                     stale = [
-                        "https://montrealai.github.io/skillos",
-                        "github.com/MontrealAI/skillos",
-                        "MontrealAI/skillos",
+                        "https://montrealai.github.io/proof-gradient",
+                        "github.com/MontrealAI/proof-gradient",
+                        "MontrealAI/proof-gradient",
                     ]
 
                     scan_roots = [

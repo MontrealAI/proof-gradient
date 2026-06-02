@@ -479,7 +479,7 @@ def main():
         "train_value_capture": final_train["value_capture"],
         "validation_value_capture": final_validation["value_capture"],
         "run_timestamp_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "github_repository": os.environ.get("GITHUB_REPOSITORY", "MontrealAI/skillos"),
+        "github_repository": os.environ.get("GITHUB_REPOSITORY", "MontrealAI/proof-gradient"),
         "github_sha": os.environ.get("GITHUB_SHA", "local-smoke-test"),
     }
     artifact = {

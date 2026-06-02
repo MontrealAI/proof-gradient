@@ -15,8 +15,8 @@ PROOF_ID = "rsi-governance-frontier-proof"
 PROOF_TITLE = "Autonomous RSI Governance Frontier Proof"
 PROOF_VERSION = "10.0"
 DEFAULT_SEED = 2026053101
-BASE_URL = "https://montrealai.github.io/skillos/"
-REPO_URL = "https://github.com/MontrealAI/skillos"
+BASE_URL = "https://montrealai.github.io/proof-gradient/"
+REPO_URL = "https://github.com/MontrealAI/proof-gradient"
 WORKFLOW_FILE = "autonomous-rsi-governance-frontier-proof.yml"
 WORKFLOW_URL = f"{REPO_URL}/actions/workflows/{WORKFLOW_FILE}"
 

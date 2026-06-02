@@ -190,11 +190,11 @@
     "no_human_review_no_customers_no_private_data_no_api_keys": true
   },
   "proof_receipts": {
-    "repository": "MontrealAI/skillos",
+    "repository": "MontrealAI/proof-gradient",
     "commit_sha": "c493d29567853d69bc1a38e0ed53e5b0b0079a84",
     "workflow": "Autonomous RSI Capital-to-Capability Command Center v17 Proof",
     "run_id": "26767309768",
-    "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767309768",
+    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767309768",
     "ref": "main"
   },
   "train_count": 640,

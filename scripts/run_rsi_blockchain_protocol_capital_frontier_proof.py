@@ -246,7 +246,7 @@ def run_proof() -> dict:
         "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "seed": SEED,
         "proved": gates["proved"],
-        "public_page": f"https://montrealai.github.io/skillos/{SLUG}.html",
+        "public_page": f"https://montrealai.github.io/proof-gradient/{SLUG}.html",
         "github_action": "Autonomous RSI Blockchain Protocol Capital Frontier Proof",
         "methodology": {
             "plain_english": "The Action builds a deterministic blockchain protocol strategy benchmark, withholds a locked holdout set, lets a large specialist-agent protocol organization recursively improve its coordination protocol through validation-gated releases, and then compares the final protocol against single-strategist, uncoordinated swarm, static DAO committee, no-RSI, and negative-control baselines.",

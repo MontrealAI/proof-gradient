@@ -337,7 +337,7 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <main>
 <section class="hero">
 <div>
-<div class="eyebrow">MONTREAL.AI / SKILLOS</div>
+<div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div>
 <h1>Autonomous Market-Readiness Proof</h1>
 <p>100% autonomous GitHub Actions proof. No human review. No emails sent. No customers contacted. No private data. No API keys.</p>
 </div>
@@ -376,9 +376,9 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <strong>Boundary:</strong> This proof is fully autonomous and reproducible. It does not use real customer data and does not claim audited customer ROI, investment value, or guaranteed outcomes.
 </section>
 <p class="links">
-<a href="https://github.com/MontrealAI/skillos/actions">Run in GitHub Actions</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/docs/autonomous_market_readiness.md">Markdown report</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/data/autonomous_market_readiness.json">JSON proof</a>
+<a href="https://github.com/MontrealAI/proof-gradient/actions">Run in GitHub Actions</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/docs/autonomous_market_readiness.md">Markdown report</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/data/autonomous_market_readiness.json">JSON proof</a>
 </p>
 </main>
 </body>

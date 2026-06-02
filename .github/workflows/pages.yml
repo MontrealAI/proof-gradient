@@ -1,4 +1,4 @@
-name: Public SkillOS Command Center Root Authority v7.1
+name: Proof Gradient Command Center Root Authority v7.1
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ on:
         required: false
         default: true
   repository_dispatch:
-    types: [skillos-command-center-refresh, skillos-proof-updated, skillos-site-rebuild]
+    types: [proof-gradient-command-center-refresh, skillos-proof-updated, proof-gradient-site-rebuild]
   workflow_run:
     workflows:
       - "SkillOS Flagship Governance Twin Launch"
@@ -52,12 +52,12 @@ permissions:
   actions: write
 
 concurrency:
-  group: skillos-public-command-center-root-authority
+  group: proof-gradient-public-command-center-root-authority
   cancel-in-progress: true
 
 jobs:
   build-verify-deploy:
-    name: Build, verify, and deploy the canonical Public SkillOS Command Center
+    name: Build, verify, and deploy the canonical Proof Gradient Command Center
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -75,7 +75,7 @@ jobs:
 
       - name: Explain root authority contract
         run: |
-          echo "Root contract: /skillos/ and /skillos/index.html are always the Public SkillOS Command Center."
+          echo "Root contract: /skillos/ and /skillos/index.html are always the Proof Gradient Command Center."
           echo "Flagship proofs are subpages, never the root."
           echo "No pre-made HTML is used as source; dist/ is generated fresh by this Action."
 
@@ -85,7 +85,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/cancel_legacy_skillos_site_runs.py
 
-      - name: Build Public SkillOS Command Center from repository evidence
+      - name: Build Proof Gradient Command Center from repository evidence
         run: python scripts/build_skillos_public_command_center_v7.py --out dist
 
       - name: Verify generated root authority artifact
@@ -94,7 +94,7 @@ jobs:
       - name: Upload generated Command Center artifact for inspection
         uses: actions/upload-artifact@v4
         with:
-          name: skillos-public-command-center-root-authority-v7-1
+          name: proof-gradient-public-command-center-root-authority-v7-1
           path: dist
           if-no-files-found: error
 
@@ -115,4 +115,4 @@ jobs:
 
       - name: Verify live root and index are Command Center
         if: ${{ (github.event_name != 'workflow_dispatch' || inputs.deploy_pages) && (github.event_name != 'workflow_dispatch' || inputs.verify_live) }}
-        run: python scripts/verify_live_skillos_public_command_center_v7.py --base-url "https://montrealai.github.io/skillos/"
+        run: python scripts/verify_live_skillos_public_command_center_v7.py --base-url "https://montrealai.github.io/proof-gradient/"

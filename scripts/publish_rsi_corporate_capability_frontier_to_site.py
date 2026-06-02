@@ -54,7 +54,7 @@ def block(proof: dict) -> str:
         <p>SkillOS now publishes a 100% autonomous RSI proof showing a large specialist-agent superorganization recursively improving the coordination layer that turns capital, compute, energy, data, trust, talent, product, distribution, validation, risk control, and reinvestment into compounding productive capability.</p>
         <div class="skillos-frontier-btns">
           <a class="skillos-frontier-btn" href="rsi-corporate-capability-frontier-proof.html">View proof</a>
-          <a class="skillos-frontier-btn secondary" href="https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml">Run on GitHub</a>
+          <a class="skillos-frontier-btn secondary" href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml">Run on GitHub</a>
           <a class="skillos-frontier-btn secondary" href="../data/rsi_corporate_capability_frontier_proof.json">JSON receipt</a>
         </div>
       </div>
@@ -71,7 +71,7 @@ def block(proof: dict) -> str:
 
 
 def blank_page(title: str, body: str) -> str:
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title><style>body{{margin:0;background:linear-gradient(135deg,#061521,#172743 55%,#25245f);color:#f5fbff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}}nav{{padding:14px 22px;background:rgba(5,16,28,.92);border-bottom:1px solid rgba(255,255,255,.16);display:flex;gap:16px;flex-wrap:wrap}}nav a{{color:#83f7ff;text-decoration:none;font-weight:850}}main{{max-width:1240px;margin:auto;padding:28px 0 70px}}h1{{padding:0 20px;font-size:clamp(38px,6vw,80px);letter-spacing:-.065em}}</style></head><body><nav><a href="index.html">Command Center</a><a href="proofs.html">Proofs</a><a href="multi-agent.html">Multi-Agent</a><a href="runbook.html">Run</a><a href="https://github.com/MontrealAI/skillos">GitHub</a></nav><main><h1>{esc(title)}</h1>{body}</main></body></html>'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title><style>body{{margin:0;background:linear-gradient(135deg,#061521,#172743 55%,#25245f);color:#f5fbff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}}nav{{padding:14px 22px;background:rgba(5,16,28,.92);border-bottom:1px solid rgba(255,255,255,.16);display:flex;gap:16px;flex-wrap:wrap}}nav a{{color:#83f7ff;text-decoration:none;font-weight:850}}main{{max-width:1240px;margin:auto;padding:28px 0 70px}}h1{{padding:0 20px;font-size:clamp(38px,6vw,80px);letter-spacing:-.065em}}</style></head><body><nav><a href="index.html">Command Center</a><a href="proofs.html">Proofs</a><a href="multi-agent.html">Multi-Agent</a><a href="runbook.html">Run</a><a href="https://github.com/MontrealAI/proof-gradient">GitHub</a></nav><main><h1>{esc(title)}</h1>{body}</main></body></html>'''
 
 
 def patch_html(path: Path, title: str, insert: str) -> None:
@@ -126,19 +126,19 @@ def write_registry(proof: dict) -> None:
 
 def write_sitemap() -> None:
     urls = [
-        "https://montrealai.github.io/skillos/",
-        "https://montrealai.github.io/skillos/proofs.html",
-        "https://montrealai.github.io/skillos/multi-agent.html",
-        "https://montrealai.github.io/skillos/runbook.html",
-        "https://montrealai.github.io/skillos/rsi-corporate-capability-frontier-proof.html",
+        "https://montrealai.github.io/proof-gradient/",
+        "https://montrealai.github.io/proof-gradient/proofs.html",
+        "https://montrealai.github.io/proof-gradient/multi-agent.html",
+        "https://montrealai.github.io/proof-gradient/runbook.html",
+        "https://montrealai.github.io/proof-gradient/rsi-corporate-capability-frontier-proof.html",
     ]
     body = "\n".join(f"  <url><loc>{u}</loc></url>" for u in urls)
     (SITE / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}\n</urlset>\n', encoding="utf-8")
-    (SITE / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n", encoding="utf-8")
+    (SITE / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n", encoding="utf-8")
 
 
 def write_runbook(proof: dict) -> None:
-    body = f'''<section class="skillos-frontier-wrap"><div class="skillos-frontier-card"><div class="skillos-frontier-eyebrow">Run / regenerate</div><h2 class="skillos-frontier-title">Run the Corporate Capability Frontier proof.</h2><p>Open GitHub Actions, choose <strong>Autonomous RSI Corporate Capability Frontier Proof</strong>, click <strong>Run workflow</strong>, and keep <code>deploy_pages</code> enabled. The Action regenerates the receipt, report, visual page, homepage integration, sitemap, and badge without human review.</p><p><a class="skillos-frontier-btn" href="https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml">Run on GitHub</a></p></div></section>'''
+    body = f'''<section class="skillos-frontier-wrap"><div class="skillos-frontier-card"><div class="skillos-frontier-eyebrow">Run / regenerate</div><h2 class="skillos-frontier-title">Run the Corporate Capability Frontier proof.</h2><p>Open GitHub Actions, choose <strong>Autonomous RSI Corporate Capability Frontier Proof</strong>, click <strong>Run workflow</strong>, and keep <code>deploy_pages</code> enabled. The Action regenerates the receipt, report, visual page, homepage integration, sitemap, and badge without human review.</p><p><a class="skillos-frontier-btn" href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml">Run on GitHub</a></p></div></section>'''
     patch_html(SITE / "runbook.html", "Run SkillOS Proofs", body)
 
 

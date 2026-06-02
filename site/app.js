@@ -1,5 +1,5 @@
 const $ = (id) => document.getElementById(id);
-const liveUrl = 'https://montrealai.github.io/skillos/';
+const liveUrl = 'https://montrealai.github.io/proof-gradient/';
 
 const fallbackSnapshot = {
   wealth_proof: {

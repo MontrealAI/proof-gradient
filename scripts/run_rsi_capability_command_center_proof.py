@@ -350,7 +350,7 @@ UNCOORDINATED_VISIBLE = SINGLE_AGENT_VISIBLE | {
 
 
 def receipts() -> dict[str, str]:
-    repo = os.getenv("GITHUB_REPOSITORY", "MontrealAI/skillos")
+    repo = os.getenv("GITHUB_REPOSITORY", "MontrealAI/proof-gradient")
     run_id = os.getenv("GITHUB_RUN_ID", "local-dry-run")
     server = os.getenv("GITHUB_SERVER_URL", "https://github.com")
     sha = os.getenv("GITHUB_SHA", "local")
@@ -986,7 +986,7 @@ code {{ color:#d9faff; }}
 <main>
 <section class="hero">
 <div>
-<div class="eyebrow">MONTREAL.AI / SKILLOS</div>
+<div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div>
 <h1>Autonomous RSI Capital-to-Capability Command Center</h1>
 <p>Adversarially tested large-scale specialist-agent coordination for capital, compute, energy, data, trust, talent, product, distribution, validation, risk control, and reinvestment.</p>
 </div>
@@ -1044,9 +1044,9 @@ code {{ color:#d9faff; }}
 <strong>Boundary:</strong> Deterministic market-readiness benchmark using synthetic/redacted-style business cases and benchmark assumptions. Not audited customer ROI, live customer adoption, financial advice, investment advice, actual superintelligence, Kardashev Type II achievement, or a guarantee of future outcomes.
 </section>
 <p class="links">
-<a href="https://github.com/MontrealAI/skillos/actions/workflows/rsi-capability-command-center-proof.yml">Run in GitHub Actions</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/docs/rsi_capability_command_center_proof.md">Markdown report</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/data/rsi_capability_command_center_proof.json">JSON proof</a>
+<a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-capability-command-center-proof.yml">Run in GitHub Actions</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_capability_command_center_proof.md">Markdown report</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_capability_command_center_proof.json">JSON proof</a>
 </p>
 </main>
 </body>

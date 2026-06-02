@@ -170,14 +170,14 @@ th {{ color:#d6f8ff; text-transform:uppercase; letter-spacing:.16em; font-size:1
 </style>
 </head>
 <body>
-<nav class="nav"><a href="index.html">SkillOS Blockchain Frontier</a><div class="links"><a href="#proof">Proof</a><a href="#rsi">RSI</a><a href="#baselines">Baselines</a><a href="#receipts">Receipts</a><a href="https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml">Run on GitHub</a></div></nav>
+<nav class="nav"><a href="index.html">SkillOS Blockchain Frontier</a><div class="links"><a href="#proof">Proof</a><a href="#rsi">RSI</a><a href="#baselines">Baselines</a><a href="#receipts">Receipts</a><a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml">Run on GitHub</a></div></nav>
 <main class="wrap">
 <section class="hero">
   <div class="card heroText">
     <div class="kicker">Montreal.AI / SkillOS / Blockchain RSI</div>
     <h1>Protocol Capital Frontier.</h1>
     <p class="lede">A fully autonomous GitHub Action proof that a large validation-gated specialist-agent organization can recursively improve how blockchain protocol capital, blockspace, validator security, MEV control, liquidity, bridges, oracles, governance, compute/energy, and reinvestment become compounding protocol capability.</p>
-    <div class="cta"><a class="btn primary" href="data/{SLUG}.json">JSON receipt</a><a class="btn" href="docs/{SLUG}.md">Report</a><a class="btn" href="https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml">Run / regenerate</a></div>
+    <div class="cta"><a class="btn primary" href="data/{SLUG}.json">JSON receipt</a><a class="btn" href="docs/{SLUG}.md">Report</a><a class="btn" href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml">Run / regenerate</a></div>
   </div>
   <div class="card heroProof">
     <div><span class="status">Proof passed</span><div class="big">{scale['virtual_specialist_agents']:,} agents. {scale['specialist_roles']:,} roles. {scale['executive_councils']} councils. {scale['locked_holdout_cases']:,} locked holdout cases.</div></div>

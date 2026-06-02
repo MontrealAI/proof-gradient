@@ -7,7 +7,7 @@ This guide is for uploading SkillOS to GitHub without Terminal, Git, or code edi
 ```text
 Organization: MontrealAI
 Repository: skillos
-Final website: https://montrealai.github.io/skillos/
+Final website: https://montrealai.github.io/proof-gradient/
 ```
 
 ## What success looks like
@@ -22,7 +22,7 @@ Actions → SkillOS tests → green checkmark
 Then this URL will load the polished SkillOS site:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 The page should show the Agent SkillOS hero, workflow badges, demo metrics, and the generated proof loop showing `approve_canary`.
@@ -38,10 +38,10 @@ The page should show the Agent SkillOS hero, workflow badges, demo metrics, and 
 5. Leave **Add a README file** unchecked if possible.
 6. Click **Create repository**.
 
-The repository name matters. `MontrealAI/skillos` maps to:
+The repository name matters. `MontrealAI/proof-gradient` maps to:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 ---
@@ -56,7 +56,7 @@ UPLOAD_THE_CONTENTS_OF_THIS_FOLDER_TO_GITHUB
 ```
 
 3. Select everything **inside** that folder.
-4. In GitHub, open the new `MontrealAI/skillos` repository.
+4. In GitHub, open the new `MontrealAI/proof-gradient` repository.
 5. Click **Add file → Upload files**.
 6. Drag the selected files and folders into the upload area.
 7. Commit message:
@@ -130,7 +130,7 @@ COPY_PASTE_GITHUB_ACTIONS/tests.yml
 4. Open:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 ---

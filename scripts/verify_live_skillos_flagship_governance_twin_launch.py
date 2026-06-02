@@ -12,8 +12,8 @@ SCHEMA = "skillos.flagship.capability_governance_twin.launch.v1"
 OLD_PHRASES = [
     "Autonomous Proof Command Center",
     "SkillOS Proof Command Center",
-    "Public SkillOS Command Center v2",
-    "SkillOS Public Command Center v3",
+    "Proof Gradient Command Center v2",
+    "Proof Gradient Public Command Center v3",
 ]
 
 def fetch(url: str) -> tuple[int, str]:
@@ -23,7 +23,7 @@ def fetch(url: str) -> tuple[int, str]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--base-url", default="https://montrealai.github.io/skillos/")
+    ap.add_argument("--base-url", default="https://montrealai.github.io/proof-gradient/")
     ap.add_argument("--attempts", type=int, default=18)
     ap.add_argument("--sleep", type=int, default=10)
     args = ap.parse_args()

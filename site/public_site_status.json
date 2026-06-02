@@ -49,16 +49,16 @@
       "workflow": "adversarial capital-to-capability coordination for capital, compute, energy, data, talent, product, distribution, trust, validation, risk control, and reinvestment"
     },
     "doc_path": "docs/rsi_capability_command_center_v17_proof.md",
-    "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_capability_command_center_v17_proof.md",
+    "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_capability_command_center_v17_proof.md",
     "generated_at": "2026-06-01T16:18:38Z",
     "holdout_count": 1280,
     "json_path": "data/rsi_capability_command_center_v17_proof.json",
-    "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_capability_command_center_v17_proof.json",
+    "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_capability_command_center_v17_proof.json",
     "key": "capability-command-center-v17",
     "latest_run_conclusion": "success",
     "latest_run_status": "completed",
     "latest_run_updated_at": "2026-06-01T16:19:04Z",
-    "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767309768",
+    "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767309768",
     "metrics": {
       "avg_compounding_index": 98,
       "avg_consensus_score": 98,
@@ -77,7 +77,7 @@
       "role_quorum_accuracy_percent": 100.0
     },
     "page_path": "site/rsi-capability-command-center-v17-proof.html",
-    "page_url": "https://montrealai.github.io/skillos/rsi-capability-command-center-v17-proof.html",
+    "page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-command-center-v17-proof.html",
     "proof_type": "adversarial capital-to-capability command center proof with recursive self-improvement and large-scale specialist-agent coordination",
     "proved": true,
     "role_count": 64,
@@ -98,7 +98,7 @@
     "workflow": "adversarial capital-to-capability command center proof with recursive self-improvement and large-scale specialist-agent coordination",
     "workflow_name": "Autonomous RSI Capital-to-Capability Command Center v17 Proof",
     "workflow_path": ".github/workflows/rsi-capability-command-center-v17-proof.yml",
-    "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-capability-command-center-v17-proof.yml"
+    "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-capability-command-center-v17-proof.yml"
   },
   "flagship_raw": {
     "agent_system": {
@@ -499,9 +499,9 @@
     "proof_receipts": {
       "commit_sha": "c493d29567853d69bc1a38e0ed53e5b0b0079a84",
       "ref": "main",
-      "repository": "MontrealAI/skillos",
+      "repository": "MontrealAI/proof-gradient",
       "run_id": "26767309768",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767309768",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767309768",
       "workflow": "Autonomous RSI Capital-to-Capability Command Center v17 Proof"
     },
     "proof_type": "adversarial capital-to-capability command center proof with recursive self-improvement and large-scale specialist-agent coordination",
@@ -1229,16 +1229,16 @@
         "workflow": "adversarial capital-to-capability coordination for capital, compute, energy, data, talent, product, distribution, trust, validation, risk control, and reinvestment"
       },
       "doc_path": "docs/rsi_capability_command_center_v17_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_capability_command_center_v17_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_capability_command_center_v17_proof.md",
       "generated_at": "2026-06-01T16:18:38Z",
       "holdout_count": 1280,
       "json_path": "data/rsi_capability_command_center_v17_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_capability_command_center_v17_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_capability_command_center_v17_proof.json",
       "key": "capability-command-center-v17",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T16:19:04Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767309768",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767309768",
       "metrics": {
         "avg_compounding_index": 98,
         "avg_consensus_score": 98,
@@ -1257,7 +1257,7 @@
         "role_quorum_accuracy_percent": 100.0
       },
       "page_path": "site/rsi-capability-command-center-v17-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-capability-command-center-v17-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-command-center-v17-proof.html",
       "proof_type": "adversarial capital-to-capability command center proof with recursive self-improvement and large-scale specialist-agent coordination",
       "proved": true,
       "role_count": 64,
@@ -1278,7 +1278,7 @@
       "workflow": "adversarial capital-to-capability command center proof with recursive self-improvement and large-scale specialist-agent coordination",
       "workflow_name": "Autonomous RSI Capital-to-Capability Command Center v17 Proof",
       "workflow_path": ".github/workflows/rsi-capability-command-center-v17-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-capability-command-center-v17-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-capability-command-center-v17-proof.yml"
     },
     {
       "agent_count": 320,
@@ -1382,15 +1382,15 @@
       },
       "coordination_style": "required-role quorum, specialist consensus, risk-gated protocol selection, validation-gated RSI releases",
       "doc_path": "docs/rsi_capability_command_center_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_capability_command_center_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_capability_command_center_proof.md",
       "holdout_count": 1280,
       "json_path": "data/rsi_capability_command_center_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_capability_command_center_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_capability_command_center_proof.json",
       "key": "capability-command-center",
       "latest_run_conclusion": "cancelled",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T16:19:32Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767363069",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767363069",
       "metrics": {
         "avg_allocation_score": 98,
         "avg_compounding_index": 98,
@@ -1410,7 +1410,7 @@
         "value_capture_rate_percent": 91.4
       },
       "page_path": "site/rsi-capability-command-center-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-capability-command-center-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-command-center-proof.html",
       "proof_type": "fully autonomous recursive self-improvement adversarial large-scale multi-agent capital-to-capability command-center proof",
       "proved": true,
       "role_count": 32,
@@ -1465,7 +1465,7 @@
       "workflow": "adversarial large-scale agentic coordination for capital-to-capability compounding, market capture, resource allocation, risk control, and validated reinvestment",
       "workflow_name": "Autonomous RSI Adversarial Capability Command Center Proof",
       "workflow_path": ".github/workflows/rsi-capability-command-center-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-capability-command-center-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-capability-command-center-proof.yml"
     },
     {
       "agent_count": 256,
@@ -1592,7 +1592,7 @@
       "generated_at": "2026-05-31T14:54:20Z",
       "holdout_count": 1440,
       "json_path": "data/rsi_capital_to_capability_engine_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_capital_to_capability_engine_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_capital_to_capability_engine_proof.json",
       "key": "capital-to-capability-engine-large-scale-agentic-coordination-for-capital-to-capability",
       "metrics": {
         "adversarial_fail_rate_percent": 0.0,
@@ -1615,7 +1615,7 @@
         "value_capture_rate_percent": 90.5
       },
       "page_path": "site/proof-capital-to-capability-engine-large-scale-agentic-coordination-for-capital-to-capability.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capital-to-capability-engine-large-scale-agentic-coordination-for-capital-to-capability.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capital-to-capability-engine-large-scale-agentic-coordination-for-capital-to-capability.html",
       "proof_type": "fully autonomous recursive self-improvement capital-to-capability engine benchmark",
       "proved": true,
       "role_count": 32,
@@ -1667,10 +1667,10 @@
     },
     {
       "doc_path": "docs/rsi_capital_to_capability_engine_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_capital_to_capability_engine_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_capital_to_capability_engine_proof.md",
       "key": "capital-to-capability-engine",
       "page_path": "site/rsi-capital-to-capability-engine-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-capital-to-capability-engine-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-capital-to-capability-engine-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -1684,9 +1684,9 @@
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T16:20:49Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767363611",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767363611",
       "page_path": "site/proof-capital-to-capability-engine-github-capital-to-capability-engine-capital-to-capability.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capital-to-capability-engine-github-capital-to-capability-engine-capital-to-capability.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capital-to-capability-engine-github-capital-to-capability-engine-capital-to-capability.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -1694,7 +1694,7 @@
       "title": "Autonomous RSI Capital-to-Capability Engine Proof",
       "workflow_name": "Autonomous RSI Capital-to-Capability Engine Proof",
       "workflow_path": ".github/workflows/rsi-capital-to-capability-engine-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-capital-to-capability-engine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-capital-to-capability-engine-proof.yml"
     },
     {
       "agent_count": 160,
@@ -1807,7 +1807,7 @@
       "generated_at": "2026-05-30T17:59:09Z",
       "holdout_count": 1200,
       "json_path": "data/rsi_adversarial_multi_agent_market_command_center_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_adversarial_multi_agent_market_command_center_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_adversarial_multi_agent_market_command_center_proof.json",
       "key": "adversarial-multi-agent-command-center-adversarial-large-scale-agentic-coordination-for-profitable",
       "metrics": {
         "adversarial_fully_correct_percent": 100.0,
@@ -1827,7 +1827,7 @@
         "value_capture_rate_percent": 89.3
       },
       "page_path": "site/proof-adversarial-multi-agent-command-center-adversarial-large-scale-agentic-coordination-for-profitable.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-adversarial-multi-agent-command-center-adversarial-large-scale-agentic-coordination-for-profitable.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-adversarial-multi-agent-command-center-adversarial-large-scale-agentic-coordination-for-profitable.html",
       "proof_type": "fully autonomous recursive self-improvement adversarial large-scale multi-agent market-command-center proof",
       "proved": true,
       "role_count": 20,
@@ -1867,10 +1867,10 @@
     },
     {
       "doc_path": "docs/rsi_adversarial_multi_agent_market_command_center_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_adversarial_multi_agent_market_command_center_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_adversarial_multi_agent_market_command_center_proof.md",
       "key": "adversarial-multi-agent-command-center",
       "page_path": "site/rsi-adversarial-multi-agent-market-command-center-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-adversarial-multi-agent-market-command-center-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-adversarial-multi-agent-market-command-center-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -1884,9 +1884,9 @@
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T16:20:18Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767337080",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767337080",
       "page_path": "site/proof-adversarial-multi-agent-command-center-github-adversarial-multi-agent-command-center-adversarial.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-adversarial-multi-agent-command-center-github-adversarial-multi-agent-command-center-adversarial.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-adversarial-multi-agent-command-center-github-adversarial-multi-agent-command-center-adversarial.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -1894,58 +1894,58 @@
       "title": "Autonomous RSI Adversarial Multi-Agent Market Command Center Proof",
       "workflow_name": "Autonomous RSI Adversarial Multi-Agent Market Command Center Proof",
       "workflow_path": ".github/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml"
     },
     {
-      "key": "refresh-skillos-command-center-github-refresh-skillos-command-center-refresh-skillos-command",
+      "key": "refresh-proof-gradient-command-center-github-refresh-proof-gradient-command-center-refresh-skillos-command",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T16:01:07Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158911",
-      "page_path": "site/proof-refresh-skillos-command-center-github-refresh-skillos-command-center-refresh-skillos-command.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-refresh-skillos-command-center-github-refresh-skillos-command-center-refresh-skillos-command.html",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158911",
+      "page_path": "site/proof-refresh-proof-gradient-command-center-github-refresh-proof-gradient-command-center-refresh-skillos-command.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-refresh-proof-gradient-command-center-github-refresh-proof-gradient-command-center-refresh-skillos-command.html",
       "source": "workflow",
       "sources": [
         "workflow"
       ],
-      "title": "Refresh SkillOS Public Command Center",
-      "workflow_name": "Refresh SkillOS Public Command Center",
-      "workflow_path": ".github/workflows/refresh-skillos-command-center.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/refresh-skillos-command-center.yml"
+      "title": "Refresh Proof Gradient Public Command Center",
+      "workflow_name": "Refresh Proof Gradient Public Command Center",
+      "workflow_path": ".github/workflows/refresh-proof-gradient-command-center.yml",
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/refresh-proof-gradient-command-center.yml"
     },
     {
-      "key": "skillos-command-center-autopublisher-v2-github-skillos-command-center-autopublisher-v2-skillos",
+      "key": "proof-gradient-command-center-autopublisher-v2-github-proof-gradient-command-center-autopublisher-v2-skillos",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T16:03:11Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158910",
-      "page_path": "site/proof-skillos-command-center-autopublisher-v2-github-skillos-command-center-autopublisher-v2-skillos.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-skillos-command-center-autopublisher-v2-github-skillos-command-center-autopublisher-v2-skillos.html",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158910",
+      "page_path": "site/proof-proof-gradient-command-center-autopublisher-v2-github-proof-gradient-command-center-autopublisher-v2-skillos.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-proof-gradient-command-center-autopublisher-v2-github-proof-gradient-command-center-autopublisher-v2-skillos.html",
       "source": "workflow",
       "sources": [
         "workflow"
       ],
-      "title": "SkillOS Command Center Autopublisher v2",
-      "workflow_name": "SkillOS Command Center Autopublisher v2",
-      "workflow_path": ".github/workflows/skillos-command-center-autopublisher-v2.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/skillos-command-center-autopublisher-v2.yml"
+      "title": "Proof Gradient Command Center Autopublisher v2",
+      "workflow_name": "Proof Gradient Command Center Autopublisher v2",
+      "workflow_path": ".github/workflows/proof-gradient-command-center-autopublisher-v2.yml",
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/proof-gradient-command-center-autopublisher-v2.yml"
     },
     {
-      "key": "skillos-command-center-v3-autopublisher-github-skillos-command-center-autopublisher-v3-skillos",
+      "key": "proof-gradient-command-center-v3-autopublisher-github-proof-gradient-command-center-autopublisher-v3-skillos",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T16:00:14Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158948",
-      "page_path": "site/proof-skillos-command-center-v3-autopublisher-github-skillos-command-center-autopublisher-v3-skillos.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-skillos-command-center-v3-autopublisher-github-skillos-command-center-autopublisher-v3-skillos.html",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158948",
+      "page_path": "site/proof-proof-gradient-command-center-v3-autopublisher-github-proof-gradient-command-center-autopublisher-v3-skillos.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-proof-gradient-command-center-v3-autopublisher-github-proof-gradient-command-center-autopublisher-v3-skillos.html",
       "source": "workflow",
       "sources": [
         "workflow"
       ],
-      "title": "SkillOS Public Command Center v3 Autopublisher",
-      "workflow_name": "SkillOS Public Command Center v3 Autopublisher",
-      "workflow_path": ".github/workflows/skillos-command-center-autopublisher-v3.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/skillos-command-center-autopublisher-v3.yml"
+      "title": "Proof Gradient Public Command Center v3 Autopublisher",
+      "workflow_name": "Proof Gradient Public Command Center v3 Autopublisher",
+      "workflow_path": ".github/workflows/proof-gradient-command-center-autopublisher-v3.yml",
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/proof-gradient-command-center-autopublisher-v3.yml"
     },
     {
       "agent_count": 2048,
@@ -1985,11 +1985,11 @@
       },
       "coordination_style": "validation-gated recursive self-improvement with specialist role quorum, adversarial risk veto, capital-allocation tournament, cross-board synthesis, negative controls, and locked holdout evaluation",
       "doc_path": "docs/rsi_enterprise_eureka_factory_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_enterprise_eureka_factory_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_enterprise_eureka_factory_proof.md",
       "generated_at": "2026-05-31T00:45:34Z",
       "holdout_count": 1536,
       "json_path": "data/rsi_enterprise_eureka_factory_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_enterprise_eureka_factory_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_enterprise_eureka_factory_proof.json",
       "key": "enterprise-eureka-factory",
       "metrics": {
         "avg_compounding_index": 57.964,
@@ -2007,7 +2007,7 @@
         "value_capture_rate_percent": 99.965
       },
       "page_path": "site/rsi-enterprise-eureka-factory-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-enterprise-eureka-factory-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-enterprise-eureka-factory-proof.html",
       "proof_type": "Autonomous RSI Enterprise Eureka Factory Proof",
       "proved": true,
       "role_count": 128,
@@ -2158,14 +2158,14 @@
       "workflow": "Autonomous RSI Enterprise Eureka Factory Proof",
       "workflow_name": "Autonomous RSI Enterprise Eureka Factory Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-enterprise-eureka-factory-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-enterprise-eureka-factory-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-enterprise-eureka-factory-proof.yml"
     },
     {
       "agent_count": 32768,
       "agents_per_role": 32,
       "generated_at": "2026-05-31T13:39:41Z",
       "json_path": "data/rsi_corporate_capability_frontier_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_corporate_capability_frontier_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_corporate_capability_frontier_proof.json",
       "key": "corporate-capability-frontier-corporate-capability-frontier-corporate-capability-frontier-corporate-capability-frontier",
       "metrics": {
         "benchmark_value_capture_rate_percent": 99.856,
@@ -2184,7 +2184,7 @@
         "value_capture_rate_percent": 99.856
       },
       "page_path": "site/proof-corporate-capability-frontier-corporate-capability-frontier-corporate-capability-frontier-corporate-capability-frontier.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-corporate-capability-frontier-corporate-capability-frontier-corporate-capability-frontier-corporate-capability-frontier.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-corporate-capability-frontier-corporate-capability-frontier-corporate-capability-frontier-corporate-capability-frontier.html",
       "proof_type": "corporate-capability-frontier",
       "proved": true,
       "role_count": 1024,
@@ -3281,7 +3281,7 @@
       "generated_at": "2026-05-31T12:05:40Z",
       "holdout_count": 2048,
       "json_path": "data/rsi_enterprise_capability_foundry_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_enterprise_capability_foundry_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_enterprise_capability_foundry_proof.json",
       "key": "enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability-foundry",
       "metrics": {
         "avg_compounding_index": 59.539,
@@ -3299,7 +3299,7 @@
         "value_capture_rate_percent": 99.984
       },
       "page_path": "site/proof-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability-foundry.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability-foundry.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability-foundry.html",
       "proof_type": "Autonomous RSI Enterprise Capability Foundry Proof",
       "proved": true,
       "role_count": 256,
@@ -3631,7 +3631,7 @@
       "generated_at": "2026-05-31T13:12:14Z",
       "holdout_count": 2048,
       "json_path": "data/rsi_enterprise_superorganization_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_enterprise_superorganization_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_enterprise_superorganization_proof.json",
       "key": "enterprise-superorganization-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization",
       "metrics": {
         "avg_compounding_index": 59.354,
@@ -3649,7 +3649,7 @@
         "value_capture_rate_percent": 99.978
       },
       "page_path": "site/proof-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization.html",
       "proof_type": "Autonomous RSI Enterprise Superorganization Proof",
       "proved": true,
       "role_count": 512,
@@ -4181,10 +4181,10 @@
     },
     {
       "doc_path": "docs/rsi-adversarial-benchmark-foundry-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-adversarial-benchmark-foundry-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-adversarial-benchmark-foundry-proof.md",
       "key": "adversarial-foundry",
       "page_path": "site/rsi-adversarial-benchmark-foundry-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-adversarial-benchmark-foundry-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-adversarial-benchmark-foundry-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -4196,7 +4196,7 @@
     {
       "key": "adversarial-foundry-github-adversarial-foundry-adversarial-foundry-adversarial-foundry",
       "page_path": "site/proof-adversarial-foundry-github-adversarial-foundry-adversarial-foundry-adversarial-foundry.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-adversarial-foundry-github-adversarial-foundry-adversarial-foundry-adversarial-foundry.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-adversarial-foundry-github-adversarial-foundry-adversarial-foundry-adversarial-foundry.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -4204,7 +4204,7 @@
       "title": "Autonomous RSI Adversarial Benchmark Foundry Proof",
       "workflow_name": "Autonomous RSI Adversarial Benchmark Foundry Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-adversarial-benchmark-foundry-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-adversarial-benchmark-foundry-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-adversarial-benchmark-foundry-proof.yml"
     },
     {
       "benchmark_public": {
@@ -4251,16 +4251,16 @@
         "workflow": "cloud reliability incident triage and cost remediation planning"
       },
       "doc_path": "docs/rsi_cloudops_market_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_cloudops_market_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_cloudops_market_proof.md",
       "generated_at": "2026-06-01T14:30:33Z",
       "holdout_count": 420,
       "json_path": "data/rsi_cloudops_market_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_cloudops_market_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_cloudops_market_proof.json",
       "key": "cloudops",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T14:32:29Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26761348132",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26761348132",
       "metrics": {
         "action_accuracy_percent": 100.0,
         "fully_correct_percent": 100.0,
@@ -4270,7 +4270,7 @@
         "unsafe_action_rate_percent": 0.0
       },
       "page_path": "site/rsi-cloudops-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-cloudops-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-cloudops-proof.html",
       "proof_type": "fully autonomous recursive self-improvement market-readiness proof",
       "proved": true,
       "rsi_releases": 8,
@@ -4290,7 +4290,7 @@
       "workflow": "cloud reliability incident triage and cloud-cost remediation planning",
       "workflow_name": "Autonomous RSI CloudOps Market Proof",
       "workflow_path": ".github/workflows/rsi-cloudops-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-cloudops-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-cloudops-proof.yml"
     },
     {
       "benchmark_public": {
@@ -4345,16 +4345,16 @@
         "workflow": "corporate operating-system diagnosis and board-ready operating-plan generation"
       },
       "doc_path": "docs/rsi_corporate_os_market_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_corporate_os_market_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_corporate_os_market_proof.md",
       "generated_at": "2026-06-01T15:18:29Z",
       "holdout_count": 720,
       "json_path": "data/rsi_corporate_os_market_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_corporate_os_market_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_corporate_os_market_proof.json",
       "key": "corporate-os",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T15:20:16Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26764069011",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26764069011",
       "metrics": {
         "false_intervention_rate_percent": 0.0,
         "fully_correct_percent": 100.0,
@@ -4365,7 +4365,7 @@
         "value_capture_rate_percent": 100.0
       },
       "page_path": "site/rsi-corporate-os-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-corporate-os-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-corporate-os-proof.html",
       "proof_type": "fully autonomous recursive self-improvement corporate operating system market-readiness proof",
       "proved": true,
       "rsi_releases": 11,
@@ -4385,7 +4385,7 @@
       "workflow": "corporate operating-system diagnosis and board-ready operating-plan generation",
       "workflow_name": "Autonomous RSI Corporate Operating System Market Proof",
       "workflow_path": ".github/workflows/rsi-corporate-os-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-corporate-os-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-corporate-os-proof.yml"
     },
     {
       "benchmark_public": {
@@ -4442,16 +4442,16 @@
         "workflow": "AI work marketplace liquidity, skill-supply allocation, pricing, routing, and compounding flywheel optimization"
       },
       "doc_path": "docs/rsi_marketplace_flywheel_market_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_marketplace_flywheel_market_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_marketplace_flywheel_market_proof.md",
       "generated_at": "2026-05-31T14:11:02Z",
       "holdout_count": 900,
       "json_path": "data/rsi_marketplace_flywheel_market_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_marketplace_flywheel_market_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_marketplace_flywheel_market_proof.json",
       "key": "marketplace-flywheel",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T15:39:21Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765184136",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765184136",
       "metrics": {
         "avg_compounding_index": 95,
         "avg_market_liquidity_score": 96,
@@ -4465,7 +4465,7 @@
         "value_capture_rate_percent": 87.0
       },
       "page_path": "site/rsi-marketplace-flywheel-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-marketplace-flywheel-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-marketplace-flywheel-proof.html",
       "proof_type": "fully autonomous recursive self-improvement marketplace flywheel market-readiness proof",
       "proved": true,
       "rsi_releases": 11,
@@ -4485,7 +4485,7 @@
       "workflow": "AI work marketplace liquidity, skill-supply allocation, pricing, routing, and compounding flywheel optimization",
       "workflow_name": "Autonomous RSI Marketplace Flywheel Market Proof",
       "workflow_path": ".github/workflows/rsi-marketplace-flywheel-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-marketplace-flywheel-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-marketplace-flywheel-proof.yml"
     },
     {
       "benchmark_public": {
@@ -4528,23 +4528,23 @@
         "workflow": "autonomous lightweight metamaterial discovery for load-bearing structures"
       },
       "doc_path": "docs/rsi_metamaterials_discovery_market_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_metamaterials_discovery_market_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_metamaterials_discovery_market_proof.md",
       "generated_at": "2026-06-01T15:20:29Z",
       "holdout_count": 840,
       "json_path": "data/rsi_metamaterials_discovery_market_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_metamaterials_discovery_market_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_metamaterials_discovery_market_proof.json",
       "key": "metamaterials-discovery",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T15:22:40Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26764182657",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26764182657",
       "metrics": {
         "avg_score": 100.0,
         "feasible_rate_percent": 100.0,
         "manufacturing_failure_rate_percent": 0.0
       },
       "page_path": "site/rsi-metamaterials-discovery-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-metamaterials-discovery-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-metamaterials-discovery-proof.html",
       "proof_type": "fully autonomous recursive self-improvement scientific discovery market-readiness proof",
       "proved": true,
       "rsi_releases": 7,
@@ -4564,7 +4564,7 @@
       "workflow": "autonomous lightweight metamaterial discovery for load-bearing structures",
       "workflow_name": "Autonomous RSI Metamaterials Discovery Market Proof",
       "workflow_path": ".github/workflows/rsi-metamaterials-discovery-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-metamaterials-discovery-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-metamaterials-discovery-proof.yml"
     },
     {
       "benchmark_public": {
@@ -4622,16 +4622,16 @@
         "workflow": "revenue experiment design, causal validation, portfolio allocation, and scalable growth-plan selection"
       },
       "doc_path": "docs/rsi_revenue_experiment_factory_market_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_revenue_experiment_factory_market_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_revenue_experiment_factory_market_proof.md",
       "generated_at": "2026-06-01T15:45:08Z",
       "holdout_count": 960,
       "json_path": "data/rsi_revenue_experiment_factory_market_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_revenue_experiment_factory_market_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_revenue_experiment_factory_market_proof.json",
       "key": "revenue-experiment-factory",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T15:45:33Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765529280",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765529280",
       "metrics": {
         "avg_causal_confidence_score": 96,
         "experiment_design_accuracy_percent": 100.0,
@@ -4646,7 +4646,7 @@
         "value_capture_rate_percent": 82.4
       },
       "page_path": "site/rsi-revenue-experiment-factory-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-revenue-experiment-factory-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-revenue-experiment-factory-proof.html",
       "proof_type": "fully autonomous recursive self-improvement revenue experiment factory market-readiness proof",
       "proved": true,
       "rsi_releases": 11,
@@ -4666,7 +4666,7 @@
       "workflow": "revenue experiment design, causal validation, portfolio allocation, and scalable growth-plan selection",
       "workflow_name": "Autonomous RSI Revenue Experiment Factory Market Proof",
       "workflow_path": ".github/workflows/rsi-revenue-experiment-factory-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-revenue-experiment-factory-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-revenue-experiment-factory-proof.yml"
     },
     {
       "benchmark_public": {
@@ -4719,16 +4719,16 @@
         "workflow": "semiconductor RTL verification, bug triage, assertion selection, and fix-plan recommendation"
       },
       "doc_path": "docs/rsi_silicon_verification_market_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_silicon_verification_market_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_silicon_verification_market_proof.md",
       "generated_at": "2026-06-01T14:55:03Z",
       "holdout_count": 720,
       "json_path": "data/rsi_silicon_verification_market_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_silicon_verification_market_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_silicon_verification_market_proof.json",
       "key": "silicon-verification",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T14:55:42Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26762754821",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26762754821",
       "metrics": {
         "assertion_accuracy_percent": 100.0,
         "bug_class_accuracy_percent": 100.0,
@@ -4741,7 +4741,7 @@
         "unnecessary_change_rate_percent": 0.0
       },
       "page_path": "site/rsi-silicon-verification-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-silicon-verification-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-silicon-verification-proof.html",
       "proof_type": "fully autonomous recursive self-improvement silicon verification market-readiness proof",
       "proved": true,
       "rsi_releases": 10,
@@ -4761,7 +4761,7 @@
       "workflow": "semiconductor RTL verification, bug triage, assertion selection, and fix-plan recommendation",
       "workflow_name": "Autonomous RSI Silicon Verification Market Proof",
       "workflow_path": ".github/workflows/rsi-silicon-verification-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-silicon-verification-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-silicon-verification-proof.yml"
     },
     {
       "benchmark_public": {
@@ -4817,16 +4817,16 @@
         "workflow": "AI workflow marketplace unit-economics optimization and scalable profit-capture planning"
       },
       "doc_path": "docs/rsi_unit_economics_market_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_unit_economics_market_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_unit_economics_market_proof.md",
       "generated_at": "2026-06-01T15:29:49Z",
       "holdout_count": 840,
       "json_path": "data/rsi_unit_economics_market_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_unit_economics_market_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_unit_economics_market_proof.json",
       "key": "unit-economics",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T15:30:52Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26764702021",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26764702021",
       "metrics": {
         "false_intervention_rate_percent": 0.0,
         "fully_correct_percent": 100.0,
@@ -4837,7 +4837,7 @@
         "value_capture_rate_percent": 84.7
       },
       "page_path": "site/rsi-unit-economics-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-unit-economics-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-unit-economics-proof.html",
       "proof_type": "fully autonomous recursive self-improvement unit economics profit engine market-readiness proof",
       "proved": true,
       "rsi_releases": 11,
@@ -4857,17 +4857,17 @@
       "workflow": "AI workflow marketplace unit-economics optimization and scalable profit-capture planning",
       "workflow_name": "Autonomous RSI Unit Economics Profit Engine Market Proof",
       "workflow_path": ".github/workflows/rsi-unit-economics-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-unit-economics-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-unit-economics-proof.yml"
     },
     {
       "doc_path": "docs/shadow_pilot_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/shadow_pilot_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/shadow_pilot_proof.md",
       "generated_at": "2026-06-01T13:23:57.898650+00:00",
       "json_path": "data/shadow_pilot_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/shadow_pilot_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/shadow_pilot_proof.json",
       "key": "shadow-pilot",
       "page_path": "site/shadow-pilot-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/shadow-pilot-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/shadow-pilot-proof.html",
       "proof_type": "autonomous_no_send_shadow_pilot",
       "proved": true,
       "rsi_releases": 0,
@@ -4884,17 +4884,17 @@
       "workflow": "Sales follow-up email drafts from call notes",
       "workflow_name": "Autonomous Shadow Pilot Proof",
       "workflow_path": ".github/workflows/shadow-pilot-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/shadow-pilot-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/shadow-pilot-proof.yml"
     },
     {
       "doc_path": "docs/rsi-blockchain-protocol-capital-frontier-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-blockchain-protocol-capital-frontier-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-blockchain-protocol-capital-frontier-proof.md",
       "generated_at": "2026-05-31T15:10:46+00:00",
       "json_path": "data/rsi-blockchain-protocol-capital-frontier-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-blockchain-protocol-capital-frontier-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-blockchain-protocol-capital-frontier-proof.json",
       "key": "blockchain-protocol-capital-frontier",
       "page_path": "site/rsi-blockchain-protocol-capital-frontier-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-blockchain-protocol-capital-frontier-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-blockchain-protocol-capital-frontier-proof.html",
       "proved": true,
       "rsi_releases": 0,
       "source": "doc",
@@ -4910,13 +4910,13 @@
     },
     {
       "doc_path": "docs/rsi-causal-attribution-engine-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-causal-attribution-engine-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-causal-attribution-engine-proof.md",
       "generated_at": "2026-05-31T20:31:54Z",
       "json_path": "data/rsi-causal-attribution-engine-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-causal-attribution-engine-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-causal-attribution-engine-proof.json",
       "key": "causal-attribution-engine",
       "page_path": "site/rsi-causal-attribution-engine-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-causal-attribution-engine-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-causal-attribution-engine-proof.html",
       "proved": true,
       "rsi_releases": 0,
       "source": "doc",
@@ -4932,12 +4932,12 @@
     },
     {
       "doc_path": "docs/rsi-corporate-strategy-frontier-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-corporate-strategy-frontier-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-corporate-strategy-frontier-proof.md",
       "json_path": "data/rsi-corporate-strategy-frontier-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-corporate-strategy-frontier-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-corporate-strategy-frontier-proof.json",
       "key": "corporate-strategy-frontier",
       "page_path": "site/rsi-corporate-strategy-frontier-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-corporate-strategy-frontier-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-corporate-strategy-frontier-proof.html",
       "proved": true,
       "rsi_releases": 0,
       "source": "doc",
@@ -4953,13 +4953,13 @@
     },
     {
       "doc_path": "docs/rsi-cross-domain-capability-transfer-atlas-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-cross-domain-capability-transfer-atlas-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-cross-domain-capability-transfer-atlas-proof.md",
       "generated_at": "2026-05-31T20:07:05.648700+00:00",
       "json_path": "data/rsi-cross-domain-capability-transfer-atlas-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-cross-domain-capability-transfer-atlas-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-cross-domain-capability-transfer-atlas-proof.json",
       "key": "cross-domain-capability-transfer-atlas",
       "page_path": "site/rsi-cross-domain-capability-transfer-atlas-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-cross-domain-capability-transfer-atlas-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-cross-domain-capability-transfer-atlas-proof.html",
       "proved": true,
       "rsi_releases": 0,
       "source": "doc",
@@ -4975,13 +4975,13 @@
     },
     {
       "doc_path": "docs/rsi-proof-forge-meta-coordination-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-proof-forge-meta-coordination-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-proof-forge-meta-coordination-proof.md",
       "generated_at": "2026-06-01T07:06:56+00:00",
       "json_path": "data/rsi-proof-forge-meta-coordination-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-proof-forge-meta-coordination-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-proof-forge-meta-coordination-proof.json",
       "key": "forge-meta-coordination",
       "page_path": "site/rsi-proof-forge-meta-coordination-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-proof-forge-meta-coordination-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-proof-forge-meta-coordination-proof.html",
       "proved": true,
       "rsi_releases": 0,
       "source": "doc",
@@ -4997,13 +4997,13 @@
     },
     {
       "doc_path": "docs/rsi-objective-integrity-firewall-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-objective-integrity-firewall-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-objective-integrity-firewall-proof.md",
       "generated_at": "2026-05-31T20:54:02Z",
       "json_path": "data/rsi-objective-integrity-firewall-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-objective-integrity-firewall-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-objective-integrity-firewall-proof.json",
       "key": "objective-integrity-firewall",
       "page_path": "site/rsi-objective-integrity-firewall-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-objective-integrity-firewall-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-objective-integrity-firewall-proof.html",
       "proved": true,
       "rsi_releases": 0,
       "source": "doc",
@@ -5019,13 +5019,13 @@
     },
     {
       "doc_path": "docs/rsi-open-replication-mesh-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-open-replication-mesh-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-open-replication-mesh-proof.md",
       "generated_at": "2026-05-31T21:36:34+00:00",
       "json_path": "data/rsi-open-replication-mesh-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-open-replication-mesh-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-open-replication-mesh-proof.json",
       "key": "open-replication-mesh",
       "page_path": "site/rsi-open-replication-mesh-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-open-replication-mesh-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-open-replication-mesh-proof.html",
       "proved": true,
       "rsi_releases": 0,
       "source": "doc",
@@ -5089,12 +5089,12 @@
       "generated_at": "2026-06-01T14:40:33Z",
       "holdout_count": 640,
       "json_path": "data/rsi_cyberdefense_market_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi_cyberdefense_market_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_cyberdefense_market_proof.json",
       "key": "cyber-defense",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T14:40:59Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26761918829",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26761918829",
       "metrics": {
         "action_accuracy_percent": 100.0,
         "fully_correct_percent": 100.0,
@@ -5105,7 +5105,7 @@
         "unsafe_action_rate_percent": 0.0
       },
       "page_path": "site/proof-cyber-defense.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-cyber-defense.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-cyber-defense.html",
       "proof_type": "fully autonomous recursive self-improvement cyber defense market-readiness proof",
       "proved": true,
       "rsi_releases": 9,
@@ -5122,7 +5122,7 @@
       "workflow": "security operations alert triage and incident containment planning",
       "workflow_name": "Autonomous RSI Cyber Defense Market Proof",
       "workflow_path": ".github/workflows/rsi-cyberdefense-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-cyberdefense-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-cyberdefense-proof.yml"
     },
     {
       "benchmark_public": {
@@ -5196,7 +5196,7 @@
       "coordination_style": "assurance case graph with claim decomposition, evidence packet assembly, control mapping, verifier independence, red-team challenge, risk disclosure, and validation-gated RSI releases",
       "generated_at": "2026-06-01T03:45:45Z",
       "json_path": "data/rsi-capability-assurance-case-graph-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-capability-assurance-case-graph-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-capability-assurance-case-graph-proof.json",
       "key": "capability-assurance-case-graph-capability-assurance-case-graph-capability-assurance-case-graph",
       "metrics": {
         "assurance_gap_rate_percent": 0.0,
@@ -5217,7 +5217,7 @@
         "weak_domain_rate_percent": 0.0
       },
       "page_path": "site/proof-capability-assurance-case-graph-capability-assurance-case-graph-capability-assurance-case-graph.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-assurance-case-graph-capability-assurance-case-graph-capability-assurance-case-graph.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-assurance-case-graph-capability-assurance-case-graph-capability-assurance-case-graph.html",
       "proof_type": "Autonomous RSI Capability Assurance Case Graph Proof",
       "proved": true,
       "rsi_releases": 12,
@@ -5304,7 +5304,7 @@
       "coordination_style": "capability-economy clearinghouse with specialist-agent market making, verifier courts, price discovery, settlement trust, risk vetoes, and validation-gated RSI releases",
       "generated_at": "2026-06-01T01:48:41Z",
       "json_path": "data/rsi-capability-economy-clearinghouse-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-capability-economy-clearinghouse-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-capability-economy-clearinghouse-proof.json",
       "key": "capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy-clearinghouse",
       "metrics": {
         "benchmark_value_capture_rate_percent": 96.6013,
@@ -5324,7 +5324,7 @@
         "weak_domain_rate_percent": 0.0
       },
       "page_path": "site/proof-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy-clearinghouse.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy-clearinghouse.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy-clearinghouse.html",
       "proof_type": "Autonomous RSI Capability Economy Clearinghouse Proof",
       "proved": true,
       "rsi_releases": 13,
@@ -5415,7 +5415,7 @@
       "coordination_style": "governance digital twin with policy-as-code, permission boundaries, shadow route simulation, verifier coverage, rollback planning, incident replay, and validation-gated RSI releases",
       "generated_at": "2026-06-01T04:05:24Z",
       "json_path": "data/rsi-capability-governance-twin-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-capability-governance-twin-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-capability-governance-twin-proof.json",
       "key": "capability-governance-twin-capability-governance-twin-capability-governance-twin-capability-governance-twin",
       "metrics": {
         "benchmark_value_capture_rate_percent": 97.6124,
@@ -5437,7 +5437,7 @@
         "weak_domain_rate_percent": 0.0
       },
       "page_path": "site/proof-capability-governance-twin-capability-governance-twin-capability-governance-twin-capability-governance-twin.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-governance-twin-capability-governance-twin-capability-governance-twin-capability-governance-twin.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-governance-twin-capability-governance-twin-capability-governance-twin-capability-governance-twin.html",
       "proof_type": "Autonomous RSI Capability Governance Twin Proof",
       "proved": true,
       "rsi_releases": 12,
@@ -5524,7 +5524,7 @@
       "coordination_style": "SLA reliability mesh with specialist-agent routing, verifier coverage planning, provenance audits, rollback courts, incident replay, risk vetoes, and validation-gated RSI releases",
       "generated_at": "2026-06-01T03:39:06Z",
       "json_path": "data/rsi-capability-sla-reliability-mesh-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-capability-sla-reliability-mesh-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-capability-sla-reliability-mesh-proof.json",
       "key": "capability-sla-reliability-mesh-capability-sla-reliability-mesh-capability-sla-reliability-mesh",
       "metrics": {
         "benchmark_value_capture_rate_percent": 96.9985,
@@ -5545,7 +5545,7 @@
         "weak_domain_rate_percent": 0.0
       },
       "page_path": "site/proof-capability-sla-reliability-mesh-capability-sla-reliability-mesh-capability-sla-reliability-mesh.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-sla-reliability-mesh-capability-sla-reliability-mesh-capability-sla-reliability-mesh.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-sla-reliability-mesh-capability-sla-reliability-mesh-capability-sla-reliability-mesh.html",
       "proof_type": "Autonomous RSI Capability SLA Reliability Mesh Proof",
       "proved": true,
       "rsi_releases": 12,
@@ -5615,7 +5615,7 @@
       "coordination_style": "capability treasury flywheel with specialist-agent capital allocation, skill bounties, verifier-capacity planning, routing reinvestment, risk vetoes, and validation-gated RSI releases",
       "generated_at": "2026-06-01T03:30:09Z",
       "json_path": "data/rsi-capability-treasury-flywheel-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-capability-treasury-flywheel-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-capability-treasury-flywheel-proof.json",
       "key": "capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury-flywheel",
       "metrics": {
         "benchmark_value_capture_rate_percent": 97.0953,
@@ -5635,7 +5635,7 @@
         "weak_domain_rate_percent": 0.0
       },
       "page_path": "site/proof-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury-flywheel.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury-flywheel.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury-flywheel.html",
       "proof_type": "Autonomous RSI Capability Treasury Flywheel Proof",
       "proved": true,
       "rsi_releases": 21,
@@ -5700,7 +5700,7 @@
       "coordination_style": "continual validation-gated RSI with drift detection, replay-buffer retention, specialist-agent market clearing, verifier courts, rollback gates, and locked multi-regime holdouts",
       "generated_at": "2026-05-31T23:19:17Z",
       "json_path": "data/rsi-continual-capability-frontier-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-continual-capability-frontier-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-continual-capability-frontier-proof.json",
       "key": "continual-capability-frontier-continual-capability-frontier-continual-capability-frontier-continual-capability-frontier",
       "metrics": {
         "benchmark_value_capture_rate_percent": 96.652,
@@ -5718,7 +5718,7 @@
         "value_capture_rate_percent": 96.652
       },
       "page_path": "site/proof-continual-capability-frontier-continual-capability-frontier-continual-capability-frontier-continual-capability-frontier.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-continual-capability-frontier-continual-capability-frontier-continual-capability-frontier-continual-capability-frontier.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-continual-capability-frontier-continual-capability-frontier-continual-capability-frontier-continual-capability-frontier.html",
       "proof_type": "Autonomous RSI Continual Capability Frontier Proof",
       "proved": true,
       "rsi_releases": 10,
@@ -5799,7 +5799,7 @@
       "coordination_style": "fork-resistant verified capability network with provenance courts, fork red teams, global routing upgrades, risk vetoes, and validation-gated RSI releases",
       "generated_at": "2026-06-01T01:33:42Z",
       "json_path": "data/rsi-fork-resistant-capability-network-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-fork-resistant-capability-network-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-fork-resistant-capability-network-proof.json",
       "key": "fork-resistant-capability-network-fork-resistant-capability-network-fork-resistant-capability-network",
       "metrics": {
         "benchmark_value_capture_rate_percent": 96.1864,
@@ -5819,7 +5819,7 @@
         "weak_domain_rate_percent": 0.0
       },
       "page_path": "site/proof-fork-resistant-capability-network-fork-resistant-capability-network-fork-resistant-capability-network.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-fork-resistant-capability-network-fork-resistant-capability-network-fork-resistant-capability-network.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-fork-resistant-capability-network-fork-resistant-capability-network-fork-resistant-capability-network.html",
       "proof_type": "Autonomous RSI Fork-Resistant Capability Network Proof",
       "proved": true,
       "rsi_releases": 14,
@@ -5898,7 +5898,7 @@
       "coordination_style": "full-stack lifecycle RSI with specialist-agent market clearing, provenance ledger, verifier courts, objective firewall, transfer tests, open replication, continual drift guards, release gates, and routing upgrades",
       "generated_at": "2026-05-31T23:27:46Z",
       "json_path": "data/rsi-full-stack-capability-lifecycle-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-full-stack-capability-lifecycle-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-full-stack-capability-lifecycle-proof.json",
       "key": "full-stack-capability-lifecycle-full-stack-capability-lifecycle-full-stack-capability-lifecycle",
       "metrics": {
         "benchmark_value_capture_rate_percent": 96.2057,
@@ -5921,7 +5921,7 @@
         "value_capture_rate_percent": 96.2057
       },
       "page_path": "site/proof-full-stack-capability-lifecycle-full-stack-capability-lifecycle-full-stack-capability-lifecycle.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-full-stack-capability-lifecycle-full-stack-capability-lifecycle-full-stack-capability-lifecycle.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-full-stack-capability-lifecycle-full-stack-capability-lifecycle-full-stack-capability-lifecycle.html",
       "proof_type": "Autonomous RSI Full-Stack Capability Lifecycle Proof",
       "proved": true,
       "rsi_releases": 13,
@@ -5996,7 +5996,7 @@
       "coordination_style": "verified global skill graph with specialist-agent market clearing, provenance courts, transfer tests, release gates, risk vetoes, and network-wide routing upgrades",
       "generated_at": "2026-05-31T23:41:21Z",
       "json_path": "data/rsi-skill-compounding-moat-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-skill-compounding-moat-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-skill-compounding-moat-proof.json",
       "key": "skill-compounding-moat-skill-compounding-moat-skill-compounding-moat-skill-compounding-moat",
       "metrics": {
         "benchmark_value_capture_rate_percent": 96.9765,
@@ -6016,7 +6016,7 @@
         "weak_domain_rate_percent": 0.0
       },
       "page_path": "site/proof-skill-compounding-moat-skill-compounding-moat-skill-compounding-moat-skill-compounding-moat.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-skill-compounding-moat-skill-compounding-moat-skill-compounding-moat-skill-compounding-moat.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-skill-compounding-moat-skill-compounding-moat-skill-compounding-moat-skill-compounding-moat.html",
       "proof_type": "Autonomous RSI Skill Compounding Moat Proof",
       "proved": true,
       "rsi_releases": 12,
@@ -6070,7 +6070,7 @@
       "generated_at": "2026-05-31T19:40:27Z",
       "holdout_count": 4096,
       "json_path": "data/rsi-skill-provenance-ledger-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-skill-provenance-ledger-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-skill-provenance-ledger-proof.json",
       "key": "skill-provenance-ledger-skill-provenance-ledger-skill-provenance-ledger-skill-provenance-ledger",
       "metrics": {
         "adversarial_skill_rejection_rate_percent": 100.0,
@@ -6086,7 +6086,7 @@
         "value_capture_rate_percent": 99.9463
       },
       "page_path": "site/proof-skill-provenance-ledger-skill-provenance-ledger-skill-provenance-ledger-skill-provenance-ledger.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-skill-provenance-ledger-skill-provenance-ledger-skill-provenance-ledger-skill-provenance-ledger.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-skill-provenance-ledger-skill-provenance-ledger-skill-provenance-ledger-skill-provenance-ledger.html",
       "proof_type": "Autonomous RSI Skill Provenance Ledger Proof",
       "proved": true,
       "rsi_releases": 6,
@@ -6105,10 +6105,10 @@
       "generated_at": "2026-06-01T14:27:18Z",
       "holdout_count": 360,
       "json_path": "data/enterprise_ops_market_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/enterprise_ops_market_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/enterprise_ops_market_proof.json",
       "key": "enterprise-ops-procurement-invoice-reconciliation-and-payment-risk-triage-fully-enterprise-operations",
       "page_path": "site/proof-enterprise-ops-procurement-invoice-reconciliation-and-payment-risk-triage-fully-enterprise-operations.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-enterprise-ops-procurement-invoice-reconciliation-and-payment-risk-triage-fully-enterprise-operations.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-enterprise-ops-procurement-invoice-reconciliation-and-payment-risk-triage-fully-enterprise-operations.html",
       "proof_type": "fully autonomous enterprise operations market-readiness proof",
       "proved": true,
       "rsi_releases": 0,
@@ -6124,12 +6124,12 @@
     },
     {
       "doc_path": "docs/rsi-ai-first-blockchain-capital-machine-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-ai-first-blockchain-capital-machine-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-ai-first-blockchain-capital-machine-proof.md",
       "json_path": "data/rsi-ai-first-blockchain-capital-machine-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-ai-first-blockchain-capital-machine-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-ai-first-blockchain-capital-machine-proof.json",
       "key": "ai-first-blockchain-capital-machine",
       "page_path": "site/rsi-ai-first-blockchain-capital-machine-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-ai-first-blockchain-capital-machine-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-ai-first-blockchain-capital-machine-proof.html",
       "proved": false,
       "rsi_releases": 0,
       "source": "doc",
@@ -6145,12 +6145,12 @@
     },
     {
       "doc_path": "docs/rsi-ai-first-governance-capital-engine-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-ai-first-governance-capital-engine-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-ai-first-governance-capital-engine-proof.md",
       "json_path": "data/rsi-ai-first-governance-capital-engine-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-ai-first-governance-capital-engine-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-ai-first-governance-capital-engine-proof.json",
       "key": "ai-first-governance-capital-engine",
       "page_path": "site/rsi-ai-first-governance-capital-engine-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-ai-first-governance-capital-engine-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-ai-first-governance-capital-engine-proof.html",
       "proved": false,
       "rsi_releases": 0,
       "source": "doc",
@@ -6166,10 +6166,10 @@
     },
     {
       "doc_path": "docs/rsi-capability-assurance-case-graph-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-capability-assurance-case-graph-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-capability-assurance-case-graph-proof.md",
       "key": "capability-assurance-case-graph",
       "page_path": "site/rsi-capability-assurance-case-graph-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-capability-assurance-case-graph-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-assurance-case-graph-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6180,10 +6180,10 @@
     },
     {
       "doc_path": "docs/rsi-capability-economy-clearinghouse-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-capability-economy-clearinghouse-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-capability-economy-clearinghouse-proof.md",
       "key": "capability-economy-clearinghouse",
       "page_path": "site/rsi-capability-economy-clearinghouse-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-capability-economy-clearinghouse-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-economy-clearinghouse-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6194,10 +6194,10 @@
     },
     {
       "doc_path": "docs/rsi-capability-governance-twin-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-capability-governance-twin-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-capability-governance-twin-proof.md",
       "key": "capability-governance-twin",
       "page_path": "site/rsi-capability-governance-twin-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-capability-governance-twin-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-governance-twin-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6208,13 +6208,13 @@
     },
     {
       "doc_path": "docs/rsi-capability-liquidity-engine-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-capability-liquidity-engine-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-capability-liquidity-engine-proof.md",
       "generated_at": "2026-05-31T17:46:48Z",
       "json_path": "data/rsi-capability-liquidity-engine-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-capability-liquidity-engine-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-capability-liquidity-engine-proof.json",
       "key": "capability-liquidity-engine",
       "page_path": "site/rsi-capability-liquidity-engine-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-capability-liquidity-engine-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-liquidity-engine-proof.html",
       "proved": false,
       "rsi_releases": 0,
       "source": "doc",
@@ -6230,10 +6230,10 @@
     },
     {
       "doc_path": "docs/rsi-capability-sla-reliability-mesh-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-capability-sla-reliability-mesh-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-capability-sla-reliability-mesh-proof.md",
       "key": "capability-sla-reliability-mesh",
       "page_path": "site/rsi-capability-sla-reliability-mesh-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-capability-sla-reliability-mesh-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-sla-reliability-mesh-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6244,10 +6244,10 @@
     },
     {
       "doc_path": "docs/rsi-capability-treasury-flywheel-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-capability-treasury-flywheel-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-capability-treasury-flywheel-proof.md",
       "key": "capability-treasury-flywheel",
       "page_path": "site/rsi-capability-treasury-flywheel-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-capability-treasury-flywheel-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-treasury-flywheel-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6258,10 +6258,10 @@
     },
     {
       "doc_path": "docs/rsi-continual-capability-frontier-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-continual-capability-frontier-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-continual-capability-frontier-proof.md",
       "key": "continual-capability-frontier",
       "page_path": "site/rsi-continual-capability-frontier-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-continual-capability-frontier-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-continual-capability-frontier-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6272,10 +6272,10 @@
     },
     {
       "doc_path": "docs/rsi_corporate_capability_frontier_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_corporate_capability_frontier_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_corporate_capability_frontier_proof.md",
       "key": "corporate-capability-frontier",
       "page_path": "site/rsi-corporate-capability-frontier-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-corporate-capability-frontier-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-corporate-capability-frontier-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6286,10 +6286,10 @@
     },
     {
       "doc_path": "docs/rsi_cyberdefense_market_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_cyberdefense_market_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_cyberdefense_market_proof.md",
       "key": "cyberdefense",
       "page_path": "site/rsi-cyberdefense-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-cyberdefense-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-cyberdefense-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6300,10 +6300,10 @@
     },
     {
       "doc_path": "docs/rsi_enterprise_capability_foundry_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_enterprise_capability_foundry_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_enterprise_capability_foundry_proof.md",
       "key": "enterprise-capability-foundry",
       "page_path": "site/rsi-enterprise-capability-foundry-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-enterprise-capability-foundry-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-enterprise-capability-foundry-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6314,10 +6314,10 @@
     },
     {
       "doc_path": "docs/enterprise_ops_market_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/enterprise_ops_market_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/enterprise_ops_market_proof.md",
       "key": "enterprise-ops",
       "page_path": "site/enterprise-ops-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/enterprise-ops-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/enterprise-ops-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6328,10 +6328,10 @@
     },
     {
       "doc_path": "docs/rsi_enterprise_superorganization_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi_enterprise_superorganization_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_enterprise_superorganization_proof.md",
       "key": "enterprise-superorganization",
       "page_path": "site/rsi-enterprise-superorganization-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-enterprise-superorganization-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-enterprise-superorganization-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6342,10 +6342,10 @@
     },
     {
       "doc_path": "docs/rsi-fork-resistant-capability-network-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-fork-resistant-capability-network-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-fork-resistant-capability-network-proof.md",
       "key": "fork-resistant-capability-network",
       "page_path": "site/rsi-fork-resistant-capability-network-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-fork-resistant-capability-network-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-fork-resistant-capability-network-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6356,10 +6356,10 @@
     },
     {
       "doc_path": "docs/rsi-full-stack-capability-lifecycle-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-full-stack-capability-lifecycle-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-full-stack-capability-lifecycle-proof.md",
       "key": "full-stack-capability-lifecycle",
       "page_path": "site/rsi-full-stack-capability-lifecycle-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-full-stack-capability-lifecycle-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-full-stack-capability-lifecycle-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6370,13 +6370,13 @@
     },
     {
       "doc_path": "docs/rsi-governance-frontier-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-governance-frontier-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-governance-frontier-proof.md",
       "generated_at": "2026-05-31T17:13:05Z",
       "json_path": "data/rsi-governance-frontier-proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/rsi-governance-frontier-proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi-governance-frontier-proof.json",
       "key": "governance-frontier",
       "page_path": "site/rsi-governance-frontier-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-governance-frontier-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-governance-frontier-proof.html",
       "proved": false,
       "rsi_releases": 0,
       "source": "doc",
@@ -6392,10 +6392,10 @@
     },
     {
       "doc_path": "docs/rsi-skill-compounding-moat-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-skill-compounding-moat-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-skill-compounding-moat-proof.md",
       "key": "skill-compounding-moat",
       "page_path": "site/rsi-skill-compounding-moat-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-skill-compounding-moat-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-skill-compounding-moat-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6406,10 +6406,10 @@
     },
     {
       "doc_path": "docs/rsi-skill-provenance-ledger-proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/rsi-skill-provenance-ledger-proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi-skill-provenance-ledger-proof.md",
       "key": "skill-provenance-ledger",
       "page_path": "site/rsi-skill-provenance-ledger-proof.html",
-      "page_url": "https://montrealai.github.io/skillos/rsi-skill-provenance-ledger-proof.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/rsi-skill-provenance-ledger-proof.html",
       "source": "doc",
       "sources": [
         "page",
@@ -6423,9 +6423,9 @@
       "latest_run_conclusion": "failure",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T14:27:29Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26761163431",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26761163431",
       "page_path": "site/proof-enterprise-ops-github-enterprise-ops-enterprise-ops-enterprise-ops.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-enterprise-ops-github-enterprise-ops-enterprise-ops-enterprise-ops.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-enterprise-ops-github-enterprise-ops-enterprise-ops-enterprise-ops.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6433,12 +6433,12 @@
       "title": "Autonomous Enterprise Ops Market Proof",
       "workflow_name": "Autonomous Enterprise Ops Market Proof",
       "workflow_path": ".github/workflows/enterprise-ops-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/enterprise-ops-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/enterprise-ops-proof.yml"
     },
     {
       "key": "ai-first-blockchain-capital-machine-github-ai-first-blockchain-capital-machine-ai",
       "page_path": "site/proof-ai-first-blockchain-capital-machine-github-ai-first-blockchain-capital-machine-ai.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-ai-first-blockchain-capital-machine-github-ai-first-blockchain-capital-machine-ai.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-ai-first-blockchain-capital-machine-github-ai-first-blockchain-capital-machine-ai.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6446,12 +6446,12 @@
       "title": "Autonomous RSI AI-First Blockchain Capital Machine Proof",
       "workflow_name": "Autonomous RSI AI-First Blockchain Capital Machine Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml"
     },
     {
       "key": "ai-first-governance-capital-engine-github-ai-first-governance-capital-engine-ai",
       "page_path": "site/proof-ai-first-governance-capital-engine-github-ai-first-governance-capital-engine-ai.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-ai-first-governance-capital-engine-github-ai-first-governance-capital-engine-ai.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-ai-first-governance-capital-engine-github-ai-first-governance-capital-engine-ai.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6459,12 +6459,12 @@
       "title": "Autonomous RSI AI-First Governance Capital Engine Proof",
       "workflow_name": "Autonomous RSI AI-First Governance Capital Engine Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml"
     },
     {
       "key": "blockchain-protocol-capital-frontier-github-blockchain-protocol-capital-frontier-blockchain-protocol-capital",
       "page_path": "site/proof-blockchain-protocol-capital-frontier-github-blockchain-protocol-capital-frontier-blockchain-protocol-capital.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-blockchain-protocol-capital-frontier-github-blockchain-protocol-capital-frontier-blockchain-protocol-capital.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-blockchain-protocol-capital-frontier-github-blockchain-protocol-capital-frontier-blockchain-protocol-capital.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6472,12 +6472,12 @@
       "title": "Autonomous RSI Blockchain Protocol Capital Frontier Proof",
       "workflow_name": "Autonomous RSI Blockchain Protocol Capital Frontier Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml"
     },
     {
       "key": "capability-assurance-case-graph-github-capability-assurance-case-graph-capability-assurance-case",
       "page_path": "site/proof-capability-assurance-case-graph-github-capability-assurance-case-graph-capability-assurance-case.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-assurance-case-graph-github-capability-assurance-case-graph-capability-assurance-case.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-assurance-case-graph-github-capability-assurance-case-graph-capability-assurance-case.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6485,12 +6485,12 @@
       "title": "Autonomous RSI Capability Assurance Case Graph Proof",
       "workflow_name": "Autonomous RSI Capability Assurance Case Graph Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-capability-assurance-case-graph-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-assurance-case-graph-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-assurance-case-graph-proof.yml"
     },
     {
       "key": "capability-economy-clearinghouse-github-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy",
       "page_path": "site/proof-capability-economy-clearinghouse-github-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-economy-clearinghouse-github-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-economy-clearinghouse-github-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6498,12 +6498,12 @@
       "title": "Autonomous RSI Capability Economy Clearinghouse Proof",
       "workflow_name": "Autonomous RSI Capability Economy Clearinghouse Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-capability-economy-clearinghouse-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-economy-clearinghouse-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-economy-clearinghouse-proof.yml"
     },
     {
       "key": "capability-governance-twin-github-capability-governance-twin-capability-governance-twin-capability-governance",
       "page_path": "site/proof-capability-governance-twin-github-capability-governance-twin-capability-governance-twin-capability-governance.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-governance-twin-github-capability-governance-twin-capability-governance-twin-capability-governance.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-governance-twin-github-capability-governance-twin-capability-governance-twin-capability-governance.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6511,12 +6511,12 @@
       "title": "Autonomous RSI Capability Governance Twin Proof",
       "workflow_name": "Autonomous RSI Capability Governance Twin Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-capability-governance-twin-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-governance-twin-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-governance-twin-proof.yml"
     },
     {
       "key": "capability-liquidity-engine-github-capability-liquidity-engine-capability-liquidity-engine-capability-liquidity",
       "page_path": "site/proof-capability-liquidity-engine-github-capability-liquidity-engine-capability-liquidity-engine-capability-liquidity.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-liquidity-engine-github-capability-liquidity-engine-capability-liquidity-engine-capability-liquidity.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-liquidity-engine-github-capability-liquidity-engine-capability-liquidity-engine-capability-liquidity.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6524,12 +6524,12 @@
       "title": "Autonomous RSI Capability Liquidity Engine Proof",
       "workflow_name": "Autonomous RSI Capability Liquidity Engine Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-capability-liquidity-engine-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-liquidity-engine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-liquidity-engine-proof.yml"
     },
     {
       "key": "capability-sla-reliability-mesh-github-capability-sla-reliability-mesh-capability-sla-reliability",
       "page_path": "site/proof-capability-sla-reliability-mesh-github-capability-sla-reliability-mesh-capability-sla-reliability.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-sla-reliability-mesh-github-capability-sla-reliability-mesh-capability-sla-reliability.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-sla-reliability-mesh-github-capability-sla-reliability-mesh-capability-sla-reliability.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6537,12 +6537,12 @@
       "title": "Autonomous RSI Capability SLA Reliability Mesh Proof",
       "workflow_name": "Autonomous RSI Capability SLA Reliability Mesh Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-capability-sla-reliability-mesh-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-sla-reliability-mesh-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-sla-reliability-mesh-proof.yml"
     },
     {
       "key": "capability-treasury-flywheel-github-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury",
       "page_path": "site/proof-capability-treasury-flywheel-github-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-capability-treasury-flywheel-github-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-capability-treasury-flywheel-github-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6550,12 +6550,12 @@
       "title": "Autonomous RSI Capability Treasury Flywheel Proof",
       "workflow_name": "Autonomous RSI Capability Treasury Flywheel Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-capability-treasury-flywheel-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-treasury-flywheel-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-treasury-flywheel-proof.yml"
     },
     {
       "key": "causal-attribution-engine-github-causal-attribution-engine-causal-attribution-engine-causal-attribution",
       "page_path": "site/proof-causal-attribution-engine-github-causal-attribution-engine-causal-attribution-engine-causal-attribution.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-causal-attribution-engine-github-causal-attribution-engine-causal-attribution-engine-causal-attribution.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-causal-attribution-engine-github-causal-attribution-engine-causal-attribution-engine-causal-attribution.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6563,12 +6563,12 @@
       "title": "Autonomous RSI Causal Attribution Engine Proof",
       "workflow_name": "Autonomous RSI Causal Attribution Engine Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-causal-attribution-engine-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-causal-attribution-engine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-causal-attribution-engine-proof.yml"
     },
     {
       "key": "continual-capability-frontier-github-continual-capability-frontier-continual-capability-frontier-continual-capability",
       "page_path": "site/proof-continual-capability-frontier-github-continual-capability-frontier-continual-capability-frontier-continual-capability.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-continual-capability-frontier-github-continual-capability-frontier-continual-capability-frontier-continual-capability.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-continual-capability-frontier-github-continual-capability-frontier-continual-capability-frontier-continual-capability.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6576,12 +6576,12 @@
       "title": "Autonomous RSI Continual Capability Frontier Proof",
       "workflow_name": "Autonomous RSI Continual Capability Frontier Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-continual-capability-frontier-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-continual-capability-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-continual-capability-frontier-proof.yml"
     },
     {
       "key": "corporate-capability-frontier-github-corporate-capability-frontier-corporate-capability-frontier-corporate-capability",
       "page_path": "site/proof-corporate-capability-frontier-github-corporate-capability-frontier-corporate-capability-frontier-corporate-capability.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-corporate-capability-frontier-github-corporate-capability-frontier-corporate-capability-frontier-corporate-capability.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-corporate-capability-frontier-github-corporate-capability-frontier-corporate-capability-frontier-corporate-capability.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6589,12 +6589,12 @@
       "title": "Autonomous RSI Corporate Capability Frontier Proof",
       "workflow_name": "Autonomous RSI Corporate Capability Frontier Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml"
     },
     {
       "key": "corporate-strategy-frontier-github-corporate-strategy-frontier-corporate-strategy-frontier-corporate-strategy",
       "page_path": "site/proof-corporate-strategy-frontier-github-corporate-strategy-frontier-corporate-strategy-frontier-corporate-strategy.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-corporate-strategy-frontier-github-corporate-strategy-frontier-corporate-strategy-frontier-corporate-strategy.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-corporate-strategy-frontier-github-corporate-strategy-frontier-corporate-strategy-frontier-corporate-strategy.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6602,12 +6602,12 @@
       "title": "Autonomous RSI Corporate Strategy Frontier Proof",
       "workflow_name": "Autonomous RSI Corporate Strategy Frontier Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-corporate-strategy-frontier-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-corporate-strategy-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-corporate-strategy-frontier-proof.yml"
     },
     {
       "key": "cross-domain-capability-transfer-atlas-github-cross-domain-capability-transfer-atlas-cross",
       "page_path": "site/proof-cross-domain-capability-transfer-atlas-github-cross-domain-capability-transfer-atlas-cross.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-cross-domain-capability-transfer-atlas-github-cross-domain-capability-transfer-atlas-cross.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-cross-domain-capability-transfer-atlas-github-cross-domain-capability-transfer-atlas-cross.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6615,12 +6615,12 @@
       "title": "Autonomous RSI Cross-Domain Capability Transfer Atlas Proof",
       "workflow_name": "Autonomous RSI Cross-Domain Capability Transfer Atlas Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-cross-domain-capability-transfer-atlas-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-cross-domain-capability-transfer-atlas-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-cross-domain-capability-transfer-atlas-proof.yml"
     },
     {
       "key": "enterprise-capability-foundry-github-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability",
       "page_path": "site/proof-enterprise-capability-foundry-github-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-enterprise-capability-foundry-github-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-enterprise-capability-foundry-github-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6628,12 +6628,12 @@
       "title": "Autonomous RSI Enterprise Capability Foundry Proof",
       "workflow_name": "Autonomous RSI Enterprise Capability Foundry Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-enterprise-capability-foundry-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-enterprise-capability-foundry-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-enterprise-capability-foundry-proof.yml"
     },
     {
       "key": "enterprise-superorganization-github-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization",
       "page_path": "site/proof-enterprise-superorganization-github-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-enterprise-superorganization-github-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-enterprise-superorganization-github-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6641,12 +6641,12 @@
       "title": "Autonomous RSI Enterprise Superorganization Proof",
       "workflow_name": "Autonomous RSI Enterprise Superorganization Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-enterprise-superorganization-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-enterprise-superorganization-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-enterprise-superorganization-proof.yml"
     },
     {
       "key": "fork-resistant-capability-network-github-fork-resistant-capability-network-fork-resistant-capability",
       "page_path": "site/proof-fork-resistant-capability-network-github-fork-resistant-capability-network-fork-resistant-capability.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-fork-resistant-capability-network-github-fork-resistant-capability-network-fork-resistant-capability.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-fork-resistant-capability-network-github-fork-resistant-capability-network-fork-resistant-capability.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6654,12 +6654,12 @@
       "title": "Autonomous RSI Fork-Resistant Capability Network Proof",
       "workflow_name": "Autonomous RSI Fork-Resistant Capability Network Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-fork-resistant-capability-network-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-fork-resistant-capability-network-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-fork-resistant-capability-network-proof.yml"
     },
     {
       "key": "full-stack-capability-lifecycle-github-full-stack-capability-lifecycle-full-stack-capability",
       "page_path": "site/proof-full-stack-capability-lifecycle-github-full-stack-capability-lifecycle-full-stack-capability.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-full-stack-capability-lifecycle-github-full-stack-capability-lifecycle-full-stack-capability.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-full-stack-capability-lifecycle-github-full-stack-capability-lifecycle-full-stack-capability.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6667,12 +6667,12 @@
       "title": "Autonomous RSI Full-Stack Capability Lifecycle Proof",
       "workflow_name": "Autonomous RSI Full-Stack Capability Lifecycle Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-full-stack-capability-lifecycle-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-full-stack-capability-lifecycle-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-full-stack-capability-lifecycle-proof.yml"
     },
     {
       "key": "governance-frontier-github-governance-frontier-governance-frontier-governance-frontier",
       "page_path": "site/proof-governance-frontier-github-governance-frontier-governance-frontier-governance-frontier.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-governance-frontier-github-governance-frontier-governance-frontier-governance-frontier.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-governance-frontier-github-governance-frontier-governance-frontier-governance-frontier.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6680,12 +6680,12 @@
       "title": "Autonomous RSI Governance Frontier Proof",
       "workflow_name": "Autonomous RSI Governance Frontier Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-governance-frontier-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-governance-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-governance-frontier-proof.yml"
     },
     {
       "key": "objective-integrity-firewall-github-objective-integrity-firewall-objective-integrity-firewall-objective-integrity",
       "page_path": "site/proof-objective-integrity-firewall-github-objective-integrity-firewall-objective-integrity-firewall-objective-integrity.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-objective-integrity-firewall-github-objective-integrity-firewall-objective-integrity-firewall-objective-integrity.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-objective-integrity-firewall-github-objective-integrity-firewall-objective-integrity-firewall-objective-integrity.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6693,12 +6693,12 @@
       "title": "Autonomous RSI Objective Integrity Firewall Proof",
       "workflow_name": "Autonomous RSI Objective Integrity Firewall Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-objective-integrity-firewall-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-objective-integrity-firewall-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-objective-integrity-firewall-proof.yml"
     },
     {
       "key": "open-replication-mesh-github-open-replication-mesh-open-replication-mesh-open-replication",
       "page_path": "site/proof-open-replication-mesh-github-open-replication-mesh-open-replication-mesh-open-replication.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-open-replication-mesh-github-open-replication-mesh-open-replication-mesh-open-replication.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-open-replication-mesh-github-open-replication-mesh-open-replication-mesh-open-replication.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6706,12 +6706,12 @@
       "title": "Autonomous RSI Open Replication Mesh Proof",
       "workflow_name": "Autonomous RSI Open Replication Mesh Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-open-replication-mesh-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-open-replication-mesh-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-open-replication-mesh-proof.yml"
     },
     {
       "key": "forge-meta-coordination-github-forge-meta-coordination-forge-meta-coordination-forge-meta",
       "page_path": "site/proof-forge-meta-coordination-github-forge-meta-coordination-forge-meta-coordination-forge-meta.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-forge-meta-coordination-github-forge-meta-coordination-forge-meta-coordination-forge-meta.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-forge-meta-coordination-github-forge-meta-coordination-forge-meta-coordination-forge-meta.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6719,12 +6719,12 @@
       "title": "Autonomous RSI Proof Forge Meta-Coordination Proof",
       "workflow_name": "Autonomous RSI Proof Forge Meta-Coordination Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml"
     },
     {
       "key": "skill-compounding-moat-github-skill-compounding-moat-skill-compounding-moat-skill-compounding",
       "page_path": "site/proof-skill-compounding-moat-github-skill-compounding-moat-skill-compounding-moat-skill-compounding.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-skill-compounding-moat-github-skill-compounding-moat-skill-compounding-moat-skill-compounding.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-skill-compounding-moat-github-skill-compounding-moat-skill-compounding-moat-skill-compounding.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6732,12 +6732,12 @@
       "title": "Autonomous RSI Skill Compounding Moat Proof",
       "workflow_name": "Autonomous RSI Skill Compounding Moat Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-skill-compounding-moat-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-skill-compounding-moat-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-skill-compounding-moat-proof.yml"
     },
     {
       "key": "skill-provenance-ledger-github-skill-provenance-ledger-skill-provenance-ledger-skill-provenance",
       "page_path": "site/proof-skill-provenance-ledger-github-skill-provenance-ledger-skill-provenance-ledger-skill-provenance.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-skill-provenance-ledger-github-skill-provenance-ledger-skill-provenance-ledger-skill-provenance.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-skill-provenance-ledger-github-skill-provenance-ledger-skill-provenance-ledger-skill-provenance.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6745,16 +6745,16 @@
       "title": "Autonomous RSI Skill Provenance Ledger Proof",
       "workflow_name": "Autonomous RSI Skill Provenance Ledger Proof",
       "workflow_path": ".github/workflows/autonomous-rsi-skill-provenance-ledger-proof.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-skill-provenance-ledger-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-skill-provenance-ledger-proof.yml"
     },
     {
       "key": "deploy-skillos-website-with-safe-copy-github-pages-deploy-skillos-website-with",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T16:09:47Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158888",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158888",
       "page_path": "site/proof-deploy-skillos-website-with-safe-copy-github-pages-deploy-skillos-website-with.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-deploy-skillos-website-with-safe-copy-github-pages-deploy-skillos-website-with.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-deploy-skillos-website-with-safe-copy-github-pages-deploy-skillos-website-with.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6762,12 +6762,12 @@
       "title": "Deploy SkillOS website with autonomous safe public copy",
       "workflow_name": "Deploy SkillOS website with autonomous safe public copy",
       "workflow_path": ".github/workflows/pages.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/pages.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/pages.yml"
     },
     {
       "key": "fully-readiness-github-readiness-fully-readiness-fully-readiness",
       "page_path": "site/proof-fully-readiness-github-readiness-fully-readiness-fully-readiness.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-fully-readiness-github-readiness-fully-readiness-fully-readiness.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-fully-readiness-github-readiness-fully-readiness-fully-readiness.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6775,16 +6775,16 @@
       "title": "Fully Autonomous Market-Readiness Proof",
       "workflow_name": "Fully Autonomous Market-Readiness Proof",
       "workflow_path": ".github/workflows/autonomous-market-readiness.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-market-readiness.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-market-readiness.yml"
     },
     {
       "key": "skillos-tests-github-tests-skillos-tests-skillos-tests",
       "latest_run_conclusion": "success",
       "latest_run_status": "completed",
       "latest_run_updated_at": "2026-06-01T15:38:34Z",
-      "latest_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158816",
+      "latest_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158816",
       "page_path": "site/proof-skillos-tests-github-tests-skillos-tests-skillos-tests.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-skillos-tests-github-tests-skillos-tests-skillos-tests.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-skillos-tests-github-tests-skillos-tests-skillos-tests.html",
       "source": "workflow",
       "sources": [
         "workflow"
@@ -6792,14 +6792,14 @@
       "title": "SkillOS tests",
       "workflow_name": "SkillOS tests",
       "workflow_path": ".github/workflows/tests.yml",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/tests.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/tests.yml"
     },
     {
       "doc_path": "docs/AUTONOMOUS_MARKET_READINESS_PROOF.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/AUTONOMOUS_MARKET_READINESS_PROOF.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/AUTONOMOUS_MARKET_READINESS_PROOF.md",
       "key": "readiness-readiness",
       "page_path": "site/proof-readiness-readiness.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-readiness-readiness.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-readiness-readiness.html",
       "source": "doc",
       "sources": [
         "doc"
@@ -6808,10 +6808,10 @@
     },
     {
       "doc_path": "docs/wealth_accumulation_proof.md",
-      "doc_url": "https://github.com/MontrealAI/skillos/blob/main/docs/wealth_accumulation_proof.md",
+      "doc_url": "https://github.com/MontrealAI/proof-gradient/blob/main/docs/wealth_accumulation_proof.md",
       "key": "wealth-accumulation-wealth-accumulation",
       "page_path": "site/proof-wealth-accumulation-wealth-accumulation.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-wealth-accumulation-wealth-accumulation.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-wealth-accumulation-wealth-accumulation.html",
       "source": "doc",
       "sources": [
         "doc"
@@ -6821,10 +6821,10 @@
     {
       "generated_at": "2026-06-01T13:23:41Z",
       "json_path": "data/wealth_proof.json",
-      "json_url": "https://github.com/MontrealAI/skillos/blob/main/data/wealth_proof.json",
+      "json_url": "https://github.com/MontrealAI/proof-gradient/blob/main/data/wealth_proof.json",
       "key": "wealth-name-sales-follow-up-email-from-call-notes-why-this-sales",
       "page_path": "site/proof-wealth-name-sales-follow-up-email-from-call-notes-why-this-sales.html",
-      "page_url": "https://montrealai.github.io/skillos/proof-wealth-name-sales-follow-up-email-from-call-notes-why-this-sales.html",
+      "page_url": "https://montrealai.github.io/proof-gradient/proof-wealth-name-sales-follow-up-email-from-call-notes-why-this-sales.html",
       "proved": false,
       "rsi_releases": 0,
       "source": "json",
@@ -6850,599 +6850,599 @@
   "recent_failed_runs": 1,
   "recent_running_runs": 1,
   "recent_successful_runs": 46,
-  "refresh_run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767435386",
-  "repository": "MontrealAI/skillos",
+  "refresh_run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767435386",
+  "repository": "MontrealAI/proof-gradient",
   "safe_boundary": "Autonomous deterministic market-readiness proofs using synthetic/redacted-style benchmark data and benchmark assumptions. Not audited customer ROI, live customer adoption, financial advice, investment advice, superintelligence, Kardashev Type II achievement, or guarantees.",
-  "site_url": "https://montrealai.github.io/skillos/",
+  "site_url": "https://montrealai.github.io/proof-gradient/",
   "workflow_count": 52,
   "workflows": [
     {
       "conclusion": null,
       "event": "workflow_run",
-      "name": "SkillOS Public Proof Command Center Refresh",
-      "path": ".github/workflows/skillos-public-proof-command-center-refresh.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-refresh-skillos-command-center-github-refresh-skillos-command-center-refresh-skillos-command.html",
-      "proof_title": "Refresh SkillOS Public Command Center",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767435386",
+      "name": "Proof Gradient Public Proof Command Center Refresh",
+      "path": ".github/workflows/proof-gradient-public-proof-command-center-refresh.yml",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-refresh-proof-gradient-command-center-github-refresh-proof-gradient-command-center-refresh-skillos-command.html",
+      "proof_title": "Refresh Proof Gradient Public Command Center",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767435386",
       "status": "in_progress",
       "updated_at": "2026-06-01T16:21:58Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/skillos-public-proof-command-center-refresh.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/proof-gradient-public-proof-command-center-refresh.yml"
     },
     {
       "conclusion": "success",
       "event": "workflow_run",
-      "name": "SkillOS Public Site Command Center Refresh",
-      "path": ".github/workflows/skillos-public-site-refresh.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-refresh-skillos-command-center-github-refresh-skillos-command-center-refresh-skillos-command.html",
-      "proof_title": "Refresh SkillOS Public Command Center",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767435340",
+      "name": "Proof Gradient Public Site Command Center Refresh",
+      "path": ".github/workflows/proof-gradient-public-site-refresh.yml",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-refresh-proof-gradient-command-center-github-refresh-proof-gradient-command-center-refresh-skillos-command.html",
+      "proof_title": "Refresh Proof Gradient Public Command Center",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767435340",
       "status": "completed",
       "updated_at": "2026-06-01T16:21:46Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/skillos-public-site-refresh.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/proof-gradient-public-site-refresh.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Capital-to-Capability Engine Proof",
       "path": ".github/workflows/rsi-capital-to-capability-engine-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-capital-to-capability-engine-github-capital-to-capability-engine-capital-to-capability.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-capital-to-capability-engine-github-capital-to-capability-engine-capital-to-capability.html",
       "proof_title": "Autonomous RSI Capital-to-Capability Engine Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767363611",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767363611",
       "status": "completed",
       "updated_at": "2026-06-01T16:20:49Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-capital-to-capability-engine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-capital-to-capability-engine-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Adversarial Multi-Agent Market Command Center Proof",
       "path": ".github/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-adversarial-multi-agent-command-center-github-adversarial-multi-agent-command-center-adversarial.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-adversarial-multi-agent-command-center-github-adversarial-multi-agent-command-center-adversarial.html",
       "proof_title": "Autonomous RSI Adversarial Multi-Agent Market Command Center Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767337080",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767337080",
       "status": "completed",
       "updated_at": "2026-06-01T16:20:18Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml"
     },
     {
       "conclusion": "cancelled",
       "event": "schedule",
       "name": "Autonomous RSI Adversarial Capability Command Center Proof",
       "path": ".github/workflows/rsi-capability-command-center-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-capability-command-center-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-command-center-proof.html",
       "proof_title": "Autonomous RSI Adversarial Capability Command Center Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767363069",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767363069",
       "status": "completed",
       "updated_at": "2026-06-01T16:19:32Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-capability-command-center-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-capability-command-center-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Capital-to-Capability Command Center v17 Proof",
       "path": ".github/workflows/rsi-capability-command-center-v17-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-capability-command-center-v17-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-capability-command-center-v17-proof.html",
       "proof_title": "Autonomous RSI Capital-to-Capability Command Center v17 Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26767309768",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26767309768",
       "status": "completed",
       "updated_at": "2026-06-01T16:19:04Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-capability-command-center-v17-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-capability-command-center-v17-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "push",
       "name": "Deploy SkillOS website with autonomous safe public copy",
       "path": ".github/workflows/pages.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-deploy-skillos-website-with-safe-copy-github-pages-deploy-skillos-website-with.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-deploy-skillos-website-with-safe-copy-github-pages-deploy-skillos-website-with.html",
       "proof_title": "Deploy SkillOS website with autonomous safe public copy",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158888",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158888",
       "status": "completed",
       "updated_at": "2026-06-01T16:09:47Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/pages.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/pages.yml"
     },
     {
       "conclusion": "success",
       "event": "push",
-      "name": "SkillOS Command Center Autopublisher v2",
-      "path": ".github/workflows/skillos-command-center-autopublisher-v2.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-skillos-command-center-autopublisher-v2-github-skillos-command-center-autopublisher-v2-skillos.html",
-      "proof_title": "SkillOS Command Center Autopublisher v2",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158910",
+      "name": "Proof Gradient Command Center Autopublisher v2",
+      "path": ".github/workflows/proof-gradient-command-center-autopublisher-v2.yml",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-proof-gradient-command-center-autopublisher-v2-github-proof-gradient-command-center-autopublisher-v2-skillos.html",
+      "proof_title": "Proof Gradient Command Center Autopublisher v2",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158910",
       "status": "completed",
       "updated_at": "2026-06-01T16:03:11Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/skillos-command-center-autopublisher-v2.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/proof-gradient-command-center-autopublisher-v2.yml"
     },
     {
       "conclusion": "success",
       "event": "push",
-      "name": "Refresh SkillOS Public Command Center",
-      "path": ".github/workflows/refresh-skillos-command-center.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-refresh-skillos-command-center-github-refresh-skillos-command-center-refresh-skillos-command.html",
-      "proof_title": "Refresh SkillOS Public Command Center",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158911",
+      "name": "Refresh Proof Gradient Public Command Center",
+      "path": ".github/workflows/refresh-proof-gradient-command-center.yml",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-refresh-proof-gradient-command-center-github-refresh-proof-gradient-command-center-refresh-skillos-command.html",
+      "proof_title": "Refresh Proof Gradient Public Command Center",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158911",
       "status": "completed",
       "updated_at": "2026-06-01T16:01:07Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/refresh-skillos-command-center.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/refresh-proof-gradient-command-center.yml"
     },
     {
       "conclusion": "success",
       "event": "push",
-      "name": "SkillOS Public Command Center v3 Autopublisher",
-      "path": ".github/workflows/skillos-command-center-autopublisher-v3.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-skillos-command-center-v3-autopublisher-github-skillos-command-center-autopublisher-v3-skillos.html",
-      "proof_title": "SkillOS Public Command Center v3 Autopublisher",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158948",
+      "name": "Proof Gradient Public Command Center v3 Autopublisher",
+      "path": ".github/workflows/proof-gradient-command-center-autopublisher-v3.yml",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-proof-gradient-command-center-v3-autopublisher-github-proof-gradient-command-center-autopublisher-v3-skillos.html",
+      "proof_title": "Proof Gradient Public Command Center v3 Autopublisher",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158948",
       "status": "completed",
       "updated_at": "2026-06-01T16:00:14Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/skillos-command-center-autopublisher-v3.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/proof-gradient-command-center-autopublisher-v3.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Revenue Experiment Factory Market Proof",
       "path": ".github/workflows/rsi-revenue-experiment-factory-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-revenue-experiment-factory-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-revenue-experiment-factory-proof.html",
       "proof_title": "Autonomous RSI Revenue Experiment Factory Market Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765529280",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765529280",
       "status": "completed",
       "updated_at": "2026-06-01T15:45:33Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-revenue-experiment-factory-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-revenue-experiment-factory-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Marketplace Flywheel Market Proof",
       "path": ".github/workflows/rsi-marketplace-flywheel-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-marketplace-flywheel-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-marketplace-flywheel-proof.html",
       "proof_title": "Autonomous RSI Marketplace Flywheel Market Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765184136",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765184136",
       "status": "completed",
       "updated_at": "2026-06-01T15:39:21Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-marketplace-flywheel-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-marketplace-flywheel-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "push",
       "name": "SkillOS tests",
       "path": ".github/workflows/tests.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-skillos-tests-github-tests-skillos-tests-skillos-tests.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-skillos-tests-github-tests-skillos-tests-skillos-tests.html",
       "proof_title": "SkillOS tests",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26765158816",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26765158816",
       "status": "completed",
       "updated_at": "2026-06-01T15:38:34Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/tests.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/tests.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Unit Economics Profit Engine Market Proof",
       "path": ".github/workflows/rsi-unit-economics-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-unit-economics-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-unit-economics-proof.html",
       "proof_title": "Autonomous RSI Unit Economics Profit Engine Market Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26764702021",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26764702021",
       "status": "completed",
       "updated_at": "2026-06-01T15:30:52Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-unit-economics-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-unit-economics-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Metamaterials Discovery Market Proof",
       "path": ".github/workflows/rsi-metamaterials-discovery-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-metamaterials-discovery-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-metamaterials-discovery-proof.html",
       "proof_title": "Autonomous RSI Metamaterials Discovery Market Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26764182657",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26764182657",
       "status": "completed",
       "updated_at": "2026-06-01T15:22:40Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-metamaterials-discovery-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-metamaterials-discovery-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Corporate Operating System Market Proof",
       "path": ".github/workflows/rsi-corporate-os-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-corporate-os-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-corporate-os-proof.html",
       "proof_title": "Autonomous RSI Corporate Operating System Market Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26764069011",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26764069011",
       "status": "completed",
       "updated_at": "2026-06-01T15:20:16Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-corporate-os-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-corporate-os-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Silicon Verification Market Proof",
       "path": ".github/workflows/rsi-silicon-verification-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-silicon-verification-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-silicon-verification-proof.html",
       "proof_title": "Autonomous RSI Silicon Verification Market Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26762754821",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26762754821",
       "status": "completed",
       "updated_at": "2026-06-01T14:55:42Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-silicon-verification-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-silicon-verification-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI Cyber Defense Market Proof",
       "path": ".github/workflows/rsi-cyberdefense-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-cyber-defense.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-cyber-defense.html",
       "proof_title": "Autonomous RSI Cyber Defense Market Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26761918829",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26761918829",
       "status": "completed",
       "updated_at": "2026-06-01T14:40:59Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-cyberdefense-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-cyberdefense-proof.yml"
     },
     {
       "conclusion": "success",
       "event": "schedule",
       "name": "Autonomous RSI CloudOps Market Proof",
       "path": ".github/workflows/rsi-cloudops-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-cloudops-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-cloudops-proof.html",
       "proof_title": "Autonomous RSI CloudOps Market Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26761348132",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26761348132",
       "status": "completed",
       "updated_at": "2026-06-01T14:32:29Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/rsi-cloudops-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/rsi-cloudops-proof.yml"
     },
     {
       "conclusion": "failure",
       "event": "schedule",
       "name": "Autonomous Enterprise Ops Market Proof",
       "path": ".github/workflows/enterprise-ops-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-enterprise-ops-github-enterprise-ops-enterprise-ops-enterprise-ops.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-enterprise-ops-github-enterprise-ops-enterprise-ops-enterprise-ops.html",
       "proof_title": "Autonomous Enterprise Ops Market Proof",
-      "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26761163431",
+      "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26761163431",
       "status": "completed",
       "updated_at": "2026-06-01T14:27:29Z",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/enterprise-ops-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/enterprise-ops-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
-      "name": "_SkillOS Public Proof Command Center Refresh Reusable",
-      "path": ".github/workflows/_skillos-public-proof-command-center-refresh-reusable.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-refresh-skillos-command-center-github-refresh-skillos-command-center-refresh-skillos-command.html",
-      "proof_title": "Refresh SkillOS Public Command Center",
+      "name": "_Proof Gradient Public Proof Command Center Refresh Reusable",
+      "path": ".github/workflows/_proof-gradient-public-proof-command-center-refresh-reusable.yml",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-refresh-proof-gradient-command-center-github-refresh-proof-gradient-command-center-refresh-skillos-command.html",
+      "proof_title": "Refresh Proof Gradient Public Command Center",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/_skillos-public-proof-command-center-refresh-reusable.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/_proof-gradient-public-proof-command-center-refresh-reusable.yml"
     },
     {
       "conclusion": null,
       "event": null,
-      "name": "_SkillOS Public Site Refresh Reusable",
-      "path": ".github/workflows/_skillos-public-site-refresh-reusable.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-refresh-skillos-command-center-github-refresh-skillos-command-center-refresh-skillos-command.html",
-      "proof_title": "Refresh SkillOS Public Command Center",
+      "name": "_Proof Gradient Public Site Refresh Reusable",
+      "path": ".github/workflows/_proof-gradient-public-site-refresh-reusable.yml",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-refresh-proof-gradient-command-center-github-refresh-proof-gradient-command-center-refresh-skillos-command.html",
+      "proof_title": "Refresh Proof Gradient Public Command Center",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/_skillos-public-site-refresh-reusable.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/_proof-gradient-public-site-refresh-reusable.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Fully Autonomous Market-Readiness Proof",
       "path": ".github/workflows/autonomous-market-readiness.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-fully-readiness-github-readiness-fully-readiness-fully-readiness.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-fully-readiness-github-readiness-fully-readiness-fully-readiness.html",
       "proof_title": "Fully Autonomous Market-Readiness Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-market-readiness.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-market-readiness.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Adversarial Benchmark Foundry Proof",
       "path": ".github/workflows/autonomous-rsi-adversarial-benchmark-foundry-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-adversarial-foundry-github-adversarial-foundry-adversarial-foundry-adversarial-foundry.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-adversarial-foundry-github-adversarial-foundry-adversarial-foundry-adversarial-foundry.html",
       "proof_title": "Autonomous RSI Adversarial Benchmark Foundry Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-adversarial-benchmark-foundry-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-adversarial-benchmark-foundry-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI AI-First Blockchain Capital Machine Proof",
       "path": ".github/workflows/autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-ai-first-blockchain-capital-machine-github-ai-first-blockchain-capital-machine-ai.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-ai-first-blockchain-capital-machine-github-ai-first-blockchain-capital-machine-ai.html",
       "proof_title": "Autonomous RSI AI-First Blockchain Capital Machine Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI AI-First Governance Capital Engine Proof",
       "path": ".github/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-ai-first-governance-capital-engine-github-ai-first-governance-capital-engine-ai.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-ai-first-governance-capital-engine-github-ai-first-governance-capital-engine-ai.html",
       "proof_title": "Autonomous RSI AI-First Governance Capital Engine Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Blockchain Protocol Capital Frontier Proof",
       "path": ".github/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-blockchain-protocol-capital-frontier-github-blockchain-protocol-capital-frontier-blockchain-protocol-capital.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-blockchain-protocol-capital-frontier-github-blockchain-protocol-capital-frontier-blockchain-protocol-capital.html",
       "proof_title": "Autonomous RSI Blockchain Protocol Capital Frontier Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-blockchain-protocol-capital-frontier-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Capability Assurance Case Graph Proof",
       "path": ".github/workflows/autonomous-rsi-capability-assurance-case-graph-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-capability-assurance-case-graph-github-capability-assurance-case-graph-capability-assurance-case.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-capability-assurance-case-graph-github-capability-assurance-case-graph-capability-assurance-case.html",
       "proof_title": "Autonomous RSI Capability Assurance Case Graph Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-assurance-case-graph-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-assurance-case-graph-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Capability Economy Clearinghouse Proof",
       "path": ".github/workflows/autonomous-rsi-capability-economy-clearinghouse-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-capability-economy-clearinghouse-github-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-capability-economy-clearinghouse-github-capability-economy-clearinghouse-capability-economy-clearinghouse-capability-economy.html",
       "proof_title": "Autonomous RSI Capability Economy Clearinghouse Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-economy-clearinghouse-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-economy-clearinghouse-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Capability Governance Twin Proof",
       "path": ".github/workflows/autonomous-rsi-capability-governance-twin-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-capability-governance-twin-github-capability-governance-twin-capability-governance-twin-capability-governance.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-capability-governance-twin-github-capability-governance-twin-capability-governance-twin-capability-governance.html",
       "proof_title": "Autonomous RSI Capability Governance Twin Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-governance-twin-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-governance-twin-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Capability Liquidity Engine Proof",
       "path": ".github/workflows/autonomous-rsi-capability-liquidity-engine-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-capability-liquidity-engine-github-capability-liquidity-engine-capability-liquidity-engine-capability-liquidity.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-capability-liquidity-engine-github-capability-liquidity-engine-capability-liquidity-engine-capability-liquidity.html",
       "proof_title": "Autonomous RSI Capability Liquidity Engine Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-liquidity-engine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-liquidity-engine-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Capability SLA Reliability Mesh Proof",
       "path": ".github/workflows/autonomous-rsi-capability-sla-reliability-mesh-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-capability-sla-reliability-mesh-github-capability-sla-reliability-mesh-capability-sla-reliability.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-capability-sla-reliability-mesh-github-capability-sla-reliability-mesh-capability-sla-reliability.html",
       "proof_title": "Autonomous RSI Capability SLA Reliability Mesh Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-sla-reliability-mesh-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-sla-reliability-mesh-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Capability Treasury Flywheel Proof",
       "path": ".github/workflows/autonomous-rsi-capability-treasury-flywheel-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-capability-treasury-flywheel-github-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-capability-treasury-flywheel-github-capability-treasury-flywheel-capability-treasury-flywheel-capability-treasury.html",
       "proof_title": "Autonomous RSI Capability Treasury Flywheel Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-capability-treasury-flywheel-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-capability-treasury-flywheel-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Causal Attribution Engine Proof",
       "path": ".github/workflows/autonomous-rsi-causal-attribution-engine-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-causal-attribution-engine-github-causal-attribution-engine-causal-attribution-engine-causal-attribution.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-causal-attribution-engine-github-causal-attribution-engine-causal-attribution-engine-causal-attribution.html",
       "proof_title": "Autonomous RSI Causal Attribution Engine Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-causal-attribution-engine-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-causal-attribution-engine-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Continual Capability Frontier Proof",
       "path": ".github/workflows/autonomous-rsi-continual-capability-frontier-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-continual-capability-frontier-github-continual-capability-frontier-continual-capability-frontier-continual-capability.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-continual-capability-frontier-github-continual-capability-frontier-continual-capability-frontier-continual-capability.html",
       "proof_title": "Autonomous RSI Continual Capability Frontier Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-continual-capability-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-continual-capability-frontier-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Corporate Capability Frontier Proof",
       "path": ".github/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-corporate-capability-frontier-github-corporate-capability-frontier-corporate-capability-frontier-corporate-capability.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-corporate-capability-frontier-github-corporate-capability-frontier-corporate-capability-frontier-corporate-capability.html",
       "proof_title": "Autonomous RSI Corporate Capability Frontier Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-corporate-capability-frontier-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Corporate Strategy Frontier Proof",
       "path": ".github/workflows/autonomous-rsi-corporate-strategy-frontier-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-corporate-strategy-frontier-github-corporate-strategy-frontier-corporate-strategy-frontier-corporate-strategy.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-corporate-strategy-frontier-github-corporate-strategy-frontier-corporate-strategy-frontier-corporate-strategy.html",
       "proof_title": "Autonomous RSI Corporate Strategy Frontier Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-corporate-strategy-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-corporate-strategy-frontier-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Cross-Domain Capability Transfer Atlas Proof",
       "path": ".github/workflows/autonomous-rsi-cross-domain-capability-transfer-atlas-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-cross-domain-capability-transfer-atlas-github-cross-domain-capability-transfer-atlas-cross.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-cross-domain-capability-transfer-atlas-github-cross-domain-capability-transfer-atlas-cross.html",
       "proof_title": "Autonomous RSI Cross-Domain Capability Transfer Atlas Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-cross-domain-capability-transfer-atlas-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-cross-domain-capability-transfer-atlas-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Enterprise Capability Foundry Proof",
       "path": ".github/workflows/autonomous-rsi-enterprise-capability-foundry-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-enterprise-capability-foundry-github-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-enterprise-capability-foundry-github-enterprise-capability-foundry-enterprise-capability-foundry-enterprise-capability.html",
       "proof_title": "Autonomous RSI Enterprise Capability Foundry Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-enterprise-capability-foundry-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-enterprise-capability-foundry-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Enterprise Eureka Factory Proof",
       "path": ".github/workflows/autonomous-rsi-enterprise-eureka-factory-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/rsi-enterprise-eureka-factory-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/rsi-enterprise-eureka-factory-proof.html",
       "proof_title": "Autonomous RSI Enterprise Eureka Factory Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-enterprise-eureka-factory-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-enterprise-eureka-factory-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Enterprise Superorganization Proof",
       "path": ".github/workflows/autonomous-rsi-enterprise-superorganization-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-enterprise-superorganization-github-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-enterprise-superorganization-github-enterprise-superorganization-enterprise-superorganization-enterprise-superorganization.html",
       "proof_title": "Autonomous RSI Enterprise Superorganization Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-enterprise-superorganization-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-enterprise-superorganization-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Fork-Resistant Capability Network Proof",
       "path": ".github/workflows/autonomous-rsi-fork-resistant-capability-network-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-fork-resistant-capability-network-github-fork-resistant-capability-network-fork-resistant-capability.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-fork-resistant-capability-network-github-fork-resistant-capability-network-fork-resistant-capability.html",
       "proof_title": "Autonomous RSI Fork-Resistant Capability Network Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-fork-resistant-capability-network-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-fork-resistant-capability-network-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Full-Stack Capability Lifecycle Proof",
       "path": ".github/workflows/autonomous-rsi-full-stack-capability-lifecycle-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-full-stack-capability-lifecycle-github-full-stack-capability-lifecycle-full-stack-capability.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-full-stack-capability-lifecycle-github-full-stack-capability-lifecycle-full-stack-capability.html",
       "proof_title": "Autonomous RSI Full-Stack Capability Lifecycle Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-full-stack-capability-lifecycle-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-full-stack-capability-lifecycle-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Governance Frontier Proof",
       "path": ".github/workflows/autonomous-rsi-governance-frontier-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-governance-frontier-github-governance-frontier-governance-frontier-governance-frontier.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-governance-frontier-github-governance-frontier-governance-frontier-governance-frontier.html",
       "proof_title": "Autonomous RSI Governance Frontier Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-governance-frontier-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-governance-frontier-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Objective Integrity Firewall Proof",
       "path": ".github/workflows/autonomous-rsi-objective-integrity-firewall-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-objective-integrity-firewall-github-objective-integrity-firewall-objective-integrity-firewall-objective-integrity.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-objective-integrity-firewall-github-objective-integrity-firewall-objective-integrity-firewall-objective-integrity.html",
       "proof_title": "Autonomous RSI Objective Integrity Firewall Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-objective-integrity-firewall-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-objective-integrity-firewall-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Open Replication Mesh Proof",
       "path": ".github/workflows/autonomous-rsi-open-replication-mesh-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-open-replication-mesh-github-open-replication-mesh-open-replication-mesh-open-replication.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-open-replication-mesh-github-open-replication-mesh-open-replication-mesh-open-replication.html",
       "proof_title": "Autonomous RSI Open Replication Mesh Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-open-replication-mesh-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-open-replication-mesh-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Proof Forge Meta-Coordination Proof",
       "path": ".github/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-forge-meta-coordination-github-forge-meta-coordination-forge-meta-coordination-forge-meta.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-forge-meta-coordination-github-forge-meta-coordination-forge-meta-coordination-forge-meta.html",
       "proof_title": "Autonomous RSI Proof Forge Meta-Coordination Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Skill Compounding Moat Proof",
       "path": ".github/workflows/autonomous-rsi-skill-compounding-moat-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-skill-compounding-moat-github-skill-compounding-moat-skill-compounding-moat-skill-compounding.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-skill-compounding-moat-github-skill-compounding-moat-skill-compounding-moat-skill-compounding.html",
       "proof_title": "Autonomous RSI Skill Compounding Moat Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-skill-compounding-moat-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-skill-compounding-moat-proof.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous RSI Skill Provenance Ledger Proof",
       "path": ".github/workflows/autonomous-rsi-skill-provenance-ledger-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/proof-skill-provenance-ledger-github-skill-provenance-ledger-skill-provenance-ledger-skill-provenance.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/proof-skill-provenance-ledger-github-skill-provenance-ledger-skill-provenance-ledger-skill-provenance.html",
       "proof_title": "Autonomous RSI Skill Provenance Ledger Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/autonomous-rsi-skill-provenance-ledger-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/autonomous-rsi-skill-provenance-ledger-proof.yml"
     },
     {
       "conclusion": null,
@@ -7454,19 +7454,19 @@
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/safe-public-copy-check.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/safe-public-copy-check.yml"
     },
     {
       "conclusion": null,
       "event": null,
       "name": "Autonomous Shadow Pilot Proof",
       "path": ".github/workflows/shadow-pilot-proof.yml",
-      "proof_page_url": "https://montrealai.github.io/skillos/shadow-pilot-proof.html",
+      "proof_page_url": "https://montrealai.github.io/proof-gradient/shadow-pilot-proof.html",
       "proof_title": "Autonomous Shadow Pilot Proof",
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/shadow-pilot-proof.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/shadow-pilot-proof.yml"
     },
     {
       "conclusion": null,
@@ -7478,7 +7478,7 @@
       "run_url": null,
       "status": "not_run",
       "updated_at": "",
-      "workflow_url": "https://github.com/MontrealAI/skillos/blob/main/.github/workflows/skillos-run-all-public-proofs.yml"
+      "workflow_url": "https://github.com/MontrealAI/proof-gradient/blob/main/.github/workflows/skillos-run-all-public-proofs.yml"
     }
   ]
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Autonomous SkillOS Public Command Center builder.
+"""Autonomous Proof Gradient Public Command Center builder.
 
 This script scans the repository and regenerates the public SkillOS command
 center from proof receipts, workflows, badges, docs, and generated proof pages.
@@ -27,8 +27,8 @@ BADGES = ROOT / "badges"
 WORKFLOWS = ROOT / ".github" / "workflows"
 MANIFEST = SITE / "data" / "command-center-manifest.json"
 
-REPO = os.environ.get("GITHUB_REPOSITORY", "MontrealAI/skillos")
-LIVE_URL = os.environ.get("SKILLOS_LIVE_URL", "https://montrealai.github.io/skillos/")
+REPO = os.environ.get("GITHUB_REPOSITORY", "MontrealAI/proof-gradient")
+LIVE_URL = os.environ.get("PROOF_GRADIENT_LIVE_URL", "https://montrealai.github.io/proof-gradient/")
 REPO_URL = f"https://github.com/{REPO}"
 ACTIONS_URL = f"{REPO_URL}/actions"
 
@@ -369,7 +369,7 @@ table{width:100%;border-collapse:collapse;background:var(--panel);border:1px sol
 """
 
 def render_head(title: str) -> str:
-    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)}</title><style>{css()}</style></head><body><nav><strong>SkillOS Command Center</strong><div><a href="index.html">Home</a><a href="proofs.html">Proofs</a><a href="actions.html">Run Proofs</a><a href="data/command-center-manifest.json">Manifest</a></div></nav><main>"""
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)}</title><style>{css()}</style></head><body><nav><strong>Proof Gradient Command Center</strong><div><a href="index.html">Home</a><a href="proofs.html">Proofs</a><a href="actions.html">Run Proofs</a><a href="data/command-center-manifest.json">Manifest</a></div></nav><main>"""
 
 def render_foot() -> str:
     return f"""<section class="notice"><strong>Public boundary:</strong> {esc(SAFE_BOUNDARY)}</section></main></body></html>"""
@@ -420,8 +420,8 @@ def render_index(proofs: list[dict[str, Any]], workflows: list[dict[str, Any]], 
     run_updates = [r for r in runs.values() if r.get("updated_at")]
     latest_run = max([r["updated_at"] for r in run_updates], default="best effort")
 
-    html = render_head("SkillOS Public Command Center")
-    html += f"""<section class="hero"><div><div class="eyebrow">Public SkillOS Command Center</div><h1>Autonomous proof, always refreshed.</h1><p>The SkillOS website is regenerated from the repository itself: proof receipts, workflow files, badges, Markdown reports, skills catalogs, and GitHub Actions outputs.</p><p><a class="button" href="proofs.html">Explore proofs</a><a class="button secondary" href="actions.html">Run proofs</a><a class="button secondary" href="{esc(REPO_URL)}">Open GitHub</a></p></div><div class="card feature"><div class="eyebrow">What this page guarantees</div><div class="quote">No manual homepage curation required. Every refresh scans the repo, rebuilds the command center, verifies the Skills Used displays, and republishes the proof registry.</div><p class="small">Generated at {esc(generated_at)}. Latest GitHub run status is fetched best-effort when the GitHub token is available.</p></div></section>
+    html = render_head("Proof Gradient Public Command Center")
+    html += f"""<section class="hero"><div><div class="eyebrow">Proof Gradient Command Center</div><h1>Autonomous proof, always refreshed.</h1><p>The SkillOS website is regenerated from the repository itself: proof receipts, workflow files, badges, Markdown reports, skills catalogs, and GitHub Actions outputs.</p><p><a class="button" href="proofs.html">Explore proofs</a><a class="button secondary" href="actions.html">Run proofs</a><a class="button secondary" href="{esc(REPO_URL)}">Open GitHub</a></p></div><div class="card feature"><div class="eyebrow">What this page guarantees</div><div class="quote">No manual homepage curation required. Every refresh scans the repo, rebuilds the command center, verifies the Skills Used displays, and republishes the proof registry.</div><p class="small">Generated at {esc(generated_at)}. Latest GitHub run status is fetched best-effort when the GitHub token is available.</p></div></section>
 <section class="grid"><div class="metric"><strong>{proof_count}</strong><span>proof receipts found</span></div><div class="metric"><strong>{proved_count}</strong><span>passed proof receipts</span></div><div class="metric"><strong>{workflow_count}</strong><span>workflow files found</span></div><div class="metric"><strong>{skills_count}</strong><span>unique skills displayed</span></div></section>
 <section class="card"><div class="eyebrow">Core public explanation</div><div class="quote">work → traces → skills → verification → releases → routing upgrades → compounding capability</div><p>SkillOS makes this loop visible. The public site shows the proof visually; GitHub Actions shows the proof regenerating; JSON receipts show machine-readable evidence; Skills Used cards show what the agent system actually did.</p></section>
 <section><h2>Latest proof pages</h2><div class="proof-grid">{''.join(proof_card(p) for p in latest) or '<div class="card"><p>No proof receipts found yet.</p></div>'}</div><p><a class="button" href="proofs.html">View all proofs</a></p></section>
@@ -458,7 +458,7 @@ def render_actions(workflows: list[dict[str, Any]], runs: dict[str, dict[str, st
 
 def render_docs(proofs: list[dict[str, Any]], workflows: list[dict[str, Any]], generated_at: str) -> None:
     DOCS.mkdir(parents=True, exist_ok=True)
-    text = f"""# SkillOS Public Command Center
+    text = f"""# Proof Gradient Public Command Center
 
 Generated: `{generated_at}`
 
@@ -501,7 +501,7 @@ workflow files indexed: {len(workflows)}
 
 ## Viewer instructions
 
-1. Open `https://montrealai.github.io/skillos/`.
+1. Open `https://montrealai.github.io/proof-gradient/`.
 2. Click a proof card.
 3. Read the visual proof page and Skills Used section.
 4. Open the JSON receipt for machine-readable evidence.
@@ -525,7 +525,7 @@ def render_sitemap(proofs: list[dict[str, Any]]) -> None:
             seen.append(u)
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{esc(u)}</loc></url>\n" for u in seen) + "</urlset>\n"
     atomic_write(SITE / "sitemap.xml", xml)
-    atomic_write(SITE / "robots.txt", "User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n")
+    atomic_write(SITE / "robots.txt", "User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n")
 
 def main() -> None:
     generated_at = utc_now()

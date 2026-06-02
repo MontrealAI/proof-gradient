@@ -12,7 +12,7 @@ CARD = """
   <p style="color:#aab8c8;font-size:18px;max-width:780px">Runs entirely in GitHub Actions with no human review, no emails sent, no customers contacted, no private data, no API keys, and a deterministic holdout benchmark.</p>
   <p>
     <a href="autonomous-market-readiness.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View autonomous proof</a>
-    <a href="https://github.com/MontrealAI/skillos/actions/workflows/autonomous-market-readiness.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-market-readiness.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
   </p>
 </section>
 """.strip()

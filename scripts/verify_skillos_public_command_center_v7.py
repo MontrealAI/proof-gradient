@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 
 SCHEMA="skillos.public_command_center.root_authority.v7.1"
 MARKER="SKILLOS_PUBLIC_COMMAND_CENTER_V7_1_ROOT_AUTHORITY"
-FORBIDDEN=["Autonomous Proof Command Center","SkillOS Proof Command Center","SkillOS Public Command Center v2","SkillOS Public Command Center v3","SkillOS Sovereign Command Center v5"]
+FORBIDDEN=["Autonomous Proof Command Center","SkillOS Proof Command Center","Proof Gradient Public Command Center v2","Proof Gradient Public Command Center v3","SkillOS Sovereign Command Center v5"]
 
 class LinkParser(HTMLParser):
     def __init__(self): super().__init__(); self.links=[]
@@ -28,7 +28,7 @@ def main() -> None:
     out=Path(args.out).resolve()
     index=read(out/'index.html')
     if MARKER not in index: fail('Root index missing v7.1 marker')
-    if 'Public SkillOS Command Center' not in index: fail('Root index is not the Public SkillOS Command Center')
+    if 'Proof Gradient Command Center' not in index: fail('Root index is not the Proof Gradient Command Center')
     for phrase in FORBIDDEN:
         if phrase in index: fail(f'Forbidden legacy phrase appears in root: {phrase}')
     if '<h1>Capability Governance Twin' in index or '<h1>Capability Governance Twin</h1>' in index:
@@ -55,6 +55,6 @@ def main() -> None:
         if not (out/href).exists(): missing.append(href)
     if missing:
         fail('Missing internal links: '+', '.join(sorted(set(missing))[:20]))
-    print(json.dumps({'status':'VERIFIED','schema':SCHEMA,'marker':MARKER,'root':'Public SkillOS Command Center','flagship':'capability-governance-twin.html','proofs':len(registry.get('proofs',[])),'skills_page_verified':True}, indent=2, sort_keys=True))
+    print(json.dumps({'status':'VERIFIED','schema':SCHEMA,'marker':MARKER,'root':'Proof Gradient Command Center','flagship':'capability-governance-twin.html','proofs':len(registry.get('proofs',[])),'skills_page_verified':True}, indent=2, sort_keys=True))
 
 if __name__=='__main__': main()

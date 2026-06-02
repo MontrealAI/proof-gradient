@@ -86,9 +86,9 @@ def main() -> None:
         index.write_text(f"""<!doctype html><html><head><meta charset="utf-8"><title>SkillOS Proofs</title><style>body{{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;background:#071421;color:#eef;padding:40px}}a{{color:#86f8ff}}.proof-card{{border:1px solid rgba(255,255,255,.2);border-radius:24px;padding:24px;max-width:960px}}.button{{display:inline-block;padding:10px 14px;border-radius:999px;background:#86f8ff;color:#071421;text-decoration:none;font-weight:800}}.secondary{{background:transparent;color:#eef;border:1px solid rgba(255,255,255,.3)}}.metric-row{{display:flex;gap:12px;flex-wrap:wrap}}.metric-row span{{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.08)}}.eyebrow{{color:#86f8ff;text-transform:uppercase;letter-spacing:.15em}}</style></head><body><main>{card}</main></body></html>""", encoding="utf-8")
 
     pages = ["index.html", PAGE]
-    sitemap = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" + "\n".join(f"  <url><loc>https://montrealai.github.io/skillos/{p}</loc></url>" for p in pages) + "\n</urlset>\n"
+    sitemap = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" + "\n".join(f"  <url><loc>https://montrealai.github.io/proof-gradient/{p}</loc></url>" for p in pages) + "\n</urlset>\n"
     (SITE / "sitemap.xml").write_text(sitemap, encoding="utf-8")
-    (SITE / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n", encoding="utf-8")
+    (SITE / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n", encoding="utf-8")
     print(json.dumps({"status": "PUBLISHED_TO_HUB", "page": f"site/{PAGE}", "registry": "site/proof-registry.json"}, indent=2))
 
 if __name__ == "__main__":

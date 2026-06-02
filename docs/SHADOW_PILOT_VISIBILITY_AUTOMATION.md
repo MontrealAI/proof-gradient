@@ -21,9 +21,9 @@ It is not audited customer results, financial advice, or a guarantee of future o
 
 ## Main public links
 
-- Main SkillOS site: https://montrealai.github.io/skillos/
-- Shadow Pilot Proof page: https://montrealai.github.io/skillos/shadow-pilot-proof.html
-- GitHub Action: https://github.com/MontrealAI/skillos/actions/workflows/shadow-pilot-proof.yml
+- Main SkillOS site: https://montrealai.github.io/proof-gradient/
+- Shadow Pilot Proof page: https://montrealai.github.io/proof-gradient/shadow-pilot-proof.html
+- GitHub Action: https://github.com/MontrealAI/proof-gradient/actions/workflows/shadow-pilot-proof.yml
 
 ## Best meeting explanation
 

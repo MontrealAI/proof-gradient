@@ -31,7 +31,7 @@ badges/shadow_pilot_proof.svg
 If the regular GitHub Pages workflow runs after the generated proof is committed, the HTML page should become available at:
 
 ```text
-https://montrealai.github.io/skillos/shadow-pilot-proof.html
+https://montrealai.github.io/proof-gradient/shadow-pilot-proof.html
 ```
 
 ## Safe interpretation

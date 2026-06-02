@@ -20,14 +20,14 @@ SCHEMA = "skillos.flagship.capability_governance_twin.launch.v1"
 MARKER = "SKILLOS_FLAGSHIP_GOVERNANCE_TWIN_LAUNCH_V1"
 PROOF_ID = "rsi-capability-governance-twin-proof"
 FLAGSHIP_ID = "skillos-flagship-capability-governance-twin-launch"
-REPO = os.environ.get("GITHUB_REPOSITORY", "MontrealAI/skillos")
+REPO = os.environ.get("GITHUB_REPOSITORY", "MontrealAI/proof-gradient")
 PAGES_BASE = f"https://{REPO.split('/')[0].lower()}.github.io/{REPO.split('/')[-1]}/"
 
 OLD_PHRASES = [
     "Autonomous Proof Command Center",
     "SkillOS Proof Command Center",
-    "Public SkillOS Command Center v2",
-    "SkillOS Public Command Center v3",
+    "Proof Gradient Command Center v2",
+    "Proof Gradient Public Command Center v3",
 ]
 
 DEFAULT_SKILLS = [

@@ -1,6 +1,6 @@
-# SkillOS Public Command Center Autopublisher
+# Proof Gradient Public Command Center Autopublisher
 
-This patch makes `https://montrealai.github.io/skillos/` regenerate automatically from the repository itself.
+This patch makes `https://montrealai.github.io/proof-gradient/` regenerate automatically from the repository itself.
 
 ## What it does
 

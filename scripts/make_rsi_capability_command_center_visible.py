@@ -12,7 +12,7 @@ CARD = """
   <p style="color:#aab8c8;font-size:18px;max-width:980px">A 100% autonomous GitHub Actions proof coordinating a 320-agent specialist organization across 32 roles to test capital, compute, energy, data, trust, talent, product, distribution, validation, risk control, and reinvestment as a compounding business-capability engine. Includes adversarial traps, ablations, pre-registered gates, proof receipts, and safe Kardashev-scale framing.</p>
   <p>
     <a href="rsi-capability-command-center-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View capability proof</a>
-    <a href="https://github.com/MontrealAI/skillos/actions/workflows/rsi-capability-command-center-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-capability-command-center-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
   </p>
 </section>
 """.strip()

@@ -13,7 +13,7 @@ Inputs:
 
 Verify:
 
-- `https://montrealai.github.io/skillos/data/command-center-manifest.json` contains `skillos.command_center.sovereign.v5`
-- `https://montrealai.github.io/skillos/?v=sovereign-v5` contains `SKILLOS_COMMAND_CENTER_V5_CANONICAL_ROOT`
-- `https://montrealai.github.io/skillos/index.html?v=sovereign-v5` contains `SKILLOS_COMMAND_CENTER_V5_CANONICAL_ROOT`
+- `https://montrealai.github.io/proof-gradient/data/command-center-manifest.json` contains `skillos.command_center.sovereign.v5`
+- `https://montrealai.github.io/proof-gradient/?v=sovereign-v5` contains `SKILLOS_COMMAND_CENTER_V5_CANONICAL_ROOT`
+- `https://montrealai.github.io/proof-gradient/index.html?v=sovereign-v5` contains `SKILLOS_COMMAND_CENTER_V5_CANONICAL_ROOT`
 - Neither page contains `Autonomous Proof Command Center`.

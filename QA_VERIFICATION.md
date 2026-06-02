@@ -28,7 +28,7 @@ What is checked:
 - reference workflow proof generation at `data/wealth_proof.json` and `dist/data/wealth_proof.json`.
 - Monotonic economic checks: every release decreases cost, decreases minutes, increases quality, and increases accepted rate.
 - `dist/index.html`, `dist/styles.css`, `dist/app.js`, `dist/data/demo.json`, `dist/data/wealth_proof.json`, `.nojekyll`, and manifest creation.
-- Repository targets `MontrealAI/skillos` and `https://montrealai.github.io/skillos/`.
+- Repository targets `MontrealAI/proof-gradient` and `https://montrealai.github.io/proof-gradient/`.
 - JavaScript syntax for the static website.
 - Root-level fallback website mirror is included for branch-root GitHub Pages deployment.
 

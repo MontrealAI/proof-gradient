@@ -418,7 +418,7 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <main>
 <section class="hero">
 <div>
-<div class="eyebrow">MONTREAL.AI / SKILLOS</div>
+<div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div>
 <h1>Enterprise Ops Market Proof</h1>
 <p>100% autonomous GitHub Actions proof for procurement invoice reconciliation and payment-risk triage.</p>
 </div>
@@ -458,9 +458,9 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <strong>Boundary:</strong> This is a fully autonomous reference proof using deterministic synthetic/redacted-style data. It is not audited customer ROI, financial advice, investment advice, or a guarantee of future outcomes.
 </section>
 <p class="links">
-<a href="https://github.com/MontrealAI/skillos/actions/workflows/enterprise-ops-proof.yml">Run in GitHub Actions</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/docs/enterprise_ops_market_proof.md">Markdown report</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/data/enterprise_ops_market_proof.json">JSON proof</a>
+<a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/enterprise-ops-proof.yml">Run in GitHub Actions</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/docs/enterprise_ops_market_proof.md">Markdown report</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/data/enterprise_ops_market_proof.json">JSON proof</a>
 </p>
 </main>
 </body>

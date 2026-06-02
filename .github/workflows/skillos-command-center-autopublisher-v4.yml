@@ -1,4 +1,4 @@
-name: Retired legacy SkillOS site refresh
+name: Retargeted legacy Proof Gradient site refresh
 
 on:
   workflow_dispatch:

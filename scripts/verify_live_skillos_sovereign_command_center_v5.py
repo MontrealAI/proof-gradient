@@ -8,7 +8,7 @@ import urllib.request
 from urllib.parse import urljoin
 
 MARKER = "SKILLOS_COMMAND_CENTER_V5_1_CANONICAL_ROOT"
-FORBIDDEN = ["Autonomous Proof Command Center", "SkillOS Public Command Center v2", "SkillOS Public Command Center v3"]
+FORBIDDEN = ["Autonomous Proof Command Center", "Proof Gradient Public Command Center v2", "Proof Gradient Public Command Center v3"]
 
 def fetch(url: str) -> str:
     req = urllib.request.Request(url, headers={"Cache-Control": "no-cache", "Pragma": "no-cache", "User-Agent": "SkillOS-v5.1-live-verifier"})
@@ -38,7 +38,7 @@ def check(base: str) -> dict:
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--base-url", default="https://montrealai.github.io/skillos/")
+    p.add_argument("--base-url", default="https://montrealai.github.io/proof-gradient/")
     p.add_argument("--retries", type=int, default=12)
     p.add_argument("--sleep", type=int, default=10)
     args = p.parse_args()

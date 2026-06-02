@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse, json, os, time, urllib.request
 from typing import Any
 
-REPO = os.environ.get("GITHUB_REPOSITORY", "MontrealAI/skillos")
+REPO = os.environ.get("GITHUB_REPOSITORY", "MontrealAI/proof-gradient")
 TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or ""
 REF = os.environ.get("GITHUB_REF_NAME", "main")
 SERVER_URL = os.environ.get("GITHUB_SERVER_URL", "https://github.com")

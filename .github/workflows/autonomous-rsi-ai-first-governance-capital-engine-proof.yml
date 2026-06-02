@@ -35,7 +35,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: skillos-rsi-ai-first-governance-capital-engine
+  group: -rsi-ai-first-governance-capital-engine
   cancel-in-progress: true
 
 jobs:

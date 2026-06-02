@@ -172,7 +172,7 @@ def main() -> None:
 <main>
 <section class="hero">
   <div>
-    <div class="eyebrow">MONTREAL.AI / SKILLOS</div>
+    <div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div>
     <h1>Enterprise Superorganization.</h1>
     <p>Autonomous proof that a large specialist-agent superorganization recursively improves the coordination protocol that turns enterprise resources into compounding productive capability.</p>
   </div>

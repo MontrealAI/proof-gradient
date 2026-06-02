@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
 SLUG = "rsi-corporate-strategy-frontier-proof"
-BASE_URL = "https://montrealai.github.io/skillos/"
+BASE_URL = "https://montrealai.github.io/proof-gradient/"
 
 
 def fail(message: str) -> None:

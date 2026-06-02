@@ -4,7 +4,7 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-TARGET_URL = "https://montrealai.github.io/skillos/"
+TARGET_URL = "https://montrealai.github.io/proof-gradient/"
 REQUIRED = [
     "README.md",
     "README_FIRST_GITHUB_WEB_USERS.md",
@@ -94,7 +94,7 @@ def main() -> None:
             fail(f"site/app.js must render the wealth proof: missing {snippet}")
 
     html = read("site/index.html")
-    for text in ["The wealth-accumulation layer", "GitHub Actions", "MontrealAI/skillos", "Wealth-accumulation proof", "cheaper", "faster", "better", "data/wealth_proof.json"]:
+    for text in ["The wealth-accumulation layer", "GitHub Actions", "MontrealAI/proof-gradient", "Wealth-accumulation proof", "cheaper", "faster", "better", "data/wealth_proof.json"]:
         if text not in html:
             fail(f"site/index.html is missing expected text: {text}")
 

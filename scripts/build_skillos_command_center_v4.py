@@ -19,11 +19,11 @@ BADGES = ROOT / "badges"
 WORKFLOWS = ROOT / ".github" / "workflows"
 
 SCHEMA = "skillos.command_center.root_fix.v4"
-PUBLIC_URL = "https://montrealai.github.io/skillos/"
+PUBLIC_URL = "https://montrealai.github.io/proof-gradient/"
 OLD_HOMEPAGE_PHRASES = [
     "Autonomous Proof Command Center",
     "SkillOS Proof Command Center",
-    "Public SkillOS Command Center v2",
+    "Proof Gradient Command Center v2",
 ]
 CORE_THESIS = (
     "Every job can become a reusable skill. Every verified skill can strengthen the whole network. "
@@ -175,7 +175,7 @@ def collect_proofs() -> list[dict[str, Any]]:
     if not seen:
         seen["command-center-sample-proof"] = {
             "id": "command-center-sample-proof",
-            "title": "SkillOS Command Center Freshness Proof",
+            "title": "Proof Gradient Command Center Freshness Proof",
             "status": "PASSED",
             "href": "command-center-sample-proof.html",
             "json": "data/command-center-manifest.json",
@@ -267,7 +267,7 @@ a{{color:var(--cyan);text-decoration:none}}.top{{position:sticky;top:0;z-index:2
 </script>
 </head>
 <body>
-<nav class="top"><a class="brand" href="./">SkillOS Public Command Center v4</a><div class="nav"><a href="executive.html">Executive</a><a href="proofs.html">Proofs</a><a href="skills.html">Skills Used</a><a href="actions.html">Run</a><a href="health.html">Health</a><a href="https://github.com/MontrealAI/skillos">GitHub</a></div></nav>
+<nav class="top"><a class="brand" href="./">Proof Gradient Public Command Center v4</a><div class="nav"><a href="executive.html">Executive</a><a href="proofs.html">Proofs</a><a href="skills.html">Skills Used</a><a href="actions.html">Run</a><a href="health.html">Health</a><a href="https://github.com/MontrealAI/proof-gradient">GitHub</a></div></nav>
 {body}
 </body></html>"""
 
@@ -394,7 +394,7 @@ def main() -> None:
 <section class="hero">
 <div>
 <div class="eyebrow">Montreal.AI / SkillOS</div>
-<h1>Public SkillOS Command Center</h1>
+<h1>Proof Gradient Command Center</h1>
 <p>Fresh, GitHub-native, viewer-friendly hub for every SkillOS proof, run, receipt, report, badge, workflow, and Skills Used display.</p>
 <div class="actions"><a class="btn gold" href="proofs.html">View all proofs</a><a class="btn cyan" href="actions.html">Run / regenerate</a><a class="btn" href="skills.html">See Skills Used</a><a class="btn" href="force-refresh.html">Force refresh</a></div>
 </div>
@@ -402,7 +402,7 @@ def main() -> None:
 <div class="eyebrow">Live freshness · v4 root fix</div>
 <div class="thesis">Updated {esc(generated_at)}</div>
 <p>This canonical v4 deployment is designed so <code>/skillos/</code> and <code>/skillos/index.html</code> resolve to the same current command center.</p>
-<p>Repository: <a href="https://github.com/MontrealAI/skillos">MontrealAI/skillos</a></p>
+<p>Repository: <a href="https://github.com/MontrealAI/proof-gradient">MontrealAI/proof-gradient</a></p>
 </div>
 </section>
 <section class="panel">
@@ -424,8 +424,8 @@ def main() -> None:
 <section><h2>Operational skill stack</h2><p>The Skills Used section explains the large multi-agent system in plain language: what each skill does, what signal it consumes, what artifact it produces, and which verifier checks it.</p><div class="grid3">{skill_cards(skills, 9)}</div><div class="actions"><a class="btn cyan" href="skills.html">Open full skills page</a></div></section>
 <section class="root-fix"><strong>Root fix active:</strong> this v4 command center intentionally blocks the older homepage phrase, clears old browser/service-worker caches, retires legacy refresh workflows, and deploys the Pages artifact directly from the canonical workflow.</section>
 <section class="panel"><div class="eyebrow">Public boundary</div><p>SkillOS public proofs are deterministic benchmark and publication artifacts. They do not claim audited customer ROI, financial advice, investment advice, legal advice, medical advice, achieved superintelligence, Kardashev Type II civilization, or guaranteed outcomes.</p></section>
-</main><footer class="footer">SkillOS Public Command Center v4 · {esc(generated_at)} · <a href="data/command-center-manifest.json">manifest</a></footer>"""
-    write_page(SITE / "index.html", "SkillOS Public Command Center v4", main_body, manifest_hash)
+</main><footer class="footer">Proof Gradient Public Command Center v4 · {esc(generated_at)} · <a href="data/command-center-manifest.json">manifest</a></footer>"""
+    write_page(SITE / "index.html", "Proof Gradient Public Command Center v4", main_body, manifest_hash)
 
     exec_body = f"""<main><section class="hero"><div><div class="eyebrow">Executive overview</div><h1>Work becomes skill. Skill becomes network capability.</h1><p>{esc(CORE_THESIS)}</p></div><div class="panel"><div class="eyebrow">Plain-language answer</div><div class="thesis">One agent learns; the network levels up.</div><p>SkillOS uses GitHub Actions to regenerate proof receipts and pages so viewers can see the mechanism instead of trusting a claim.</p></div></section><section class="grid2"><div class="panel"><h3>What viewers should do</h3><p>Open a proof, read the result, inspect Skills Used, and rerun the GitHub Action.</p></div><div class="panel"><h3>What builders should do</h3><p>Add proof receipts, verifier gates, reports, badges, and workflows. The command center indexes them.</p></div></section></main>"""
     write_page(SITE / "executive.html", "SkillOS Executive Overview", exec_body, manifest_hash)
@@ -437,7 +437,7 @@ def main() -> None:
     write_page(SITE / "skills.html", "SkillOS Skills Used", skills_body, manifest_hash)
 
     actions_rows = "".join(f"<tr><td>{esc(w['name'])}</td><td><code>{esc(w['file'])}</code></td><td>{esc(w['trigger'])}</td></tr>" for w in workflows)
-    actions_body = f"""<main><h1>Run / Regenerate</h1><p>Open GitHub Actions, choose a proof or the command center workflow, and click <strong>Run workflow</strong>.</p><div class="actions"><a class="btn cyan" href="https://github.com/MontrealAI/skillos/actions">Open GitHub Actions</a><a class="btn" href="https://github.com/MontrealAI/skillos/actions/workflows/pages.yml">Run canonical deploy</a></div><h2>Indexed workflows</h2><table><tr><th>Workflow</th><th>File</th><th>Trigger</th></tr>{actions_rows}</table></main>"""
+    actions_body = f"""<main><h1>Run / Regenerate</h1><p>Open GitHub Actions, choose a proof or the command center workflow, and click <strong>Run workflow</strong>.</p><div class="actions"><a class="btn cyan" href="https://github.com/MontrealAI/proof-gradient/actions">Open GitHub Actions</a><a class="btn" href="https://github.com/MontrealAI/proof-gradient/actions/workflows/pages.yml">Run canonical deploy</a></div><h2>Indexed workflows</h2><table><tr><th>Workflow</th><th>File</th><th>Trigger</th></tr>{actions_rows}</table></main>"""
     write_page(SITE / "actions.html", "SkillOS Actions", actions_body, manifest_hash)
 
     multi_body = f"""<main><h1>Large multi-agent coordination</h1><section class="panel"><div class="thesis">The agents are shown as operational roles, skills, verifier courts, release gates, and receipts.</div><p>SkillOS does not display cartoon avatars. It displays the actual coordination structure: specialist roles, skills, proof receipts, independent verifiers, red-team courts, policy courts, rollback paths, and release gates.</p></section><section><h2>Coordination layers</h2><div class="grid3">{skill_cards(skills, 12)}</div></section></main>"""
@@ -485,7 +485,7 @@ self.addEventListener('fetch', event => { event.respondWith(fetch(event.request)
     (SITE / "service-worker.js").write_text(service_worker, encoding="utf-8")
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
     (SITE / "version.txt").write_text(f"{SCHEMA}\n{generated_at}\n{manifest_hash}\n", encoding="utf-8")
-    (SITE / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n", encoding="utf-8")
+    (SITE / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n", encoding="utf-8")
     urls = ["", "index.html", "executive.html", "proofs.html", "skills.html", "actions.html", "multi-agent.html", "receipts.html", "architecture.html", "flywheel.html", "health.html", "runbook.html", "force-refresh.html"]
     urls += [p["href"] for p in proofs[:200]]
     unique_urls = list(dict.fromkeys(urls))
@@ -495,7 +495,7 @@ self.addEventListener('fetch', event => { event.respondWith(fetch(event.request)
     (SITE / "badges" / "command-center-fresh.svg").write_text(badge, encoding="utf-8")
     BADGES.mkdir(exist_ok=True)
     (BADGES / "command-center-fresh.svg").write_text(badge, encoding="utf-8")
-    (DOCS / "SKILLOS_PUBLIC_COMMAND_CENTER_V4_ROOT_FIX.md").write_text(f"""# SkillOS Public Command Center v4 Root Fix
+    (DOCS / "SKILLOS_PUBLIC_COMMAND_CENTER_V4_ROOT_FIX.md").write_text(f"""# Proof Gradient Public Command Center v4 Root Fix
 
 Generated: `{generated_at}`
 
@@ -506,9 +506,9 @@ The canonical v4 deployment prevents the older command-center generator from ove
 Expected public checks:
 
 ```text
-https://montrealai.github.io/skillos/
-https://montrealai.github.io/skillos/index.html
-https://montrealai.github.io/skillos/data/command-center-manifest.json
+https://montrealai.github.io/proof-gradient/
+https://montrealai.github.io/proof-gradient/index.html
+https://montrealai.github.io/proof-gradient/data/command-center-manifest.json
 ```
 
 The manifest should contain:
@@ -522,7 +522,7 @@ The homepage must not show:
 ```text
 Autonomous Proof Command Center
 SkillOS Proof Command Center
-Public SkillOS Command Center v2
+Proof Gradient Command Center v2
 ```
 
 ## Safe public claim
@@ -531,7 +531,7 @@ SkillOS makes the mechanism testable: completed work can become verified traces,
 """, encoding="utf-8")
 
     if args.summary:
-        Path(args.summary).write_text(f"## SkillOS Public Command Center v4\n\n- schema: **{SCHEMA}**\n- generated: **{generated_at}**\n- proofs: **{len(proofs)}**\n- skills surfaced: **{len(skills)}**\n- version hash: **{manifest_hash}**\n", encoding="utf-8")
+        Path(args.summary).write_text(f"## Proof Gradient Public Command Center v4\n\n- schema: **{SCHEMA}**\n- generated: **{generated_at}**\n- proofs: **{len(proofs)}**\n- skills surfaced: **{len(skills)}**\n- version hash: **{manifest_hash}**\n", encoding="utf-8")
 
     print(json.dumps({"status": "BUILT", "schema": SCHEMA, "generated_at_utc": generated_at, "proof_count": len(proofs), "skills_surfaced_count": len(skills), "workflow_count": len(workflows), "version_hash": manifest_hash}, indent=2))
 

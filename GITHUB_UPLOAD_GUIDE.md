@@ -5,18 +5,18 @@ This guide assumes you are using only the GitHub website.
 Target repository:
 
 ```text
-https://github.com/MontrealAI/skillos
+https://github.com/MontrealAI/proof-gradient
 ```
 
 Target website:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 ---
 
-## 1. Create `MontrealAI/skillos`
+## 1. Create `MontrealAI/proof-gradient`
 
 1. Go to GitHub.
 2. Open the `MontrealAI` organization.
@@ -131,7 +131,7 @@ GitHub Actions
 4. Open:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 The website should show a live demo card with:
@@ -156,7 +156,7 @@ The operating system for self-improving AI agents.
 Website:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 Topics:

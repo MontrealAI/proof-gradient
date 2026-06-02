@@ -539,7 +539,7 @@ def main():
         "proof_version": PROOF_VERSION,
         "run_timestamp_utc": datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
         "commit_sha": os.environ.get("GITHUB_SHA", "local-preview"),
-        "github_repository": os.environ.get("GITHUB_REPOSITORY", "MontrealAI/skillos"),
+        "github_repository": os.environ.get("GITHUB_REPOSITORY", "MontrealAI/proof-gradient"),
         "github_run_id": os.environ.get("GITHUB_RUN_ID", "local-preview"),
         "seed": SEED,
         "proved": False,

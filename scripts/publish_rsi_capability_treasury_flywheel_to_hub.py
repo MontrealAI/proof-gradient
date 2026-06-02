@@ -29,7 +29,7 @@ def main():
         if PROOF_ID not in text: text=text.replace('</main>',card+'</main>',1) if '</main>' in text else text+card
     else: text='<!doctype html><html><body><main>'+card+'</main></body></html>'
     atomic(index,text)
-    atomic(SITE/'robots.txt','User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n')
-    atomic(SITE/'sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://montrealai.github.io/skillos/</loc></url><url><loc>https://montrealai.github.io/skillos/'+HTML+'</loc></url></urlset>')
+    atomic(SITE/'robots.txt','User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n')
+    atomic(SITE/'sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://montrealai.github.io/proof-gradient/</loc></url><url><loc>https://montrealai.github.io/proof-gradient/'+HTML+'</loc></url></urlset>')
     print(json.dumps({'status':'PUBLISHED_TO_HUB','proof':PROOF_ID},indent=2))
 if __name__=='__main__': main()

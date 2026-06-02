@@ -458,7 +458,7 @@ a {{ color:var(--cyan); }}
 </head>
 <body>
 <header>
-  <div class=\"kicker\">MONTREAL.AI / SKILLOS / NO-SEND SHADOW PILOT</div>
+  <div class=\"kicker\">MONTREAL.AI / PROOF GRADIENT / NO-SEND SHADOW PILOT</div>
   <h1>Autonomous proof that agent work can compound.</h1>
   <p class=\"sub\">This GitHub Action runs a no-send benchmark: call notes become drafts, drafts become evaluation traces, traces become lessons, and lessons become tested skill rules that improve holdout examples.</p>
   <div class=\"badge\">Proof {status}</div>
@@ -485,7 +485,7 @@ a {{ color:var(--cyan); }}
   <section class=\"card\"><h2>Learned skill rules</h2><ol>{rules}</ol></section>
   <section class=\"card\"><h2>Proof gates</h2><table>{rows}</table></section>
   <section class=\"card\"><h2>Sample holdout jobs</h2><table><tr><th>Job</th><th>Baseline score</th><th>SkillOS score</th><th>Baseline edit min</th><th>SkillOS edit min</th></tr>{sample_rows}</table></section>
-  <section class=\"card\"><h2>Run it yourself</h2><p>Open GitHub Actions and run <strong>Autonomous Shadow Pilot Proof</strong>. The action regenerates this page, <code>data/shadow_pilot_proof.json</code>, and <code>docs/shadow_pilot_proof.md</code>.</p><p><a href=\"https://github.com/MontrealAI/skillos/actions\">Open GitHub Actions</a></p></section>
+  <section class=\"card\"><h2>Run it yourself</h2><p>Open GitHub Actions and run <strong>Autonomous Shadow Pilot Proof</strong>. The action regenerates this page, <code>data/shadow_pilot_proof.json</code>, and <code>docs/shadow_pilot_proof.md</code>.</p><p><a href=\"https://github.com/MontrealAI/proof-gradient/actions\">Open GitHub Actions</a></p></section>
 </main>
 </body>
 </html>"""

@@ -2,7 +2,7 @@
 
 Generated: `2026-06-01T16:17:37Z`
 
-This is the canonical public SkillOS Command Center publisher.
+This is the canonical public Proof Gradient Command Center publisher.
 
 It scans proof receipts, workflows, reports, badges, and Skills Used metadata; renders a prestigious public proof atlas; verifies the output; commits the generated site; deploys the exact `site/` artifact to GitHub Pages; and optionally verifies that both `/skillos/` and `/skillos/index.html` are serving the v5 root.
 

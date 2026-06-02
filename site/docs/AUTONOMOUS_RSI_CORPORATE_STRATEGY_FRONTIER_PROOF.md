@@ -47,13 +47,13 @@ The proof converts a grand thesis into a repeatable test:
 After the Action passes and deploys Pages:
 
 ```text
-https://montrealai.github.io/skillos/rsi-corporate-strategy-frontier-proof.html
+https://montrealai.github.io/proof-gradient/rsi-corporate-strategy-frontier-proof.html
 ```
 
 The SkillOS homepage is also updated:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 ## Run it

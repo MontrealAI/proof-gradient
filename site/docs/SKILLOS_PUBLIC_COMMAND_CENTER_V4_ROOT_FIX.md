@@ -1,4 +1,4 @@
-# SkillOS Public Command Center v4 Root Fix
+# Proof Gradient Public Command Center v4 Root Fix
 
 Generated: `2026-06-01T16:50:00Z`
 
@@ -9,9 +9,9 @@ The canonical v4 deployment prevents the older command-center generator from ove
 Expected public checks:
 
 ```text
-https://montrealai.github.io/skillos/
-https://montrealai.github.io/skillos/index.html
-https://montrealai.github.io/skillos/data/command-center-manifest.json
+https://montrealai.github.io/proof-gradient/
+https://montrealai.github.io/proof-gradient/index.html
+https://montrealai.github.io/proof-gradient/data/command-center-manifest.json
 ```
 
 The manifest should contain:
@@ -25,7 +25,7 @@ The homepage must not show:
 ```text
 Autonomous Proof Command Center
 SkillOS Proof Command Center
-Public SkillOS Command Center v2
+Proof Gradient Command Center v2
 ```
 
 ## Safe public claim

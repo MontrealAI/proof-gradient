@@ -13,7 +13,7 @@ CARD = """
   <p style="color:#aab8c8;font-size:15px;max-width:960px">No human review, no customers, no private data, no API keys, and no reuse of previous proof domains.</p>
   <p>
     <a href="rsi-adversarial-multi-agent-market-command-center-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View adversarial multi-agent proof</a>
-    <a href="https://github.com/MontrealAI/skillos/actions/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
   </p>
 </section>
 """.strip()

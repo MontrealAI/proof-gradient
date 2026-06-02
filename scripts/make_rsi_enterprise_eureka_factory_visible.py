@@ -164,7 +164,7 @@ def main() -> None:
 <main>
 <section class="hero">
   <div>
-    <div class="eyebrow">MONTREAL.AI / SKILLOS</div>
+    <div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div>
     <h1>Enterprise Eureka Factory.</h1>
     <p>Autonomous proof that a large specialist-agent organization can recursively improve its coordination protocol and capture more benchmark enterprise value than a single agent, an uncoordinated multi-agent pool, static coordination, and negative controls.</p>
   </div>

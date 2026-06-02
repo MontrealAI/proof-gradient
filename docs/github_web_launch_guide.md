@@ -7,7 +7,7 @@ This guide is for uploading SkillOS to GitHub without using Terminal, Git, or co
 ```text
 Organization: MontrealAI
 Repository: skillos
-Final website: https://montrealai.github.io/skillos/
+Final website: https://montrealai.github.io/proof-gradient/
 ```
 
 ## Step 1 — Create the repository
@@ -29,7 +29,7 @@ UPLOAD_THE_CONTENTS_OF_THIS_FOLDER_TO_GITHUB
 ```
 
 3. Select everything inside that folder.
-4. In GitHub, open the new `MontrealAI/skillos` repository.
+4. In GitHub, open the new `MontrealAI/proof-gradient` repository.
 5. Click **Add file → Upload files**.
 6. Drag the selected files/folders into the upload area.
 7. Commit message:
@@ -81,7 +81,7 @@ Then paste the matching backup contents.
 4. Open:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 ## What success looks like

@@ -1,4 +1,4 @@
-name: _SkillOS Public Site Refresh Reusable
+name: _Proof Gradient Public Site Refresh Reusable
 
 on:
   workflow_call:

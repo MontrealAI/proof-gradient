@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-'''SkillOS Public Command Center Root Authority v7.1.
+'''Proof Gradient Public Command Center Root Authority v7.1.
 
 Builds the public command center from repository evidence at GitHub Actions run time.
 No pre-made HTML is required as source. The output directory is a fresh Pages artifact.
 
 Root contract:
-  /skillos/           -> Public SkillOS Command Center
-  /skillos/index.html -> Public SkillOS Command Center
+  /skillos/           -> Proof Gradient Command Center
+  /skillos/index.html -> Proof Gradient Command Center
   /skillos/capability-governance-twin.html -> flagship proof room
 '''
 from __future__ import annotations
@@ -20,12 +20,12 @@ MARKER = "SKILLOS_PUBLIC_COMMAND_CENTER_V7_1_ROOT_AUTHORITY"
 OLD_FORBIDDEN = [
     "Autonomous Proof Command Center",
     "SkillOS Proof Command Center",
-    "SkillOS Public Command Center v2",
-    "SkillOS Public Command Center v3",
+    "Proof Gradient Public Command Center v2",
+    "Proof Gradient Public Command Center v3",
     "SkillOS Sovereign Command Center v5",
 ]
-DEFAULT_URL = "https://montrealai.github.io/skillos/"
-ROOT_TITLE = "Public SkillOS Command Center"
+DEFAULT_URL = "https://montrealai.github.io/proof-gradient/"
+ROOT_TITLE = "Proof Gradient Command Center"
 
 CORE_SKILLS = [
     {"name":"Work Trace Capture","layer":"Intake","purpose":"Converts completed work into a reusable evidence trace.","input":"completed job, run logs, artifacts","output":"trace candidate","verifier":"Trace Integrity Check"},
@@ -293,12 +293,12 @@ def fmt_int(n: float) -> str:
     return str(int(n))
 
 def page_shell(title: str, body: str, active: str = "Home", extra_head: str = "") -> str:
-    nav = [("Home","index.html"),("Proofs","proofs.html"),("Skills Used","skills.html"),("Agents","multi-agent.html"),("Run","run.html"),("Receipts","receipts.html"),("Health","health.html"),("GitHub","https://github.com/MontrealAI/skillos")]
+    nav = [("Home","index.html"),("Proofs","proofs.html"),("Skills Used","skills.html"),("Agents","multi-agent.html"),("Run","run.html"),("Receipts","receipts.html"),("Health","health.html"),("GitHub","https://github.com/MontrealAI/proof-gradient")]
     links = ''.join(f'<a class="{"active" if label==active else ""}" href="{href}">{label}</a>' for label,href in nav)
     css = r'''
 :root{--ink:#f5fbff;--muted:#b8c8d8;--line:rgba(255,255,255,.16);--panel:rgba(255,255,255,.078);--panel2:rgba(255,255,255,.115);--cyan:#86f8ff;--mint:#7dffb0;--gold:#ffd66b;--violet:#b5a6ff;--dark:#06131f}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Arial,sans-serif;background:radial-gradient(circle at 84% 0,#534e94 0,transparent 34%),radial-gradient(circle at 0 10%,#09687d 0,transparent 28%),linear-gradient(135deg,#06131f,#13243d 58%,#292a62);color:var(--ink)}body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.036) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.036) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;mask-image:linear-gradient(to bottom,rgba(0,0,0,.95),rgba(0,0,0,.08))}body:after{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% 18%,rgba(134,248,255,.12),transparent 28%);pointer-events:none}a{color:var(--cyan);text-decoration:none}nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:13px 22px;background:rgba(6,19,31,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}nav strong{color:var(--cyan);letter-spacing:-.02em}nav a{color:var(--muted);font-weight:850;margin-left:16px;font-size:14px}.active{color:var(--cyan)}main{max-width:1240px;margin:0 auto;padding:58px 22px 90px;position:relative}.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:30px;align-items:center}.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.20em;font-size:12px;font-weight:950}.kicker{color:var(--gold);text-transform:uppercase;letter-spacing:.18em;font-weight:950;font-size:12px}h1{font-size:clamp(54px,8vw,112px);line-height:.82;letter-spacing:-.09em;margin:14px 0 18px}h2{font-size:clamp(34px,5vw,66px);line-height:.92;letter-spacing:-.06em;margin:48px 0 18px}h3{font-size:24px;letter-spacing:-.03em}p{color:var(--muted);font-size:18px;line-height:1.55}.lead{font-size:22px;max-width:850px}.card,.metric,.proof,.skill,.notice{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:30px;box-shadow:0 24px 90px rgba(0,0,0,.25);padding:24px}.opulent{border:1px solid rgba(255,214,107,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 28px 100px rgba(0,0,0,.34)}.buttons{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:13px 18px;font-weight:950;border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.08)}.btn.primary{background:var(--cyan);color:#06131f}.btn.gold{background:var(--gold);color:#1a1400}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:26px 0}.metric strong{font-size:34px;display:block;color:var(--mint);letter-spacing:-.04em}.metric span{color:var(--muted)}.thesis{font-size:clamp(28px,4vw,52px);line-height:1.02;letter-spacing:-.055em;color:var(--ink)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.proof h3,.skill h3{margin:.4rem 0}.tag{display:inline-block;border-radius:999px;padding:6px 10px;background:rgba(125,255,176,.16);color:var(--mint);font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.12em}.tag.warn{background:rgba(255,214,107,.16);color:var(--gold)}.proof-meta{color:var(--muted);font-size:14px}.skill dl{margin:12px 0 0}.skill dt{color:var(--cyan);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:950;margin-top:10px}.skill dd{margin:3px 0 0;color:var(--muted);font-size:14px;line-height:1.35}.route{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.route div{padding:18px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid var(--line)}table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.small{font-size:14px}.root-lock{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:18px}.root-lock div{border:1px solid var(--line);background:rgba(255,255,255,.06);border-radius:20px;padding:16px}.watermark{position:absolute;right:10px;top:110px;font-size:190px;line-height:1;color:rgba(255,255,255,.035);font-weight:950;letter-spacing:-.12em;pointer-events:none}@media(max-width:900px){.hero,.grid2,.grid3,.route,.root-lock{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}nav{display:block}nav div{margin-top:8px}nav a{margin:0 12px 0 0}}@media(max-width:560px){.metrics{grid-template-columns:1fr}h1{font-size:56px}}
 '''
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate"><meta http-equiv="pragma" content="no-cache"><meta http-equiv="expires" content="0"><meta name="generator" content="{MARKER}"><title>{esc(title)}</title><style>{css}</style>{extra_head}</head><body><nav><strong>SkillOS Public Command Center</strong><div>{links}</div></nav><main>{body}</main><script>if('serviceWorker' in navigator){{navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));}}</script></body></html>'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate"><meta http-equiv="pragma" content="no-cache"><meta http-equiv="expires" content="0"><meta name="generator" content="{MARKER}"><title>{esc(title)}</title><style>{css}</style>{extra_head}</head><body><nav><strong>Proof Gradient Public Command Center</strong><div>{links}</div></nav><main>{body}</main><script>if('serviceWorker' in navigator){{navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));}}</script></body></html>'''
 
 def proof_cards(proofs: list[dict[str, Any]], limit: int = 9) -> str:
     cards=[]
@@ -338,7 +338,7 @@ def copy_receipts(root: Path, out: Path, proofs: list[dict[str, Any]]) -> None:
                 'proved': p.get('proved'),
                 'status': p.get('status'),
                 'source_json': p.get('source_json'),
-                'note': 'Generated by the Public SkillOS Command Center because this registry entry did not include a standalone JSON receipt at this path.'
+                'note': 'Generated by the Proof Gradient Command Center because this registry entry did not include a standalone JSON receipt at this path.'
             }, indent=2, sort_keys=True) + '\n')
 
     for src_dir, rel_dir in [(root/'docs','docs'),(root/'badges','badges'),(root/'site/docs','docs'),(root/'site/badges','badges')]:
@@ -368,7 +368,7 @@ def copy_receipts(root: Path, out: Path, proofs: list[dict[str, Any]]) -> None:
                 '',
                 '## Public interpretation',
                 '',
-                'This report was generated automatically by the SkillOS Public Command Center Root Authority v7.1 because the proof registry exposed a report link that did not yet have a matching Markdown artifact in the Pages output. The Command Center keeps viewer-facing links complete while preserving the original source receipt pointer above.',
+                'This report was generated automatically by the Proof Gradient Public Command Center Root Authority v7.1 because the proof registry exposed a report link that did not yet have a matching Markdown artifact in the Pages output. The Command Center keeps viewer-facing links complete while preserving the original source receipt pointer above.',
                 '',
                 '## Skills surfaced',
                 '',
@@ -394,7 +394,7 @@ def make_badge(out: Path, manifest: dict[str, Any]) -> None:
 
 def route_card() -> str:
     steps = [
-        ('/skillos/','Public SkillOS Command Center','The root is always the lobby: full proof atlas, receipts, skills, Actions, health, and run instructions.'),
+        ('/skillos/','Proof Gradient Command Center','The root is always the lobby: full proof atlas, receipts, skills, Actions, health, and run instructions.'),
         ('/skillos/index.html','Same Command Center','The explicit index page is the same canonical artifact as the root.'),
         ('/skillos/capability-governance-twin.html','Flagship proof room','Capability Governance Twin is a flagship room, never the root lobby.'),
     ]
@@ -412,7 +412,7 @@ def build_pages(root: Path, out: Path, site_url: str) -> dict[str, Any]:
         'marker': MARKER,
         'generated_at_utc': utc_now(),
         'site_url': site_url,
-        'root_contract': {'/':'Public SkillOS Command Center','/index.html':'Public SkillOS Command Center','/capability-governance-twin.html':'Flagship Capability Governance Twin subpage'},
+        'root_contract': {'/':'Proof Gradient Command Center','/index.html':'Proof Gradient Command Center','/capability-governance-twin.html':'Flagship Capability Governance Twin subpage'},
         'proof_count': len(proofs), 'passed_proof_count': passed, 'workflow_count': len(workflows),
         'skills_surfaced_count': len(skills), 'declared_specialist_agents': total_agents,
         'source_of_truth': 'repository evidence scanned at GitHub Actions run time; HTML is generated into the Pages artifact, not used as source',
@@ -424,10 +424,10 @@ def build_pages(root: Path, out: Path, site_url: str) -> dict[str, Any]:
     write(out/'data/command-center-health.json', json.dumps(health, indent=2, sort_keys=True)+'\n')
     write(out/'version.txt', f'{MARKER}\n{manifest["generated_at_utc"]}\n')
     write(out/'.nojekyll', '')
-    write(out/'robots.txt', 'User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n')
+    write(out/'robots.txt', 'User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n')
     make_badge(out, manifest)
 
-    root_body = f'''<div class="watermark">OS</div><section class="hero"><div><div class="eyebrow">MONTREAL.AI / SKILLOS</div><h1>Public SkillOS Command Center</h1><p class="lead">The canonical, autonomous public proof hub for SkillOS. Every proof, receipt, report, workflow, Skills Used signal, and launch narrative is regenerated from repository evidence by GitHub Actions.</p><div class="buttons"><a class="btn gold" href="capability-governance-twin.html">Open flagship proof</a><a class="btn primary" href="run.html">Run / regenerate</a><a class="btn" href="receipts.html">Inspect receipts</a></div></div><aside class="card opulent"><div class="eyebrow">Root authority</div><h3>{esc(manifest['generated_at_utc'])}</h3><p>The root is always the Command Center. Flagship proofs are subpages. This page is generated at run time from receipts, workflows, docs, badges, and skill metadata.</p><p class="mono small">{MARKER}</p></aside></section><section class="card opulent"><div class="eyebrow">Core thesis</div><div class="thesis">Every job can become a reusable skill. Every verified skill can strengthen the whole network. One agent learns; the system routes that learning everywhere.</div><p>SkillOS makes the mechanism public and testable: work → traces → skills → verification → release → routing upgrade → compounding capability.</p>{route_card()}</section><section class="metrics"><div class="metric"><strong>{len(proofs)}</strong><span>indexed proofs and receipts</span></div><div class="metric"><strong>{passed}</strong><span>passed/proved receipts</span></div><div class="metric"><strong>{len(workflows)}</strong><span>GitHub workflows indexed</span></div><div class="metric"><strong>{len(skills)}</strong><span>skills surfaced</span></div><div class="metric"><strong>{fmt_int(total_agents)}</strong><span>declared specialist agents across receipts</span></div><div class="metric"><strong>{best_vc:.1f}%</strong><span>best benchmark value capture</span></div><div class="metric"><strong>0</strong><span>pre-made HTML files required as source</span></div><div class="metric"><strong>1</strong><span>canonical root artifact</span></div></section><section><h2>Featured proof library</h2><div class="grid3">{proof_cards(proofs, 6)}</div><div class="buttons"><a class="btn primary" href="proofs.html">View all proofs</a><a class="btn" href="skills.html">View Skills Used</a></div></section><section><h2>How to use this as a viewer</h2><div class="route"><div><div class="eyebrow">1 / See the proof</div><h3>Open a proof card</h3><p>Start with the flagship proof or browse the proof library. Each page links receipts and reports.</p></div><div><div class="eyebrow">2 / See the agents</div><h3>Open Skills Used</h3><p>Agent coordination is shown as roles, courts, routes, verifiers, gates, and reusable skills.</p></div><div><div class="eyebrow">3 / Regenerate</div><h3>Run GitHub Actions</h3><p>The canonical workflow rebuilds this Command Center from repository evidence and deploys the Pages artifact.</p></div></div></section>'''
+    root_body = f'''<div class="watermark">OS</div><section class="hero"><div><div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div><h1>Proof Gradient Command Center</h1><p class="lead">The canonical, autonomous public proof hub for SkillOS. Every proof, receipt, report, workflow, Skills Used signal, and launch narrative is regenerated from repository evidence by GitHub Actions.</p><div class="buttons"><a class="btn gold" href="capability-governance-twin.html">Open flagship proof</a><a class="btn primary" href="run.html">Run / regenerate</a><a class="btn" href="receipts.html">Inspect receipts</a></div></div><aside class="card opulent"><div class="eyebrow">Root authority</div><h3>{esc(manifest['generated_at_utc'])}</h3><p>The root is always the Command Center. Flagship proofs are subpages. This page is generated at run time from receipts, workflows, docs, badges, and skill metadata.</p><p class="mono small">{MARKER}</p></aside></section><section class="card opulent"><div class="eyebrow">Core thesis</div><div class="thesis">Every job can become a reusable skill. Every verified skill can strengthen the whole network. One agent learns; the system routes that learning everywhere.</div><p>SkillOS makes the mechanism public and testable: work → traces → skills → verification → release → routing upgrade → compounding capability.</p>{route_card()}</section><section class="metrics"><div class="metric"><strong>{len(proofs)}</strong><span>indexed proofs and receipts</span></div><div class="metric"><strong>{passed}</strong><span>passed/proved receipts</span></div><div class="metric"><strong>{len(workflows)}</strong><span>GitHub workflows indexed</span></div><div class="metric"><strong>{len(skills)}</strong><span>skills surfaced</span></div><div class="metric"><strong>{fmt_int(total_agents)}</strong><span>declared specialist agents across receipts</span></div><div class="metric"><strong>{best_vc:.1f}%</strong><span>best benchmark value capture</span></div><div class="metric"><strong>0</strong><span>pre-made HTML files required as source</span></div><div class="metric"><strong>1</strong><span>canonical root artifact</span></div></section><section><h2>Featured proof library</h2><div class="grid3">{proof_cards(proofs, 6)}</div><div class="buttons"><a class="btn primary" href="proofs.html">View all proofs</a><a class="btn" href="skills.html">View Skills Used</a></div></section><section><h2>How to use this as a viewer</h2><div class="route"><div><div class="eyebrow">1 / See the proof</div><h3>Open a proof card</h3><p>Start with the flagship proof or browse the proof library. Each page links receipts and reports.</p></div><div><div class="eyebrow">2 / See the agents</div><h3>Open Skills Used</h3><p>Agent coordination is shown as roles, courts, routes, verifiers, gates, and reusable skills.</p></div><div><div class="eyebrow">3 / Regenerate</div><h3>Run GitHub Actions</h3><p>The canonical workflow rebuilds this Command Center from repository evidence and deploys the Pages artifact.</p></div></div></section>'''
     write(out/'index.html', page_shell(ROOT_TITLE, root_body, 'Home'))
 
     flagship = next((p for p in proofs if 'governance' in p['title'].lower() and 'twin' in p['title'].lower()), None)
@@ -448,7 +448,7 @@ def build_pages(root: Path, out: Path, site_url: str) -> dict[str, Any]:
     write(out/'skills.html', page_shell('SkillOS Skills Used', skills_body, 'Skills Used'))
 
     action_rows = ''.join(f'<tr><td>{esc(w["name"])}</td><td class="mono small">{esc(w["path"])}</td><td>{esc(", ".join(w["triggers"]) or "manual")}</td><td>{"retired" if w["retired"] else "active"}</td></tr>' for w in workflows)
-    actions_body = f'''<section><div class="eyebrow">GITHUB ACTIONS</div><h1>Run / Regenerate</h1><p class="lead">Use the root authority workflow to rebuild the Command Center from evidence and deploy the GitHub Pages artifact.</p><div class="card opulent"><h3>Recommended workflow</h3><p class="mono">Public SkillOS Command Center Root Authority v7.1</p><p>Inputs: <span class="mono">deploy_pages=true</span>, <span class="mono">verify_live=true</span>, <span class="mono">cancel_legacy_runs=true</span>.</p></div><h2>Indexed workflows</h2><table><tr><th>Workflow</th><th>Path</th><th>Triggers</th><th>Status</th></tr>{action_rows}</table></section>'''
+    actions_body = f'''<section><div class="eyebrow">GITHUB ACTIONS</div><h1>Run / Regenerate</h1><p class="lead">Use the root authority workflow to rebuild the Command Center from evidence and deploy the GitHub Pages artifact.</p><div class="card opulent"><h3>Recommended workflow</h3><p class="mono">Proof Gradient Command Center Root Authority v7.1</p><p>Inputs: <span class="mono">deploy_pages=true</span>, <span class="mono">verify_live=true</span>, <span class="mono">cancel_legacy_runs=true</span>.</p></div><h2>Indexed workflows</h2><table><tr><th>Workflow</th><th>Path</th><th>Triggers</th><th>Status</th></tr>{action_rows}</table></section>'''
     write(out/'actions.html', page_shell('SkillOS Actions', actions_body, 'Run'))
     write(out/'run.html', page_shell('Run SkillOS', actions_body, 'Run'))
 
@@ -468,9 +468,9 @@ def build_pages(root: Path, out: Path, site_url: str) -> dict[str, Any]:
     health_body = f'''<section><div class="eyebrow">HEALTH CHECK</div><h1>Command Center Health</h1><p class="lead">The verifier checks that the root is the Command Center, the flagship is a subpage, old root phrases are blocked, links exist, and the manifest is current.</p><table><tr><th>Check</th><th>Status</th></tr>{''.join(f'<tr><td>{esc(k.replace("_"," "))}</td><td>{esc(v)}</td></tr>' for k,v in health['checks'].items())}</table><div class="buttons"><a class="btn primary" href="data/command-center-manifest.json">Open manifest</a><a class="btn" href="data/command-center-health.json">Open health JSON</a></div></section>'''
     write(out/'health.html', page_shell('SkillOS Health', health_body, 'Health'))
 
-    runbook_body = f'''<section><div class="eyebrow">RUNBOOK</div><h1>Non-technical runbook</h1><div class="route"><div><h3>1. Open Actions</h3><p>Go to GitHub Actions and choose <b>Public SkillOS Command Center Root Authority v7.1</b>.</p></div><div><h3>2. Click Run workflow</h3><p>Use deploy_pages=true and verify_live=true.</p></div><div><h3>3. Check the root</h3><p>Open /skillos/ and /skillos/index.html. Both must show the Public SkillOS Command Center.</p></div></div></section>'''
+    runbook_body = f'''<section><div class="eyebrow">RUNBOOK</div><h1>Non-technical runbook</h1><div class="route"><div><h3>1. Open Actions</h3><p>Go to GitHub Actions and choose <b>Proof Gradient Command Center Root Authority v7.1</b>.</p></div><div><h3>2. Click Run workflow</h3><p>Use deploy_pages=true and verify_live=true.</p></div><div><h3>3. Check the root</h3><p>Open /skillos/ and /skillos/index.html. Both must show the Proof Gradient Command Center.</p></div></div></section>'''
     write(out/'runbook.html', page_shell('SkillOS Runbook', runbook_body, 'Run'))
-    write(out/'404.html', page_shell('SkillOS — Page not found', '<section><h1>Page not found</h1><p>Return to the <a href="index.html">Public SkillOS Command Center</a>.</p></section>', 'Home'))
+    write(out/'404.html', page_shell('SkillOS — Page not found', '<section><h1>Page not found</h1><p>Return to the <a href="index.html">Proof Gradient Command Center</a>.</p></section>', 'Home'))
     write(out/'force-refresh.html', page_shell('SkillOS Force Refresh', f'<section><h1>Force refresh complete</h1><p class="mono">{MARKER}</p><p>Open <a href="index.html?v=v7-1">the Command Center</a>.</p></section>', 'Home'))
     write(out/'sw.js', "self.addEventListener('install',event=>self.skipWaiting());self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k))))));")
 

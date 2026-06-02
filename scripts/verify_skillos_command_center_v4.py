@@ -10,7 +10,7 @@ SCHEMA = "skillos.command_center.root_fix.v4"
 FORBIDDEN = [
     "Autonomous Proof Command Center",
     "SkillOS Proof Command Center",
-    "Public SkillOS Command Center v2",
+    "Proof Gradient Command Center v2",
 ]
 
 REQUIRED_FILES = [
@@ -54,7 +54,7 @@ def main() -> None:
         if phrase in homepage:
             fail(f"forbidden old homepage phrase still present: {phrase}")
     for snippet in [
-        "SkillOS Public Command Center v4",
+        "Proof Gradient Public Command Center v4",
         "Every job can become a reusable skill",
         "Skills Used",
         "work → traces → skills → verification → release → routing upgrade",

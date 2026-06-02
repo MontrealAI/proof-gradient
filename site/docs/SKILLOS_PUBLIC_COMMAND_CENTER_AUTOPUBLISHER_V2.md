@@ -1,4 +1,4 @@
-# SkillOS Command Center Autopublisher v2
+# Proof Gradient Command Center Autopublisher v2
 
 This package fixes the common reason the public page still looks old:
 
@@ -9,7 +9,7 @@ This v2 workflow builds, verifies, commits, and deploys the GitHub Pages artifac
 ## Recommended manual run
 
 ```text
-GitHub → Actions → SkillOS Command Center Autopublisher v2 → Run workflow
+GitHub → Actions → Proof Gradient Command Center Autopublisher v2 → Run workflow
 ```
 
 Use:
@@ -25,11 +25,11 @@ force_rebuild: true
 Open:
 
 ```text
-https://montrealai.github.io/skillos/data/command-center-manifest.json
+https://montrealai.github.io/proof-gradient/data/command-center-manifest.json
 ```
 
 The timestamp should match the latest green run. Then open:
 
 ```text
-https://montrealai.github.io/skillos/?v=latest
+https://montrealai.github.io/proof-gradient/?v=latest
 ```

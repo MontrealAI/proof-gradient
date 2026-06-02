@@ -1,8 +1,8 @@
-# SkillOS Public Command Center v3
+# Proof Gradient Public Command Center v3
 
 Generated: `2026-06-01T15:59:56Z`
 
-Run `SkillOS Command Center Autopublisher v3` with `publish_to_repo=true`, `deploy_pages=true`, and `force_rebuild=true`.
+Run `Proof Gradient Command Center Autopublisher v3` with `publish_to_repo=true`, `deploy_pages=true`, and `force_rebuild=true`.
 
 ## Manifest
 
@@ -98,7 +98,7 @@ Run `SkillOS Command Center Autopublisher v3` with `publish_to_repo=true`, `depl
     "wealth-proof"
   ],
   "public_boundary": "These are autonomous deterministic benchmark proofs using synthetic/redacted-style public benchmark data and benchmark assumptions. They are not audited customer ROI, live customer adoption, financial advice, investment advice, legal advice, medical advice, employment advice, policy advice, token advice, achieved superintelligence, Kardashev Type II achievement, or guarantees.",
-  "repository": "MontrealAI/skillos",
+  "repository": "MontrealAI/proof-gradient",
   "schema": "skillos.command_center.v3",
   "site_latest_signal_utc": "2026-06-01T15:59:56Z",
   "skills": [
@@ -422,8 +422,8 @@ Run `SkillOS Command Center Autopublisher v3` with `publish_to_repo=true`, `depl
     }
   ],
   "workflow_files": [
-    ".github/workflows/_skillos-public-proof-command-center-refresh-reusable.yml",
-    ".github/workflows/_skillos-public-site-refresh-reusable.yml",
+    ".github/workflows/_proof-gradient-public-proof-command-center-refresh-reusable.yml",
+    ".github/workflows/_proof-gradient-public-site-refresh-reusable.yml",
     ".github/workflows/autonomous-market-readiness.yml",
     ".github/workflows/autonomous-rsi-adversarial-benchmark-foundry-proof.yml",
     ".github/workflows/autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml",
@@ -453,7 +453,7 @@ Run `SkillOS Command Center Autopublisher v3` with `publish_to_repo=true`, `depl
     ".github/workflows/autonomous-rsi-skill-provenance-ledger-proof.yml",
     ".github/workflows/enterprise-ops-proof.yml",
     ".github/workflows/pages.yml",
-    ".github/workflows/refresh-skillos-command-center.yml",
+    ".github/workflows/refresh-proof-gradient-command-center.yml",
     ".github/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml",
     ".github/workflows/rsi-capability-command-center-proof.yml",
     ".github/workflows/rsi-capability-command-center-v17-proof.yml",
@@ -468,10 +468,10 @@ Run `SkillOS Command Center Autopublisher v3` with `publish_to_repo=true`, `depl
     ".github/workflows/rsi-unit-economics-proof.yml",
     ".github/workflows/safe-public-copy-check.yml",
     ".github/workflows/shadow-pilot-proof.yml",
-    ".github/workflows/skillos-command-center-autopublisher-v2.yml",
-    ".github/workflows/skillos-command-center-autopublisher-v3.yml",
-    ".github/workflows/skillos-public-proof-command-center-refresh.yml",
-    ".github/workflows/skillos-public-site-refresh.yml",
+    ".github/workflows/proof-gradient-command-center-autopublisher-v2.yml",
+    ".github/workflows/proof-gradient-command-center-autopublisher-v3.yml",
+    ".github/workflows/proof-gradient-public-proof-command-center-refresh.yml",
+    ".github/workflows/proof-gradient-public-site-refresh.yml",
     ".github/workflows/skillos-run-all-public-proofs.yml",
     ".github/workflows/tests.yml"
   ]

@@ -104,8 +104,8 @@ def main() -> None:
 
     sitemap = SITE / "sitemap.xml"
     urls = [
-        "https://montrealai.github.io/skillos/",
-        f"https://montrealai.github.io/skillos/{HTML}",
+        "https://montrealai.github.io/proof-gradient/",
+        f"https://montrealai.github.io/proof-gradient/{HTML}",
     ]
     if sitemap.exists():
         old = sitemap.read_text(encoding="utf-8")
@@ -118,7 +118,7 @@ def main() -> None:
 
     robots = SITE / "robots.txt"
     if not robots.exists():
-        atomic_write(robots, "User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n")
+        atomic_write(robots, "User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n")
 
     print(json.dumps({"status": "PUBLISHED_TO_HUB", "proof": PROOF_ID}, indent=2))
 

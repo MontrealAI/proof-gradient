@@ -85,7 +85,7 @@ def badge_svg(m):
 
 def html_page(obj):
     m = obj["metrics"]
-    repo = m.get("github_repository", "MontrealAI/skillos")
+    repo = m.get("github_repository", "MontrealAI/proof-gradient")
     action = "autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml"
     action_url = f"https://github.com/{repo}/actions/workflows/{action}"
     json_url = f"../data/{SLUG}.json"

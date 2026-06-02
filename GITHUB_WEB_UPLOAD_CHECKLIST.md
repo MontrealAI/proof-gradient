@@ -15,4 +15,4 @@ Use this as a simple checklist while uploading.
 - [ ] `scripts/verify_repo.py` exists
 - [ ] Settings → Pages → Source is `GitHub Actions`
 - [ ] Actions → `Deploy SkillOS website to GitHub Pages` is green
-- [ ] Live URL opens: `https://montrealai.github.io/skillos/`
+- [ ] Live URL opens: `https://montrealai.github.io/proof-gradient/`

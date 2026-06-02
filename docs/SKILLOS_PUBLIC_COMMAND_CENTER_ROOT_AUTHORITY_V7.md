@@ -1,10 +1,10 @@
-# SkillOS Public Command Center Root Authority v7.1
+# Proof Gradient Public Command Center Root Authority v7.1
 
 This pack fixes the root contract permanently:
 
 ```text
-/skillos/           = Public SkillOS Command Center
-/skillos/index.html = Public SkillOS Command Center
+/skillos/           = Proof Gradient Command Center
+/skillos/index.html = Proof Gradient Command Center
 /skillos/capability-governance-twin.html = flagship proof subpage
 ```
 
@@ -32,7 +32,7 @@ Then it verifies the artifact, uploads it to GitHub Pages, deploys it, and live-
 ## Recommended run
 
 ```text
-GitHub → Actions → Public SkillOS Command Center Root Authority v7.1 → Run workflow
+GitHub → Actions → Proof Gradient Command Center Root Authority v7.1 → Run workflow
 ```
 
 Inputs:
@@ -46,11 +46,11 @@ cancel_legacy_runs: true
 ## Success criteria
 
 ```text
-https://montrealai.github.io/skillos/
-https://montrealai.github.io/skillos/index.html
+https://montrealai.github.io/proof-gradient/
+https://montrealai.github.io/proof-gradient/index.html
 ```
 
-both show `Public SkillOS Command Center`, not a single proof page.
+both show `Proof Gradient Command Center`, not a single proof page.
 
 The manifest should show:
 

@@ -641,7 +641,7 @@
     "benchmark_capital_equivalent_value_captured": 28776495235912.473,
     "candidate_protocol_strategies_per_case": 21,
     "frontier_correct_rate": 0.94482421875,
-    "github_repository": "MontrealAI/skillos",
+    "github_repository": "MontrealAI/proof-gradient",
     "github_sha": "75905d9cf9dbe8c4d525a26ca35a465f0c2144f4",
     "holdout_value_capture": 0.9990703123366625,
     "locked_holdout_cases": 2048,

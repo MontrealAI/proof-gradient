@@ -12,7 +12,7 @@ CARD = """
   <p style="color:#aab8c8;font-size:18px;max-width:900px">A 100% autonomous GitHub Actions proof for causal revenue experiments, guardrails, portfolio allocation, and scalable growth-plan selection. No human review, no customers, no private data, no API keys, and no reuse of previous proof domains.</p>
   <p>
     <a href="rsi-revenue-experiment-factory-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View experiment factory proof</a>
-    <a href="https://github.com/MontrealAI/skillos/actions/workflows/rsi-revenue-experiment-factory-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-revenue-experiment-factory-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
   </p>
 </section>
 """.strip()

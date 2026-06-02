@@ -11,7 +11,7 @@ from typing import Any
 
 PROOF_ID = "rsi-causal-attribution-engine-proof"
 TITLE = "Autonomous RSI Causal Attribution Engine Proof"
-SITE_BASE_URL = "https://montrealai.github.io/skillos/"
+SITE_BASE_URL = "https://montrealai.github.io/proof-gradient/"
 MAX_REGISTRY_PROOFS = 160
 
 
@@ -148,7 +148,7 @@ def render_index(registry: dict[str, Any], latest_entry: dict[str, Any]) -> str:
 </style>
 </head>
 <body>
-<nav><strong><a href='index.html'>SkillOS Proof Command Center</a></strong><span><a href='proof-registry.json'>Registry</a><a href='https://github.com/MontrealAI/skillos/actions'>Actions</a><a href='https://github.com/MontrealAI/skillos'>GitHub</a></span></nav>
+<nav><strong><a href='index.html'>SkillOS Proof Command Center</a></strong><span><a href='proof-registry.json'>Registry</a><a href='https://github.com/MontrealAI/proof-gradient/actions'>Actions</a><a href='https://github.com/MontrealAI/proof-gradient'>GitHub</a></span></nav>
 <main class='wrap'>
   <section class='hero'>
     <div class='eyebrow'>AUTONOMOUS RSI PUBLIC PROOF SYSTEM</div>

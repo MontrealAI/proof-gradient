@@ -9,9 +9,9 @@
 </p>
 
 <p align="center">
-  <a href="https://montrealai.github.io/skillos/"><strong>Open the live SkillOS site</strong></a>
+  <a href="https://montrealai.github.io/proof-gradient/"><strong>Open the live SkillOS site</strong></a>
   ·
-  <a href="https://github.com/MontrealAI/skillos/actions"><strong>Run the proofs</strong></a>
+  <a href="https://github.com/MontrealAI/proof-gradient/actions"><strong>Run the proofs</strong></a>
   ·
   <a href="./docs"><strong>Read the docs</strong></a>
   ·
@@ -19,8 +19,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/MontrealAI/skillos/actions/workflows/pages.yml"><img alt="GitHub Pages" src="https://github.com/MontrealAI/skillos/actions/workflows/pages.yml/badge.svg"></a>
-  <a href="https://github.com/MontrealAI/skillos/actions/workflows/tests.yml"><img alt="Tests" src="https://github.com/MontrealAI/skillos/actions/workflows/tests.yml/badge.svg"></a>
+  <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/pages.yml"><img alt="GitHub Pages" src="https://github.com/MontrealAI/proof-gradient/actions/workflows/pages.yml/badge.svg"></a>
+  <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/tests.yml"><img alt="Tests" src="https://github.com/MontrealAI/proof-gradient/actions/workflows/tests.yml/badge.svg"></a>
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
 </p>
 
@@ -39,8 +39,8 @@ Important: SkillOS is an open-source reference implementation. Current metrics a
 
 SkillOS now includes a public GitHub Actions proof that runs without sending emails, contacting customers, using private data, or requiring API keys.
 
-- Visual proof page: https://montrealai.github.io/skillos/shadow-pilot-proof.html
-- GitHub Action: https://github.com/MontrealAI/skillos/actions/workflows/shadow-pilot-proof.yml
+- Visual proof page: https://montrealai.github.io/proof-gradient/shadow-pilot-proof.html
+- GitHub Action: https://github.com/MontrealAI/proof-gradient/actions/workflows/shadow-pilot-proof.yml
 - Proof report: [`docs/shadow_pilot_proof.md`](docs/shadow_pilot_proof.md)
 
 Safe interpretation: this is a reproducible reference workflow proof, not audited customer results, financial advice, or a guarantee of future outcomes.
@@ -117,7 +117,7 @@ The repository includes a public website, GitHub Actions workflows, proof receip
 Start here:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 Then open any proof card. Each public proof page is designed to show, in a non-technical way:
@@ -181,7 +181,7 @@ There are three levels of proof visibility.
 Open:
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 Then click a proof card.
@@ -193,7 +193,7 @@ This is the best view for non-technical readers.
 Open:
 
 ```text
-https://github.com/MontrealAI/skillos/actions
+https://github.com/MontrealAI/proof-gradient/actions
 ```
 
 Choose a proof workflow and click:
@@ -283,7 +283,7 @@ Can a non-technical viewer understand it?
 ### Step 1 — Open the website
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 ### Step 2 — Open a proof card
@@ -321,7 +321,7 @@ This explains what the agent system did in plain language.
 Open:
 
 ```text
-https://github.com/MontrealAI/skillos/actions
+https://github.com/MontrealAI/proof-gradient/actions
 ```
 
 Choose the corresponding workflow and click:
@@ -344,7 +344,7 @@ deploy_pages: false
 Clone the repository:
 
 ```bash
-git clone https://github.com/MontrealAI/skillos.git
+git clone https://github.com/MontrealAI/proof-gradient.git
 cd skillos
 ```
 

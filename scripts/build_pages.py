@@ -22,8 +22,8 @@ from skillos.wealth_proof import run_wealth_proof
 
 SITE = ROOT / "site"
 DIST = ROOT / "dist"
-PAGES_URL = "https://montrealai.github.io/skillos/"
-REPO_URL = "https://github.com/MontrealAI/skillos"
+PAGES_URL = "https://montrealai.github.io/proof-gradient/"
+REPO_URL = "https://github.com/MontrealAI/proof-gradient"
 
 
 def iso_now() -> str:
@@ -32,7 +32,7 @@ def iso_now() -> str:
 
 def run_demo_snapshot() -> dict:
     with tempfile.TemporaryDirectory() as tmp:
-        storage = SkillOSStorage(Path(tmp) / "skillos-pages.db")
+        storage = SkillOSStorage(Path(tmp) / "proof-gradient-pages.db")
         seed_demo(storage)
         runtime = AgentRuntime(storage)
         examples = [
@@ -69,7 +69,7 @@ def run_demo_snapshot() -> dict:
             "generated_at": iso_now(),
             "url": PAGES_URL,
             "repository": REPO_URL,
-            "generated_for": "MontrealAI/skillos",
+            "generated_for": "MontrealAI/proof-gradient",
             "sample_traces": traces[:3],
             "lessons": lessons,
             "candidate": candidate,
@@ -108,7 +108,7 @@ def build() -> None:
         "wealth_proof_passed": True,
     }
     (DIST / "pages-manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    (DIST / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n", encoding="utf-8")
+    (DIST / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n", encoding="utf-8")
     sitemap = f'''<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>{PAGES_URL}</loc>\n    <lastmod>{snapshot["generated_at"]}</lastmod>\n  </url>\n</urlset>\n'''
     (DIST / "sitemap.xml").write_text(sitemap, encoding="utf-8")
     c = wealth_proof["conclusion"]

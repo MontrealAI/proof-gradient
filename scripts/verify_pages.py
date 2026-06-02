@@ -15,7 +15,7 @@ def main() -> None:
     html = (target / "index.html").read_text(encoding="utf-8")
     if "Agent SkillOS" not in html:
         raise SystemExit("index.html does not contain Agent SkillOS")
-    if "https://montrealai.github.io/skillos/" not in html:
+    if "https://montrealai.github.io/proof-gradient/" not in html:
         raise SystemExit("index.html does not contain the expected Pages URL")
     data = json.loads((target / "data" / "demo.json").read_text(encoding="utf-8"))
     for key in ["lessons", "candidate", "test_result", "release", "dashboard"]:

@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: https://montrealai.github.io/skillos/
+      url: https://montrealai.github.io/proof-gradient/
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -147,7 +147,7 @@ jobs:
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.deploy_pages }}
         run: |
           if [ "${{ steps.deploy1.outcome }}" = "success" ] || [ "${{ steps.deploy2.outcome }}" = "success" ] || [ "${{ steps.deploy3.outcome }}" = "success" ]; then
-            echo "Published https://montrealai.github.io/skillos/rsi-corporate-strategy-frontier-proof.html"
+            echo "Published https://montrealai.github.io/proof-gradient/rsi-corporate-strategy-frontier-proof.html"
           else
             echo "Pages deployment did not succeed after retries. The proof outputs were still generated, verified, uploaded, and committed."
             exit 1

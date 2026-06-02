@@ -22,9 +22,9 @@ SCHEMA = "skillos.command_center.sovereign.v5.1"
 MARKER = "SKILLOS_COMMAND_CENTER_V5_1_CANONICAL_ROOT"
 OLD_PHRASES = [
     "Autonomous Proof Command Center",
-    "SkillOS Public Command Center v2",
-    "SkillOS Public Command Center v3",
-    "Public SkillOS Command Center v2",
+    "Proof Gradient Public Command Center v2",
+    "Proof Gradient Public Command Center v3",
+    "Proof Gradient Command Center v2",
 ]
 
 def now_iso() -> str:
@@ -356,7 +356,7 @@ def base_head(title: str, desc: str) -> str:
 <title>{esc(title)}</title>
 <style>{CSS}</style><script>{JS}</script>
 </head><body><!-- {MARKER} --><div class="topbar"><a class="brand" href="index.html">SkillOS Sovereign Command Center v5.1</a><div class="nav">
-<a href="index.html">Home</a><a href="executive.html">Executive</a><a href="proofs.html">Proofs</a><a href="skills.html">Skills Used</a><a href="multi-agent.html">Multi-Agent</a><a href="receipts.html">Receipts</a><a href="health.html">Health</a><a href="runbook.html">Run</a><a href="https://github.com/MontrealAI/skillos">GitHub</a>
+<a href="index.html">Home</a><a href="executive.html">Executive</a><a href="proofs.html">Proofs</a><a href="skills.html">Skills Used</a><a href="multi-agent.html">Multi-Agent</a><a href="receipts.html">Receipts</a><a href="health.html">Health</a><a href="runbook.html">Run</a><a href="https://github.com/MontrealAI/proof-gradient">GitHub</a>
 </div></div><main class="wrap">'''
 
 def end() -> str:
@@ -424,7 +424,7 @@ def ensure_proof_pages(proofs: list[dict[str, Any]]) -> None:
                 width = 0
             bars += f'<div class="bar"><span>{esc(label)}</span><i style="--w:{max(0,min(100,width))}%"></i><b>{pct(v)}</b></div>'
         text = base_head(p["title"], p.get("description","SkillOS proof")) + f'''
-<section class="hero" style="min-height:420px"><div><div class="kicker">MONTREAL.AI / SKILLOS / PROOF</div><h1 class="title">{esc(p["title"])}</h1><p class="subtitle">{esc(p.get("description",""))}</p><div class="pillrow"><a class="btn primary" href="index.html">Command Center</a>{f'<a class="btn cyan" href="{esc(p.get("json",""))}">Open JSON receipt</a>' if p.get("json") else ""}</div></div><div class="glass card crown"><div class="kicker">Proof receipt</div><div class="giant">{esc(p.get("status","INDEXED"))}</div><p>Generated: {esc(p.get("generated_at_utc") or "indexed from repository")}</p><div class="stats" style="grid-template-columns:repeat(2,1fr)"><div class="stat"><b>{esc(p.get("rsi_release_count") or "—")}</b><span>RSI releases</span></div><div class="stat"><b>{esc(p.get("skills_used_count") or "—")}</b><span>skills displayed</span></div></div></div></section>
+<section class="hero" style="min-height:420px"><div><div class="kicker">MONTREAL.AI / PROOF GRADIENT / PROOF</div><h1 class="title">{esc(p["title"])}</h1><p class="subtitle">{esc(p.get("description",""))}</p><div class="pillrow"><a class="btn primary" href="index.html">Command Center</a>{f'<a class="btn cyan" href="{esc(p.get("json",""))}">Open JSON receipt</a>' if p.get("json") else ""}</div></div><div class="glass card crown"><div class="kicker">Proof receipt</div><div class="giant">{esc(p.get("status","INDEXED"))}</div><p>Generated: {esc(p.get("generated_at_utc") or "indexed from repository")}</p><div class="stats" style="grid-template-columns:repeat(2,1fr)"><div class="stat"><b>{esc(p.get("rsi_release_count") or "—")}</b><span>RSI releases</span></div><div class="stat"><b>{esc(p.get("skills_used_count") or "—")}</b><span>skills displayed</span></div></div></div></section>
 <section class="section glass card"><h2>Measured signals</h2>{bars}</section>
 <section class="section"><h2>Skills Used</h2><div class="grid">{skill_html}</div></section>
 <section class="section notice">Boundary: this page is a public deterministic proof receipt presentation, not audited ROI, financial advice, investment advice, legal advice, medical advice, or proof of achieved superintelligence.</section>
@@ -447,7 +447,7 @@ def homepage(proofs, workflows, skills, ts):
     featured = "".join(proof_card(p) for p in proofs[:6])
     top_workflows = "".join(f'''<article class="workflow-card"><span class="badge {'warn' if w['retired'] else ''}">{'retired' if w['retired'] else 'active'}</span><h3>{esc(w['name'])}</h3><p>{esc(w['path'])}</p><div class="meta"><span>dispatch {w['dispatch']}</span><span>push {w['push']}</span><span>schedule {w['schedule']}</span></div></article>''' for w in workflows[:6])
     return base_head("SkillOS Sovereign Command Center v5.1", "Canonical public SkillOS proof hub") + f'''
-<section class="hero"><div><div class="kicker">MONTREAL.AI / SKILLOS</div><h1 class="title">Sovereign SkillOS Command Center.</h1><p class="subtitle">The canonical, self-deploying public proof atlas for SkillOS: every proof, receipt, workflow, badge, Skills Used display, and multi-agent coordination signal is indexed, verified, rendered, and published through one autonomous GitHub Action.</p><div class="pillrow"><a class="btn primary" href="proofs.html">View proof atlas</a><a class="btn cyan" href="runbook.html">Run / regenerate</a><a class="btn" href="skills.html">Inspect Skills Used</a></div></div><div class="hero-card glass card crown"><div><div class="kicker">Canonical live root</div><div class="giant">Root and index are one artifact.</div></div><p>Updated <b class="mint">{esc(ts)}</b>. This v5 publisher blocks legacy overwrite loops and deploys the exact generated <code>site/index.html</code> artifact to GitHub Pages.</p><div class="notice">The old homepage phrase is intentionally forbidden by verification.</div></div></section>
+<section class="hero"><div><div class="kicker">MONTREAL.AI / PROOF GRADIENT</div><h1 class="title">Sovereign Proof Gradient Command Center.</h1><p class="subtitle">The canonical, self-deploying public proof atlas for SkillOS: every proof, receipt, workflow, badge, Skills Used display, and multi-agent coordination signal is indexed, verified, rendered, and published through one autonomous GitHub Action.</p><div class="pillrow"><a class="btn primary" href="proofs.html">View proof atlas</a><a class="btn cyan" href="runbook.html">Run / regenerate</a><a class="btn" href="skills.html">Inspect Skills Used</a></div></div><div class="hero-card glass card crown"><div><div class="kicker">Canonical live root</div><div class="giant">Root and index are one artifact.</div></div><p>Updated <b class="mint">{esc(ts)}</b>. This v5 publisher blocks legacy overwrite loops and deploys the exact generated <code>site/index.html</code> artifact to GitHub Pages.</p><div class="notice">The old homepage phrase is intentionally forbidden by verification.</div></div></section>
 <section class="glass card"><div class="kicker">Core thesis</div><div class="quote">Every job can become a reusable skill. Every verified skill can strengthen the whole network. One agent learns; the system can route that learning everywhere.</div><p>SkillOS makes the mechanism public and testable: work → traces → skills → verification → release → routing upgrade → compounding capability.</p></section>
 <section class="stats"><div class="stat"><b>{len(proofs):,}</b><span>indexed proofs and pages</span></div><div class="stat"><b>{passed:,}</b><span>passed / proved receipts</span></div><div class="stat"><b>{len(workflows):,}</b><span>GitHub workflows scanned</span></div><div class="stat"><b>{len(skills):,}</b><span>Skills Used surfaced</span></div><div class="stat"><b>{total_agents/1e9:,.2f}B</b><span>declared specialist agents across receipts</span></div><div class="stat"><b>{receipts:,}</b><span>JSON receipt files</span></div><div class="stat"><b>{len(list(DOCS.glob("*.md"))) if DOCS.exists() else 0:,}</b><span>Markdown reports</span></div><div class="stat"><b>{badges:,}</b><span>badges</span></div></section>
 <section class="section"><h2>Featured proof atlas</h2><div class="grid">{featured or '<p>No proof receipts found yet. Run the Action to scan the repository.</p>'}</div><div class="pillrow"><a class="btn cyan" href="proofs.html">Open all proofs</a></div></section>
@@ -477,7 +477,7 @@ def skills_page(skills, ts):
 def actions_page(workflows, ts):
     rows = "".join(f'<tr><td>{esc(w["name"])}</td><td><code>{esc(w["path"])}</code></td><td>{"retired" if w["retired"] else "active"}</td><td>{w["dispatch"]}</td><td>{w["push"]}</td><td>{w["schedule"]}</td><td>{w["workflow_run"]}</td></tr>' for w in workflows)
     return base_head("SkillOS Actions", "Workflows and run instructions") + f'''
-<section class="section"><div class="kicker">Run / regenerate</div><h1 class="title">One canonical deploy path.</h1><p class="subtitle">Run <b>SkillOS Sovereign Command Center v5.1 Canonical Deploy</b>. It builds, verifies, commits, uploads the Pages artifact, deploys, and verifies the live root.</p><div class="pillrow"><a class="btn primary" href="https://github.com/MontrealAI/skillos/actions">Open GitHub Actions</a></div></section>
+<section class="section"><div class="kicker">Run / regenerate</div><h1 class="title">One canonical deploy path.</h1><p class="subtitle">Run <b>SkillOS Sovereign Command Center v5.1 Canonical Deploy</b>. It builds, verifies, commits, uploads the Pages artifact, deploys, and verifies the live root.</p><div class="pillrow"><a class="btn primary" href="https://github.com/MontrealAI/proof-gradient/actions">Open GitHub Actions</a></div></section>
 <table class="table"><tr><th>Workflow</th><th>Path</th><th>Status</th><th>Dispatch</th><th>Push</th><th>Schedule</th><th>Workflow run</th></tr>{rows}</table>
 ''' + end()
 
@@ -502,7 +502,7 @@ def manifest(proofs, workflows, skills, ts):
         "schema": SCHEMA,
         "marker": MARKER,
         "generated_at_utc": ts,
-        "repository": "MontrealAI/skillos",
+        "repository": "MontrealAI/proof-gradient",
         "canonical_root": "index.html",
         "old_phrases_forbidden": OLD_PHRASES,
         "proof_count": len(proofs),
@@ -606,8 +606,8 @@ def write_pages(proofs, workflows, skills, ts):
     (SITE/"data"/"command-center-health.json").write_text(json.dumps(health, indent=2, sort_keys=True)+"\n", encoding="utf-8")
     registry = {"schema": "skillos.proof_registry.v5", "updated_at_utc": ts, "proofs": [{k:v for k,v in p.items() if k not in {"raw","skills_used"}} for p in proofs]}
     (SITE/"proof-registry.json").write_text(json.dumps(registry, indent=2, sort_keys=True)+"\n", encoding="utf-8")
-    (SITE/"sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"<url><loc>https://montrealai.github.io/skillos/{name}</loc></url>\n" for name in pages) + "</urlset>\n", encoding="utf-8")
-    (SITE/"robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/skillos/sitemap.xml\n", encoding="utf-8")
+    (SITE/"sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"<url><loc>https://montrealai.github.io/proof-gradient/{name}</loc></url>\n" for name in pages) + "</urlset>\n", encoding="utf-8")
+    (SITE/"robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io/proof-gradient/sitemap.xml\n", encoding="utf-8")
     badge = '<svg xmlns="http://www.w3.org/2000/svg" width="410" height="22" role="img" aria-label="SkillOS sovereign command center v5.1: fresh"><linearGradient id="g" x2="1"><stop offset="0" stop-color="#07101f"/><stop offset=".55" stop-color="#243064"/><stop offset="1" stop-color="#0d3041"/></linearGradient><rect width="410" height="22" rx="11" fill="url(#g)"/><rect x="294" width="116" height="22" rx="11" fill="#7dffb1"/><text x="12" y="15" fill="#dff7ff" font-family="Verdana" font-size="11">SkillOS sovereign command center v5.1</text><text x="317" y="15" fill="#06131f" font-family="Verdana" font-size="11" font-weight="700">fresh</text></svg>'
     BADGES.mkdir(exist_ok=True)
     (BADGES/"command-center-sovereign-v5-1.svg").write_text(badge, encoding="utf-8")
@@ -617,7 +617,7 @@ def write_pages(proofs, workflows, skills, ts):
 
 Generated: `{ts}`
 
-This is the canonical public SkillOS Command Center publisher.
+This is the canonical public Proof Gradient Command Center publisher.
 
 It scans proof receipts, workflows, reports, badges, and Skills Used metadata; renders a prestigious public proof atlas; verifies the output; commits the generated site; deploys the exact `site/` artifact to GitHub Pages; and optionally verifies that both `/skillos/` and `/skillos/index.html` are serving the v5 root.
 
@@ -648,9 +648,9 @@ Inputs:
 
 Verify:
 
-- `https://montrealai.github.io/skillos/data/command-center-manifest.json` contains `{SCHEMA}`
-- `https://montrealai.github.io/skillos/?v=sovereign-v5-1` contains `{MARKER}`
-- `https://montrealai.github.io/skillos/index.html?v=sovereign-v5-1` contains `{MARKER}`
+- `https://montrealai.github.io/proof-gradient/data/command-center-manifest.json` contains `{SCHEMA}`
+- `https://montrealai.github.io/proof-gradient/?v=sovereign-v5-1` contains `{MARKER}`
+- `https://montrealai.github.io/proof-gradient/index.html?v=sovereign-v5-1` contains `{MARKER}`
 - Neither page contains `Autonomous Proof Command Center`.
 ''', encoding="utf-8")
 

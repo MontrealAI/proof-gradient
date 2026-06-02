@@ -48,7 +48,7 @@ def main() -> None:
         ("Corporate Capability Frontier Proof" in index, "home page must feature the proof title"),
         ("rsi-corporate-capability-frontier-proof.html" in proofs, "proofs page must link to specific proof page"),
         (any(p.get("id") == "rsi-corporate-capability-frontier-proof" for p in registry.get("proofs", [])), "proof-index.json must register the proof"),
-        ("https://montrealai.github.io/skillos/rsi-corporate-capability-frontier-proof.html" in sitemap, "sitemap must include the specific proof URL"),
+        ("https://montrealai.github.io/proof-gradient/rsi-corporate-capability-frontier-proof.html" in sitemap, "sitemap must include the specific proof URL"),
         (str(proof["agent_system"]["agent_count"]) in page.replace(",", ""), "specific page must show agent count"),
         (str(proof["rsi_release_count"]) in page, "specific page must show RSI release count"),
     ]

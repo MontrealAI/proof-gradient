@@ -13,8 +13,8 @@ authors = [{name = "MontrealAI"}]
 dependencies = []
 
 [project.urls]
-Homepage = "https://montrealai.github.io/skillos/"
-Repository = "https://github.com/MontrealAI/skillos"
+Homepage = "https://montrealai.github.io/proof-gradient/"
+Repository = "https://github.com/MontrealAI/proof-gradient"
 
 [project.scripts]
 skillos = "skillos.cli:main"

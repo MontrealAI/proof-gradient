@@ -598,7 +598,7 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <main>
 <section class="hero">
 <div>
-<div class="eyebrow">MONTREAL.AI / SKILLOS</div>
+<div class="eyebrow">MONTREAL.AI / PROOF GRADIENT</div>
 <h1>Autonomous RSI Metamaterials Discovery Proof</h1>
 <p>Recursive self-improvement on lightweight structural metamaterial discovery.</p>
 </div>
@@ -633,9 +633,9 @@ ul {{ color:var(--muted); line-height:1.8; }}
 <section class="card"><h2>Proof gates</h2><ul>{gates_html}</ul></section>
 <section class="notice"><strong>Boundary:</strong> This is a fully autonomous reference proof using deterministic synthetic/redacted-style data and a physics-inspired benchmark oracle. It is not audited customer ROI, financial advice, investment advice, or a guarantee of future outcomes.</section>
 <p class="links">
-<a href="https://github.com/MontrealAI/skillos/actions/workflows/rsi-metamaterials-discovery-proof.yml">Run in GitHub Actions</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/docs/rsi_metamaterials_discovery_market_proof.md">Markdown report</a>
-<a href="https://github.com/MontrealAI/skillos/blob/main/data/rsi_metamaterials_discovery_market_proof.json">JSON proof</a>
+<a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-metamaterials-discovery-proof.yml">Run in GitHub Actions</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/docs/rsi_metamaterials_discovery_market_proof.md">Markdown report</a>
+<a href="https://github.com/MontrealAI/proof-gradient/blob/main/data/rsi_metamaterials_discovery_market_proof.json">JSON proof</a>
 </p>
 </main>
 </body>

@@ -1,0 +1,62 @@
+name: Proof Gradient Safety Check
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check for stale SkillOS deployment targets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Block stale SkillOS deployment URLs
+        run: |
+python <<'PY'
+from pathlib import Path
+
+stale = [
+    "https://montrealai.github.io/skillos",
+    "github.com/MontrealAI/skillos",
+    "MontrealAI/skillos",
+]
+
+scan_roots = [
+    Path(".github/workflows"),
+    Path("site"),
+    Path("scripts"),
+    Path("README.md"),
+]
+
+offenders = []
+
+for root in scan_roots:
+    if not root.exists():
+        continue
+    paths = [root] if root.is_file() else [p for p in root.rglob("*") if p.is_file()]
+    for path in paths:
+        if path.suffix.lower() in {".png", ".jpg", ".jpeg", ".gif", ".webp", ".pdf", ".zip"}:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except Exception:
+            continue
+        for needle in stale:
+            if needle in text:
+                offenders.append((str(path), needle))
+
+if offenders:
+    print("Stale SkillOS deployment references found:")
+    for path, needle in offenders:
+        print(f"- {path}: {needle}")
+    raise SystemExit(1)
+
+print("No stale SkillOS deployment URLs found in deployment-sensitive files.")
+PY

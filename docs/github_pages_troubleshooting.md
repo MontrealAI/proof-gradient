@@ -3,13 +3,13 @@
 ## Expected live URL
 
 ```text
-https://montrealai.github.io/skillos/
+https://montrealai.github.io/proof-gradient/
 ```
 
 ## Expected repository
 
 ```text
-https://github.com/MontrealAI/skillos
+https://github.com/MontrealAI/proof-gradient
 ```
 
 ## Check 1 — repository name

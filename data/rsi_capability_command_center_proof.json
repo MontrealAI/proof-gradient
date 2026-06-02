@@ -2,10 +2,10 @@
   "proof_receipts": {
     "proof_version": "v16.0",
     "workflow": "Autonomous RSI Adversarial Capability Command Center Proof",
-    "repository": "MontrealAI/skillos",
+    "repository": "MontrealAI/proof-gradient",
     "commit_sha": "c228d7159fa63a37c6f393a18bdac1fbc36a86a3",
     "run_id": "26694097511",
-    "run_url": "https://github.com/MontrealAI/skillos/actions/runs/26694097511",
+    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26694097511",
     "generated_at_utc": "2026-05-30T20:26:55Z",
     "benchmark_seed": "20260530"
   },

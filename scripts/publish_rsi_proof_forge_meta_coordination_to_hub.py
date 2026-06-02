@@ -10,7 +10,7 @@ from pathlib import Path
 PROOF_ID = "rsi-proof-forge-meta-coordination-proof"
 TITLE = "Autonomous RSI Proof Forge Meta-Coordination Proof"
 HREF = f"{PROOF_ID}.html"
-BASE_URL = "https://montrealai.github.io/skillos/"
+BASE_URL = "https://montrealai.github.io/proof-gradient/"
 
 CSS = """
 <style id="rsi-proof-forge-hub-css">

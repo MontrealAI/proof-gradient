@@ -1,6 +1,6 @@
-# SkillOS Public Proof Command Center Automation v4
+# Proof Gradient Public Proof Command Center Automation v4
 
-This is the pushed-as-far-as-possible public website automation for `https://montrealai.github.io/skillos/`.
+This is the pushed-as-far-as-possible public website automation for `https://montrealai.github.io/proof-gradient/`.
 
 ## What it creates
 
@@ -75,9 +75,9 @@ scripts/run_all_public_proofs.py
 Then upload workflow files:
 
 ```text
-.github/workflows/skillos-public-proof-command-center-refresh.yml
+.github/workflows/proof-gradient-public-proof-command-center-refresh.yml
 .github/workflows/skillos-run-all-public-proofs.yml
-.github/workflows/_skillos-public-proof-command-center-refresh-reusable.yml
+.github/workflows/_proof-gradient-public-proof-command-center-refresh-reusable.yml
 ```
 
 ## Commit messages
@@ -97,5 +97,5 @@ Add autonomous SkillOS visual proof command center workflows
 ## Run
 
 ```text
-GitHub → Actions → SkillOS Public Proof Command Center Refresh → Run workflow
+GitHub → Actions → Proof Gradient Public Proof Command Center Refresh → Run workflow
 ```

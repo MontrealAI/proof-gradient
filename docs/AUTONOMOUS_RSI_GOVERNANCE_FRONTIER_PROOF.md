@@ -58,6 +58,6 @@ Use `deploy_pages: true` only if this workflow should deploy GitHub Pages direct
 ## Expected public pages
 
 ```text
-https://montrealai.github.io/skillos/
-https://montrealai.github.io/skillos/rsi-governance-frontier-proof.html
+https://montrealai.github.io/proof-gradient/
+https://montrealai.github.io/proof-gradient/rsi-governance-frontier-proof.html
 ```

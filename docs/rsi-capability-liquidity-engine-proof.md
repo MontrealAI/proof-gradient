@@ -61,7 +61,7 @@ python scripts/publish_rsi_capability_liquidity_engine_to_hub.py
 
 Or run the GitHub Action:
 
-https://github.com/MontrealAI/skillos/actions/workflows/autonomous-rsi-capability-liquidity-engine-proof.yml
+https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-capability-liquidity-engine-proof.yml
 
 Proof SHA-256:
 
