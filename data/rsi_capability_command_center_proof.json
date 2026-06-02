@@ -3,10 +3,10 @@
     "proof_version": "v16.0",
     "workflow": "Autonomous RSI Adversarial Capability Command Center Proof",
     "repository": "MontrealAI/proof-gradient",
-    "commit_sha": "c228d7159fa63a37c6f393a18bdac1fbc36a86a3",
-    "run_id": "26694097511",
-    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26694097511",
-    "generated_at_utc": "2026-05-30T20:26:55Z",
+    "commit_sha": "b9f885f6b7ef52c452f94674431d884f7ace3b4d",
+    "run_id": "26830851467",
+    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/26830851467",
+    "generated_at_utc": "2026-06-02T15:41:49Z",
     "benchmark_seed": "20260530"
   },
   "status": "PASSED_AUTONOMOUS_RSI_ADVERSARIAL_CAPABILITY_COMMAND_CENTER_PROOF",
@@ -152,7 +152,7 @@
       "AI partner ecosystem",
       "capability reinvestment fund"
     ],
-    "source_code_hash_sha256": "b9fdb0378326813eebbcaa36516f2d717cbedb2d4764dfc2e90078b7f9113da1"
+    "source_code_hash_sha256": "91f7eac2e3ed55d53543955d071b269fa9edf8e7db8ba7d6f4dce757833871de"
   },
   "train_count": 640,
   "validation_count": 320,
