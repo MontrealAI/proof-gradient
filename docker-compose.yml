@@ -1,7 +1,25 @@
 services:
-  skillos:
-    build: .
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: proofgradient
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
-      - "8765:8765"
-    volumes:
-      - ./.skillos:/app/.skillos
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    environment:
+      PROOF_GRADIENT_DATABASE_URL: postgresql+psycopg://postgres:postgres@postgres:5432/proofgradient
+      PROOF_GRADIENT_PROVIDER: mock
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy

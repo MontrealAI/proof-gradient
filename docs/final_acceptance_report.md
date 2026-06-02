@@ -2,8 +2,14 @@
 
 | Requirement | Implementation location | Tests | Remaining risk | Notes |
 |---|---|---|---|---|
-| Artifact Vault stores reusable intelligence | `proof_gradient/foundation.py` | `test_artifact_vault_stores_reusable_intelligence` | Needs durable production database | Implemented as deterministic foundation |
-| Run Fabric executes agents at scale | `sovereign_swarm()` and `run_fabric()` | `test_run_fabric_executes_large_multi_agent_swarm` | Needs real provider-backed worker pool | 96-agent deterministic swarm |
-| Proof Ledger records what happened | `proof_ledger()` | `test_proof_ledger_records_what_happened` | Needs append-only production storage | Trace events and proof record modeled |
-| Selection Gate promotes only what proved itself | `selection_gate()` | `test_selection_gate_promotes_only_what_proved_itself` | Needs production rollout router | Evals, canary, rollback modeled |
-| Kardashev claim remains bounded | `civilization_scale_thesis` | `test_kardashev_claim_is_scenario_not_false_fact` | Needs real-world evidence for stronger claims | Scenario, not empirical claim |
+| Production database | `db.py`, `models.py`, Docker Compose | API and vertical slice tests | Needs managed Postgres deployment | SQLite local, Postgres CI-ready |
+| Artifact Vault | `ArtifactVault` | immutability test | Needs full diff UI | lifecycle foundation implemented |
+| Run Fabric | `RunFabric` | vertical slice test | Needs distributed worker pool | stateless mock runtime implemented |
+| Proof Ledger | `ProofLedger` | trace/proof test | Needs advanced search | append-only records implemented |
+| Selection Gate | `SelectionGate` | rollout/rollback test | Needs production routing integration | canary and rollback implemented |
+| API | `api.py` | API test | Needs auth middleware | core endpoints implemented |
+| CLI | `cli.py` | demo command | Needs full admin suite | core commands implemented |
+| Tenancy and RBAC | `security.py`, tenant models | security tests | Needs real auth provider | isolation helpers implemented |
+| Tool permissions | `ToolGateway` | security tests | Needs real tool adapters | deny-by-default implemented |
+| LLM/provider abstraction | `providers.py` | vertical slice test | Needs provider adapters | mock implemented |
+| Eval execution | `evals.py` | vertical slice test | Needs batch eval workers | deterministic evals implemented |

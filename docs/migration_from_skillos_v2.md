@@ -1,17 +1,16 @@
 # Migration from SkillOS v2.0.0
 
-Proof Gradient preserves the useful SkillOS DNA and generalizes it.
-
-| SkillOS concept | Proof Gradient concept |
+| SkillOS v2 concept | Proof Gradient concept |
 |---|---|
-| Skill | Artifact type: skill |
-| Skill version | Artifact version |
-| Skill release | Artifact release |
-| Skill trace | Proof Ledger trace |
-| Learning lesson | Proof-backed patch rationale |
-| Candidate skill | Candidate artifact version |
-| Eval result | Eval artifact + eval run + selection evidence |
-| Canary release | Selection Gate rollout |
-| Rollback planner | Mandatory rollback target |
+| Skill | artifact type: skill |
+| Skill version | ArtifactVersion |
+| Skill release | Artifact release / Rollout |
+| Skill trace | TraceEvent / Proof |
+| Learning lesson | Patch rationale |
+| Candidate skill | candidate ArtifactVersion |
+| Eval result | EvalRun + EvalResult |
+| Canary release | SelectionDecision + Rollout |
+| Rollback planner | mandatory Rollback |
 | Proof receipt | Proof Ledger record |
-| Public command center | Proof Gradient Command Center |
+
+Legacy SkillOS tests have been quarantined under `tests_legacy_skillos/` until the compatibility layer is intentionally restored or fully superseded.

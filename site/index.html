@@ -3,190 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Proof Gradient</title>
+    <title>Proof Gradient Production Platform</title>
     <style>
-    :root {
-      color-scheme: dark;
-      --text: #f7f8ff;
-      --muted: #aab3cf;
-      --line: rgba(255,255,255,.14);
-      --gold: #f4c76b;
-      --blue: #8ab4ff;
-      --green: #91f2bf;
-      --violet: #b8a7ff;
-      --orange: #ffb86b;
-      --red: #ff9c9c;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 15% 8%, rgba(138,180,255,.18), transparent 30%),
-        radial-gradient(circle at 85% 12%, rgba(244,199,107,.14), transparent 30%),
-        linear-gradient(180deg, #05070d 0%, #090d18 100%);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-    main { width: min(1320px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
-    .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
-    h1 { font-size: clamp(44px, 8vw, 104px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
-    h2 { font-size: clamp(28px, 4vw, 54px); letter-spacing: -0.05em; }
-    h3 { font-size: 24px; margin-top: 30px; }
-    p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
-    a { color: var(--blue); }
-    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
-    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
-    .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
-    .card b { display: block; font-size: 21px; margin-bottom: 10px; }
-    .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
-    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 720px; }
-    .nav { margin: 28px 0; display: flex; gap: 12px; flex-wrap: wrap; }
-    .nav a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; text-decoration: none; color: var(--muted); background: rgba(255,255,255,.04); }
-    .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
-    .visual { border: 1px solid var(--line); border-radius: 26px; padding: 24px; background: rgba(11,16,32,.84); margin: 24px 0; }
-    svg { width: 100%; height: auto; display: block; }
-    table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-    th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; color: var(--muted); vertical-align: top; }
-    th { color: var(--text); background: rgba(255,255,255,.06); }
-    tr:last-child td { border-bottom: 0; }
-    @media (max-width: 1100px) { .grid, .grid3 { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+      :root { color-scheme: dark; }
+      body { margin: 0; background: #05070d; color: #f7f8ff; font-family: ui-sans-serif, system-ui; }
+      main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 70px 0; }
+      .eyebrow { color: #f4c76b; text-transform: uppercase; letter-spacing: .18em; font-weight: 800; font-size: 13px; }
+      h1 { font-size: clamp(44px, 8vw, 100px); line-height: .92; letter-spacing: -.07em; margin: 18px 0; }
+      p { color: #aab3cf; font-size: 20px; line-height: 1.6; max-width: 880px; }
+      .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+      .card { border: 1px solid rgba(255,255,255,.14); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); }
+      .card b { font-size: 21px; }
+      pre { border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 18px; overflow: auto; background: #070b14; }
+      @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
     <main>
-      <div class="eyebrow">Proof Gradient · Proof-Carrying Intelligence</div>
-      
-    <h1>Commit.<br>Execute.<br>Prove.<br>Evolve.</h1>
-    <p>Proof-Carrying Intelligence is the Agent Evolution Protocol. Every agent acts once. The network learns forever.</p>
-    <div class="nav">
-      <a href="./">Command Center</a>
-      <a href="proofs/">Proof Archive</a>
-      <a href="proofs/001-sovereign-swarm.html">Proof #1</a><a href="proofs/002-evolution-tournament.html">Proof #2</a><a href="proofs/003-recursive-evolution-ladder.html">Proof #3</a><a href="proofs/004-corporate-rsi-dominion.html">Proof #4</a><a href="proofs/005-enterprise-rsi-superorganism.html">Proof #5</a><a href="proofs/006-sovereign-enterprise-constellation.html">Proof #6</a><a href="proofs/007-sovereign-enterprise-proof-economy.html">Proof #7</a><a href="proofs/008-sovereign-domain-atlas.html">Proof #8</a><a href="proofs/009-sovereign-kardashev-capital-engine.html">Proof #9</a><a href="proofs/010-proof-carrying-intelligence.html">Proof #10</a>
-    </div>
-    <h2>The Four Systems</h2>
-    <div class="grid">
-        <div class="card">
-          <b>Artifact Vault</b>
-          <p>stores reusable intelligence.</p>
-          <p>Stores every immutable, versioned, scoped, signed, auditable, rollbackable artifact.</p>
-        </div>
-        
-        <div class="card">
-          <b>Execution Fabric</b>
-          <p>executes agents at scale.</p>
-          <p>Resolves artifacts, executes stateless runs, and emits proof at network scale.</p>
-        </div>
-        
-        <div class="card">
-          <b>Proof Ledger</b>
-          <p>records what happened.</p>
-          <p>Append-only memory of commitments, executions, traces, evals, scores, feedback, upgrades, releases, and rollback events.</p>
-        </div>
-        
-        <div class="card">
-          <b>Evolution Gate</b>
-          <p>promotes only what proved itself.</p>
-          <p>Proposes, evaluates, approves, canaries, promotes, monitors, and rolls back upgrades.</p>
-        </div>
-        </div>
-    <h2>Proof Archive</h2>
-    <div class="grid">
-        <div class="card">
-          <b>Proof #1 — Sovereign Swarm</b>
-          <p>A deterministic large multi-agent coordination lattice.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/001-sovereign-swarm.html">Open proof page →</a></p>
-        </div>
-        
-        <div class="card">
-          <b>Proof #2 — Evolution Tournament</b>
-          <p>Candidates compete against baselines; only proven artifacts earn canary.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/002-evolution-tournament.html">Open proof page →</a></p>
-        </div>
-        
-        <div class="card">
-          <b>Proof #3 — Recursive Evolution Ladder</b>
-          <p>Selected artifacts become the next baseline; unsafe evolution is rejected and rolled back.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/003-recursive-evolution-ladder.html">Open proof page →</a></p>
-        </div>
-        
-        <div class="card">
-          <b>Proof #4 — Corporate RSI Dominion</b>
-          <p>Corporate-domain RSI for the AI-first enterprise era.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/004-corporate-rsi-dominion.html">Open proof page →</a></p>
-        </div>
-        
-        <div class="card">
-          <b>Proof #5 — Enterprise RSI Superorganism</b>
-          <p>An AI-first corporate operating system that recursively improves enterprise artifacts.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/005-enterprise-rsi-superorganism.html">Open proof page →</a></p>
-        </div>
-        
-        <div class="card">
-          <b>Proof #6 — Sovereign Enterprise Constellation</b>
-          <p>A network of sovereign enterprises recursively improving through federation and proof markets.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/006-sovereign-enterprise-constellation.html">Open proof page →</a></p>
-        </div>
-        
-        <div class="card">
-          <b>Proof #7 — Sovereign Enterprise Proof Economy</b>
-          <p>A proof market where sovereign enterprises price, route, adopt, reject, and compound reusable intelligence.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/007-sovereign-enterprise-proof-economy.html">Open proof page →</a></p>
-        </div>
-        
-        <div class="card">
-          <b>Proof #8 — Sovereign Domain Atlas</b>
-          <p>An institutional RSI atlas across sovereign domains.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/008-sovereign-domain-atlas.html">Open proof page →</a></p>
-        </div>
-        
-        <div class="card">
-          <b>Proof #9 — Sovereign Kardashev Capital Engine</b>
-          <p>A capital–compute–energy RSI engine for sovereign domains, framed as a Kardashev scenario lab.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/009-sovereign-kardashev-capital-engine.html">Open proof page →</a></p>
-        </div>
-        
-        <div class="card">
-          <b>Proof #10 — Proof-Carrying Intelligence</b>
-          <p>The Agent Evolution Protocol: Commit → Execute → Prove → Evolve.</p>
-          <p><span class="pill">passed</span></p>
-          <p><a href="proofs/010-proof-carrying-intelligence.html">Open proof page →</a></p>
-        </div>
-        </div>
-    <h2>Current Apex Proof</h2>
-    <pre>{
-  &quot;protocol&quot;: &quot;Commit \u2192 Execute \u2192 Prove \u2192 Evolve&quot;,
-  &quot;agents&quot;: 4194304,
-  &quot;guilds&quot;: 256,
-  &quot;sovereign_domains&quot;: 2048,
-  &quot;rsi_cycles&quot;: 256,
-  &quot;eval_cases&quot;: 1073741824,
-  &quot;commits&quot;: 524288,
-  &quot;executions&quot;: 524288,
-  &quot;proofs&quot;: 524288,
-  &quot;selected_upgrades&quot;: 522246,
-  &quot;rejected_upgrades&quot;: 2042,
-  &quot;rollbacks&quot;: 2042,
-  &quot;meta_rsi_upgrades&quot;: 32,
-  &quot;goals_used&quot;: 4,
-  &quot;plans_used&quot;: 4,
-  &quot;skills_used&quot;: 8,
-  &quot;policies_used&quot;: 3,
-  &quot;evals_used&quot;: 4,
-  &quot;synthetic_network_index_final&quot;: 11200043.075,
-  &quot;synthetic_kardashev_scenario_index_final&quot;: 0.00360164,
-  &quot;verdict&quot;: &quot;proof_carrying_intelligence_protocol_proven_deterministically_with_commit_execute_prove_evolve_and_evolution_gate&quot;
-}</pre>
-    
+      <div class="eyebrow">Proof Gradient · Production Platform</div>
+      <h1>Aim.<br>Act.<br>Prove.<br>Evolve.</h1>
+      <p>GoalOS gives the network Direction. PlanOS gives it Strategy. SkillOS gives it Capability. The Proof Gradient gives it Evolution.</p>
+      <div class="grid">
+        <div class="card"><b>Artifact Vault</b><p>Stores reusable intelligence.</p></div>
+        <div class="card"><b>Run Fabric</b><p>Executes agents at scale.</p></div>
+        <div class="card"><b>Proof Ledger</b><p>Records what happened.</p></div>
+        <div class="card"><b>Selection Gate</b><p>Promotes only what proved itself.</p></div>
+      </div>
+      <h2>Implemented production foundation</h2>
+      <pre>Database · API · CLI · UI · RBAC · Tool Permissions · Provider Abstraction · Evals · Observability · Security Review · Docker Compose · CI</pre>
     </main>
   </body>
 </html>
