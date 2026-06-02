@@ -3,29 +3,19 @@
   "number": 7,
   "slug": "007-sovereign-enterprise-proof-economy",
   "title": "Proof #7 — Sovereign Enterprise Proof Economy",
-  "subtitle": "A deterministic proof market where sovereign enterprises price, route, adopt, reject, and compound reusable intelligence.",
+  "subtitle": "A proof market where sovereign enterprises price, route, adopt, reject, and compound reusable intelligence.",
   "url": "https://montrealai.github.io/proof-gradient/proofs/007-sovereign-enterprise-proof-economy.html",
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/007-sovereign-enterprise-proof-economy.json",
   "status": "passed",
   "summary": {
     "agent_count": 65536,
-    "guild_count": 64,
-    "sovereign_enterprise_count": 256,
-    "domain_count": 64,
-    "rsi_cycle_count": 32,
     "eval_case_count": 2097152,
-    "meta_rsi_upgrade_count": 8,
     "verdict": "sovereign_enterprise_proof_economy_proven_deterministically_with_pricing_reputation_federated_adoption_selection_and_rollback"
   },
   "evidence": {
     "agent_count": 65536,
-    "guild_count": 64,
-    "sovereign_enterprise_count": 256,
-    "domain_count": 64,
-    "rsi_cycle_count": 32,
     "eval_case_count": 2097152,
-    "meta_rsi_upgrade_count": 8,
     "verdict": "sovereign_enterprise_proof_economy_proven_deterministically_with_pricing_reputation_federated_adoption_selection_and_rollback"
   },
-  "checksum": "bfe9fb95702f0c47f5b2d8a3eee83d2bab599369b8abcce54522b771378793b4"
+  "checksum": "8eae96e64dba97eec3da7e9e3e9f44e37e8eabfc046b4c8ee3d7c791f8df1498"
 }

@@ -3,29 +3,19 @@
   "number": 6,
   "slug": "006-sovereign-enterprise-constellation",
   "title": "Proof #6 — Sovereign Enterprise Constellation",
-  "subtitle": "A deterministic network of AI-first sovereign enterprises recursively improving through federation, proof markets, selection, and rollback.",
+  "subtitle": "A network of sovereign enterprises recursively improving through federation and proof markets.",
   "url": "https://montrealai.github.io/proof-gradient/proofs/006-sovereign-enterprise-constellation.html",
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/006-sovereign-enterprise-constellation.json",
   "status": "passed",
   "summary": {
     "agent_count": 9216,
-    "guild_count": 48,
-    "sovereign_enterprise_count": 96,
-    "domain_count": 48,
-    "rsi_cycle_count": 20,
     "eval_case_count": 491520,
-    "meta_rsi_upgrade_count": 10,
     "verdict": "sovereign_enterprise_constellation_proven_deterministically_with_federated_rsi_proof_markets_selection_and_rollback"
   },
   "evidence": {
     "agent_count": 9216,
-    "guild_count": 48,
-    "sovereign_enterprise_count": 96,
-    "domain_count": 48,
-    "rsi_cycle_count": 20,
     "eval_case_count": 491520,
-    "meta_rsi_upgrade_count": 10,
     "verdict": "sovereign_enterprise_constellation_proven_deterministically_with_federated_rsi_proof_markets_selection_and_rollback"
   },
-  "checksum": "42e6808e77de7173fee11169e02c4a7a37ac0db53ace38e52dd6e9ad52006b44"
+  "checksum": "263a165059b7c771556edfb97e036c57379ecd31ef2d24e7c13404c997c8cbde"
 }

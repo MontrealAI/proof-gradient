@@ -3,27 +3,19 @@
   "number": 8,
   "slug": "008-sovereign-domain-atlas",
   "title": "Proof #8 — Sovereign Domain Atlas",
-  "subtitle": "A deterministic institutional RSI atlas across sovereign domains.",
+  "subtitle": "An institutional RSI atlas across sovereign domains.",
   "url": "https://montrealai.github.io/proof-gradient/proofs/008-sovereign-domain-atlas.html",
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/008-sovereign-domain-atlas.json",
   "status": "passed",
   "summary": {
     "agent_count": 262144,
-    "guild_count": 128,
-    "domain_count": 512,
-    "rsi_cycle_count": 64,
     "eval_case_count": 16777216,
-    "meta_rsi_upgrade_count": 16,
     "verdict": "sovereign_domain_atlas_proven_deterministically_with_institutional_graphs_domain_routing_selection_and_rollback"
   },
   "evidence": {
     "agent_count": 262144,
-    "guild_count": 128,
-    "domain_count": 512,
-    "rsi_cycle_count": 64,
     "eval_case_count": 16777216,
-    "meta_rsi_upgrade_count": 16,
     "verdict": "sovereign_domain_atlas_proven_deterministically_with_institutional_graphs_domain_routing_selection_and_rollback"
   },
-  "checksum": "b99b4a812db509e9f4b9aa18dfcb331d2c5ef27db280c66f9ba883eb788db1ea"
+  "checksum": "2ebe8a9368c057b0c46fb823eedef49e5e60662a2438b3eae63245e976609e5a"
 }

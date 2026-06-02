@@ -1,8 +1,10 @@
 # Proof Gradient
 
-**One agent tries. Proof decides. The network evolves.**
+**Proof-Carrying Intelligence.**
 
-Proof Gradient is the agent evolution protocol where every run leaves proof, every proof selects intelligence, and every selected artifact evolves the network.
+**Commit. Execute. Prove. Evolve.**
+
+Proof Gradient is the Agent Evolution Protocol where every AI-agent job becomes evidence, every evidence can become an upgrade, and every proven upgrade strengthens the authorized network.
 
 ## Canonical product truth
 
@@ -11,14 +13,28 @@ PlanOS gives it **Strategy**.
 SkillOS gives it **Capability**.  
 The Proof Gradient gives it **Evolution**.
 
+## The Proof Loop
+
+```text
+Commit → Execute → Prove → Evolve
+```
+
+## The core doctrine
+
+```text
+Anything that can improve is an Artifact.
+Anything that changes must carry Proof.
+Anything that propagates must pass the Evolution Gate.
+```
+
 ## The four systems
 
 | System | Promise |
 |---|---|
 | **Artifact Vault** | Stores reusable intelligence. |
-| **Run Fabric** | Executes agents at scale. |
+| **Execution Fabric** | Executes agents at scale. |
 | **Proof Ledger** | Records what happened. |
-| **Selection Gate** | Promotes only what proved itself. |
+| **Evolution Gate** | Promotes only what proved itself. |
 
 ## Current proof archive
 
@@ -31,41 +47,21 @@ The Proof Gradient gives it **Evolution**.
 - Proof #7 — Sovereign Enterprise Proof Economy
 - Proof #8 — Sovereign Domain Atlas
 - Proof #9 — Sovereign Kardashev Capital Engine
+- Proof #10 — Proof-Carrying Intelligence
 
-## Proof #9 — Sovereign Kardashev Capital Engine
+## Proof #10 — Proof-Carrying Intelligence
 
-Sovereign Kardashev Capital Engine proves a deterministic RSI scenario engine across sovereign capital, compute, energy, trust, markets, infrastructure, and governance domains.
-
-It models:
-
-- capital routing
-- compute routing
-- energy routing
-- trust routing
-- proof-market pricing
-- artifact reputation
-- Kardashev scenario readiness
-- cross-domain artifact transfer
-- meta-RSI upgrades
-- rollback governance
-- institutional graphs and tables
-- explicit GoalOS, PlanOS, and SkillOS artifact catalogs
-
-It does **not** claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, or Kardashev Type II achievement.
-
-It makes the Kardashev quote actionable as a proof-bounded scenario:
-
-> A superintelligent machine would be of such immense value, with so much wealth accruing to any company that owned one, that it could allow us to reach Kardashev Type II civilization level.
-
-Proof Gradient treats this as a **strategic scenario**, not an achieved fact.
-
-## Operating law
+Proof #10 proves the simplest sovereign protocol:
 
 ```text
-No proof, no evolution.
-No eval, no propagation.
-No rollback, no release.
+Every Job becomes a Commitment.
+Every Commitment is Executed.
+Every Execution produces Proof.
+Every Proof can earn Evolution.
+Every Evolution strengthens the authorized Network.
 ```
+
+It does **not** claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, real-world energy capture, or Kardashev Type II achievement.
 
 ## Public command center
 

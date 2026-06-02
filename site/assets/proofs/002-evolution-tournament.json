@@ -9,19 +9,13 @@
   "status": "passed",
   "summary": {
     "agent_count": 144,
-    "guild_count": 12,
     "case_count": 72,
-    "patch_count": 3,
-    "candidate_policy_violations": 0,
     "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"
   },
   "evidence": {
     "agent_count": 144,
-    "guild_count": 12,
     "case_count": 72,
-    "patch_count": 3,
-    "candidate_policy_violations": 0,
     "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"
   },
-  "checksum": "47b7329fb1f8b286ff8f39126e0de443b8472a63ae51401fee2d56f254dd2fe4"
+  "checksum": "94078167ec8eb8e5789caa3972a492b739865e51feeb5da5ae611e0052c1a7f0"
 }

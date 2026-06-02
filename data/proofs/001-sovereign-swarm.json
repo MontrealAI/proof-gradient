@@ -9,17 +9,11 @@
   "status": "passed",
   "summary": {
     "agent_count": 96,
-    "division_count": 8,
-    "handoff_count": 95,
-    "vote_count": 96,
     "verdict": "large_multi_agent_coordination_proven_deterministically"
   },
   "evidence": {
     "agent_count": 96,
-    "division_count": 8,
-    "handoff_count": 95,
-    "vote_count": 96,
     "verdict": "large_multi_agent_coordination_proven_deterministically"
   },
-  "checksum": "a48722351cc0d170224bcba4fffe30af7729c620134e24ea4bd9a4793e7ea533"
+  "checksum": "79821d78a9ffecaa522b7c8ca524e4c1021cb061322fb8fc194843273c660f83"
 }

@@ -3,27 +3,19 @@
   "number": 5,
   "slug": "005-enterprise-rsi-superorganism",
   "title": "Proof #5 — Enterprise RSI Superorganism",
-  "subtitle": "A deterministic AI-first corporate operating system that recursively improves enterprise value-creation artifacts.",
+  "subtitle": "An AI-first corporate operating system that recursively improves enterprise artifacts.",
   "url": "https://montrealai.github.io/proof-gradient/proofs/005-enterprise-rsi-superorganism.html",
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/005-enterprise-rsi-superorganism.json",
   "status": "passed",
   "summary": {
     "agent_count": 2048,
-    "guild_count": 32,
-    "corporate_domain_count": 32,
-    "rsi_cycle_count": 12,
     "eval_case_count": 49152,
-    "meta_rsi_upgrade_count": 6,
     "verdict": "enterprise_rsi_superorganism_proven_deterministically_with_meta_rsi_capital_allocation_selection_and_rollback"
   },
   "evidence": {
     "agent_count": 2048,
-    "guild_count": 32,
-    "corporate_domain_count": 32,
-    "rsi_cycle_count": 12,
     "eval_case_count": 49152,
-    "meta_rsi_upgrade_count": 6,
     "verdict": "enterprise_rsi_superorganism_proven_deterministically_with_meta_rsi_capital_allocation_selection_and_rollback"
   },
-  "checksum": "9b8e4272452b4c0ac624e10532ec9b5e304589078ce15c73392159763259b0ad"
+  "checksum": "bba9286673c5f3e368f39b985aadb3349a0c9773c0f34b942a1a990fc57a2fcb"
 }

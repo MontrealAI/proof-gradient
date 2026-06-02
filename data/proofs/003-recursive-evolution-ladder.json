@@ -9,19 +9,13 @@
   "status": "passed",
   "summary": {
     "agent_count": 240,
-    "guild_count": 16,
     "generation_count": 5,
-    "total_eval_cases": 300,
-    "rollback_count": 1,
     "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"
   },
   "evidence": {
     "agent_count": 240,
-    "guild_count": 16,
     "generation_count": 5,
-    "total_eval_cases": 300,
-    "rollback_count": 1,
     "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"
   },
-  "checksum": "3ff53b1067a0b704031165252043f1bb11c562ca2e2ca06f183a8d07e9cd5b34"
+  "checksum": "14f95b60ea5a76069ba251814950c217f3554f0079e7003638b824ec75a0d87a"
 }
