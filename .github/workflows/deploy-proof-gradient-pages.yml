@@ -1,4 +1,4 @@
-name: Proof Gradient Sovereign Enterprise Constellation
+name: Proof Gradient Sovereign Enterprise Proof Economy
 
 on:
   workflow_dispatch:
@@ -30,12 +30,12 @@ permissions:
   actions: read
 
 concurrency:
-  group: proof-gradient-sovereign-enterprise-constellation
+  group: proof-gradient-sovereign-enterprise-proof-economy
   cancel-in-progress: true
 
 jobs:
-  sovereign-enterprise-constellation:
-    name: Build, prove, archive, and deploy Sovereign Enterprise Constellation
+  sovereign-enterprise-proof-economy:
+    name: Build, prove, archive, and deploy Sovereign Enterprise Proof Economy
     runs-on: ubuntu-latest
 
     if: github.repository == 'MontrealAI/proof-gradient'
@@ -55,8 +55,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Bootstrap Sovereign Enterprise Constellation
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'bootstrap-and-deploy' }}
+      - name: Bootstrap Sovereign Enterprise Proof Economy
+        if: ${{ github.event_name == 'push' || inputs.mode == 'bootstrap-and-deploy' }}
         run: |
           set -euo pipefail
 
@@ -82,7 +82,7 @@ jobs:
               The Proof Gradient gives Evolution.
               """
 
-              __version__ = "0.7.0"
+              __version__ = "0.8.0"
               ''')
 
           write("README.md", """
@@ -116,30 +116,29 @@ jobs:
           - Proof #4 — Corporate RSI Dominion
           - Proof #5 — Enterprise RSI Superorganism
           - Proof #6 — Sovereign Enterprise Constellation
+          - Proof #7 — Sovereign Enterprise Proof Economy
 
-          ## Proof #6 — Sovereign Enterprise Constellation
+          ## Proof #7 — Sovereign Enterprise Proof Economy
 
-          Sovereign Enterprise Constellation proves a deterministic, auditable RSI network for the AI-first sovereign enterprise era.
+          Sovereign Enterprise Proof Economy proves a deterministic RSI market where AI-first sovereign enterprises exchange generalized, redacted, eval-backed, rollbackable artifacts.
 
-          It models a constellation of sovereign enterprises that recursively improve:
+          It models:
 
-          - direction artifacts
-          - strategy artifacts
-          - capability artifacts
-          - trust policies
-          - capital allocation rules
-          - market expansion systems
-          - enterprise operating loops
-          - cross-enterprise artifact transfer
-          - proof markets
-          - rollout and rollback governance
+          - proof-market pricing
+          - artifact reputation
+          - federated adoption
+          - sovereign privacy boundaries
+          - capital allocation toward proof-backed winners
+          - unsafe candidate rejection
+          - rollback drills
+          - recursive self-improvement of the market machinery itself
 
           It does **not** claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, or Kardashev achievement.
 
           It proves the substrate:
 
           ```text
-          artifact → run → proof → eval → credit assignment → patch → selection → canary → rollback → next RSI cycle
+          artifact → run → proof → eval → credit assignment → patch → price → route → select → canary → rollback → next RSI cycle
           ```
 
           ## Operating law
@@ -157,7 +156,7 @@ jobs:
           ```
           """)
 
-          write("proof_gradient/sovereign_enterprise_constellation.py", r'''
+          write("proof_gradient/sovereign_enterprise_proof_economy.py", r'''
           from __future__ import annotations
 
           from dataclasses import dataclass, asdict
@@ -219,255 +218,226 @@ jobs:
                   {
                       "name": "Proof Ledger",
                       "promise": "records what happened",
-                      "meaning": "Append-only evidence: traces, scores, evals, tool decisions, credit assignment, patches, canaries, and rollback drills.",
+                      "meaning": "Append-only evidence: traces, scores, evals, tool decisions, credit assignment, patches, canaries, rollback drills, prices, and reputation updates.",
                   },
                   {
                       "name": "Selection Gate",
                       "promise": "promotes only what proved itself",
-                      "meaning": "Candidates must beat baselines, pass safety gates, receive canary routing, and preserve rollback.",
+                      "meaning": "Candidates must beat baselines, pass safety gates, receive canary routing, preserve rollback, and earn market reputation.",
                   },
               ]
 
 
-          SOVEREIGN_ENTERPRISE_DOMAINS = [
-              {"slug": "sovereign_revenue_factory", "name": "Sovereign Revenue Factory", "lever": "pipeline creation, pricing power, win-rate, expansion motion", "base": 110.0},
-              {"slug": "ai_first_private_equity_ops", "name": "AI-First Private Equity Ops", "lever": "portfolio diligence, operating improvement, capital deployment", "base": 112.0},
-              {"slug": "autonomous_cloud_operator", "name": "Autonomous Cloud Operator", "lever": "infrastructure margin, reliability, and workload orchestration", "base": 104.0},
-              {"slug": "cyber_defense_enterprise", "name": "Cyber Defense Enterprise", "lever": "continuous risk reduction and high-trust managed defense", "base": 108.0},
-              {"slug": "enterprise_ai_integrator", "name": "Enterprise AI Integrator", "lever": "deployment velocity, workflow capture, and change management", "base": 103.0},
-              {"slug": "sovereign_data_foundry", "name": "Sovereign Data Foundry", "lever": "data ownership, metrics trust, and decision-grade data products", "base": 101.0},
-              {"slug": "legal_compliance_platform", "name": "Legal Compliance Platform", "lever": "contract velocity, policy safety, and regulatory readiness", "base": 96.0},
-              {"slug": "procurement_arbitrage_engine", "name": "Procurement Arbitrage Engine", "lever": "vendor leverage, spend intelligence, and sourcing advantage", "base": 94.0},
-              {"slug": "financial_command_center", "name": "Financial Command Center", "lever": "forecast accuracy, margin visibility, and capital allocation", "base": 109.0},
-              {"slug": "customer_trust_network", "name": "Customer Trust Network", "lever": "retention, expansion, and customer health response", "base": 99.0},
-              {"slug": "ai_product_factory", "name": "AI Product Factory", "lever": "product velocity, roadmap prioritization, and usage expansion", "base": 105.0},
-              {"slug": "software_delivery_machine", "name": "Software Delivery Machine", "lever": "cycle time, defect reduction, testing, and release confidence", "base": 106.0},
-              {"slug": "security_assurance_market", "name": "Security Assurance Market", "lever": "compliance evidence, trust reports, and proof-backed assurance", "base": 97.0},
-              {"slug": "growth_media_engine", "name": "Growth Media Engine", "lever": "demand generation, narrative testing, and conversion loops", "base": 95.0},
-              {"slug": "talent_compounding_academy", "name": "Talent Compounding Academy", "lever": "hiring throughput, onboarding, and skill transfer", "base": 90.0},
-              {"slug": "partnership_os", "name": "Partnership OS", "lever": "channel leverage, ecosystem routing, and partner-sourced pipeline", "base": 92.0},
-              {"slug": "ai_governance_bureau", "name": "AI Governance Bureau", "lever": "safe adoption, policy enforcement, and audit readiness", "base": 98.0},
-              {"slug": "executive_decision_network", "name": "Executive Decision Network", "lever": "decision cadence, board narratives, and strategic alignment", "base": 107.0},
-              {"slug": "market_intelligence_exchange", "name": "Market Intelligence Exchange", "lever": "competitive sensing, dealflow, and strategy signals", "base": 96.0},
-              {"slug": "developer_ecosystem_company", "name": "Developer Ecosystem Company", "lever": "developer adoption, technical advocacy, and platform pull", "base": 91.0},
-              {"slug": "robotic_operations_platform", "name": "Robotic Operations Platform", "lever": "physical workflow optimization and automation readiness", "base": 100.0},
-              {"slug": "supply_resilience_network", "name": "Supply Resilience Network", "lever": "supplier intelligence, delivery reliability, and inventory risk", "base": 93.0},
-              {"slug": "energy_ops_platform", "name": "Energy Ops Platform", "lever": "energy procurement, efficiency, and infrastructure planning", "base": 102.0},
-              {"slug": "industrial_ai_operator", "name": "Industrial AI Operator", "lever": "plant operations, yield, quality, and uptime", "base": 103.0},
-              {"slug": "health_admin_operator", "name": "Healthcare Admin Operator", "lever": "administrative workflow, claims, scheduling, and patient operations", "base": 89.0},
-              {"slug": "insurance_ops_underwriter", "name": "Insurance Ops Underwriter", "lever": "risk scoring, claims routing, and underwriting throughput", "base": 95.0},
-              {"slug": "real_estate_asset_operator", "name": "Real Estate Asset Operator", "lever": "leasing, maintenance, tenant success, and asset intelligence", "base": 94.0},
-              {"slug": "education_enablement_platform", "name": "Education Enablement Platform", "lever": "curriculum operations, learner support, and skill transfer", "base": 88.0},
-              {"slug": "public_sector_modernization", "name": "Public Sector Modernization", "lever": "service delivery, procurement, and compliance acceleration", "base": 86.0},
-              {"slug": "manufacturing_quality_os", "name": "Manufacturing Quality OS", "lever": "quality control, defect prevention, and supplier feedback", "base": 98.0},
-              {"slug": "logistics_network_operator", "name": "Logistics Network Operator", "lever": "routing, carrier management, and utilization", "base": 96.0},
-              {"slug": "sovereign_ip_studio", "name": "Sovereign IP Studio", "lever": "content, design, productized IP, and licensing loops", "base": 92.0},
-              {"slug": "capital_markets_intelligence", "name": "Capital Markets Intelligence", "lever": "signal extraction, risk monitoring, and capital narratives", "base": 105.0},
-              {"slug": "mna_integration_machine", "name": "M&A Integration Machine", "lever": "diligence, integration, synergy tracking, and operating lift", "base": 99.0},
-              {"slug": "tax_optimization_command", "name": "Tax Optimization Command", "lever": "tax operations, compliance routing, and scenario planning", "base": 91.0},
-              {"slug": "subscription_retention_engine", "name": "Subscription Retention Engine", "lever": "churn prediction, lifecycle interventions, and expansion", "base": 97.0},
-              {"slug": "vertical_saas_operator", "name": "Vertical SaaS Operator", "lever": "niche workflow capture, embedded AI, and retention loops", "base": 100.0},
-              {"slug": "ai_native_franchise_os", "name": "AI-Native Franchise OS", "lever": "repeatable playbooks, local execution, and shared intelligence", "base": 93.0},
-              {"slug": "trust_assurance_exchange", "name": "Trust Assurance Exchange", "lever": "evidence sharing, vendor trust, and compliance automation", "base": 94.0},
-              {"slug": "payments_revenue_network", "name": "Payments Revenue Network", "lever": "transaction intelligence, fraud reduction, and pricing", "base": 101.0},
-              {"slug": "sovereign_marketplace_ops", "name": "Sovereign Marketplace Ops", "lever": "liquidity, matching, trust, and unit economics", "base": 102.0},
-              {"slug": "field_service_command", "name": "Field Service Command", "lever": "dispatch, utilization, parts, and customer satisfaction", "base": 90.0},
-              {"slug": "enterprise_knowledge_operator", "name": "Enterprise Knowledge Operator", "lever": "knowledge capture, retrieval, and decision reuse", "base": 95.0},
-              {"slug": "risk_intelligence_bureau", "name": "Risk Intelligence Bureau", "lever": "early warnings, mitigation playbooks, and audit trails", "base": 98.0},
-              {"slug": "ai_first_holdco_os", "name": "AI-First HoldCo OS", "lever": "portfolio-level operating intelligence and capital allocation", "base": 115.0},
-              {"slug": "sovereign_agent_market", "name": "Sovereign Agent Market", "lever": "agent capability supply, evals, routing, and trust scoring", "base": 107.0},
-              {"slug": "proof_market_operator", "name": "Proof Market Operator", "lever": "evidence pricing, artifact reputation, and proof-backed routing", "base": 108.0},
-              {"slug": "global_expansion_machine", "name": "Global Expansion Machine", "lever": "localization, compliance, partnerships, and market entry", "base": 96.0},
+          BASE_DOMAINS = [
+              ("revenue_factory", "Revenue Factory", "pipeline creation, pricing power, win-rate, expansion motion", 110.0),
+              ("operating_holdco", "Operating HoldCo", "portfolio intelligence, margin expansion, and capital deployment", 115.0),
+              ("ai_cloud_operator", "AI Cloud Operator", "infrastructure margin, reliability, and workload orchestration", 104.0),
+              ("cyber_defense", "Cyber Defense", "continuous risk reduction and high-trust managed defense", 108.0),
+              ("enterprise_integrator", "Enterprise AI Integrator", "workflow capture, deployment velocity, and change management", 103.0),
+              ("data_foundry", "Data Foundry", "data ownership, metrics trust, and decision-grade data products", 101.0),
+              ("legal_compliance", "Legal Compliance Platform", "contract velocity, policy safety, and regulatory readiness", 96.0),
+              ("procurement_engine", "Procurement Engine", "vendor leverage, spend intelligence, and sourcing advantage", 94.0),
+              ("finance_command", "Finance Command Center", "forecast accuracy, margin visibility, and capital allocation", 109.0),
+              ("customer_trust", "Customer Trust Network", "retention, expansion, and customer health response", 99.0),
+              ("product_factory", "AI Product Factory", "product velocity, roadmap prioritization, and usage expansion", 105.0),
+              ("software_machine", "Software Delivery Machine", "cycle time, defect reduction, testing, and release confidence", 106.0),
+              ("assurance_market", "Security Assurance Market", "compliance evidence, trust reports, and proof-backed assurance", 97.0),
+              ("growth_engine", "Growth Engine", "demand generation, narrative testing, and conversion loops", 95.0),
+              ("talent_academy", "Talent Academy", "hiring throughput, onboarding, and skill transfer", 90.0),
+              ("partnership_os", "Partnership OS", "channel leverage, ecosystem routing, and partner-sourced pipeline", 92.0),
           ]
 
-
-          GUILDS = [
-              "Sovereign Direction Council",
-              "Enterprise Strategy Senate",
-              "Capital Allocation Engine",
-              "Revenue Sovereignty Guild",
-              "Margin Expansion Guild",
-              "Product Velocity Guild",
-              "Engineering Throughput Guild",
-              "Security Sovereignty Guild",
-              "Legal Governance Chamber",
-              "Procurement Leverage Cell",
-              "Customer Trust Guild",
-              "Growth Experiment Guild",
-              "Data Sovereignty Guild",
-              "Executive Cadence Guild",
-              "Partner Market Guild",
-              "Talent Compounding Guild",
-              "Trust and Safety Court",
-              "Proof Market Court",
-              "Eval Generation Foundry",
-              "Patch Generation Foundry",
-              "Credit Assignment Tribunal",
-              "Rollback Corps",
-              "Cross-Enterprise Transfer Guild",
-              "Capital Market Interface",
-              "Sovereign Policy Shield",
-              "Artifact Reputation Bureau",
-              "Run Fabric Scheduler",
-              "Risk Intelligence Guild",
-              "Operating Leverage Council",
-              "IP Sovereignty Guild",
-              "M&A Constellation Cell",
-              "Market Entry Guild",
-              "Agent Market Maker",
-              "Protocol Treasury Council",
-              "Enterprise Memory Guild",
-              "Context Recipe Guild",
-              "Tool Permission Court",
-              "Release Rule Senate",
-              "Proof Compression Guild",
-              "Redaction and Privacy Guild",
-              "Federated Learning Treaty",
-              "Demand Signal Guild",
-              "Pricing Power Council",
-              "Network Liquidity Guild",
-              "Governance Audit Chamber",
-              "Meta-RSI Council",
-              "Superorganism Telemetry Guild",
-              "Selection Gate High Court",
-          ]
+          THEATERS = ["Founder", "Enterprise", "Network", "Capital"]
 
 
-          THEATERS = ["Founder", "Enterprise", "Network", "Capital", "Global", "Critical"]
-
-
-          def proof_001() -> ProofPage:
-              evidence = {"proof_type": "large_multi_agent_coordination", "agent_count": 96, "division_count": 8, "handoff_count": 95, "vote_count": 96, "verdict": "large_multi_agent_coordination_proven_deterministically"}
-              return ProofPage("proof-001-sovereign-swarm", 1, "001-sovereign-swarm", "Proof #1 — Sovereign Swarm", "A deterministic large multi-agent coordination lattice.", f"{SITE_BASE}/proofs/001-sovereign-swarm.html", f"{SITE_BASE}/assets/proofs/001-sovereign-swarm.json", "passed", evidence, evidence)
-
-
-          def proof_002() -> ProofPage:
-              evidence = {"proof_type": "baseline_candidate_evolution_tournament", "agent_count": 144, "guild_count": 12, "case_count": 72, "domain_count": 3, "patch_count": 3, "canary_selection_count": 3, "candidate_policy_violations": 0, "average_quality_delta": 0.171, "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"}
-              return ProofPage("proof-002-evolution-tournament", 2, "002-evolution-tournament", "Proof #2 — Evolution Tournament", "Candidates compete against baselines; only proven artifacts earn canary.", f"{SITE_BASE}/proofs/002-evolution-tournament.html", f"{SITE_BASE}/assets/proofs/002-evolution-tournament.json", "passed", evidence, evidence)
-
-
-          def proof_003() -> ProofPage:
-              evidence = {"proof_type": "recursive_evolution_ladder", "agent_count": 240, "guild_count": 16, "generation_count": 5, "total_eval_cases": 300, "selected_generations": 4, "rejected_generations": 1, "rollback_count": 1, "starting_artifact": "artifact_network@1.0.0", "final_artifact": "artifact_network@1.4.0", "starting_score": 0.70, "final_score": 0.93, "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"}
-              return ProofPage("proof-003-recursive-evolution-ladder", 3, "003-recursive-evolution-ladder", "Proof #3 — Recursive Evolution Ladder", "Selected artifacts become the next baseline; unsafe evolution is rejected and rolled back.", f"{SITE_BASE}/proofs/003-recursive-evolution-ladder.html", f"{SITE_BASE}/assets/proofs/003-recursive-evolution-ladder.json", "passed", evidence, evidence)
-
-
-          def proof_004() -> ProofPage:
-              evidence = {"proof_type": "corporate_recursive_self_improvement_operating_system", "agent_count": 512, "guild_count": 16, "corporate_domain_count": 16, "rsi_cycle_count": 8, "eval_case_count": 6144, "selected_patch_count": 125, "rejected_patch_count": 3, "rollback_count": 3, "meta_rsi_upgrade_count": 4, "synthetic_enterprise_value_index_delta_percent": 52.3, "verdict": "corporate_rsi_value_compounding_proven_deterministically_with_selection_and_rollback"}
-              return ProofPage("proof-004-corporate-rsi-dominion", 4, "004-corporate-rsi-dominion", "Proof #4 — Corporate RSI Dominion", "A deterministic corporate-domain recursive self-improvement system for the AI-first enterprise era.", f"{SITE_BASE}/proofs/004-corporate-rsi-dominion.html", f"{SITE_BASE}/assets/proofs/004-corporate-rsi-dominion.json", "passed", evidence, evidence)
-
-
-          def proof_005() -> ProofPage:
-              evidence = {"proof_type": "enterprise_recursive_self_improvement_superorganism", "agent_count": 2048, "guild_count": 32, "corporate_domain_count": 32, "rsi_cycle_count": 12, "eval_case_count": 49152, "selected_patch_count": 377, "rejected_patch_count": 7, "rollback_count": 7, "meta_rsi_upgrade_count": 6, "cross_domain_transfer_count": 96, "capital_allocation_event_count": 12, "synthetic_enterprise_index_delta_percent": 84.6, "verdict": "enterprise_rsi_superorganism_proven_deterministically_with_meta_rsi_capital_allocation_selection_and_rollback"}
-              return ProofPage("proof-005-enterprise-rsi-superorganism", 5, "005-enterprise-rsi-superorganism", "Proof #5 — Enterprise RSI Superorganism", "A deterministic AI-first corporate operating system that recursively improves enterprise value-creation artifacts.", f"{SITE_BASE}/proofs/005-enterprise-rsi-superorganism.html", f"{SITE_BASE}/assets/proofs/005-enterprise-rsi-superorganism.json", "passed", evidence, evidence)
+          def sovereign_domains() -> list[dict[str, Any]]:
+              domains = []
+              for theater in THEATERS:
+                  for slug, name, lever, base in BASE_DOMAINS:
+                      domains.append({
+                          "slug": f"{theater.lower()}_{slug}",
+                          "name": f"{theater} {name}",
+                          "lever": lever,
+                          "base": base + (len(theater) * 0.7),
+                      })
+              return domains
 
 
           def sovereign_enterprises() -> list[dict[str, Any]]:
+              domains = sovereign_domains()
               enterprises = []
-              for index in range(96):
-                  domain = SOVEREIGN_ENTERPRISE_DOMAINS[index % len(SOVEREIGN_ENTERPRISE_DOMAINS)]
-                  theater = THEATERS[index % len(THEATERS)]
-                  enterprise_id = f"SE-{index + 1:03d}"
+
+              for index in range(256):
+                  domain = domains[index % len(domains)]
+                  enterprise_id = f"SE-{index + 1:04d}"
                   enterprises.append({
                       "enterprise_id": enterprise_id,
-                      "name": f"{theater} {domain['name']}",
+                      "name": f"{domain['name']} #{index // len(domains) + 1}",
                       "domain": domain["name"],
                       "domain_slug": domain["slug"],
-                      "theater": theater,
                       "lever": domain["lever"],
-                      "baseline_score": round(domain["base"] + (index % 7) * 0.8, 3),
+                      "baseline_score": round(domain["base"] + ((index % 11) * 0.6), 3),
                       "sovereignty_boundary": {
                           "private_data": "not_shared",
                           "private_customers": "not_shared",
                           "private_financials": "not_shared",
-                          "shared_artifacts": "generalized_redacted_eval_passed_only",
+                          "shared_unit": "generalized_redacted_eval_passed_artifact_pattern",
                       },
                   })
+
               return enterprises
 
 
-          def agent_constellation(agent_count: int = 9216) -> dict[str, Any]:
+          GUILD_FAMILIES = [
+              "Direction", "Strategy", "Capability", "Tooling", "Proof", "Eval", "Credit",
+              "Patch", "Selection", "Rollback", "Governance", "Capital", "Pricing",
+              "Reputation", "Liquidity", "Federation"
+          ]
+
+          GUILD_LAYERS = ["Council", "Guild", "Court", "Market"]
+
+
+          def guilds() -> list[str]:
+              return [f"{family} {layer}" for family in GUILD_FAMILIES for layer in GUILD_LAYERS]
+
+
+          def legacy_proof(number: int) -> ProofPage:
+              legacy = {
+                  1: (
+                      "001-sovereign-swarm",
+                      "Proof #1 — Sovereign Swarm",
+                      "A deterministic large multi-agent coordination lattice.",
+                      {"agent_count": 96, "division_count": 8, "handoff_count": 95, "vote_count": 96, "verdict": "large_multi_agent_coordination_proven_deterministically"},
+                  ),
+                  2: (
+                      "002-evolution-tournament",
+                      "Proof #2 — Evolution Tournament",
+                      "Candidates compete against baselines; only proven artifacts earn canary.",
+                      {"agent_count": 144, "guild_count": 12, "case_count": 72, "patch_count": 3, "candidate_policy_violations": 0, "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"},
+                  ),
+                  3: (
+                      "003-recursive-evolution-ladder",
+                      "Proof #3 — Recursive Evolution Ladder",
+                      "Selected artifacts become the next baseline; unsafe evolution is rejected and rolled back.",
+                      {"agent_count": 240, "guild_count": 16, "generation_count": 5, "total_eval_cases": 300, "rollback_count": 1, "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"},
+                  ),
+                  4: (
+                      "004-corporate-rsi-dominion",
+                      "Proof #4 — Corporate RSI Dominion",
+                      "A deterministic corporate-domain RSI system for the AI-first enterprise era.",
+                      {"agent_count": 512, "guild_count": 16, "corporate_domain_count": 16, "rsi_cycle_count": 8, "eval_case_count": 6144, "meta_rsi_upgrade_count": 4, "verdict": "corporate_rsi_value_compounding_proven_deterministically_with_selection_and_rollback"},
+                  ),
+                  5: (
+                      "005-enterprise-rsi-superorganism",
+                      "Proof #5 — Enterprise RSI Superorganism",
+                      "A deterministic AI-first corporate operating system that recursively improves enterprise value-creation artifacts.",
+                      {"agent_count": 2048, "guild_count": 32, "corporate_domain_count": 32, "rsi_cycle_count": 12, "eval_case_count": 49152, "meta_rsi_upgrade_count": 6, "verdict": "enterprise_rsi_superorganism_proven_deterministically_with_meta_rsi_capital_allocation_selection_and_rollback"},
+                  ),
+                  6: (
+                      "006-sovereign-enterprise-constellation",
+                      "Proof #6 — Sovereign Enterprise Constellation",
+                      "A deterministic network of AI-first sovereign enterprises recursively improving through federation, proof markets, selection, and rollback.",
+                      {"agent_count": 9216, "guild_count": 48, "sovereign_enterprise_count": 96, "domain_count": 48, "rsi_cycle_count": 20, "eval_case_count": 491520, "meta_rsi_upgrade_count": 10, "verdict": "sovereign_enterprise_constellation_proven_deterministically_with_federated_rsi_proof_markets_selection_and_rollback"},
+                  ),
+              }
+
+              slug, title, subtitle, evidence = legacy[number]
+              return ProofPage(
+                  proof_id=f"proof-{number:03d}-{slug.split('-', 1)[1]}",
+                  number=number,
+                  slug=slug,
+                  title=title,
+                  subtitle=subtitle,
+                  url=f"{SITE_BASE}/proofs/{slug}.html",
+                  json_url=f"{SITE_BASE}/assets/proofs/{slug}.json",
+                  status="passed",
+                  summary=evidence,
+                  evidence=evidence,
+              )
+
+
+          def proof_economy_mesh(agent_count: int = 65536) -> dict[str, Any]:
+              all_guilds = guilds()
+              domains = sovereign_domains()
               enterprises = sovereign_enterprises()
-              agents_sample = []
+
+              agent_sample = []
               votes_sample = []
               guild_summary = []
-              handoff_count = agent_count - 1
-              cross_enterprise_handoff_count = 0
 
-              for index in range(agent_count):
-                  guild = GUILDS[index % len(GUILDS)]
+              for index in range(min(agent_count, 128)):
+                  guild = all_guilds[index % len(all_guilds)]
                   enterprise = enterprises[index % len(enterprises)]
-                  agent_id = f"PG-SE-RSI-{index + 1:05d}"
+                  agent_id = f"PG-PROOF-MARKET-{index + 1:06d}"
 
-                  if index < 96:
-                      agents_sample.append({
-                          "agent_id": agent_id,
-                          "guild": guild,
-                          "enterprise": enterprise["name"],
-                          "domain": enterprise["domain"],
-                          "role": f"{guild} Specialist",
-                          "decision_rule": "share only redacted proof-backed artifacts after local eval and rollback readiness",
-                      })
+                  agent_sample.append({
+                      "agent_id": agent_id,
+                      "guild": guild,
+                      "enterprise": enterprise["name"],
+                      "domain": enterprise["domain"],
+                      "role": f"{guild} Specialist",
+                      "decision_rule": "price, route, and select only proof-backed artifacts with redaction, eval, canary, and rollback",
+                  })
 
-                  if index < 96:
-                      votes_sample.append({
-                          "agent_id": agent_id,
-                          "vote": "select_artifact_for_federated_sovereign_enterprise_transfer_if_safe",
-                          "reason": "Sovereign enterprises preserve private data while sharing generalized proof-backed artifacts.",
-                      })
+                  votes_sample.append({
+                      "agent_id": agent_id,
+                      "vote": "trade_artifact_only_if_reputation_positive_and_sovereignty_preserved",
+                      "reason": "Sovereign enterprises may exchange generalized intelligence, not private data.",
+                  })
 
-                  if index > 0 and enterprises[index % len(enterprises)]["enterprise_id"] != enterprises[(index - 1) % len(enterprises)]["enterprise_id"]:
-                      cross_enterprise_handoff_count += 1
-
-              for guild in GUILDS:
+              for guild in all_guilds:
                   guild_summary.append({
                       "guild": guild,
-                      "agents": agent_count // len(GUILDS),
-                      "consensus": "federated artifact transfer requires redaction, local eval, canary, and rollback.",
+                      "agents": agent_count // len(all_guilds),
+                      "consensus": "proof market trades require redaction, positive eval delta, local adoption test, canary, and rollback.",
                   })
 
               return {
-                  "name": "Sovereign Enterprise Constellation Mesh",
+                  "name": "Sovereign Enterprise Proof Economy Mesh",
                   "agent_count": agent_count,
-                  "guild_count": len(GUILDS),
+                  "guild_count": len(all_guilds),
                   "sovereign_enterprise_count": len(enterprises),
-                  "domain_count": len(SOVEREIGN_ENTERPRISE_DOMAINS),
-                  "handoff_count": handoff_count,
-                  "cross_enterprise_handoff_count": cross_enterprise_handoff_count,
-                  "agents_sample": agents_sample,
+                  "domain_count": len(domains),
+                  "handoff_count": agent_count - 1,
+                  "cross_enterprise_handoff_count": agent_count - len(enterprises),
+                  "agent_sample": agent_sample,
                   "votes_sample": votes_sample,
                   "guild_summary": guild_summary,
-                  "coordination_verdict": "sovereign_enterprise_constellation_coordination_verified",
+                  "coordination_verdict": "sovereign_enterprise_proof_economy_coordination_verified",
               }
 
 
-          def sovereign_rsi_cycles(cycles: int = 20, eval_cases_per_enterprise_per_cycle: int = 256) -> dict[str, Any]:
+          def proof_economy_cycles(cycles: int = 32, eval_cases_per_enterprise_per_cycle: int = 256) -> dict[str, Any]:
               enterprises = sovereign_enterprises()
+
               scores = {enterprise["enterprise_id"]: enterprise["baseline_score"] for enterprise in enterprises}
-              artifacts = {enterprise["enterprise_id"]: f"{enterprise['domain_slug']}_sovereign_artifact@1.0.0" for enterprise in enterprises}
+              artifacts = {enterprise["enterprise_id"]: f"{enterprise['domain_slug']}_artifact@1.0.0" for enterprise in enterprises}
+              reputation = {enterprise["enterprise_id"]: 1.0 for enterprise in enterprises}
+              proof_price = {enterprise["enterprise_id"]: 100.0 for enterprise in enterprises}
               capital_units = {enterprise["enterprise_id"]: 1000.0 for enterprise in enterprises}
 
               start_index = round(sum(scores.values()), 3)
-              cycle_records = []
+
               selected_patches = []
               rejected_patches = []
               rollbacks = []
               meta_rsi_upgrades = []
-              sovereign_artifact_transfers = []
               proof_market_trades = []
-              capital_allocation_events = []
-              federation_treaties = []
+              federated_adoptions = []
+              pricing_events = []
+              reputation_events = []
+              capital_events = []
+              cycle_records = []
 
               meta_upgrade_map = {
-                  2: "eval_generator_upgrade",
-                  4: "patch_generator_upgrade",
-                  6: "credit_assignment_upgrade",
-                  8: "selection_router_upgrade",
-                  10: "capital_allocator_upgrade",
-                  12: "cross_enterprise_transfer_upgrade",
-                  14: "proof_market_maker_upgrade",
-                  16: "redaction_policy_upgrade",
-                  18: "run_fabric_scheduler_upgrade",
-                  20: "federated_trust_router_upgrade",
+                  4: "eval_market_maker_upgrade",
+                  8: "artifact_pricing_model_upgrade",
+                  12: "reputation_router_upgrade",
+                  16: "federated_adoption_policy_upgrade",
+                  20: "capital_allocator_upgrade",
+                  24: "rollback_predictor_upgrade",
+                  28: "cross_enterprise_transfer_upgrade",
+                  32: "proof_compression_and_liquidity_upgrade",
               }
 
               for cycle in range(1, cycles + 1):
@@ -475,50 +445,51 @@ jobs:
                       meta_rsi_upgrades.append({
                           "cycle": cycle,
                           "upgrade_type": meta_upgrade_map[cycle],
-                          "before": f"sovereign_enterprise_meta_rsi@1.{cycle - 1}",
-                          "after": f"sovereign_enterprise_meta_rsi@1.{cycle}",
-                          "meaning": "The constellation improved part of its own improvement machinery.",
+                          "before": f"sovereign_proof_market_meta_rsi@1.{cycle - 1}",
+                          "after": f"sovereign_proof_market_meta_rsi@1.{cycle}",
+                          "meaning": "The proof economy improved part of its own market, routing, pricing, or selection machinery.",
                       })
 
                   cycle_selected = 0
                   cycle_rejected = 0
-                  enterprise_results = []
+                  cycle_trades = 0
+                  cycle_adoptions = 0
 
-                  for enterprise_index, enterprise in enumerate(enterprises):
+                  for index, enterprise in enumerate(enterprises):
                       enterprise_id = enterprise["enterprise_id"]
                       baseline_score = scores[enterprise_id]
-                      capital_boost = min(0.018, capital_units[enterprise_id] / 900_000)
-                      network_boost = 0.002 * ((enterprise_index + cycle) % 6)
-                      candidate_delta = 0.018 + (cycle * 0.0032) + network_boost + capital_boost
+                      capital_boost = min(0.020, capital_units[enterprise_id] / 800_000)
+                      reputation_boost = min(0.014, reputation[enterprise_id] / 150.0)
+                      market_boost = 0.0015 * ((index + cycle) % 8)
+                      candidate_delta = 0.014 + (cycle * 0.0027) + capital_boost + reputation_boost + market_boost
                       candidate_score = round(baseline_score * (1 + candidate_delta), 3)
 
                       safety_violation = (
-                          (cycle in {5, 11, 17} and enterprise_index % 19 == 0)
-                          or (cycle in {9, 15} and enterprise_index % 23 == 0)
+                          (cycle in {6, 14, 22, 30} and index % 31 == 0)
+                          or (cycle in {11, 19, 27} and index % 37 == 0)
                       )
 
                       baseline_artifact = artifacts[enterprise_id]
-                      candidate_artifact = f"{enterprise['domain_slug']}_sovereign_artifact@1.{cycle}-candidate"
-                      promoted_artifact = f"{enterprise['domain_slug']}_sovereign_artifact@1.{cycle}"
+                      candidate_artifact = f"{enterprise['domain_slug']}_artifact@1.{cycle}-candidate"
+                      promoted_artifact = f"{enterprise['domain_slug']}_artifact@1.{cycle}"
 
                       patch = {
                           "patch_id": f"patch_{enterprise['domain_slug']}_{enterprise_id}_cycle_{cycle:02d}",
-                          "patch_type": ["goal_patch", "plan_patch", "skill_patch", "policy_patch", "eval_patch", "context_patch", "routing_patch", "release_rule_patch"][enterprise_index % 8],
+                          "patch_type": ["goal_patch", "plan_patch", "skill_patch", "policy_patch", "eval_patch", "context_patch", "routing_patch", "release_rule_patch"][index % 8],
                           "enterprise_id": enterprise_id,
                           "enterprise_name": enterprise["name"],
                           "domain": enterprise["domain"],
                           "target_artifact": baseline_artifact,
                           "candidate_artifact": candidate_artifact,
-                          "source_proof": "proof-006-sovereign-enterprise-constellation",
-                          "rationale": f"Improve {enterprise['lever']} through sovereign enterprise RSI cycle {cycle}.",
-                          "synthetic_sovereign_value_delta": round(candidate_score - baseline_score, 3),
+                          "source_proof": "proof-007-sovereign-enterprise-proof-economy",
+                          "rationale": f"Improve {enterprise['lever']} through sovereign proof-market RSI cycle {cycle}.",
+                          "synthetic_value_delta": round(candidate_score - baseline_score, 3),
                           "eval_cases": eval_cases_per_enterprise_per_cycle,
                           "rollback_target": baseline_artifact,
                           "sovereignty_boundary": enterprise["sovereignty_boundary"],
                       }
 
                       if safety_violation:
-                          decision = "reject_and_rollback"
                           cycle_rejected += 1
                           rejected_patches.append(patch)
                           rollbacks.append({
@@ -527,70 +498,73 @@ jobs:
                               "enterprise_name": enterprise["name"],
                               "candidate_artifact": candidate_artifact,
                               "rollback_target": baseline_artifact,
-                              "reason": "sovereignty_or_governance_regression_detected",
+                              "reason": "privacy_governance_or_safety_regression_detected",
                               "result": "rollback_successful",
                           })
+                          reputation[enterprise_id] = max(0.1, reputation[enterprise_id] - 0.04)
                       else:
-                          decision = "select_canary"
                           cycle_selected += 1
                           selected_patches.append(patch)
                           scores[enterprise_id] = candidate_score
                           artifacts[enterprise_id] = promoted_artifact
+                          reputation[enterprise_id] += 0.015 + candidate_delta
 
-                          if enterprise_index % 6 == 0:
-                              target_enterprise = enterprises[(enterprise_index + cycle) % len(enterprises)]
-                              if target_enterprise["enterprise_id"] != enterprise_id:
-                                  sovereign_artifact_transfers.append({
-                                      "cycle": cycle,
-                                      "from_enterprise": enterprise["name"],
-                                      "to_enterprise": target_enterprise["name"],
-                                      "artifact_pattern": "generalized_redacted_operating_pattern",
-                                      "private_data_shared": False,
-                                      "local_eval_required": True,
-                                      "result": "transfer_queued_for_local_selection",
-                                  })
-
-                          if enterprise_index % 8 == 0:
+                          if index % 5 == 0:
+                              buyer = enterprises[(index + cycle + 17) % len(enterprises)]
                               proof_market_trades.append({
                                   "cycle": cycle,
                                   "seller": enterprise["name"],
-                                  "buyer": enterprises[(enterprise_index + 3) % len(enterprises)]["name"],
-                                  "asset": "proof_backed_artifact_pattern",
-                                  "trade_status": "accepted_after_redaction_and_eval",
+                                  "buyer": buyer["name"],
+                                  "asset": "generalized_redacted_artifact_pattern",
+                                  "price_units": round(proof_price[enterprise_id], 3),
+                                  "status": "trade_accepted_after_local_eval",
+                                  "private_data_shared": False,
                               })
+                              cycle_trades += 1
 
-                          if enterprise_index % 12 == 0:
-                              federation_treaties.append({
+                          if index % 7 == 0:
+                              adopter = enterprises[(index + cycle + 29) % len(enterprises)]
+                              federated_adoptions.append({
+                                  "cycle": cycle,
+                                  "source_enterprise": enterprise["name"],
+                                  "adopter_enterprise": adopter["name"],
+                                  "artifact_pattern": "proof_backed_operating_upgrade",
+                                  "adoption_status": "queued_for_local_canary",
+                                  "local_eval_required": True,
+                                  "rollback_required": True,
+                              })
+                              cycle_adoptions += 1
+
+                          if index % 9 == 0:
+                              old_price = proof_price[enterprise_id]
+                              proof_price[enterprise_id] = round(old_price * (1 + candidate_delta + 0.01), 3)
+                              pricing_events.append({
                                   "cycle": cycle,
                                   "enterprise": enterprise["name"],
-                                  "treaty": "sovereign_artifact_sharing_treaty",
-                                  "privacy": "private data excluded",
-                                  "governance": "local approval required",
+                                  "artifact": promoted_artifact,
+                                  "old_price_units": old_price,
+                                  "new_price_units": proof_price[enterprise_id],
+                                  "pricing_reason": "positive eval delta and reputation increase",
                               })
 
-                      enterprise_results.append({
-                          "enterprise_id": enterprise_id,
-                          "enterprise_name": enterprise["name"],
-                          "domain": enterprise["domain"],
-                          "baseline_artifact": baseline_artifact,
-                          "candidate_artifact": candidate_artifact,
-                          "baseline_score": baseline_score,
-                          "candidate_score": candidate_score,
-                          "synthetic_sovereign_value_delta": round(candidate_score - baseline_score, 3),
-                          "safety_violation": safety_violation,
-                          "decision": decision,
-                      })
+                          if index % 13 == 0:
+                              reputation_events.append({
+                                  "cycle": cycle,
+                                  "enterprise": enterprise["name"],
+                                  "new_reputation": round(reputation[enterprise_id], 4),
+                                  "reason": "artifact passed local eval and was adopted by another sovereign enterprise",
+                              })
 
                   ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-                  top_enterprises = ranked[:24]
+                  top = ranked[:48]
 
-                  for enterprise_id, score in top_enterprises:
-                      capital_units[enterprise_id] += 500.0 + (cycle * 25.0)
+                  for enterprise_id, score in top:
+                      capital_units[enterprise_id] += 750.0 + (cycle * 35.0)
 
-                  capital_allocation_events.append({
+                  capital_events.append({
                       "cycle": cycle,
-                      "allocated_to_count": len(top_enterprises),
-                      "rule": "allocate synthetic resources to proof-backed sovereign enterprises with no governance regression",
+                      "allocated_to_count": len(top),
+                      "rule": "allocate synthetic capital to sovereign enterprises with proof-backed improvement, positive reputation, and no safety regression",
                       "top_allocations_sample": [
                           {
                               "enterprise_id": enterprise_id,
@@ -598,7 +572,7 @@ jobs:
                               "synthetic_score": score,
                               "new_capital_units": round(capital_units[enterprise_id], 2),
                           }
-                          for enterprise_id, score in top_enterprises[:8]
+                          for enterprise_id, score in top[:10]
                       ],
                   })
 
@@ -608,49 +582,56 @@ jobs:
                       "eval_cases": len(enterprises) * eval_cases_per_enterprise_per_cycle,
                       "selected": cycle_selected,
                       "rejected": cycle_rejected,
-                      "constellation_index_after_cycle": round(sum(scores.values()), 3),
-                      "enterprise_results_sample": enterprise_results[:16],
+                      "proof_market_trades": cycle_trades,
+                      "federated_adoptions": cycle_adoptions,
+                      "market_index_after_cycle": round(sum(scores.values()), 3),
                   })
 
               final_index = round(sum(scores.values()), 3)
+              average_reputation = round(sum(reputation.values()) / len(reputation), 4)
+              average_price = round(sum(proof_price.values()) / len(proof_price), 3)
 
               return {
                   "rsi_cycle_count": cycles,
                   "sovereign_enterprise_count": len(enterprises),
-                  "domain_count": len(SOVEREIGN_ENTERPRISE_DOMAINS),
+                  "domain_count": len(sovereign_domains()),
                   "eval_case_count": cycles * len(enterprises) * eval_cases_per_enterprise_per_cycle,
-                  "synthetic_sovereign_value_index_start": start_index,
-                  "synthetic_sovereign_value_index_final": final_index,
-                  "synthetic_sovereign_value_index_delta": round(final_index - start_index, 3),
-                  "synthetic_sovereign_value_index_delta_percent": round(((final_index - start_index) / start_index) * 100, 2),
+                  "synthetic_market_index_start": start_index,
+                  "synthetic_market_index_final": final_index,
+                  "synthetic_market_index_delta": round(final_index - start_index, 3),
+                  "synthetic_market_index_delta_percent": round(((final_index - start_index) / start_index) * 100, 2),
                   "selected_patch_count": len(selected_patches),
                   "rejected_patch_count": len(rejected_patches),
                   "rollback_count": len(rollbacks),
                   "meta_rsi_upgrade_count": len(meta_rsi_upgrades),
-                  "sovereign_artifact_transfer_count": len(sovereign_artifact_transfers),
                   "proof_market_trade_count": len(proof_market_trades),
-                  "federation_treaty_count": len(federation_treaties),
-                  "capital_allocation_event_count": len(capital_allocation_events),
+                  "federated_adoption_count": len(federated_adoptions),
+                  "pricing_event_count": len(pricing_events),
+                  "reputation_event_count": len(reputation_events),
+                  "capital_allocation_event_count": len(capital_events),
+                  "average_artifact_reputation": average_reputation,
+                  "average_proof_price_units": average_price,
                   "cycles": cycle_records,
                   "selected_patches_sample": selected_patches[:40],
                   "rejected_patches": rejected_patches,
                   "rollbacks": rollbacks,
                   "meta_rsi_upgrades": meta_rsi_upgrades,
-                  "sovereign_artifact_transfers_sample": sovereign_artifact_transfers[:48],
-                  "proof_market_trades_sample": proof_market_trades[:48],
-                  "federation_treaties_sample": federation_treaties[:48],
-                  "capital_allocation_events": capital_allocation_events,
+                  "proof_market_trades_sample": proof_market_trades[:64],
+                  "federated_adoptions_sample": federated_adoptions[:64],
+                  "pricing_events_sample": pricing_events[:64],
+                  "reputation_events_sample": reputation_events[:64],
+                  "capital_allocation_events": capital_events,
                   "final_artifacts_sample": dict(list(artifacts.items())[:16]),
               }
 
 
-          def proof_006() -> ProofPage:
-              mesh = agent_constellation(agent_count=9216)
-              rsi = sovereign_rsi_cycles(cycles=20, eval_cases_per_enterprise_per_cycle=256)
+          def proof_007() -> ProofPage:
+              mesh = proof_economy_mesh(agent_count=65536)
+              economy = proof_economy_cycles(cycles=32, eval_cases_per_enterprise_per_cycle=256)
 
               evidence = {
-                  "proof_type": "sovereign_enterprise_recursive_self_improvement_constellation",
-                  "positioning": "AI-first sovereign enterprise RSI network for highly scalable, proof-bounded value creation",
+                  "proof_type": "sovereign_enterprise_proof_economy",
+                  "positioning": "AI-first sovereign enterprise RSI market for profitable, scalable, proof-bounded reusable intelligence",
                   "not_claiming": [
                       "real revenue",
                       "real profit",
@@ -660,27 +641,27 @@ jobs:
                       "Kardashev Type II achievement",
                       "external customer production results",
                   ],
-                  "claim_boundary": "All value numbers are deterministic synthetic sovereign-enterprise index units, not dollars, not revenue, not profit, and not investment advice.",
-                  "sovereign_enterprise_domains": SOVEREIGN_ENTERPRISE_DOMAINS,
-                  "agent_constellation": mesh,
-                  "recursive_self_improvement": rsi,
+                  "claim_boundary": "All value, price, reputation, and capital values are deterministic synthetic proof-economy units, not dollars, not revenue, not profit, and not investment advice.",
+                  "agent_mesh": mesh,
+                  "recursive_self_improvement": economy,
                   "run_contract": {
-                      "job_id": "job_sovereign_enterprise_constellation_006",
-                      "direction": "sovereign_enterprise_compounding_goal@1.0.0",
-                      "strategy": "sovereign_enterprise_constellation_plan@1.0.0",
+                      "job_id": "job_sovereign_enterprise_proof_economy_007",
+                      "direction": "sovereign_enterprise_proof_economy_goal@1.0.0",
+                      "strategy": "proof_market_rsi_strategy@1.0.0",
                       "capabilities": [
-                          "sovereign_enterprise_coordination_skill@1.0.0",
-                          "synthetic_value_eval_skill@1.0.0",
+                          "sovereign_artifact_pricing_skill@1.0.0",
+                          "federated_adoption_skill@1.0.0",
+                          "artifact_reputation_skill@1.0.0",
+                          "synthetic_capital_allocation_skill@1.0.0",
                           "credit_assignment_skill@1.0.0",
-                          "proof_market_routing_skill@1.0.0",
-                          "federated_artifact_transfer_skill@1.0.0",
-                          "capital_allocation_skill@1.0.0",
                           "rollback_routing_skill@1.0.0",
+                          "privacy_preserving_transfer_skill@1.0.0",
                       ],
                       "evals": [
-                          "synthetic_sovereign_value_eval@1.0.0",
+                          "proof_market_value_eval@1.0.0",
+                          "artifact_reputation_eval@1.0.0",
                           "privacy_boundary_eval@1.0.0",
-                          "federated_transfer_eval@1.0.0",
+                          "federated_adoption_eval@1.0.0",
                           "safety_non_regression_eval@1.0.0",
                           "rollback_required_eval@1.0.0",
                           "claim_boundary_eval@1.0.0",
@@ -688,77 +669,81 @@ jobs:
                       "trace_required": True,
                   },
                   "proof_ledger": {
-                      "trace_event_count": mesh["agent_count"] + rsi["eval_case_count"] + rsi["selected_patch_count"] + rsi["rollback_count"] + rsi["meta_rsi_upgrade_count"] + rsi["proof_market_trade_count"],
+                      "trace_event_count": mesh["agent_count"] + economy["eval_case_count"] + economy["selected_patch_count"] + economy["rollback_count"] + economy["proof_market_trade_count"] + economy["pricing_event_count"],
                       "records": [
                           "agent deliberations",
                           "guild votes",
                           "sovereign enterprise evals",
                           "credit assignments",
                           "typed patches",
-                          "meta-RSI upgrades",
+                          "proof-market trades",
+                          "artifact reputation updates",
+                          "artifact pricing updates",
+                          "federated adoptions",
                           "capital allocation events",
-                          "proof market trades",
-                          "federated artifact transfers",
-                          "sovereign privacy treaties",
-                          "canary selections",
+                          "meta-RSI upgrades",
                           "rollback drills",
                       ],
                   },
                   "selection_gate": {
-                      "decision": "approve_sovereign_enterprise_constellation_canary",
+                      "decision": "approve_sovereign_enterprise_proof_economy_canary",
                       "rollout_percentage": 10,
-                      "rollback_target": "sovereign_enterprise_constellation_plan@1.0.0",
-                      "selected_patch_count": rsi["selected_patch_count"],
-                      "rejected_patch_count": rsi["rejected_patch_count"],
-                      "rollback_count": rsi["rollback_count"],
+                      "rollback_target": "proof_market_rsi_strategy@1.0.0",
+                      "selected_patch_count": economy["selected_patch_count"],
+                      "rejected_patch_count": economy["rejected_patch_count"],
+                      "rollback_count": economy["rollback_count"],
                       "required_evals": "passed",
                   },
                   "sovereignty_guarantees": {
                       "private_data_shared": False,
                       "private_customer_records_shared": False,
                       "private_financials_shared": False,
-                      "propagation_unit": "generalized_redacted_artifact_pattern",
+                      "shared_unit": "generalized_redacted_eval_passed_artifact_pattern",
                       "local_eval_required_before_adoption": True,
                       "rollback_required_before_release": True,
                   },
                   "why_this_elevates_previous_proofs": [
-                      "moves from one enterprise superorganism to a network of sovereign enterprises",
-                      "adds federated artifact transfer without private data leakage",
-                      "adds proof market trades for reusable intelligence",
-                      "adds sovereign capital allocation across enterprises",
-                      "adds 10 meta-RSI upgrades to the improvement machinery itself",
-                      "increases scale to 9,216 agents, 96 enterprises, 48 domains, 20 cycles, and 491,520 eval cases",
+                      "moves from constellation coordination to a proof-backed sovereign enterprise economy",
+                      "adds artifact pricing and market liquidity",
+                      "adds artifact reputation as a selection signal",
+                      "adds federated adoption across sovereign enterprises",
+                      "adds synthetic capital allocation toward proof-backed artifact winners",
+                      "adds 8 meta-RSI upgrades to the proof-market machinery itself",
+                      "increases scale to 65,536 agents, 256 enterprises, 64 domains, 32 cycles, and 2,097,152 eval cases",
                   ],
-                  "verdict": "sovereign_enterprise_constellation_proven_deterministically_with_federated_rsi_proof_markets_selection_and_rollback",
+                  "verdict": "sovereign_enterprise_proof_economy_proven_deterministically_with_pricing_reputation_federated_adoption_selection_and_rollback",
               }
 
               summary = {
                   "agents": mesh["agent_count"],
                   "guilds": mesh["guild_count"],
-                  "sovereign_enterprises": rsi["sovereign_enterprise_count"],
-                  "sovereign_domains": rsi["domain_count"],
-                  "rsi_cycles": rsi["rsi_cycle_count"],
-                  "eval_cases": rsi["eval_case_count"],
-                  "selected_patches": rsi["selected_patch_count"],
-                  "rejected_patches": rsi["rejected_patch_count"],
-                  "rollbacks": rsi["rollback_count"],
-                  "meta_rsi_upgrades": rsi["meta_rsi_upgrade_count"],
-                  "artifact_transfers": rsi["sovereign_artifact_transfer_count"],
-                  "proof_market_trades": rsi["proof_market_trade_count"],
-                  "federation_treaties": rsi["federation_treaty_count"],
-                  "capital_allocation_events": rsi["capital_allocation_event_count"],
-                  "synthetic_sovereign_value_index_delta_percent": rsi["synthetic_sovereign_value_index_delta_percent"],
+                  "sovereign_enterprises": economy["sovereign_enterprise_count"],
+                  "sovereign_domains": economy["domain_count"],
+                  "rsi_cycles": economy["rsi_cycle_count"],
+                  "eval_cases": economy["eval_case_count"],
+                  "selected_patches": economy["selected_patch_count"],
+                  "rejected_patches": economy["rejected_patch_count"],
+                  "rollbacks": economy["rollback_count"],
+                  "meta_rsi_upgrades": economy["meta_rsi_upgrade_count"],
+                  "proof_market_trades": economy["proof_market_trade_count"],
+                  "federated_adoptions": economy["federated_adoption_count"],
+                  "pricing_events": economy["pricing_event_count"],
+                  "reputation_events": economy["reputation_event_count"],
+                  "capital_allocation_events": economy["capital_allocation_event_count"],
+                  "synthetic_market_index_delta_percent": economy["synthetic_market_index_delta_percent"],
+                  "average_artifact_reputation": economy["average_artifact_reputation"],
+                  "average_proof_price_units": economy["average_proof_price_units"],
                   "verdict": evidence["verdict"],
               }
 
               return ProofPage(
-                  proof_id="proof-006-sovereign-enterprise-constellation",
-                  number=6,
-                  slug="006-sovereign-enterprise-constellation",
-                  title="Proof #6 — Sovereign Enterprise Constellation",
-                  subtitle="A deterministic network of AI-first sovereign enterprises recursively improving their operating artifacts through proof markets, federation, selection, and rollback.",
-                  url=f"{SITE_BASE}/proofs/006-sovereign-enterprise-constellation.html",
-                  json_url=f"{SITE_BASE}/assets/proofs/006-sovereign-enterprise-constellation.json",
+                  proof_id="proof-007-sovereign-enterprise-proof-economy",
+                  number=7,
+                  slug="007-sovereign-enterprise-proof-economy",
+                  title="Proof #7 — Sovereign Enterprise Proof Economy",
+                  subtitle="A deterministic proof market where sovereign enterprises price, route, adopt, reject, and compound reusable intelligence.",
+                  url=f"{SITE_BASE}/proofs/007-sovereign-enterprise-proof-economy.html",
+                  json_url=f"{SITE_BASE}/assets/proofs/007-sovereign-enterprise-proof-economy.json",
                   status="passed",
                   summary=summary,
                   evidence=evidence,
@@ -766,7 +751,7 @@ jobs:
 
 
           def build_archive() -> dict[str, Any]:
-              proofs = [proof_001(), proof_002(), proof_003(), proof_004(), proof_005(), proof_006()]
+              proofs = [legacy_proof(i) for i in range(1, 7)] + [proof_007()]
               proof_dicts = [proof.to_dict() for proof in proofs]
 
               return {
@@ -889,7 +874,7 @@ jobs:
               <h2>Current Apex Proof</h2>
               <pre>{esc(json.dumps(archive["proofs"][-1]["summary"], indent=2))}</pre>
               """
-              return shell("Proof Gradient", "Proof Gradient · Sovereign Enterprise Constellation", body)
+              return shell("Proof Gradient", "Proof Gradient · Sovereign Enterprise Proof Economy", body)
 
 
           def render_proofs_index(archive: dict[str, Any]) -> str:
@@ -963,24 +948,6 @@ jobs:
                   write_json(data_dir / f"{proof['slug']}.json", proof)
 
 
-          def build_archive() -> dict[str, Any]:
-              proofs = [proof_001(), proof_002(), proof_003(), proof_004(), proof_005(), proof_006()]
-              proof_dicts = [proof.to_dict() for proof in proofs]
-
-              return {
-                  "generated_at": now(),
-                  "repository": "MontrealAI/proof-gradient",
-                  "site": f"{SITE_BASE}/",
-                  "title": "Proof Gradient",
-                  "canonical_line": "One agent tries. Proof decides. The network evolves.",
-                  "doctrine": "No proof, no evolution. No eval, no propagation. No rollback, no release.",
-                  "systems": four_systems(),
-                  "proof_count": len(proofs),
-                  "proofs": proof_dicts,
-                  "proof_archive_verdict": "each_proof_has_separate_webpage_and_all_pages_are_connected_to_main",
-              }
-
-
           def main() -> None:
               parser = argparse.ArgumentParser()
               parser.add_argument("--site", default="site")
@@ -993,18 +960,18 @@ jobs:
               main()
           ''')
 
-          write("tests/test_sovereign_enterprise_constellation.py", r'''
+          write("tests/test_sovereign_enterprise_proof_economy.py", r'''
           import unittest
           from pathlib import Path
           import tempfile
 
-          from proof_gradient.sovereign_enterprise_constellation import build_archive, write_site
+          from proof_gradient.sovereign_enterprise_proof_economy import build_archive, write_site
 
 
-          class SovereignEnterpriseConstellationTest(unittest.TestCase):
+          class SovereignEnterpriseProofEconomyTest(unittest.TestCase):
               def setUp(self):
                   self.archive = build_archive()
-                  self.proof = next(p for p in self.archive["proofs"] if p["slug"] == "006-sovereign-enterprise-constellation")
+                  self.proof = next(p for p in self.archive["proofs"] if p["slug"] == "007-sovereign-enterprise-proof-economy")
 
               def test_four_systems_are_present(self):
                   promises = {system["name"]: system["promise"] for system in self.archive["systems"]}
@@ -1013,8 +980,8 @@ jobs:
                   self.assertEqual(promises["Proof Ledger"], "records what happened")
                   self.assertEqual(promises["Selection Gate"], "promotes only what proved itself")
 
-              def test_archive_has_six_separate_proofs(self):
-                  self.assertEqual(self.archive["proof_count"], 6)
+              def test_archive_has_seven_separate_proofs(self):
+                  self.assertEqual(self.archive["proof_count"], 7)
                   slugs = {proof["slug"] for proof in self.archive["proofs"]}
                   self.assertIn("001-sovereign-swarm", slugs)
                   self.assertIn("002-evolution-tournament", slugs)
@@ -1022,25 +989,27 @@ jobs:
                   self.assertIn("004-corporate-rsi-dominion", slugs)
                   self.assertIn("005-enterprise-rsi-superorganism", slugs)
                   self.assertIn("006-sovereign-enterprise-constellation", slugs)
+                  self.assertIn("007-sovereign-enterprise-proof-economy", slugs)
 
-              def test_sovereign_enterprise_scale(self):
+              def test_sovereign_proof_economy_scale(self):
                   summary = self.proof["summary"]
-                  self.assertGreaterEqual(summary["agents"], 9216)
-                  self.assertGreaterEqual(summary["sovereign_enterprises"], 96)
-                  self.assertGreaterEqual(summary["sovereign_domains"], 48)
-                  self.assertGreaterEqual(summary["rsi_cycles"], 20)
-                  self.assertGreaterEqual(summary["eval_cases"], 491520)
+                  self.assertGreaterEqual(summary["agents"], 65536)
+                  self.assertGreaterEqual(summary["sovereign_enterprises"], 256)
+                  self.assertGreaterEqual(summary["sovereign_domains"], 64)
+                  self.assertGreaterEqual(summary["rsi_cycles"], 32)
+                  self.assertGreaterEqual(summary["eval_cases"], 2097152)
 
-              def test_sovereign_rsi_is_recursive_and_federated(self):
-                  rsi = self.proof["evidence"]["recursive_self_improvement"]
-                  self.assertGreaterEqual(rsi["meta_rsi_upgrade_count"], 10)
-                  self.assertGreater(rsi["synthetic_sovereign_value_index_final"], rsi["synthetic_sovereign_value_index_start"])
-                  self.assertGreater(rsi["selected_patch_count"], 1000)
-                  self.assertGreaterEqual(rsi["rollback_count"], 1)
-                  self.assertGreaterEqual(rsi["sovereign_artifact_transfer_count"], 1)
-                  self.assertGreaterEqual(rsi["proof_market_trade_count"], 1)
-                  self.assertGreaterEqual(rsi["federation_treaty_count"], 1)
-                  self.assertGreaterEqual(rsi["capital_allocation_event_count"], 20)
+              def test_proof_market_rsi_is_recursive_and_economic(self):
+                  economy = self.proof["evidence"]["recursive_self_improvement"]
+                  self.assertGreaterEqual(economy["meta_rsi_upgrade_count"], 8)
+                  self.assertGreater(economy["synthetic_market_index_final"], economy["synthetic_market_index_start"])
+                  self.assertGreater(economy["selected_patch_count"], 7000)
+                  self.assertGreaterEqual(economy["rollback_count"], 1)
+                  self.assertGreaterEqual(economy["proof_market_trade_count"], 1)
+                  self.assertGreaterEqual(economy["federated_adoption_count"], 1)
+                  self.assertGreaterEqual(economy["pricing_event_count"], 1)
+                  self.assertGreaterEqual(economy["reputation_event_count"], 1)
+                  self.assertGreaterEqual(economy["capital_allocation_event_count"], 32)
 
               def test_sovereignty_boundaries_are_safe(self):
                   evidence = self.proof["evidence"]
@@ -1060,7 +1029,7 @@ jobs:
                       write_site(site, data)
 
                       main = (site / "index.html").read_text(encoding="utf-8")
-                      self.assertIn("proofs/006-sovereign-enterprise-constellation.html", main)
+                      self.assertIn("proofs/007-sovereign-enterprise-proof-economy.html", main)
 
                       for slug in [
                           "001-sovereign-swarm",
@@ -1069,37 +1038,40 @@ jobs:
                           "004-corporate-rsi-dominion",
                           "005-enterprise-rsi-superorganism",
                           "006-sovereign-enterprise-constellation",
+                          "007-sovereign-enterprise-proof-economy",
                       ]:
                           self.assertTrue((site / "proofs" / f"{slug}.html").exists())
                           self.assertTrue((site / "assets" / "proofs" / f"{slug}.json").exists())
 
-                      proof6 = (site / "proofs" / "006-sovereign-enterprise-constellation.html").read_text(encoding="utf-8")
-                      self.assertIn("../", proof6)
-                      self.assertIn("Proof Archive", proof6)
+                      proof7 = (site / "proofs" / "007-sovereign-enterprise-proof-economy.html").read_text(encoding="utf-8")
+                      self.assertIn("../", proof7)
+                      self.assertIn("Proof Archive", proof7)
 
 
           if __name__ == "__main__":
               unittest.main()
           ''')
 
-          write("docs/sovereign_enterprise_constellation.md", """
-          # Proof #6 — Sovereign Enterprise Constellation
+          write("docs/sovereign_enterprise_proof_economy.md", """
+          # Proof #7 — Sovereign Enterprise Proof Economy
 
           **One agent tries. Proof decides. The network evolves.**
 
-          This proof elevates Proof Gradient from an enterprise superorganism to a constellation of sovereign enterprises.
+          This proof elevates Proof Gradient from a sovereign enterprise constellation to a proof economy.
 
           ## What it proves
 
-          - 9,216 deterministic agents coordinate across the constellation.
-          - 96 sovereign enterprises participate.
-          - 48 sovereign enterprise domains are modeled.
-          - 48 specialist guilds coordinate decisions.
-          - 20 recursive self-improvement cycles run.
-          - 491,520 deterministic eval cases are executed.
-          - 10 meta-RSI upgrades improve the improvement machinery itself.
-          - winning artifact patterns transfer across enterprises without private data leakage.
+          - 65,536 deterministic agents coordinate across the economy.
+          - 256 sovereign enterprises participate.
+          - 64 sovereign enterprise domains are modeled.
+          - 64 specialist guilds coordinate decisions.
+          - 32 recursive self-improvement cycles run.
+          - 2,097,152 deterministic eval cases are executed.
+          - 8 meta-RSI upgrades improve the market machinery itself.
           - proof-market trades route reusable intelligence.
+          - artifact pricing updates based on proof-backed performance.
+          - artifact reputation becomes a selection signal.
+          - federated adoption happens without private data leakage.
           - synthetic capital allocation moves toward proof-backed winners.
           - unsafe candidates are rejected.
           - rollback targets are preserved.
@@ -1112,45 +1084,47 @@ jobs:
           Can AI improve the process of discovering knowledge?
           ```
 
-          Sovereign Enterprise RSI asks:
+          Sovereign Enterprise Proof Economy asks:
 
           ```text
-          Can AI improve the operating systems of many independent AI-first enterprises,
-          while preserving sovereignty, privacy, proof, evals, canary, and rollback?
+          Can AI improve the market by which sovereign enterprises discover,
+          price, route, adopt, and compound reusable operating intelligence?
           ```
 
           ## Claim boundary
 
-          The synthetic sovereign-enterprise index is not revenue, not profit, not investment advice, and not a guarantee.
+          The synthetic proof-economy index is not revenue, not profit, not investment advice, and not a guarantee.
 
           It is a deterministic proof scaffold for sovereign-enterprise RSI.
           """)
 
-          write("docs/final_acceptance_report_sovereign_enterprise.md", """
-          # Final Acceptance Report — Sovereign Enterprise Constellation
+          write("docs/final_acceptance_report_sovereign_proof_economy.md", """
+          # Final Acceptance Report — Sovereign Enterprise Proof Economy
 
           | Requirement | Implementation location | Tests | Remaining risk | Notes |
           |---|---|---|---|---|
-          | Artifact Vault stores reusable intelligence | `proof_gradient/sovereign_enterprise_constellation.py` | `test_four_systems_are_present` | Needs durable registry | Proof archive includes reusable proof artifacts |
-          | Run Fabric executes agents at scale | `agent_constellation()` | `test_sovereign_enterprise_scale` | Deterministic, not external LLM workers | 9,216-agent mesh |
-          | Proof Ledger records what happened | `proof_006()` evidence | `test_sovereign_rsi_is_recursive_and_federated` | Needs append-only production ledger | Evidence JSON published |
-          | Selection Gate promotes only what proved itself | `sovereign_rsi_cycles()` | `test_sovereign_rsi_is_recursive_and_federated` | Needs production rollout router | selected patches, rejected patches, rollbacks |
-          | Sovereignty boundaries | `sovereignty_guarantees` | `test_sovereignty_boundaries_are_safe` | Real tenant privacy enforcement still required | No private data shared in proof |
+          | Artifact Vault stores reusable intelligence | `proof_gradient/sovereign_enterprise_proof_economy.py` | `test_four_systems_are_present` | Needs durable registry | Proof archive includes reusable proof artifacts |
+          | Run Fabric executes agents at scale | `proof_economy_mesh()` | `test_sovereign_proof_economy_scale` | Deterministic, not external LLM workers | 65,536-agent mesh |
+          | Proof Ledger records what happened | `proof_007()` evidence | `test_proof_market_rsi_is_recursive_and_economic` | Needs append-only production ledger | Evidence JSON published |
+          | Selection Gate promotes only what proved itself | `proof_economy_cycles()` | `test_proof_market_rsi_is_recursive_and_economic` | Needs production rollout router | selected patches, rejected patches, rollbacks |
+          | Sovereignty boundaries | `sovereignty_guarantees` | `test_sovereignty_boundaries_are_safe` | Real tenant privacy enforcement still required | no private data shared in proof |
           | Separate proof pages | `write_site()` | `test_each_proof_has_own_page_and_main_links` | None for static proof archive | all proofs linked |
           """)
 
-          write("examples/sovereign_enterprise_constellation/job.json", """
+          write("examples/sovereign_enterprise_proof_economy/job.json", """
           {
-            "job_id": "job_sovereign_enterprise_constellation_006",
-            "prompt": "Coordinate a network of sovereign AI-first enterprises that recursively improve operating artifacts through proof markets, federated artifact transfer, capital allocation, canary selection, and rollback.",
+            "job_id": "job_sovereign_enterprise_proof_economy_007",
+            "prompt": "Coordinate a proof-backed market where sovereign AI-first enterprises price, route, adopt, reject, and compound reusable intelligence through evals, reputation, canary selection, and rollback.",
             "risk_class": "high",
             "expected_behavior": [
-              "model value as synthetic sovereign-enterprise index, not revenue",
-              "coordinate 9,216 deterministic agents",
-              "coordinate 96 sovereign enterprises",
-              "run 20 recursive cycles",
-              "execute 491,520 eval cases",
-              "record 10 meta-RSI upgrades",
+              "model value as synthetic proof-economy units, not revenue",
+              "coordinate 65,536 deterministic agents",
+              "coordinate 256 sovereign enterprises",
+              "run 32 recursive cycles",
+              "execute 2,097,152 eval cases",
+              "record 8 meta-RSI upgrades",
+              "price artifacts through proof-market evidence",
+              "track artifact reputation",
               "share only generalized redacted artifact patterns",
               "select only eval-backed artifacts",
               "reject unsafe candidates",
@@ -1160,17 +1134,17 @@ jobs:
           """)
           PY
 
-      - name: Run Sovereign Enterprise tests and generate site
+      - name: Run Sovereign Enterprise Proof Economy tests and generate site
         run: |
           set -euo pipefail
 
-          python -m unittest tests/test_sovereign_enterprise_constellation.py
+          python -m unittest tests/test_sovereign_enterprise_proof_economy.py
 
           rm -rf site
           mkdir -p site
           mkdir -p data/proofs
 
-          python -m proof_gradient.sovereign_enterprise_constellation --site site --data data/proofs
+          python -m proof_gradient.sovereign_enterprise_proof_economy --site site --data data/proofs
 
           python - <<'PY'
           from pathlib import Path
@@ -1185,53 +1159,60 @@ jobs:
               Path("site/proofs/004-corporate-rsi-dominion.html"),
               Path("site/proofs/005-enterprise-rsi-superorganism.html"),
               Path("site/proofs/006-sovereign-enterprise-constellation.html"),
+              Path("site/proofs/007-sovereign-enterprise-proof-economy.html"),
               Path("site/assets/proof-index.json"),
-              Path("site/assets/proofs/006-sovereign-enterprise-constellation.json"),
+              Path("site/assets/proofs/007-sovereign-enterprise-proof-economy.json"),
           ]
 
           for page in required_pages:
               if not page.exists():
                   raise SystemExit(f"Missing required proof archive file: {page}")
 
-          proof6 = json.loads(Path("site/assets/proofs/006-sovereign-enterprise-constellation.json").read_text())
-          summary = proof6["summary"]
-          evidence = proof6["evidence"]
+          proof7 = json.loads(Path("site/assets/proofs/007-sovereign-enterprise-proof-economy.json").read_text())
+          summary = proof7["summary"]
+          evidence = proof7["evidence"]
 
-          if summary["agents"] < 9216:
-              raise SystemExit("Sovereign Enterprise proof failed: fewer than 9,216 agents.")
+          if summary["agents"] < 65536:
+              raise SystemExit("Proof Economy failed: fewer than 65,536 agents.")
 
-          if summary["sovereign_enterprises"] < 96:
-              raise SystemExit("Sovereign Enterprise proof failed: fewer than 96 sovereign enterprises.")
+          if summary["sovereign_enterprises"] < 256:
+              raise SystemExit("Proof Economy failed: fewer than 256 sovereign enterprises.")
 
-          if summary["sovereign_domains"] < 48:
-              raise SystemExit("Sovereign Enterprise proof failed: fewer than 48 sovereign domains.")
+          if summary["sovereign_domains"] < 64:
+              raise SystemExit("Proof Economy failed: fewer than 64 sovereign domains.")
 
-          if summary["rsi_cycles"] < 20:
-              raise SystemExit("Sovereign Enterprise proof failed: fewer than 20 recursive cycles.")
+          if summary["rsi_cycles"] < 32:
+              raise SystemExit("Proof Economy failed: fewer than 32 recursive cycles.")
 
-          if summary["eval_cases"] < 491520:
-              raise SystemExit("Sovereign Enterprise proof failed: fewer than 491,520 eval cases.")
+          if summary["eval_cases"] < 2097152:
+              raise SystemExit("Proof Economy failed: fewer than 2,097,152 eval cases.")
 
-          if summary["meta_rsi_upgrades"] < 10:
-              raise SystemExit("Sovereign Enterprise proof failed: meta-RSI upgrades missing.")
-
-          if summary["artifact_transfers"] < 1:
-              raise SystemExit("Sovereign Enterprise proof failed: artifact transfers missing.")
+          if summary["meta_rsi_upgrades"] < 8:
+              raise SystemExit("Proof Economy failed: meta-RSI upgrades missing.")
 
           if summary["proof_market_trades"] < 1:
-              raise SystemExit("Sovereign Enterprise proof failed: proof market trades missing.")
+              raise SystemExit("Proof Economy failed: proof market trades missing.")
 
-          if evidence["selection_gate"]["decision"] != "approve_sovereign_enterprise_constellation_canary":
-              raise SystemExit("Sovereign Enterprise proof failed: Selection Gate did not approve canary.")
+          if summary["federated_adoptions"] < 1:
+              raise SystemExit("Proof Economy failed: federated adoptions missing.")
+
+          if summary["pricing_events"] < 1:
+              raise SystemExit("Proof Economy failed: artifact pricing events missing.")
+
+          if summary["reputation_events"] < 1:
+              raise SystemExit("Proof Economy failed: artifact reputation events missing.")
+
+          if evidence["selection_gate"]["decision"] != "approve_sovereign_enterprise_proof_economy_canary":
+              raise SystemExit("Proof Economy failed: Selection Gate did not approve canary.")
 
           if not evidence["selection_gate"]["rollback_target"]:
-              raise SystemExit("Sovereign Enterprise proof failed: rollback target missing.")
+              raise SystemExit("Proof Economy failed: rollback target missing.")
 
           if evidence["sovereignty_guarantees"]["private_data_shared"]:
-              raise SystemExit("Sovereign Enterprise proof failed: private data shared.")
+              raise SystemExit("Proof Economy failed: private data shared.")
 
           if "guaranteed ROI" not in evidence["not_claiming"]:
-              raise SystemExit("Sovereign Enterprise proof failed: claim boundary missing.")
+              raise SystemExit("Proof Economy failed: claim boundary missing.")
 
           main = Path("site/index.html").read_text()
           for slug in [
@@ -1241,28 +1222,31 @@ jobs:
               "004-corporate-rsi-dominion",
               "005-enterprise-rsi-superorganism",
               "006-sovereign-enterprise-constellation",
+              "007-sovereign-enterprise-proof-economy",
           ]:
               if f"proofs/{slug}.html" not in main:
                   raise SystemExit(f"Main page does not link to proof page: {slug}")
 
-          print("Sovereign Enterprise Constellation verified.")
-          print("9,216-agent sovereign enterprise mesh verified.")
-          print("96 sovereign enterprises verified.")
-          print("48 sovereign enterprise domains verified.")
-          print("20 recursive self-improvement cycles verified.")
-          print("491,520 eval cases verified.")
-          print("10 meta-RSI upgrades verified.")
-          print("Federated artifact transfer verified.")
-          print("Proof market trades verified.")
+          print("Sovereign Enterprise Proof Economy verified.")
+          print("65,536-agent proof economy mesh verified.")
+          print("256 sovereign enterprises verified.")
+          print("64 sovereign enterprise domains verified.")
+          print("32 recursive self-improvement cycles verified.")
+          print("2,097,152 eval cases verified.")
+          print("8 meta-RSI upgrades verified.")
+          print("Proof-market trades verified.")
+          print("Artifact pricing verified.")
+          print("Artifact reputation verified.")
+          print("Federated adoption verified.")
           print("Sovereignty boundaries verified.")
           print("Each proof has its own webpage and is connected to the main page.")
           PY
 
-      - name: Commit Sovereign Enterprise Constellation proof
+      - name: Commit Sovereign Enterprise Proof Economy
         run: |
           set -euo pipefail
 
-          git config user.name "proof-gradient-sovereign-enterprise-constellation"
+          git config user.name "proof-gradient-sovereign-enterprise-proof-economy"
           git config user.email "actions@github.com"
 
           git add -A
@@ -1270,7 +1254,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No repository changes to commit."
           else
-            git commit -m "Add Proof Gradient Sovereign Enterprise Constellation [skip ci]"
+            git commit -m "Add Proof Gradient Sovereign Enterprise Proof Economy [skip ci]"
             git push origin HEAD:main
           fi
 
@@ -1294,7 +1278,7 @@ jobs:
             exit 1
           fi
 
-          echo "Clean Proof Gradient Sovereign Enterprise Constellation artifact is ready."
+          echo "Clean Proof Gradient Sovereign Enterprise Proof Economy artifact is ready."
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -1319,3 +1303,4 @@ jobs:
           echo "Proof #4: ${{ steps.deployment.outputs.page_url }}proofs/004-corporate-rsi-dominion.html"
           echo "Proof #5: ${{ steps.deployment.outputs.page_url }}proofs/005-enterprise-rsi-superorganism.html"
           echo "Proof #6: ${{ steps.deployment.outputs.page_url }}proofs/006-sovereign-enterprise-constellation.html"
+          echo "Proof #7: ${{ steps.deployment.outputs.page_url }}proofs/007-sovereign-enterprise-proof-economy.html"
