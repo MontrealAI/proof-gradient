@@ -1,0 +1,95 @@
+name: Proof Gradient Production CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: ["main"]
+    paths:
+      - "proof_gradient/**"
+      - "tests/**"
+      - "docs/**"
+      - "scripts/**"
+      - "pyproject.toml"
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - "alembic.ini"
+      - "migrations/**"
+
+permissions:
+  contents: read
+
+jobs:
+  production-ci:
+    name: Test production platform with Postgres
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: proofgradient
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      PROOF_GRADIENT_DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/proofgradient
+      PROOF_GRADIENT_PROVIDER: mock
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Lint
+        run: |
+          ruff check proof_gradient tests
+
+      - name: Security review
+        run: |
+          python scripts/security_review.py
+          bandit -q -r proof_gradient
+
+      - name: Test
+        run: |
+          pytest
+
+      - name: CLI smoke test
+        run: |
+          proof-gradient db reset
+          proof-gradient demo --tenant ci --json
+          proof-gradient proof list --tenant ci
+
+      - name: API smoke test
+        run: |
+          python - <<'PY'
+          from fastapi.testclient import TestClient
+          from proof_gradient.api import app
+          from proof_gradient.db import reset_db
+
+          reset_db()
+          client = TestClient(app)
+          assert client.get("/healthz").status_code == 200
+          response = client.post("/demo/run", json={"tenant": "ci-api", "prompt": "refund response"})
+          assert response.status_code == 200, response.text
+          assert response.json()["rollback_id"]
+          assert "proof_gradient_proofs_total" in client.get("/metrics").text
+          print("API smoke test passed.")
+          PY
