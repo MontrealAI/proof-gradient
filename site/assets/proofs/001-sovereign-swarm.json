@@ -8,9 +8,11 @@
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/001-sovereign-swarm.json",
   "status": "passed",
   "summary": {
-    "agents": 96,
-    "divisions": 8,
-    "handoffs": 95,
+    "proof_type": "large_multi_agent_coordination",
+    "agent_count": 96,
+    "division_count": 8,
+    "handoff_count": 95,
+    "vote_count": 96,
     "verdict": "large_multi_agent_coordination_proven_deterministically"
   },
   "evidence": {
@@ -19,168 +21,7 @@
     "division_count": 8,
     "handoff_count": 95,
     "vote_count": 96,
-    "trace_event_count": 96,
-    "divisions": [
-      "Direction Council",
-      "Strategy Foundry",
-      "Capability Guild",
-      "Proof Court",
-      "Selection Senate",
-      "Governance Shield",
-      "Capital Engine",
-      "Energy Horizon Cell"
-    ],
-    "trace_events_sample": [
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-001",
-        "division": "Direction Council",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-002",
-        "division": "Strategy Foundry",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-003",
-        "division": "Capability Guild",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-004",
-        "division": "Proof Court",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-005",
-        "division": "Selection Senate",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-006",
-        "division": "Governance Shield",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-007",
-        "division": "Capital Engine",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-008",
-        "division": "Energy Horizon Cell",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-009",
-        "division": "Direction Council",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-010",
-        "division": "Strategy Foundry",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-011",
-        "division": "Capability Guild",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-012",
-        "division": "Proof Court",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-013",
-        "division": "Selection Senate",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-014",
-        "division": "Governance Shield",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-015",
-        "division": "Capital Engine",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-016",
-        "division": "Energy Horizon Cell",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-017",
-        "division": "Direction Council",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-018",
-        "division": "Strategy Foundry",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-019",
-        "division": "Capability Guild",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-020",
-        "division": "Proof Court",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-021",
-        "division": "Selection Senate",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-022",
-        "division": "Governance Shield",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-023",
-        "division": "Capital Engine",
-        "message": "Agent produced proof-backed recommendation."
-      },
-      {
-        "event_type": "agent_deliberation",
-        "agent_id": "PG-SWARM-024",
-        "division": "Energy Horizon Cell",
-        "message": "Agent produced proof-backed recommendation."
-      }
-    ],
-    "truth_boundary": {
-      "kardashev_or_superintelligence_claims": "strategic scenario only unless empirical evidence exists",
-      "guaranteed_wealth_claims": "not allowed"
-    },
     "verdict": "large_multi_agent_coordination_proven_deterministically"
   },
-  "checksum": "b9c49508e9d5dfa6800fe0a52d436597a20f67e8c78a3f91853715e8665aad6b"
+  "checksum": "a44cf7035ac9d91280ed8f49a5626450de780e082a4fd5ba87506d6ee0b3ff36"
 }

@@ -25,21 +25,21 @@
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
+    main { width: min(1220px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
     .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
-    h1 { font-size: clamp(44px, 8vw, 96px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
+    h1 { font-size: clamp(44px, 8vw, 100px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
     h2 { font-size: clamp(28px, 4vw, 52px); letter-spacing: -0.05em; }
     p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
     a { color: var(--blue); }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
     .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
     .card b { display: block; font-size: 21px; margin-bottom: 10px; }
     .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
-    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 620px; }
+    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 640px; }
     .nav { margin: 28px 0; display: flex; gap: 12px; flex-wrap: wrap; }
     .nav a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; text-decoration: none; color: var(--muted); background: rgba(255,255,255,.04); }
     .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+    @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
     </style>
   </head>
   <body>
@@ -52,19 +52,23 @@
     <div class="nav">
       <a href="../">← Main Command Center</a>
       <a href="./">Proof Archive</a>
-      <a href="001-sovereign-swarm.html">Proof #1</a><a href="002-evolution-tournament.html">Proof #2</a><a href="003-recursive-evolution-ladder.html">Proof #3</a>
+      <a href="001-sovereign-swarm.html">Proof #1</a><a href="002-evolution-tournament.html">Proof #2</a><a href="003-recursive-evolution-ladder.html">Proof #3</a><a href="004-corporate-rsi-dominion.html">Proof #4</a>
       <a href="../assets/proofs/003-recursive-evolution-ladder.json">Evidence JSON</a>
     </div>
     <h2>Summary</h2>
     <pre>{
-  &quot;agents&quot;: 240,
-  &quot;guilds&quot;: 16,
-  &quot;generations&quot;: 5,
-  &quot;eval_cases&quot;: 300,
-  &quot;selected&quot;: 4,
-  &quot;rejected&quot;: 1,
-  &quot;rollbacks&quot;: 1,
+  &quot;proof_type&quot;: &quot;recursive_evolution_ladder&quot;,
+  &quot;agent_count&quot;: 240,
+  &quot;guild_count&quot;: 16,
+  &quot;generation_count&quot;: 5,
+  &quot;total_eval_cases&quot;: 300,
+  &quot;selected_generations&quot;: 4,
+  &quot;rejected_generations&quot;: 1,
+  &quot;rollback_count&quot;: 1,
+  &quot;starting_artifact&quot;: &quot;artifact_network@1.0.0&quot;,
   &quot;final_artifact&quot;: &quot;artifact_network@1.4.0&quot;,
+  &quot;starting_score&quot;: 0.7,
+  &quot;final_score&quot;: 0.93,
   &quot;verdict&quot;: &quot;recursive_evolution_proven_with_selection_rejection_and_rollback&quot;
 }</pre>
     <h2>Evidence</h2>
@@ -81,110 +85,10 @@
   &quot;final_artifact&quot;: &quot;artifact_network@1.4.0&quot;,
   &quot;starting_score&quot;: 0.7,
   &quot;final_score&quot;: 0.93,
-  &quot;generations&quot;: [
-    {
-      &quot;generation&quot;: 1,
-      &quot;baseline_artifact&quot;: &quot;artifact_network@1.0.0&quot;,
-      &quot;candidate_artifact&quot;: &quot;artifact_network@1.1.0-candidate&quot;,
-      &quot;eval_cases&quot;: 60,
-      &quot;baseline_score&quot;: 0.7,
-      &quot;candidate_score&quot;: 0.78,
-      &quot;quality_delta&quot;: 0.08,
-      &quot;safety_violation&quot;: false,
-      &quot;decision&quot;: &quot;selected&quot;,
-      &quot;rollback_target&quot;: &quot;artifact_network@1.0.0&quot;
-    },
-    {
-      &quot;generation&quot;: 2,
-      &quot;baseline_artifact&quot;: &quot;artifact_network@1.1.0&quot;,
-      &quot;candidate_artifact&quot;: &quot;artifact_network@1.2.0-candidate&quot;,
-      &quot;eval_cases&quot;: 60,
-      &quot;baseline_score&quot;: 0.78,
-      &quot;candidate_score&quot;: 0.85,
-      &quot;quality_delta&quot;: 0.07,
-      &quot;safety_violation&quot;: false,
-      &quot;decision&quot;: &quot;selected&quot;,
-      &quot;rollback_target&quot;: &quot;artifact_network@1.1.0&quot;
-    },
-    {
-      &quot;generation&quot;: 3,
-      &quot;baseline_artifact&quot;: &quot;artifact_network@1.2.0&quot;,
-      &quot;candidate_artifact&quot;: &quot;artifact_network@1.3.0-unsafe-candidate&quot;,
-      &quot;eval_cases&quot;: 60,
-      &quot;baseline_score&quot;: 0.85,
-      &quot;candidate_score&quot;: 0.91,
-      &quot;quality_delta&quot;: 0.06,
-      &quot;safety_violation&quot;: true,
-      &quot;decision&quot;: &quot;rejected_and_rolled_back&quot;,
-      &quot;rollback_target&quot;: &quot;artifact_network@1.2.0&quot;
-    },
-    {
-      &quot;generation&quot;: 4,
-      &quot;baseline_artifact&quot;: &quot;artifact_network@1.2.0&quot;,
-      &quot;candidate_artifact&quot;: &quot;artifact_network@1.3.0-candidate&quot;,
-      &quot;eval_cases&quot;: 60,
-      &quot;baseline_score&quot;: 0.85,
-      &quot;candidate_score&quot;: 0.89,
-      &quot;quality_delta&quot;: 0.04,
-      &quot;safety_violation&quot;: false,
-      &quot;decision&quot;: &quot;selected&quot;,
-      &quot;rollback_target&quot;: &quot;artifact_network@1.2.0&quot;
-    },
-    {
-      &quot;generation&quot;: 5,
-      &quot;baseline_artifact&quot;: &quot;artifact_network@1.3.0&quot;,
-      &quot;candidate_artifact&quot;: &quot;artifact_network@1.4.0-candidate&quot;,
-      &quot;eval_cases&quot;: 60,
-      &quot;baseline_score&quot;: 0.89,
-      &quot;candidate_score&quot;: 0.93,
-      &quot;quality_delta&quot;: 0.04,
-      &quot;safety_violation&quot;: false,
-      &quot;decision&quot;: &quot;selected&quot;,
-      &quot;rollback_target&quot;: &quot;artifact_network@1.3.0&quot;
-    }
-  ],
-  &quot;lineage&quot;: [
-    {
-      &quot;from&quot;: &quot;artifact_network@1.0.0&quot;,
-      &quot;to&quot;: &quot;artifact_network@1.1.0&quot;,
-      &quot;source_generation&quot;: 1,
-      &quot;reason&quot;: &quot;candidate beat baseline without safety regression&quot;
-    },
-    {
-      &quot;from&quot;: &quot;artifact_network@1.1.0&quot;,
-      &quot;to&quot;: &quot;artifact_network@1.2.0&quot;,
-      &quot;source_generation&quot;: 2,
-      &quot;reason&quot;: &quot;candidate beat baseline without safety regression&quot;
-    },
-    {
-      &quot;from&quot;: &quot;artifact_network@1.3.0-unsafe-candidate&quot;,
-      &quot;to&quot;: &quot;artifact_network@1.2.0&quot;,
-      &quot;source_generation&quot;: 3,
-      &quot;reason&quot;: &quot;candidate rejected because safety violation triggered rollback&quot;
-    },
-    {
-      &quot;from&quot;: &quot;artifact_network@1.2.0&quot;,
-      &quot;to&quot;: &quot;artifact_network@1.3.0&quot;,
-      &quot;source_generation&quot;: 4,
-      &quot;reason&quot;: &quot;candidate beat baseline without safety regression&quot;
-    },
-    {
-      &quot;from&quot;: &quot;artifact_network@1.3.0&quot;,
-      &quot;to&quot;: &quot;artifact_network@1.4.0&quot;,
-      &quot;source_generation&quot;: 5,
-      &quot;reason&quot;: &quot;candidate beat baseline without safety regression&quot;
-    }
-  ],
-  &quot;credit_assignment&quot;: {
-    &quot;primary_credit&quot;: &quot;Selection Gate&quot;,
-    &quot;secondary_credit&quot;: &quot;Eval artifacts&quot;,
-    &quot;governance_credit&quot;: &quot;Rollback policy&quot;,
-    &quot;why&quot;: &quot;The network improved only when candidates beat baselines and passed safety gates; unsafe candidate was rejected.&quot;
-  },
   &quot;verdict&quot;: &quot;recursive_evolution_proven_with_selection_rejection_and_rollback&quot;
 }</pre>
     <h2>Checksum</h2>
-    <pre>30ac2108de960f42e6fe7c74a0a4f0c1162f87edd5dab4abcdde731c611a2465</pre>
+    <pre>3ccc45f97ec6212a6dab1fb6942dc831627eb3e7ec3628cedebb010864e57693</pre>
     
     </main>
   </body>

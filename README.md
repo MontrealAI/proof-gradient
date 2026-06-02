@@ -4,7 +4,7 @@
 
 Proof Gradient is the agent evolution protocol where every run leaves proof, every proof selects intelligence, and every selected artifact evolves the network.
 
-## The product truth
+## Canonical product truth
 
 GoalOS gives the network **Direction**.  
 PlanOS gives it **Strategy**.  
@@ -20,26 +20,20 @@ The Proof Gradient gives it **Evolution**.
 | **Proof Ledger** | Records what happened. |
 | **Selection Gate** | Promotes only what proved itself. |
 
-## The Sovereign Swarm
+## Current proof archive
 
-Proof Gradient includes a deterministic multi-agent coordination lattice.
+- Proof #1 — Sovereign Swarm
+- Proof #2 — Evolution Tournament
+- Proof #3 — Recursive Evolution Ladder
+- Proof #4 — Corporate RSI Dominion
 
-It does not claim to be a deployed superintelligence. It proves the operating substrate:
+## Proof #4 — Corporate RSI Dominion
 
-```text
-Many agents coordinate.
-Every agent leaves evidence.
-Evidence becomes selection.
-Selection evolves the artifact network.
-```
+Corporate RSI Dominion proves a deterministic, auditable, large multi-agent recursive self-improvement loop across high-leverage corporate domains.
 
-## Civilization-scale thesis
+It models recursive improvement across revenue, customer success, product, engineering, security, finance, procurement, legal, marketing, talent, partnerships, and executive operations.
 
-The repository includes a clearly labeled strategic scenario inspired by the thesis:
-
-> A superintelligent machine would be of immense value, and ownership of such a system could create extraordinary economic leverage, potentially contributing to civilization-scale energy and infrastructure ambitions.
-
-This is modeled as a **scenario thesis**, not as a factual claim of existing superintelligence, guaranteed wealth, or Kardashev Type II capability.
+It does **not** claim real revenue, guaranteed ROI, real superintelligence, or achieved Kardashev capability. It creates proof infrastructure: artifacts, runs, traces, evals, patches, selection, canaries, and rollback.
 
 ## Operating law
 
@@ -47,18 +41,6 @@ This is modeled as a **scenario thesis**, not as a factual claim of existing sup
 No proof, no evolution.
 No eval, no propagation.
 No rollback, no release.
-```
-
-## Run locally
-
-```bash
-python -m proof_gradient demo --out data/proof_gradient_foundation.json
-```
-
-## Run tests
-
-```bash
-python -m unittest tests/test_proof_gradient_foundation.py
 ```
 
 ## Public command center

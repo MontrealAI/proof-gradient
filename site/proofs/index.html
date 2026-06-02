@@ -25,21 +25,21 @@
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
+    main { width: min(1220px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
     .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
-    h1 { font-size: clamp(44px, 8vw, 96px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
+    h1 { font-size: clamp(44px, 8vw, 100px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
     h2 { font-size: clamp(28px, 4vw, 52px); letter-spacing: -0.05em; }
     p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
     a { color: var(--blue); }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
     .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
     .card b { display: block; font-size: 21px; margin-bottom: 10px; }
     .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
-    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 620px; }
+    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 640px; }
     .nav { margin: 28px 0; display: flex; gap: 12px; flex-wrap: wrap; }
     .nav a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; text-decoration: none; color: var(--muted); background: rgba(255,255,255,.04); }
     .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+    @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
     </style>
   </head>
   <body>
@@ -50,7 +50,7 @@
     <p>Every proof has its own permanent webpage and evidence JSON. Every proof links back to the main command center.</p>
     <div class="nav">
       <a href="../">← Main Command Center</a>
-      <a href="001-sovereign-swarm.html">Proof #1</a><a href="002-evolution-tournament.html">Proof #2</a><a href="003-recursive-evolution-ladder.html">Proof #3</a>
+      <a href="001-sovereign-swarm.html">Proof #1</a><a href="002-evolution-tournament.html">Proof #2</a><a href="003-recursive-evolution-ladder.html">Proof #3</a><a href="004-corporate-rsi-dominion.html">Proof #4</a>
     </div>
     <div class="grid">
         <div class="card">
@@ -72,6 +72,13 @@
           <p>Selected artifacts become the next baseline; unsafe evolution is rejected and rolled back.</p>
           <p><a href="003-recursive-evolution-ladder.html">Open proof →</a></p>
           <p><a href="../assets/proofs/003-recursive-evolution-ladder.json">Open evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #4 — Corporate RSI Dominion</b>
+          <p>A deterministic corporate-domain recursive self-improvement system for the AI-first enterprise era.</p>
+          <p><a href="004-corporate-rsi-dominion.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/004-corporate-rsi-dominion.json">Open evidence JSON →</a></p>
         </div>
         </div>
     

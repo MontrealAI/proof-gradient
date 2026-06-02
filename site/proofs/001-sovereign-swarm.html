@@ -25,21 +25,21 @@
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
+    main { width: min(1220px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
     .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
-    h1 { font-size: clamp(44px, 8vw, 96px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
+    h1 { font-size: clamp(44px, 8vw, 100px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
     h2 { font-size: clamp(28px, 4vw, 52px); letter-spacing: -0.05em; }
     p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
     a { color: var(--blue); }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
     .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
     .card b { display: block; font-size: 21px; margin-bottom: 10px; }
     .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
-    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 620px; }
+    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 640px; }
     .nav { margin: 28px 0; display: flex; gap: 12px; flex-wrap: wrap; }
     .nav a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; text-decoration: none; color: var(--muted); background: rgba(255,255,255,.04); }
     .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+    @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
     </style>
   </head>
   <body>
@@ -52,14 +52,16 @@
     <div class="nav">
       <a href="../">← Main Command Center</a>
       <a href="./">Proof Archive</a>
-      <a href="001-sovereign-swarm.html">Proof #1</a><a href="002-evolution-tournament.html">Proof #2</a><a href="003-recursive-evolution-ladder.html">Proof #3</a>
+      <a href="001-sovereign-swarm.html">Proof #1</a><a href="002-evolution-tournament.html">Proof #2</a><a href="003-recursive-evolution-ladder.html">Proof #3</a><a href="004-corporate-rsi-dominion.html">Proof #4</a>
       <a href="../assets/proofs/001-sovereign-swarm.json">Evidence JSON</a>
     </div>
     <h2>Summary</h2>
     <pre>{
-  &quot;agents&quot;: 96,
-  &quot;divisions&quot;: 8,
-  &quot;handoffs&quot;: 95,
+  &quot;proof_type&quot;: &quot;large_multi_agent_coordination&quot;,
+  &quot;agent_count&quot;: 96,
+  &quot;division_count&quot;: 8,
+  &quot;handoff_count&quot;: 95,
+  &quot;vote_count&quot;: 96,
   &quot;verdict&quot;: &quot;large_multi_agent_coordination_proven_deterministically&quot;
 }</pre>
     <h2>Evidence</h2>
@@ -69,171 +71,10 @@
   &quot;division_count&quot;: 8,
   &quot;handoff_count&quot;: 95,
   &quot;vote_count&quot;: 96,
-  &quot;trace_event_count&quot;: 96,
-  &quot;divisions&quot;: [
-    &quot;Direction Council&quot;,
-    &quot;Strategy Foundry&quot;,
-    &quot;Capability Guild&quot;,
-    &quot;Proof Court&quot;,
-    &quot;Selection Senate&quot;,
-    &quot;Governance Shield&quot;,
-    &quot;Capital Engine&quot;,
-    &quot;Energy Horizon Cell&quot;
-  ],
-  &quot;trace_events_sample&quot;: [
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-001&quot;,
-      &quot;division&quot;: &quot;Direction Council&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-002&quot;,
-      &quot;division&quot;: &quot;Strategy Foundry&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-003&quot;,
-      &quot;division&quot;: &quot;Capability Guild&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-004&quot;,
-      &quot;division&quot;: &quot;Proof Court&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-005&quot;,
-      &quot;division&quot;: &quot;Selection Senate&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-006&quot;,
-      &quot;division&quot;: &quot;Governance Shield&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-007&quot;,
-      &quot;division&quot;: &quot;Capital Engine&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-008&quot;,
-      &quot;division&quot;: &quot;Energy Horizon Cell&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-009&quot;,
-      &quot;division&quot;: &quot;Direction Council&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-010&quot;,
-      &quot;division&quot;: &quot;Strategy Foundry&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-011&quot;,
-      &quot;division&quot;: &quot;Capability Guild&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-012&quot;,
-      &quot;division&quot;: &quot;Proof Court&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-013&quot;,
-      &quot;division&quot;: &quot;Selection Senate&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-014&quot;,
-      &quot;division&quot;: &quot;Governance Shield&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-015&quot;,
-      &quot;division&quot;: &quot;Capital Engine&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-016&quot;,
-      &quot;division&quot;: &quot;Energy Horizon Cell&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-017&quot;,
-      &quot;division&quot;: &quot;Direction Council&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-018&quot;,
-      &quot;division&quot;: &quot;Strategy Foundry&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-019&quot;,
-      &quot;division&quot;: &quot;Capability Guild&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-020&quot;,
-      &quot;division&quot;: &quot;Proof Court&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-021&quot;,
-      &quot;division&quot;: &quot;Selection Senate&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-022&quot;,
-      &quot;division&quot;: &quot;Governance Shield&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-023&quot;,
-      &quot;division&quot;: &quot;Capital Engine&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    },
-    {
-      &quot;event_type&quot;: &quot;agent_deliberation&quot;,
-      &quot;agent_id&quot;: &quot;PG-SWARM-024&quot;,
-      &quot;division&quot;: &quot;Energy Horizon Cell&quot;,
-      &quot;message&quot;: &quot;Agent produced proof-backed recommendation.&quot;
-    }
-  ],
-  &quot;truth_boundary&quot;: {
-    &quot;kardashev_or_superintelligence_claims&quot;: &quot;strategic scenario only unless empirical evidence exists&quot;,
-    &quot;guaranteed_wealth_claims&quot;: &quot;not allowed&quot;
-  },
   &quot;verdict&quot;: &quot;large_multi_agent_coordination_proven_deterministically&quot;
 }</pre>
     <h2>Checksum</h2>
-    <pre>b9c49508e9d5dfa6800fe0a52d436597a20f67e8c78a3f91853715e8665aad6b</pre>
+    <pre>a44cf7035ac9d91280ed8f49a5626450de780e082a4fd5ba87506d6ee0b3ff36</pre>
     
     </main>
   </body>
