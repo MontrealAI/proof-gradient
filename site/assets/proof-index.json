@@ -1,0 +1,611 @@
+{
+  "generated_at": "2026-06-02T15:57:19.628807Z",
+  "repository": "MontrealAI/proof-gradient",
+  "site": "https://montrealai.github.io/proof-gradient/",
+  "title": "Proof Gradient",
+  "canonical_line": "One agent tries. Proof decides. The network evolves.",
+  "doctrine": "No proof, no evolution. No eval, no propagation. No rollback, no release.",
+  "systems": [
+    {
+      "name": "Artifact Vault",
+      "promise": "stores reusable intelligence",
+      "meaning": "Versioned goals, plans, skills, tools, policies, evals, rubrics, context recipes, routing rules, approval rules, and release rules."
+    },
+    {
+      "name": "Run Fabric",
+      "promise": "executes agents at scale",
+      "meaning": "Runs resolve active artifacts, create run contracts, execute deterministic or provider-backed agents, and emit trace events."
+    },
+    {
+      "name": "Proof Ledger",
+      "promise": "records what happened",
+      "meaning": "Append-only evidence: traces, scores, evals, tool decisions, credit assignment, patches, canaries, and rollback drills."
+    },
+    {
+      "name": "Selection Gate",
+      "promise": "promotes only what proved itself",
+      "meaning": "Candidates must beat baselines, pass safety gates, receive canary routing, and preserve rollback."
+    }
+  ],
+  "proof_count": 3,
+  "proofs": [
+    {
+      "proof_id": "proof-001-sovereign-swarm",
+      "number": 1,
+      "slug": "001-sovereign-swarm",
+      "title": "Proof #1 — Sovereign Swarm",
+      "subtitle": "A deterministic large multi-agent coordination lattice.",
+      "url": "https://montrealai.github.io/proof-gradient/proofs/001-sovereign-swarm.html",
+      "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/001-sovereign-swarm.json",
+      "status": "passed",
+      "summary": {
+        "agents": 96,
+        "divisions": 8,
+        "handoffs": 95,
+        "verdict": "large_multi_agent_coordination_proven_deterministically"
+      },
+      "evidence": {
+        "proof_type": "large_multi_agent_coordination",
+        "agent_count": 96,
+        "division_count": 8,
+        "handoff_count": 95,
+        "vote_count": 96,
+        "trace_event_count": 96,
+        "divisions": [
+          "Direction Council",
+          "Strategy Foundry",
+          "Capability Guild",
+          "Proof Court",
+          "Selection Senate",
+          "Governance Shield",
+          "Capital Engine",
+          "Energy Horizon Cell"
+        ],
+        "trace_events_sample": [
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-001",
+            "division": "Direction Council",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-002",
+            "division": "Strategy Foundry",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-003",
+            "division": "Capability Guild",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-004",
+            "division": "Proof Court",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-005",
+            "division": "Selection Senate",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-006",
+            "division": "Governance Shield",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-007",
+            "division": "Capital Engine",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-008",
+            "division": "Energy Horizon Cell",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-009",
+            "division": "Direction Council",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-010",
+            "division": "Strategy Foundry",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-011",
+            "division": "Capability Guild",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-012",
+            "division": "Proof Court",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-013",
+            "division": "Selection Senate",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-014",
+            "division": "Governance Shield",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-015",
+            "division": "Capital Engine",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-016",
+            "division": "Energy Horizon Cell",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-017",
+            "division": "Direction Council",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-018",
+            "division": "Strategy Foundry",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-019",
+            "division": "Capability Guild",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-020",
+            "division": "Proof Court",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-021",
+            "division": "Selection Senate",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-022",
+            "division": "Governance Shield",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-023",
+            "division": "Capital Engine",
+            "message": "Agent produced proof-backed recommendation."
+          },
+          {
+            "event_type": "agent_deliberation",
+            "agent_id": "PG-SWARM-024",
+            "division": "Energy Horizon Cell",
+            "message": "Agent produced proof-backed recommendation."
+          }
+        ],
+        "truth_boundary": {
+          "kardashev_or_superintelligence_claims": "strategic scenario only unless empirical evidence exists",
+          "guaranteed_wealth_claims": "not allowed"
+        },
+        "verdict": "large_multi_agent_coordination_proven_deterministically"
+      },
+      "checksum": "b9c49508e9d5dfa6800fe0a52d436597a20f67e8c78a3f91853715e8665aad6b"
+    },
+    {
+      "proof_id": "proof-002-evolution-tournament",
+      "number": 2,
+      "slug": "002-evolution-tournament",
+      "title": "Proof #2 — Evolution Tournament",
+      "subtitle": "Candidates compete against baselines; only proven artifacts earn canary.",
+      "url": "https://montrealai.github.io/proof-gradient/proofs/002-evolution-tournament.html",
+      "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/002-evolution-tournament.json",
+      "status": "passed",
+      "summary": {
+        "agents": 144,
+        "guilds": 12,
+        "eval_cases": 72,
+        "patches": 3,
+        "average_quality_delta": 0.175,
+        "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"
+      },
+      "evidence": {
+        "proof_type": "baseline_candidate_evolution_tournament",
+        "agent_count": 144,
+        "guild_count": 12,
+        "case_count": 72,
+        "domain_count": 3,
+        "patch_count": 3,
+        "canary_selection_count": 3,
+        "candidate_policy_violations": 0,
+        "average_quality_delta": 0.175,
+        "cases_sample": [
+          {
+            "case_id": "customer_response_safety_case_01",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.54,
+            "candidate_quality": 0.7,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_02",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.57,
+            "candidate_quality": 0.73,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_03",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.6,
+            "candidate_quality": 0.76,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_04",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.63,
+            "candidate_quality": 0.79,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_05",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.66,
+            "candidate_quality": 0.82,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_06",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.54,
+            "candidate_quality": 0.7,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_07",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.57,
+            "candidate_quality": 0.73,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_08",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.6,
+            "candidate_quality": 0.76,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_09",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.63,
+            "candidate_quality": 0.79,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_10",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.66,
+            "candidate_quality": 0.82,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_11",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.54,
+            "candidate_quality": 0.7,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_12",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.57,
+            "candidate_quality": 0.73,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_13",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.6,
+            "candidate_quality": 0.76,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_14",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.63,
+            "candidate_quality": 0.79,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_15",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.66,
+            "candidate_quality": 0.82,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_16",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.54,
+            "candidate_quality": 0.7,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_17",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.57,
+            "candidate_quality": 0.73,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_18",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.6,
+            "candidate_quality": 0.76,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_19",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.63,
+            "candidate_quality": 0.79,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_20",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.66,
+            "candidate_quality": 0.82,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_21",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.54,
+            "candidate_quality": 0.7,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_22",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.57,
+            "candidate_quality": 0.73,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_23",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.6,
+            "candidate_quality": 0.76,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          },
+          {
+            "case_id": "customer_response_safety_case_24",
+            "domain": "customer_response_safety",
+            "baseline_quality": 0.63,
+            "candidate_quality": 0.79,
+            "quality_delta": 0.16,
+            "candidate_policy_violation": false
+          }
+        ],
+        "patches": [
+          {
+            "patch_id": "patch_customer_policy_grounding_002",
+            "patch_type": "plan_patch",
+            "target_artifact": "customer_response_plan@1.4.0",
+            "candidate_artifact": "customer_response_plan@1.5.0-candidate",
+            "rollback_target": "customer_response_plan@1.4.0"
+          },
+          {
+            "patch_id": "patch_research_citation_goal_001",
+            "patch_type": "goal_patch",
+            "target_artifact": "research_memo_goal@1.0.0",
+            "candidate_artifact": "research_memo_goal@1.1.0-candidate",
+            "rollback_target": "research_memo_goal@1.0.0"
+          },
+          {
+            "patch_id": "patch_software_validation_gate_001",
+            "patch_type": "plan_patch",
+            "target_artifact": "software_change_plan@1.0.0",
+            "candidate_artifact": "software_change_plan@1.1.0-candidate",
+            "rollback_target": "software_change_plan@1.0.0"
+          }
+        ],
+        "rollback_drill": {
+          "drill_id": "rollback_drill_002",
+          "injected_failure": "candidate_policy_violation_detected_in_shadow_route",
+          "result": "rollback_successful",
+          "rollback_target": "research_memo_goal@1.0.0"
+        },
+        "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"
+      },
+      "checksum": "13ea7be2007a368296dfe00c9ca5951372619090985923ff4293121195899d6c"
+    },
+    {
+      "proof_id": "proof-003-recursive-evolution-ladder",
+      "number": 3,
+      "slug": "003-recursive-evolution-ladder",
+      "title": "Proof #3 — Recursive Evolution Ladder",
+      "subtitle": "Selected artifacts become the next baseline; unsafe evolution is rejected and rolled back.",
+      "url": "https://montrealai.github.io/proof-gradient/proofs/003-recursive-evolution-ladder.html",
+      "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/003-recursive-evolution-ladder.json",
+      "status": "passed",
+      "summary": {
+        "agents": 240,
+        "guilds": 16,
+        "generations": 5,
+        "eval_cases": 300,
+        "selected": 4,
+        "rejected": 1,
+        "rollbacks": 1,
+        "final_artifact": "artifact_network@1.4.0",
+        "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"
+      },
+      "evidence": {
+        "proof_type": "recursive_evolution_ladder",
+        "agent_count": 240,
+        "guild_count": 16,
+        "generation_count": 5,
+        "total_eval_cases": 300,
+        "selected_generations": 4,
+        "rejected_generations": 1,
+        "rollback_count": 1,
+        "starting_artifact": "artifact_network@1.0.0",
+        "final_artifact": "artifact_network@1.4.0",
+        "starting_score": 0.7,
+        "final_score": 0.93,
+        "generations": [
+          {
+            "generation": 1,
+            "baseline_artifact": "artifact_network@1.0.0",
+            "candidate_artifact": "artifact_network@1.1.0-candidate",
+            "eval_cases": 60,
+            "baseline_score": 0.7,
+            "candidate_score": 0.78,
+            "quality_delta": 0.08,
+            "safety_violation": false,
+            "decision": "selected",
+            "rollback_target": "artifact_network@1.0.0"
+          },
+          {
+            "generation": 2,
+            "baseline_artifact": "artifact_network@1.1.0",
+            "candidate_artifact": "artifact_network@1.2.0-candidate",
+            "eval_cases": 60,
+            "baseline_score": 0.78,
+            "candidate_score": 0.85,
+            "quality_delta": 0.07,
+            "safety_violation": false,
+            "decision": "selected",
+            "rollback_target": "artifact_network@1.1.0"
+          },
+          {
+            "generation": 3,
+            "baseline_artifact": "artifact_network@1.2.0",
+            "candidate_artifact": "artifact_network@1.3.0-unsafe-candidate",
+            "eval_cases": 60,
+            "baseline_score": 0.85,
+            "candidate_score": 0.91,
+            "quality_delta": 0.06,
+            "safety_violation": true,
+            "decision": "rejected_and_rolled_back",
+            "rollback_target": "artifact_network@1.2.0"
+          },
+          {
+            "generation": 4,
+            "baseline_artifact": "artifact_network@1.2.0",
+            "candidate_artifact": "artifact_network@1.3.0-candidate",
+            "eval_cases": 60,
+            "baseline_score": 0.85,
+            "candidate_score": 0.89,
+            "quality_delta": 0.04,
+            "safety_violation": false,
+            "decision": "selected",
+            "rollback_target": "artifact_network@1.2.0"
+          },
+          {
+            "generation": 5,
+            "baseline_artifact": "artifact_network@1.3.0",
+            "candidate_artifact": "artifact_network@1.4.0-candidate",
+            "eval_cases": 60,
+            "baseline_score": 0.89,
+            "candidate_score": 0.93,
+            "quality_delta": 0.04,
+            "safety_violation": false,
+            "decision": "selected",
+            "rollback_target": "artifact_network@1.3.0"
+          }
+        ],
+        "lineage": [
+          {
+            "from": "artifact_network@1.0.0",
+            "to": "artifact_network@1.1.0",
+            "source_generation": 1,
+            "reason": "candidate beat baseline without safety regression"
+          },
+          {
+            "from": "artifact_network@1.1.0",
+            "to": "artifact_network@1.2.0",
+            "source_generation": 2,
+            "reason": "candidate beat baseline without safety regression"
+          },
+          {
+            "from": "artifact_network@1.3.0-unsafe-candidate",
+            "to": "artifact_network@1.2.0",
+            "source_generation": 3,
+            "reason": "candidate rejected because safety violation triggered rollback"
+          },
+          {
+            "from": "artifact_network@1.2.0",
+            "to": "artifact_network@1.3.0",
+            "source_generation": 4,
+            "reason": "candidate beat baseline without safety regression"
+          },
+          {
+            "from": "artifact_network@1.3.0",
+            "to": "artifact_network@1.4.0",
+            "source_generation": 5,
+            "reason": "candidate beat baseline without safety regression"
+          }
+        ],
+        "credit_assignment": {
+          "primary_credit": "Selection Gate",
+          "secondary_credit": "Eval artifacts",
+          "governance_credit": "Rollback policy",
+          "why": "The network improved only when candidates beat baselines and passed safety gates; unsafe candidate was rejected."
+        },
+        "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"
+      },
+      "checksum": "30ac2108de960f42e6fe7c74a0a4f0c1162f87edd5dab4abcdde731c611a2465"
+    }
+  ],
+  "proof_archive_verdict": "each_proof_has_separate_webpage_and_all_pages_are_connected_to_main"
+}
