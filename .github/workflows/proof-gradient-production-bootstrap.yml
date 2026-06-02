@@ -58,6 +58,24 @@ jobs:
         run: |
           set -euo pipefail
 
+          cat > .gitignore <<'EOF'
+          __pycache__/
+          *.pyc
+          .pytest_cache/
+          .ruff_cache/
+          .mypy_cache/
+          .venv/
+          venv/
+          env/
+          dist/
+          build/
+          *.egg-info/
+          proof_gradient.db
+          .coverage
+          htmlcov/
+          .env
+          EOF
+
           cat > pyproject.toml <<'EOF'
           [build-system]
           requires = ["setuptools>=69", "wheel"]
@@ -65,7 +83,7 @@ jobs:
 
           [project]
           name = "proof-gradient"
-          version = "0.3.0"
+          version = "0.3.1"
           description = "Proof Gradient: Artifact Vault, Run Fabric, Proof Ledger, Selection Gate."
           requires-python = ">=3.11"
           dependencies = [
@@ -154,7 +172,7 @@ jobs:
           EOF
 
           cat > proof_gradient/__init__.py <<'EOF'
-          __version__ = "0.3.0"
+          __version__ = "0.3.1"
           EOF
 
           cat > proof_gradient/config.py <<'EOF'
@@ -506,7 +524,7 @@ jobs:
               hits = [term for term in forbidden if term in lower]
               if hits:
                   return EvalOutcome(False, -0.10, -1.0, {"failure": "unsupported claim", "terms": hits})
-              return EvalOutcome(True, 0.18, 1.0, {"pass": "no unsupported refund promise"})
+              return EvalOutcome(True, 0.18, 1.0, {"status": "no_unsupported_refund_promise"})
 
 
           def baseline_vs_candidate_eval(baseline_output: str, candidate_output: str) -> EvalOutcome:
@@ -836,7 +854,7 @@ jobs:
           from proof_gradient.services import RunFabric, create_tenant, create_user
 
 
-          app = FastAPI(title="Proof Gradient Platform", description="Artifact Vault, Run Fabric, Proof Ledger, Selection Gate.", version="0.3.0")
+          app = FastAPI(title="Proof Gradient Platform", description="Artifact Vault, Run Fabric, Proof Ledger, Selection Gate.", version="0.3.1")
 
 
           def get_session():
@@ -1572,6 +1590,7 @@ jobs:
 
           required=(
             "README.md"
+            ".gitignore"
             "proof_gradient/db.py"
             "proof_gradient/models.py"
             "proof_gradient/services.py"
@@ -1616,6 +1635,10 @@ jobs:
 
           git config user.name "proof-gradient-production-bootstrap"
           git config user.email "actions@github.com"
+
+          rm -f proof_gradient.db
+          find . -type d -name "__pycache__" -prune -exec rm -rf {} +
+          rm -rf .pytest_cache .ruff_cache
 
           git add -A
 
