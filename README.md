@@ -26,14 +26,38 @@ The Proof Gradient gives it **Evolution**.
 - Proof #2 — Evolution Tournament
 - Proof #3 — Recursive Evolution Ladder
 - Proof #4 — Corporate RSI Dominion
+- Proof #5 — Enterprise RSI Superorganism
 
-## Proof #4 — Corporate RSI Dominion
+## Proof #5 — Enterprise RSI Superorganism
 
-Corporate RSI Dominion proves a deterministic, auditable, large multi-agent recursive self-improvement loop across high-leverage corporate domains.
+Enterprise RSI Superorganism elevates the proof from corporate-domain improvement to an enterprise-wide recursive operating system.
 
-It models recursive improvement across revenue, customer success, product, engineering, security, finance, procurement, legal, marketing, talent, partnerships, and executive operations.
+It proves a deterministic AI-first corporate superorganism across:
 
-It does **not** claim real revenue, guaranteed ROI, real superintelligence, or achieved Kardashev capability. It creates proof infrastructure: artifacts, runs, traces, evals, patches, selection, canaries, and rollback.
+- revenue
+- margin
+- product
+- engineering
+- security
+- legal
+- finance
+- procurement
+- growth
+- talent
+- capital allocation
+- executive operations
+- data infrastructure
+- customer trust
+- platform operations
+- strategic partnerships
+
+It does **not** claim real revenue, guaranteed ROI, investment advice, actual deployed superintelligence, or Kardashev achievement.
+
+It proves the substrate:
+
+```text
+artifact → run → proof → eval → credit assignment → patch → selection → canary → rollback → next recursive cycle
+```
 
 ## Operating law
 

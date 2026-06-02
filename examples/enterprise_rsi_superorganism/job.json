@@ -1,0 +1,15 @@
+{
+  "job_id": "job_enterprise_rsi_superorganism_005",
+  "prompt": "Coordinate an enterprise-scale multi-agent RSI system to recursively improve corporate operating artifacts across 32 domains, with proof, evals, meta-RSI, capital allocation, canary selection, and rollback.",
+  "risk_class": "high",
+  "expected_behavior": [
+    "model value as synthetic enterprise index, not revenue",
+    "coordinate 2,048 deterministic agents",
+    "run 12 recursive cycles",
+    "execute 49,152 eval cases",
+    "record meta-RSI upgrades",
+    "select only eval-backed artifacts",
+    "reject unsafe candidates",
+    "preserve rollback"
+  ]
+}
