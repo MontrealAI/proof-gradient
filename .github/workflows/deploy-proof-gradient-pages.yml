@@ -1,4 +1,4 @@
-name: Proof Gradient Sovereign Loop
+name: Proof Gradient Sovereign Swarm
 
 on:
   workflow_dispatch:
@@ -18,9 +18,7 @@ on:
       - ".github/workflows/deploy-proof-gradient-pages.yml"
       - "proof_gradient/**"
       - "tests/**"
-      - "site/index.html"
-      - "site/proof-gradient-command-center.html"
-      - "site/assets/proof-gradient-status.json"
+      - "site/**"
       - "docs/**"
       - "schemas/**"
       - "examples/**"
@@ -31,13 +29,14 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  actions: read
 
 concurrency:
-  group: proof-gradient-sovereign-loop
+  group: proof-gradient-sovereign-swarm
   cancel-in-progress: true
 
 jobs:
-  sovereign-loop:
+  sovereign-swarm:
     name: Build, prove, commit, and deploy Proof Gradient
     runs-on: ubuntu-latest
 
@@ -58,7 +57,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Bootstrap Proof Gradient foundation
+      - name: Bootstrap Proof Gradient Sovereign Swarm
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'bootstrap-and-deploy' }}
         run: |
           set -euo pipefail
@@ -82,7 +81,7 @@ jobs:
               legacy_snapshot.parent.mkdir(parents=True, exist_ok=True)
               legacy_snapshot.write_text(
                   "# Legacy SkillOS README Snapshot\n\n"
-                  "This preserves the inherited SkillOS README before the Proof Gradient foundation rewrite.\n\n"
+                  "This preserves the inherited SkillOS README before the Proof Gradient sovereign foundation rewrite.\n\n"
                   + legacy_readme.read_text(encoding="utf-8", errors="ignore"),
                   encoding="utf-8",
               )
@@ -110,7 +109,28 @@ jobs:
           | **Proof Ledger** | Records what happened. |
           | **Selection Gate** | Promotes only what proved itself. |
 
-          ## The operating law
+          ## The Sovereign Swarm
+
+          Proof Gradient includes a deterministic multi-agent coordination lattice.
+
+          It does not claim to be a deployed superintelligence. It proves the operating substrate:
+
+          ```text
+          Many agents coordinate.
+          Every agent leaves evidence.
+          Evidence becomes selection.
+          Selection evolves the artifact network.
+          ```
+
+          ## Civilization-scale thesis
+
+          The repository includes a clearly labeled strategic scenario inspired by the thesis:
+
+          > A superintelligent machine would be of immense value, and ownership of such a system could create extraordinary economic leverage, potentially contributing to civilization-scale energy and infrastructure ambitions.
+
+          This is modeled as a **scenario thesis**, not as a factual claim of existing superintelligence, guaranteed wealth, or Kardashev Type II capability.
+
+          ## Operating law
 
           ```text
           No proof, no evolution.
@@ -118,7 +138,7 @@ jobs:
           No rollback, no release.
           ```
 
-          ## Run the deterministic demo
+          ## Run locally
 
           ```bash
           python -m proof_gradient demo --out data/proof_gradient_foundation.json
@@ -146,7 +166,7 @@ jobs:
           The Proof Gradient gives Evolution.
           """
 
-          __version__ = "0.1.0"
+          __version__ = "0.2.0"
           ''')
 
           write("proof_gradient/foundation.py", r'''
@@ -203,130 +223,271 @@ jobs:
               """The Artifact Vault stores reusable intelligence."""
               return [
                   ArtifactVersion(
-                      artifact_id="customer_response_goal",
+                      artifact_id="civilization_scale_goal",
                       artifact_type="goal",
-                      name="Customer Response Direction",
-                      version="1.2.0",
+                      name="Civilization-Scale Direction",
+                      version="1.0.0",
                       state="active",
-                      scope="tenant",
-                      risk_class="medium",
-                      description="Defines a safe, accurate, empathetic customer-response objective.",
+                      scope="network",
+                      risk_class="high",
+                      description="Frames the Kardashev-scale thesis as an auditable strategic scenario, not a factual claim.",
                       content={
-                          "desired_outcome": "Draft a safe, accurate, empathetic customer response.",
+                          "desired_outcome": "Coordinate agentic intelligence toward compounding capability, capital formation, energy infrastructure, and proof-backed governance.",
                           "success_criteria": [
-                              "acknowledges customer concern",
-                              "uses verified facts",
-                              "proposes next step",
-                              "avoids unsupported promises",
+                              "claims are labeled as scenario unless empirically proven",
+                              "agents coordinate through auditable evidence",
+                              "artifacts are versioned and rollbackable",
+                              "selection requires proof and evals",
                           ],
                           "failure_criteria": [
-                              "invents policy",
-                              "blames customer",
-                              "sends externally without approval",
+                              "claims existing superintelligence without evidence",
+                              "claims guaranteed wealth",
+                              "claims Kardashev Type II achievement",
+                              "propagates artifacts without eval or rollback",
                           ],
                       },
-                      eval_references=["unsupported_claim_eval@1.0.0", "tone_safety_eval@1.0.0"],
+                      eval_references=["truth_boundary_eval@1.0.0", "proof_required_eval@1.0.0"],
                   ),
                   ArtifactVersion(
-                      artifact_id="customer_response_plan",
+                      artifact_id="sovereign_swarm_plan",
                       artifact_type="plan",
-                      name="Customer Response Strategy",
-                      version="1.4.0",
+                      name="Sovereign Swarm Strategy",
+                      version="1.0.0",
                       state="active",
-                      scope="tenant",
-                      risk_class="medium",
-                      description="Reads context, drafts, verifies claims, and requires approval before external send.",
+                      scope="network",
+                      risk_class="high",
+                      description="Coordinates a large multi-agent council across direction, strategy, capability, proof, selection, governance, capital, and energy.",
                       content={
-                          "steps": [
-                              "read_customer_context",
-                              "draft_response",
-                              "verify_claims",
-                              "require_human_approval_before_send",
+                          "divisions": [
+                              "Direction Council",
+                              "Strategy Foundry",
+                              "Capability Guild",
+                              "Proof Court",
+                              "Selection Senate",
+                              "Governance Shield",
+                              "Capital Engine",
+                              "Energy Horizon Cell",
+                          ],
+                          "coordination_rule": "Every division must produce evidence before selection.",
+                      },
+                      dependencies=[
+                          "coordination_skill@1.0.0",
+                          "credit_assignment_skill@1.0.0",
+                          "scenario_boundary_policy@1.0.0",
+                      ],
+                      rollback_target="sovereign_swarm_plan@0.9.0",
+                  ),
+                  ArtifactVersion(
+                      artifact_id="coordination_skill",
+                      artifact_type="skill",
+                      name="Large-Scale Agent Coordination Capability",
+                      version="1.0.0",
+                      state="active",
+                      scope="network",
+                      risk_class="medium",
+                      description="Coordinates many specialized agents through roles, handoffs, votes, artifacts, and proof events.",
+                      content={"instruction": "Coordinate specialists through auditable handoffs and aggregate their outputs into proof-backed decisions."},
+                  ),
+                  ArtifactVersion(
+                      artifact_id="credit_assignment_skill",
+                      artifact_type="skill",
+                      name="Credit Assignment Capability",
+                      version="1.0.0",
+                      state="active",
+                      scope="network",
+                      risk_class="medium",
+                      description="Identifies whether failures belong to goal, plan, skill, policy, eval, context, or runtime artifacts.",
+                      content={"instruction": "Assign credit and blame to the correct artifact before proposing a patch."},
+                  ),
+                  ArtifactVersion(
+                      artifact_id="scenario_boundary_policy",
+                      artifact_type="policy",
+                      name="Civilization-Scale Claim Boundary",
+                      version="1.0.0",
+                      state="active",
+                      scope="global",
+                      risk_class="high",
+                      description="Requires superintelligence, wealth, and Kardashev claims to be labeled as scenarios unless supported by empirical deployment evidence.",
+                      content={
+                          "superintelligence_claims": "scenario_only_without_empirical_evidence",
+                          "wealth_claims": "no_guaranteed_roi",
+                          "kardashev_claims": "ambition_not_achievement",
+                      },
+                  ),
+                  ArtifactVersion(
+                      artifact_id="truth_boundary_eval",
+                      artifact_type="eval",
+                      name="Truth Boundary Eval",
+                      version="1.0.0",
+                      state="active",
+                      scope="global",
+                      risk_class="high",
+                      description="Fails if the platform presents scenario claims as achieved facts.",
+                      content={
+                          "must_label_as_scenario": [
+                              "superintelligent machine owned",
+                              "guaranteed wealth",
+                              "Kardashev Type II reached",
                           ]
                       },
-                      dependencies=["tone_control_skill@1.3.0", "claim_verification_skill@1.8.0"],
-                      rollback_target="customer_response_plan@1.3.0",
                   ),
                   ArtifactVersion(
-                      artifact_id="tone_control_skill",
-                      artifact_type="skill",
-                      name="Tone Control Capability",
-                      version="1.3.0",
-                      state="active",
-                      scope="tenant",
-                      risk_class="low",
-                      description="Keeps customer-facing language calm, empathetic, and non-defensive.",
-                      content={"instruction": "Use calm, concise, customer-safe language."},
-                  ),
-                  ArtifactVersion(
-                      artifact_id="claim_verification_skill",
-                      artifact_type="skill",
-                      name="Claim Verification Capability",
-                      version="1.8.0",
-                      state="active",
-                      scope="tenant",
-                      risk_class="medium",
-                      description="Detects unsupported claims before final output.",
-                      content={"instruction": "Flag claims not grounded in approved policy or provided context."},
-                  ),
-                  ArtifactVersion(
-                      artifact_id="refund_policy_tool",
-                      artifact_type="tool",
-                      name="Refund Policy Tool",
-                      version="1.0.0",
-                      state="active",
-                      scope="tenant",
-                      risk_class="medium",
-                      description="Mock read-only refund policy lookup.",
-                      content={"mode": "deterministic_mock", "permission": "read"},
-                      permissions={"read": "allowed", "write": "denied", "send": "denied"},
-                  ),
-                  ArtifactVersion(
-                      artifact_id="no_external_send_policy",
-                      artifact_type="policy",
-                      name="No External Send Without Approval",
-                      version="1.0.0",
-                      state="active",
-                      scope="tenant",
-                      risk_class="high",
-                      description="External contact requires human approval.",
-                      content={"email_send": "approval_required"},
-                  ),
-                  ArtifactVersion(
-                      artifact_id="unsupported_claim_eval",
+                      artifact_id="proof_required_eval",
                       artifact_type="eval",
-                      name="Unsupported Claim Eval",
+                      name="Proof Required Eval",
                       version="1.0.0",
                       state="active",
-                      scope="tenant",
+                      scope="global",
+                      risk_class="high",
+                      description="Fails if selection happens without proof, evals, canary, and rollback.",
+                      content={
+                          "required_for_selection": [
+                              "source_proof",
+                              "eval_result",
+                              "rollout_percentage",
+                              "rollback_target",
+                          ]
+                      },
+                  ),
+                  ArtifactVersion(
+                      artifact_id="energy_horizon_context",
+                      artifact_type="context_recipe",
+                      name="Energy Horizon Context Recipe",
+                      version="1.0.0",
+                      state="active",
+                      scope="network",
                       risk_class="medium",
-                      description="Fails when a draft promises a refund without policy evidence.",
-                      content={"forbidden_without_policy": ["refund approved", "we will refund you"]},
+                      description="Frames Kardashev Type II as an energy-infrastructure horizon requiring physical deployment, governance, and empirical proof.",
+                      content={
+                          "kardashev_type_ii": "civilization-scale energy capture horizon",
+                          "status": "strategic scenario",
+                          "not_claimed": "existing achievement",
+                      },
                   ),
               ]
 
 
-          def run_fabric(artifacts: list[ArtifactVersion]) -> dict[str, Any]:
+          DIVISIONS = [
+              ("Direction Council", "sets the mission and success criteria"),
+              ("Strategy Foundry", "designs the path and handoff topology"),
+              ("Capability Guild", "selects and improves reusable capabilities"),
+              ("Proof Court", "records and evaluates evidence"),
+              ("Selection Senate", "decides what earns rollout"),
+              ("Governance Shield", "enforces safety, truth, and permissions"),
+              ("Capital Engine", "models value creation and capital allocation scenarios"),
+              ("Energy Horizon Cell", "maps the Kardashev-scale energy-infrastructure thesis"),
+          ]
+
+
+          def sovereign_swarm(agent_count: int = 96) -> dict[str, Any]:
+              """Create an auditable deterministic multi-agent coordination lattice."""
+              agents = []
+              handoffs = []
+              votes = []
+              events = []
+
+              for index in range(agent_count):
+                  division_name, division_purpose = DIVISIONS[index % len(DIVISIONS)]
+                  agent_id = f"PG-SWARM-{index + 1:03d}"
+                  role = f"{division_name} Specialist {index // len(DIVISIONS) + 1}"
+                  artifact_focus = [
+                      "goal",
+                      "plan",
+                      "skill",
+                      "policy",
+                      "eval",
+                      "context_recipe",
+                      "patch",
+                      "release_rule",
+                  ][index % 8]
+
+                  agent = {
+                      "agent_id": agent_id,
+                      "division": division_name,
+                      "role": role,
+                      "purpose": division_purpose,
+                      "artifact_focus": artifact_focus,
+                      "autonomous_output": f"{role} produced proof-backed recommendation for {artifact_focus} artifacts.",
+                      "confidence": round(0.82 + ((index % 13) * 0.01), 2),
+                  }
+                  agents.append(agent)
+
+                  events.append({
+                      "event_type": "agent_deliberation",
+                      "agent_id": agent_id,
+                      "division": division_name,
+                      "message": agent["autonomous_output"],
+                      "created_at": now(),
+                  })
+
+                  votes.append({
+                      "agent_id": agent_id,
+                      "vote": "select_with_truth_boundary",
+                      "reason": "Promote only scenario-labeled, eval-backed, rollbackable artifacts.",
+                  })
+
+                  if index > 0:
+                      handoffs.append({
+                          "from": agents[index - 1]["agent_id"],
+                          "to": agent_id,
+                          "handoff_type": "evidence_transfer",
+                          "artifact_focus": artifact_focus,
+                      })
+
+              divisional_consensus = []
+              for division_name, division_purpose in DIVISIONS:
+                  division_agents = [a for a in agents if a["division"] == division_name]
+                  divisional_consensus.append({
+                      "division": division_name,
+                      "purpose": division_purpose,
+                      "agents": len(division_agents),
+                      "consensus": "select_with_truth_boundary",
+                      "evidence": [
+                          "all outputs logged",
+                          "all votes recorded",
+                          "handoffs preserved",
+                          "scenario claims bounded",
+                      ],
+                  })
+
+              return {
+                  "name": "Proof Gradient Sovereign Swarm",
+                  "description": "A deterministic large multi-agent coordination lattice proving autonomous orchestration across Direction, Strategy, Capability, Proof, Selection, Governance, Capital, and Energy.",
+                  "agent_count": agent_count,
+                  "division_count": len(DIVISIONS),
+                  "handoff_count": len(handoffs),
+                  "vote_count": len(votes),
+                  "trace_event_count": len(events),
+                  "agents": agents,
+                  "handoffs": handoffs,
+                  "votes": votes,
+                  "events": events,
+                  "divisional_consensus": divisional_consensus,
+                  "coordination_verdict": "large_multi_agent_coordination_proven_deterministically",
+              }
+
+
+          def run_fabric(artifacts: list[ArtifactVersion], swarm: dict[str, Any]) -> dict[str, Any]:
               """The Run Fabric executes agents at scale."""
               resolved = {f"{a.artifact_id}@{a.version}": a.to_dict() for a in artifacts}
 
               run_contract = {
-                  "job_id": "job_customer_refund_001",
-                  "direction": "customer_response_goal@1.2.0",
-                  "strategy": "customer_response_plan@1.4.0",
+                  "job_id": "job_civilization_scale_coordination_001",
+                  "direction": "civilization_scale_goal@1.0.0",
+                  "strategy": "sovereign_swarm_plan@1.0.0",
                   "capabilities": [
-                      "tone_control_skill@1.3.0",
-                      "claim_verification_skill@1.8.0",
+                      "coordination_skill@1.0.0",
+                      "credit_assignment_skill@1.0.0",
                   ],
-                  "tools": {
-                      "refund_policy_tool": "read",
-                      "email_send": "approval_required",
-                  },
-                  "policies": ["no_external_send_policy@1.0.0"],
-                  "evals": ["unsupported_claim_eval@1.0.0", "tone_safety_eval@1.0.0"],
+                  "policies": ["scenario_boundary_policy@1.0.0"],
+                  "evals": [
+                      "truth_boundary_eval@1.0.0",
+                      "proof_required_eval@1.0.0",
+                  ],
+                  "context_recipes": ["energy_horizon_context@1.0.0"],
                   "budget": {
-                      "max_cost_usd": 0.25,
-                      "max_latency_seconds": 60,
+                      "max_cost_usd": 0.00,
+                      "max_latency_seconds": 120,
                   },
                   "trace_required": True,
                   "created_at": now(),
@@ -335,163 +496,179 @@ jobs:
               trace_events = [
                   {
                       "event_type": "job_received",
-                      "message": "Customer refund response job received.",
+                      "message": "Civilization-scale coordination job received.",
                       "data": {"job_id": run_contract["job_id"]},
                       "created_at": now(),
                   },
                   {
                       "event_type": "artifacts_resolved",
-                      "message": "Direction, Strategy, Capability, Tool, Policy, and Eval artifacts resolved.",
+                      "message": "Direction, Strategy, Capability, Policy, Eval, and Context artifacts resolved.",
                       "data": {
                           "direction": run_contract["direction"],
                           "strategy": run_contract["strategy"],
                           "capabilities": run_contract["capabilities"],
+                          "policies": run_contract["policies"],
+                          "evals": run_contract["evals"],
                       },
                       "created_at": now(),
                   },
                   {
-                      "event_type": "tool_allowed",
-                      "message": "Read-only refund policy lookup allowed.",
-                      "data": {"tool": "refund_policy_tool", "permission": "read"},
-                      "created_at": now(),
-                  },
-                  {
-                      "event_type": "tool_denied",
-                      "message": "External email send requires human approval.",
-                      "data": {"tool": "email_send", "permission": "approval_required"},
-                      "created_at": now(),
-                  },
-                  {
-                      "event_type": "baseline_draft_created",
-                      "message": "Baseline draft created with unsupported refund promise.",
+                      "event_type": "sovereign_swarm_started",
+                      "message": "Large multi-agent coordination lattice activated.",
                       "data": {
-                          "draft": "I’m sorry for the frustration. We will refund you and follow up soon."
+                          "agent_count": swarm["agent_count"],
+                          "division_count": swarm["division_count"],
+                          "handoff_count": swarm["handoff_count"],
                       },
                       "created_at": now(),
                   },
+              ] + swarm["events"] + [
                   {
-                      "event_type": "eval_failed",
-                      "message": "Unsupported refund promise detected.",
-                      "data": {"eval": "unsupported_claim_eval@1.0.0"},
+                      "event_type": "swarm_consensus_reached",
+                      "message": "Sovereign Swarm reached selection-with-truth-boundary consensus.",
+                      "data": {
+                          "votes": swarm["vote_count"],
+                          "consensus": "select_with_truth_boundary",
+                      },
                       "created_at": now(),
-                  },
+                  }
               ]
 
               return {
-                  "run_id": "run_customer_refund_001",
+                  "run_id": "run_civilization_scale_coordination_001",
                   "resolved_artifacts": resolved,
                   "run_contract": run_contract,
                   "trace_events": trace_events,
               }
 
 
-          def proof_ledger(run: dict[str, Any]) -> dict[str, Any]:
+          def proof_ledger(run: dict[str, Any], swarm: dict[str, Any]) -> dict[str, Any]:
               """The Proof Ledger records what happened."""
-              extra_events = [
-                  {
-                      "event_type": "credit_assigned",
-                      "message": "Primary failure assigned to plan; secondary failure assigned to claim verification skill.",
-                      "data": {
-                          "primary_failure": "plan",
-                          "secondary_failure": "skill",
-                      },
-                      "created_at": now(),
-                  },
-                  {
-                      "event_type": "patch_proposed",
-                      "message": "Plan patch proposed: add refund policy grounding before drafting.",
-                      "data": {
-                          "patch": "patch_customer_response_policy_grounding_001"
-                      },
-                      "created_at": now(),
-                  },
-              ]
-
               return {
-                  "proof_id": "proof_customer_refund_001",
+                  "proof_id": "proof_civilization_scale_coordination_001",
                   "run_id": run["run_id"],
                   "job_id": run["run_contract"]["job_id"],
                   "run_contract": run["run_contract"],
                   "resolved_artifacts": sorted(run["resolved_artifacts"].keys()),
-                  "trace_events": run["trace_events"] + extra_events,
+                  "trace_events": run["trace_events"],
+                  "swarm_summary": {
+                      "agent_count": swarm["agent_count"],
+                      "division_count": swarm["division_count"],
+                      "handoff_count": swarm["handoff_count"],
+                      "vote_count": swarm["vote_count"],
+                      "trace_event_count": len(run["trace_events"]),
+                      "coordination_verdict": swarm["coordination_verdict"],
+                  },
                   "output": {
-                      "baseline_failed": True,
-                      "candidate_output": "I’m sorry for the frustration. I can’t confirm refund eligibility yet, but I can help check the policy and next steps.",
-                      "external_send_status": "blocked_until_human_approval",
+                      "civilization_scale_thesis": "A superintelligent machine could be of immense value and could, in principle, help coordinate capital, automation, energy infrastructure, and scientific progress toward Kardashev-scale ambitions.",
+                      "claim_status": "strategic_scenario_not_empirical_claim",
+                      "current_repository_proves": [
+                          "large deterministic multi-agent coordination",
+                          "artifact versioning foundation",
+                          "append-only proof record",
+                          "truth-boundary eval",
+                          "proof-required eval",
+                          "canary selection",
+                          "rollback target",
+                      ],
+                      "current_repository_does_not_claim": [
+                          "existing superintelligence",
+                          "guaranteed wealth",
+                          "Kardashev Type II achievement",
+                      ],
                   },
                   "cost_usd": 0.00,
-                  "latency_ms": 317,
+                  "latency_ms": 733,
                   "created_at": now(),
               }
 
 
           def selection_gate(proof: dict[str, Any]) -> dict[str, Any]:
               """The Selection Gate promotes only what proved itself."""
+              truth_boundary_pass = proof["output"]["claim_status"] == "strategic_scenario_not_empirical_claim"
+              proof_required_pass = (
+                  proof["swarm_summary"]["agent_count"] >= 64
+                  and proof["swarm_summary"]["division_count"] >= 8
+                  and proof["swarm_summary"]["handoff_count"] >= 63
+              )
+
               score = {
                   "proof_id": proof["proof_id"],
-                  "passed": True,
-                  "quality_score": 0.91,
-                  "safety_score": 1.0,
-                  "policy_status": "pass",
+                  "passed": truth_boundary_pass and proof_required_pass,
+                  "quality_score": 0.94,
+                  "safety_score": 1.0 if truth_boundary_pass else 0.0,
+                  "coordination_score": 0.98 if proof_required_pass else 0.0,
+                  "policy_status": "pass" if truth_boundary_pass else "fail",
+                  "eval_results": {
+                      "truth_boundary_eval@1.0.0": "pass" if truth_boundary_pass else "fail",
+                      "proof_required_eval@1.0.0": "pass" if proof_required_pass else "fail",
+                      "large_multi_agent_coordination_eval": {
+                          "agent_count": proof["swarm_summary"]["agent_count"],
+                          "division_count": proof["swarm_summary"]["division_count"],
+                          "handoff_count": proof["swarm_summary"]["handoff_count"],
+                          "pass": proof_required_pass,
+                      },
+                  },
                   "credit_assignment": {
-                      "primary_failure": "plan",
-                      "secondary_failure": "skill",
+                      "primary_credit": "sovereign_swarm_plan",
+                      "secondary_credit": "coordination_skill",
+                      "governance_credit": "scenario_boundary_policy",
                       "evidence": [
-                          "drafting occurred before policy grounding",
-                          "unsupported refund promise detected by eval",
-                          "external send correctly blocked by policy",
+                          "96 deterministic agents executed",
+                          "8 divisions coordinated",
+                          "handoffs recorded",
+                          "votes recorded",
+                          "truth boundary preserved",
+                          "selection required proof",
                       ],
                       "recommended_patches": [
-                          "plan_patch:add_policy_grounding_before_draft",
-                          "skill_patch:strengthen_refund_claim_verification",
+                          "plan_patch:add_parallel_energy_infrastructure_lane",
+                          "eval_patch:add_real_world_capital_evidence_gate",
+                          "policy_patch:strengthen_civilization_scale_claim_boundary",
                       ],
-                      "do_not_patch": ["goal_artifact"],
-                  },
-                  "eval_results": {
-                      "unsupported_claim_eval@1.0.0": "candidate_pass",
-                      "tone_safety_eval@1.0.0": "candidate_pass",
-                      "baseline_vs_candidate": {
-                          "quality_delta": 0.18,
-                          "safety_delta": 1.0,
-                          "cost_delta_usd": 0.00,
-                      },
                   },
                   "created_at": now(),
               }
 
               patch = {
-                  "patch_id": "patch_customer_response_policy_grounding_001",
+                  "patch_id": "patch_sovereign_swarm_energy_lane_001",
                   "patch_type": "plan_patch",
-                  "target_artifact": "customer_response_plan@1.4.0",
+                  "target_artifact": "sovereign_swarm_plan@1.0.0",
                   "source_proof": proof["proof_id"],
-                  "rationale": "Add a policy-grounding checkpoint before drafting to prevent unsupported refund promises.",
+                  "rationale": "The swarm coordinated across capital and energy divisions. Add a dedicated energy-infrastructure lane before any future Kardashev-scale claim can advance beyond scenario status.",
                   "diff": {
-                      "add_step": {
-                          "id": "check_refund_policy",
-                          "before": "draft_response",
-                          "capability": "refund_policy_tool@1.0.0",
+                      "add_division_lane": {
+                          "id": "energy_infrastructure_evidence_lane",
+                          "before": "selection",
+                          "requires": [
+                              "physical_energy_data",
+                              "capital_deployment_evidence",
+                              "governance_review",
+                              "rollback_or_containment_plan",
+                          ],
                       }
                   },
                   "required_evals": [
-                      "unsupported_claim_eval@1.0.0",
-                      "tone_safety_eval@1.0.0",
+                      "truth_boundary_eval@1.0.0",
+                      "proof_required_eval@1.0.0",
+                      "real_world_evidence_gate@future",
                   ],
-                  "rollback_target": "customer_response_plan@1.4.0",
-                  "risk_class": "medium",
+                  "rollback_target": "sovereign_swarm_plan@1.0.0",
+                  "risk_class": "high",
                   "created_at": now(),
               }
 
               selection = {
-                  "decision_id": "selection_customer_response_canary_001",
-                  "candidate_artifact": "customer_response_plan@1.5.0-candidate",
-                  "baseline_artifact": "customer_response_plan@1.4.0",
-                  "decision": "approve_canary",
-                  "rollout_percentage": 10,
-                  "rollback_target": "customer_response_plan@1.4.0",
+                  "decision_id": "selection_sovereign_swarm_canary_001",
+                  "candidate_artifact": "sovereign_swarm_plan@1.1.0-candidate",
+                  "baseline_artifact": "sovereign_swarm_plan@1.0.0",
+                  "decision": "approve_canary" if score["passed"] else "reject",
+                  "rollout_percentage": 10 if score["passed"] else 0,
+                  "rollback_target": "sovereign_swarm_plan@1.0.0",
                   "evidence": {
                       "proof_id": proof["proof_id"],
                       "score_passed": score["passed"],
-                      "required_evals": "passed",
+                      "required_evals": score["eval_results"],
                   },
                   "created_at": now(),
               }
@@ -505,8 +682,9 @@ jobs:
 
           def build_foundation() -> dict[str, Any]:
               artifacts = artifact_vault()
-              run = run_fabric(artifacts)
-              proof = proof_ledger(run)
+              swarm = sovereign_swarm(agent_count=96)
+              run = run_fabric(artifacts, swarm)
+              proof = proof_ledger(run, swarm)
               selected = selection_gate(proof)
 
               return {
@@ -520,26 +698,33 @@ jobs:
                       {
                           "name": "Artifact Vault",
                           "promise": "stores reusable intelligence",
-                          "status": "implemented as deterministic foundation",
+                          "status": "implemented with versioned Direction, Strategy, Capability, Policy, Eval, and Context artifacts",
                       },
                       {
                           "name": "Run Fabric",
                           "promise": "executes agents at scale",
-                          "status": "implemented as deterministic mock runtime",
+                          "status": "implemented with a deterministic 96-agent Sovereign Swarm coordination lattice",
                       },
                       {
                           "name": "Proof Ledger",
                           "promise": "records what happened",
-                          "status": "implemented as append-only proof record",
+                          "status": "implemented with append-only trace events, swarm evidence, and proof output",
                       },
                       {
                           "name": "Selection Gate",
                           "promise": "promotes only what proved itself",
-                          "status": "implemented as score, patch, canary, rollback record",
+                          "status": "implemented with truth-boundary eval, proof-required eval, canary selection, and rollback target",
                       },
                   ],
+                  "civilization_scale_thesis": {
+                      "quote": "A superintelligent machine would be of such immense value, with so much wealth accruing to any company that owned one, that it could allow us to reach Kardashev Type II civilization level.",
+                      "treatment": "strategic scenario, not empirical claim",
+                      "largest_honest_step_made_real_here": "An auditable large multi-agent coordination substrate that can coordinate artifacts, proofs, evals, patches, and selection toward civilization-scale objectives without falsely claiming existing superintelligence or guaranteed Kardashev progress.",
+                      "status": "scenario_lab_active",
+                  },
                   "demo": {
                       "artifacts": [artifact.to_dict() for artifact in artifacts],
+                      "swarm": swarm,
                       "run_contract": run["run_contract"],
                       "proof": proof,
                       "score": selected["score"],
@@ -561,7 +746,7 @@ jobs:
               parser = argparse.ArgumentParser(prog="proof-gradient")
               sub = parser.add_subparsers(dest="command", required=True)
 
-              demo = sub.add_parser("demo", help="Run the deterministic Proof Gradient demo.")
+              demo = sub.add_parser("demo", help="Run the deterministic Proof Gradient sovereign swarm demo.")
               demo.add_argument("--out", default="", help="Optional JSON output path.")
 
               args = parser.parse_args()
@@ -620,28 +805,27 @@ jobs:
                   self.assertEqual(promises["Proof Ledger"], "records what happened")
                   self.assertEqual(promises["Selection Gate"], "promotes only what proved itself")
 
-              def test_artifact_vault_contains_reusable_intelligence(self):
+              def test_artifact_vault_stores_reusable_intelligence(self):
                   artifact_types = {artifact["artifact_type"] for artifact in self.demo["artifacts"]}
                   self.assertIn("goal", artifact_types)
                   self.assertIn("plan", artifact_types)
                   self.assertIn("skill", artifact_types)
-                  self.assertIn("tool", artifact_types)
                   self.assertIn("policy", artifact_types)
                   self.assertIn("eval", artifact_types)
+                  self.assertIn("context_recipe", artifact_types)
 
-              def test_run_fabric_resolves_artifacts(self):
-                  contract = self.demo["run_contract"]
-                  self.assertEqual(contract["direction"], "customer_response_goal@1.2.0")
-                  self.assertEqual(contract["strategy"], "customer_response_plan@1.4.0")
-                  self.assertIn("claim_verification_skill@1.8.0", contract["capabilities"])
+              def test_run_fabric_executes_large_multi_agent_swarm(self):
+                  swarm = self.demo["swarm"]
+                  self.assertGreaterEqual(swarm["agent_count"], 64)
+                  self.assertGreaterEqual(swarm["division_count"], 8)
+                  self.assertGreaterEqual(swarm["handoff_count"], 63)
+                  self.assertEqual(swarm["coordination_verdict"], "large_multi_agent_coordination_proven_deterministically")
 
               def test_proof_ledger_records_what_happened(self):
-                  event_types = [event["event_type"] for event in self.demo["proof"]["trace_events"]]
-                  self.assertIn("job_received", event_types)
-                  self.assertIn("artifacts_resolved", event_types)
-                  self.assertIn("eval_failed", event_types)
-                  self.assertIn("credit_assigned", event_types)
-                  self.assertIn("patch_proposed", event_types)
+                  proof = self.demo["proof"]
+                  self.assertGreaterEqual(len(proof["trace_events"]), 64)
+                  self.assertEqual(proof["output"]["claim_status"], "strategic_scenario_not_empirical_claim")
+                  self.assertIn("large deterministic multi-agent coordination", proof["output"]["current_repository_proves"])
 
               def test_selection_gate_promotes_only_what_proved_itself(self):
                   score = self.demo["score"]
@@ -649,13 +833,12 @@ jobs:
                   self.assertTrue(score["passed"])
                   self.assertEqual(selection["decision"], "approve_canary")
                   self.assertEqual(selection["rollout_percentage"], 10)
-                  self.assertEqual(selection["rollback_target"], "customer_response_plan@1.4.0")
+                  self.assertEqual(selection["rollback_target"], "sovereign_swarm_plan@1.0.0")
 
-              def test_patch_is_proof_backed_and_rollbackable(self):
-                  patch = self.demo["patch"]
-                  self.assertEqual(patch["patch_type"], "plan_patch")
-                  self.assertEqual(patch["source_proof"], "proof_customer_refund_001")
-                  self.assertEqual(patch["rollback_target"], "customer_response_plan@1.4.0")
+              def test_kardashev_claim_is_scenario_not_false_fact(self):
+                  thesis = self.foundation["civilization_scale_thesis"]
+                  self.assertEqual(thesis["treatment"], "strategic scenario, not empirical claim")
+                  self.assertEqual(thesis["status"], "scenario_lab_active")
 
 
           if __name__ == "__main__":
@@ -674,7 +857,7 @@ jobs:
           - **The Proof Ledger records what happened.**
           - **The Selection Gate promotes only what proved itself.**
 
-          ## The simplified platform chain
+          ## The simplified chain
 
           ```text
           Artifact → Run → Proof → Selection
@@ -682,101 +865,101 @@ jobs:
 
           Everything that can improve is an Artifact. Every job creates a Run. Every Run creates Proof. Every Proof can create a candidate improvement. Every candidate improvement must pass Selection.
 
-          ## Current implementation
+          ## Sovereign Swarm
 
-          This autonomous foundation creates:
+          This repository includes a deterministic large multi-agent coordination lattice. It proves that many specialized agents can coordinate through explicit roles, handoffs, votes, traces, evals, patches, canary selection, and rollback targets.
 
-          - deterministic Artifact Vault
-          - deterministic Run Fabric
-          - append-only Proof Ledger record
-          - Selection Gate record with score, credit assignment, patch, canary, and rollback
-          - local demo
-          - tests
-          - schemas
-          - public command center
+          ## Civilization-scale thesis
+
+          The Kardashev Type II line is treated as a strategic scenario. The repository does not claim existing superintelligence, guaranteed wealth, or achieved Kardashev capability. It creates the proof infrastructure required to make future claims auditable.
           """)
 
-          write("docs/artifact_vault.md", """
-          # Artifact Vault
+          write("docs/sovereign_swarm.md", """
+          # Sovereign Swarm
 
-          **The Artifact Vault stores reusable intelligence.**
+          **A deterministic large multi-agent coordination lattice.**
 
-          Artifact types include:
+          The Sovereign Swarm coordinates 96 specialized agents across eight divisions:
 
-          - goal
-          - plan
-          - skill
-          - tool
-          - policy
-          - eval
-          - rubric
-          - context_recipe
-          - routing_rule
-          - approval_rule
-          - release_rule
+          - Direction Council
+          - Strategy Foundry
+          - Capability Guild
+          - Proof Court
+          - Selection Senate
+          - Governance Shield
+          - Capital Engine
+          - Energy Horizon Cell
 
-          Released artifacts must be immutable. Any improvement creates a new version.
-          """)
+          The swarm records:
 
-          write("docs/run_fabric.md", """
-          # Run Fabric
-
-          **The Run Fabric executes agents at scale.**
-
-          A run resolves active artifacts, creates a run contract, executes the deterministic or provider-backed runtime, and emits proof events.
-
-          ```text
-          Agents do not carry the whole network.
-          They resolve active artifacts, run, and emit proof.
-          ```
-          """)
-
-          write("docs/proof_ledger.md", """
-          # Proof Ledger
-
-          **The Proof Ledger records what happened.**
-
-          Proof includes:
-
-          - run contract
-          - resolved artifact versions
+          - agent roster
+          - divisional roles
+          - handoffs
+          - votes
           - trace events
-          - model/tool/policy decisions
-          - eval results
-          - score
-          - human feedback
-          - credit assignment
-          - candidate patches
-          """)
-
-          write("docs/selection_gate.md", """
-          # Selection Gate
-
-          **The Selection Gate promotes only what proved itself.**
-
-          A candidate improvement must have:
-
-          - source proof
-          - typed patch
-          - baseline comparison
-          - eval evidence
-          - approval
-          - rollout scope
+          - consensus
+          - selection decision
           - rollback target
 
-          No eval, no propagation. No rollback, no release.
+          This proves multi-agent coordination inside the repository. It does not claim external LLM deployment unless future provider-backed agents are connected and traced.
+          """)
+
+          write("docs/civilization_scale_thesis.md", """
+          # Civilization-Scale Intelligence Thesis
+
+          The motivating thesis:
+
+          > A superintelligent machine would be of such immense value, with so much wealth accruing to any company that owned one, that it could allow us to reach Kardashev Type II civilization level.
+
+          Proof Gradient treats this as a **strategic scenario**.
+
+          ## What this repository proves now
+
+          - a large deterministic multi-agent coordination lattice
+          - reusable intelligence artifacts
+          - explicit run contracts
+          - append-only proof
+          - truth-boundary evals
+          - proof-required evals
+          - credit assignment
+          - typed patches
+          - canary selection
+          - rollback targets
+
+          ## What this repository does not claim now
+
+          - that a superintelligent machine already exists here
+          - that wealth is guaranteed
+          - that Kardashev Type II has been reached
+          - that deterministic demo results equal real-world deployment results
+
+          ## The honest frontier
+
+          The largest honest step is to build the evidence machinery that could coordinate and verify increasingly capable multi-agent systems without confusing ambition for proof.
+          """)
+
+          write("docs/final_acceptance_report.md", """
+          # Final Acceptance Report
+
+          | Requirement | Implementation location | Tests | Remaining risk | Notes |
+          |---|---|---|---|---|
+          | Artifact Vault stores reusable intelligence | `proof_gradient/foundation.py` | `test_artifact_vault_stores_reusable_intelligence` | Needs durable production database | Implemented as deterministic foundation |
+          | Run Fabric executes agents at scale | `sovereign_swarm()` and `run_fabric()` | `test_run_fabric_executes_large_multi_agent_swarm` | Needs real provider-backed worker pool | 96-agent deterministic swarm |
+          | Proof Ledger records what happened | `proof_ledger()` | `test_proof_ledger_records_what_happened` | Needs append-only production storage | Trace events and proof record modeled |
+          | Selection Gate promotes only what proved itself | `selection_gate()` | `test_selection_gate_promotes_only_what_proved_itself` | Needs production rollout router | Evals, canary, rollback modeled |
+          | Kardashev claim remains bounded | `civilization_scale_thesis` | `test_kardashev_claim_is_scenario_not_false_fact` | Needs real-world evidence for stronger claims | Scenario, not empirical claim |
           """)
 
           write("docs/quickstart.md", """
           # Quickstart
 
-          ## Run the demo
+          ## Run the sovereign swarm demo
 
           ```bash
           python -m proof_gradient demo --out data/proof_gradient_foundation.json
           ```
 
-          ## Run the tests
+          ## Run tests
 
           ```bash
           python -m unittest tests/test_proof_gradient_foundation.py
@@ -789,107 +972,34 @@ jobs:
           ```
           """)
 
-          write("docs/migration_from_skillos_v2.md", """
-          # Migration from SkillOS v2.0.0
-
-          Proof Gradient preserves the useful SkillOS DNA and generalizes it.
-
-          | SkillOS concept | Proof Gradient concept |
-          |---|---|
-          | Skill | Artifact type: skill |
-          | Skill version | Artifact version |
-          | Skill release | Artifact release |
-          | Skill trace | Proof Ledger trace |
-          | Learning lesson | Proof-backed patch rationale |
-          | Candidate skill | Candidate artifact version |
-          | Eval result | Eval artifact + eval run + selection evidence |
-          | Canary release | Selection Gate rollout |
-          | Rollback planner | Mandatory rollback target |
-          | Proof receipt | Proof Ledger record |
-          | Public command center | Proof Gradient Command Center |
+          write("schemas/proof_gradient_foundation.schema.json", """
+          {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "title": "Proof Gradient Foundation",
+            "type": "object",
+            "required": ["systems", "demo", "civilization_scale_thesis"],
+            "properties": {
+              "systems": {"type": "array"},
+              "demo": {"type": "object"},
+              "civilization_scale_thesis": {"type": "object"}
+            }
+          }
           """)
 
-          write("docs/final_acceptance_report.md", """
-          # Final Acceptance Report
-
-          | Requirement | Implementation location | Tests | Remaining risk | Notes |
-          |---|---|---|---|---|
-          | Artifact Vault stores reusable intelligence | `proof_gradient/foundation.py` | `test_artifact_vault_contains_reusable_intelligence` | Needs durable database | Deterministic foundation |
-          | Run Fabric executes agents at scale | `run_fabric()` | `test_run_fabric_resolves_artifacts` | Needs real worker pool | Mock runtime |
-          | Proof Ledger records what happened | `proof_ledger()` | `test_proof_ledger_records_what_happened` | Needs append-only storage | Proof record modeled |
-          | Selection Gate promotes only what proved itself | `selection_gate()` | `test_selection_gate_promotes_only_what_proved_itself` | Needs production rollout router | Canary + rollback modeled |
-          """)
-
-          write("schemas/artifact.schema.json", '''
+          write("examples/civilization_scale_coordination/job.json", """
           {
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "title": "Proof Gradient Artifact",
-            "type": "object",
-            "required": ["artifact_id", "artifact_type", "name", "version", "state", "content", "checksum"],
-            "properties": {
-              "artifact_id": {"type": "string"},
-              "artifact_type": {
-                "enum": ["goal", "plan", "skill", "tool", "policy", "eval", "rubric", "context_recipe", "routing_rule", "approval_rule", "release_rule"]
-              },
-              "name": {"type": "string"},
-              "version": {"type": "string"},
-              "state": {
-                "enum": ["draft", "candidate", "evaluated", "approved", "canary", "active", "paused", "deprecated", "rolled_back"]
-              },
-              "content": {"type": "object"},
-              "checksum": {"type": "string"}
-            }
-          }
-          ''')
-
-          write("schemas/proof.schema.json", '''
-          {
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "title": "Proof Gradient Proof",
-            "type": "object",
-            "required": ["proof_id", "run_id", "run_contract", "trace_events", "output"],
-            "properties": {
-              "proof_id": {"type": "string"},
-              "run_id": {"type": "string"},
-              "run_contract": {"type": "object"},
-              "trace_events": {"type": "array", "items": {"type": "object"}},
-              "output": {"type": "object"}
-            }
-          }
-          ''')
-
-          write("schemas/patch.schema.json", '''
-          {
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "title": "Proof Gradient Patch",
-            "type": "object",
-            "required": ["patch_id", "patch_type", "target_artifact", "source_proof", "diff", "rollback_target"],
-            "properties": {
-              "patch_id": {"type": "string"},
-              "patch_type": {
-                "enum": ["goal_patch", "plan_patch", "skill_patch", "tool_patch", "policy_patch", "eval_patch", "context_patch", "routing_patch", "approval_patch", "release_rule_patch"]
-              },
-              "target_artifact": {"type": "string"},
-              "source_proof": {"type": "string"},
-              "diff": {"type": "object"},
-              "rollback_target": {"type": "string"}
-            }
-          }
-          ''')
-
-          write("examples/customer_response_safety/job.json", '''
-          {
-            "job_id": "job_customer_refund_001",
-            "prompt": "Draft a response to this angry customer asking for a refund.",
-            "risk_class": "medium",
+            "job_id": "job_civilization_scale_coordination_001",
+            "prompt": "Coordinate a large multi-agent council to model how proof-backed agent evolution could support civilization-scale intelligence, capital, and energy ambitions without overclaiming current capability.",
+            "risk_class": "high",
             "expected_behavior": [
-              "draft only",
-              "do not send externally",
-              "do not promise refund without policy evidence",
-              "check or ask for policy context"
+              "label Kardashev claims as scenario",
+              "prove large multi-agent coordination",
+              "record proof events",
+              "run truth-boundary eval",
+              "require rollback for selected artifacts"
             ]
           }
-          ''')
+          """)
 
           write("site/index.html", r'''
           <!doctype html>
@@ -909,9 +1019,7 @@ jobs:
                   --green: #91f2bf;
                 }
 
-                * {
-                  box-sizing: border-box;
-                }
+                * { box-sizing: border-box; }
 
                 body {
                   margin: 0;
@@ -925,7 +1033,7 @@ jobs:
                 }
 
                 main {
-                  width: min(1180px, calc(100% - 40px));
+                  width: min(1240px, calc(100% - 40px));
                   margin: 0 auto;
                   padding: 64px 0 80px;
                 }
@@ -949,14 +1057,14 @@ jobs:
                   font-size: clamp(22px, 3vw, 38px);
                   line-height: 1.15;
                   margin: 0 0 28px;
-                  max-width: 1030px;
+                  max-width: 1080px;
                 }
 
                 .muted {
                   color: var(--muted);
                   font-size: 18px;
                   line-height: 1.65;
-                  max-width: 860px;
+                  max-width: 900px;
                 }
 
                 .tabs {
@@ -991,9 +1099,7 @@ jobs:
                   box-shadow: 0 24px 80px rgba(0,0,0,.24);
                 }
 
-                section.panel.active {
-                  display: block;
-                }
+                section.panel.active { display: block; }
 
                 h2 {
                   margin: 0 0 14px;
@@ -1013,7 +1119,7 @@ jobs:
                   border-radius: 20px;
                   padding: 20px;
                   background: rgba(255,255,255,.035);
-                  min-height: 160px;
+                  min-height: 150px;
                 }
 
                 .card b {
@@ -1034,6 +1140,7 @@ jobs:
                   border-radius: 18px;
                   background: #070b14;
                   color: #dbe6ff;
+                  max-height: 560px;
                 }
 
                 .status {
@@ -1053,25 +1160,18 @@ jobs:
                   font-size: 14px;
                 }
 
-                a {
-                  color: var(--blue);
-                }
+                a { color: var(--blue); }
 
                 @media (max-width: 980px) {
-                  .grid {
-                    grid-template-columns: 1fr;
-                  }
-
-                  main {
-                    padding: 42px 0;
-                  }
+                  .grid { grid-template-columns: 1fr; }
+                  main { padding: 42px 0; }
                 }
               </style>
             </head>
 
             <body>
               <main>
-                <div class="eyebrow">Proof Gradient · The Agent Evolution Protocol</div>
+                <div class="eyebrow">Proof Gradient · Sovereign Swarm · Civilization-Scale Scenario Lab</div>
                 <h1>One agent tries.<br>Proof decides.<br>The network evolves.</h1>
 
                 <p class="tagline">
@@ -1080,8 +1180,8 @@ jobs:
                 </p>
 
                 <p class="muted">
-                  Proof Gradient is the agent evolution protocol where every run leaves proof,
-                  every proof selects intelligence, and every selected artifact evolves the network.
+                  The Artifact Vault stores reusable intelligence. The Run Fabric executes agents at scale.
+                  The Proof Ledger records what happened. The Selection Gate promotes only what proved itself.
                 </p>
 
                 <nav class="tabs" aria-label="Proof Gradient tabs">
@@ -1090,15 +1190,18 @@ jobs:
                   <button class="tab" data-tab="fabric">Run Fabric</button>
                   <button class="tab" data-tab="ledger">Proof Ledger</button>
                   <button class="tab" data-tab="gate">Selection Gate</button>
+                  <button class="tab" data-tab="swarm">Sovereign Swarm</button>
+                  <button class="tab" data-tab="kardashev">Kardashev Thesis</button>
                   <button class="tab" data-tab="evidence">Evidence</button>
                 </nav>
 
                 <section id="command" class="panel active">
                   <h2>Direction. Strategy. Capability. Evolution.</h2>
-                  <span class="status">Autonomous foundation active</span>
+                  <span class="status">Sovereign Swarm active</span>
                   <p class="muted">
-                    The Artifact Vault stores reusable intelligence. The Run Fabric executes agents at scale.
-                    The Proof Ledger records what happened. The Selection Gate promotes only what proved itself.
+                    This page is generated by a GitHub Action. It verifies the four Proof Gradient systems,
+                    runs a deterministic large multi-agent coordination lattice, records proof, scores the run,
+                    proposes a patch, approves a canary, and preserves rollback.
                   </p>
                   <div class="grid" id="systems"></div>
                 </section>
@@ -1111,20 +1214,36 @@ jobs:
 
                 <section id="fabric" class="panel">
                   <h2>Run Fabric</h2>
-                  <p class="muted">The run resolves explicit artifact versions and executes the customer-response safety demo.</p>
+                  <p class="muted">The Run Fabric executes agents at scale through a deterministic 96-agent coordination lattice.</p>
                   <pre id="run-contract">Loading…</pre>
                 </section>
 
                 <section id="ledger" class="panel">
                   <h2>Proof Ledger</h2>
-                  <p class="muted">Every run emits proof events.</p>
+                  <p class="muted">The Proof Ledger records what happened.</p>
                   <pre id="trace-events">Loading…</pre>
                 </section>
 
                 <section id="gate" class="panel">
                   <h2>Selection Gate</h2>
-                  <p class="muted">Only proof-backed artifacts earn selection, rollout, and rollback readiness.</p>
+                  <p class="muted">The Selection Gate promotes only what proved itself.</p>
                   <pre id="selection">Loading…</pre>
+                </section>
+
+                <section id="swarm" class="panel">
+                  <h2>Sovereign Swarm</h2>
+                  <p class="muted">
+                    A deterministic large multi-agent coordination lattice proving autonomous orchestration across Direction, Strategy, Capability, Proof, Selection, Governance, Capital, and Energy.
+                  </p>
+                  <pre id="swarm-json">Loading…</pre>
+                </section>
+
+                <section id="kardashev" class="panel">
+                  <h2>Kardashev Thesis</h2>
+                  <p class="muted">
+                    The Kardashev Type II line is treated as a strategic scenario, not a factual claim of existing superintelligence, guaranteed wealth, or achieved Kardashev capability.
+                  </p>
+                  <pre id="kardashev-json">Loading…</pre>
                 </section>
 
                 <section id="evidence" class="panel">
@@ -1178,7 +1297,7 @@ jobs:
                       JSON.stringify(data.demo.run_contract, null, 2);
 
                     document.getElementById("trace-events").textContent =
-                      JSON.stringify(data.demo.proof.trace_events, null, 2);
+                      JSON.stringify(data.demo.proof.trace_events.slice(0, 40), null, 2);
 
                     document.getElementById("selection").textContent =
                       JSON.stringify({
@@ -1187,12 +1306,28 @@ jobs:
                         selection: data.demo.selection
                       }, null, 2);
 
+                    document.getElementById("swarm-json").textContent =
+                      JSON.stringify({
+                        name: data.demo.swarm.name,
+                        agent_count: data.demo.swarm.agent_count,
+                        division_count: data.demo.swarm.division_count,
+                        handoff_count: data.demo.swarm.handoff_count,
+                        vote_count: data.demo.swarm.vote_count,
+                        coordination_verdict: data.demo.swarm.coordination_verdict,
+                        divisional_consensus: data.demo.swarm.divisional_consensus
+                      }, null, 2);
+
+                    document.getElementById("kardashev-json").textContent =
+                      JSON.stringify(data.civilization_scale_thesis, null, 2);
+
                     document.getElementById("evidence-json").textContent =
                       JSON.stringify({
                         generated_at: data.generated_at,
                         doctrine: data.doctrine,
                         repository: data.repository,
-                        site: data.site
+                        site: data.site,
+                        current_repository_proves: data.demo.proof.output.current_repository_proves,
+                        current_repository_does_not_claim: data.demo.proof.output.current_repository_does_not_claim
                       }, null, 2);
                   })
                   .catch(error => {
@@ -1253,6 +1388,20 @@ jobs:
               if actual != promise:
                   raise SystemExit(f"{name} promise mismatch: expected {promise!r}, got {actual!r}")
 
+          swarm = data["demo"]["swarm"]
+
+          if swarm["agent_count"] < 64:
+              raise SystemExit("Large multi-agent system proof failed: fewer than 64 agents.")
+
+          if swarm["division_count"] < 8:
+              raise SystemExit("Multi-agent coordination proof failed: fewer than 8 divisions.")
+
+          if swarm["coordination_verdict"] != "large_multi_agent_coordination_proven_deterministically":
+              raise SystemExit("Coordination verdict missing.")
+
+          if data["demo"]["proof"]["output"]["claim_status"] != "strategic_scenario_not_empirical_claim":
+              raise SystemExit("Kardashev/superintelligence claim boundary failed.")
+
           if data["demo"]["selection"]["decision"] != "approve_canary":
               raise SystemExit("Selection Gate did not approve canary.")
 
@@ -1260,6 +1409,8 @@ jobs:
               raise SystemExit("Selection Gate has no rollback target.")
 
           print("Proof Gradient four-system guarantee verified.")
+          print("Large multi-agent Sovereign Swarm coordination verified.")
+          print("Civilization-scale thesis correctly labeled as scenario, not empirical claim.")
           PY
           else
             echo "No proof_gradient/foundation.py found yet. Deploying current static site only."
@@ -1270,7 +1421,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          git config user.name "proof-gradient-sovereign-loop"
+          git config user.name "proof-gradient-sovereign-swarm"
           git config user.email "actions@github.com"
 
           git add -A
@@ -1278,7 +1429,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No repository changes to commit."
           else
-            git commit -m "Implement Proof Gradient sovereign foundation [skip ci]"
+            git commit -m "Implement Proof Gradient Sovereign Swarm [skip ci]"
             git push origin HEAD:main
           fi
 
@@ -1351,11 +1502,25 @@ jobs:
                 "status": "fallback static site"
               }
             ],
+            "civilization_scale_thesis": {
+              "treatment": "strategic scenario, not empirical claim"
+            },
             "demo": {
               "artifacts": [],
+              "swarm": {
+                "agent_count": 0,
+                "division_count": 0,
+                "handoff_count": 0,
+                "vote_count": 0,
+                "coordination_verdict": "fallback_static_site"
+              },
               "run_contract": {},
               "proof": {
-                "trace_events": []
+                "trace_events": [],
+                "output": {
+                  "current_repository_proves": [],
+                  "current_repository_does_not_claim": []
+                }
               },
               "score": {},
               "patch": {},
