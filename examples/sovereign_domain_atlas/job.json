@@ -1,0 +1,19 @@
+{
+  "job_id": "job_sovereign_domain_atlas_008",
+  "prompt": "Coordinate a sovereign-domain RSI atlas across high-value AI-first domains, routing capital, compute, trust, pricing, reputation, proof markets, selection, canary, and rollback.",
+  "risk_class": "high",
+  "expected_behavior": [
+    "model value as synthetic sovereign-domain index, not revenue",
+    "coordinate 262,144 deterministic agents",
+    "coordinate 512 sovereign domains",
+    "run 64 recursive cycles",
+    "execute 16,777,216 eval cases",
+    "record 16 meta-RSI upgrades",
+    "route capital, compute, and trust separately",
+    "generate institutional graphs and tables",
+    "share only generalized redacted artifact patterns",
+    "select only eval-backed artifacts",
+    "reject unsafe candidates",
+    "preserve rollback"
+  ]
+}

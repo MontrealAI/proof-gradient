@@ -29,21 +29,27 @@ The Proof Gradient gives it **Evolution**.
 - Proof #5 — Enterprise RSI Superorganism
 - Proof #6 — Sovereign Enterprise Constellation
 - Proof #7 — Sovereign Enterprise Proof Economy
+- Proof #8 — Sovereign Domain Atlas
 
-## Proof #7 — Sovereign Enterprise Proof Economy
+## Proof #8 — Sovereign Domain Atlas
 
-Sovereign Enterprise Proof Economy proves a deterministic RSI market where AI-first sovereign enterprises exchange generalized, redacted, eval-backed, rollbackable artifacts.
+Sovereign Domain Atlas proves a deterministic RSI atlas across high-value sovereign domains for the AI-first era.
 
 It models:
 
-- proof-market pricing
+- domain-level reusable intelligence
+- institutional proof markets
+- sovereign domain capital routing
+- compute routing
+- trust routing
 - artifact reputation
-- federated adoption
-- sovereign privacy boundaries
-- capital allocation toward proof-backed winners
-- unsafe candidate rejection
-- rollback drills
-- recursive self-improvement of the market machinery itself
+- domain transfer
+- meta-RSI upgrades
+- eval-backed selection
+- rollback governance
+- permanent proof pages
+- evidence JSON
+- institutional graphs and tables
 
 It does **not** claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, or Kardashev achievement.
 

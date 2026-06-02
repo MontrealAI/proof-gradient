@@ -13,6 +13,8 @@
       --gold: #f4c76b;
       --blue: #8ab4ff;
       --green: #91f2bf;
+      --violet: #b8a7ff;
+      --orange: #ffb86b;
     }
     * { box-sizing: border-box; }
     body {
@@ -25,51 +27,41 @@
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    main { width: min(1240px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
+    main { width: min(1280px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
     .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
-    h1 { font-size: clamp(44px, 8vw, 100px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
-    h2 { font-size: clamp(28px, 4vw, 52px); letter-spacing: -0.05em; }
+    h1 { font-size: clamp(44px, 8vw, 104px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
+    h2 { font-size: clamp(28px, 4vw, 54px); letter-spacing: -0.05em; }
+    h3 { font-size: 24px; margin-top: 30px; }
     p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
     a { color: var(--blue); }
     .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
     .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
     .card b { display: block; font-size: 21px; margin-bottom: 10px; }
     .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
-    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 700px; }
+    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 720px; }
     .nav { margin: 28px 0; display: flex; gap: 12px; flex-wrap: wrap; }
     .nav a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; text-decoration: none; color: var(--muted); background: rgba(255,255,255,.04); }
     .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
-    @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+    .visual { border: 1px solid var(--line); border-radius: 26px; padding: 24px; background: rgba(11,16,32,.84); margin: 24px 0; }
+    svg { width: 100%; height: auto; display: block; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; color: var(--muted); }
+    th { color: var(--text); background: rgba(255,255,255,.06); }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 1100px) { .grid, .grid3 { grid-template-columns: 1fr; } main { padding: 42px 0; } }
     </style>
   </head>
   <body>
-    <main><!-- skillos-ai-first-governance-capital-engine:start -->
-<section id="ai-first-governance-capital-engine" class="panel" style="margin:34px 0;background:linear-gradient(140deg,rgba(126,247,255,.18),rgba(121,255,208,.13),rgba(175,164,255,.16));">
-  <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-start;flex-wrap:wrap">
-    <div style="max-width:780px">
-      <div style="color:#7ef7ff;font-size:12px;font-weight:950;letter-spacing:.24em;text-transform:uppercase">Flagship autonomous RSI governance proof</div>
-      <h2 style="font-size:clamp(38px,5vw,76px);line-height:.88;letter-spacing:-.075em;margin:12px 0">AI-First Governance Capital Engine</h2>
-      <p style="font-size:18px;color:#d8edf7">A large specialist-agent governance lattice recursively improves how AI-first institutions coordinate evidence, decision rights, incentives, capital, compute, energy, policy, execution, audit, risk courts, and reinvestment into compounding institutional capability.</p>
-      <p style="color:#ffd887">Public benchmark only: not live revenue, legal advice, investment advice, achieved superintelligence, or Kardashev Type II civilization.</p>
-      <p><a href="./rsi-ai-first-governance-capital-engine-proof.html" style="display:inline-block;background:#7ef7ff;color:#061420;border-radius:999px;padding:12px 18px;font-weight:950">Open proof page</a> <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml" style="display:inline-block;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:12px 18px;font-weight:950;color:white">Run on GitHub</a></p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:14px;min-width:min(100%,430px);flex:1">
-      <div class="panel" style="padding:18px"><b style="font-size:30px;color:#79ffd0">524,288</b><br/><span>virtual specialists</span></div>
-      <div class="panel" style="padding:18px"><b style="font-size:30px;color:#79ffd0">16,384</b><br/><span>governance roles</span></div>
-      <div class="panel" style="padding:18px"><b style="font-size:30px;color:#79ffd0">99.938%</b><br/><span>holdout capture</span></div>
-      <div class="panel" style="padding:18px"><b style="font-size:30px;color:#79ffd0">$3.97T</b><br/><span>over no-RSI</span></div>
-    </div>
-  </div>
-</section>
-<!-- skillos-ai-first-governance-capital-engine:end -->
-      <div class="eyebrow">Proof Gradient · Sovereign Enterprise Proof Economy</div>
+    <main>
+      <div class="eyebrow">Proof Gradient · Sovereign Domain Atlas</div>
       
     <h1>One agent tries.<br>Proof decides.<br>The network evolves.</h1>
     <p>GoalOS gives the network Direction. PlanOS gives it Strategy. SkillOS gives it Capability. The Proof Gradient gives it Evolution.</p>
     <div class="nav">
       <a href="./">Command Center</a>
       <a href="proofs/">Proof Archive</a>
-      <a href="proofs/001-sovereign-swarm.html">Proof #1</a><a href="proofs/002-evolution-tournament.html">Proof #2</a><a href="proofs/003-recursive-evolution-ladder.html">Proof #3</a><a href="proofs/004-corporate-rsi-dominion.html">Proof #4</a><a href="proofs/005-enterprise-rsi-superorganism.html">Proof #5</a><a href="proofs/006-sovereign-enterprise-constellation.html">Proof #6</a><a href="proofs/007-sovereign-enterprise-proof-economy.html">Proof #7</a>
+      <a href="proofs/001-sovereign-swarm.html">Proof #1</a><a href="proofs/002-evolution-tournament.html">Proof #2</a><a href="proofs/003-recursive-evolution-ladder.html">Proof #3</a><a href="proofs/004-corporate-rsi-dominion.html">Proof #4</a><a href="proofs/005-enterprise-rsi-superorganism.html">Proof #5</a><a href="proofs/006-sovereign-enterprise-constellation.html">Proof #6</a><a href="proofs/007-sovereign-enterprise-proof-economy.html">Proof #7</a><a href="proofs/008-sovereign-domain-atlas.html">Proof #8</a>
     </div>
     <h2>The Four Systems</h2>
     <div class="grid">
@@ -88,13 +80,13 @@
         <div class="card">
           <b>Proof Ledger</b>
           <p>records what happened.</p>
-          <p>Append-only evidence: traces, scores, evals, tool decisions, credit assignment, patches, canaries, rollback drills, prices, and reputation updates.</p>
+          <p>Append-only evidence: traces, scores, evals, tool decisions, credit assignment, patches, prices, routes, canaries, and rollback drills.</p>
         </div>
         
         <div class="card">
           <b>Selection Gate</b>
           <p>promotes only what proved itself.</p>
-          <p>Candidates must beat baselines, pass safety gates, receive canary routing, preserve rollback, and earn market reputation.</p>
+          <p>Candidates must beat baselines, pass safety gates, receive canary routing, preserve rollback, and earn reputation.</p>
         </div>
         </div>
     <h2>Proof Archive</h2>
@@ -147,28 +139,38 @@
           <p><span class="pill">passed</span></p>
           <p><a href="proofs/007-sovereign-enterprise-proof-economy.html">Open proof page →</a></p>
         </div>
+        
+        <div class="card">
+          <b>Proof #8 — Sovereign Domain Atlas</b>
+          <p>A deterministic institutional RSI atlas across sovereign domains: capital, compute, energy, security, markets, infrastructure, science, governance, and enterprise operations.</p>
+          <p><span class="pill">passed</span></p>
+          <p><a href="proofs/008-sovereign-domain-atlas.html">Open proof page →</a></p>
+        </div>
         </div>
     <h2>Current Apex Proof</h2>
     <pre>{
-  &quot;agents&quot;: 65536,
-  &quot;guilds&quot;: 64,
-  &quot;sovereign_enterprises&quot;: 256,
-  &quot;sovereign_domains&quot;: 64,
-  &quot;rsi_cycles&quot;: 32,
-  &quot;eval_cases&quot;: 2097152,
-  &quot;selected_patches&quot;: 8135,
-  &quot;rejected_patches&quot;: 57,
-  &quot;rollbacks&quot;: 57,
-  &quot;meta_rsi_upgrades&quot;: 8,
-  &quot;proof_market_trades&quot;: 1650,
-  &quot;federated_adoptions&quot;: 1173,
-  &quot;pricing_events&quot;: 921,
-  &quot;reputation_events&quot;: 633,
-  &quot;capital_allocation_events&quot;: 32,
-  &quot;synthetic_market_index_delta_percent&quot;: 1051.13,
-  &quot;average_artifact_reputation&quot;: 3.9925,
-  &quot;average_proof_price_units&quot;: 260.977,
-  &quot;verdict&quot;: &quot;sovereign_enterprise_proof_economy_proven_deterministically_with_pricing_reputation_federated_adoption_selection_and_rollback&quot;
+  &quot;agents&quot;: 262144,
+  &quot;guilds&quot;: 128,
+  &quot;sovereign_domains&quot;: 512,
+  &quot;theaters&quot;: 16,
+  &quot;domain_primitives&quot;: 32,
+  &quot;rsi_cycles&quot;: 64,
+  &quot;eval_cases&quot;: 16777216,
+  &quot;selected_patches&quot;: 32663,
+  &quot;rejected_patches&quot;: 105,
+  &quot;rollbacks&quot;: 105,
+  &quot;meta_rsi_upgrades&quot;: 16,
+  &quot;domain_transfers&quot;: 8160,
+  &quot;proof_market_trades&quot;: 5481,
+  &quot;pricing_events&quot;: 4078,
+  &quot;reputation_events&quot;: 2994,
+  &quot;capital_allocation_events&quot;: 64,
+  &quot;compute_allocation_events&quot;: 64,
+  &quot;trust_allocation_events&quot;: 64,
+  &quot;synthetic_domain_atlas_index_delta_percent&quot;: 72897.21,
+  &quot;average_domain_reputation&quot;: 8.1471,
+  &quot;average_proof_price_units&quot;: 24759.249,
+  &quot;verdict&quot;: &quot;sovereign_domain_atlas_proven_deterministically_with_institutional_graphs_domain_routing_selection_and_rollback&quot;
 }</pre>
     
     </main>
