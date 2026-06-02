@@ -6,11 +6,11 @@ on:
     branches: ["main"]
     paths:
       - ".github/workflows/deploy-proof-gradient-pages.yml"
-      - "site/**"
+      - "README.md"
       - "docs/**"
+      - "site/**"
       - "data/**"
       - "badges/**"
-      - "README.md"
 
 permissions:
   contents: read
@@ -28,7 +28,7 @@ jobs:
 
     environment:
       name: github-pages
-      url: https://montrealai.github.io/proof-gradient/
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Check out repository
@@ -36,204 +36,237 @@ jobs:
 
       - name: Build Proof Gradient site
         run: |
-mkdir -p dist
+          mkdir -p dist
 
-cat > dist/index.html <<'HTML'
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Proof Gradient</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #05070d;
-        --panel: #0b1020;
-        --text: #f7f8ff;
-        --muted: #aab3cf;
-        --line: rgba(255,255,255,.14);
-        --gold: #f4c76b;
-        --blue: #8ab4ff;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        background:
-          radial-gradient(circle at 20% 10%, rgba(138,180,255,.18), transparent 30%),
-          radial-gradient(circle at 80% 20%, rgba(244,199,107,.14), transparent 28%),
-          linear-gradient(180deg, #05070d 0%, #090d18 100%);
-        color: var(--text);
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
-      main {
-        width: min(1120px, calc(100% - 40px));
-        margin: 0 auto;
-        padding: 72px 0;
-      }
-      .eyebrow {
-        color: var(--gold);
-        letter-spacing: .18em;
-        text-transform: uppercase;
-        font-size: 13px;
-        font-weight: 800;
-      }
-      h1 {
-        font-size: clamp(46px, 8vw, 104px);
-        line-height: .92;
-        margin: 18px 0 22px;
-        letter-spacing: -0.07em;
-      }
-      .tagline {
-        font-size: clamp(22px, 3vw, 40px);
-        line-height: 1.12;
-        margin: 0 0 34px;
-        max-width: 980px;
-      }
-      .muted {
-        color: var(--muted);
-        font-size: 18px;
-        line-height: 1.65;
-        max-width: 780px;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-        margin: 46px 0;
-      }
-      .card {
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        padding: 24px;
-        background: rgba(11,16,32,.72);
-        min-height: 190px;
-        box-shadow: 0 24px 80px rgba(0,0,0,.24);
-      }
-      .card b {
-        display: block;
-        font-size: 21px;
-        margin-bottom: 12px;
-      }
-      .card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.55;
-      }
-      .doctrine {
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        padding: 32px;
-        margin-top: 30px;
-        background: linear-gradient(135deg, rgba(244,199,107,.12), rgba(138,180,255,.10));
-      }
-      .doctrine h2 {
-        margin: 0 0 14px;
-        font-size: clamp(28px, 4vw, 54px);
-        letter-spacing: -0.04em;
-      }
-      .doctrine p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 19px;
-        line-height: 1.6;
-      }
-      .pillrow {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 28px;
-      }
-      .pill {
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 10px 14px;
-        color: var(--muted);
-        background: rgba(255,255,255,.04);
-      }
-      .footer {
-        margin-top: 48px;
-        color: var(--muted);
-        font-size: 14px;
-      }
-      a { color: var(--blue); }
-      @media (max-width: 900px) {
-        .grid { grid-template-columns: 1fr; }
-        main { padding: 42px 0; }
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <div class="eyebrow">Proof Gradient · The Agent Evolution Protocol</div>
+          cat > dist/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>Proof Gradient</title>
+              <style>
+                :root {
+                  color-scheme: dark;
+                  --bg: #05070d;
+                  --panel: #0b1020;
+                  --text: #f7f8ff;
+                  --muted: #aab3cf;
+                  --line: rgba(255,255,255,.14);
+                  --gold: #f4c76b;
+                  --blue: #8ab4ff;
+                }
 
-      <h1>One agent tries.<br>Proof decides.<br>The network evolves.</h1>
+                * {
+                  box-sizing: border-box;
+                }
 
-      <p class="tagline">
-        GoalOS gives the network Direction. PlanOS gives it Strategy.
-        SkillOS gives it Capability. The Proof Gradient gives it Evolution.
-      </p>
+                body {
+                  margin: 0;
+                  min-height: 100vh;
+                  background:
+                    radial-gradient(circle at 20% 10%, rgba(138,180,255,.18), transparent 30%),
+                    radial-gradient(circle at 80% 20%, rgba(244,199,107,.14), transparent 28%),
+                    linear-gradient(180deg, #05070d 0%, #090d18 100%);
+                  color: var(--text);
+                  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                }
 
-      <p class="muted">
-        Proof Gradient is the agent evolution protocol where every run leaves proof,
-        every proof selects intelligence, and every selected artifact evolves the network.
-      </p>
+                main {
+                  width: min(1120px, calc(100% - 40px));
+                  margin: 0 auto;
+                  padding: 72px 0;
+                }
 
-      <section class="grid" aria-label="Proof Gradient pillars">
-        <div class="card">
-          <b>Artifact Vault</b>
-          <p>The treasury of reusable intelligence: goals, plans, skills, tools, policies, evals, and context recipes.</p>
-        </div>
-        <div class="card">
-          <b>Run Fabric</b>
-          <p>The execution layer where agents resolve active artifacts, run at scale, and emit proof.</p>
-        </div>
-        <div class="card">
-          <b>Proof Ledger</b>
-          <p>The append-only record of what happened: traces, scores, feedback, policy decisions, cost, latency, and credit assignment.</p>
-        </div>
-        <div class="card">
-          <b>Selection Gate</b>
-          <p>The authority that promotes only what proved itself through evals, approval, rollout, monitoring, and rollback.</p>
-        </div>
-      </section>
+                .eyebrow {
+                  color: var(--gold);
+                  letter-spacing: .18em;
+                  text-transform: uppercase;
+                  font-size: 13px;
+                  font-weight: 800;
+                }
 
-      <section class="doctrine">
-        <h2>No proof, no evolution.</h2>
-        <p>
-          Every job is an experiment. Every experiment leaves proof.
-          Every proof creates selection pressure. Every selected artifact strengthens the network.
-        </p>
-        <div class="pillrow">
-          <span class="pill">Direction</span>
-          <span class="pill">Strategy</span>
-          <span class="pill">Capability</span>
-          <span class="pill">Evolution</span>
-          <span class="pill">Vault</span>
-          <span class="pill">Fabric</span>
-          <span class="pill">Ledger</span>
-          <span class="pill">Gate</span>
-        </div>
-      </section>
+                h1 {
+                  font-size: clamp(46px, 8vw, 104px);
+                  line-height: .92;
+                  margin: 18px 0 22px;
+                  letter-spacing: -0.07em;
+                }
 
-      <p class="footer">
-        Repository:
-        <a href="https://github.com/MontrealAI/proof-gradient">github.com/MontrealAI/proof-gradient</a>
-        · Live site:
-        <a href="https://montrealai.github.io/proof-gradient/">montrealai.github.io/proof-gradient</a>
-      </p>
-    </main>
-  </body>
-</html>
-HTML
+                .tagline {
+                  font-size: clamp(22px, 3vw, 40px);
+                  line-height: 1.12;
+                  margin: 0 0 34px;
+                  max-width: 980px;
+                }
 
-touch dist/.nojekyll
+                .muted {
+                  color: var(--muted);
+                  font-size: 18px;
+                  line-height: 1.65;
+                  max-width: 780px;
+                }
 
-if grep -R "montrealai.github.io/skillos\|github.com/MontrealAI/skillos\|MontrealAI/skillos" dist; then
-  echo "Old SkillOS URL found in generated Proof Gradient site. Stopping."
-  exit 1
-fi
+                .grid {
+                  display: grid;
+                  grid-template-columns: repeat(4, 1fr);
+                  gap: 16px;
+                  margin: 46px 0;
+                }
+
+                .card {
+                  border: 1px solid var(--line);
+                  border-radius: 22px;
+                  padding: 24px;
+                  background: rgba(11,16,32,.72);
+                  min-height: 190px;
+                  box-shadow: 0 24px 80px rgba(0,0,0,.24);
+                }
+
+                .card b {
+                  display: block;
+                  font-size: 21px;
+                  margin-bottom: 12px;
+                }
+
+                .card p {
+                  margin: 0;
+                  color: var(--muted);
+                  line-height: 1.55;
+                }
+
+                .doctrine {
+                  border: 1px solid var(--line);
+                  border-radius: 28px;
+                  padding: 32px;
+                  margin-top: 30px;
+                  background: linear-gradient(135deg, rgba(244,199,107,.12), rgba(138,180,255,.10));
+                }
+
+                .doctrine h2 {
+                  margin: 0 0 14px;
+                  font-size: clamp(28px, 4vw, 54px);
+                  letter-spacing: -0.04em;
+                }
+
+                .doctrine p {
+                  margin: 0;
+                  color: var(--muted);
+                  font-size: 19px;
+                  line-height: 1.6;
+                }
+
+                .pillrow {
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 10px;
+                  margin-top: 28px;
+                }
+
+                .pill {
+                  border: 1px solid var(--line);
+                  border-radius: 999px;
+                  padding: 10px 14px;
+                  color: var(--muted);
+                  background: rgba(255,255,255,.04);
+                }
+
+                .footer {
+                  margin-top: 48px;
+                  color: var(--muted);
+                  font-size: 14px;
+                }
+
+                a {
+                  color: var(--blue);
+                }
+
+                @media (max-width: 900px) {
+                  .grid {
+                    grid-template-columns: 1fr;
+                  }
+
+                  main {
+                    padding: 42px 0;
+                  }
+                }
+              </style>
+            </head>
+
+            <body>
+              <main>
+                <div class="eyebrow">Proof Gradient · The Agent Evolution Protocol</div>
+
+                <h1>One agent tries.<br>Proof decides.<br>The network evolves.</h1>
+
+                <p class="tagline">
+                  GoalOS gives the network Direction. PlanOS gives it Strategy.
+                  SkillOS gives it Capability. The Proof Gradient gives it Evolution.
+                </p>
+
+                <p class="muted">
+                  Proof Gradient is the agent evolution protocol where every run leaves proof,
+                  every proof selects intelligence, and every selected artifact evolves the network.
+                </p>
+
+                <section class="grid" aria-label="Proof Gradient pillars">
+                  <div class="card">
+                    <b>Artifact Vault</b>
+                    <p>The treasury of reusable intelligence: goals, plans, skills, tools, policies, evals, and context recipes.</p>
+                  </div>
+
+                  <div class="card">
+                    <b>Run Fabric</b>
+                    <p>The execution layer where agents resolve active artifacts, run at scale, and emit proof.</p>
+                  </div>
+
+                  <div class="card">
+                    <b>Proof Ledger</b>
+                    <p>The append-only record of what happened: traces, scores, feedback, policy decisions, cost, latency, and credit assignment.</p>
+                  </div>
+
+                  <div class="card">
+                    <b>Selection Gate</b>
+                    <p>The authority that promotes only what proved itself through evals, approval, rollout, monitoring, and rollback.</p>
+                  </div>
+                </section>
+
+                <section class="doctrine">
+                  <h2>No proof, no evolution.</h2>
+                  <p>
+                    Every job is an experiment. Every experiment leaves proof.
+                    Every proof creates selection pressure. Every selected artifact strengthens the network.
+                  </p>
+
+                  <div class="pillrow">
+                    <span class="pill">Direction</span>
+                    <span class="pill">Strategy</span>
+                    <span class="pill">Capability</span>
+                    <span class="pill">Evolution</span>
+                    <span class="pill">Vault</span>
+                    <span class="pill">Fabric</span>
+                    <span class="pill">Ledger</span>
+                    <span class="pill">Gate</span>
+                  </div>
+                </section>
+
+                <p class="footer">
+                  Repository:
+                  <a href="https://github.com/MontrealAI/proof-gradient">github.com/MontrealAI/proof-gradient</a>
+                  · Live site:
+                  <a href="https://montrealai.github.io/proof-gradient/">montrealai.github.io/proof-gradient</a>
+                </p>
+              </main>
+            </body>
+          </html>
+          HTML
+
+          touch dist/.nojekyll
+
+          if grep -R "montrealai.github.io/skillos\|github.com/MontrealAI/skillos\|MontrealAI/skillos" dist; then
+            echo "Old SkillOS URL found in the generated Proof Gradient site. Stopping."
+            exit 1
+          fi
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -241,11 +274,12 @@ fi
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-path: dist
+          path: dist
 
       - name: Deploy GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
 
       - name: Show live URL
         run: |
-echo "Proof Gradient deployed to: https://montrealai.github.io/proof-gradient/"
+          echo "Proof Gradient deployed to: ${{ steps.deployment.outputs.page_url }}"
