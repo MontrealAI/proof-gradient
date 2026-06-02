@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proof Gradient Release",
+  "type": "object",
+  "required": [
+    "release_id",
+    "artifact_id",
+    "from_version",
+    "to_version",
+    "rollback_target",
+    "rollout_percentage"
+  ],
+  "properties": {
+    "release_id": {
+      "type": "string"
+    },
+    "artifact_id": {
+      "type": "string"
+    },
+    "from_version": {
+      "type": "string"
+    },
+    "to_version": {
+      "type": "string"
+    },
+    "rollback_target": {
+      "type": "string"
+    },
+    "rollout_percentage": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

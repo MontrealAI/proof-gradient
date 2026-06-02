@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proof Gradient Run Contract",
+  "type": "object",
+  "required": [
+    "job_id",
+    "direction",
+    "strategy",
+    "capabilities",
+    "tools",
+    "policies",
+    "evals",
+    "success_criteria",
+    "failure_criteria"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string"
+    },
+    "direction": {
+      "type": "string"
+    },
+    "strategy": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tools": {
+      "type": "object"
+    },
+    "policies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "failure_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

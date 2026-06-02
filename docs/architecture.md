@@ -1,62 +1,33 @@
-# Architecture
+# Proof Gradient Architecture
 
-Agent SkillOS is built around one loop:
+## The four systems
 
-```text
-Work → Trace → Learn → Skill → Test → Approve → Release → Improve
-```
+### Artifact Vault
 
-```mermaid
-flowchart TD
-  A[Workbench / Job] --> B[Agent Runtime]
-  B --> C[Skill Registry]
-  B --> D[Tool Gateway]
-  B --> E[Trace Store]
-  E --> F[Learning Engine]
-  F --> G[Skill Trainer]
-  G --> H[Test Lab]
-  H --> I[Release Center]
-  I --> C
-  C --> B
-```
+Stores reusable intelligence: goals, plans, skills, tools, policies, evals, rubrics, context recipes, routing rules, approval rules, and release rules.
 
-## Components
+Released artifacts must be immutable. Any change creates a new version.
 
-### Agent Runtime
+### Run Fabric
 
-Runs jobs, chooses a skill, creates an output, and records the trace.
+Executes agents by resolving active artifact versions, creating a run contract, executing a deterministic or provider-backed runtime, and emitting trace events.
 
-### Skill Registry
+### Proof Ledger
 
-Stores versioned skill artifacts with instructions, permissions, tests, quality scores, and release state.
+Stores append-only evidence: run contract, artifact versions, trace events, output, cost, latency, eval results, human feedback, score, credit assignment, and patches.
 
-### Trace Store
+### Selection Gate
 
-Records what happened during every job.
+Promotes only what proved itself. Candidate artifacts must be evaluated against baselines, approved, canaried, monitored, and rollbackable.
 
-### Learning Engine
-
-Detects repeated patterns in traces and creates lessons.
-
-### Skill Trainer
-
-Turns a lesson into a candidate skill version using a bounded text edit.
-
-### Test Lab
-
-Compares candidate skill versions against the current production version.
-
-### Release Center
-
-Approves, releases, and rolls back skill versions.
-
-## Production upgrade path
+## Scaling law
 
 ```text
-SQLite                    → Postgres or event store
-Rule-based tests           → full eval harness
-Simple trainer             → SkillOpt-style optimizer service
-Static agent runtime       → LLM tool-calling runtime
-Local UI                   → authenticated multi-tenant product
-Local policy               → enterprise policy engine
+Artifacts are immutable.
+Runs are stateless.
+Proof is append-only.
+Learning is asynchronous.
+Selection is gated.
+Propagation is scoped.
+Rollback is mandatory.
 ```

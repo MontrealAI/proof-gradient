@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proof Gradient Artifact",
+  "type": "object",
+  "required": [
+    "artifact_id",
+    "artifact_type",
+    "version",
+    "state",
+    "content",
+    "checksum"
+  ],
+  "properties": {
+    "artifact_id": {
+      "type": "string"
+    },
+    "artifact_type": {
+      "enum": [
+        "goal",
+        "plan",
+        "skill",
+        "tool",
+        "policy",
+        "eval",
+        "rubric",
+        "context_recipe",
+        "routing_rule",
+        "approval_rule",
+        "release_rule"
+      ]
+    },
+    "version": {
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "draft",
+        "candidate",
+        "evaluated",
+        "approved",
+        "canary",
+        "active",
+        "paused",
+        "deprecated",
+        "rolled_back"
+      ]
+    },
+    "content": {
+      "type": "object"
+    },
+    "checksum": {
+      "type": "string"
+    }
+  }
+}

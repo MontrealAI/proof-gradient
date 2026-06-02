@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proof Gradient Patch",
+  "type": "object",
+  "required": [
+    "patch_id",
+    "patch_type",
+    "target_artifact",
+    "source_proof",
+    "diff",
+    "rollback_target"
+  ],
+  "properties": {
+    "patch_id": {
+      "type": "string"
+    },
+    "patch_type": {
+      "enum": [
+        "goal_patch",
+        "plan_patch",
+        "skill_patch",
+        "tool_patch",
+        "policy_patch",
+        "eval_patch",
+        "context_patch",
+        "routing_patch",
+        "approval_patch",
+        "release_rule_patch"
+      ]
+    },
+    "target_artifact": {
+      "type": "string"
+    },
+    "source_proof": {
+      "type": "string"
+    },
+    "diff": {
+      "type": "object"
+    },
+    "rollback_target": {
+      "type": "string"
+    }
+  }
+}

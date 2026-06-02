@@ -1,49 +1,23 @@
 # Quickstart
 
-## Run locally
-
-From the repository root:
+## Run the deterministic demo
 
 ```bash
-python -m skillos.cli demo
-python -m skillos.cli serve
+python -m proof_gradient.demo
 ```
 
-Open:
-
-```text
-http://127.0.0.1:8765
-```
-
-## Useful commands
+## Save the demo proof to JSON
 
 ```bash
-python -m skillos.cli init
-python -m skillos.cli demo
-python -m skillos.cli dashboard
-python -m skillos.cli serve
-python -m skillos.cli reset
-python -m unittest discover -s tests
+python -m proof_gradient demo --out data/demo-proof.json
 ```
 
-## A single job
+## Run tests
 
 ```bash
-python -m skillos.cli job "Draft a sales follow-up email from call notes" \
-  --inputs '{"prospect_name":"Maya","company_name":"Orion Labs","agreed_next_step":"review the pilot plan on Friday"}' \
-  --human-edits "Moved the next step to the opening lines."
+python -m unittest tests/test_proof_gradient_foundation.py
 ```
 
-## The local data store
+## Open the public command center
 
-SkillOS writes local data to:
-
-```text
-.skillos/skillos.db
-```
-
-Delete it with:
-
-```bash
-python -m skillos.cli reset
-```
+https://montrealai.github.io/proof-gradient/
