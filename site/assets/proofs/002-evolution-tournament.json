@@ -17,10 +17,6 @@
     "canary_selection_count": 3,
     "candidate_policy_violations": 0,
     "average_quality_delta": 0.171,
-    "rollback_drill": {
-      "result": "rollback_successful",
-      "rollback_target": "research_memo_goal@1.0.0"
-    },
     "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"
   },
   "evidence": {
@@ -33,11 +29,7 @@
     "canary_selection_count": 3,
     "candidate_policy_violations": 0,
     "average_quality_delta": 0.171,
-    "rollback_drill": {
-      "result": "rollback_successful",
-      "rollback_target": "research_memo_goal@1.0.0"
-    },
     "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"
   },
-  "checksum": "70ef9e5bdc3e6b4ad7b225aadf526172e406dacc5717f6d62075f497e4505e12"
+  "checksum": "f67c35d467b08328761564927016f8ff7c4bda8ba4dbe60df2741a68c4783caa"
 }

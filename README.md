@@ -27,36 +27,31 @@ The Proof Gradient gives it **Evolution**.
 - Proof #3 — Recursive Evolution Ladder
 - Proof #4 — Corporate RSI Dominion
 - Proof #5 — Enterprise RSI Superorganism
+- Proof #6 — Sovereign Enterprise Constellation
 
-## Proof #5 — Enterprise RSI Superorganism
+## Proof #6 — Sovereign Enterprise Constellation
 
-Enterprise RSI Superorganism elevates the proof from corporate-domain improvement to an enterprise-wide recursive operating system.
+Sovereign Enterprise Constellation proves a deterministic, auditable RSI network for the AI-first sovereign enterprise era.
 
-It proves a deterministic AI-first corporate superorganism across:
+It models a constellation of sovereign enterprises that recursively improve:
 
-- revenue
-- margin
-- product
-- engineering
-- security
-- legal
-- finance
-- procurement
-- growth
-- talent
-- capital allocation
-- executive operations
-- data infrastructure
-- customer trust
-- platform operations
-- strategic partnerships
+- direction artifacts
+- strategy artifacts
+- capability artifacts
+- trust policies
+- capital allocation rules
+- market expansion systems
+- enterprise operating loops
+- cross-enterprise artifact transfer
+- proof markets
+- rollout and rollback governance
 
-It does **not** claim real revenue, guaranteed ROI, investment advice, actual deployed superintelligence, or Kardashev achievement.
+It does **not** claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, or Kardashev achievement.
 
 It proves the substrate:
 
 ```text
-artifact → run → proof → eval → credit assignment → patch → selection → canary → rollback → next recursive cycle
+artifact → run → proof → eval → credit assignment → patch → selection → canary → rollback → next RSI cycle
 ```
 
 ## Operating law
