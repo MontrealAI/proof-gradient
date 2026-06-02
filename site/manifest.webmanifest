@@ -1,0 +1,9 @@
+{
+  "name": "SkillOS Public Proof Command Center",
+  "short_name": "SkillOS Proofs",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#06131f",
+  "theme_color": "#86f8ff",
+  "description": "Autonomous public proof hub for SkillOS GitHub Actions and RSI multi-agent proofs."
+}

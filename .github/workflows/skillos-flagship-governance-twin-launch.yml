@@ -1,0 +1,27 @@
+name: SkillOS Flagship Governance Twin Launch
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [skillos-flagship-governance-twin]
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  refresh-root-authority:
+    name: Keep flagship as subpage and refresh canonical root
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain safe flagship contract
+        run: |
+          echo "Capability Governance Twin is a flagship proof subpage."
+          echo "The root remains the Public SkillOS Command Center."
+          echo "Dispatching root authority workflow."
+      - name: Dispatch canonical Command Center rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh api repos/$REPO/dispatches -f event_type=skillos-command-center-refresh -f client_payload='{"source":"flagship-governance-twin"}'
