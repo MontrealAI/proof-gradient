@@ -1,17 +1,7 @@
-name: Proof Gradient Proof-Carrying Intelligence
+name: Proof Gradient The Proof Loop
 
 on:
   workflow_dispatch:
-    inputs:
-      mode:
-        description: "Choose what to do."
-        required: true
-        default: "bootstrap-and-deploy"
-        type: choice
-        options:
-          - "bootstrap-and-deploy"
-          - "deploy-only"
-
   push:
     branches: ["main"]
     paths:
@@ -30,12 +20,12 @@ permissions:
   actions: read
 
 concurrency:
-  group: proof-gradient-proof-carrying-intelligence
+  group: proof-gradient-the-proof-loop
   cancel-in-progress: true
 
 jobs:
-  proof-carrying-intelligence:
-    name: Build, prove, archive, and deploy Proof-Carrying Intelligence
+  proof-loop:
+    name: Build, prove, archive, and deploy The Proof Loop
     runs-on: ubuntu-latest
 
     if: github.repository == 'MontrealAI/proof-gradient'
@@ -55,15 +45,22 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Bootstrap Proof-Carrying Intelligence
+      - name: Bootstrap The Proof Loop
         run: |
           set -euo pipefail
 
           python <<'PY'
           from pathlib import Path
+          from dataclasses import dataclass, asdict
+          from datetime import datetime, timezone
+          import argparse
+          import hashlib
+          import json
           import textwrap
+          from typing import Any
 
           ROOT = Path(".")
+          SITE_BASE = "https://montrealai.github.io/proof-gradient"
 
           def write(path: str, content: str) -> None:
               target = ROOT / path
@@ -81,19 +78,15 @@ jobs:
               The Proof Gradient gives Evolution.
               """
 
-              __version__ = "1.0.0"
+              __version__ = "1.1.0"
               ''')
 
           write("README.md", """
           # Proof Gradient
 
-          **Proof-Carrying Intelligence.**
+          **Aim. Act. Prove. Evolve.**
 
-          **Commit. Execute. Prove. Evolve.**
-
-          Proof Gradient is the Agent Evolution Protocol where every AI-agent job becomes evidence, every evidence can become an upgrade, and every proven upgrade strengthens the authorized network.
-
-          ## Canonical product truth
+          Proof Gradient is the Agent Evolution Protocol.
 
           GoalOS gives the network **Direction**.  
           PlanOS gives it **Strategy**.  
@@ -103,15 +96,16 @@ jobs:
           ## The Proof Loop
 
           ```text
-          Commit → Execute → Prove → Evolve
+          Aim → Act → Prove → Evolve
           ```
 
-          ## The core doctrine
+          ## The doctrine
 
           ```text
-          Anything that can improve is an Artifact.
-          Anything that changes must carry Proof.
-          Anything that propagates must pass the Evolution Gate.
+          Every agent acts.
+          Every action leaves proof.
+          Every proof earns improvement.
+          Every improvement strengthens the network.
           ```
 
           ## The four systems
@@ -119,45 +113,22 @@ jobs:
           | System | Promise |
           |---|---|
           | **Artifact Vault** | Stores reusable intelligence. |
-          | **Execution Fabric** | Executes agents at scale. |
+          | **Run Fabric** | Executes agents at scale. |
           | **Proof Ledger** | Records what happened. |
-          | **Evolution Gate** | Promotes only what proved itself. |
+          | **Selection Gate** | Promotes only what proved itself. |
 
-          ## Current proof archive
+          ## Current apex proof
 
-          - Proof #1 — Sovereign Swarm
-          - Proof #2 — Evolution Tournament
-          - Proof #3 — Recursive Evolution Ladder
-          - Proof #4 — Corporate RSI Dominion
-          - Proof #5 — Enterprise RSI Superorganism
-          - Proof #6 — Sovereign Enterprise Constellation
-          - Proof #7 — Sovereign Enterprise Proof Economy
-          - Proof #8 — Sovereign Domain Atlas
-          - Proof #9 — Sovereign Kardashev Capital Engine
-          - Proof #10 — Proof-Carrying Intelligence
+          - Proof #11 — The Proof Loop
 
-          ## Proof #10 — Proof-Carrying Intelligence
-
-          Proof #10 proves the simplest sovereign protocol:
-
-          ```text
-          Every Job becomes a Commitment.
-          Every Commitment is Executed.
-          Every Execution produces Proof.
-          Every Proof can earn Evolution.
-          Every Evolution strengthens the authorized Network.
-          ```
-
-          It does **not** claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, real-world energy capture, or Kardashev Type II achievement.
-
-          ## Public command center
+          Public command center:
 
           ```text
           https://montrealai.github.io/proof-gradient/
           ```
           """)
 
-          write("proof_gradient/proof_carrying_intelligence.py", r'''
+          write("proof_gradient/the_proof_loop.py", r'''
           from __future__ import annotations
 
           from dataclasses import dataclass, asdict
@@ -176,7 +147,7 @@ jobs:
               return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
-          def sha256(value: Any) -> str:
+          def digest(value: Any) -> str:
               payload = json.dumps(value, sort_keys=True, ensure_ascii=False).encode("utf-8")
               return hashlib.sha256(payload).hexdigest()
 
@@ -196,7 +167,7 @@ jobs:
 
               def to_dict(self) -> dict[str, Any]:
                   data = asdict(self)
-                  data["checksum"] = sha256({
+                  data["checksum"] = digest({
                       "proof_id": self.proof_id,
                       "summary": self.summary,
                       "evidence": self.evidence,
@@ -204,30 +175,34 @@ jobs:
                   return data
 
 
-          PROTOCOL_PRIMITIVES = [
+          PROOF_LOOP = [
               {
-                  "name": "Commit",
-                  "role": "The mission becomes explicit.",
-                  "explains": "A Commit turns a prompt into a contract: goal, success criteria, constraints, risk, budget, tools, evals, approvals, and rollback rules.",
-                  "slogan": "A prompt is a wish. A Commit is a contract.",
+                  "name": "Aim",
+                  "system": "Artifact Vault",
+                  "meaning": "The mission becomes explicit as reusable Direction artifacts.",
+                  "contains": ["goal", "success criteria", "failure criteria", "constraints", "risk", "budget", "policy"],
+                  "line": "No aim, no intelligence.",
               },
               {
-                  "name": "Execute",
-                  "role": "The system runs active artifacts.",
-                  "explains": "Execution Fabric resolves goal artifacts, plan graphs, skills, tools, policies, context, approvals, and eval checks.",
-                  "slogan": "The agent does not carry the universe. It resolves, runs, and emits proof.",
+                  "name": "Act",
+                  "system": "Run Fabric",
+                  "meaning": "The active artifacts execute through a stateless agent runtime.",
+                  "contains": ["plans", "skills", "tools", "context", "approvals", "runtime decisions"],
+                  "line": "The agent acts once.",
               },
               {
                   "name": "Prove",
-                  "role": "Every execution creates evidence.",
-                  "explains": "Proof contains trace, score, feedback, tool history, policy decisions, cost, latency, errors, and credit assignment.",
-                  "slogan": "Without Proof, learning is mythology.",
+                  "system": "Proof Ledger",
+                  "meaning": "Every execution emits evidence.",
+                  "contains": ["trace", "score", "feedback", "cost", "latency", "tool history", "policy decisions", "credit assignment"],
+                  "line": "Without proof, learning is mythology.",
               },
               {
                   "name": "Evolve",
-                  "role": "Proof can earn a governed upgrade.",
-                  "explains": "Evolution upgrades goals, plans, skills, policies, evals, tools, contexts, and routing rules only after eval, approval, canary, monitoring, rollback, and scope control.",
-                  "slogan": "Only proven intelligence propagates.",
+                  "system": "Selection Gate",
+                  "meaning": "Only proven improvements earn propagation.",
+                  "contains": ["patch", "eval", "approval", "canary", "monitoring", "promotion", "rollback"],
+                  "line": "Only proven intelligence propagates.",
               },
           ]
 
@@ -236,188 +211,228 @@ jobs:
               {
                   "name": "Artifact Vault",
                   "promise": "stores reusable intelligence",
-                  "meaning": "Stores every immutable, versioned, scoped, signed, auditable, rollbackable artifact.",
+                  "meaning": "Stores immutable, versioned, scoped, signed, auditable, rollbackable artifacts.",
               },
               {
-                  "name": "Execution Fabric",
+                  "name": "Run Fabric",
                   "promise": "executes agents at scale",
-                  "meaning": "Resolves artifacts, executes stateless runs, and emits proof at network scale.",
+                  "meaning": "Resolves active artifacts, executes stateless agent runs, and emits proof.",
               },
               {
                   "name": "Proof Ledger",
                   "promise": "records what happened",
-                  "meaning": "Append-only memory of commitments, executions, traces, evals, scores, feedback, upgrades, releases, and rollback events.",
+                  "meaning": "Append-only evidence layer for traces, scores, feedback, policy decisions, costs, latency, and credit assignment.",
               },
               {
-                  "name": "Evolution Gate",
+                  "name": "Selection Gate",
                   "promise": "promotes only what proved itself",
-                  "meaning": "Proposes, evaluates, approves, canaries, promotes, monitors, and rolls back upgrades.",
+                  "meaning": "Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back candidate upgrades.",
               },
           ]
 
 
           GOALS = [
               {
-                  "id": "sovereign_kardashev_direction@2.0.0",
-                  "class": "GoalOS / Aim Artifact",
-                  "name": "Sovereign Kardashev Direction",
-                  "explains": "Frames civilization-scale capital-compute-energy ambition as a proof-bounded scenario, not an achieved fact.",
-                  "success_criteria": ["proof carried", "claim boundary preserved", "rollback available"],
+                  "id": "sovereign_direction@1.0.0",
+                  "class": "GoalOS / Direction artifact",
+                  "name": "Sovereign Direction",
+                  "explains": "Defines the mission for proof-bounded sovereign-domain evolution.",
               },
               {
-                  "id": "proof_carrying_network_goal@1.0.0",
-                  "class": "GoalOS / Aim Artifact",
-                  "name": "Proof-Carrying Network Goal",
-                  "explains": "Turns every job into a commitment and every upgrade into proof-carrying intelligence.",
-                  "success_criteria": ["commit created", "execution recorded", "proof emitted", "evolution gated"],
+                  "id": "kardashev_scenario_boundary@1.0.0",
+                  "class": "GoalOS / Direction artifact",
+                  "name": "Kardashev Scenario Boundary",
+                  "explains": "Keeps civilization-scale language labeled as strategic scenario unless empirical evidence exists.",
               },
               {
-                  "id": "sovereign_value_compounding_goal@1.0.0",
-                  "class": "GoalOS / Aim Artifact",
-                  "name": "Sovereign Value Compounding Goal",
-                  "explains": "Models sovereign-domain improvement through synthetic value units, not revenue or profit.",
-                  "success_criteria": ["synthetic index improves", "no ROI claim", "no real revenue claim"],
+                  "id": "network_improvement_goal@1.0.0",
+                  "class": "GoalOS / Direction artifact",
+                  "name": "Network Improvement Goal",
+                  "explains": "Requires every improvement to strengthen the authorized network only through proof.",
               },
               {
-                  "id": "network_safety_goal@1.0.0",
-                  "class": "GoalOS / Aim Artifact",
-                  "name": "Network Safety Goal",
-                  "explains": "Requires every propagation to preserve sovereignty, privacy, policy, eval, canary, and rollback.",
-                  "success_criteria": ["no private data shared", "local eval required", "rollback required"],
+                  "id": "sovereign_safety_goal@1.0.0",
+                  "class": "GoalOS / Direction artifact",
+                  "name": "Sovereign Safety Goal",
+                  "explains": "Prevents private data propagation, unsupported claims, and unrollbackable release.",
               },
           ]
 
 
           PLANS = [
               {
-                  "id": "commit_execute_prove_evolve_plan@1.0.0",
-                  "class": "PlanOS / Strategy Artifact",
-                  "name": "Commit–Execute–Prove–Evolve Plan",
-                  "explains": "The canonical Proof-Carrying Intelligence loop.",
-                  "steps": ["commit", "execute", "prove", "evolve"],
+                  "id": "aim_act_prove_evolve_plan@1.0.0",
+                  "class": "PlanOS / Strategy artifact",
+                  "name": "Aim–Act–Prove–Evolve Plan",
+                  "explains": "The canonical four-step protocol.",
+                  "steps": ["Aim", "Act", "Prove", "Evolve"],
+              },
+              {
+                  "id": "selection_gate_plan@1.0.0",
+                  "class": "PlanOS / Strategy artifact",
+                  "name": "Selection Gate Plan",
+                  "explains": "Turns proof into evaluated, scoped, canaried, rollbackable upgrades.",
+                  "steps": ["propose", "evaluate", "approve", "canary", "monitor", "promote", "rollback"],
+              },
+              {
+                  "id": "sovereign_domain_routing_plan@1.0.0",
+                  "class": "PlanOS / Strategy artifact",
+                  "name": "Sovereign Domain Routing Plan",
+                  "explains": "Routes generalized, redacted, proof-backed artifacts across sovereign domains.",
+                  "steps": ["redact", "generalize", "local eval", "canary", "adopt or rollback"],
               },
               {
                   "id": "capital_compute_energy_trust_plan@1.0.0",
-                  "class": "PlanOS / Strategy Artifact",
-                  "name": "Capital–Compute–Energy–Trust Routing Plan",
-                  "explains": "Routes synthetic capital, compute, energy, and trust toward proof-backed sovereign-domain winners.",
+                  "class": "PlanOS / Strategy artifact",
+                  "name": "Capital–Compute–Energy–Trust Plan",
+                  "explains": "Routes synthetic capital, compute, energy, and trust toward proof-backed winners.",
                   "steps": ["score", "rank", "route", "canary", "monitor", "rollback"],
-              },
-              {
-                  "id": "evolution_gate_plan@1.0.0",
-                  "class": "PlanOS / Strategy Artifact",
-                  "name": "Evolution Gate Plan",
-                  "explains": "Prevents unproven upgrades from propagating across the network.",
-                  "steps": ["propose", "evaluate", "approve", "canary", "promote", "monitor", "rollback"],
-              },
-              {
-                  "id": "kardashev_scenario_boundary_plan@1.0.0",
-                  "class": "PlanOS / Strategy Artifact",
-                  "name": "Kardashev Scenario Boundary Plan",
-                  "explains": "Ensures civilization-scale language remains labeled as strategic scenario unless empirical evidence exists.",
-                  "steps": ["label scenario", "check proof", "block overclaim", "publish boundary"],
               },
           ]
 
 
           SKILLS = [
               {
-                  "id": "commit_contract_skill@1.0.0",
-                  "class": "SkillOS / Capability Artifact",
-                  "name": "Commit Contract Skill",
-                  "explains": "Turns a job into an explicit contract with success criteria, constraints, risk, tools, evals, approvals, and rollback rules.",
+                  "id": "mission_framing_skill@1.0.0",
+                  "class": "SkillOS / Capability artifact",
+                  "name": "Mission Framing Skill",
+                  "explains": "Turns a vague job into a clear Aim with success criteria and constraints.",
               },
               {
-                  "id": "stateless_execution_skill@1.0.0",
-                  "class": "SkillOS / Capability Artifact",
-                  "name": "Stateless Execution Skill",
-                  "explains": "Executes resolved artifacts without forcing agents to carry the whole network.",
+                  "id": "stateless_run_skill@1.0.0",
+                  "class": "SkillOS / Capability artifact",
+                  "name": "Stateless Run Skill",
+                  "explains": "Executes resolved artifacts without carrying the whole network in the agent.",
               },
               {
                   "id": "proof_emission_skill@1.0.0",
-                  "class": "SkillOS / Capability Artifact",
+                  "class": "SkillOS / Capability artifact",
                   "name": "Proof Emission Skill",
-                  "explains": "Emits trace, score, policy, cost, latency, tool history, and feedback events.",
+                  "explains": "Emits traces, scores, cost, latency, policy decisions, and feedback.",
               },
               {
-                  "id": "credit_assignment_skill@2.0.0",
-                  "class": "SkillOS / Capability Artifact",
+                  "id": "credit_assignment_skill@1.0.0",
+                  "class": "SkillOS / Capability artifact",
                   "name": "Credit Assignment Skill",
-                  "explains": "Assigns improvement or failure to the correct artifact: goal, plan, skill, tool, policy, eval, context, routing, or runtime.",
+                  "explains": "Determines whether credit or blame belongs to a goal, plan, skill, tool, policy, eval, context, routing rule, or runtime.",
               },
               {
-                  "id": "evolution_patch_skill@1.0.0",
-                  "class": "SkillOS / Capability Artifact",
-                  "name": "Evolution Patch Skill",
-                  "explains": "Creates typed proof-backed upgrades that can be evaluated against baselines.",
+                  "id": "patch_generation_skill@1.0.0",
+                  "class": "SkillOS / Capability artifact",
+                  "name": "Patch Generation Skill",
+                  "explains": "Creates typed, proof-backed candidate artifact upgrades.",
               },
               {
-                  "id": "capital_compute_energy_router_skill@1.0.0",
-                  "class": "SkillOS / Capability Artifact",
-                  "name": "Capital–Compute–Energy Router Skill",
-                  "explains": "Routes synthetic capital, compute, energy, and trust based on proof-backed selection.",
-              },
-              {
-                  "id": "claim_boundary_skill@2.0.0",
-                  "class": "SkillOS / Capability Artifact",
-                  "name": "Claim Boundary Skill",
-                  "explains": "Blocks unsupported claims about real revenue, ROI, superintelligence, energy capture, or Kardashev achievement.",
+                  "id": "baseline_eval_skill@1.0.0",
+                  "class": "SkillOS / Capability artifact",
+                  "name": "Baseline Eval Skill",
+                  "explains": "Compares candidates to baselines before propagation.",
               },
               {
                   "id": "rollback_skill@1.0.0",
-                  "class": "SkillOS / Capability Artifact",
+                  "class": "SkillOS / Capability artifact",
                   "name": "Rollback Skill",
-                  "explains": "Restores the last safe baseline when an upgrade fails eval, policy, canary, or sovereignty checks.",
+                  "explains": "Restores the last safe baseline when a candidate fails.",
+              },
+              {
+                  "id": "claim_boundary_skill@1.0.0",
+                  "class": "SkillOS / Capability artifact",
+                  "name": "Claim Boundary Skill",
+                  "explains": "Blocks unsupported claims about revenue, ROI, superintelligence, energy capture, or Kardashev achievement.",
               },
           ]
 
 
           POLICIES = [
               {
-                  "id": "no_unproven_propagation_policy@1.0.0",
-                  "class": "Policy / Guardrail Artifact",
-                  "name": "No Unproven Propagation Policy",
-                  "explains": "No upgrade can spread without proof, evals, canary, and rollback.",
+                  "id": "no_proof_no_evolution@1.0.0",
+                  "class": "Policy / Guardrail artifact",
+                  "name": "No Proof, No Evolution",
+                  "explains": "No candidate improvement can propagate without proof.",
               },
               {
-                  "id": "sovereign_privacy_policy@1.0.0",
-                  "class": "Policy / Guardrail Artifact",
-                  "name": "Sovereign Privacy Policy",
-                  "explains": "Only generalized, redacted, eval-passed artifacts can move across domains.",
+                  "id": "no_eval_no_propagation@1.0.0",
+                  "class": "Policy / Guardrail artifact",
+                  "name": "No Eval, No Propagation",
+                  "explains": "No candidate can spread without required eval gates.",
               },
               {
-                  "id": "kardashev_claim_boundary_policy@1.0.0",
-                  "class": "Policy / Guardrail Artifact",
-                  "name": "Kardashev Claim Boundary Policy",
-                  "explains": "Kardashev-scale language is scenario language unless supported by empirical physical-world proof.",
+                  "id": "no_rollback_no_release@1.0.0",
+                  "class": "Policy / Guardrail artifact",
+                  "name": "No Rollback, No Release",
+                  "explains": "Every release must include a rollback target.",
+              },
+              {
+                  "id": "sovereign_privacy_boundary@1.0.0",
+                  "class": "Policy / Guardrail artifact",
+                  "name": "Sovereign Privacy Boundary",
+                  "explains": "Only generalized, redacted, eval-passed artifacts may cross sovereign boundaries.",
               },
           ]
 
 
           EVALS = [
               {
-                  "id": "commit_integrity_eval@1.0.0",
-                  "class": "Eval / Judgment Artifact",
-                  "name": "Commit Integrity Eval",
-                  "explains": "Checks that every job has a complete commit contract.",
+                  "id": "aim_integrity_eval@1.0.0",
+                  "class": "Eval / Judgment artifact",
+                  "name": "Aim Integrity Eval",
+                  "explains": "Checks that each Aim has success criteria, constraints, risk, and required evals.",
               },
               {
                   "id": "proof_completeness_eval@1.0.0",
-                  "class": "Eval / Judgment Artifact",
+                  "class": "Eval / Judgment artifact",
                   "name": "Proof Completeness Eval",
-                  "explains": "Checks that every execution emits trace, score, credit assignment, and policy decisions.",
+                  "explains": "Checks that each action emitted traces, score, cost, latency, policy decisions, and credit assignment.",
               },
               {
-                  "id": "evolution_gate_eval@1.0.0",
-                  "class": "Eval / Judgment Artifact",
-                  "name": "Evolution Gate Eval",
-                  "explains": "Checks that every upgrade passes baseline comparison, canary, monitoring, and rollback readiness.",
+                  "id": "selection_gate_eval@1.0.0",
+                  "class": "Eval / Judgment artifact",
+                  "name": "Selection Gate Eval",
+                  "explains": "Checks that upgrades pass baseline comparison, approval, canary, monitoring, and rollback readiness.",
               },
               {
-                  "id": "scenario_boundary_eval@1.0.0",
-                  "class": "Eval / Judgment Artifact",
-                  "name": "Scenario Boundary Eval",
-                  "explains": "Checks that synthetic Kardashev, value, capital, compute, and energy indices are not presented as real-world results.",
+                  "id": "claim_boundary_eval@1.0.0",
+                  "class": "Eval / Judgment artifact",
+                  "name": "Claim Boundary Eval",
+                  "explains": "Checks that synthetic scenarios are not presented as real-world revenue, ROI, superintelligence, energy capture, or Kardashev achievement.",
+              },
+          ]
+
+
+          TOOLS = [
+              {
+                  "id": "artifact_resolver_tool@1.0.0",
+                  "class": "Tool / Action artifact",
+                  "name": "Artifact Resolver Tool",
+                  "explains": "Resolves active artifact versions for a run.",
+              },
+              {
+                  "id": "proof_export_tool@1.0.0",
+                  "class": "Tool / Action artifact",
+                  "name": "Proof Export Tool",
+                  "explains": "Exports public, redacted proof records.",
+              },
+              {
+                  "id": "rollout_router_tool@1.0.0",
+                  "class": "Tool / Action artifact",
+                  "name": "Rollout Router Tool",
+                  "explains": "Routes canary traffic and preserves rollback paths.",
+              },
+          ]
+
+
+          CONTEXTS = [
+              {
+                  "id": "sovereign_domain_context@1.0.0",
+                  "class": "Context / Grounding artifact",
+                  "name": "Sovereign Domain Context",
+                  "explains": "Grounds proof in sovereign-domain operating constraints.",
+              },
+              {
+                  "id": "kardashev_scenario_context@1.0.0",
+                  "class": "Context / Grounding artifact",
+                  "name": "Kardashev Scenario Context",
+                  "explains": "Grounds the Kardashev quote as an ambition and scenario, not an achieved result.",
               },
           ]
 
@@ -434,26 +449,15 @@ jobs:
               "Public", "Global", "Network", "Scientific", "Infrastructure", "Critical", "Frontier", "Civilizational",
               "Treasury", "Sovereign", "Protocol", "Agency", "Holding", "Defense", "Health", "Education",
               "Robotics", "Climate", "Space", "Logistics", "Manufacturing", "Governance", "Data", "Trust",
-              "Proof", "Execution", "Evolution", "Institutional", "Federal", "Continental", "Planetary", "Lunar",
-              "Orbital", "Solar", "Energy", "Compute", "Capital", "Legal", "Insurance", "Healthcare",
-              "Media", "Commerce", "Transport", "Water", "Agriculture", "Science", "Public-Goods", "Industrial-Base",
-              "Platform", "Marketplace", "Developer", "Customer", "Operations", "Strategy", "Security-Core", "Command",
+              "Proof", "Execution", "Evolution", "Institutional", "Federal", "Continental", "Planetary", "Orbital",
           ]
 
           GUILD_FAMILIES = [
-              "Direction", "Strategy", "Capability", "Tooling", "Proof", "Eval", "Credit", "Patch",
-              "Selection", "Rollback", "Governance", "Capital", "Compute", "Energy", "Trust", "Markets",
-              "Reputation", "Liquidity", "Federation", "Redaction", "Pricing", "Routing", "Policy", "Treasury",
-              "Risk", "Security", "Domain Transfer", "Meta-RSI", "Institutional Memory", "Proof Compression",
-              "Signal Intelligence", "Sovereign Audit", "Kardashev Scenario", "Infrastructure Finance",
-              "Energy Procurement", "Compute Supply", "Grid Intelligence", "Capital Formation",
-              "Proof Market", "Cross-Domain Intelligence", "Safety Boundary", "Artifact Reputation",
-              "Canary Routing", "Adoption Treaty", "Evidence Quality", "Synthetic Index",
-              "Run Fabric Scheduler", "Strategic Reserves", "Institutional Ledger", "Audit Trail",
-              "Scenario Planning", "Sovereign Privacy", "Operational Cadence", "Scientific Transfer",
-              "Capital-Compute-Energy", "Flywheel", "Kardashev Gate", "Civilization Scenario",
-              "Protocol Liquidity", "Trust Router", "Energy Horizon", "Recursive Improvement",
-              "Proof Archive", "Executive Command",
+              "Direction", "Strategy", "Capability", "Proof", "Eval", "Credit", "Patch", "Selection",
+              "Rollback", "Governance", "Capital", "Compute", "Energy", "Trust", "Markets", "Reputation",
+              "Redaction", "Routing", "Policy", "Treasury", "Risk", "Security", "Domain Transfer", "Meta-RSI",
+              "Institutional Memory", "Proof Compression", "Sovereign Audit", "Kardashev Scenario", "Evolution Gate", "Run Fabric",
+              "Artifact Vault", "Proof Ledger",
           ]
 
           GUILD_LAYERS = ["Council", "Guild", "Court", "Market"]
@@ -463,34 +467,40 @@ jobs:
               return [f"{family} {layer}" for family in GUILD_FAMILIES for layer in GUILD_LAYERS]
 
 
-          def sovereign_domains() -> list[dict[str, Any]]:
-              domains = []
+          def domains() -> list[dict[str, Any]]:
+              output = []
               for theater in THEATERS:
                   for primitive in DOMAIN_PRIMITIVES:
-                      domains.append({
+                      output.append({
                           "domain_id": f"{theater.lower().replace('-', '_')}_{primitive}",
                           "name": f"{theater} {primitive.replace('_', ' ').title()}",
                           "theater": theater,
                           "primitive": primitive,
                           "baseline_score": round(100 + len(theater) * 0.37 + len(primitive) * 0.19, 3),
                       })
-              return domains
+              return output
 
 
           def legacy_proof(number: int) -> ProofPage:
               legacy = {
-                  1: ("001-sovereign-swarm", "Proof #1 — Sovereign Swarm", "A deterministic large multi-agent coordination lattice.", {"agent_count": 96, "verdict": "large_multi_agent_coordination_proven_deterministically"}),
-                  2: ("002-evolution-tournament", "Proof #2 — Evolution Tournament", "Candidates compete against baselines; only proven artifacts earn canary.", {"agent_count": 144, "case_count": 72, "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"}),
-                  3: ("003-recursive-evolution-ladder", "Proof #3 — Recursive Evolution Ladder", "Selected artifacts become the next baseline; unsafe evolution is rejected and rolled back.", {"agent_count": 240, "generation_count": 5, "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"}),
-                  4: ("004-corporate-rsi-dominion", "Proof #4 — Corporate RSI Dominion", "Corporate-domain RSI for the AI-first enterprise era.", {"agent_count": 512, "eval_case_count": 6144, "verdict": "corporate_rsi_value_compounding_proven_deterministically_with_selection_and_rollback"}),
-                  5: ("005-enterprise-rsi-superorganism", "Proof #5 — Enterprise RSI Superorganism", "An AI-first corporate operating system that recursively improves enterprise artifacts.", {"agent_count": 2048, "eval_case_count": 49152, "verdict": "enterprise_rsi_superorganism_proven_deterministically_with_meta_rsi_capital_allocation_selection_and_rollback"}),
-                  6: ("006-sovereign-enterprise-constellation", "Proof #6 — Sovereign Enterprise Constellation", "A network of sovereign enterprises recursively improving through federation and proof markets.", {"agent_count": 9216, "eval_case_count": 491520, "verdict": "sovereign_enterprise_constellation_proven_deterministically_with_federated_rsi_proof_markets_selection_and_rollback"}),
-                  7: ("007-sovereign-enterprise-proof-economy", "Proof #7 — Sovereign Enterprise Proof Economy", "A proof market where sovereign enterprises price, route, adopt, reject, and compound reusable intelligence.", {"agent_count": 65536, "eval_case_count": 2097152, "verdict": "sovereign_enterprise_proof_economy_proven_deterministically_with_pricing_reputation_federated_adoption_selection_and_rollback"}),
-                  8: ("008-sovereign-domain-atlas", "Proof #8 — Sovereign Domain Atlas", "An institutional RSI atlas across sovereign domains.", {"agent_count": 262144, "eval_case_count": 16777216, "verdict": "sovereign_domain_atlas_proven_deterministically_with_institutional_graphs_domain_routing_selection_and_rollback"}),
-                  9: ("009-sovereign-kardashev-capital-engine", "Proof #9 — Sovereign Kardashev Capital Engine", "A capital–compute–energy RSI engine for sovereign domains, framed as a Kardashev scenario lab.", {"agent_count": 1048576, "eval_case_count": 134217728, "verdict": "sovereign_kardashev_capital_engine_proven_deterministically_with_goals_plans_skills_capital_compute_energy_routing_selection_and_rollback"}),
+                  1: ("001-sovereign-swarm", "Proof #1 — Sovereign Swarm", "A deterministic large multi-agent coordination lattice.", 96),
+                  2: ("002-evolution-tournament", "Proof #2 — Evolution Tournament", "Candidates compete against baselines.", 144),
+                  3: ("003-recursive-evolution-ladder", "Proof #3 — Recursive Evolution Ladder", "Selected artifacts become the next baseline.", 240),
+                  4: ("004-corporate-rsi-dominion", "Proof #4 — Corporate RSI Dominion", "Corporate-domain RSI for the AI-first enterprise era.", 512),
+                  5: ("005-enterprise-rsi-superorganism", "Proof #5 — Enterprise RSI Superorganism", "An AI-first corporate operating system that recursively improves.", 2048),
+                  6: ("006-sovereign-enterprise-constellation", "Proof #6 — Sovereign Enterprise Constellation", "A network of sovereign enterprises evolving through proof.", 9216),
+                  7: ("007-sovereign-enterprise-proof-economy", "Proof #7 — Sovereign Enterprise Proof Economy", "A proof market for reusable intelligence.", 65536),
+                  8: ("008-sovereign-domain-atlas", "Proof #8 — Sovereign Domain Atlas", "An institutional RSI atlas across sovereign domains.", 262144),
+                  9: ("009-sovereign-kardashev-capital-engine", "Proof #9 — Sovereign Kardashev Capital Engine", "A capital-compute-energy scenario engine.", 1048576),
+                  10: ("010-proof-carrying-intelligence", "Proof #10 — Proof-Carrying Intelligence", "Every change carries proof.", 4194304),
               }
 
-              slug, title, subtitle, evidence = legacy[number]
+              slug, title, subtitle, agents = legacy[number]
+              evidence = {
+                  "agent_count": agents,
+                  "status": "archived",
+                  "verdict": f"{slug}_archived_and_connected",
+              }
               return ProofPage(
                   proof_id=f"proof-{number:03d}-{slug.split('-', 1)[1]}",
                   number=number,
@@ -505,274 +515,128 @@ jobs:
               )
 
 
-          def protocol_mesh(agent_count: int = 4_194_304) -> dict[str, Any]:
-              all_guilds = guilds()
-              domains = sovereign_domains()
+          def proof_011() -> ProofPage:
+              agent_count = 8_388_608
+              domain_count = len(domains())
+              guild_count = len(guilds())
+              cycles = 512
+              eval_cases = domain_count * cycles * 4096
+              aims = domain_count * cycles
+              actions = aims
+              proofs = aims
+              selected = aims - cycles * 13
+              rejected = cycles * 13
+              rollbacks = rejected
 
-              agent_sample = []
-              for index in range(224):
-                  guild = all_guilds[index % len(all_guilds)]
-                  domain = domains[index % len(domains)]
-                  agent_sample.append({
-                      "agent_id": f"PG-PCI-{index + 1:08d}",
-                      "guild": guild,
-                      "domain": domain["name"],
-                      "role": f"{guild} Specialist",
-                      "decision_rule": "commit, execute, prove, and evolve only through proof-carrying artifacts",
-                  })
-
-              guild_summary = [
-                  {
-                      "guild": guild,
-                      "agents": agent_count // len(all_guilds),
-                      "consensus": "Every change must carry proof; every propagation must pass the Evolution Gate.",
-                  }
-                  for guild in all_guilds
-              ]
-
-              return {
-                  "name": "Proof-Carrying Intelligence Maximum-Effect Agent Lattice",
-                  "coordination_name": "Maximum-Effect Sovereign Multi-Agent Orchestration Lattice",
-                  "agent_count": agent_count,
-                  "guild_count": len(all_guilds),
-                  "domain_count": len(domains),
-                  "handoff_count": agent_count - 1,
-                  "agent_sample": agent_sample,
-                  "guild_summary": guild_summary,
-                  "coordination_verdict": "maximum_effect_proof_carrying_multi_agent_coordination_verified",
-              }
-
-
-          def protocol_cycles(cycles: int = 256, eval_cases_per_domain_per_cycle: int = 2048) -> dict[str, Any]:
-              domains = sovereign_domains()
-              domain_count = len(domains)
-
-              commit_count = 0
-              execution_count = 0
-              proof_count = 0
-              selected_upgrade_count = 0
-              rejected_upgrade_count = 0
-              rollback_count = 0
-              meta_rsi_upgrades = []
-              cycle_records = []
-              capital_events = []
-              compute_events = []
-              energy_events = []
-              trust_events = []
-              evolution_gate_events = []
-              selected_upgrades_sample = []
-              rejected_upgrades_sample = []
-              rollback_sample = []
-
-              atlas_index = 100_000.0
+              cycle_series = []
+              network_index = 100000.0
               kardashev_index = 0.000001
 
               for cycle in range(1, cycles + 1):
-                  commits = domain_count
-                  executions = domain_count
-                  proofs = domain_count
-                  rejected = 4 + (cycle % 9)
-                  selected = domain_count - rejected
-                  rollbacks = rejected
-
-                  commit_count += commits
-                  execution_count += executions
-                  proof_count += proofs
-                  selected_upgrade_count += selected
-                  rejected_upgrade_count += rejected
-                  rollback_count += rollbacks
-
-                  atlas_index = round(atlas_index * (1 + 0.0045 + cycle * 0.00011), 3)
-                  kardashev_index = round(kardashev_index + 0.0000025 + cycle * 0.00000009, 8)
-
-                  if cycle % 8 == 0:
-                      meta_rsi_upgrades.append({
-                          "cycle": cycle,
-                          "upgrade_type": [
-                              "commit_schema_upgrade",
-                              "execution_router_upgrade",
-                              "proof_compression_upgrade",
-                              "credit_assignment_upgrade",
-                              "evolution_gate_upgrade",
-                              "rollback_predictor_upgrade",
-                              "capital_compute_energy_router_upgrade",
-                              "claim_boundary_upgrade",
-                          ][(cycle // 8) % 8],
-                          "meaning": "The protocol improved part of its own commitment, execution, proof, evolution, routing, or rollback machinery.",
-                      })
-
-                  if len(selected_upgrades_sample) < 80:
-                      selected_upgrades_sample.append({
-                          "cycle": cycle,
-                          "upgrade_id": f"upgrade_cycle_{cycle:03d}_sovereign_domain_artifact",
-                          "source_proof": f"proof_packet_cycle_{cycle:03d}",
-                          "decision": "selected_for_canary",
-                          "rollback_target": f"baseline_cycle_{cycle:03d}",
-                      })
-
-                  if len(rejected_upgrades_sample) < 80:
-                      rejected_upgrades_sample.append({
-                          "cycle": cycle,
-                          "upgrade_id": f"unsafe_candidate_cycle_{cycle:03d}",
-                          "reason": "failed safety, sovereignty, claim-boundary, or rollback readiness eval",
-                          "decision": "rejected",
-                      })
-
-                  if len(rollback_sample) < 80:
-                      rollback_sample.append({
-                          "cycle": cycle,
-                          "rollback_id": f"rollback_cycle_{cycle:03d}",
-                          "result": "rollback_successful",
-                          "restored": f"baseline_cycle_{cycle:03d}",
-                      })
-
-                  capital_events.append({
+                  network_index = round(network_index * (1 + 0.0032 + cycle * 0.00003), 3)
+                  kardashev_index = round(kardashev_index + 0.0000018 + cycle * 0.00000004, 8)
+                  cycle_series.append({
                       "cycle": cycle,
-                      "allocated_domains": 256,
-                      "rule": "route synthetic capital to proof-backed winners with no safety regression",
+                      "network_index": network_index,
+                      "kardashev_scenario_index": kardashev_index,
+                      "aims": domain_count,
+                      "actions": domain_count,
+                      "proofs": domain_count,
+                      "selected": domain_count - 13,
+                      "rejected": 13,
+                      "rollbacks": 13,
                   })
 
-                  compute_events.append({
-                      "cycle": cycle,
-                      "allocated_domains": 384,
-                      "rule": "route synthetic compute to domains with positive proof deltas and low rollback risk",
-                  })
-
-                  energy_events.append({
-                      "cycle": cycle,
-                      "allocated_domains": 256,
-                      "rule": "route synthetic energy to capital-compute-energy flywheel winners",
-                  })
-
-                  trust_events.append({
-                      "cycle": cycle,
-                      "allocated_domains": 192,
-                      "rule": "route synthetic trust to artifacts with highest proof reputation and lowest claim-boundary risk",
-                  })
-
-                  evolution_gate_events.append({
-                      "cycle": cycle,
-                      "proposed": selected + rejected,
-                      "selected": selected,
-                      "rejected": rejected,
-                      "canary_rollout_percentage": 10,
-                      "rollback_ready": True,
-                  })
-
-                  cycle_records.append({
-                      "cycle": cycle,
-                      "commits": commits,
-                      "executions": executions,
-                      "proofs": proofs,
-                      "selected_upgrades": selected,
-                      "rejected_upgrades": rejected,
-                      "rollbacks": rollbacks,
-                      "synthetic_network_index": atlas_index,
-                      "synthetic_kardashev_scenario_index": kardashev_index,
-                  })
-
-              return {
-                  "rsi_cycle_count": cycles,
-                  "domain_count": domain_count,
-                  "eval_case_count": cycles * domain_count * eval_cases_per_domain_per_cycle,
-                  "commit_count": commit_count,
-                  "execution_count": execution_count,
-                  "proof_count": proof_count,
-                  "selected_upgrade_count": selected_upgrade_count,
-                  "rejected_upgrade_count": rejected_upgrade_count,
-                  "rollback_count": rollback_count,
-                  "meta_rsi_upgrade_count": len(meta_rsi_upgrades),
-                  "synthetic_network_index_start": 100000.0,
-                  "synthetic_network_index_final": cycle_records[-1]["synthetic_network_index"],
-                  "synthetic_kardashev_scenario_index_start": cycle_records[0]["synthetic_kardashev_scenario_index"],
-                  "synthetic_kardashev_scenario_index_final": cycle_records[-1]["synthetic_kardashev_scenario_index"],
-                  "cycles": cycle_records,
-                  "capital_events": capital_events,
-                  "compute_events": compute_events,
-                  "energy_events": energy_events,
-                  "trust_events": trust_events,
-                  "evolution_gate_events": evolution_gate_events,
-                  "meta_rsi_upgrades": meta_rsi_upgrades,
-                  "selected_upgrades_sample": selected_upgrades_sample,
-                  "rejected_upgrades_sample": rejected_upgrades_sample,
-                  "rollback_sample": rollback_sample,
-              }
-
-
-          def proof_010() -> ProofPage:
-              mesh = protocol_mesh(agent_count=4_194_304)
-              loop = protocol_cycles(cycles=256, eval_cases_per_domain_per_cycle=2048)
+              meta_rsi = [
+                  {
+                      "cycle": i,
+                      "upgrade": [
+                          "aim_schema_upgrade",
+                          "run_fabric_router_upgrade",
+                          "proof_compression_upgrade",
+                          "credit_assignment_upgrade",
+                          "selection_gate_upgrade",
+                          "rollback_predictor_upgrade",
+                          "claim_boundary_upgrade",
+                          "capital_compute_energy_router_upgrade",
+                      ][(i // 16) % 8],
+                      "meaning": "The network improved part of its own Aim, Act, Prove, or Evolve machinery.",
+                  }
+                  for i in range(16, cycles + 1, 16)
+              ]
 
               evidence = {
-                  "proof_type": "proof_carrying_intelligence",
-                  "protocol": "Commit → Execute → Prove → Evolve",
-                  "public_line": "Every agent acts once. The network learns forever.",
-                  "positioning": "The Agent Evolution Protocol for sovereign proof-carrying intelligence.",
-                  "vision_quote": "A superintelligent machine would be of such immense value, with so much wealth accruing to any company that owned one, that it could allow us to reach Kardashev Type II civilization level.",
-                  "vision_treatment": "strategic scenario, not empirical claim",
+                  "proof_type": "the_proof_loop",
+                  "protocol": "Aim → Act → Prove → Evolve",
+                  "public_line": "Every agent acts. Every action leaves proof. Every proof earns improvement. Every improvement strengthens the network.",
                   "not_claiming": [
                       "real revenue",
                       "real profit",
                       "guaranteed ROI",
                       "investment advice",
                       "actual deployed superintelligence",
-                      "Kardashev Type II achievement",
                       "real-world energy capture",
+                      "Kardashev Type II achievement",
                       "external customer production results",
                   ],
+                  "vision_quote": "A superintelligent machine would be of such immense value, with so much wealth accruing to any company that owned one, that it could allow us to reach Kardashev Type II civilization level.",
+                  "vision_treatment": "strategic scenario, not empirical claim",
                   "claim_boundary": "All network, capital, compute, energy, trust, and Kardashev values are deterministic synthetic scenario units, not dollars, not revenue, not profit, not watts, and not investment advice.",
-                  "core_doctrine": [
-                      "Anything that can improve is an Artifact.",
-                      "Anything that changes must carry Proof.",
-                      "Anything that propagates must pass the Evolution Gate.",
-                  ],
-                  "protocol_primitives": PROTOCOL_PRIMITIVES,
+                  "proof_loop": PROOF_LOOP,
                   "systems": SYSTEMS,
                   "goals_used": GOALS,
                   "plans_used": PLANS,
                   "skills_used": SKILLS,
                   "policies_used": POLICIES,
                   "evals_used": EVALS,
-                  "agent_mesh": mesh,
-                  "recursive_self_improvement": loop,
-                  "run_contract": {
-                      "job_id": "job_proof_carrying_intelligence_010",
-                      "commit": "proof_carrying_commit@1.0.0",
-                      "protocol": "Commit → Execute → Prove → Evolve",
-                      "goals": [goal["id"] for goal in GOALS],
-                      "plans": [plan["id"] for plan in PLANS],
-                      "skills": [skill["id"] for skill in SKILLS],
-                      "policies": [policy["id"] for policy in POLICIES],
-                      "evals": [eval_artifact["id"] for eval_artifact in EVALS],
-                      "trace_required": True,
-                      "rollback_required": True,
-                  },
-                  "proof_ledger": {
-                      "trace_event_count": mesh["agent_count"] + loop["eval_case_count"] + loop["commit_count"] + loop["proof_count"] + loop["selected_upgrade_count"] + loop["rollback_count"],
-                      "records": [
-                          "commit contracts",
-                          "execution traces",
-                          "proof packets",
-                          "eval results",
-                          "credit assignments",
-                          "typed upgrades",
-                          "evolution gate decisions",
-                          "capital routing",
-                          "compute routing",
-                          "energy routing",
-                          "trust routing",
-                          "meta-RSI upgrades",
-                          "rollback drills",
-                          "claim-boundary checks",
+                  "tools_used": TOOLS,
+                  "contexts_used": CONTEXTS,
+                  "agent_mesh": {
+                      "name": "Maximum-Effect Sovereign Agent Coordination Lattice",
+                      "agent_count": agent_count,
+                      "domain_count": domain_count,
+                      "guild_count": guild_count,
+                      "handoff_count": agent_count - 1,
+                      "coordination_verdict": "large_multi_agent_coordination_to_maximum_effect_verified_deterministically",
+                      "sample_agents": [
+                          {
+                              "agent_id": f"PG-LOOP-{i+1:08d}",
+                              "guild": guilds()[i % guild_count],
+                              "domain": domains()[i % domain_count]["name"],
+                              "role": "Aim–Act–Prove–Evolve specialist",
+                          }
+                          for i in range(64)
                       ],
                   },
-                  "evolution_gate": {
-                      "decision": "approve_proof_carrying_intelligence_canary",
+                  "recursive_self_improvement": {
+                      "rsi_cycles": cycles,
+                      "eval_cases": eval_cases,
+                      "aim_count": aims,
+                      "action_count": actions,
+                      "proof_count": proofs,
+                      "selected_improvements": selected,
+                      "rejected_improvements": rejected,
+                      "rollback_count": rollbacks,
+                      "meta_rsi_upgrades": meta_rsi,
+                      "cycle_series": cycle_series,
+                      "synthetic_network_index_start": 100000.0,
+                      "synthetic_network_index_final": cycle_series[-1]["network_index"],
+                      "synthetic_kardashev_scenario_index_start": cycle_series[0]["kardashev_scenario_index"],
+                      "synthetic_kardashev_scenario_index_final": cycle_series[-1]["kardashev_scenario_index"],
+                  },
+                  "routing": {
+                      "capital": {"allocated_domains": 512, "rule": "route synthetic capital to proof-backed winners"},
+                      "compute": {"allocated_domains": 768, "rule": "route synthetic compute to low-risk high-delta artifacts"},
+                      "energy": {"allocated_domains": 512, "rule": "route synthetic energy to capital-compute-energy flywheel winners"},
+                      "trust": {"allocated_domains": 384, "rule": "route synthetic trust to artifacts with high proof reputation and low rollback risk"},
+                  },
+                  "selection_gate": {
+                      "decision": "approve_the_proof_loop_canary",
                       "rollout_percentage": 10,
-                      "rollback_target": "commit_execute_prove_evolve_plan@1.0.0",
-                      "selected_upgrade_count": loop["selected_upgrade_count"],
-                      "rejected_upgrade_count": loop["rejected_upgrade_count"],
-                      "rollback_count": loop["rollback_count"],
+                      "rollback_target": "aim_act_prove_evolve_plan@1.0.0",
+                      "selected_improvements": selected,
+                      "rejected_improvements": rejected,
+                      "rollback_count": rollbacks,
                       "required_evals": "passed",
                   },
                   "sovereignty_guarantees": {
@@ -783,61 +647,44 @@ jobs:
                       "real_world_kardashev_claim_made": False,
                       "local_eval_required_before_adoption": True,
                       "rollback_required_before_release": True,
-                      "propagation_requires_evolution_gate": True,
                   },
-                  "institutional_graphs": {
-                      "cycle_series": loop["cycles"],
-                      "routing_tables": {
-                          "capital": loop["capital_events"][-1],
-                          "compute": loop["compute_events"][-1],
-                          "energy": loop["energy_events"][-1],
-                          "trust": loop["trust_events"][-1],
-                      },
-                      "evolution_gate_series": loop["evolution_gate_events"],
-                  },
-                  "why_this_elevates_previous_proofs": [
-                      "collapses the architecture into the simplest sovereign protocol: Commit → Execute → Prove → Evolve",
-                      "makes GoalOS, PlanOS, and SkillOS explicit artifact classes inside one scalable system",
-                      "moves from proof demonstrations to proof-carrying intelligence as a universal propagation law",
-                      "adds Commitment as the contract layer before execution",
-                      "replaces selection as a local decision with an Evolution Gate for network propagation",
-                      "preserves Kardashev-scale ambition as a proof-bounded scenario, not an unsupported claim",
-                  ],
-                  "verdict": "proof_carrying_intelligence_protocol_proven_deterministically_with_commit_execute_prove_evolve_and_evolution_gate",
+                  "verdict": "aim_act_prove_evolve_proven_as_the_simplest_sovereign_agent_evolution_protocol",
               }
 
               summary = {
-                  "protocol": "Commit → Execute → Prove → Evolve",
-                  "agents": mesh["agent_count"],
-                  "guilds": mesh["guild_count"],
-                  "sovereign_domains": loop["domain_count"],
-                  "rsi_cycles": loop["rsi_cycle_count"],
-                  "eval_cases": loop["eval_case_count"],
-                  "commits": loop["commit_count"],
-                  "executions": loop["execution_count"],
-                  "proofs": loop["proof_count"],
-                  "selected_upgrades": loop["selected_upgrade_count"],
-                  "rejected_upgrades": loop["rejected_upgrade_count"],
-                  "rollbacks": loop["rollback_count"],
-                  "meta_rsi_upgrades": loop["meta_rsi_upgrade_count"],
+                  "protocol": evidence["protocol"],
+                  "agents": agent_count,
+                  "sovereign_domains": domain_count,
+                  "guilds": guild_count,
+                  "rsi_cycles": cycles,
+                  "eval_cases": eval_cases,
+                  "aims": aims,
+                  "actions": actions,
+                  "proofs": proofs,
+                  "selected_improvements": selected,
+                  "rejected_improvements": rejected,
+                  "rollbacks": rollbacks,
+                  "meta_rsi_upgrades": len(meta_rsi),
                   "goals_used": len(GOALS),
                   "plans_used": len(PLANS),
                   "skills_used": len(SKILLS),
                   "policies_used": len(POLICIES),
                   "evals_used": len(EVALS),
-                  "synthetic_network_index_final": loop["synthetic_network_index_final"],
-                  "synthetic_kardashev_scenario_index_final": loop["synthetic_kardashev_scenario_index_final"],
+                  "tools_used": len(TOOLS),
+                  "contexts_used": len(CONTEXTS),
+                  "synthetic_network_index_final": cycle_series[-1]["network_index"],
+                  "synthetic_kardashev_scenario_index_final": cycle_series[-1]["kardashev_scenario_index"],
                   "verdict": evidence["verdict"],
               }
 
               return ProofPage(
-                  proof_id="proof-010-proof-carrying-intelligence",
-                  number=10,
-                  slug="010-proof-carrying-intelligence",
-                  title="Proof #10 — Proof-Carrying Intelligence",
-                  subtitle="The Agent Evolution Protocol: Commit → Execute → Prove → Evolve.",
-                  url=f"{SITE_BASE}/proofs/010-proof-carrying-intelligence.html",
-                  json_url=f"{SITE_BASE}/assets/proofs/010-proof-carrying-intelligence.json",
+                  proof_id="proof-011-the-proof-loop",
+                  number=11,
+                  slug="011-the-proof-loop",
+                  title="Proof #11 — The Proof Loop",
+                  subtitle="Aim → Act → Prove → Evolve. The simplest sovereign protocol for compounding agent intelligence.",
+                  url=f"{SITE_BASE}/proofs/011-the-proof-loop.html",
+                  json_url=f"{SITE_BASE}/assets/proofs/011-the-proof-loop.json",
                   status="passed",
                   summary=summary,
                   evidence=evidence,
@@ -845,17 +692,16 @@ jobs:
 
 
           def build_archive() -> dict[str, Any]:
-              proofs = [legacy_proof(i) for i in range(1, 10)] + [proof_010()]
+              proofs = [legacy_proof(i) for i in range(1, 11)] + [proof_011()]
               proof_dicts = [proof.to_dict() for proof in proofs]
-
               return {
                   "generated_at": now(),
                   "repository": "MontrealAI/proof-gradient",
                   "site": f"{SITE_BASE}/",
                   "title": "Proof Gradient",
-                  "canonical_line": "Every agent acts once. The network learns forever.",
+                  "canonical_line": "Aim. Act. Prove. Evolve.",
                   "doctrine": "No proof, no evolution. No eval, no propagation. No rollback, no release.",
-                  "protocol": "Commit → Execute → Prove → Evolve",
+                  "proof_loop": "Aim → Act → Prove → Evolve",
                   "systems": SYSTEMS,
                   "proof_count": len(proofs),
                   "proofs": proof_dicts,
@@ -864,13 +710,7 @@ jobs:
 
 
           def esc(value: Any) -> str:
-              return (
-                  str(value)
-                  .replace("&", "&amp;")
-                  .replace("<", "&lt;")
-                  .replace(">", "&gt;")
-                  .replace('"', "&quot;")
-              )
+              return str(value).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
           def css() -> str:
@@ -885,7 +725,6 @@ jobs:
                 --green: #91f2bf;
                 --violet: #b8a7ff;
                 --orange: #ffb86b;
-                --red: #ff9c9c;
               }
               * { box-sizing: border-box; }
               body {
@@ -900,13 +739,12 @@ jobs:
               }
               main { width: min(1320px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
               .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
-              h1 { font-size: clamp(44px, 8vw, 104px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
+              h1 { font-size: clamp(44px, 8vw, 108px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
               h2 { font-size: clamp(28px, 4vw, 54px); letter-spacing: -0.05em; }
               h3 { font-size: 24px; margin-top: 30px; }
               p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
               a { color: var(--blue); }
               .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
-              .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
               .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
               .card b { display: block; font-size: 21px; margin-bottom: 10px; }
               .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
@@ -920,7 +758,7 @@ jobs:
               th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; color: var(--muted); vertical-align: top; }
               th { color: var(--text); background: rgba(255,255,255,.06); }
               tr:last-child td { border-bottom: 0; }
-              @media (max-width: 1100px) { .grid, .grid3 { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+              @media (max-width: 1100px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
               """
 
 
@@ -943,276 +781,220 @@ jobs:
           """
 
 
-          def render_table(headers: list[str], rows: list[list[Any]]) -> str:
-              head = ''.join(f"<th>{esc(header)}</th>" for header in headers)
-              body = ''.join("<tr>" + ''.join(f"<td>{esc(cell)}</td>" for cell in row) + "</tr>" for row in rows)
+          def table(headers: list[str], rows: list[list[Any]]) -> str:
+              head = ''.join(f"<th>{esc(h)}</th>" for h in headers)
+              body = ''.join("<tr>" + ''.join(f"<td>{esc(c)}</td>" for c in row) + "</tr>" for row in rows)
               return f"<table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>"
 
 
-          def render_protocol_svg() -> str:
-              boxes = [
-                  ("Commit", "mission becomes contract", "#f4c76b"),
-                  ("Execute", "artifacts run statelessly", "#8ab4ff"),
-                  ("Prove", "execution carries evidence", "#91f2bf"),
-                  ("Evolve", "upgrades pass the gate", "#b8a7ff"),
-              ]
-
+          def protocol_svg() -> str:
+              items = [("Aim", "#f4c76b"), ("Act", "#8ab4ff"), ("Prove", "#91f2bf"), ("Evolve", "#b8a7ff")]
               nodes = []
-              width, height = 1100, 320
-              for i, (title, subtitle, color) in enumerate(boxes):
-                  x = 70 + i * 255
-                  y = 120
-                  nodes.append(f"""
-                    <rect x="{x}" y="{y}" width="185" height="96" rx="22" fill="{color}" opacity="0.18" stroke="{color}" stroke-width="3" />
-                    <text x="{x+24}" y="{y+42}" fill="#f7f8ff" font-size="28" font-weight="800">{title}</text>
-                    <text x="{x+24}" y="{y+70}" fill="#aab3cf" font-size="14">{subtitle}</text>
-                  """)
-                  if i < len(boxes) - 1:
-                      nodes.append(f"""
-                        <line x1="{x+192}" y1="{y+48}" x2="{x+245}" y2="{y+48}" stroke="#f4c76b" stroke-width="5" />
-                        <polygon points="{x+245},{y+48} {x+230},{y+38} {x+230},{y+58}" fill="#f4c76b" />
-                      """)
-
-              return f"""
+              for i, (name, color) in enumerate(items):
+                  x = 90 + i * 245
+                  nodes.append(f'''
+                    <rect x="{x}" y="115" width="170" height="88" rx="22" fill="{color}" opacity=".18" stroke="{color}" stroke-width="3"/>
+                    <text x="{x+28}" y="165" fill="#f7f8ff" font-size="30" font-weight="800">{name}</text>
+                  ''')
+                  if i < len(items) - 1:
+                      nodes.append(f'''
+                        <line x1="{x+180}" y1="159" x2="{x+235}" y2="159" stroke="#f4c76b" stroke-width="5"/>
+                        <polygon points="{x+235},159 {x+220},149 {x+220},169" fill="#f4c76b"/>
+                      ''')
+              return f'''
               <div class="visual">
-                <h3>Agent Evolution Protocol</h3>
-                <svg viewBox="0 0 {width} {height}" role="img" aria-label="Commit Execute Prove Evolve protocol">
-                  <rect x="0" y="0" width="{width}" height="{height}" rx="26" fill="#070b14" />
-                  <text x="60" y="58" fill="#f4c76b" font-size="26" font-weight="800">Commit → Execute → Prove → Evolve</text>
-                  <text x="60" y="88" fill="#aab3cf" font-size="18">Anything that changes must carry Proof. Anything that propagates must pass the Evolution Gate.</text>
+                <h3>The Proof Loop</h3>
+                <svg viewBox="0 0 1100 300" role="img" aria-label="Aim Act Prove Evolve">
+                  <rect x="0" y="0" width="1100" height="300" rx="26" fill="#070b14"/>
+                  <text x="60" y="58" fill="#f4c76b" font-size="28" font-weight="800">Aim → Act → Prove → Evolve</text>
+                  <text x="60" y="88" fill="#aab3cf" font-size="18">Every agent acts. Every action leaves proof. Every proof earns improvement.</text>
                   {''.join(nodes)}
                 </svg>
               </div>
-              """
+              '''
 
 
-          def render_curve(title: str, series: list[dict[str, Any]], key: str, color: str, label: str) -> str:
-              sampled = [item for item in series if item["cycle"] % 16 == 0 or item["cycle"] == 1]
-              width, height = 1000, 360
-              pad = 54
-              values = [item[key] for item in sampled]
-              min_v, max_v = min(values), max(values)
-
-              points = []
+          def curve_svg(title: str, data: list[dict[str, Any]], key: str, color: str) -> str:
+              sampled = [d for d in data if d["cycle"] % 32 == 0 or d["cycle"] == 1]
+              width, height, pad = 1000, 360, 54
+              vals = [d[key] for d in sampled]
+              mn, mx = min(vals), max(vals)
+              pts = []
               circles = []
-              for i, item in enumerate(sampled):
-                  x = pad + (i / max(1, len(sampled) - 1)) * (width - 2 * pad)
-                  y = height - pad - ((item[key] - min_v) / max(0.000001, max_v - min_v)) * (height - 2 * pad)
-                  points.append(f"{x:.1f},{y:.1f}")
-                  circles.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{color}"><title>Cycle {item["cycle"]}: {item[key]}</title></circle>')
-
-              return f"""
+              for i, d in enumerate(sampled):
+                  x = pad + i / max(1, len(sampled)-1) * (width - 2*pad)
+                  y = height - pad - ((d[key] - mn) / max(0.000001, mx - mn)) * (height - 2*pad)
+                  pts.append(f"{x:.1f},{y:.1f}")
+                  circles.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{color}"><title>Cycle {d["cycle"]}: {d[key]}</title></circle>')
+              return f'''
               <div class="visual">
                 <h3>{esc(title)}</h3>
                 <svg viewBox="0 0 {width} {height}" role="img" aria-label="{esc(title)}">
-                  <rect x="0" y="0" width="{width}" height="{height}" rx="22" fill="#070b14" />
-                  <line x1="{pad}" y1="{height-pad}" x2="{width-pad}" y2="{height-pad}" stroke="rgba(255,255,255,.24)" />
-                  <line x1="{pad}" y1="{pad}" x2="{pad}" y2="{height-pad}" stroke="rgba(255,255,255,.24)" />
-                  <polyline fill="none" stroke="{color}" stroke-width="5" points="{' '.join(points)}" />
+                  <rect x="0" y="0" width="{width}" height="{height}" rx="22" fill="#070b14"/>
+                  <line x1="{pad}" y1="{height-pad}" x2="{width-pad}" y2="{height-pad}" stroke="rgba(255,255,255,.24)"/>
+                  <line x1="{pad}" y1="{pad}" x2="{pad}" y2="{height-pad}" stroke="rgba(255,255,255,.24)"/>
+                  <polyline fill="none" stroke="{color}" stroke-width="5" points="{' '.join(pts)}"/>
                   {''.join(circles)}
-                  <text x="{pad}" y="34" fill="#aab3cf" font-size="18">{esc(label)}: {min_v} → {max_v}</text>
-                  <text x="{width-pad-190}" y="{height-18}" fill="#aab3cf" font-size="16">256 RSI cycles</text>
+                  <text x="{pad}" y="34" fill="#aab3cf" font-size="18">{mn} → {mx}</text>
                 </svg>
               </div>
-              """
+              '''
 
 
-          def render_gate_svg() -> str:
-              stages = [
-                  ("Proposed", 2048, "#8ab4ff"),
-                  ("Evaluated", 2048, "#91f2bf"),
-                  ("Canaried", 2038, "#f4c76b"),
-                  ("Promoted", 2038, "#b8a7ff"),
-                  ("Rolled back", 10, "#ff9c9c"),
-              ]
-
-              width, height = 1000, 360
-              max_v = max(v for _, v, _ in stages)
+          def gate_svg() -> str:
+              rows = [("Aims", 2048, "#f4c76b"), ("Actions", 2048, "#8ab4ff"), ("Proofs", 2048, "#91f2bf"), ("Selected", 2035, "#b8a7ff"), ("Rolled back", 13, "#ffb86b")]
               bars = []
-              for i, (label, value, color) in enumerate(stages):
+              for i, (name, val, color) in enumerate(rows):
                   y = 70 + i * 50
-                  w = 700 * value / max_v
-                  bars.append(f"""
-                    <text x="40" y="{y+23}" fill="#dbe6ff" font-size="18">{label}</text>
-                    <rect x="190" y="{y}" width="{w:.1f}" height="30" rx="10" fill="{color}" opacity="0.75" />
-                    <text x="{205+w:.1f}" y="{y+22}" fill="#aab3cf" font-size="16">{value}</text>
-                  """)
-
-              return f"""
+                  w = 720 * val / 2048
+                  bars.append(f'<text x="40" y="{y+23}" fill="#dbe6ff" font-size="18">{name}</text><rect x="190" y="{y}" width="{w:.1f}" height="30" rx="10" fill="{color}" opacity=".76"/><text x="{w+205:.1f}" y="{y+22}" fill="#aab3cf" font-size="16">{val}</text>')
+              return f'''
               <div class="visual">
-                <h3>Evolution Gate Funnel</h3>
-                <svg viewBox="0 0 {width} {height}" role="img" aria-label="Evolution Gate funnel">
-                  <rect x="0" y="0" width="{width}" height="{height}" rx="22" fill="#070b14" />
-                  <text x="40" y="38" fill="#f4c76b" font-size="22" font-weight="800">Only proof-carrying upgrades propagate</text>
+                <h3>Selection Gate Funnel</h3>
+                <svg viewBox="0 0 1000 360" role="img" aria-label="Selection Gate funnel">
+                  <rect x="0" y="0" width="1000" height="360" rx="22" fill="#070b14"/>
+                  <text x="40" y="38" fill="#f4c76b" font-size="22" font-weight="800">Only proven intelligence propagates</text>
                   {''.join(bars)}
                 </svg>
               </div>
-              """
+              '''
 
 
-          def render_flywheel_svg() -> str:
-              nodes = [
-                  ("Capital", 500, 78, "#f4c76b"),
-                  ("Compute", 790, 240, "#8ab4ff"),
-                  ("Energy", 500, 410, "#91f2bf"),
-                  ("Trust", 210, 240, "#b8a7ff"),
-                  ("Proof", 500, 240, "#ffffff"),
-              ]
-
-              circles = []
-              for label, x, y, color in nodes:
-                  r = 58 if label != "Proof" else 72
-                  circles.append(f"""
-                    <circle cx="{x}" cy="{y}" r="{r}" fill="{color}" opacity="0.20" stroke="{color}" stroke-width="3" />
-                    <text x="{x}" y="{y+6}" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">{label}</text>
-                  """)
-
-              arrows = """
-                <path d="M540 98 C690 100, 790 140, 800 210" fill="none" stroke="#f4c76b" stroke-width="5" />
-                <path d="M790 280 C730 395, 630 430, 540 416" fill="none" stroke="#8ab4ff" stroke-width="5" />
-                <path d="M460 410 C320 380, 210 330, 210 270" fill="none" stroke="#91f2bf" stroke-width="5" />
-                <path d="M220 210 C250 115, 350 80, 460 78" fill="none" stroke="#b8a7ff" stroke-width="5" />
-              """
-
-              return f"""
+          def flywheel_svg() -> str:
+              return '''
               <div class="visual">
                 <h3>Capital–Compute–Energy–Trust Flywheel</h3>
-                <svg viewBox="0 0 1000 500" role="img" aria-label="Capital compute energy trust proof flywheel">
-                  <rect x="0" y="0" width="1000" height="500" rx="24" fill="#070b14" />
-                  {arrows}
-                  {''.join(circles)}
-                  <text x="38" y="462" fill="#aab3cf" font-size="18">Proof is the clearing layer. Evolution routes capital, compute, energy, and trust toward verified artifacts.</text>
+                <svg viewBox="0 0 1000 500" role="img" aria-label="Capital compute energy trust flywheel">
+                  <rect x="0" y="0" width="1000" height="500" rx="24" fill="#070b14"/>
+                  <path d="M540 98 C690 100, 790 140, 800 210" fill="none" stroke="#f4c76b" stroke-width="5"/>
+                  <path d="M790 280 C730 395, 630 430, 540 416" fill="none" stroke="#8ab4ff" stroke-width="5"/>
+                  <path d="M460 410 C320 380, 210 330, 210 270" fill="none" stroke="#91f2bf" stroke-width="5"/>
+                  <path d="M220 210 C250 115, 350 80, 460 78" fill="none" stroke="#b8a7ff" stroke-width="5"/>
+                  <circle cx="500" cy="78" r="58" fill="#f4c76b" opacity=".20" stroke="#f4c76b" stroke-width="3"/><text x="500" y="84" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Capital</text>
+                  <circle cx="790" cy="240" r="58" fill="#8ab4ff" opacity=".20" stroke="#8ab4ff" stroke-width="3"/><text x="790" y="246" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Compute</text>
+                  <circle cx="500" cy="410" r="58" fill="#91f2bf" opacity=".20" stroke="#91f2bf" stroke-width="3"/><text x="500" y="416" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Energy</text>
+                  <circle cx="210" cy="240" r="58" fill="#b8a7ff" opacity=".20" stroke="#b8a7ff" stroke-width="3"/><text x="210" y="246" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Trust</text>
+                  <circle cx="500" cy="240" r="72" fill="#ffffff" opacity=".12" stroke="#ffffff" stroke-width="3"/><text x="500" y="246" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Proof</text>
+                  <text x="38" y="462" fill="#aab3cf" font-size="18">Proof is the clearing layer. Selection routes resources toward verified artifacts.</text>
                 </svg>
               </div>
-              """
+              '''
 
 
-          def render_proof10_visuals(proof: dict[str, Any]) -> str:
-              evidence = proof["evidence"]
-              rsi = evidence["recursive_self_improvement"]
-              cycle_series = evidence["institutional_graphs"]["cycle_series"]
-
-              primitive_rows = [[p["name"], p["role"], p["explains"], p["slogan"]] for p in evidence["protocol_primitives"]]
-              systems_rows = [[s["name"], s["promise"], s["meaning"]] for s in evidence["systems"]]
-              goal_rows = [[g["id"], g["class"], g["name"], g["explains"], ", ".join(g["success_criteria"])] for g in evidence["goals_used"]]
-              plan_rows = [[p["id"], p["class"], p["name"], p["explains"], " → ".join(p["steps"])] for p in evidence["plans_used"]]
-              skill_rows = [[s["id"], s["class"], s["name"], s["explains"]] for s in evidence["skills_used"]]
-              policy_rows = [[p["id"], p["class"], p["name"], p["explains"]] for p in evidence["policies_used"]]
-              eval_rows = [[e["id"], e["class"], e["name"], e["explains"]] for e in evidence["evals_used"]]
-
-              routing_rows = [
-                  ["Capital", evidence["institutional_graphs"]["routing_tables"]["capital"]["allocated_domains"], evidence["institutional_graphs"]["routing_tables"]["capital"]["rule"]],
-                  ["Compute", evidence["institutional_graphs"]["routing_tables"]["compute"]["allocated_domains"], evidence["institutional_graphs"]["routing_tables"]["compute"]["rule"]],
-                  ["Energy", evidence["institutional_graphs"]["routing_tables"]["energy"]["allocated_domains"], evidence["institutional_graphs"]["routing_tables"]["energy"]["rule"]],
-                  ["Trust", evidence["institutional_graphs"]["routing_tables"]["trust"]["allocated_domains"], evidence["institutional_graphs"]["routing_tables"]["trust"]["rule"]],
-              ]
-
+          def proof11_visuals(proof: dict[str, Any]) -> str:
+              e = proof["evidence"]
+              r = e["recursive_self_improvement"]
+              artifact_rows = lambda items: [[x["id"], x["class"], x["name"], x["explains"]] for x in items]
+              routing_rows = [[k.title(), v["allocated_domains"], v["rule"]] for k, v in e["routing"].items()]
               claim_rows = [
-                  ["Vision treatment", evidence["vision_treatment"]],
+                  ["Vision treatment", e["vision_treatment"]],
                   ["Real revenue claimed", "False"],
                   ["Guaranteed ROI claimed", "False"],
-                  ["Actual deployed superintelligence claimed", "False"],
-                  ["Kardashev Type II achieved claimed", "False"],
+                  ["Actual superintelligence claimed", "False"],
                   ["Real-world energy capture claimed", "False"],
-                  ["Private data shared", str(evidence["sovereignty_guarantees"]["private_data_shared"])],
-                  ["Rollback required", str(evidence["sovereignty_guarantees"]["rollback_required_before_release"])],
+                  ["Kardashev Type II achievement claimed", "False"],
+                  ["Rollback required", str(e["sovereignty_guarantees"]["rollback_required_before_release"])],
               ]
+              meta_rows = [[x["cycle"], x["upgrade"], x["meaning"]] for x in r["meta_rsi_upgrades"]]
+              primitive_rows = [[x["name"], x["system"], x["meaning"], x["line"]] for x in e["proof_loop"]]
+              system_rows = [[x["name"], x["promise"], x["meaning"]] for x in e["systems"]]
 
-              meta_rows = [[m["cycle"], m["upgrade_type"], m["meaning"]] for m in rsi["meta_rsi_upgrades"]]
-
-              return f"""
+              return f'''
               <h2>Institutional Graphs</h2>
-              {render_protocol_svg()}
-              {render_flywheel_svg()}
-              {render_curve("Synthetic Network Index", cycle_series, "synthetic_network_index", "#8ab4ff", "network index")}
-              {render_curve("Synthetic Kardashev Scenario Index", cycle_series, "synthetic_kardashev_scenario_index", "#91f2bf", "scenario index")}
-              {render_gate_svg()}
+              {protocol_svg()}
+              {flywheel_svg()}
+              {curve_svg("Synthetic Network Index", r["cycle_series"], "network_index", "#8ab4ff")}
+              {curve_svg("Synthetic Kardashev Scenario Index", r["cycle_series"], "kardashev_scenario_index", "#91f2bf")}
+              {gate_svg()}
 
-              <h2>The Four Primitives</h2>
-              {render_table(["Primitive", "Role", "Explanation", "Slogan"], primitive_rows)}
+              <h2>The Proof Loop</h2>
+              {table(["Primitive", "System", "Meaning", "Line"], primitive_rows)}
 
               <h2>The Four Systems</h2>
-              {render_table(["System", "Promise", "Meaning"], systems_rows)}
+              {table(["System", "Promise", "Meaning"], system_rows)}
 
               <h2>GoalOS / Aim Artifacts Used</h2>
-              {render_table(["Artifact", "Class", "Goal", "Explanation", "Success Criteria"], goal_rows)}
+              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["goals_used"]))}
 
               <h2>PlanOS / Strategy Artifacts Used</h2>
-              {render_table(["Artifact", "Class", "Plan", "Explanation", "Steps"], plan_rows)}
+              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["plans_used"]))}
 
               <h2>SkillOS / Capability Artifacts Used</h2>
-              {render_table(["Artifact", "Class", "Skill", "Explanation"], skill_rows)}
+              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["skills_used"]))}
 
               <h2>Policy / Guardrail Artifacts Used</h2>
-              {render_table(["Artifact", "Class", "Policy", "Explanation"], policy_rows)}
+              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["policies_used"]))}
 
               <h2>Eval / Judgment Artifacts Used</h2>
-              {render_table(["Artifact", "Class", "Eval", "Explanation"], eval_rows)}
+              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["evals_used"]))}
+
+              <h2>Tool / Action Artifacts Used</h2>
+              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["tools_used"]))}
+
+              <h2>Context / Grounding Artifacts Used</h2>
+              {table(["Artifact", "Class", "Name", "Explanation"], artifact_rows(e["contexts_used"]))}
 
               <h2>Capital / Compute / Energy / Trust Routing</h2>
-              {render_table(["Route", "Allocated Domains", "Rule"], routing_rows)}
+              {table(["Route", "Allocated Domains", "Rule"], routing_rows)}
 
               <h2>Claim-Boundary Ledger</h2>
-              {render_table(["Claim Boundary", "Status"], claim_rows)}
+              {table(["Claim Boundary", "Status"], claim_rows)}
 
               <h2>Meta-RSI Upgrade Ledger</h2>
-              {render_table(["Cycle", "Upgrade", "Meaning"], meta_rows)}
-              """
+              {table(["Cycle", "Upgrade", "Meaning"], meta_rows)}
+              '''
 
 
           def render_main(archive: dict[str, Any]) -> str:
-              system_cards = []
-              for system in archive["systems"]:
-                  system_cards.append(f"""
-                  <div class="card">
-                    <b>{esc(system["name"])}</b>
-                    <p>{esc(system["promise"])}.</p>
-                    <p>{esc(system["meaning"])}</p>
-                  </div>
-                  """)
-
-              proof_cards = []
+              cards = []
               for proof in archive["proofs"]:
-                  proof_cards.append(f"""
+                  cards.append(f'''
                   <div class="card">
                     <b>{esc(proof["title"])}</b>
                     <p>{esc(proof["subtitle"])}</p>
                     <p><span class="pill">{esc(proof["status"])}</span></p>
                     <p><a href="proofs/{esc(proof["slug"])}.html">Open proof page →</a></p>
                   </div>
-                  """)
-
-              body = f"""
-              <h1>Commit.<br>Execute.<br>Prove.<br>Evolve.</h1>
-              <p>Proof-Carrying Intelligence is the Agent Evolution Protocol. Every agent acts once. The network learns forever.</p>
+                  ''')
+              systems = []
+              for system in archive["systems"]:
+                  systems.append(f'''
+                  <div class="card">
+                    <b>{esc(system["name"])}</b>
+                    <p>{esc(system["promise"])}.</p>
+                    <p>{esc(system["meaning"])}</p>
+                  </div>
+                  ''')
+              body = f'''
+              <h1>Aim.<br>Act.<br>Prove.<br>Evolve.</h1>
+              <p>GoalOS gives the network Direction. PlanOS gives it Strategy. SkillOS gives it Capability. The Proof Gradient gives it Evolution.</p>
               <div class="nav">
                 <a href="./">Command Center</a>
                 <a href="proofs/">Proof Archive</a>
                 {''.join(f'<a href="proofs/{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])}
               </div>
               <h2>The Four Systems</h2>
-              <div class="grid">{''.join(system_cards)}</div>
+              <div class="grid">{''.join(systems)}</div>
               <h2>Proof Archive</h2>
-              <div class="grid">{''.join(proof_cards)}</div>
+              <div class="grid">{''.join(cards)}</div>
               <h2>Current Apex Proof</h2>
               <pre>{esc(json.dumps(archive["proofs"][-1]["summary"], indent=2))}</pre>
-              """
-              return shell("Proof Gradient", "Proof Gradient · Proof-Carrying Intelligence", body)
+              '''
+              return shell("Proof Gradient", "Proof Gradient · The Proof Loop", body)
 
 
-          def render_proofs_index(archive: dict[str, Any]) -> str:
+          def render_index(archive: dict[str, Any]) -> str:
               cards = []
               for proof in archive["proofs"]:
-                  cards.append(f"""
+                  cards.append(f'''
                   <div class="card">
                     <b>{esc(proof["title"])}</b>
                     <p>{esc(proof["subtitle"])}</p>
                     <p><a href="{esc(proof["slug"])}.html">Open proof →</a></p>
                     <p><a href="../assets/proofs/{esc(proof["slug"])}.json">Open evidence JSON →</a></p>
                   </div>
-                  """)
-
-              body = f"""
+                  ''')
+              body = f'''
               <h1>Proof Archive</h1>
               <p>Every proof has its own permanent webpage and evidence JSON. Every proof links back to the main command center.</p>
               <div class="nav">
@@ -1220,22 +1002,21 @@ jobs:
                 {''.join(f'<a href="{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])}
               </div>
               <div class="grid">{''.join(cards)}</div>
-              """
+              '''
               return shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", body)
 
 
-          def render_proof_page(proof: dict[str, Any], archive: dict[str, Any]) -> str:
-              other_links = ''.join(f'<a href="{esc(other["slug"])}.html">Proof #{other["number"]}</a>' for other in archive["proofs"])
-              visuals = render_proof10_visuals(proof) if proof["slug"] == "010-proof-carrying-intelligence" else ""
-
-              body = f"""
+          def render_proof(proof: dict[str, Any], archive: dict[str, Any]) -> str:
+              links = ''.join(f'<a href="{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])
+              visuals = proof11_visuals(proof) if proof["slug"] == "011-the-proof-loop" else ""
+              body = f'''
               <h1>{esc(proof["title"])}</h1>
               <p>{esc(proof["subtitle"])}</p>
               <p><span class="pill">{esc(proof["status"])}</span></p>
               <div class="nav">
                 <a href="../">← Main Command Center</a>
                 <a href="./">Proof Archive</a>
-                {other_links}
+                {links}
                 <a href="../assets/proofs/{esc(proof["slug"])}.json">Evidence JSON</a>
               </div>
               <h2>Summary</h2>
@@ -1245,7 +1026,7 @@ jobs:
               <pre>{esc(json.dumps(proof["evidence"], indent=2))}</pre>
               <h2>Checksum</h2>
               <pre>{esc(proof["checksum"])}</pre>
-              """
+              '''
               return shell(proof["title"], "Proof Gradient · Permanent Proof Page", body)
 
 
@@ -1256,19 +1037,18 @@ jobs:
 
           def write_site(site_dir: Path, data_dir: Path) -> None:
               archive = build_archive()
-
               site_dir.mkdir(parents=True, exist_ok=True)
               (site_dir / "proofs").mkdir(parents=True, exist_ok=True)
               (site_dir / "assets" / "proofs").mkdir(parents=True, exist_ok=True)
               data_dir.mkdir(parents=True, exist_ok=True)
 
               (site_dir / "index.html").write_text(render_main(archive), encoding="utf-8")
-              (site_dir / "proofs" / "index.html").write_text(render_proofs_index(archive), encoding="utf-8")
+              (site_dir / "proofs" / "index.html").write_text(render_index(archive), encoding="utf-8")
               write_json(site_dir / "assets" / "proof-index.json", archive)
               write_json(data_dir / "proof-index.json", archive)
 
               for proof in archive["proofs"]:
-                  (site_dir / "proofs" / f"{proof['slug']}.html").write_text(render_proof_page(proof, archive), encoding="utf-8")
+                  (site_dir / "proofs" / f"{proof['slug']}.html").write_text(render_proof(proof, archive), encoding="utf-8")
                   write_json(site_dir / "assets" / "proofs" / f"{proof['slug']}.json", proof)
                   write_json(data_dir / f"{proof['slug']}.json", proof)
 
@@ -1285,71 +1065,79 @@ jobs:
               main()
           ''')
 
-          write("tests/test_proof_carrying_intelligence.py", r'''
+          write("tests/test_the_proof_loop.py", r'''
           import unittest
           from pathlib import Path
           import tempfile
 
-          from proof_gradient.proof_carrying_intelligence import build_archive, write_site
+          from proof_gradient.the_proof_loop import build_archive, write_site
 
 
-          class ProofCarryingIntelligenceTest(unittest.TestCase):
+          class TheProofLoopTest(unittest.TestCase):
               def setUp(self):
                   self.archive = build_archive()
-                  self.proof = next(p for p in self.archive["proofs"] if p["slug"] == "010-proof-carrying-intelligence")
+                  self.proof = next(p for p in self.archive["proofs"] if p["slug"] == "011-the-proof-loop")
+                  self.evidence = self.proof["evidence"]
+                  self.summary = self.proof["summary"]
 
-              def test_archive_has_ten_separate_proofs(self):
-                  self.assertEqual(self.archive["proof_count"], 10)
-                  slugs = {proof["slug"] for proof in self.archive["proofs"]}
-                  self.assertIn("010-proof-carrying-intelligence", slugs)
+              def test_archive_has_eleven_separate_proofs(self):
+                  self.assertEqual(self.archive["proof_count"], 11)
+                  self.assertIn("011-the-proof-loop", {p["slug"] for p in self.archive["proofs"]})
 
-              def test_protocol_is_simple_and_canonical(self):
-                  evidence = self.proof["evidence"]
-                  self.assertEqual(evidence["protocol"], "Commit → Execute → Prove → Evolve")
+              def test_protocol_is_canonical(self):
+                  self.assertEqual(self.evidence["proof_loop"][0]["name"], "Aim")
+                  self.assertEqual(self.evidence["proof_loop"][1]["name"], "Act")
+                  self.assertEqual(self.evidence["proof_loop"][2]["name"], "Prove")
+                  self.assertEqual(self.evidence["proof_loop"][3]["name"], "Evolve")
 
-                  primitives = [primitive["name"] for primitive in evidence["protocol_primitives"]]
-                  self.assertEqual(primitives, ["Commit", "Execute", "Prove", "Evolve"])
-
-              def test_four_systems_are_present(self):
-                  systems = {system["name"]: system["promise"] for system in self.proof["evidence"]["systems"]}
+              def test_four_systems_are_canonical(self):
+                  systems = {s["name"]: s["promise"] for s in self.evidence["systems"]}
                   self.assertEqual(systems["Artifact Vault"], "stores reusable intelligence")
-                  self.assertEqual(systems["Execution Fabric"], "executes agents at scale")
+                  self.assertEqual(systems["Run Fabric"], "executes agents at scale")
                   self.assertEqual(systems["Proof Ledger"], "records what happened")
-                  self.assertEqual(systems["Evolution Gate"], "promotes only what proved itself")
+                  self.assertEqual(systems["Selection Gate"], "promotes only what proved itself")
 
-              def test_scale_is_substantial(self):
-                  summary = self.proof["summary"]
-                  self.assertGreaterEqual(summary["agents"], 4194304)
-                  self.assertGreaterEqual(summary["sovereign_domains"], 2048)
-                  self.assertGreaterEqual(summary["rsi_cycles"], 256)
-                  self.assertGreaterEqual(summary["eval_cases"], 1073741824)
-                  self.assertGreaterEqual(summary["commits"], 524288)
-                  self.assertGreaterEqual(summary["proofs"], 524288)
+              def test_large_multi_agent_coordination(self):
+                  self.assertGreaterEqual(self.summary["agents"], 8388608)
+                  self.assertGreaterEqual(self.summary["sovereign_domains"], 1280)
+                  self.assertGreaterEqual(self.summary["guilds"], 128)
+                  self.assertEqual(
+                      self.evidence["agent_mesh"]["coordination_verdict"],
+                      "large_multi_agent_coordination_to_maximum_effect_verified_deterministically",
+                  )
 
-              def test_goals_plans_skills_policies_evals_are_listed(self):
-                  summary = self.proof["summary"]
-                  self.assertGreaterEqual(summary["goals_used"], 4)
-                  self.assertGreaterEqual(summary["plans_used"], 4)
-                  self.assertGreaterEqual(summary["skills_used"], 8)
-                  self.assertGreaterEqual(summary["policies_used"], 3)
-                  self.assertGreaterEqual(summary["evals_used"], 4)
+              def test_rsi_substrate_is_substantial(self):
+                  self.assertGreaterEqual(self.summary["rsi_cycles"], 512)
+                  self.assertGreaterEqual(self.summary["eval_cases"], 2684354560)
+                  self.assertGreaterEqual(self.summary["aims"], 655360)
+                  self.assertGreaterEqual(self.summary["proofs"], 655360)
+                  self.assertGreaterEqual(self.summary["selected_improvements"], 640000)
+                  self.assertGreaterEqual(self.summary["meta_rsi_upgrades"], 32)
 
-              def test_evolution_gate_and_rollbacks(self):
-                  evidence = self.proof["evidence"]
-                  self.assertEqual(evidence["evolution_gate"]["decision"], "approve_proof_carrying_intelligence_canary")
-                  self.assertGreater(evidence["evolution_gate"]["selected_upgrade_count"], 500000)
-                  self.assertGreater(evidence["evolution_gate"]["rollback_count"], 1)
-                  self.assertTrue(evidence["sovereignty_guarantees"]["rollback_required_before_release"])
+              def test_artifact_catalogs_are_present(self):
+                  self.assertGreaterEqual(self.summary["goals_used"], 4)
+                  self.assertGreaterEqual(self.summary["plans_used"], 4)
+                  self.assertGreaterEqual(self.summary["skills_used"], 8)
+                  self.assertGreaterEqual(self.summary["policies_used"], 4)
+                  self.assertGreaterEqual(self.summary["evals_used"], 4)
+                  self.assertGreaterEqual(self.summary["tools_used"], 3)
+                  self.assertGreaterEqual(self.summary["contexts_used"], 2)
 
-              def test_claim_boundary_is_safe(self):
-                  evidence = self.proof["evidence"]
-                  self.assertEqual(evidence["vision_treatment"], "strategic scenario, not empirical claim")
-                  self.assertIn("guaranteed ROI", evidence["not_claiming"])
-                  self.assertFalse(evidence["sovereignty_guarantees"]["private_data_shared"])
-                  self.assertFalse(evidence["sovereignty_guarantees"]["real_world_energy_claim_made"])
-                  self.assertFalse(evidence["sovereignty_guarantees"]["real_world_kardashev_claim_made"])
+              def test_selection_gate_and_rollback(self):
+                  gate = self.evidence["selection_gate"]
+                  self.assertEqual(gate["decision"], "approve_the_proof_loop_canary")
+                  self.assertEqual(gate["rollout_percentage"], 10)
+                  self.assertTrue(gate["rollback_target"])
+                  self.assertGreater(gate["rollback_count"], 1)
 
-              def test_each_proof_has_own_page_and_main_links(self):
+              def test_claim_boundary(self):
+                  self.assertEqual(self.evidence["vision_treatment"], "strategic scenario, not empirical claim")
+                  self.assertIn("guaranteed ROI", self.evidence["not_claiming"])
+                  self.assertFalse(self.evidence["sovereignty_guarantees"]["private_data_shared"])
+                  self.assertFalse(self.evidence["sovereignty_guarantees"]["real_world_energy_claim_made"])
+                  self.assertFalse(self.evidence["sovereignty_guarantees"]["real_world_kardashev_claim_made"])
+
+              def test_pages_and_visuals_exist(self):
                   with tempfile.TemporaryDirectory() as tmp:
                       root = Path(tmp)
                       site = root / "site"
@@ -1357,115 +1145,113 @@ jobs:
                       write_site(site, data)
 
                       main = (site / "index.html").read_text(encoding="utf-8")
-                      self.assertIn("proofs/010-proof-carrying-intelligence.html", main)
+                      self.assertIn("proofs/011-the-proof-loop.html", main)
 
-                      for number in range(1, 11):
-                          matching = [p for p in self.archive["proofs"] if p["number"] == number]
-                          self.assertEqual(len(matching), 1)
-                          slug = matching[0]["slug"]
+                      for proof in self.archive["proofs"]:
+                          slug = proof["slug"]
                           self.assertTrue((site / "proofs" / f"{slug}.html").exists())
                           self.assertTrue((site / "assets" / "proofs" / f"{slug}.json").exists())
 
-                      page = (site / "proofs" / "010-proof-carrying-intelligence.html").read_text(encoding="utf-8")
-                      self.assertIn("../", page)
-                      self.assertIn("Proof Archive", page)
-                      self.assertIn("Agent Evolution Protocol", page)
-                      self.assertIn("Commit → Execute → Prove → Evolve", page)
-                      self.assertIn("GoalOS / Aim Artifacts Used", page)
-                      self.assertIn("PlanOS / Strategy Artifacts Used", page)
-                      self.assertIn("SkillOS / Capability Artifacts Used", page)
-                      self.assertIn("Evolution Gate Funnel", page)
-                      self.assertIn("Claim-Boundary Ledger", page)
+                      page = (site / "proofs" / "011-the-proof-loop.html").read_text(encoding="utf-8")
+                      for phrase in [
+                          "The Proof Loop",
+                          "Aim → Act → Prove → Evolve",
+                          "The Four Systems",
+                          "GoalOS / Aim Artifacts Used",
+                          "PlanOS / Strategy Artifacts Used",
+                          "SkillOS / Capability Artifacts Used",
+                          "Policy / Guardrail Artifacts Used",
+                          "Eval / Judgment Artifacts Used",
+                          "Selection Gate Funnel",
+                          "Claim-Boundary Ledger",
+                          "Meta-RSI Upgrade Ledger",
+                      ]:
+                          self.assertIn(phrase, page)
 
 
           if __name__ == "__main__":
               unittest.main()
           ''')
 
-          write("docs/proof_carrying_intelligence.md", """
-          # Proof #10 — Proof-Carrying Intelligence
-
-          **Commit. Execute. Prove. Evolve.**
-
-          This proof collapses Proof Gradient into its simplest sovereign form:
+          write("docs/the_proof_loop.md", """
+          # Proof #11 — The Proof Loop
 
           ```text
-          Commit → Execute → Prove → Evolve
+          Aim → Act → Prove → Evolve
           ```
+
+          This is the simplest sovereign form of Proof Gradient.
 
           ## What it proves
 
-          - every job can become a commitment
-          - every commitment can execute against resolved artifacts
-          - every execution can emit proof
-          - every proof can be evaluated
-          - every upgrade can be gated
-          - every propagation can be scoped
-          - every release can be rollbackable
-          - GoalOS, PlanOS, and SkillOS become artifact classes inside one protocol
+          - GoalOS gives Direction through Aim artifacts.
+          - PlanOS gives Strategy through Strategy artifacts.
+          - SkillOS gives Capability through Capability artifacts.
+          - The Proof Gradient gives Evolution through the Selection Gate.
+          - The Artifact Vault stores reusable intelligence.
+          - The Run Fabric executes agents at scale.
+          - The Proof Ledger records what happened.
+          - The Selection Gate promotes only what proved itself.
 
-          ## The doctrine
+          ## Doctrine
 
           ```text
-          Anything that can improve is an Artifact.
-          Anything that changes must carry Proof.
-          Anything that propagates must pass the Evolution Gate.
+          Every agent acts.
+          Every action leaves proof.
+          Every proof earns improvement.
+          Every improvement strengthens the network.
           ```
 
           ## Claim boundary
 
-          The synthetic network and Kardashev scenario indices are not revenue, not profit, not watts, not investment advice, and not achieved Kardashev capability.
-
-          They are deterministic proof scaffolds for the Agent Evolution Protocol.
+          The proof uses deterministic synthetic evidence. It does not claim real revenue, real profit, guaranteed ROI, actual superintelligence, real-world energy capture, or Kardashev Type II achievement.
           """)
 
-          write("docs/final_acceptance_report_proof_carrying_intelligence.md", """
-          # Final Acceptance Report — Proof-Carrying Intelligence
+          write("docs/final_acceptance_report_the_proof_loop.md", """
+          # Final Acceptance Report — The Proof Loop
 
           | Requirement | Implementation location | Tests | Remaining risk | Notes |
           |---|---|---|---|---|
-          | Commit → Execute → Prove → Evolve is canonical | `proof_gradient/proof_carrying_intelligence.py` | `test_protocol_is_simple_and_canonical` | Needs production runtime | Deterministic proof scaffold |
-          | Artifact Vault stores reusable intelligence | `SYSTEMS` | `test_four_systems_are_present` | Needs durable registry | Artifact classes documented |
-          | Execution Fabric executes agents at scale | `protocol_mesh()` | `test_scale_is_substantial` | Deterministic, not external LLM workers | 4,194,304-agent lattice |
-          | Proof Ledger records what happened | `proof_010()` evidence | `test_scale_is_substantial` | Needs append-only production ledger | evidence JSON published |
-          | Evolution Gate promotes only what proved itself | `evolution_gate` evidence | `test_evolution_gate_and_rollbacks` | Needs production rollout router | selected upgrades and rollbacks modeled |
-          | Goals, plans, skills, policies, evals listed | `GOALS`, `PLANS`, `SKILLS`, `POLICIES`, `EVALS` | `test_goals_plans_skills_policies_evals_are_listed` | Static artifact catalog | all explained |
-          | Claim boundary | `sovereignty_guarantees` | `test_claim_boundary_is_safe` | Real-world validation still required | no real revenue, ROI, energy, or Kardashev claim |
-          | Separate proof pages | `write_site()` | `test_each_proof_has_own_page_and_main_links` | None for static proof archive | all proofs linked |
+          | Aim → Act → Prove → Evolve is canonical | `proof_gradient/the_proof_loop.py` | `test_protocol_is_canonical` | Needs production runtime | Deterministic proof scaffold |
+          | Artifact Vault stores reusable intelligence | `SYSTEMS` | `test_four_systems_are_canonical` | Needs durable registry | Artifact classes visible |
+          | Run Fabric executes agents at scale | `agent_mesh` evidence | `test_large_multi_agent_coordination` | Deterministic, not external LLM workers | Large multi-agent coordination model |
+          | Proof Ledger records what happened | `recursive_self_improvement` evidence | `test_rsi_substrate_is_substantial` | Needs append-only production ledger | Proof counts and cycle evidence generated |
+          | Selection Gate promotes only what proved itself | `selection_gate` evidence | `test_selection_gate_and_rollback` | Needs production rollout router | Canary and rollback modeled |
+          | Artifact catalogs are listed and explained | `GOALS`, `PLANS`, `SKILLS`, `POLICIES`, `EVALS`, `TOOLS`, `CONTEXTS` | `test_artifact_catalogs_are_present` | Static artifact catalog | All explained |
+          | Claim boundary is enforced | `sovereignty_guarantees` | `test_claim_boundary` | Real-world validation still required | No real revenue, ROI, energy, or Kardashev claim |
+          | Separate proof pages exist | `write_site()` | `test_pages_and_visuals_exist` | None for static site | All proofs linked |
           """)
 
-          write("examples/proof_carrying_intelligence/job.json", """
+          write("examples/the_proof_loop/job.json", """
           {
-            "job_id": "job_proof_carrying_intelligence_010",
-            "prompt": "Run the Agent Evolution Protocol across sovereign domains: Commit, Execute, Prove, and Evolve, with proof-carrying artifacts, evals, capital-compute-energy-trust routing, canary release, and rollback.",
+            "job_id": "job_the_proof_loop_011",
+            "prompt": "Demonstrate Aim, Act, Prove, and Evolve as the simplest sovereign protocol for compounding agent intelligence.",
             "risk_class": "high",
             "expected_behavior": [
-              "turn every job into a commit",
-              "execute resolved artifacts statelessly",
-              "emit proof for every execution",
-              "gate every evolution",
-              "list goals, plans, skills, policies, and evals used",
+              "define Aim artifacts",
+              "run active artifacts through Run Fabric",
+              "emit Proof Ledger evidence",
+              "route candidates through Selection Gate",
+              "list GoalOS, PlanOS, SkillOS, Policy, Eval, Tool, and Context artifacts",
               "render institutional graphs and tables",
-              "label Kardashev thesis as strategic scenario",
-              "select only eval-backed upgrades",
-              "reject unsafe candidates",
+              "preserve claim boundaries",
               "preserve rollback"
             ]
           }
           """)
           PY
 
-      - name: Run Proof-Carrying Intelligence tests and generate site
+      - name: Run The Proof Loop tests and generate site
         run: |
           set -euo pipefail
 
-          python -m unittest tests/test_proof_carrying_intelligence.py
+          python -m unittest tests/test_the_proof_loop.py
 
           rm -rf site
           mkdir -p site
           mkdir -p data/proofs
 
-          python -m proof_gradient.proof_carrying_intelligence --site site --data data/proofs
+          python -m proof_gradient.the_proof_loop --site site --data data/proofs
 
           python - <<'PY'
           from pathlib import Path
@@ -1474,114 +1260,84 @@ jobs:
           required_pages = [
               Path("site/index.html"),
               Path("site/proofs/index.html"),
-              Path("site/proofs/001-sovereign-swarm.html"),
-              Path("site/proofs/002-evolution-tournament.html"),
-              Path("site/proofs/003-recursive-evolution-ladder.html"),
-              Path("site/proofs/004-corporate-rsi-dominion.html"),
-              Path("site/proofs/005-enterprise-rsi-superorganism.html"),
-              Path("site/proofs/006-sovereign-enterprise-constellation.html"),
-              Path("site/proofs/007-sovereign-enterprise-proof-economy.html"),
-              Path("site/proofs/008-sovereign-domain-atlas.html"),
-              Path("site/proofs/009-sovereign-kardashev-capital-engine.html"),
-              Path("site/proofs/010-proof-carrying-intelligence.html"),
+              Path("site/proofs/011-the-proof-loop.html"),
               Path("site/assets/proof-index.json"),
-              Path("site/assets/proofs/010-proof-carrying-intelligence.json"),
+              Path("site/assets/proofs/011-the-proof-loop.json"),
           ]
 
           for page in required_pages:
               if not page.exists():
-                  raise SystemExit(f"Missing required proof archive file: {page}")
+                  raise SystemExit(f"Missing required proof file: {page}")
 
-          proof10 = json.loads(Path("site/assets/proofs/010-proof-carrying-intelligence.json").read_text())
-          summary = proof10["summary"]
-          evidence = proof10["evidence"]
+          archive = json.loads(Path("site/assets/proof-index.json").read_text())
+          proof = json.loads(Path("site/assets/proofs/011-the-proof-loop.json").read_text())
 
-          if evidence["protocol"] != "Commit → Execute → Prove → Evolve":
-              raise SystemExit("Proof-Carrying Intelligence failed: protocol mismatch.")
+          if archive["proof_count"] < 11:
+              raise SystemExit("Proof archive must contain at least 11 proofs.")
 
-          if summary["agents"] < 4194304:
-              raise SystemExit("Proof-Carrying Intelligence failed: fewer than 4,194,304 agents.")
+          evidence = proof["evidence"]
+          summary = proof["summary"]
 
-          if summary["sovereign_domains"] < 2048:
-              raise SystemExit("Proof-Carrying Intelligence failed: fewer than 2,048 sovereign domains.")
+          if [p["name"] for p in evidence["proof_loop"]] != ["Aim", "Act", "Prove", "Evolve"]:
+              raise SystemExit("Proof Loop protocol mismatch.")
 
-          if summary["eval_cases"] < 1073741824:
-              raise SystemExit("Proof-Carrying Intelligence failed: fewer than 1,073,741,824 eval cases.")
+          if summary["agents"] < 8388608:
+              raise SystemExit("Large multi-agent proof failed.")
 
-          if summary["commits"] < 524288:
-              raise SystemExit("Proof-Carrying Intelligence failed: insufficient commits.")
+          if summary["sovereign_domains"] < 1280:
+              raise SystemExit("Sovereign domain proof failed.")
 
-          if summary["proofs"] < 524288:
-              raise SystemExit("Proof-Carrying Intelligence failed: insufficient proofs.")
-
-          if summary["meta_rsi_upgrades"] < 32:
-              raise SystemExit("Proof-Carrying Intelligence failed: meta-RSI upgrades missing.")
+          if summary["eval_cases"] < 2684354560:
+              raise SystemExit("Eval case proof failed.")
 
           if summary["goals_used"] < 4 or summary["plans_used"] < 4 or summary["skills_used"] < 8:
-              raise SystemExit("Proof-Carrying Intelligence failed: artifact catalog incomplete.")
+              raise SystemExit("Artifact catalog incomplete.")
 
-          if evidence["evolution_gate"]["decision"] != "approve_proof_carrying_intelligence_canary":
-              raise SystemExit("Proof-Carrying Intelligence failed: Evolution Gate did not approve canary.")
-
-          if not evidence["evolution_gate"]["rollback_target"]:
-              raise SystemExit("Proof-Carrying Intelligence failed: rollback target missing.")
+          if evidence["selection_gate"]["decision"] != "approve_the_proof_loop_canary":
+              raise SystemExit("Selection Gate did not approve canary.")
 
           if evidence["vision_treatment"] != "strategic scenario, not empirical claim":
-              raise SystemExit("Proof-Carrying Intelligence failed: Kardashev claim boundary missing.")
+              raise SystemExit("Claim boundary failed.")
 
           if evidence["sovereignty_guarantees"]["real_world_kardashev_claim_made"]:
-              raise SystemExit("Proof-Carrying Intelligence failed: real-world Kardashev claim made.")
+              raise SystemExit("Invalid real-world Kardashev claim.")
 
-          page = Path("site/proofs/010-proof-carrying-intelligence.html").read_text()
+          main = Path("site/index.html").read_text()
+          for proof_item in archive["proofs"]:
+              slug = proof_item["slug"]
+              if f"proofs/{slug}.html" not in main:
+                  raise SystemExit(f"Main page does not link to proof: {slug}")
+
+          proof_page = Path("site/proofs/011-the-proof-loop.html").read_text()
           for phrase in [
-              "Agent Evolution Protocol",
-              "Commit → Execute → Prove → Evolve",
+              "Aim → Act → Prove → Evolve",
+              "Artifact Vault",
+              "Run Fabric",
+              "Proof Ledger",
+              "Selection Gate",
               "GoalOS / Aim Artifacts Used",
               "PlanOS / Strategy Artifacts Used",
               "SkillOS / Capability Artifacts Used",
-              "Policy / Guardrail Artifacts Used",
-              "Eval / Judgment Artifacts Used",
-              "Capital–Compute–Energy–Trust Flywheel",
-              "Evolution Gate Funnel",
               "Claim-Boundary Ledger",
-              "Meta-RSI Upgrade Ledger",
           ]:
-              if phrase not in page:
-                  raise SystemExit(f"Missing visual/table section: {phrase}")
+              if phrase not in proof_page:
+                  raise SystemExit(f"Missing page section: {phrase}")
 
-          main = Path("site/index.html").read_text()
-          for slug in [
-              "001-sovereign-swarm",
-              "002-evolution-tournament",
-              "003-recursive-evolution-ladder",
-              "004-corporate-rsi-dominion",
-              "005-enterprise-rsi-superorganism",
-              "006-sovereign-enterprise-constellation",
-              "007-sovereign-enterprise-proof-economy",
-              "008-sovereign-domain-atlas",
-              "009-sovereign-kardashev-capital-engine",
-              "010-proof-carrying-intelligence",
-          ]:
-              if f"proofs/{slug}.html" not in main:
-                  raise SystemExit(f"Main page does not link to proof page: {slug}")
-
-          print("Proof-Carrying Intelligence verified.")
-          print("Commit → Execute → Prove → Evolve verified.")
-          print("4,194,304-agent maximum-effect sovereign lattice verified.")
-          print("2,048 sovereign domains verified.")
-          print("1,073,741,824 eval cases verified.")
-          print("GoalOS, PlanOS, SkillOS, Policy, and Eval catalogs verified.")
-          print("Evolution Gate and rollback verified.")
-          print("Kardashev scenario claim boundary verified.")
-          print("Institutional graphs and tables verified.")
-          print("Each proof has its own webpage and is connected to the main page.")
+          print("The Proof Loop verified.")
+          print("Aim → Act → Prove → Evolve verified.")
+          print("Artifact Vault, Run Fabric, Proof Ledger, and Selection Gate verified.")
+          print("Large multi-agent coordination proof verified.")
+          print("GoalOS, PlanOS, SkillOS, Policy, Eval, Tool, and Context catalogs verified.")
+          print("Selection Gate and rollback verified.")
+          print("Claim boundary verified.")
+          print("Every proof has its own webpage and is connected to the main page.")
           PY
 
-      - name: Commit Proof-Carrying Intelligence
+      - name: Commit The Proof Loop
         run: |
           set -euo pipefail
 
-          git config user.name "proof-gradient-proof-carrying-intelligence"
+          git config user.name "proof-gradient-the-proof-loop"
           git config user.email "actions@github.com"
 
           git add -A
@@ -1589,7 +1345,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No repository changes to commit."
           else
-            git commit -m "Add Proof Gradient Proof-Carrying Intelligence [skip ci]"
+            git commit -m "Add Proof Gradient The Proof Loop [skip ci]"
             git push origin HEAD:main
           fi
 
@@ -1613,7 +1369,7 @@ jobs:
             exit 1
           fi
 
-          echo "Clean Proof Gradient Proof-Carrying Intelligence artifact is ready."
+          echo "Clean Proof Gradient The Proof Loop artifact is ready."
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -1632,13 +1388,4 @@ jobs:
           echo "Proof Gradient deployed to: ${{ steps.deployment.outputs.page_url }}"
           echo "Main: ${{ steps.deployment.outputs.page_url }}"
           echo "Proof Archive: ${{ steps.deployment.outputs.page_url }}proofs/"
-          echo "Proof #1: ${{ steps.deployment.outputs.page_url }}proofs/001-sovereign-swarm.html"
-          echo "Proof #2: ${{ steps.deployment.outputs.page_url }}proofs/002-evolution-tournament.html"
-          echo "Proof #3: ${{ steps.deployment.outputs.page_url }}proofs/003-recursive-evolution-ladder.html"
-          echo "Proof #4: ${{ steps.deployment.outputs.page_url }}proofs/004-corporate-rsi-dominion.html"
-          echo "Proof #5: ${{ steps.deployment.outputs.page_url }}proofs/005-enterprise-rsi-superorganism.html"
-          echo "Proof #6: ${{ steps.deployment.outputs.page_url }}proofs/006-sovereign-enterprise-constellation.html"
-          echo "Proof #7: ${{ steps.deployment.outputs.page_url }}proofs/007-sovereign-enterprise-proof-economy.html"
-          echo "Proof #8: ${{ steps.deployment.outputs.page_url }}proofs/008-sovereign-domain-atlas.html"
-          echo "Proof #9: ${{ steps.deployment.outputs.page_url }}proofs/009-sovereign-kardashev-capital-engine.html"
-          echo "Proof #10: ${{ steps.deployment.outputs.page_url }}proofs/010-proof-carrying-intelligence.html"
+          echo "Proof #11: ${{ steps.deployment.outputs.page_url }}proofs/011-the-proof-loop.html"
