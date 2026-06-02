@@ -8,7 +8,6 @@
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/001-sovereign-swarm.json",
   "status": "passed",
   "summary": {
-    "proof_type": "large_multi_agent_coordination",
     "agent_count": 96,
     "division_count": 8,
     "handoff_count": 95,
@@ -16,12 +15,11 @@
     "verdict": "large_multi_agent_coordination_proven_deterministically"
   },
   "evidence": {
-    "proof_type": "large_multi_agent_coordination",
     "agent_count": 96,
     "division_count": 8,
     "handoff_count": 95,
     "vote_count": 96,
     "verdict": "large_multi_agent_coordination_proven_deterministically"
   },
-  "checksum": "a44cf7035ac9d91280ed8f49a5626450de780e082a4fd5ba87506d6ee0b3ff36"
+  "checksum": "a48722351cc0d170224bcba4fffe30af7729c620134e24ea4bd9a4793e7ea533"
 }

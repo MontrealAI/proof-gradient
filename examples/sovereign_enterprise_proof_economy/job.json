@@ -1,0 +1,19 @@
+{
+  "job_id": "job_sovereign_enterprise_proof_economy_007",
+  "prompt": "Coordinate a proof-backed market where sovereign AI-first enterprises price, route, adopt, reject, and compound reusable intelligence through evals, reputation, canary selection, and rollback.",
+  "risk_class": "high",
+  "expected_behavior": [
+    "model value as synthetic proof-economy units, not revenue",
+    "coordinate 65,536 deterministic agents",
+    "coordinate 256 sovereign enterprises",
+    "run 32 recursive cycles",
+    "execute 2,097,152 eval cases",
+    "record 8 meta-RSI upgrades",
+    "price artifacts through proof-market evidence",
+    "track artifact reputation",
+    "share only generalized redacted artifact patterns",
+    "select only eval-backed artifacts",
+    "reject unsafe candidates",
+    "preserve rollback"
+  ]
+}

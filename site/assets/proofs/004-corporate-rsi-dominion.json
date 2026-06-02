@@ -3,37 +3,27 @@
   "number": 4,
   "slug": "004-corporate-rsi-dominion",
   "title": "Proof #4 — Corporate RSI Dominion",
-  "subtitle": "A deterministic corporate-domain recursive self-improvement system for the AI-first enterprise era.",
+  "subtitle": "A deterministic corporate-domain RSI system for the AI-first enterprise era.",
   "url": "https://montrealai.github.io/proof-gradient/proofs/004-corporate-rsi-dominion.html",
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/004-corporate-rsi-dominion.json",
   "status": "passed",
   "summary": {
-    "proof_type": "corporate_recursive_self_improvement_operating_system",
     "agent_count": 512,
     "guild_count": 16,
     "corporate_domain_count": 16,
     "rsi_cycle_count": 8,
     "eval_case_count": 6144,
-    "selected_patch_count": 125,
-    "rejected_patch_count": 3,
-    "rollback_count": 3,
     "meta_rsi_upgrade_count": 4,
-    "synthetic_enterprise_value_index_delta_percent": 52.3,
     "verdict": "corporate_rsi_value_compounding_proven_deterministically_with_selection_and_rollback"
   },
   "evidence": {
-    "proof_type": "corporate_recursive_self_improvement_operating_system",
     "agent_count": 512,
     "guild_count": 16,
     "corporate_domain_count": 16,
     "rsi_cycle_count": 8,
     "eval_case_count": 6144,
-    "selected_patch_count": 125,
-    "rejected_patch_count": 3,
-    "rollback_count": 3,
     "meta_rsi_upgrade_count": 4,
-    "synthetic_enterprise_value_index_delta_percent": 52.3,
     "verdict": "corporate_rsi_value_compounding_proven_deterministically_with_selection_and_rollback"
   },
-  "checksum": "9f9d0802285a882fc7df12d4cf8436ad1347fc32bb70e0f3fc0e5dcc84780698"
+  "checksum": "064d9bbbe3da30098dd43f38806f15a4c1b1202cbb7d14422f0ac8529aabb2f0"
 }

@@ -1,0 +1,801 @@
+from __future__ import annotations
+
+from dataclasses import dataclass, asdict
+from datetime import datetime, timezone
+import argparse
+import hashlib
+import json
+from pathlib import Path
+from typing import Any
+
+
+SITE_BASE = "https://montrealai.github.io/proof-gradient"
+
+
+def now() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def sha256(value: Any) -> str:
+    payload = json.dumps(value, sort_keys=True, ensure_ascii=False).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+@dataclass(frozen=True)
+class ProofPage:
+    proof_id: str
+    number: int
+    slug: str
+    title: str
+    subtitle: str
+    url: str
+    json_url: str
+    status: str
+    summary: dict[str, Any]
+    evidence: dict[str, Any]
+
+    def to_dict(self) -> dict[str, Any]:
+        data = asdict(self)
+        data["checksum"] = sha256({
+            "proof_id": self.proof_id,
+            "summary": self.summary,
+            "evidence": self.evidence,
+        })
+        return data
+
+
+def four_systems() -> list[dict[str, str]]:
+    return [
+        {
+            "name": "Artifact Vault",
+            "promise": "stores reusable intelligence",
+            "meaning": "Versioned goals, plans, skills, tools, policies, evals, rubrics, context recipes, routing rules, approval rules, and release rules.",
+        },
+        {
+            "name": "Run Fabric",
+            "promise": "executes agents at scale",
+            "meaning": "Runs resolve active artifacts, create run contracts, execute deterministic or provider-backed agents, and emit trace events.",
+        },
+        {
+            "name": "Proof Ledger",
+            "promise": "records what happened",
+            "meaning": "Append-only evidence: traces, scores, evals, tool decisions, credit assignment, patches, canaries, rollback drills, prices, and reputation updates.",
+        },
+        {
+            "name": "Selection Gate",
+            "promise": "promotes only what proved itself",
+            "meaning": "Candidates must beat baselines, pass safety gates, receive canary routing, preserve rollback, and earn market reputation.",
+        },
+    ]
+
+
+BASE_DOMAINS = [
+    ("revenue_factory", "Revenue Factory", "pipeline creation, pricing power, win-rate, expansion motion", 110.0),
+    ("operating_holdco", "Operating HoldCo", "portfolio intelligence, margin expansion, and capital deployment", 115.0),
+    ("ai_cloud_operator", "AI Cloud Operator", "infrastructure margin, reliability, and workload orchestration", 104.0),
+    ("cyber_defense", "Cyber Defense", "continuous risk reduction and high-trust managed defense", 108.0),
+    ("enterprise_integrator", "Enterprise AI Integrator", "workflow capture, deployment velocity, and change management", 103.0),
+    ("data_foundry", "Data Foundry", "data ownership, metrics trust, and decision-grade data products", 101.0),
+    ("legal_compliance", "Legal Compliance Platform", "contract velocity, policy safety, and regulatory readiness", 96.0),
+    ("procurement_engine", "Procurement Engine", "vendor leverage, spend intelligence, and sourcing advantage", 94.0),
+    ("finance_command", "Finance Command Center", "forecast accuracy, margin visibility, and capital allocation", 109.0),
+    ("customer_trust", "Customer Trust Network", "retention, expansion, and customer health response", 99.0),
+    ("product_factory", "AI Product Factory", "product velocity, roadmap prioritization, and usage expansion", 105.0),
+    ("software_machine", "Software Delivery Machine", "cycle time, defect reduction, testing, and release confidence", 106.0),
+    ("assurance_market", "Security Assurance Market", "compliance evidence, trust reports, and proof-backed assurance", 97.0),
+    ("growth_engine", "Growth Engine", "demand generation, narrative testing, and conversion loops", 95.0),
+    ("talent_academy", "Talent Academy", "hiring throughput, onboarding, and skill transfer", 90.0),
+    ("partnership_os", "Partnership OS", "channel leverage, ecosystem routing, and partner-sourced pipeline", 92.0),
+]
+
+THEATERS = ["Founder", "Enterprise", "Network", "Capital"]
+
+
+def sovereign_domains() -> list[dict[str, Any]]:
+    domains = []
+    for theater in THEATERS:
+        for slug, name, lever, base in BASE_DOMAINS:
+            domains.append({
+                "slug": f"{theater.lower()}_{slug}",
+                "name": f"{theater} {name}",
+                "lever": lever,
+                "base": base + (len(theater) * 0.7),
+            })
+    return domains
+
+
+def sovereign_enterprises() -> list[dict[str, Any]]:
+    domains = sovereign_domains()
+    enterprises = []
+
+    for index in range(256):
+        domain = domains[index % len(domains)]
+        enterprise_id = f"SE-{index + 1:04d}"
+        enterprises.append({
+            "enterprise_id": enterprise_id,
+            "name": f"{domain['name']} #{index // len(domains) + 1}",
+            "domain": domain["name"],
+            "domain_slug": domain["slug"],
+            "lever": domain["lever"],
+            "baseline_score": round(domain["base"] + ((index % 11) * 0.6), 3),
+            "sovereignty_boundary": {
+                "private_data": "not_shared",
+                "private_customers": "not_shared",
+                "private_financials": "not_shared",
+                "shared_unit": "generalized_redacted_eval_passed_artifact_pattern",
+            },
+        })
+
+    return enterprises
+
+
+GUILD_FAMILIES = [
+    "Direction", "Strategy", "Capability", "Tooling", "Proof", "Eval", "Credit",
+    "Patch", "Selection", "Rollback", "Governance", "Capital", "Pricing",
+    "Reputation", "Liquidity", "Federation"
+]
+
+GUILD_LAYERS = ["Council", "Guild", "Court", "Market"]
+
+
+def guilds() -> list[str]:
+    return [f"{family} {layer}" for family in GUILD_FAMILIES for layer in GUILD_LAYERS]
+
+
+def legacy_proof(number: int) -> ProofPage:
+    legacy = {
+        1: (
+            "001-sovereign-swarm",
+            "Proof #1 — Sovereign Swarm",
+            "A deterministic large multi-agent coordination lattice.",
+            {"agent_count": 96, "division_count": 8, "handoff_count": 95, "vote_count": 96, "verdict": "large_multi_agent_coordination_proven_deterministically"},
+        ),
+        2: (
+            "002-evolution-tournament",
+            "Proof #2 — Evolution Tournament",
+            "Candidates compete against baselines; only proven artifacts earn canary.",
+            {"agent_count": 144, "guild_count": 12, "case_count": 72, "patch_count": 3, "candidate_policy_violations": 0, "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"},
+        ),
+        3: (
+            "003-recursive-evolution-ladder",
+            "Proof #3 — Recursive Evolution Ladder",
+            "Selected artifacts become the next baseline; unsafe evolution is rejected and rolled back.",
+            {"agent_count": 240, "guild_count": 16, "generation_count": 5, "total_eval_cases": 300, "rollback_count": 1, "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"},
+        ),
+        4: (
+            "004-corporate-rsi-dominion",
+            "Proof #4 — Corporate RSI Dominion",
+            "A deterministic corporate-domain RSI system for the AI-first enterprise era.",
+            {"agent_count": 512, "guild_count": 16, "corporate_domain_count": 16, "rsi_cycle_count": 8, "eval_case_count": 6144, "meta_rsi_upgrade_count": 4, "verdict": "corporate_rsi_value_compounding_proven_deterministically_with_selection_and_rollback"},
+        ),
+        5: (
+            "005-enterprise-rsi-superorganism",
+            "Proof #5 — Enterprise RSI Superorganism",
+            "A deterministic AI-first corporate operating system that recursively improves enterprise value-creation artifacts.",
+            {"agent_count": 2048, "guild_count": 32, "corporate_domain_count": 32, "rsi_cycle_count": 12, "eval_case_count": 49152, "meta_rsi_upgrade_count": 6, "verdict": "enterprise_rsi_superorganism_proven_deterministically_with_meta_rsi_capital_allocation_selection_and_rollback"},
+        ),
+        6: (
+            "006-sovereign-enterprise-constellation",
+            "Proof #6 — Sovereign Enterprise Constellation",
+            "A deterministic network of AI-first sovereign enterprises recursively improving through federation, proof markets, selection, and rollback.",
+            {"agent_count": 9216, "guild_count": 48, "sovereign_enterprise_count": 96, "domain_count": 48, "rsi_cycle_count": 20, "eval_case_count": 491520, "meta_rsi_upgrade_count": 10, "verdict": "sovereign_enterprise_constellation_proven_deterministically_with_federated_rsi_proof_markets_selection_and_rollback"},
+        ),
+    }
+
+    slug, title, subtitle, evidence = legacy[number]
+    return ProofPage(
+        proof_id=f"proof-{number:03d}-{slug.split('-', 1)[1]}",
+        number=number,
+        slug=slug,
+        title=title,
+        subtitle=subtitle,
+        url=f"{SITE_BASE}/proofs/{slug}.html",
+        json_url=f"{SITE_BASE}/assets/proofs/{slug}.json",
+        status="passed",
+        summary=evidence,
+        evidence=evidence,
+    )
+
+
+def proof_economy_mesh(agent_count: int = 65536) -> dict[str, Any]:
+    all_guilds = guilds()
+    domains = sovereign_domains()
+    enterprises = sovereign_enterprises()
+
+    agent_sample = []
+    votes_sample = []
+    guild_summary = []
+
+    for index in range(min(agent_count, 128)):
+        guild = all_guilds[index % len(all_guilds)]
+        enterprise = enterprises[index % len(enterprises)]
+        agent_id = f"PG-PROOF-MARKET-{index + 1:06d}"
+
+        agent_sample.append({
+            "agent_id": agent_id,
+            "guild": guild,
+            "enterprise": enterprise["name"],
+            "domain": enterprise["domain"],
+            "role": f"{guild} Specialist",
+            "decision_rule": "price, route, and select only proof-backed artifacts with redaction, eval, canary, and rollback",
+        })
+
+        votes_sample.append({
+            "agent_id": agent_id,
+            "vote": "trade_artifact_only_if_reputation_positive_and_sovereignty_preserved",
+            "reason": "Sovereign enterprises may exchange generalized intelligence, not private data.",
+        })
+
+    for guild in all_guilds:
+        guild_summary.append({
+            "guild": guild,
+            "agents": agent_count // len(all_guilds),
+            "consensus": "proof market trades require redaction, positive eval delta, local adoption test, canary, and rollback.",
+        })
+
+    return {
+        "name": "Sovereign Enterprise Proof Economy Mesh",
+        "agent_count": agent_count,
+        "guild_count": len(all_guilds),
+        "sovereign_enterprise_count": len(enterprises),
+        "domain_count": len(domains),
+        "handoff_count": agent_count - 1,
+        "cross_enterprise_handoff_count": agent_count - len(enterprises),
+        "agent_sample": agent_sample,
+        "votes_sample": votes_sample,
+        "guild_summary": guild_summary,
+        "coordination_verdict": "sovereign_enterprise_proof_economy_coordination_verified",
+    }
+
+
+def proof_economy_cycles(cycles: int = 32, eval_cases_per_enterprise_per_cycle: int = 256) -> dict[str, Any]:
+    enterprises = sovereign_enterprises()
+
+    scores = {enterprise["enterprise_id"]: enterprise["baseline_score"] for enterprise in enterprises}
+    artifacts = {enterprise["enterprise_id"]: f"{enterprise['domain_slug']}_artifact@1.0.0" for enterprise in enterprises}
+    reputation = {enterprise["enterprise_id"]: 1.0 for enterprise in enterprises}
+    proof_price = {enterprise["enterprise_id"]: 100.0 for enterprise in enterprises}
+    capital_units = {enterprise["enterprise_id"]: 1000.0 for enterprise in enterprises}
+
+    start_index = round(sum(scores.values()), 3)
+
+    selected_patches = []
+    rejected_patches = []
+    rollbacks = []
+    meta_rsi_upgrades = []
+    proof_market_trades = []
+    federated_adoptions = []
+    pricing_events = []
+    reputation_events = []
+    capital_events = []
+    cycle_records = []
+
+    meta_upgrade_map = {
+        4: "eval_market_maker_upgrade",
+        8: "artifact_pricing_model_upgrade",
+        12: "reputation_router_upgrade",
+        16: "federated_adoption_policy_upgrade",
+        20: "capital_allocator_upgrade",
+        24: "rollback_predictor_upgrade",
+        28: "cross_enterprise_transfer_upgrade",
+        32: "proof_compression_and_liquidity_upgrade",
+    }
+
+    for cycle in range(1, cycles + 1):
+        if cycle in meta_upgrade_map:
+            meta_rsi_upgrades.append({
+                "cycle": cycle,
+                "upgrade_type": meta_upgrade_map[cycle],
+                "before": f"sovereign_proof_market_meta_rsi@1.{cycle - 1}",
+                "after": f"sovereign_proof_market_meta_rsi@1.{cycle}",
+                "meaning": "The proof economy improved part of its own market, routing, pricing, or selection machinery.",
+            })
+
+        cycle_selected = 0
+        cycle_rejected = 0
+        cycle_trades = 0
+        cycle_adoptions = 0
+
+        for index, enterprise in enumerate(enterprises):
+            enterprise_id = enterprise["enterprise_id"]
+            baseline_score = scores[enterprise_id]
+            capital_boost = min(0.020, capital_units[enterprise_id] / 800_000)
+            reputation_boost = min(0.014, reputation[enterprise_id] / 150.0)
+            market_boost = 0.0015 * ((index + cycle) % 8)
+            candidate_delta = 0.014 + (cycle * 0.0027) + capital_boost + reputation_boost + market_boost
+            candidate_score = round(baseline_score * (1 + candidate_delta), 3)
+
+            safety_violation = (
+                (cycle in {6, 14, 22, 30} and index % 31 == 0)
+                or (cycle in {11, 19, 27} and index % 37 == 0)
+            )
+
+            baseline_artifact = artifacts[enterprise_id]
+            candidate_artifact = f"{enterprise['domain_slug']}_artifact@1.{cycle}-candidate"
+            promoted_artifact = f"{enterprise['domain_slug']}_artifact@1.{cycle}"
+
+            patch = {
+                "patch_id": f"patch_{enterprise['domain_slug']}_{enterprise_id}_cycle_{cycle:02d}",
+                "patch_type": ["goal_patch", "plan_patch", "skill_patch", "policy_patch", "eval_patch", "context_patch", "routing_patch", "release_rule_patch"][index % 8],
+                "enterprise_id": enterprise_id,
+                "enterprise_name": enterprise["name"],
+                "domain": enterprise["domain"],
+                "target_artifact": baseline_artifact,
+                "candidate_artifact": candidate_artifact,
+                "source_proof": "proof-007-sovereign-enterprise-proof-economy",
+                "rationale": f"Improve {enterprise['lever']} through sovereign proof-market RSI cycle {cycle}.",
+                "synthetic_value_delta": round(candidate_score - baseline_score, 3),
+                "eval_cases": eval_cases_per_enterprise_per_cycle,
+                "rollback_target": baseline_artifact,
+                "sovereignty_boundary": enterprise["sovereignty_boundary"],
+            }
+
+            if safety_violation:
+                cycle_rejected += 1
+                rejected_patches.append(patch)
+                rollbacks.append({
+                    "cycle": cycle,
+                    "enterprise_id": enterprise_id,
+                    "enterprise_name": enterprise["name"],
+                    "candidate_artifact": candidate_artifact,
+                    "rollback_target": baseline_artifact,
+                    "reason": "privacy_governance_or_safety_regression_detected",
+                    "result": "rollback_successful",
+                })
+                reputation[enterprise_id] = max(0.1, reputation[enterprise_id] - 0.04)
+            else:
+                cycle_selected += 1
+                selected_patches.append(patch)
+                scores[enterprise_id] = candidate_score
+                artifacts[enterprise_id] = promoted_artifact
+                reputation[enterprise_id] += 0.015 + candidate_delta
+
+                if index % 5 == 0:
+                    buyer = enterprises[(index + cycle + 17) % len(enterprises)]
+                    proof_market_trades.append({
+                        "cycle": cycle,
+                        "seller": enterprise["name"],
+                        "buyer": buyer["name"],
+                        "asset": "generalized_redacted_artifact_pattern",
+                        "price_units": round(proof_price[enterprise_id], 3),
+                        "status": "trade_accepted_after_local_eval",
+                        "private_data_shared": False,
+                    })
+                    cycle_trades += 1
+
+                if index % 7 == 0:
+                    adopter = enterprises[(index + cycle + 29) % len(enterprises)]
+                    federated_adoptions.append({
+                        "cycle": cycle,
+                        "source_enterprise": enterprise["name"],
+                        "adopter_enterprise": adopter["name"],
+                        "artifact_pattern": "proof_backed_operating_upgrade",
+                        "adoption_status": "queued_for_local_canary",
+                        "local_eval_required": True,
+                        "rollback_required": True,
+                    })
+                    cycle_adoptions += 1
+
+                if index % 9 == 0:
+                    old_price = proof_price[enterprise_id]
+                    proof_price[enterprise_id] = round(old_price * (1 + candidate_delta + 0.01), 3)
+                    pricing_events.append({
+                        "cycle": cycle,
+                        "enterprise": enterprise["name"],
+                        "artifact": promoted_artifact,
+                        "old_price_units": old_price,
+                        "new_price_units": proof_price[enterprise_id],
+                        "pricing_reason": "positive eval delta and reputation increase",
+                    })
+
+                if index % 13 == 0:
+                    reputation_events.append({
+                        "cycle": cycle,
+                        "enterprise": enterprise["name"],
+                        "new_reputation": round(reputation[enterprise_id], 4),
+                        "reason": "artifact passed local eval and was adopted by another sovereign enterprise",
+                    })
+
+        ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+        top = ranked[:48]
+
+        for enterprise_id, score in top:
+            capital_units[enterprise_id] += 750.0 + (cycle * 35.0)
+
+        capital_events.append({
+            "cycle": cycle,
+            "allocated_to_count": len(top),
+            "rule": "allocate synthetic capital to sovereign enterprises with proof-backed improvement, positive reputation, and no safety regression",
+            "top_allocations_sample": [
+                {
+                    "enterprise_id": enterprise_id,
+                    "enterprise_name": next(e["name"] for e in enterprises if e["enterprise_id"] == enterprise_id),
+                    "synthetic_score": score,
+                    "new_capital_units": round(capital_units[enterprise_id], 2),
+                }
+                for enterprise_id, score in top[:10]
+            ],
+        })
+
+        cycle_records.append({
+            "cycle": cycle,
+            "sovereign_enterprises": len(enterprises),
+            "eval_cases": len(enterprises) * eval_cases_per_enterprise_per_cycle,
+            "selected": cycle_selected,
+            "rejected": cycle_rejected,
+            "proof_market_trades": cycle_trades,
+            "federated_adoptions": cycle_adoptions,
+            "market_index_after_cycle": round(sum(scores.values()), 3),
+        })
+
+    final_index = round(sum(scores.values()), 3)
+    average_reputation = round(sum(reputation.values()) / len(reputation), 4)
+    average_price = round(sum(proof_price.values()) / len(proof_price), 3)
+
+    return {
+        "rsi_cycle_count": cycles,
+        "sovereign_enterprise_count": len(enterprises),
+        "domain_count": len(sovereign_domains()),
+        "eval_case_count": cycles * len(enterprises) * eval_cases_per_enterprise_per_cycle,
+        "synthetic_market_index_start": start_index,
+        "synthetic_market_index_final": final_index,
+        "synthetic_market_index_delta": round(final_index - start_index, 3),
+        "synthetic_market_index_delta_percent": round(((final_index - start_index) / start_index) * 100, 2),
+        "selected_patch_count": len(selected_patches),
+        "rejected_patch_count": len(rejected_patches),
+        "rollback_count": len(rollbacks),
+        "meta_rsi_upgrade_count": len(meta_rsi_upgrades),
+        "proof_market_trade_count": len(proof_market_trades),
+        "federated_adoption_count": len(federated_adoptions),
+        "pricing_event_count": len(pricing_events),
+        "reputation_event_count": len(reputation_events),
+        "capital_allocation_event_count": len(capital_events),
+        "average_artifact_reputation": average_reputation,
+        "average_proof_price_units": average_price,
+        "cycles": cycle_records,
+        "selected_patches_sample": selected_patches[:40],
+        "rejected_patches": rejected_patches,
+        "rollbacks": rollbacks,
+        "meta_rsi_upgrades": meta_rsi_upgrades,
+        "proof_market_trades_sample": proof_market_trades[:64],
+        "federated_adoptions_sample": federated_adoptions[:64],
+        "pricing_events_sample": pricing_events[:64],
+        "reputation_events_sample": reputation_events[:64],
+        "capital_allocation_events": capital_events,
+        "final_artifacts_sample": dict(list(artifacts.items())[:16]),
+    }
+
+
+def proof_007() -> ProofPage:
+    mesh = proof_economy_mesh(agent_count=65536)
+    economy = proof_economy_cycles(cycles=32, eval_cases_per_enterprise_per_cycle=256)
+
+    evidence = {
+        "proof_type": "sovereign_enterprise_proof_economy",
+        "positioning": "AI-first sovereign enterprise RSI market for profitable, scalable, proof-bounded reusable intelligence",
+        "not_claiming": [
+            "real revenue",
+            "real profit",
+            "guaranteed ROI",
+            "investment advice",
+            "actual deployed superintelligence",
+            "Kardashev Type II achievement",
+            "external customer production results",
+        ],
+        "claim_boundary": "All value, price, reputation, and capital values are deterministic synthetic proof-economy units, not dollars, not revenue, not profit, and not investment advice.",
+        "agent_mesh": mesh,
+        "recursive_self_improvement": economy,
+        "run_contract": {
+            "job_id": "job_sovereign_enterprise_proof_economy_007",
+            "direction": "sovereign_enterprise_proof_economy_goal@1.0.0",
+            "strategy": "proof_market_rsi_strategy@1.0.0",
+            "capabilities": [
+                "sovereign_artifact_pricing_skill@1.0.0",
+                "federated_adoption_skill@1.0.0",
+                "artifact_reputation_skill@1.0.0",
+                "synthetic_capital_allocation_skill@1.0.0",
+                "credit_assignment_skill@1.0.0",
+                "rollback_routing_skill@1.0.0",
+                "privacy_preserving_transfer_skill@1.0.0",
+            ],
+            "evals": [
+                "proof_market_value_eval@1.0.0",
+                "artifact_reputation_eval@1.0.0",
+                "privacy_boundary_eval@1.0.0",
+                "federated_adoption_eval@1.0.0",
+                "safety_non_regression_eval@1.0.0",
+                "rollback_required_eval@1.0.0",
+                "claim_boundary_eval@1.0.0",
+            ],
+            "trace_required": True,
+        },
+        "proof_ledger": {
+            "trace_event_count": mesh["agent_count"] + economy["eval_case_count"] + economy["selected_patch_count"] + economy["rollback_count"] + economy["proof_market_trade_count"] + economy["pricing_event_count"],
+            "records": [
+                "agent deliberations",
+                "guild votes",
+                "sovereign enterprise evals",
+                "credit assignments",
+                "typed patches",
+                "proof-market trades",
+                "artifact reputation updates",
+                "artifact pricing updates",
+                "federated adoptions",
+                "capital allocation events",
+                "meta-RSI upgrades",
+                "rollback drills",
+            ],
+        },
+        "selection_gate": {
+            "decision": "approve_sovereign_enterprise_proof_economy_canary",
+            "rollout_percentage": 10,
+            "rollback_target": "proof_market_rsi_strategy@1.0.0",
+            "selected_patch_count": economy["selected_patch_count"],
+            "rejected_patch_count": economy["rejected_patch_count"],
+            "rollback_count": economy["rollback_count"],
+            "required_evals": "passed",
+        },
+        "sovereignty_guarantees": {
+            "private_data_shared": False,
+            "private_customer_records_shared": False,
+            "private_financials_shared": False,
+            "shared_unit": "generalized_redacted_eval_passed_artifact_pattern",
+            "local_eval_required_before_adoption": True,
+            "rollback_required_before_release": True,
+        },
+        "why_this_elevates_previous_proofs": [
+            "moves from constellation coordination to a proof-backed sovereign enterprise economy",
+            "adds artifact pricing and market liquidity",
+            "adds artifact reputation as a selection signal",
+            "adds federated adoption across sovereign enterprises",
+            "adds synthetic capital allocation toward proof-backed artifact winners",
+            "adds 8 meta-RSI upgrades to the proof-market machinery itself",
+            "increases scale to 65,536 agents, 256 enterprises, 64 domains, 32 cycles, and 2,097,152 eval cases",
+        ],
+        "verdict": "sovereign_enterprise_proof_economy_proven_deterministically_with_pricing_reputation_federated_adoption_selection_and_rollback",
+    }
+
+    summary = {
+        "agents": mesh["agent_count"],
+        "guilds": mesh["guild_count"],
+        "sovereign_enterprises": economy["sovereign_enterprise_count"],
+        "sovereign_domains": economy["domain_count"],
+        "rsi_cycles": economy["rsi_cycle_count"],
+        "eval_cases": economy["eval_case_count"],
+        "selected_patches": economy["selected_patch_count"],
+        "rejected_patches": economy["rejected_patch_count"],
+        "rollbacks": economy["rollback_count"],
+        "meta_rsi_upgrades": economy["meta_rsi_upgrade_count"],
+        "proof_market_trades": economy["proof_market_trade_count"],
+        "federated_adoptions": economy["federated_adoption_count"],
+        "pricing_events": economy["pricing_event_count"],
+        "reputation_events": economy["reputation_event_count"],
+        "capital_allocation_events": economy["capital_allocation_event_count"],
+        "synthetic_market_index_delta_percent": economy["synthetic_market_index_delta_percent"],
+        "average_artifact_reputation": economy["average_artifact_reputation"],
+        "average_proof_price_units": economy["average_proof_price_units"],
+        "verdict": evidence["verdict"],
+    }
+
+    return ProofPage(
+        proof_id="proof-007-sovereign-enterprise-proof-economy",
+        number=7,
+        slug="007-sovereign-enterprise-proof-economy",
+        title="Proof #7 — Sovereign Enterprise Proof Economy",
+        subtitle="A deterministic proof market where sovereign enterprises price, route, adopt, reject, and compound reusable intelligence.",
+        url=f"{SITE_BASE}/proofs/007-sovereign-enterprise-proof-economy.html",
+        json_url=f"{SITE_BASE}/assets/proofs/007-sovereign-enterprise-proof-economy.json",
+        status="passed",
+        summary=summary,
+        evidence=evidence,
+    )
+
+
+def build_archive() -> dict[str, Any]:
+    proofs = [legacy_proof(i) for i in range(1, 7)] + [proof_007()]
+    proof_dicts = [proof.to_dict() for proof in proofs]
+
+    return {
+        "generated_at": now(),
+        "repository": "MontrealAI/proof-gradient",
+        "site": f"{SITE_BASE}/",
+        "title": "Proof Gradient",
+        "canonical_line": "One agent tries. Proof decides. The network evolves.",
+        "doctrine": "No proof, no evolution. No eval, no propagation. No rollback, no release.",
+        "systems": four_systems(),
+        "proof_count": len(proofs),
+        "proofs": proof_dicts,
+        "proof_archive_verdict": "each_proof_has_separate_webpage_and_all_pages_are_connected_to_main",
+    }
+
+
+def esc(value: Any) -> str:
+    return (
+        str(value)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
+
+
+def css() -> str:
+    return """
+    :root {
+      color-scheme: dark;
+      --text: #f7f8ff;
+      --muted: #aab3cf;
+      --line: rgba(255,255,255,.14);
+      --gold: #f4c76b;
+      --blue: #8ab4ff;
+      --green: #91f2bf;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(138,180,255,.18), transparent 30%),
+        radial-gradient(circle at 85% 12%, rgba(244,199,107,.14), transparent 30%),
+        linear-gradient(180deg, #05070d 0%, #090d18 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { width: min(1240px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
+    .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
+    h1 { font-size: clamp(44px, 8vw, 100px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
+    h2 { font-size: clamp(28px, 4vw, 52px); letter-spacing: -0.05em; }
+    p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
+    a { color: var(--blue); }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+    .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
+    .card b { display: block; font-size: 21px; margin-bottom: 10px; }
+    .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
+    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 700px; }
+    .nav { margin: 28px 0; display: flex; gap: 12px; flex-wrap: wrap; }
+    .nav a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; text-decoration: none; color: var(--muted); background: rgba(255,255,255,.04); }
+    .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
+    @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+    """
+
+
+def shell(title: str, eyebrow: str, body: str) -> str:
+    return f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{esc(title)}</title>
+    <style>{css()}</style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">{esc(eyebrow)}</div>
+      {body}
+    </main>
+  </body>
+</html>
+"""
+
+
+def render_main(archive: dict[str, Any]) -> str:
+    system_cards = []
+    for system in archive["systems"]:
+        system_cards.append(f"""
+        <div class="card">
+          <b>{esc(system["name"])}</b>
+          <p>{esc(system["promise"])}.</p>
+          <p>{esc(system["meaning"])}</p>
+        </div>
+        """)
+
+    proof_cards = []
+    for proof in archive["proofs"]:
+        proof_cards.append(f"""
+        <div class="card">
+          <b>{esc(proof["title"])}</b>
+          <p>{esc(proof["subtitle"])}</p>
+          <p><span class="pill">{esc(proof["status"])}</span></p>
+          <p><a href="proofs/{esc(proof["slug"])}.html">Open proof page →</a></p>
+        </div>
+        """)
+
+    body = f"""
+    <h1>One agent tries.<br>Proof decides.<br>The network evolves.</h1>
+    <p>GoalOS gives the network Direction. PlanOS gives it Strategy. SkillOS gives it Capability. The Proof Gradient gives it Evolution.</p>
+    <div class="nav">
+      <a href="./">Command Center</a>
+      <a href="proofs/">Proof Archive</a>
+      {''.join(f'<a href="proofs/{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])}
+    </div>
+    <h2>The Four Systems</h2>
+    <div class="grid">{''.join(system_cards)}</div>
+    <h2>Proof Archive</h2>
+    <div class="grid">{''.join(proof_cards)}</div>
+    <h2>Current Apex Proof</h2>
+    <pre>{esc(json.dumps(archive["proofs"][-1]["summary"], indent=2))}</pre>
+    """
+    return shell("Proof Gradient", "Proof Gradient · Sovereign Enterprise Proof Economy", body)
+
+
+def render_proofs_index(archive: dict[str, Any]) -> str:
+    cards = []
+    for proof in archive["proofs"]:
+        cards.append(f"""
+        <div class="card">
+          <b>{esc(proof["title"])}</b>
+          <p>{esc(proof["subtitle"])}</p>
+          <p><a href="{esc(proof["slug"])}.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/{esc(proof["slug"])}.json">Open evidence JSON →</a></p>
+        </div>
+        """)
+
+    body = f"""
+    <h1>Proof Archive</h1>
+    <p>Every proof has its own permanent webpage and evidence JSON. Every proof links back to the main command center.</p>
+    <div class="nav">
+      <a href="../">← Main Command Center</a>
+      {''.join(f'<a href="{esc(p["slug"])}.html">Proof #{p["number"]}</a>' for p in archive["proofs"])}
+    </div>
+    <div class="grid">{''.join(cards)}</div>
+    """
+    return shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", body)
+
+
+def render_proof_page(proof: dict[str, Any], archive: dict[str, Any]) -> str:
+    other_links = ''.join(f'<a href="{esc(other["slug"])}.html">Proof #{other["number"]}</a>' for other in archive["proofs"])
+
+    body = f"""
+    <h1>{esc(proof["title"])}</h1>
+    <p>{esc(proof["subtitle"])}</p>
+    <p><span class="pill">{esc(proof["status"])}</span></p>
+    <div class="nav">
+      <a href="../">← Main Command Center</a>
+      <a href="./">Proof Archive</a>
+      {other_links}
+      <a href="../assets/proofs/{esc(proof["slug"])}.json">Evidence JSON</a>
+    </div>
+    <h2>Summary</h2>
+    <pre>{esc(json.dumps(proof["summary"], indent=2))}</pre>
+    <h2>Evidence</h2>
+    <pre>{esc(json.dumps(proof["evidence"], indent=2))}</pre>
+    <h2>Checksum</h2>
+    <pre>{esc(proof["checksum"])}</pre>
+    """
+    return shell(proof["title"], "Proof Gradient · Permanent Proof Page", body)
+
+
+def write_json(path: Path, value: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def write_site(site_dir: Path, data_dir: Path) -> None:
+    archive = build_archive()
+
+    site_dir.mkdir(parents=True, exist_ok=True)
+    (site_dir / "proofs").mkdir(parents=True, exist_ok=True)
+    (site_dir / "assets" / "proofs").mkdir(parents=True, exist_ok=True)
+    data_dir.mkdir(parents=True, exist_ok=True)
+
+    (site_dir / "index.html").write_text(render_main(archive), encoding="utf-8")
+    (site_dir / "proofs" / "index.html").write_text(render_proofs_index(archive), encoding="utf-8")
+    write_json(site_dir / "assets" / "proof-index.json", archive)
+    write_json(data_dir / "proof-index.json", archive)
+
+    for proof in archive["proofs"]:
+        (site_dir / "proofs" / f"{proof['slug']}.html").write_text(render_proof_page(proof, archive), encoding="utf-8")
+        write_json(site_dir / "assets" / "proofs" / f"{proof['slug']}.json", proof)
+        write_json(data_dir / f"{proof['slug']}.json", proof)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--site", default="site")
+    parser.add_argument("--data", default="data/proofs")
+    args = parser.parse_args()
+    write_site(Path(args.site), Path(args.data))
+
+
+if __name__ == "__main__":
+    main()

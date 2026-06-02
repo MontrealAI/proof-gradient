@@ -28,30 +28,29 @@ The Proof Gradient gives it **Evolution**.
 - Proof #4 — Corporate RSI Dominion
 - Proof #5 — Enterprise RSI Superorganism
 - Proof #6 — Sovereign Enterprise Constellation
+- Proof #7 — Sovereign Enterprise Proof Economy
 
-## Proof #6 — Sovereign Enterprise Constellation
+## Proof #7 — Sovereign Enterprise Proof Economy
 
-Sovereign Enterprise Constellation proves a deterministic, auditable RSI network for the AI-first sovereign enterprise era.
+Sovereign Enterprise Proof Economy proves a deterministic RSI market where AI-first sovereign enterprises exchange generalized, redacted, eval-backed, rollbackable artifacts.
 
-It models a constellation of sovereign enterprises that recursively improve:
+It models:
 
-- direction artifacts
-- strategy artifacts
-- capability artifacts
-- trust policies
-- capital allocation rules
-- market expansion systems
-- enterprise operating loops
-- cross-enterprise artifact transfer
-- proof markets
-- rollout and rollback governance
+- proof-market pricing
+- artifact reputation
+- federated adoption
+- sovereign privacy boundaries
+- capital allocation toward proof-backed winners
+- unsafe candidate rejection
+- rollback drills
+- recursive self-improvement of the market machinery itself
 
 It does **not** claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, or Kardashev achievement.
 
 It proves the substrate:
 
 ```text
-artifact → run → proof → eval → credit assignment → patch → selection → canary → rollback → next RSI cycle
+artifact → run → proof → eval → credit assignment → patch → price → route → select → canary → rollback → next RSI cycle
 ```
 
 ## Operating law

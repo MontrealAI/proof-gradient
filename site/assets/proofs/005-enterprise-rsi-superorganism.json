@@ -8,36 +8,22 @@
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/005-enterprise-rsi-superorganism.json",
   "status": "passed",
   "summary": {
-    "proof_type": "enterprise_recursive_self_improvement_superorganism",
     "agent_count": 2048,
     "guild_count": 32,
     "corporate_domain_count": 32,
     "rsi_cycle_count": 12,
     "eval_case_count": 49152,
-    "selected_patch_count": 377,
-    "rejected_patch_count": 7,
-    "rollback_count": 7,
     "meta_rsi_upgrade_count": 6,
-    "cross_domain_transfer_count": 96,
-    "capital_allocation_event_count": 12,
-    "synthetic_enterprise_index_delta_percent": 84.6,
     "verdict": "enterprise_rsi_superorganism_proven_deterministically_with_meta_rsi_capital_allocation_selection_and_rollback"
   },
   "evidence": {
-    "proof_type": "enterprise_recursive_self_improvement_superorganism",
     "agent_count": 2048,
     "guild_count": 32,
     "corporate_domain_count": 32,
     "rsi_cycle_count": 12,
     "eval_case_count": 49152,
-    "selected_patch_count": 377,
-    "rejected_patch_count": 7,
-    "rollback_count": 7,
     "meta_rsi_upgrade_count": 6,
-    "cross_domain_transfer_count": 96,
-    "capital_allocation_event_count": 12,
-    "synthetic_enterprise_index_delta_percent": 84.6,
     "verdict": "enterprise_rsi_superorganism_proven_deterministically_with_meta_rsi_capital_allocation_selection_and_rollback"
   },
-  "checksum": "222c97a0d5d00a9b6ef6a0695ba2718ff9f1f3164522cfa2e79b5e508f1d24ca"
+  "checksum": "9b8e4272452b4c0ac624e10532ec9b5e304589078ce15c73392159763259b0ad"
 }

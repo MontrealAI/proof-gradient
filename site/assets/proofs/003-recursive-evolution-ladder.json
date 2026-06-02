@@ -8,34 +8,20 @@
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/003-recursive-evolution-ladder.json",
   "status": "passed",
   "summary": {
-    "proof_type": "recursive_evolution_ladder",
     "agent_count": 240,
     "guild_count": 16,
     "generation_count": 5,
     "total_eval_cases": 300,
-    "selected_generations": 4,
-    "rejected_generations": 1,
     "rollback_count": 1,
-    "starting_artifact": "artifact_network@1.0.0",
-    "final_artifact": "artifact_network@1.4.0",
-    "starting_score": 0.7,
-    "final_score": 0.93,
     "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"
   },
   "evidence": {
-    "proof_type": "recursive_evolution_ladder",
     "agent_count": 240,
     "guild_count": 16,
     "generation_count": 5,
     "total_eval_cases": 300,
-    "selected_generations": 4,
-    "rejected_generations": 1,
     "rollback_count": 1,
-    "starting_artifact": "artifact_network@1.0.0",
-    "final_artifact": "artifact_network@1.4.0",
-    "starting_score": 0.7,
-    "final_score": 0.93,
     "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback"
   },
-  "checksum": "3ccc45f97ec6212a6dab1fb6942dc831627eb3e7ec3628cedebb010864e57693"
+  "checksum": "3ff53b1067a0b704031165252043f1bb11c562ca2e2ca06f183a8d07e9cd5b34"
 }

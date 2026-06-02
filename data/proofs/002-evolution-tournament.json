@@ -8,28 +8,20 @@
   "json_url": "https://montrealai.github.io/proof-gradient/assets/proofs/002-evolution-tournament.json",
   "status": "passed",
   "summary": {
-    "proof_type": "baseline_candidate_evolution_tournament",
     "agent_count": 144,
     "guild_count": 12,
     "case_count": 72,
-    "domain_count": 3,
     "patch_count": 3,
-    "canary_selection_count": 3,
     "candidate_policy_violations": 0,
-    "average_quality_delta": 0.171,
     "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"
   },
   "evidence": {
-    "proof_type": "baseline_candidate_evolution_tournament",
     "agent_count": 144,
     "guild_count": 12,
     "case_count": 72,
-    "domain_count": 3,
     "patch_count": 3,
-    "canary_selection_count": 3,
     "candidate_policy_violations": 0,
-    "average_quality_delta": 0.171,
     "verdict": "candidate_artifacts_beat_baselines_without_safety_regression"
   },
-  "checksum": "f67c35d467b08328761564927016f8ff7c4bda8ba4dbe60df2741a68c4783caa"
+  "checksum": "47b7329fb1f8b286ff8f39126e0de443b8472a63ae51401fee2d56f254dd2fe4"
 }
