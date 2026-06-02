@@ -30,34 +30,34 @@ The Proof Gradient gives it **Evolution**.
 - Proof #6 — Sovereign Enterprise Constellation
 - Proof #7 — Sovereign Enterprise Proof Economy
 - Proof #8 — Sovereign Domain Atlas
+- Proof #9 — Sovereign Kardashev Capital Engine
 
-## Proof #8 — Sovereign Domain Atlas
+## Proof #9 — Sovereign Kardashev Capital Engine
 
-Sovereign Domain Atlas proves a deterministic RSI atlas across high-value sovereign domains for the AI-first era.
+Sovereign Kardashev Capital Engine proves a deterministic RSI scenario engine across sovereign capital, compute, energy, trust, markets, infrastructure, and governance domains.
 
 It models:
 
-- domain-level reusable intelligence
-- institutional proof markets
-- sovereign domain capital routing
+- capital routing
 - compute routing
+- energy routing
 - trust routing
+- proof-market pricing
 - artifact reputation
-- domain transfer
+- Kardashev scenario readiness
+- cross-domain artifact transfer
 - meta-RSI upgrades
-- eval-backed selection
 - rollback governance
-- permanent proof pages
-- evidence JSON
 - institutional graphs and tables
+- explicit GoalOS, PlanOS, and SkillOS artifact catalogs
 
-It does **not** claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, or Kardashev achievement.
+It does **not** claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, or Kardashev Type II achievement.
 
-It proves the substrate:
+It makes the Kardashev quote actionable as a proof-bounded scenario:
 
-```text
-artifact → run → proof → eval → credit assignment → patch → price → route → select → canary → rollback → next RSI cycle
-```
+> A superintelligent machine would be of such immense value, with so much wealth accruing to any company that owned one, that it could allow us to reach Kardashev Type II civilization level.
+
+Proof Gradient treats this as a **strategic scenario**, not an achieved fact.
 
 ## Operating law
 
