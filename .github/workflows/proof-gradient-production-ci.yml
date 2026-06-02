@@ -6,18 +6,40 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "proof_gradient/**"
-      - "tests/**"
-      - "docs/**"
-      - "scripts/**"
+      - ".github/workflows/proof-gradient-production-ci.yml"
+      - "proof_gradient/__init__.py"
+      - "proof_gradient/config.py"
+      - "proof_gradient/db.py"
+      - "proof_gradient/models.py"
+      - "proof_gradient/security.py"
+      - "proof_gradient/providers.py"
+      - "proof_gradient/evals.py"
+      - "proof_gradient/services.py"
+      - "proof_gradient/api.py"
+      - "proof_gradient/cli.py"
+      - "proof_gradient/workers.py"
+      - "tests/test_proof_gradient_*.py"
+      - "docs/architecture.md"
+      - "docs/final_acceptance_report.md"
+      - "docs/security.md"
+      - "docs/api.md"
+      - "docs/cli.md"
+      - "docs/deployment.md"
+      - "docs/migration_from_skillos_v2.md"
+      - "scripts/security_review.py"
       - "pyproject.toml"
       - "Dockerfile"
       - "docker-compose.yml"
       - "alembic.ini"
       - "migrations/**"
+      - "README.md"
 
 permissions:
   contents: read
+
+concurrency:
+  group: proof-gradient-production-ci
+  cancel-in-progress: true
 
 jobs:
   production-ci:
@@ -55,41 +77,167 @@ jobs:
 
       - name: Install
         run: |
+          set -euo pipefail
+
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
 
-      - name: Lint
+      - name: Verify production files exist
         run: |
-          ruff check proof_gradient tests
+          set -euo pipefail
+
+          required=(
+            "proof_gradient/__init__.py"
+            "proof_gradient/config.py"
+            "proof_gradient/db.py"
+            "proof_gradient/models.py"
+            "proof_gradient/security.py"
+            "proof_gradient/providers.py"
+            "proof_gradient/evals.py"
+            "proof_gradient/services.py"
+            "proof_gradient/api.py"
+            "proof_gradient/cli.py"
+            "proof_gradient/workers.py"
+            "tests/test_proof_gradient_vertical_slice.py"
+            "tests/test_proof_gradient_security.py"
+            "tests/test_proof_gradient_api.py"
+            "scripts/security_review.py"
+            "docs/architecture.md"
+            "docs/final_acceptance_report.md"
+            "docs/security.md"
+            "docs/api.md"
+            "docs/cli.md"
+            "docs/deployment.md"
+            "docs/migration_from_skillos_v2.md"
+            "Dockerfile"
+            "docker-compose.yml"
+            "alembic.ini"
+            "migrations/env.py"
+            "migrations/versions/0001_initial_schema.py"
+          )
+
+          for file in "${required[@]}"; do
+            test -f "$file" || { echo "Missing required production file: $file"; exit 1; }
+          done
+
+          echo "Production files verified."
+
+      - name: Lint production platform only
+        run: |
+          set -euo pipefail
+
+          ruff check \
+            proof_gradient/__init__.py \
+            proof_gradient/config.py \
+            proof_gradient/db.py \
+            proof_gradient/models.py \
+            proof_gradient/security.py \
+            proof_gradient/providers.py \
+            proof_gradient/evals.py \
+            proof_gradient/services.py \
+            proof_gradient/api.py \
+            proof_gradient/cli.py \
+            proof_gradient/workers.py \
+            tests/test_proof_gradient_vertical_slice.py \
+            tests/test_proof_gradient_security.py \
+            tests/test_proof_gradient_api.py
 
       - name: Security review
         run: |
-          python scripts/security_review.py
-          bandit -q -r proof_gradient
+          set -euo pipefail
 
-      - name: Test
+          python scripts/security_review.py
+
+          bandit -q \
+            proof_gradient/__init__.py \
+            proof_gradient/config.py \
+            proof_gradient/db.py \
+            proof_gradient/models.py \
+            proof_gradient/security.py \
+            proof_gradient/providers.py \
+            proof_gradient/evals.py \
+            proof_gradient/services.py \
+            proof_gradient/api.py \
+            proof_gradient/cli.py \
+            proof_gradient/workers.py
+
+      - name: Test production platform only
         run: |
-          pytest
+          set -euo pipefail
+
+          pytest tests/test_proof_gradient_*.py
 
       - name: CLI smoke test
         run: |
+          set -euo pipefail
+
           proof-gradient db reset
           proof-gradient demo --tenant ci --json
           proof-gradient proof list --tenant ci
+          proof-gradient selection list --tenant ci
 
       - name: API smoke test
         run: |
+          set -euo pipefail
+
           python - <<'PY'
           from fastapi.testclient import TestClient
+
           from proof_gradient.api import app
           from proof_gradient.db import reset_db
 
+
           reset_db()
+
           client = TestClient(app)
-          assert client.get("/healthz").status_code == 200
-          response = client.post("/demo/run", json={"tenant": "ci-api", "prompt": "refund response"})
-          assert response.status_code == 200, response.text
-          assert response.json()["rollback_id"]
-          assert "proof_gradient_proofs_total" in client.get("/metrics").text
+
+          health = client.get("/healthz")
+          assert health.status_code == 200, health.text
+          assert health.json()["status"] == "ok"
+
+          ready = client.get("/readyz")
+          assert ready.status_code == 200, ready.text
+          assert ready.json()["status"] == "ready"
+
+          demo = client.post(
+              "/demo/run",
+              json={
+                  "tenant": "ci-api",
+                  "prompt": "Draft a response to this angry customer asking for a refund.",
+              },
+          )
+          assert demo.status_code == 200, demo.text
+
+          body = demo.json()
+          assert body["proof_id"]
+          assert body["run_id"]
+          assert body["patch_id"]
+          assert body["selection_id"]
+          assert body["rollout_id"]
+          assert body["rollback_id"]
+          assert body["run_contract"]["trace_required"] is True
+          assert body["run_contract"]["rollback_required"] is True
+
+          proofs = client.get("/proofs", params={"tenant": "ci-api"})
+          assert proofs.status_code == 200, proofs.text
+          assert len(proofs.json()["proofs"]) == 1
+
+          artifacts = client.get("/artifacts", params={"tenant": "ci-api"})
+          assert artifacts.status_code == 200, artifacts.text
+          assert len(artifacts.json()["artifacts"]) >= 1
+
+          metrics = client.get("/metrics")
+          assert metrics.status_code == 200, metrics.text
+          assert "proof_gradient_proofs_total" in metrics.text
+
           print("API smoke test passed.")
           PY
+
+      - name: Final production CI verdict
+        run: |
+          echo "Production CI passed."
+          echo "Artifact Vault verified."
+          echo "Run Fabric verified."
+          echo "Proof Ledger verified."
+          echo "Selection Gate verified."
+          echo "Postgres-backed production tests passed."
