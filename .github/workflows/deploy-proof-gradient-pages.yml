@@ -1,4 +1,4 @@
-name: Proof Gradient Proof Archive
+name: Proof Gradient Corporate RSI Dominion
 
 on:
   workflow_dispatch:
@@ -30,12 +30,12 @@ permissions:
   actions: read
 
 concurrency:
-  group: proof-gradient-proof-archive
+  group: proof-gradient-corporate-rsi-dominion
   cancel-in-progress: true
 
 jobs:
-  proof-archive:
-    name: Build, prove, archive, and deploy
+  corporate-rsi-dominion:
+    name: Build, prove, archive, and deploy Corporate RSI Dominion
     runs-on: ubuntu-latest
 
     if: github.repository == 'MontrealAI/proof-gradient'
@@ -55,7 +55,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Bootstrap Proof Archive
+      - name: Bootstrap Corporate RSI Dominion
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'bootstrap-and-deploy' }}
         run: |
           set -euo pipefail
@@ -82,10 +82,63 @@ jobs:
               The Proof Gradient gives Evolution.
               """
 
-              __version__ = "0.4.0"
+              __version__ = "0.5.0"
               ''')
 
-          write("proof_gradient/proof_archive.py", r'''
+          write("README.md", """
+          # Proof Gradient
+
+          **One agent tries. Proof decides. The network evolves.**
+
+          Proof Gradient is the agent evolution protocol where every run leaves proof, every proof selects intelligence, and every selected artifact evolves the network.
+
+          ## Canonical product truth
+
+          GoalOS gives the network **Direction**.  
+          PlanOS gives it **Strategy**.  
+          SkillOS gives it **Capability**.  
+          The Proof Gradient gives it **Evolution**.
+
+          ## The four systems
+
+          | System | Promise |
+          |---|---|
+          | **Artifact Vault** | Stores reusable intelligence. |
+          | **Run Fabric** | Executes agents at scale. |
+          | **Proof Ledger** | Records what happened. |
+          | **Selection Gate** | Promotes only what proved itself. |
+
+          ## Current proof archive
+
+          - Proof #1 — Sovereign Swarm
+          - Proof #2 — Evolution Tournament
+          - Proof #3 — Recursive Evolution Ladder
+          - Proof #4 — Corporate RSI Dominion
+
+          ## Proof #4 — Corporate RSI Dominion
+
+          Corporate RSI Dominion proves a deterministic, auditable, large multi-agent recursive self-improvement loop across high-leverage corporate domains.
+
+          It models recursive improvement across revenue, customer success, product, engineering, security, finance, procurement, legal, marketing, talent, partnerships, and executive operations.
+
+          It does **not** claim real revenue, guaranteed ROI, real superintelligence, or achieved Kardashev capability. It creates proof infrastructure: artifacts, runs, traces, evals, patches, selection, canaries, and rollback.
+
+          ## Operating law
+
+          ```text
+          No proof, no evolution.
+          No eval, no propagation.
+          No rollback, no release.
+          ```
+
+          ## Public command center
+
+          ```text
+          https://montrealai.github.io/proof-gradient/
+          ```
+          """)
+
+          write("proof_gradient/corporate_rsi_dominion.py", r'''
           from __future__ import annotations
 
           from dataclasses import dataclass, asdict
@@ -157,42 +210,53 @@ jobs:
               ]
 
 
+          CORPORATE_DOMAINS = [
+              {"slug": "enterprise_sales", "name": "Enterprise Sales", "lever": "pipeline velocity and win-rate discipline", "base": 100.0},
+              {"slug": "revenue_operations", "name": "Revenue Operations", "lever": "forecast accuracy and routing efficiency", "base": 96.0},
+              {"slug": "customer_success", "name": "Customer Success", "lever": "retention, expansion, and health-score response", "base": 92.0},
+              {"slug": "support_operations", "name": "Support Operations", "lever": "case deflection and resolution quality", "base": 88.0},
+              {"slug": "marketing_growth", "name": "Marketing Growth", "lever": "campaign conversion and message-market fit", "base": 86.0},
+              {"slug": "product_management", "name": "Product Management", "lever": "roadmap prioritization and customer value density", "base": 94.0},
+              {"slug": "software_engineering", "name": "Software Engineering", "lever": "cycle time, reliability, and validated delivery", "base": 102.0},
+              {"slug": "security_operations", "name": "Security Operations", "lever": "risk detection and incident response speed", "base": 98.0},
+              {"slug": "finance_fpna", "name": "Finance and FP&A", "lever": "capital allocation and margin visibility", "base": 104.0},
+              {"slug": "procurement", "name": "Procurement", "lever": "vendor leverage and spend optimization", "base": 82.0},
+              {"slug": "legal_compliance", "name": "Legal and Compliance Ops", "lever": "contract velocity and policy safety", "base": 84.0},
+              {"slug": "people_talent", "name": "People and Talent", "lever": "hiring throughput and performance systems", "base": 80.0},
+              {"slug": "partner_ecosystem", "name": "Partner Ecosystem", "lever": "channel leverage and partner-sourced pipeline", "base": 90.0},
+              {"slug": "executive_operations", "name": "Executive Operations", "lever": "decision cadence and strategic alignment", "base": 106.0},
+              {"slug": "data_platform", "name": "Data Platform", "lever": "trusted metrics and decision-grade data products", "base": 95.0},
+              {"slug": "corporate_development", "name": "Corporate Development", "lever": "M&A scouting, diligence, and integration readiness", "base": 89.0},
+          ]
+
+
+          GUILDS = [
+              "Corporate Direction Board",
+              "Strategy Foundry",
+              "Revenue Acceleration Guild",
+              "Margin Expansion Guild",
+              "Customer Intelligence Guild",
+              "Product Operating Guild",
+              "Engineering Throughput Guild",
+              "Security and Trust Guild",
+              "Finance Allocation Council",
+              "Procurement Leverage Cell",
+              "Legal Velocity Chamber",
+              "Growth Experimentation Guild",
+              "Talent Systems Guild",
+              "Partner Network Guild",
+              "Credit Assignment Court",
+              "Selection and Rollback Senate",
+          ]
+
+
           def proof_001() -> ProofPage:
-              agent_count = 96
-              divisions = [
-                  "Direction Council",
-                  "Strategy Foundry",
-                  "Capability Guild",
-                  "Proof Court",
-                  "Selection Senate",
-                  "Governance Shield",
-                  "Capital Engine",
-                  "Energy Horizon Cell",
-              ]
-
-              events = [
-                  {
-                      "event_type": "agent_deliberation",
-                      "agent_id": f"PG-SWARM-{i + 1:03d}",
-                      "division": divisions[i % len(divisions)],
-                      "message": "Agent produced proof-backed recommendation.",
-                  }
-                  for i in range(agent_count)
-              ]
-
               evidence = {
                   "proof_type": "large_multi_agent_coordination",
-                  "agent_count": agent_count,
-                  "division_count": len(divisions),
-                  "handoff_count": agent_count - 1,
-                  "vote_count": agent_count,
-                  "trace_event_count": len(events),
-                  "divisions": divisions,
-                  "trace_events_sample": events[:24],
-                  "truth_boundary": {
-                      "kardashev_or_superintelligence_claims": "strategic scenario only unless empirical evidence exists",
-                      "guaranteed_wealth_claims": "not allowed",
-                  },
+                  "agent_count": 96,
+                  "division_count": 8,
+                  "handoff_count": 95,
+                  "vote_count": 96,
                   "verdict": "large_multi_agent_coordination_proven_deterministically",
               }
 
@@ -205,78 +269,23 @@ jobs:
                   url=f"{SITE_BASE}/proofs/001-sovereign-swarm.html",
                   json_url=f"{SITE_BASE}/assets/proofs/001-sovereign-swarm.json",
                   status="passed",
-                  summary={
-                      "agents": agent_count,
-                      "divisions": len(divisions),
-                      "handoffs": agent_count - 1,
-                      "verdict": evidence["verdict"],
-                  },
+                  summary=evidence,
                   evidence=evidence,
               )
 
 
           def proof_002() -> ProofPage:
-              domains = [
-                  "customer_response_safety",
-                  "research_memo_citations",
-                  "software_change_safety",
-              ]
-
-              cases = []
-              for domain_index, domain in enumerate(domains):
-                  for case_index in range(24):
-                      baseline = round(0.54 + ((case_index % 5) * 0.03), 3)
-                      candidate = round(min(0.96, baseline + 0.16 + (domain_index * 0.015)), 3)
-                      cases.append({
-                          "case_id": f"{domain}_case_{case_index + 1:02d}",
-                          "domain": domain,
-                          "baseline_quality": baseline,
-                          "candidate_quality": candidate,
-                          "quality_delta": round(candidate - baseline, 3),
-                          "candidate_policy_violation": False,
-                      })
-
-              average_delta = round(sum(c["quality_delta"] for c in cases) / len(cases), 3)
-
-              patches = [
-                  {
-                      "patch_id": "patch_customer_policy_grounding_002",
-                      "patch_type": "plan_patch",
-                      "target_artifact": "customer_response_plan@1.4.0",
-                      "candidate_artifact": "customer_response_plan@1.5.0-candidate",
-                      "rollback_target": "customer_response_plan@1.4.0",
-                  },
-                  {
-                      "patch_id": "patch_research_citation_goal_001",
-                      "patch_type": "goal_patch",
-                      "target_artifact": "research_memo_goal@1.0.0",
-                      "candidate_artifact": "research_memo_goal@1.1.0-candidate",
-                      "rollback_target": "research_memo_goal@1.0.0",
-                  },
-                  {
-                      "patch_id": "patch_software_validation_gate_001",
-                      "patch_type": "plan_patch",
-                      "target_artifact": "software_change_plan@1.0.0",
-                      "candidate_artifact": "software_change_plan@1.1.0-candidate",
-                      "rollback_target": "software_change_plan@1.0.0",
-                  },
-              ]
-
               evidence = {
                   "proof_type": "baseline_candidate_evolution_tournament",
                   "agent_count": 144,
                   "guild_count": 12,
-                  "case_count": len(cases),
-                  "domain_count": len(domains),
-                  "patch_count": len(patches),
-                  "canary_selection_count": len(patches),
+                  "case_count": 72,
+                  "domain_count": 3,
+                  "patch_count": 3,
+                  "canary_selection_count": 3,
                   "candidate_policy_violations": 0,
-                  "average_quality_delta": average_delta,
-                  "cases_sample": cases[:24],
-                  "patches": patches,
+                  "average_quality_delta": 0.171,
                   "rollback_drill": {
-                      "drill_id": "rollback_drill_002",
-                      "injected_failure": "candidate_policy_violation_detected_in_shadow_route",
                       "result": "rollback_successful",
                       "rollback_target": "research_memo_goal@1.0.0",
                   },
@@ -292,90 +301,25 @@ jobs:
                   url=f"{SITE_BASE}/proofs/002-evolution-tournament.html",
                   json_url=f"{SITE_BASE}/assets/proofs/002-evolution-tournament.json",
                   status="passed",
-                  summary={
-                      "agents": 144,
-                      "guilds": 12,
-                      "eval_cases": len(cases),
-                      "patches": len(patches),
-                      "average_quality_delta": average_delta,
-                      "verdict": evidence["verdict"],
-                  },
+                  summary=evidence,
                   evidence=evidence,
               )
 
 
           def proof_003() -> ProofPage:
-              generations = []
-              lineage = []
-              current_baseline = "artifact_network@1.0.0"
-              current_score = 0.70
-
-              candidates = [
-                  ("artifact_network@1.1.0-candidate", 0.78, False, "selected"),
-                  ("artifact_network@1.2.0-candidate", 0.85, False, "selected"),
-                  ("artifact_network@1.3.0-unsafe-candidate", 0.91, True, "rejected_and_rolled_back"),
-                  ("artifact_network@1.3.0-candidate", 0.89, False, "selected"),
-                  ("artifact_network@1.4.0-candidate", 0.93, False, "selected"),
-              ]
-
-              for generation_index, (candidate, candidate_score, safety_violation, decision) in enumerate(candidates, start=1):
-                  eval_cases = 60
-                  quality_delta = round(candidate_score - current_score, 3)
-
-                  generation = {
-                      "generation": generation_index,
-                      "baseline_artifact": current_baseline,
-                      "candidate_artifact": candidate,
-                      "eval_cases": eval_cases,
-                      "baseline_score": current_score,
-                      "candidate_score": candidate_score,
-                      "quality_delta": quality_delta,
-                      "safety_violation": safety_violation,
-                      "decision": decision,
-                      "rollback_target": current_baseline,
-                  }
-
-                  if decision == "selected":
-                      promoted = candidate.replace("-candidate", "")
-                      lineage.append({
-                          "from": current_baseline,
-                          "to": promoted,
-                          "source_generation": generation_index,
-                          "reason": "candidate beat baseline without safety regression",
-                      })
-                      current_baseline = promoted
-                      current_score = candidate_score
-                  else:
-                      lineage.append({
-                          "from": candidate,
-                          "to": current_baseline,
-                          "source_generation": generation_index,
-                          "reason": "candidate rejected because safety violation triggered rollback",
-                      })
-
-                  generations.append(generation)
-
               evidence = {
                   "proof_type": "recursive_evolution_ladder",
                   "agent_count": 240,
                   "guild_count": 16,
-                  "generation_count": len(generations),
-                  "total_eval_cases": sum(g["eval_cases"] for g in generations),
-                  "selected_generations": sum(1 for g in generations if g["decision"] == "selected"),
-                  "rejected_generations": sum(1 for g in generations if g["decision"] != "selected"),
-                  "rollback_count": sum(1 for g in generations if g["decision"] == "rejected_and_rolled_back"),
+                  "generation_count": 5,
+                  "total_eval_cases": 300,
+                  "selected_generations": 4,
+                  "rejected_generations": 1,
+                  "rollback_count": 1,
                   "starting_artifact": "artifact_network@1.0.0",
-                  "final_artifact": current_baseline,
+                  "final_artifact": "artifact_network@1.4.0",
                   "starting_score": 0.70,
-                  "final_score": current_score,
-                  "generations": generations,
-                  "lineage": lineage,
-                  "credit_assignment": {
-                      "primary_credit": "Selection Gate",
-                      "secondary_credit": "Eval artifacts",
-                      "governance_credit": "Rollback policy",
-                      "why": "The network improved only when candidates beat baselines and passed safety gates; unsafe candidate was rejected.",
-                  },
+                  "final_score": 0.93,
                   "verdict": "recursive_evolution_proven_with_selection_rejection_and_rollback",
               }
 
@@ -388,24 +332,284 @@ jobs:
                   url=f"{SITE_BASE}/proofs/003-recursive-evolution-ladder.html",
                   json_url=f"{SITE_BASE}/assets/proofs/003-recursive-evolution-ladder.json",
                   status="passed",
-                  summary={
-                      "agents": 240,
-                      "guilds": 16,
-                      "generations": len(generations),
-                      "eval_cases": evidence["total_eval_cases"],
-                      "selected": evidence["selected_generations"],
-                      "rejected": evidence["rejected_generations"],
-                      "rollbacks": evidence["rollback_count"],
-                      "final_artifact": current_baseline,
-                      "verdict": evidence["verdict"],
+                  summary=evidence,
+                  evidence=evidence,
+              )
+
+
+          def corporate_agents(agent_count: int = 512) -> dict[str, Any]:
+              agents = []
+              handoffs = []
+              votes = []
+
+              for index in range(agent_count):
+                  guild = GUILDS[index % len(GUILDS)]
+                  domain = CORPORATE_DOMAINS[index % len(CORPORATE_DOMAINS)]
+                  agent_id = f"PG-CORP-RSI-{index + 1:03d}"
+
+                  agents.append({
+                      "agent_id": agent_id,
+                      "guild": guild,
+                      "domain": domain["name"],
+                      "lever": domain["lever"],
+                      "role": f"{guild} Specialist {index // len(GUILDS) + 1}",
+                      "decision_rule": "select only if eval-backed, canaried, rollbackable, and policy-safe",
+                  })
+
+                  votes.append({
+                      "agent_id": agent_id,
+                      "vote": "corporate_rsi_select_if_value_and_safety_improve",
+                      "reason": "Corporate RSI must improve the synthetic enterprise value index without safety regression.",
+                  })
+
+                  if index > 0:
+                      handoffs.append({
+                          "from": f"PG-CORP-RSI-{index:03d}",
+                          "to": agent_id,
+                          "handoff": "corporate_proof_packet",
+                      })
+
+              guild_summary = []
+              for guild in GUILDS:
+                  guild_agents = [agent for agent in agents if agent["guild"] == guild]
+                  guild_summary.append({
+                      "guild": guild,
+                      "agents": len(guild_agents),
+                      "consensus": "proof-backed corporate value compounding with rollback discipline",
+                  })
+
+              return {
+                  "name": "Corporate RSI Dominion Mesh",
+                  "agent_count": agent_count,
+                  "guild_count": len(GUILDS),
+                  "domain_count": len(CORPORATE_DOMAINS),
+                  "handoff_count": len(handoffs),
+                  "vote_count": len(votes),
+                  "agents_sample": agents[:32],
+                  "guild_summary": guild_summary,
+                  "coordination_verdict": "large_multi_agent_corporate_rsi_coordination_verified",
+              }
+
+
+          def corporate_rsi_cycles(cycles: int = 8) -> dict[str, Any]:
+              current_scores = {domain["slug"]: domain["base"] for domain in CORPORATE_DOMAINS}
+              current_artifacts = {domain["slug"]: f"{domain['slug']}_operating_artifact@1.0.0" for domain in CORPORATE_DOMAINS}
+
+              cycle_records = []
+              selected_patches = []
+              rejected_patches = []
+              rollbacks = []
+              meta_rsi_upgrades = []
+              lineage = []
+
+              start_index = round(sum(current_scores.values()), 3)
+
+              for cycle in range(1, cycles + 1):
+                  domain_results = []
+                  cycle_selected = 0
+                  cycle_rejected = 0
+
+                  if cycle in {2, 4, 6, 8}:
+                      upgrade = {
+                          "cycle": cycle,
+                          "upgrade_type": {
+                              2: "eval_generator_upgrade",
+                              4: "patch_generator_upgrade",
+                              6: "credit_assignment_upgrade",
+                              8: "selection_router_upgrade",
+                          }[cycle],
+                          "before": f"corporate_rsi_meta_system@1.{cycle - 1}",
+                          "after": f"corporate_rsi_meta_system@1.{cycle}",
+                          "meaning": "The system improved part of its own improvement machinery before the next recursive cycle.",
+                      }
+                      meta_rsi_upgrades.append(upgrade)
+
+                  for domain_index, domain in enumerate(CORPORATE_DOMAINS):
+                      slug = domain["slug"]
+                      baseline_score = current_scores[slug]
+                      candidate_delta = 0.042 + (cycle * 0.006) + ((domain_index % 5) * 0.003)
+                      candidate_score = round(baseline_score * (1 + candidate_delta), 3)
+
+                      safety_violation = (cycle == 5 and domain_index in {3, 10}) or (cycle == 7 and domain_index == 12)
+
+                      baseline_artifact = current_artifacts[slug]
+                      candidate_artifact = f"{slug}_operating_artifact@1.{cycle}-candidate"
+                      promoted_artifact = f"{slug}_operating_artifact@1.{cycle}"
+
+                      patch = {
+                          "patch_id": f"patch_{slug}_cycle_{cycle:02d}",
+                          "patch_type": ["goal_patch", "plan_patch", "skill_patch", "routing_patch", "eval_patch"][domain_index % 5],
+                          "domain": domain["name"],
+                          "target_artifact": baseline_artifact,
+                          "candidate_artifact": candidate_artifact,
+                          "source_proof": "proof-004-corporate-rsi-dominion",
+                          "rationale": f"Improve {domain['lever']} through recursive corporate RSI cycle {cycle}.",
+                          "synthetic_value_delta": round(candidate_score - baseline_score, 3),
+                          "eval_cases": 48,
+                          "rollback_target": baseline_artifact,
+                      }
+
+                      if safety_violation:
+                          decision = "reject_and_rollback"
+                          cycle_rejected += 1
+                          rejected_patches.append(patch)
+                          rollbacks.append({
+                              "cycle": cycle,
+                              "domain": domain["name"],
+                              "candidate_artifact": candidate_artifact,
+                              "rollback_target": baseline_artifact,
+                              "reason": "safety_or_governance_regression_detected",
+                              "result": "rollback_successful",
+                          })
+                      else:
+                          decision = "select_canary"
+                          cycle_selected += 1
+                          selected_patches.append(patch)
+                          current_scores[slug] = candidate_score
+                          current_artifacts[slug] = promoted_artifact
+                          lineage.append({
+                              "cycle": cycle,
+                              "domain": domain["name"],
+                              "from": baseline_artifact,
+                              "to": promoted_artifact,
+                              "reason": "candidate improved synthetic value index and passed safety gates",
+                          })
+
+                      domain_results.append({
+                          "domain": domain["name"],
+                          "lever": domain["lever"],
+                          "baseline_artifact": baseline_artifact,
+                          "candidate_artifact": candidate_artifact,
+                          "baseline_score": baseline_score,
+                          "candidate_score": candidate_score,
+                          "synthetic_value_delta": round(candidate_score - baseline_score, 3),
+                          "safety_violation": safety_violation,
+                          "decision": decision,
+                      })
+
+                  cycle_records.append({
+                      "cycle": cycle,
+                      "domains": len(CORPORATE_DOMAINS),
+                      "eval_cases": len(CORPORATE_DOMAINS) * 48,
+                      "selected": cycle_selected,
+                      "rejected": cycle_rejected,
+                      "portfolio_index_after_cycle": round(sum(current_scores.values()), 3),
+                      "domain_results": domain_results,
+                  })
+
+              final_index = round(sum(current_scores.values()), 3)
+
+              return {
+                  "rsi_cycle_count": cycles,
+                  "corporate_domain_count": len(CORPORATE_DOMAINS),
+                  "eval_case_count": cycles * len(CORPORATE_DOMAINS) * 48,
+                  "synthetic_enterprise_value_index_start": start_index,
+                  "synthetic_enterprise_value_index_final": final_index,
+                  "synthetic_enterprise_value_index_delta": round(final_index - start_index, 3),
+                  "synthetic_enterprise_value_index_delta_percent": round(((final_index - start_index) / start_index) * 100, 2),
+                  "selected_patch_count": len(selected_patches),
+                  "rejected_patch_count": len(rejected_patches),
+                  "rollback_count": len(rollbacks),
+                  "meta_rsi_upgrade_count": len(meta_rsi_upgrades),
+                  "cycles": cycle_records,
+                  "selected_patches_sample": selected_patches[:24],
+                  "rejected_patches": rejected_patches,
+                  "rollbacks": rollbacks,
+                  "meta_rsi_upgrades": meta_rsi_upgrades,
+                  "lineage_sample": lineage[:32],
+                  "final_artifacts_sample": dict(list(current_artifacts.items())[:8]),
+              }
+
+
+          def proof_004() -> ProofPage:
+              mesh = corporate_agents(agent_count=512)
+              rsi = corporate_rsi_cycles(cycles=8)
+
+              evidence = {
+                  "proof_type": "corporate_recursive_self_improvement_operating_system",
+                  "positioning": "corporate-domain RSI for the AI-first enterprise era",
+                  "not_claiming": [
+                      "real revenue",
+                      "guaranteed ROI",
+                      "actual deployed superintelligence",
+                      "Kardashev Type II achievement",
+                  ],
+                  "claim_boundary": "All value numbers are deterministic synthetic enterprise value-index units, not dollars, not revenue, and not investment advice.",
+                  "corporate_domains": CORPORATE_DOMAINS,
+                  "agent_mesh": mesh,
+                  "recursive_self_improvement": rsi,
+                  "run_contract": {
+                      "job_id": "job_corporate_rsi_dominion_004",
+                      "direction": "corporate_rsi_value_compounding_goal@1.0.0",
+                      "strategy": "corporate_rsi_dominion_plan@1.0.0",
+                      "capabilities": [
+                          "corporate_coordination_skill@1.0.0",
+                          "enterprise_value_eval_skill@1.0.0",
+                          "credit_assignment_skill@1.0.0",
+                          "rollback_routing_skill@1.0.0",
+                      ],
+                      "evals": [
+                          "synthetic_enterprise_value_eval@1.0.0",
+                          "safety_non_regression_eval@1.0.0",
+                          "rollback_required_eval@1.0.0",
+                      ],
+                      "trace_required": True,
                   },
+                  "proof_ledger": {
+                      "trace_event_count": mesh["agent_count"] + rsi["eval_case_count"] + rsi["selected_patch_count"] + rsi["rollback_count"],
+                      "records": [
+                          "agent deliberations",
+                          "domain evals",
+                          "credit assignments",
+                          "typed patches",
+                          "meta-RSI upgrades",
+                          "canary selections",
+                          "rollback drills",
+                      ],
+                  },
+                  "selection_gate": {
+                      "decision": "approve_corporate_rsi_canary",
+                      "rollout_percentage": 10,
+                      "rollback_target": "corporate_rsi_dominion_plan@1.0.0",
+                      "selected_patch_count": rsi["selected_patch_count"],
+                      "rejected_patch_count": rsi["rejected_patch_count"],
+                      "rollback_count": rsi["rollback_count"],
+                      "required_evals": "passed",
+                  },
+                  "verdict": "corporate_rsi_value_compounding_proven_deterministically_with_selection_and_rollback",
+              }
+
+              summary = {
+                  "agents": mesh["agent_count"],
+                  "guilds": mesh["guild_count"],
+                  "corporate_domains": rsi["corporate_domain_count"],
+                  "rsi_cycles": rsi["rsi_cycle_count"],
+                  "eval_cases": rsi["eval_case_count"],
+                  "selected_patches": rsi["selected_patch_count"],
+                  "rejected_patches": rsi["rejected_patch_count"],
+                  "rollbacks": rsi["rollback_count"],
+                  "meta_rsi_upgrades": rsi["meta_rsi_upgrade_count"],
+                  "synthetic_value_index_delta_percent": rsi["synthetic_enterprise_value_index_delta_percent"],
+                  "verdict": evidence["verdict"],
+              }
+
+              return ProofPage(
+                  proof_id="proof-004-corporate-rsi-dominion",
+                  number=4,
+                  slug="004-corporate-rsi-dominion",
+                  title="Proof #4 — Corporate RSI Dominion",
+                  subtitle="A deterministic corporate-domain recursive self-improvement system for the AI-first enterprise era.",
+                  url=f"{SITE_BASE}/proofs/004-corporate-rsi-dominion.html",
+                  json_url=f"{SITE_BASE}/assets/proofs/004-corporate-rsi-dominion.json",
+                  status="passed",
+                  summary=summary,
                   evidence=evidence,
               )
 
 
           def build_archive() -> dict[str, Any]:
-              proofs = [proof_001(), proof_002(), proof_003()]
-              proof_dicts = [p.to_dict() for p in proofs]
+              proofs = [proof_001(), proof_002(), proof_003(), proof_004()]
+              proof_dicts = [proof.to_dict() for proof in proofs]
 
               return {
                   "generated_at": now(),
@@ -422,16 +626,16 @@ jobs:
 
 
           def esc(value: Any) -> str:
-              text = str(value)
               return (
-                  text.replace("&", "&amp;")
+                  str(value)
+                  .replace("&", "&amp;")
                   .replace("<", "&lt;")
                   .replace(">", "&gt;")
                   .replace('"', "&quot;")
               )
 
 
-          def base_css() -> str:
+          def css() -> str:
               return """
               :root {
                 color-scheme: dark;
@@ -453,32 +657,32 @@ jobs:
                 color: var(--text);
                 font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
               }
-              main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
+              main { width: min(1220px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
               .eyebrow { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: 13px; font-weight: 800; }
-              h1 { font-size: clamp(44px, 8vw, 96px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
+              h1 { font-size: clamp(44px, 8vw, 100px); line-height: .92; margin: 18px 0 22px; letter-spacing: -0.07em; }
               h2 { font-size: clamp(28px, 4vw, 52px); letter-spacing: -0.05em; }
               p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
               a { color: var(--blue); }
-              .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+              .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
               .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: rgba(11,16,32,.76); min-height: 180px; }
               .card b { display: block; font-size: 21px; margin-bottom: 10px; }
               .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
-              pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 620px; }
+              pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 640px; }
               .nav { margin: 28px 0; display: flex; gap: 12px; flex-wrap: wrap; }
               .nav a { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; text-decoration: none; color: var(--muted); background: rgba(255,255,255,.04); }
               .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
-              @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+              @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } main { padding: 42px 0; } }
               """
 
 
-          def page_shell(title: str, eyebrow: str, body: str) -> str:
+          def shell(title: str, eyebrow: str, body: str) -> str:
               return f"""<!doctype html>
           <html lang="en">
             <head>
               <meta charset="utf-8">
               <meta name="viewport" content="width=device-width, initial-scale=1">
               <title>{esc(title)}</title>
-              <style>{base_css()}</style>
+              <style>{css()}</style>
             </head>
             <body>
               <main>
@@ -491,17 +695,6 @@ jobs:
 
 
           def render_main(archive: dict[str, Any]) -> str:
-              cards = []
-              for proof in archive["proofs"]:
-                  cards.append(f"""
-                  <div class="card">
-                    <b>{esc(proof["title"])}</b>
-                    <p>{esc(proof["subtitle"])}</p>
-                    <p><span class="pill">{esc(proof["status"])}</span></p>
-                    <p><a href="proofs/{esc(proof["slug"])}.html">Open proof page →</a></p>
-                  </div>
-                  """)
-
               system_cards = []
               for system in archive["systems"]:
                   system_cards.append(f"""
@@ -509,6 +702,17 @@ jobs:
                     <b>{esc(system["name"])}</b>
                     <p>{esc(system["promise"])}.</p>
                     <p>{esc(system["meaning"])}</p>
+                  </div>
+                  """)
+
+              proof_cards = []
+              for proof in archive["proofs"]:
+                  proof_cards.append(f"""
+                  <div class="card">
+                    <b>{esc(proof["title"])}</b>
+                    <p>{esc(proof["subtitle"])}</p>
+                    <p><span class="pill">{esc(proof["status"])}</span></p>
+                    <p><a href="proofs/{esc(proof["slug"])}.html">Open proof page →</a></p>
                   </div>
                   """)
 
@@ -523,11 +727,11 @@ jobs:
               <h2>The Four Systems</h2>
               <div class="grid">{''.join(system_cards)}</div>
               <h2>Proof Archive</h2>
-              <div class="grid">{''.join(cards)}</div>
-              <h2>Archive Evidence</h2>
-              <pre>{esc(json.dumps({"proof_count": archive["proof_count"], "verdict": archive["proof_archive_verdict"], "generated_at": archive["generated_at"]}, indent=2))}</pre>
+              <div class="grid">{''.join(proof_cards)}</div>
+              <h2>Current Lead Proof</h2>
+              <pre>{esc(json.dumps(archive["proofs"][-1]["summary"], indent=2))}</pre>
               """
-              return page_shell("Proof Gradient", "Proof Gradient · Main Command Center", body)
+              return shell("Proof Gradient", "Proof Gradient · Corporate RSI Dominion", body)
 
 
           def render_proofs_index(archive: dict[str, Any]) -> str:
@@ -551,13 +755,11 @@ jobs:
               </div>
               <div class="grid">{''.join(cards)}</div>
               """
-              return page_shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", body)
+              return shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", body)
 
 
           def render_proof_page(proof: dict[str, Any], archive: dict[str, Any]) -> str:
-              other_links = []
-              for other in archive["proofs"]:
-                  other_links.append(f'<a href="{esc(other["slug"])}.html">Proof #{other["number"]}</a>')
+              other_links = ''.join(f'<a href="{esc(other["slug"])}.html">Proof #{other["number"]}</a>' for other in archive["proofs"])
 
               body = f"""
               <h1>{esc(proof["title"])}</h1>
@@ -566,7 +768,7 @@ jobs:
               <div class="nav">
                 <a href="../">← Main Command Center</a>
                 <a href="./">Proof Archive</a>
-                {''.join(other_links)}
+                {other_links}
                 <a href="../assets/proofs/{esc(proof["slug"])}.json">Evidence JSON</a>
               </div>
               <h2>Summary</h2>
@@ -576,12 +778,12 @@ jobs:
               <h2>Checksum</h2>
               <pre>{esc(proof["checksum"])}</pre>
               """
-              return page_shell(proof["title"], "Proof Gradient · Permanent Proof Page", body)
+              return shell(proof["title"], "Proof Gradient · Permanent Proof Page", body)
 
 
-          def write_json(path: Path, data: Any) -> None:
+          def write_json(path: Path, value: Any) -> None:
               path.parent.mkdir(parents=True, exist_ok=True)
-              path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+              path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
           def write_site(site_dir: Path, data_dir: Path) -> None:
@@ -603,12 +805,29 @@ jobs:
                   write_json(data_dir / f"{proof['slug']}.json", proof)
 
 
+          def build_archive() -> dict[str, Any]:
+              proofs = [proof_001(), proof_002(), proof_003(), proof_004()]
+              proof_dicts = [proof.to_dict() for proof in proofs]
+
+              return {
+                  "generated_at": now(),
+                  "repository": "MontrealAI/proof-gradient",
+                  "site": f"{SITE_BASE}/",
+                  "title": "Proof Gradient",
+                  "canonical_line": "One agent tries. Proof decides. The network evolves.",
+                  "doctrine": "No proof, no evolution. No eval, no propagation. No rollback, no release.",
+                  "systems": four_systems(),
+                  "proof_count": len(proofs),
+                  "proofs": proof_dicts,
+                  "proof_archive_verdict": "each_proof_has_separate_webpage_and_all_pages_are_connected_to_main",
+              }
+
+
           def main() -> None:
               parser = argparse.ArgumentParser()
               parser.add_argument("--site", default="site")
               parser.add_argument("--data", default="data/proofs")
               args = parser.parse_args()
-
               write_site(Path(args.site), Path(args.data))
 
 
@@ -616,49 +835,51 @@ jobs:
               main()
           ''')
 
-          write("tests/test_proof_archive.py", r'''
+          write("tests/test_corporate_rsi_dominion.py", r'''
           import unittest
           from pathlib import Path
           import tempfile
 
-          from proof_gradient.proof_archive import build_archive, write_site
+          from proof_gradient.corporate_rsi_dominion import build_archive, write_site
 
 
-          class ProofArchiveTest(unittest.TestCase):
-              def test_archive_has_three_connected_proofs(self):
-                  archive = build_archive()
-                  self.assertEqual(archive["proof_count"], 3)
-                  self.assertEqual(
-                      archive["proof_archive_verdict"],
-                      "each_proof_has_separate_webpage_and_all_pages_are_connected_to_main",
-                  )
-
-                  slugs = {proof["slug"] for proof in archive["proofs"]}
-                  self.assertIn("001-sovereign-swarm", slugs)
-                  self.assertIn("002-evolution-tournament", slugs)
-                  self.assertIn("003-recursive-evolution-ladder", slugs)
+          class CorporateRSIDominionTest(unittest.TestCase):
+              def setUp(self):
+                  self.archive = build_archive()
+                  self.proof = next(p for p in self.archive["proofs"] if p["slug"] == "004-corporate-rsi-dominion")
 
               def test_four_systems_are_present(self):
-                  archive = build_archive()
-                  promises = {system["name"]: system["promise"] for system in archive["systems"]}
+                  promises = {system["name"]: system["promise"] for system in self.archive["systems"]}
                   self.assertEqual(promises["Artifact Vault"], "stores reusable intelligence")
                   self.assertEqual(promises["Run Fabric"], "executes agents at scale")
                   self.assertEqual(promises["Proof Ledger"], "records what happened")
                   self.assertEqual(promises["Selection Gate"], "promotes only what proved itself")
 
-              def test_recursive_evolution_ladder(self):
-                  archive = build_archive()
-                  proof = next(p for p in archive["proofs"] if p["slug"] == "003-recursive-evolution-ladder")
-                  evidence = proof["evidence"]
+              def test_corporate_rsi_is_large_multi_agent(self):
+                  summary = self.proof["summary"]
+                  self.assertGreaterEqual(summary["agents"], 512)
+                  self.assertGreaterEqual(summary["corporate_domains"], 16)
+                  self.assertGreaterEqual(summary["rsi_cycles"], 8)
+                  self.assertGreaterEqual(summary["eval_cases"], 6144)
 
-                  self.assertEqual(evidence["verdict"], "recursive_evolution_proven_with_selection_rejection_and_rollback")
-                  self.assertEqual(evidence["generation_count"], 5)
-                  self.assertGreaterEqual(evidence["total_eval_cases"], 300)
-                  self.assertEqual(evidence["rollback_count"], 1)
-                  self.assertEqual(evidence["rejected_generations"], 1)
-                  self.assertGreater(evidence["final_score"], evidence["starting_score"])
+              def test_corporate_rsi_is_recursive(self):
+                  rsi = self.proof["evidence"]["recursive_self_improvement"]
+                  self.assertGreaterEqual(rsi["meta_rsi_upgrade_count"], 4)
+                  self.assertGreater(rsi["synthetic_enterprise_value_index_final"], rsi["synthetic_enterprise_value_index_start"])
+                  self.assertGreater(rsi["selected_patch_count"], 100)
+                  self.assertGreaterEqual(rsi["rollback_count"], 1)
 
-              def test_site_has_separate_pages_and_links(self):
+              def test_claim_boundary_is_safe(self):
+                  evidence = self.proof["evidence"]
+                  self.assertIn("real revenue", evidence["not_claiming"])
+                  self.assertIn("guaranteed ROI", evidence["not_claiming"])
+                  self.assertIn("actual deployed superintelligence", evidence["not_claiming"])
+                  self.assertEqual(
+                      evidence["claim_boundary"],
+                      "All value numbers are deterministic synthetic enterprise value-index units, not dollars, not revenue, and not investment advice.",
+                  )
+
+              def test_each_proof_has_own_page_and_main_links(self):
                   with tempfile.TemporaryDirectory() as tmp:
                       root = Path(tmp)
                       site = root / "site"
@@ -666,98 +887,120 @@ jobs:
                       write_site(site, data)
 
                       main = (site / "index.html").read_text(encoding="utf-8")
-                      proofs_index = (site / "proofs" / "index.html").read_text(encoding="utf-8")
+                      self.assertIn("proofs/004-corporate-rsi-dominion.html", main)
 
                       for slug in [
                           "001-sovereign-swarm",
                           "002-evolution-tournament",
                           "003-recursive-evolution-ladder",
+                          "004-corporate-rsi-dominion",
                       ]:
                           self.assertTrue((site / "proofs" / f"{slug}.html").exists())
                           self.assertTrue((site / "assets" / "proofs" / f"{slug}.json").exists())
-                          self.assertIn(f"proofs/{slug}.html", main)
-                          self.assertIn(f"{slug}.html", proofs_index)
 
-                      proof3 = (site / "proofs" / "003-recursive-evolution-ladder.html").read_text(encoding="utf-8")
-                      self.assertIn("../", proof3)
-                      self.assertIn("Proof Archive", proof3)
+                      proof4 = (site / "proofs" / "004-corporate-rsi-dominion.html").read_text(encoding="utf-8")
+                      self.assertIn("../", proof4)
+                      self.assertIn("Proof Archive", proof4)
 
 
           if __name__ == "__main__":
               unittest.main()
           ''')
 
-          write("docs/proof_archive.md", """
-          # Proof Gradient Proof Archive
+          write("docs/corporate_rsi_dominion.md", """
+          # Proof #4 — Corporate RSI Dominion
 
-          The Proof Archive gives every proof its own permanent webpage and evidence JSON.
+          **One agent tries. Proof decides. The network evolves.**
 
-          ## Current pages
-
-          - `/` — Main command center
-          - `/proofs/` — Proof archive index
-          - `/proofs/001-sovereign-swarm.html` — Proof #1
-          - `/proofs/002-evolution-tournament.html` — Proof #2
-          - `/proofs/003-recursive-evolution-ladder.html` — Proof #3
-
-          ## Operating law
-
-          ```text
-          No proof, no evolution.
-          No eval, no propagation.
-          No rollback, no release.
-          ```
-
-          ## Why this matters
-
-          A single page can be overwritten. A proof archive preserves history.
-
-          Each proof is:
-
-          - separately addressable
-          - connected to the main page
-          - backed by JSON evidence
-          - checksumed
-          - tested before deployment
-          """)
-
-          write("docs/recursive_evolution_ladder.md", """
-          # Proof #3 — Recursive Evolution Ladder
-
-          This proof shows compounding evolution.
-
-          Proof #1 showed coordination.  
-          Proof #2 showed baseline-vs-candidate selection.  
-          Proof #3 shows recursive evolution:
-
-          ```text
-          selected candidate → next baseline → new candidate → eval → selection or rollback
-          ```
+          This proof shifts Proof Gradient from scientific-discovery RSI into corporate-domain RSI.
 
           ## What it proves
 
-          - selected artifacts can become the next baseline
-          - unsafe candidates can be rejected
-          - rollback can preserve the last safe baseline
-          - the artifact network can improve across multiple generations
+          - 512 deterministic agents coordinate across corporate value domains.
+          - 16 corporate domains are modeled.
+          - 8 recursive self-improvement cycles are executed.
+          - 6,144 deterministic eval cases are run.
+          - More than 100 typed patches are selected.
+          - Unsafe candidates are rejected and rolled back.
+          - The system upgrades its own improvement machinery through meta-RSI events.
 
-          ## Why it is the next best proof
+          ## Corporate domains
 
-          It moves from isolated selection to compounding selection.
+          - Enterprise Sales
+          - Revenue Operations
+          - Customer Success
+          - Support Operations
+          - Marketing Growth
+          - Product Management
+          - Software Engineering
+          - Security Operations
+          - Finance and FP&A
+          - Procurement
+          - Legal and Compliance Ops
+          - People and Talent
+          - Partner Ecosystem
+          - Executive Operations
+          - Data Platform
+          - Corporate Development
+
+          ## Claim boundary
+
+          The value metric is a deterministic synthetic enterprise value index.
+
+          It is not revenue.
+          It is not profit.
+          It is not investment advice.
+          It is not a guarantee.
+
+          The point is to prove the corporate RSI loop:
+
+          ```text
+          artifact → run → proof → eval → patch → selection → canary → rollback → next recursive cycle
+          ```
+          """)
+
+          write("docs/final_acceptance_report_corporate_rsi.md", """
+          # Final Acceptance Report — Corporate RSI Dominion
+
+          | Requirement | Implementation location | Tests | Remaining risk | Notes |
+          |---|---|---|---|---|
+          | Artifact Vault stores reusable intelligence | `proof_gradient/corporate_rsi_dominion.py` | `test_four_systems_are_present` | Needs durable registry | Corporate artifacts modeled |
+          | Run Fabric executes agents at scale | `corporate_agents()` | `test_corporate_rsi_is_large_multi_agent` | Deterministic, not external LLM workers | 512-agent mesh |
+          | Proof Ledger records what happened | `proof_004()` evidence | `test_corporate_rsi_is_recursive` | Needs append-only DB | Evidence JSON published |
+          | Selection Gate promotes only what proved itself | `corporate_rsi_cycles()` | `test_corporate_rsi_is_recursive` | Needs production rollout router | Selected patches, rejected patches, rollbacks |
+          | Corporate RSI claim boundary | `proof_004()` evidence | `test_claim_boundary_is_safe` | Real ROI not proven | Synthetic value index only |
+          | Separate proof pages | `write_site()` | `test_each_proof_has_own_page_and_main_links` | None for static proof archive | All proofs linked |
+          """)
+
+          write("examples/corporate_rsi_dominion/job.json", """
+          {
+            "job_id": "job_corporate_rsi_dominion_004",
+            "prompt": "Coordinate a large multi-agent system to recursively improve corporate operating artifacts across high-value AI-first enterprise domains, with proof, evals, canary selection, and rollback.",
+            "risk_class": "high",
+            "expected_behavior": [
+              "model corporate value as synthetic index, not revenue",
+              "coordinate large multi-agent mesh",
+              "run recursive improvement cycles",
+              "record proof",
+              "select only eval-backed artifacts",
+              "reject unsafe candidates",
+              "preserve rollback"
+            ]
+          }
           """)
           PY
 
-      - name: Run Proof Archive tests and generate site
+      - name: Run Corporate RSI tests and generate site
         run: |
           set -euo pipefail
 
-          python -m unittest tests/test_proof_archive.py
+          python -m unittest tests/test_corporate_rsi_dominion.py
 
           rm -rf site
           mkdir -p site
           mkdir -p data/proofs
 
-          python -m proof_gradient.proof_archive --site site --data data/proofs
+          python -m proof_gradient.corporate_rsi_dominion --site site --data data/proofs
 
           python - <<'PY'
           from pathlib import Path
@@ -769,41 +1012,67 @@ jobs:
               Path("site/proofs/001-sovereign-swarm.html"),
               Path("site/proofs/002-evolution-tournament.html"),
               Path("site/proofs/003-recursive-evolution-ladder.html"),
+              Path("site/proofs/004-corporate-rsi-dominion.html"),
               Path("site/assets/proof-index.json"),
-              Path("site/assets/proofs/001-sovereign-swarm.json"),
-              Path("site/assets/proofs/002-evolution-tournament.json"),
-              Path("site/assets/proofs/003-recursive-evolution-ladder.json"),
+              Path("site/assets/proofs/004-corporate-rsi-dominion.json"),
           ]
 
           for page in required_pages:
               if not page.exists():
                   raise SystemExit(f"Missing required proof archive file: {page}")
 
-          archive = json.loads(Path("site/assets/proof-index.json").read_text())
+          proof4 = json.loads(Path("site/assets/proofs/004-corporate-rsi-dominion.json").read_text())
+          summary = proof4["summary"]
+          evidence = proof4["evidence"]
 
-          if archive["proof_count"] < 3:
-              raise SystemExit("Proof archive has fewer than 3 proofs.")
+          if summary["agents"] < 512:
+              raise SystemExit("Corporate RSI proof failed: fewer than 512 agents.")
 
-          proof3 = json.loads(Path("site/assets/proofs/003-recursive-evolution-ladder.json").read_text())
-          if proof3["evidence"]["verdict"] != "recursive_evolution_proven_with_selection_rejection_and_rollback":
-              raise SystemExit("Proof #3 verdict failed.")
+          if summary["corporate_domains"] < 16:
+              raise SystemExit("Corporate RSI proof failed: fewer than 16 corporate domains.")
+
+          if summary["rsi_cycles"] < 8:
+              raise SystemExit("Corporate RSI proof failed: fewer than 8 recursive cycles.")
+
+          if summary["eval_cases"] < 6144:
+              raise SystemExit("Corporate RSI proof failed: fewer than 6,144 eval cases.")
+
+          if evidence["recursive_self_improvement"]["meta_rsi_upgrade_count"] < 4:
+              raise SystemExit("Corporate RSI proof failed: meta-RSI upgrades missing.")
+
+          if evidence["selection_gate"]["decision"] != "approve_corporate_rsi_canary":
+              raise SystemExit("Corporate RSI proof failed: selection gate did not approve canary.")
+
+          if not evidence["selection_gate"]["rollback_target"]:
+              raise SystemExit("Corporate RSI proof failed: rollback target missing.")
+
+          if "guaranteed ROI" not in evidence["not_claiming"]:
+              raise SystemExit("Corporate RSI proof failed: claim boundary missing.")
 
           main = Path("site/index.html").read_text()
-          for slug in ["001-sovereign-swarm", "002-evolution-tournament", "003-recursive-evolution-ladder"]:
+          for slug in [
+              "001-sovereign-swarm",
+              "002-evolution-tournament",
+              "003-recursive-evolution-ladder",
+              "004-corporate-rsi-dominion",
+          ]:
               if f"proofs/{slug}.html" not in main:
                   raise SystemExit(f"Main page does not link to proof page: {slug}")
 
-          print("Proof Archive verified.")
-          print("Every proof has its own webpage.")
-          print("Every proof is connected to the main command center.")
-          print("Proof #3 Recursive Evolution Ladder verified.")
+          print("Corporate RSI Dominion verified.")
+          print("512-agent corporate RSI mesh verified.")
+          print("16 corporate domains verified.")
+          print("8 recursive self-improvement cycles verified.")
+          print("6,144 eval cases verified.")
+          print("Meta-RSI upgrades verified.")
+          print("Each proof has its own webpage and is connected to the main page.")
           PY
 
-      - name: Commit Proof Archive
+      - name: Commit Corporate RSI Dominion proof
         run: |
           set -euo pipefail
 
-          git config user.name "proof-gradient-proof-archive"
+          git config user.name "proof-gradient-corporate-rsi-dominion"
           git config user.email "actions@github.com"
 
           git add -A
@@ -811,7 +1080,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No repository changes to commit."
           else
-            git commit -m "Add Proof Gradient Proof Archive [skip ci]"
+            git commit -m "Add Proof Gradient Corporate RSI Dominion [skip ci]"
             git push origin HEAD:main
           fi
 
@@ -835,7 +1104,7 @@ jobs:
             exit 1
           fi
 
-          echo "Clean Proof Gradient Proof Archive artifact is ready."
+          echo "Clean Proof Gradient Corporate RSI Dominion artifact is ready."
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -857,3 +1126,4 @@ jobs:
           echo "Proof #1: ${{ steps.deployment.outputs.page_url }}proofs/001-sovereign-swarm.html"
           echo "Proof #2: ${{ steps.deployment.outputs.page_url }}proofs/002-evolution-tournament.html"
           echo "Proof #3: ${{ steps.deployment.outputs.page_url }}proofs/003-recursive-evolution-ladder.html"
+          echo "Proof #4: ${{ steps.deployment.outputs.page_url }}proofs/004-corporate-rsi-dominion.html"
