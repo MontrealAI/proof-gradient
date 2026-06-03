@@ -1,4 +1,4 @@
-name: Proof #11 · The Proof Loop
+name: "Proof #11 · The Proof Loop"
 
 on:
   workflow_dispatch:
@@ -9,12 +9,12 @@ permissions:
   id-token: write
 
 concurrency:
-  group: proof-gradient-pages
+  group: proof-gradient-proof-011-pages
   cancel-in-progress: true
 
 jobs:
   proof-011:
-    name: Add and deploy Proof #11 without removing existing pages
+    name: "Add and deploy Proof #11 without removing existing pages"
     runs-on: ubuntu-latest
 
     if: github.repository == 'MontrealAI/proof-gradient'
@@ -24,12 +24,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Check out repository
+      - name: "Check out repository"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Build Proof #11 files
+      - name: "Build complete Proof #11 public artifact"
         run: |
           set -euo pipefail
 
@@ -41,7 +41,6 @@ jobs:
           import hashlib
           import html
           import json
-          import re
           import shutil
           import urllib.request
           from typing import Any
@@ -655,27 +654,7 @@ jobs:
               return shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", body)
 
 
-          def main_index_with_proof11(existing: str | None) -> str:
-              if existing and "011-the-proof-loop.html" in existing:
-                  return existing
-
-              section = """
-              <section id="proof-11-the-proof-loop">
-                <h2>Latest Proof</h2>
-                <div class="card">
-                  <b>Proof #11 — The Proof Loop</b>
-                  <p>Aim → Act → Prove → Evolve. The simplest sovereign protocol for compounding agent intelligence.</p>
-                  <p><a href="proofs/011-the-proof-loop.html">Open Proof #11 →</a></p>
-                </div>
-              </section>
-              """
-
-              if existing and "</main>" in existing:
-                  return existing.replace("</main>", section + "\n</main>")
-
-              if existing and "</body>" in existing:
-                  return existing.replace("</body>", section + "\n</body>")
-
+          def main_index(existing: str | None) -> str:
               system_cards = "".join(
                   f"""
                   <div class="card">
@@ -686,6 +665,18 @@ jobs:
                   """
                   for item in SYSTEMS
               )
+
+              latest = """
+              <section id="proof-11-the-proof-loop">
+                <h2>Latest Proof</h2>
+                <div class="card">
+                  <b>Proof #11 — The Proof Loop</b>
+                  <p>Aim → Act → Prove → Evolve. The simplest sovereign protocol for compounding agent intelligence.</p>
+                  <p><a href="proofs/011-the-proof-loop.html">Open Proof #11 →</a></p>
+                </div>
+              </section>
+              """
+
               body = f"""
               <h1>Aim.<br>Act.<br>Prove.<br>Evolve.</h1>
               <p class="hero-line">GoalOS gives the network Direction. PlanOS gives it Strategy. SkillOS gives it Capability. The Proof Gradient gives it Evolution.</p>
@@ -697,15 +688,44 @@ jobs:
               </nav>
               <h2>The Four Systems</h2>
               <div class="grid">{system_cards}</div>
-              {section}
+              {latest}
               """
               return shell("Proof Gradient", "Proof Gradient · Agent Evolution Protocol", body)
+
+
+          def production_page_if_missing() -> str:
+              system_cards = "".join(
+                  f"""
+                  <div class="card">
+                    <b>{esc(item['name'])}</b>
+                    <p>{esc(item['promise'])}</p>
+                    <p>{esc(item['meaning'])}</p>
+                  </div>
+                  """
+                  for item in SYSTEMS
+              )
+              body = f"""
+              <h1>Production<br>Platform.</h1>
+              <p class="hero-line">A real platform foundation for artifact versioning, runs, traces, evals, selection, rollout, rollback, API, CLI, tenancy, permissions, and observability.</p>
+              <nav class="nav">
+                <a href="index.html">Command Center</a>
+                <a href="production.html">Production Platform</a>
+                <a href="proofs/index.html">Proof Archive</a>
+                <a href="docs/index.html">Docs</a>
+              </nav>
+              <h2>The Four Systems</h2>
+              <div class="grid">{system_cards}</div>
+              <h2>Operating Law</h2>
+              <pre>No proof, no evolution.
+          No eval, no propagation.
+          No rollback, no release.</pre>
+              """
+              return shell("Proof Gradient · Production Platform", "Proof Gradient · Production Platform", body)
 
 
           def main() -> None:
               proof = make_proof()
 
-              # Create source files.
               write(DATA / "011-the-proof-loop.json", json.dumps(proof, indent=2, ensure_ascii=False) + "\n")
               write(SITE / "assets" / "proofs" / "011-the-proof-loop.json", json.dumps(proof, indent=2, ensure_ascii=False) + "\n")
               write(SITE / "proofs" / "011-the-proof-loop.html", proof_page(proof))
@@ -726,30 +746,30 @@ jobs:
                       for number, slug, title, subtitle in PROOFS
                   ],
               }
+
               write(SITE / "assets" / "proof-index.json", json.dumps(proof_index, indent=2, ensure_ascii=False) + "\n")
               write(SITE / "proofs" / "index.html", proof_archive_page())
+              write(SITE / "index.html", main_index((SITE / "index.html").read_text(encoding="utf-8", errors="ignore") if (SITE / "index.html").exists() else None))
 
-              existing_index = None
-              if (SITE / "index.html").exists():
-                  existing_index = (SITE / "index.html").read_text(encoding="utf-8", errors="ignore")
-              write(SITE / "index.html", main_index_with_proof11(existing_index))
+              if not (SITE / "production.html").exists():
+                  write(SITE / "production.html", production_page_if_missing())
 
-              # Build deploy artifact without deleting anything in source.
               if DIST.exists():
                   shutil.rmtree(DIST)
               DIST.mkdir(parents=True, exist_ok=True)
 
               copy_tree_contents(SITE, DIST)
 
-              # Preserve existing rich live proof pages if they are missing locally.
+              # Preserve existing rich proof pages from the live site if missing locally.
               for number, slug, title, subtitle in PROOFS:
-                  target = DIST / "proofs" / f"{slug}.html"
+                  html_target = DIST / "proofs" / f"{slug}.html"
                   if slug != "011-the-proof-loop":
-                      download_if_missing(f"{LIVE_BASE}/proofs/{slug}.html", target)
+                      download_if_missing(f"{LIVE_BASE}/proofs/{slug}.html", html_target)
 
                   json_target = DIST / "assets" / "proofs" / f"{slug}.json"
                   if not json_target.exists():
                       download_if_missing(f"{LIVE_BASE}/assets/proofs/{slug}.json", json_target)
+
                   if not json_target.exists():
                       fallback = {
                           "number": number,
@@ -761,10 +781,13 @@ jobs:
                       }
                       write(json_target, json.dumps(fallback, indent=2, ensure_ascii=False) + "\n")
 
-              # Ensure Proof #11 definitely wins over any live fallback.
               write(DIST / "proofs" / "011-the-proof-loop.html", proof_page(proof))
               write(DIST / "assets" / "proofs" / "011-the-proof-loop.json", json.dumps(proof, indent=2, ensure_ascii=False) + "\n")
               write(DIST / "proofs" / "index.html", proof_archive_page())
+              write(DIST / "index.html", main_index(None))
+
+              if not (DIST / "production.html").exists():
+                  write(DIST / "production.html", production_page_if_missing())
 
               write(DIST / ".nojekyll", "")
 
@@ -779,7 +802,7 @@ jobs:
           echo "Generated public files:"
           find dist -maxdepth 4 -type f | sort
 
-      - name: Verify Proof #11 was added and nothing essential is missing
+      - name: "Verify Proof #11 and public site"
         run: |
           set -euo pipefail
 
@@ -827,7 +850,7 @@ jobs:
           echo "Existing proof pages preserved."
           echo "Public artifact ready."
 
-      - name: Commit Proof #11 files
+      - name: "Commit Proof #11 source files"
         run: |
           set -euo pipefail
 
@@ -840,6 +863,7 @@ jobs:
             site/assets/proof-index.json \
             site/proofs/index.html \
             site/index.html \
+            site/production.html \
             data/proofs/011-the-proof-loop.json
 
           if git diff --cached --quiet; then
@@ -849,19 +873,19 @@ jobs:
             git push origin HEAD:main
           fi
 
-      - name: Configure GitHub Pages
+      - name: "Configure GitHub Pages"
         uses: actions/configure-pages@v5
 
-      - name: Upload GitHub Pages artifact
+      - name: "Upload GitHub Pages artifact"
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      - name: Deploy GitHub Pages
+      - name: "Deploy GitHub Pages"
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Show live URLs
+      - name: "Show live URLs"
         run: |
           echo "Main: ${{ steps.deployment.outputs.page_url }}"
           echo "Proof Archive: ${{ steps.deployment.outputs.page_url }}proofs/"
