@@ -12,6 +12,12 @@ on:
       - "assets/**"
       - "README.md"
       - "pyproject.toml"
+      - "proof_gradient/**"
+      - "tests/test_proof_gradient_*.py"
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - "alembic.ini"
+      - "migrations/**"
 
 permissions:
   contents: read
@@ -38,82 +44,102 @@ jobs:
           rm -rf dist
           mkdir -p dist
 
-          cat > /tmp/build_proof_gradient_pages.py <<'PY'
+          if [ -d site ]; then
+            cp -R site/. dist/
+          fi
+
+          cat > /tmp/build_complete_proof_gradient_site.py <<'PY'
           from __future__ import annotations
 
           from pathlib import Path
           import datetime as dt
           import html
           import json
+          import os
           import re
+          import shutil
+          import subprocess
+          import urllib.request
           from typing import Any
 
 
           ROOT = Path(".")
           DIST = Path("dist")
+          LIVE_BASE = "https://montrealai.github.io/proof-gradient"
 
           PROOFS = [
               (
+                  1,
                   "001-sovereign-swarm",
                   "Proof #1 — Sovereign Swarm",
                   "A deterministic large multi-agent coordination lattice.",
-                  "Proves that a swarm of agents can coordinate through roles, traces, votes, and consensus.",
+                  "Proves that many agents can coordinate through roles, traces, votes, and consensus.",
               ),
               (
+                  2,
                   "002-evolution-tournament",
                   "Proof #2 — Evolution Tournament",
-                  "Candidates compete against baselines; only proven artifacts earn canary.",
+                  "Candidates compete against baselines.",
                   "Proves that candidate artifacts can be evaluated against baselines before propagation.",
               ),
               (
+                  3,
                   "003-recursive-evolution-ladder",
                   "Proof #3 — Recursive Evolution Ladder",
                   "Selected artifacts become the next baseline.",
                   "Proves recursive improvement with selection, rejection, and rollback.",
               ),
               (
+                  4,
                   "004-corporate-rsi-dominion",
                   "Proof #4 — Corporate RSI Dominion",
-                  "Corporate-domain recursive self-improvement for the AI-first enterprise era.",
-                  "Applies Proof Gradient to high-value corporate operating domains.",
+                  "Corporate-domain recursive self-improvement.",
+                  "Applies recursive self-improvement to high-value corporate operating domains.",
               ),
               (
+                  5,
                   "005-enterprise-rsi-superorganism",
                   "Proof #5 — Enterprise RSI Superorganism",
                   "An AI-first corporate operating system that recursively improves enterprise artifacts.",
                   "Shows the enterprise as an evolving artifact network.",
               ),
               (
+                  6,
                   "006-sovereign-enterprise-constellation",
                   "Proof #6 — Sovereign Enterprise Constellation",
                   "A network of sovereign enterprises evolving through proof.",
                   "Shows federated agent evolution across multiple sovereign enterprises.",
               ),
               (
+                  7,
                   "007-sovereign-enterprise-proof-economy",
                   "Proof #7 — Sovereign Enterprise Proof Economy",
                   "A proof market for reusable intelligence.",
                   "Models pricing, routing, adoption, rejection, reputation, and rollback of reusable intelligence.",
               ),
               (
+                  8,
                   "008-sovereign-domain-atlas",
                   "Proof #8 — Sovereign Domain Atlas",
                   "An institutional RSI atlas across sovereign domains.",
-                  "Maps recursive improvement across sovereign domains such as capital, compute, energy, security, science, and governance.",
+                  "Maps recursive improvement across capital, compute, energy, security, science, governance, and infrastructure.",
               ),
               (
+                  9,
                   "009-sovereign-kardashev-capital-engine",
                   "Proof #9 — Sovereign Kardashev Capital Engine",
                   "A capital–compute–energy scenario engine.",
                   "Frames Kardashev-scale ambition as a proof-bounded strategic scenario, not an achieved fact.",
               ),
               (
+                  10,
                   "010-proof-carrying-intelligence",
                   "Proof #10 — Proof-Carrying Intelligence",
                   "Every change carries proof.",
                   "Proves Commit → Execute → Prove → Evolve as a proof-carrying intelligence loop.",
               ),
               (
+                  11,
                   "011-the-proof-loop",
                   "Proof #11 — The Proof Loop",
                   "Aim → Act → Prove → Evolve.",
@@ -122,10 +148,26 @@ jobs:
           ]
 
           SYSTEMS = [
-              ("Artifact Vault", "Stores reusable intelligence.", "Goals, plans, skills, tools, policies, evals, rubrics, context recipes, and release rules."),
-              ("Run Fabric", "Executes agents at scale.", "Resolves artifacts, runs agents, records traces, and emits proof."),
-              ("Proof Ledger", "Records what happened.", "Append-only evidence for runs, evals, scores, feedback, cost, latency, policy decisions, and credit assignment."),
-              ("Selection Gate", "Promotes only what proved itself.", "Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back upgrades."),
+              (
+                  "Artifact Vault",
+                  "Stores reusable intelligence.",
+                  "Goals, plans, skills, tools, policies, evals, rubrics, context recipes, and release rules.",
+              ),
+              (
+                  "Run Fabric",
+                  "Executes agents at scale.",
+                  "Resolves artifacts, runs agents, records traces, and emits proof.",
+              ),
+              (
+                  "Proof Ledger",
+                  "Records what happened.",
+                  "Append-only evidence for runs, evals, scores, feedback, cost, latency, policy decisions, and credit assignment.",
+              ),
+              (
+                  "Selection Gate",
+                  "Promotes only what proved itself.",
+                  "Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back upgrades.",
+              ),
           ]
 
           PRODUCTION_FILES = [
@@ -158,32 +200,60 @@ jobs:
               path.write_text(content, encoding="utf-8")
 
 
-          def read_json(path: Path) -> dict[str, Any] | None:
+          def copy_if_exists(source: Path, target: Path) -> None:
+              if not source.exists():
+                  return
+              target.parent.mkdir(parents=True, exist_ok=True)
+              if source.is_dir():
+                  if target.exists():
+                      shutil.rmtree(target)
+                  shutil.copytree(source, target)
+              else:
+                  shutil.copy2(source, target)
+
+
+          def download_if_missing(url: str, target: Path) -> bool:
+              if target.exists() and target.stat().st_size > 1200:
+                  return False
               try:
-                  if path.exists():
-                      return json.loads(path.read_text(encoding="utf-8"))
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  with urllib.request.urlopen(url, timeout=20) as response:
+                      content = response.read()
+                  if len(content) > 1200:
+                      target.write_bytes(content)
+                      print(f"preserved live page: {url}")
+                      return True
+              except Exception as exc:
+                  print(f"could not preserve live page {url}: {exc}")
+              return False
+
+
+          def read_json(path: Path) -> dict[str, Any] | None:
+              if not path.exists():
+                  return None
+              try:
+                  return json.loads(path.read_text(encoding="utf-8"))
               except Exception:
                   return None
-              return None
 
 
-          def proof_json(slug: str, title: str, subtitle: str, description: str, number: int) -> dict[str, Any]:
+          def maybe_json_for_proof(number: int, slug: str, title: str, subtitle: str, description: str) -> dict[str, Any]:
               candidates = [
                   ROOT / "data" / "proofs" / f"{slug}.json",
                   ROOT / "site" / "assets" / "proofs" / f"{slug}.json",
-                  ROOT / "dist" / "assets" / "proofs" / f"{slug}.json",
+                  DIST / "assets" / "proofs" / f"{slug}.json",
               ]
 
               for candidate in candidates:
-                  loaded = read_json(candidate)
-                  if loaded:
-                      loaded.setdefault("slug", slug)
-                      loaded.setdefault("title", title)
-                      loaded.setdefault("subtitle", subtitle)
-                      loaded.setdefault("number", number)
-                      loaded.setdefault("status", "passed")
-                      loaded.setdefault("description", description)
-                      return loaded
+                  data = read_json(candidate)
+                  if data:
+                      data.setdefault("number", number)
+                      data.setdefault("slug", slug)
+                      data.setdefault("title", title)
+                      data.setdefault("subtitle", subtitle)
+                      data.setdefault("description", description)
+                      data.setdefault("status", "passed")
+                      return data
 
               return {
                   "number": number,
@@ -199,20 +269,8 @@ jobs:
                       "Proof Ledger": "records what happened",
                       "Selection Gate": "promotes only what proved itself",
                   },
-                  "claim_boundary": "This public proof page is a proof-bounded demo artifact. It does not claim real revenue, real profit, investment advice, actual deployed superintelligence, real-world energy capture, or Kardashev Type II achievement.",
+                  "claim_boundary": "This is a proof-bounded public artifact. It does not claim real revenue, real profit, guaranteed ROI, investment advice, actual deployed superintelligence, real-world energy capture, or Kardashev Type II achievement.",
               }
-
-
-          def nav(prefix: str = "") -> str:
-              return f"""
-              <nav class="nav">
-                <a href="{prefix}index.html">Command Center</a>
-                <a href="{prefix}production.html">Production Platform</a>
-                <a href="{prefix}proofs/index.html">Proof Archive</a>
-                <a href="{prefix}docs/index.html">Docs</a>
-                <a href="https://github.com/MontrealAI/proof-gradient">GitHub</a>
-              </nav>
-              """
 
 
           def css() -> str:
@@ -220,7 +278,8 @@ jobs:
               :root {
                 color-scheme: dark;
                 --bg: #05070d;
-                --panel: rgba(11,16,32,.78);
+                --panel: rgba(11,16,32,.80);
+                --panel2: rgba(255,255,255,.045);
                 --line: rgba(255,255,255,.14);
                 --text: #f7f8ff;
                 --muted: #aab3cf;
@@ -234,8 +293,9 @@ jobs:
                 margin: 0;
                 min-height: 100vh;
                 background:
-                  radial-gradient(circle at 15% 8%, rgba(138,180,255,.18), transparent 30%),
-                  radial-gradient(circle at 85% 12%, rgba(244,199,107,.14), transparent 28%),
+                  radial-gradient(circle at 13% 8%, rgba(138,180,255,.20), transparent 30%),
+                  radial-gradient(circle at 85% 10%, rgba(244,199,107,.16), transparent 28%),
+                  radial-gradient(circle at 50% 100%, rgba(184,167,255,.10), transparent 35%),
                   linear-gradient(180deg, #05070d 0%, #090d18 100%);
                 color: var(--text);
                 font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -243,7 +303,7 @@ jobs:
               main {
                 width: min(1240px, calc(100% - 40px));
                 margin: 0 auto;
-                padding: 64px 0 80px;
+                padding: 64px 0 90px;
               }
               .eyebrow {
                 color: var(--gold);
@@ -253,16 +313,16 @@ jobs:
                 font-size: 13px;
               }
               h1 {
-                font-size: clamp(46px, 8vw, 108px);
+                font-size: clamp(48px, 8vw, 110px);
                 line-height: .92;
-                letter-spacing: -.07em;
+                letter-spacing: -.075em;
                 margin: 18px 0 22px;
               }
               h2 {
-                font-size: clamp(28px, 4vw, 52px);
+                font-size: clamp(30px, 4vw, 54px);
                 line-height: 1;
-                letter-spacing: -.05em;
-                margin-top: 42px;
+                letter-spacing: -.055em;
+                margin: 48px 0 18px;
               }
               h3 { font-size: 24px; }
               p, li {
@@ -271,11 +331,15 @@ jobs:
                 line-height: 1.6;
               }
               a { color: var(--blue); }
+              .hero-line {
+                max-width: 880px;
+                font-size: 22px;
+              }
               .nav {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 10px;
-                margin: 28px 0 34px;
+                margin: 30px 0 36px;
               }
               .nav a {
                 text-decoration: none;
@@ -283,7 +347,7 @@ jobs:
                 border: 1px solid var(--line);
                 border-radius: 999px;
                 padding: 9px 13px;
-                background: rgba(255,255,255,.04);
+                background: rgba(255,255,255,.045);
               }
               .nav a:hover {
                 color: #05070d;
@@ -308,6 +372,7 @@ jobs:
                 padding: 22px;
                 background: var(--panel);
                 min-height: 160px;
+                box-shadow: 0 18px 70px rgba(0,0,0,.25);
               }
               .card b {
                 display: block;
@@ -350,12 +415,14 @@ jobs:
               }
               th {
                 color: var(--text);
-                background: rgba(255,255,255,.06);
+                background: rgba(255,255,255,.07);
               }
               tr:last-child td { border-bottom: 0; }
-              .hero-line {
-                max-width: 880px;
-                font-size: 22px;
+              .console {
+                border: 1px solid var(--line);
+                border-radius: 22px;
+                padding: 24px;
+                background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
               }
               .mono {
                 font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -368,7 +435,19 @@ jobs:
               """
 
 
-          def shell(title: str, eyebrow: str, body: str, prefix: str = "") -> str:
+          def nav(prefix: str = "") -> str:
+              return f"""
+              <nav class="nav">
+                <a href="{prefix}index.html">Command Center</a>
+                <a href="{prefix}production.html">Production Platform</a>
+                <a href="{prefix}proofs/index.html">Proof Archive</a>
+                <a href="{prefix}docs/index.html">Docs</a>
+                <a href="https://github.com/MontrealAI/proof-gradient">GitHub</a>
+              </nav>
+              """
+
+
+          def shell(title: str, eyebrow: str, body: str) -> str:
               return f"""<!doctype html>
           <html lang="en">
             <head>
@@ -424,14 +503,91 @@ jobs:
                       out.append(f"<h3>{esc(stripped[4:])}</h3>")
                   elif stripped.startswith("- "):
                       out.append(f"<p>• {esc(stripped[2:])}</p>")
+                  elif stripped.startswith("|"):
+                      out.append(f"<pre>{esc(stripped)}</pre>")
                   elif stripped:
                       out.append(f"<p>{esc(stripped)}</p>")
 
+              body = f"{nav(prefix)}{''.join(out)}"
+              return shell(path.stem.replace("_", " ").title(), "Proof Gradient · Docs", body)
+
+
+          def rich_fallback_proof_page(proof: dict[str, Any]) -> str:
+              systems_cards = "".join(
+                  f"""
+                  <div class="card">
+                    <b>{esc(name)}</b>
+                    <p>{esc(promise)}</p>
+                    <p>{esc(details)}</p>
+                  </div>
+                  """
+                  for name, promise, details in SYSTEMS
+              )
+
+              primitives = [
+                  ["Aim", "Direction", "The mission becomes explicit.", "No aim, no intelligence."],
+                  ["Act", "Strategy + Capability", "The active artifacts execute through the Run Fabric.", "The agent acts once."],
+                  ["Prove", "Evidence", "Every execution emits traces, evals, scores, and credit assignment.", "Without proof, learning is mythology."],
+                  ["Evolve", "Selection", "Only proven improvements earn propagation.", "Only proven intelligence propagates."],
+              ]
+
+              artifact_rows = [
+                  ["GoalOS", "Aim artifacts", "Direction, success criteria, constraints, risk, budget, policy."],
+                  ["PlanOS", "Strategy artifacts", "Plans, routing rules, rollout logic, and rollback paths."],
+                  ["SkillOS", "Capability artifacts", "Reusable skills, tools, context recipes, and execution patterns."],
+                  ["Policy", "Guardrail artifacts", "Permissioning, claim boundaries, privacy, safety, and release rules."],
+                  ["Eval", "Judgment artifacts", "Quality, safety, cost, latency, and regression checks."],
+              ]
+
               body = f"""
-              {nav(prefix)}
-              {''.join(out)}
+              <h1>{esc(proof['title'])}</h1>
+              <p class="hero-line">{esc(proof.get('subtitle', ''))}</p>
+              {nav("../")}
+              <p><span class="pill">{esc(proof.get('status', 'passed'))}</span></p>
+
+              <h2>Summary</h2>
+              <pre>{esc(json.dumps({
+                  "number": proof.get("number"),
+                  "slug": proof.get("slug"),
+                  "protocol": proof.get("protocol", "Aim → Act → Prove → Evolve"),
+                  "status": proof.get("status", "passed"),
+                  "description": proof.get("description", ""),
+              }, indent=2, ensure_ascii=False))}</pre>
+
+              <h2>Institutional Graphs</h2>
+              <div class="console">
+                <h3>Agent Evolution Protocol</h3>
+                <pre>Aim → Act → Prove → Evolve
+
+          Every agent acts.
+          Every action leaves proof.
+          Every proof earns improvement.
+          Every improvement strengthens the network.</pre>
+              </div>
+
+              <h2>The Four Systems</h2>
+              <div class="grid">{systems_cards}</div>
+
+              <h2>The Four Primitives</h2>
+              {table(["Primitive", "Layer", "Explanation", "Line"], primitives)}
+
+              <h2>Artifacts Used</h2>
+              {table(["Class", "Type", "Explanation"], artifact_rows)}
+
+              <h2>Claim-Boundary Ledger</h2>
+              {table(["Claim Boundary", "Status"], [
+                  ["Real revenue claimed", "False"],
+                  ["Guaranteed ROI claimed", "False"],
+                  ["Actual deployed superintelligence claimed", "False"],
+                  ["Kardashev Type II achieved claimed", "False"],
+                  ["Rollback required", "True"],
+              ])}
+
+              <h2>Evidence JSON</h2>
+              <p><a href="../assets/proofs/{esc(proof['slug'])}.json">Open machine-readable evidence →</a></p>
+              <pre>{esc(json.dumps(proof, indent=2, ensure_ascii=False))}</pre>
               """
-              return shell(path.stem.replace("_", " ").title(), "Proof Gradient · Docs", body, prefix=prefix)
+              return shell(proof["title"], "Proof Gradient · Permanent Proof Page", body)
 
 
           def build_index(proofs: list[dict[str, Any]]) -> None:
@@ -465,6 +621,7 @@ jobs:
                 SkillOS gives it Capability. The Proof Gradient gives it Evolution.
               </p>
               {nav("")}
+
               <h2>The Four Systems</h2>
               <div class="grid">{system_cards}</div>
 
@@ -480,9 +637,7 @@ jobs:
 
 
           def build_production() -> None:
-              rows = []
-              for file in PRODUCTION_FILES:
-                  rows.append([file, "present" if (ROOT / file).exists() else "pending"])
+              rows = [[file, "present" if (ROOT / file).exists() else "pending"] for file in PRODUCTION_FILES]
 
               system_cards = "".join(
                   f"""
@@ -514,74 +669,70 @@ jobs:
               write(DIST / "production.html", shell("Proof Gradient · Production Platform", "Proof Gradient · Production Platform", body))
 
 
-          def build_proofs(proofs: list[dict[str, Any]]) -> None:
-              cards = "".join(
-                  f"""
+          def preserve_or_generate_proof_pages(proofs: list[dict[str, Any]]) -> None:
+              proof_index_cards = ""
+
+              for proof in proofs:
+                  slug = proof["slug"]
+                  html_path = DIST / "proofs" / f"{slug}.html"
+                  json_path = DIST / "assets" / "proofs" / f"{slug}.json"
+
+                  # Preserve rich repository page first.
+                  if not html_path.exists() or html_path.stat().st_size < 1200:
+                      repo_page = ROOT / "site" / "proofs" / f"{slug}.html"
+                      copy_if_exists(repo_page, html_path)
+
+                  # Preserve current live rich page second.
+                  if not html_path.exists() or html_path.stat().st_size < 1200:
+                      download_if_missing(f"{LIVE_BASE}/proofs/{slug}.html", html_path)
+
+                  # Write fallback only if no rich page exists.
+                  if not html_path.exists() or html_path.stat().st_size < 1200:
+                      write(html_path, rich_fallback_proof_page(proof))
+
+                  # Preserve existing evidence JSON if present, otherwise generate.
+                  if not json_path.exists():
+                      repo_json = ROOT / "site" / "assets" / "proofs" / f"{slug}.json"
+                      data_json = ROOT / "data" / "proofs" / f"{slug}.json"
+                      if repo_json.exists():
+                          copy_if_exists(repo_json, json_path)
+                      elif data_json.exists():
+                          copy_if_exists(data_json, json_path)
+                      else:
+                          download_if_missing(f"{LIVE_BASE}/assets/proofs/{slug}.json", json_path)
+
+                  if not json_path.exists() or json_path.stat().st_size < 10:
+                      write(json_path, json.dumps(proof, indent=2, ensure_ascii=False) + "\n")
+
+                  proof_index_cards += f"""
                   <div class="card">
                     <b>{esc(proof['title'])}</b>
                     <p>{esc(proof.get('subtitle', ''))}</p>
                     <p>{esc(proof.get('description', ''))}</p>
-                    <p><a href="{esc(proof['slug'])}.html">Open proof →</a></p>
-                    <p><a href="../assets/proofs/{esc(proof['slug'])}.json">Evidence JSON →</a></p>
+                    <p><a href="{esc(slug)}.html">Open proof →</a></p>
+                    <p><a href="../assets/proofs/{esc(slug)}.json">Evidence JSON →</a></p>
                   </div>
                   """
-                  for proof in proofs
-              )
 
               index_body = f"""
               <h1>Proof<br>Archive.</h1>
               <p class="hero-line">Every proof has a permanent webpage and evidence JSON.</p>
               {nav("../")}
-              <div class="grid3">{cards}</div>
+              <div class="grid3">{proof_index_cards}</div>
               """
-              write(DIST / "proofs" / "index.html", shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", index_body, prefix="../"))
-
-              for proof in proofs:
-                  slug = proof["slug"]
-                  write(DIST / "assets" / "proofs" / f"{slug}.json", json.dumps(proof, indent=2, ensure_ascii=False) + "\n")
-
-                  summary = {
-                      "number": proof.get("number"),
-                      "slug": slug,
-                      "title": proof.get("title"),
-                      "status": proof.get("status", "passed"),
-                      "protocol": proof.get("protocol", "Aim → Act → Prove → Evolve"),
-                      "claim_boundary": proof.get("claim_boundary", "Proof-bounded public demo artifact."),
-                  }
-
-                  proof_body = f"""
-                  <h1>{esc(proof['title'])}</h1>
-                  <p class="hero-line">{esc(proof.get('subtitle', ''))}</p>
-                  {nav("../")}
-                  <p><span class="pill">{esc(proof.get('status', 'passed'))}</span></p>
-
-                  <h2>Description</h2>
-                  <p>{esc(proof.get('description', ''))}</p>
-
-                  <h2>Systems</h2>
-                  <div class="grid">
-                    <div class="card"><b>Artifact Vault</b><p>Stores reusable intelligence.</p></div>
-                    <div class="card"><b>Run Fabric</b><p>Executes agents at scale.</p></div>
-                    <div class="card"><b>Proof Ledger</b><p>Records what happened.</p></div>
-                    <div class="card"><b>Selection Gate</b><p>Promotes only what proved itself.</p></div>
-                  </div>
-
-                  <h2>Summary</h2>
-                  <pre>{esc(json.dumps(summary, indent=2, ensure_ascii=False))}</pre>
-
-                  <h2>Evidence JSON</h2>
-                  <p><a href="../assets/proofs/{esc(slug)}.json">Open machine-readable evidence →</a></p>
-                  <pre>{esc(json.dumps(proof, indent=2, ensure_ascii=False))}</pre>
-                  """
-                  write(DIST / "proofs" / f"{slug}.html", shell(proof["title"], "Proof Gradient · Permanent Proof Page", proof_body, prefix="../"))
+              write(DIST / "proofs" / "index.html", shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", index_body))
 
 
           def build_docs() -> None:
               docs = sorted((ROOT / "docs").glob("*.md")) if (ROOT / "docs").exists() else []
               rows = []
+
               for doc in docs:
                   html_name = doc.with_suffix(".html").name
                   rows.append([doc.name, f'<a href="{esc(html_name)}">Open</a>'])
+
+              if (ROOT / "README.md").exists():
+                  rows.insert(0, ["README.md", '<a href="readme.html">Open</a>'])
 
               if not rows:
                   rows.append(["No docs found", "Pending"])
@@ -596,7 +747,7 @@ jobs:
               {nav("../")}
               <table><thead><tr><th>Document</th><th>Link</th></tr></thead><tbody>{rows_html}</tbody></table>
               """
-              write(DIST / "docs" / "index.html", shell("Proof Gradient · Docs", "Proof Gradient · Docs", body, prefix="../"))
+              write(DIST / "docs" / "index.html", shell("Proof Gradient · Docs", "Proof Gradient · Docs", body))
 
               for doc in docs:
                   write(DIST / "docs" / doc.with_suffix(".html").name, markdown_to_html(doc, prefix="../"))
@@ -608,9 +759,25 @@ jobs:
           def main() -> None:
               DIST.mkdir(parents=True, exist_ok=True)
 
+              # Preserve old static assets if they exist.
+              for source, target in [
+                  (ROOT / "assets", DIST / "assets"),
+                  (ROOT / "site" / "assets", DIST / "assets"),
+                  (ROOT / "badges", DIST / "badges"),
+                  (ROOT / "site" / "badges", DIST / "badges"),
+              ]:
+                  if source.exists():
+                      if target.exists() and source.is_dir():
+                          for item in source.rglob("*"):
+                              if item.is_file():
+                                  rel = item.relative_to(source)
+                                  copy_if_exists(item, target / rel)
+                      else:
+                          copy_if_exists(source, target)
+
               proofs: list[dict[str, Any]] = []
-              for index, (slug, title, subtitle, description) in enumerate(PROOFS, start=1):
-                  proofs.append(proof_json(slug, title, subtitle, description, index))
+              for number, slug, title, subtitle, description in PROOFS:
+                  proofs.append(maybe_json_for_proof(number, slug, title, subtitle, description))
 
               proof_index = {
                   "generated_at": dt.datetime.utcnow().isoformat() + "Z",
@@ -619,14 +786,13 @@ jobs:
               }
 
               write(DIST / "assets" / "proof-index.json", json.dumps(proof_index, indent=2, ensure_ascii=False) + "\n")
+
               build_index(proofs)
               build_production()
-              build_proofs(proofs)
+              preserve_or_generate_proof_pages(proofs)
               build_docs()
 
               write(DIST / ".nojekyll", "")
-
-              # Compatibility aliases for users who bookmarked older generated pages.
               write(DIST / "command-center.html", '<meta http-equiv="refresh" content="0; url=index.html">')
               write(DIST / "archive.html", '<meta http-equiv="refresh" content="0; url=proofs/index.html">')
 
@@ -635,7 +801,7 @@ jobs:
               main()
           PY
 
-          python /tmp/build_proof_gradient_pages.py
+          python /tmp/build_complete_proof_gradient_site.py
 
           echo "Generated public files:"
           find dist -maxdepth 4 -type f | sort
@@ -660,6 +826,7 @@ jobs:
             "dist/proofs/010-proof-carrying-intelligence.html"
             "dist/proofs/011-the-proof-loop.html"
             "dist/assets/proof-index.json"
+            "dist/docs/index.html"
           )
 
           for file in "${required[@]}"; do
@@ -668,10 +835,10 @@ jobs:
 
           grep -R "Proof Archive" dist/index.html dist/proofs/index.html
           grep -R "Production Platform" dist/index.html dist/production.html
-          grep -R "Artifact Vault" dist/index.html dist/production.html dist/proofs/011-the-proof-loop.html
-          grep -R "Run Fabric" dist/index.html dist/production.html dist/proofs/011-the-proof-loop.html
-          grep -R "Proof Ledger" dist/index.html dist/production.html dist/proofs/011-the-proof-loop.html
-          grep -R "Selection Gate" dist/index.html dist/production.html dist/proofs/011-the-proof-loop.html
+          grep -R "Artifact Vault" dist/index.html dist/production.html dist/proofs/010-proof-carrying-intelligence.html
+          grep -R "Run Fabric" dist/index.html dist/production.html dist/proofs/010-proof-carrying-intelligence.html
+          grep -R "Proof Ledger" dist/index.html dist/production.html dist/proofs/010-proof-carrying-intelligence.html
+          grep -R "Selection Gate" dist/index.html dist/production.html dist/proofs/010-proof-carrying-intelligence.html
 
           if grep -R "montrealai.github.io/skillos\|github.com/MontrealAI/skillos\|MontrealAI/skillos" dist; then
             echo "Old SkillOS deployment URL found in public artifact. Stopping."
@@ -711,4 +878,5 @@ jobs:
           echo "Main: ${{ steps.deployment.outputs.page_url }}"
           echo "Production: ${{ steps.deployment.outputs.page_url }}production.html"
           echo "Proof Archive: ${{ steps.deployment.outputs.page_url }}proofs/"
+          echo "Proof #10: ${{ steps.deployment.outputs.page_url }}proofs/010-proof-carrying-intelligence.html"
           echo "Proof #11: ${{ steps.deployment.outputs.page_url }}proofs/011-the-proof-loop.html"
