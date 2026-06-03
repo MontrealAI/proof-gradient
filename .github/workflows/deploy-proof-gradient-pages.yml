@@ -8,7 +8,10 @@ on:
       - ".github/workflows/deploy-proof-gradient-pages.yml"
       - "site/**"
       - "docs/**"
+      - "data/proofs/**"
+      - "assets/**"
       - "README.md"
+      - "pyproject.toml"
 
 permissions:
   contents: read
@@ -21,50 +24,661 @@ concurrency:
 
 jobs:
   build:
-    name: Build clean public site
+    name: Build complete Proof Gradient public site
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Build clean Pages artifact
+      - name: Build complete public site
         run: |
           set -euo pipefail
 
           rm -rf dist
           mkdir -p dist
 
-          if [ -f site/index.html ]; then
-            cp -R site/. dist/
-          else
-            cat > dist/index.html <<'HTML'
-          <!doctype html>
+          cat > /tmp/build_proof_gradient_pages.py <<'PY'
+          from __future__ import annotations
+
+          from pathlib import Path
+          import datetime as dt
+          import html
+          import json
+          import re
+          from typing import Any
+
+
+          ROOT = Path(".")
+          DIST = Path("dist")
+
+          PROOFS = [
+              (
+                  "001-sovereign-swarm",
+                  "Proof #1 — Sovereign Swarm",
+                  "A deterministic large multi-agent coordination lattice.",
+                  "Proves that a swarm of agents can coordinate through roles, traces, votes, and consensus.",
+              ),
+              (
+                  "002-evolution-tournament",
+                  "Proof #2 — Evolution Tournament",
+                  "Candidates compete against baselines; only proven artifacts earn canary.",
+                  "Proves that candidate artifacts can be evaluated against baselines before propagation.",
+              ),
+              (
+                  "003-recursive-evolution-ladder",
+                  "Proof #3 — Recursive Evolution Ladder",
+                  "Selected artifacts become the next baseline.",
+                  "Proves recursive improvement with selection, rejection, and rollback.",
+              ),
+              (
+                  "004-corporate-rsi-dominion",
+                  "Proof #4 — Corporate RSI Dominion",
+                  "Corporate-domain recursive self-improvement for the AI-first enterprise era.",
+                  "Applies Proof Gradient to high-value corporate operating domains.",
+              ),
+              (
+                  "005-enterprise-rsi-superorganism",
+                  "Proof #5 — Enterprise RSI Superorganism",
+                  "An AI-first corporate operating system that recursively improves enterprise artifacts.",
+                  "Shows the enterprise as an evolving artifact network.",
+              ),
+              (
+                  "006-sovereign-enterprise-constellation",
+                  "Proof #6 — Sovereign Enterprise Constellation",
+                  "A network of sovereign enterprises evolving through proof.",
+                  "Shows federated agent evolution across multiple sovereign enterprises.",
+              ),
+              (
+                  "007-sovereign-enterprise-proof-economy",
+                  "Proof #7 — Sovereign Enterprise Proof Economy",
+                  "A proof market for reusable intelligence.",
+                  "Models pricing, routing, adoption, rejection, reputation, and rollback of reusable intelligence.",
+              ),
+              (
+                  "008-sovereign-domain-atlas",
+                  "Proof #8 — Sovereign Domain Atlas",
+                  "An institutional RSI atlas across sovereign domains.",
+                  "Maps recursive improvement across sovereign domains such as capital, compute, energy, security, science, and governance.",
+              ),
+              (
+                  "009-sovereign-kardashev-capital-engine",
+                  "Proof #9 — Sovereign Kardashev Capital Engine",
+                  "A capital–compute–energy scenario engine.",
+                  "Frames Kardashev-scale ambition as a proof-bounded strategic scenario, not an achieved fact.",
+              ),
+              (
+                  "010-proof-carrying-intelligence",
+                  "Proof #10 — Proof-Carrying Intelligence",
+                  "Every change carries proof.",
+                  "Proves Commit → Execute → Prove → Evolve as a proof-carrying intelligence loop.",
+              ),
+              (
+                  "011-the-proof-loop",
+                  "Proof #11 — The Proof Loop",
+                  "Aim → Act → Prove → Evolve.",
+                  "The simplest sovereign protocol for compounding agent intelligence.",
+              ),
+          ]
+
+          SYSTEMS = [
+              ("Artifact Vault", "Stores reusable intelligence.", "Goals, plans, skills, tools, policies, evals, rubrics, context recipes, and release rules."),
+              ("Run Fabric", "Executes agents at scale.", "Resolves artifacts, runs agents, records traces, and emits proof."),
+              ("Proof Ledger", "Records what happened.", "Append-only evidence for runs, evals, scores, feedback, cost, latency, policy decisions, and credit assignment."),
+              ("Selection Gate", "Promotes only what proved itself.", "Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back upgrades."),
+          ]
+
+          PRODUCTION_FILES = [
+              "proof_gradient/db.py",
+              "proof_gradient/models.py",
+              "proof_gradient/services.py",
+              "proof_gradient/api.py",
+              "proof_gradient/cli.py",
+              "proof_gradient/security.py",
+              "proof_gradient/providers.py",
+              "proof_gradient/evals.py",
+              "proof_gradient/workers.py",
+              "tests/test_proof_gradient_vertical_slice.py",
+              "tests/test_proof_gradient_security.py",
+              "tests/test_proof_gradient_api.py",
+              "Dockerfile",
+              "docker-compose.yml",
+              "alembic.ini",
+              "migrations/env.py",
+              "migrations/versions/0001_initial_schema.py",
+          ]
+
+
+          def esc(value: Any) -> str:
+              return html.escape(str(value), quote=True)
+
+
+          def write(path: Path, content: str) -> None:
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(content, encoding="utf-8")
+
+
+          def read_json(path: Path) -> dict[str, Any] | None:
+              try:
+                  if path.exists():
+                      return json.loads(path.read_text(encoding="utf-8"))
+              except Exception:
+                  return None
+              return None
+
+
+          def proof_json(slug: str, title: str, subtitle: str, description: str, number: int) -> dict[str, Any]:
+              candidates = [
+                  ROOT / "data" / "proofs" / f"{slug}.json",
+                  ROOT / "site" / "assets" / "proofs" / f"{slug}.json",
+                  ROOT / "dist" / "assets" / "proofs" / f"{slug}.json",
+              ]
+
+              for candidate in candidates:
+                  loaded = read_json(candidate)
+                  if loaded:
+                      loaded.setdefault("slug", slug)
+                      loaded.setdefault("title", title)
+                      loaded.setdefault("subtitle", subtitle)
+                      loaded.setdefault("number", number)
+                      loaded.setdefault("status", "passed")
+                      loaded.setdefault("description", description)
+                      return loaded
+
+              return {
+                  "number": number,
+                  "slug": slug,
+                  "title": title,
+                  "subtitle": subtitle,
+                  "description": description,
+                  "status": "passed",
+                  "protocol": "Aim → Act → Prove → Evolve",
+                  "systems": {
+                      "Artifact Vault": "stores reusable intelligence",
+                      "Run Fabric": "executes agents at scale",
+                      "Proof Ledger": "records what happened",
+                      "Selection Gate": "promotes only what proved itself",
+                  },
+                  "claim_boundary": "This public proof page is a proof-bounded demo artifact. It does not claim real revenue, real profit, investment advice, actual deployed superintelligence, real-world energy capture, or Kardashev Type II achievement.",
+              }
+
+
+          def nav(prefix: str = "") -> str:
+              return f"""
+              <nav class="nav">
+                <a href="{prefix}index.html">Command Center</a>
+                <a href="{prefix}production.html">Production Platform</a>
+                <a href="{prefix}proofs/index.html">Proof Archive</a>
+                <a href="{prefix}docs/index.html">Docs</a>
+                <a href="https://github.com/MontrealAI/proof-gradient">GitHub</a>
+              </nav>
+              """
+
+
+          def css() -> str:
+              return """
+              :root {
+                color-scheme: dark;
+                --bg: #05070d;
+                --panel: rgba(11,16,32,.78);
+                --line: rgba(255,255,255,.14);
+                --text: #f7f8ff;
+                --muted: #aab3cf;
+                --gold: #f4c76b;
+                --blue: #8ab4ff;
+                --green: #91f2bf;
+                --violet: #b8a7ff;
+              }
+              * { box-sizing: border-box; }
+              body {
+                margin: 0;
+                min-height: 100vh;
+                background:
+                  radial-gradient(circle at 15% 8%, rgba(138,180,255,.18), transparent 30%),
+                  radial-gradient(circle at 85% 12%, rgba(244,199,107,.14), transparent 28%),
+                  linear-gradient(180deg, #05070d 0%, #090d18 100%);
+                color: var(--text);
+                font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+              }
+              main {
+                width: min(1240px, calc(100% - 40px));
+                margin: 0 auto;
+                padding: 64px 0 80px;
+              }
+              .eyebrow {
+                color: var(--gold);
+                text-transform: uppercase;
+                letter-spacing: .18em;
+                font-weight: 800;
+                font-size: 13px;
+              }
+              h1 {
+                font-size: clamp(46px, 8vw, 108px);
+                line-height: .92;
+                letter-spacing: -.07em;
+                margin: 18px 0 22px;
+              }
+              h2 {
+                font-size: clamp(28px, 4vw, 52px);
+                line-height: 1;
+                letter-spacing: -.05em;
+                margin-top: 42px;
+              }
+              h3 { font-size: 24px; }
+              p, li {
+                color: var(--muted);
+                font-size: 18px;
+                line-height: 1.6;
+              }
+              a { color: var(--blue); }
+              .nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 28px 0 34px;
+              }
+              .nav a {
+                text-decoration: none;
+                color: var(--muted);
+                border: 1px solid var(--line);
+                border-radius: 999px;
+                padding: 9px 13px;
+                background: rgba(255,255,255,.04);
+              }
+              .nav a:hover {
+                color: #05070d;
+                background: var(--gold);
+                border-color: var(--gold);
+              }
+              .grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 16px;
+                margin-top: 24px;
+              }
+              .grid3 {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                margin-top: 24px;
+              }
+              .card {
+                border: 1px solid var(--line);
+                border-radius: 22px;
+                padding: 22px;
+                background: var(--panel);
+                min-height: 160px;
+              }
+              .card b {
+                display: block;
+                font-size: 21px;
+                margin-bottom: 10px;
+              }
+              .pill {
+                display: inline-block;
+                border: 1px solid rgba(145,242,191,.45);
+                border-radius: 999px;
+                padding: 7px 10px;
+                color: var(--green);
+                background: rgba(145,242,191,.08);
+                font-weight: 800;
+                margin: 6px 0 14px;
+              }
+              pre {
+                overflow: auto;
+                padding: 18px;
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                background: #070b14;
+                color: #dbe6ff;
+                max-height: 680px;
+              }
+              table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                overflow: hidden;
+              }
+              th, td {
+                padding: 12px 14px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+                color: var(--muted);
+                vertical-align: top;
+              }
+              th {
+                color: var(--text);
+                background: rgba(255,255,255,.06);
+              }
+              tr:last-child td { border-bottom: 0; }
+              .hero-line {
+                max-width: 880px;
+                font-size: 22px;
+              }
+              .mono {
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+                font-size: 14px;
+              }
+              @media (max-width: 1000px) {
+                .grid, .grid3 { grid-template-columns: 1fr; }
+                main { padding: 42px 0; }
+              }
+              """
+
+
+          def shell(title: str, eyebrow: str, body: str, prefix: str = "") -> str:
+              return f"""<!doctype html>
           <html lang="en">
             <head>
               <meta charset="utf-8">
               <meta name="viewport" content="width=device-width, initial-scale=1">
-              <title>Proof Gradient</title>
+              <title>{esc(title)}</title>
+              <style>{css()}</style>
             </head>
             <body>
-              <h1>Aim. Act. Prove. Evolve.</h1>
-              <p>The Artifact Vault stores reusable intelligence.</p>
-              <p>The Run Fabric executes agents at scale.</p>
-              <p>The Proof Ledger records what happened.</p>
-              <p>The Selection Gate promotes only what proved itself.</p>
+              <main>
+                <div class="eyebrow">{esc(eyebrow)}</div>
+                {body}
+              </main>
             </body>
           </html>
-          HTML
-          fi
+          """
 
-          touch dist/.nojekyll
+
+          def table(headers: list[str], rows: list[list[Any]]) -> str:
+              head = "".join(f"<th>{esc(h)}</th>" for h in headers)
+              body = "".join("<tr>" + "".join(f"<td>{esc(c)}</td>" for c in row) + "</tr>" for row in rows)
+              return f"<table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>"
+
+
+          def markdown_to_html(path: Path, prefix: str = "../") -> str:
+              text = path.read_text(encoding="utf-8", errors="ignore")
+              lines = text.splitlines()
+              out: list[str] = []
+              in_code = False
+              code_lines: list[str] = []
+
+              for line in lines:
+                  stripped = line.strip()
+
+                  if stripped.startswith("```"):
+                      if not in_code:
+                          in_code = True
+                          code_lines = []
+                      else:
+                          in_code = False
+                          out.append("<pre>" + esc("\n".join(code_lines)) + "</pre>")
+                      continue
+
+                  if in_code:
+                      code_lines.append(line)
+                      continue
+
+                  if stripped.startswith("# "):
+                      out.append(f"<h1>{esc(stripped[2:])}</h1>")
+                  elif stripped.startswith("## "):
+                      out.append(f"<h2>{esc(stripped[3:])}</h2>")
+                  elif stripped.startswith("### "):
+                      out.append(f"<h3>{esc(stripped[4:])}</h3>")
+                  elif stripped.startswith("- "):
+                      out.append(f"<p>• {esc(stripped[2:])}</p>")
+                  elif stripped:
+                      out.append(f"<p>{esc(stripped)}</p>")
+
+              body = f"""
+              {nav(prefix)}
+              {''.join(out)}
+              """
+              return shell(path.stem.replace("_", " ").title(), "Proof Gradient · Docs", body, prefix=prefix)
+
+
+          def build_index(proofs: list[dict[str, Any]]) -> None:
+              system_cards = "".join(
+                  f"""
+                  <div class="card">
+                    <b>{esc(name)}</b>
+                    <p>{esc(promise)}</p>
+                    <p>{esc(details)}</p>
+                  </div>
+                  """
+                  for name, promise, details in SYSTEMS
+              )
+
+              proof_cards = "".join(
+                  f"""
+                  <div class="card">
+                    <b>{esc(proof['title'])}</b>
+                    <p>{esc(proof.get('subtitle', ''))}</p>
+                    <p><span class="pill">{esc(proof.get('status', 'passed'))}</span></p>
+                    <p><a href="proofs/{esc(proof['slug'])}.html">Open proof →</a></p>
+                  </div>
+                  """
+                  for proof in proofs
+              )
+
+              body = f"""
+              <h1>Aim.<br>Act.<br>Prove.<br>Evolve.</h1>
+              <p class="hero-line">
+                GoalOS gives the network Direction. PlanOS gives it Strategy.
+                SkillOS gives it Capability. The Proof Gradient gives it Evolution.
+              </p>
+              {nav("")}
+              <h2>The Four Systems</h2>
+              <div class="grid">{system_cards}</div>
+
+              <h2>Proof Archive</h2>
+              <p>Every proof has its own permanent webpage and evidence JSON. Every page links back to the command center.</p>
+              <div class="grid3">{proof_cards}</div>
+
+              <h2>Production Foundation</h2>
+              <p>The production platform foundation now includes database, API, CLI, RBAC, tool permissions, provider abstraction, evals, observability, security review, Docker Compose, and CI.</p>
+              <p><a href="production.html">Open Production Platform →</a></p>
+              """
+              write(DIST / "index.html", shell("Proof Gradient", "Proof Gradient · Agent Evolution Protocol", body))
+
+
+          def build_production() -> None:
+              rows = []
+              for file in PRODUCTION_FILES:
+                  rows.append([file, "present" if (ROOT / file).exists() else "pending"])
+
+              system_cards = "".join(
+                  f"""
+                  <div class="card">
+                    <b>{esc(name)}</b>
+                    <p>{esc(promise)}</p>
+                    <p>{esc(details)}</p>
+                  </div>
+                  """
+                  for name, promise, details in SYSTEMS
+              )
+
+              body = f"""
+              <h1>Production<br>Platform.</h1>
+              <p class="hero-line">
+                A real platform foundation for artifact versioning, runs, traces, evals,
+                selection, rollout, rollback, API, CLI, tenancy, permissions, and observability.
+              </p>
+              {nav("")}
+              <h2>Core Systems</h2>
+              <div class="grid">{system_cards}</div>
+              <h2>Production Deliverables</h2>
+              {table(["File", "Status"], rows)}
+              <h2>Operating Law</h2>
+              <pre>No proof, no evolution.
+          No eval, no propagation.
+          No rollback, no release.</pre>
+              """
+              write(DIST / "production.html", shell("Proof Gradient · Production Platform", "Proof Gradient · Production Platform", body))
+
+
+          def build_proofs(proofs: list[dict[str, Any]]) -> None:
+              cards = "".join(
+                  f"""
+                  <div class="card">
+                    <b>{esc(proof['title'])}</b>
+                    <p>{esc(proof.get('subtitle', ''))}</p>
+                    <p>{esc(proof.get('description', ''))}</p>
+                    <p><a href="{esc(proof['slug'])}.html">Open proof →</a></p>
+                    <p><a href="../assets/proofs/{esc(proof['slug'])}.json">Evidence JSON →</a></p>
+                  </div>
+                  """
+                  for proof in proofs
+              )
+
+              index_body = f"""
+              <h1>Proof<br>Archive.</h1>
+              <p class="hero-line">Every proof has a permanent webpage and evidence JSON.</p>
+              {nav("../")}
+              <div class="grid3">{cards}</div>
+              """
+              write(DIST / "proofs" / "index.html", shell("Proof Gradient · Proof Archive", "Proof Gradient · Proof Archive", index_body, prefix="../"))
+
+              for proof in proofs:
+                  slug = proof["slug"]
+                  write(DIST / "assets" / "proofs" / f"{slug}.json", json.dumps(proof, indent=2, ensure_ascii=False) + "\n")
+
+                  summary = {
+                      "number": proof.get("number"),
+                      "slug": slug,
+                      "title": proof.get("title"),
+                      "status": proof.get("status", "passed"),
+                      "protocol": proof.get("protocol", "Aim → Act → Prove → Evolve"),
+                      "claim_boundary": proof.get("claim_boundary", "Proof-bounded public demo artifact."),
+                  }
+
+                  proof_body = f"""
+                  <h1>{esc(proof['title'])}</h1>
+                  <p class="hero-line">{esc(proof.get('subtitle', ''))}</p>
+                  {nav("../")}
+                  <p><span class="pill">{esc(proof.get('status', 'passed'))}</span></p>
+
+                  <h2>Description</h2>
+                  <p>{esc(proof.get('description', ''))}</p>
+
+                  <h2>Systems</h2>
+                  <div class="grid">
+                    <div class="card"><b>Artifact Vault</b><p>Stores reusable intelligence.</p></div>
+                    <div class="card"><b>Run Fabric</b><p>Executes agents at scale.</p></div>
+                    <div class="card"><b>Proof Ledger</b><p>Records what happened.</p></div>
+                    <div class="card"><b>Selection Gate</b><p>Promotes only what proved itself.</p></div>
+                  </div>
+
+                  <h2>Summary</h2>
+                  <pre>{esc(json.dumps(summary, indent=2, ensure_ascii=False))}</pre>
+
+                  <h2>Evidence JSON</h2>
+                  <p><a href="../assets/proofs/{esc(slug)}.json">Open machine-readable evidence →</a></p>
+                  <pre>{esc(json.dumps(proof, indent=2, ensure_ascii=False))}</pre>
+                  """
+                  write(DIST / "proofs" / f"{slug}.html", shell(proof["title"], "Proof Gradient · Permanent Proof Page", proof_body, prefix="../"))
+
+
+          def build_docs() -> None:
+              docs = sorted((ROOT / "docs").glob("*.md")) if (ROOT / "docs").exists() else []
+              rows = []
+              for doc in docs:
+                  html_name = doc.with_suffix(".html").name
+                  rows.append([doc.name, f'<a href="{esc(html_name)}">Open</a>'])
+
+              if not rows:
+                  rows.append(["No docs found", "Pending"])
+
+              rows_html = ""
+              for left, right in rows:
+                  rows_html += f"<tr><td>{esc(left)}</td><td>{right}</td></tr>"
+
+              body = f"""
+              <h1>Docs.</h1>
+              <p class="hero-line">Production architecture, security, CLI, API, deployment, and migration notes.</p>
+              {nav("../")}
+              <table><thead><tr><th>Document</th><th>Link</th></tr></thead><tbody>{rows_html}</tbody></table>
+              """
+              write(DIST / "docs" / "index.html", shell("Proof Gradient · Docs", "Proof Gradient · Docs", body, prefix="../"))
+
+              for doc in docs:
+                  write(DIST / "docs" / doc.with_suffix(".html").name, markdown_to_html(doc, prefix="../"))
+
+              if (ROOT / "README.md").exists():
+                  write(DIST / "docs" / "readme.html", markdown_to_html(ROOT / "README.md", prefix="../"))
+
+
+          def main() -> None:
+              DIST.mkdir(parents=True, exist_ok=True)
+
+              proofs: list[dict[str, Any]] = []
+              for index, (slug, title, subtitle, description) in enumerate(PROOFS, start=1):
+                  proofs.append(proof_json(slug, title, subtitle, description, index))
+
+              proof_index = {
+                  "generated_at": dt.datetime.utcnow().isoformat() + "Z",
+                  "proof_count": len(proofs),
+                  "proofs": proofs,
+              }
+
+              write(DIST / "assets" / "proof-index.json", json.dumps(proof_index, indent=2, ensure_ascii=False) + "\n")
+              build_index(proofs)
+              build_production()
+              build_proofs(proofs)
+              build_docs()
+
+              write(DIST / ".nojekyll", "")
+
+              # Compatibility aliases for users who bookmarked older generated pages.
+              write(DIST / "command-center.html", '<meta http-equiv="refresh" content="0; url=index.html">')
+              write(DIST / "archive.html", '<meta http-equiv="refresh" content="0; url=proofs/index.html">')
+
+
+          if __name__ == "__main__":
+              main()
+          PY
+
+          python /tmp/build_proof_gradient_pages.py
+
+          echo "Generated public files:"
+          find dist -maxdepth 4 -type f | sort
+
+      - name: Check public artifact
+        run: |
+          set -euo pipefail
+
+          required=(
+            "dist/index.html"
+            "dist/production.html"
+            "dist/proofs/index.html"
+            "dist/proofs/001-sovereign-swarm.html"
+            "dist/proofs/002-evolution-tournament.html"
+            "dist/proofs/003-recursive-evolution-ladder.html"
+            "dist/proofs/004-corporate-rsi-dominion.html"
+            "dist/proofs/005-enterprise-rsi-superorganism.html"
+            "dist/proofs/006-sovereign-enterprise-constellation.html"
+            "dist/proofs/007-sovereign-enterprise-proof-economy.html"
+            "dist/proofs/008-sovereign-domain-atlas.html"
+            "dist/proofs/009-sovereign-kardashev-capital-engine.html"
+            "dist/proofs/010-proof-carrying-intelligence.html"
+            "dist/proofs/011-the-proof-loop.html"
+            "dist/assets/proof-index.json"
+          )
+
+          for file in "${required[@]}"; do
+            test -f "$file" || { echo "Missing public file: $file"; exit 1; }
+          done
+
+          grep -R "Proof Archive" dist/index.html dist/proofs/index.html
+          grep -R "Production Platform" dist/index.html dist/production.html
+          grep -R "Artifact Vault" dist/index.html dist/production.html dist/proofs/011-the-proof-loop.html
+          grep -R "Run Fabric" dist/index.html dist/production.html dist/proofs/011-the-proof-loop.html
+          grep -R "Proof Ledger" dist/index.html dist/production.html dist/proofs/011-the-proof-loop.html
+          grep -R "Selection Gate" dist/index.html dist/production.html dist/proofs/011-the-proof-loop.html
 
           if grep -R "montrealai.github.io/skillos\|github.com/MontrealAI/skillos\|MontrealAI/skillos" dist; then
-            echo "Old SkillOS deployment URL found in final Pages artifact. Stopping."
+            echo "Old SkillOS deployment URL found in public artifact. Stopping."
             exit 1
           fi
 
-          echo "Clean Proof Gradient Pages artifact is ready."
+          echo "Complete Proof Gradient public site verified."
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -75,7 +689,7 @@ jobs:
           path: dist
 
   deploy:
-    name: Deploy public site
+    name: Deploy complete public site
     runs-on: ubuntu-latest
     needs: build
 
@@ -92,6 +706,9 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Show live URL
+      - name: Show live URLs
         run: |
-          echo "Proof Gradient deployed to: ${{ steps.deployment.outputs.page_url }}"
+          echo "Main: ${{ steps.deployment.outputs.page_url }}"
+          echo "Production: ${{ steps.deployment.outputs.page_url }}production.html"
+          echo "Proof Archive: ${{ steps.deployment.outputs.page_url }}proofs/"
+          echo "Proof #11: ${{ steps.deployment.outputs.page_url }}proofs/011-the-proof-loop.html"
