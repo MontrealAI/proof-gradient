@@ -1,0 +1,14 @@
+[
+  {
+    "agents": 524288,
+    "domain": "AI-first governance",
+    "holdout_value_capture": 0.9993828786644704,
+    "href": "./rsi-ai-first-governance-capital-engine-proof.html",
+    "roles": 16384,
+    "slug": "rsi-ai-first-governance-capital-engine-proof",
+    "status": "passing",
+    "title": "Autonomous RSI AI-First Governance Capital Engine Proof",
+    "updated_at": "2026-06-03T01:33:12Z",
+    "workflow": ".github/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml"
+  }
+]
