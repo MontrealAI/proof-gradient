@@ -1,0 +1,293 @@
+{
+  "number": 11,
+  "slug": "011-the-proof-loop",
+  "title": "Proof #11 — The Proof Loop",
+  "subtitle": "Aim → Act → Prove → Evolve. The simplest sovereign protocol for compounding agent intelligence.",
+  "status": "passed",
+  "summary": {
+    "protocol": "Aim → Act → Prove → Evolve",
+    "agents": 8388608,
+    "sovereign_domains": 1280,
+    "guilds": 128,
+    "rsi_cycles": 512,
+    "eval_cases": 2684354560,
+    "aims": 655360,
+    "actions": 655360,
+    "proofs": 655360,
+    "selected_improvements": 648704,
+    "rejected_improvements": 6656,
+    "rollbacks": 6656,
+    "goals_used": 4,
+    "plans_used": 4,
+    "skills_used": 8,
+    "policies_used": 4,
+    "evals_used": 4,
+    "tools_used": 3,
+    "contexts_used": 2,
+    "verdict": "aim_act_prove_evolve_proven_as_the_simplest_sovereign_agent_evolution_protocol"
+  },
+  "evidence": {
+    "proof_type": "the_proof_loop",
+    "protocol": "Aim → Act → Prove → Evolve",
+    "public_line": "Every agent acts. Every action leaves proof. Every proof earns improvement. Every improvement strengthens the network.",
+    "not_claiming": [
+      "real revenue",
+      "real profit",
+      "guaranteed ROI",
+      "investment advice",
+      "actual deployed superintelligence",
+      "real-world energy capture",
+      "Kardashev Type II achievement",
+      "external customer production results"
+    ],
+    "vision_treatment": "strategic scenario, not empirical claim",
+    "systems": [
+      {
+        "name": "Artifact Vault",
+        "promise": "Stores reusable intelligence.",
+        "meaning": "Stores immutable, versioned, scoped, auditable, rollbackable artifacts."
+      },
+      {
+        "name": "Run Fabric",
+        "promise": "Executes agents at scale.",
+        "meaning": "Resolves artifacts, executes stateless runs, records traces, and emits proof."
+      },
+      {
+        "name": "Proof Ledger",
+        "promise": "Records what happened.",
+        "meaning": "Append-only evidence for runs, evals, scores, policy decisions, feedback, costs, latency, and credit assignment."
+      },
+      {
+        "name": "Selection Gate",
+        "promise": "Promotes only what proved itself.",
+        "meaning": "Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back upgrades."
+      }
+    ],
+    "goals_used": [
+      [
+        "sovereign_direction@1.0.0",
+        "GoalOS / Aim Artifact",
+        "Sovereign Direction",
+        "Defines the mission for proof-bounded sovereign-domain evolution."
+      ],
+      [
+        "network_improvement_goal@1.0.0",
+        "GoalOS / Aim Artifact",
+        "Network Improvement Goal",
+        "Requires every improvement to strengthen the authorized network only through proof."
+      ],
+      [
+        "kardashev_scenario_boundary@1.0.0",
+        "GoalOS / Aim Artifact",
+        "Kardashev Scenario Boundary",
+        "Keeps civilization-scale language labeled as a strategic scenario unless empirical evidence exists."
+      ],
+      [
+        "sovereign_safety_goal@1.0.0",
+        "GoalOS / Aim Artifact",
+        "Sovereign Safety Goal",
+        "Prevents private data propagation, unsupported claims, and unrollbackable release."
+      ]
+    ],
+    "plans_used": [
+      [
+        "aim_act_prove_evolve_plan@1.0.0",
+        "PlanOS / Strategy Artifact",
+        "Aim–Act–Prove–Evolve Plan",
+        "The canonical four-step Proof Loop."
+      ],
+      [
+        "selection_gate_plan@1.0.0",
+        "PlanOS / Strategy Artifact",
+        "Selection Gate Plan",
+        "Turns proof into evaluated, scoped, canaried, rollbackable upgrades."
+      ],
+      [
+        "sovereign_domain_routing_plan@1.0.0",
+        "PlanOS / Strategy Artifact",
+        "Sovereign Domain Routing Plan",
+        "Routes generalized, redacted, proof-backed artifacts across sovereign domains."
+      ],
+      [
+        "capital_compute_energy_trust_plan@1.0.0",
+        "PlanOS / Strategy Artifact",
+        "Capital–Compute–Energy–Trust Plan",
+        "Routes synthetic capital, compute, energy, and trust toward proof-backed winners."
+      ]
+    ],
+    "skills_used": [
+      [
+        "mission_framing_skill@1.0.0",
+        "SkillOS / Capability Artifact",
+        "Mission Framing Skill",
+        "Turns a vague job into a clear Aim with success criteria and constraints."
+      ],
+      [
+        "stateless_run_skill@1.0.0",
+        "SkillOS / Capability Artifact",
+        "Stateless Run Skill",
+        "Executes resolved artifacts without carrying the whole network in the agent."
+      ],
+      [
+        "proof_emission_skill@1.0.0",
+        "SkillOS / Capability Artifact",
+        "Proof Emission Skill",
+        "Emits traces, scores, cost, latency, policy decisions, and feedback."
+      ],
+      [
+        "credit_assignment_skill@1.0.0",
+        "SkillOS / Capability Artifact",
+        "Credit Assignment Skill",
+        "Determines whether credit or blame belongs to a goal, plan, skill, tool, policy, eval, context, routing rule, or runtime."
+      ],
+      [
+        "patch_generation_skill@1.0.0",
+        "SkillOS / Capability Artifact",
+        "Patch Generation Skill",
+        "Creates typed, proof-backed candidate artifact upgrades."
+      ],
+      [
+        "baseline_eval_skill@1.0.0",
+        "SkillOS / Capability Artifact",
+        "Baseline Eval Skill",
+        "Compares candidates to baselines before propagation."
+      ],
+      [
+        "rollback_skill@1.0.0",
+        "SkillOS / Capability Artifact",
+        "Rollback Skill",
+        "Restores the last safe baseline when a candidate fails."
+      ],
+      [
+        "claim_boundary_skill@1.0.0",
+        "SkillOS / Capability Artifact",
+        "Claim Boundary Skill",
+        "Blocks unsupported claims about revenue, ROI, superintelligence, energy capture, or Kardashev achievement."
+      ]
+    ],
+    "policies_used": [
+      [
+        "no_proof_no_evolution@1.0.0",
+        "Policy / Guardrail Artifact",
+        "No Proof, No Evolution",
+        "No candidate improvement can propagate without proof."
+      ],
+      [
+        "no_eval_no_propagation@1.0.0",
+        "Policy / Guardrail Artifact",
+        "No Eval, No Propagation",
+        "No candidate can spread without required eval gates."
+      ],
+      [
+        "no_rollback_no_release@1.0.0",
+        "Policy / Guardrail Artifact",
+        "No Rollback, No Release",
+        "Every release must include a rollback target."
+      ],
+      [
+        "sovereign_privacy_boundary@1.0.0",
+        "Policy / Guardrail Artifact",
+        "Sovereign Privacy Boundary",
+        "Only generalized, redacted, eval-passed artifacts may cross sovereign boundaries."
+      ]
+    ],
+    "evals_used": [
+      [
+        "aim_integrity_eval@1.0.0",
+        "Eval / Judgment Artifact",
+        "Aim Integrity Eval",
+        "Checks that each Aim has success criteria, constraints, risk, and required evals."
+      ],
+      [
+        "proof_completeness_eval@1.0.0",
+        "Eval / Judgment Artifact",
+        "Proof Completeness Eval",
+        "Checks that each action emitted traces, score, cost, latency, policy decisions, and credit assignment."
+      ],
+      [
+        "selection_gate_eval@1.0.0",
+        "Eval / Judgment Artifact",
+        "Selection Gate Eval",
+        "Checks that upgrades pass baseline comparison, approval, canary, monitoring, and rollback readiness."
+      ],
+      [
+        "claim_boundary_eval@1.0.0",
+        "Eval / Judgment Artifact",
+        "Claim Boundary Eval",
+        "Checks that synthetic scenarios are not presented as real-world revenue, ROI, superintelligence, energy capture, or Kardashev achievement."
+      ]
+    ],
+    "tools_used": [
+      [
+        "artifact_resolver_tool@1.0.0",
+        "Tool / Action Artifact",
+        "Artifact Resolver Tool",
+        "Resolves active artifact versions for a run."
+      ],
+      [
+        "proof_export_tool@1.0.0",
+        "Tool / Action Artifact",
+        "Proof Export Tool",
+        "Exports public, redacted proof records."
+      ],
+      [
+        "rollout_router_tool@1.0.0",
+        "Tool / Action Artifact",
+        "Rollout Router Tool",
+        "Routes canary traffic and preserves rollback paths."
+      ]
+    ],
+    "contexts_used": [
+      [
+        "sovereign_domain_context@1.0.0",
+        "Context / Grounding Artifact",
+        "Sovereign Domain Context",
+        "Grounds proof in sovereign-domain operating constraints."
+      ],
+      [
+        "kardashev_scenario_context@1.0.0",
+        "Context / Grounding Artifact",
+        "Kardashev Scenario Context",
+        "Grounds the Kardashev quote as an ambition and scenario, not an achieved result."
+      ]
+    ],
+    "agent_mesh": {
+      "name": "Maximum-Effect Sovereign Agent Coordination Lattice",
+      "agent_count": 8388608,
+      "sovereign_domains": 1280,
+      "guilds": 128,
+      "coordination_verdict": "large_multi_agent_coordination_to_maximum_effect_verified_deterministically"
+    },
+    "recursive_self_improvement": {
+      "rsi_cycles": 512,
+      "eval_cases": 2684354560,
+      "aims": 655360,
+      "actions": 655360,
+      "proofs": 655360,
+      "selected_improvements": 648704,
+      "rejected_improvements": 6656,
+      "rollbacks": 6656,
+      "meta_rsi_upgrades": 32,
+      "synthetic_network_index_start": 100000.0,
+      "synthetic_network_index_final": 312000411.224,
+      "synthetic_kardashev_scenario_index_start": 1e-06,
+      "synthetic_kardashev_scenario_index_final": 0.00674432
+    },
+    "selection_gate": {
+      "decision": "approve_the_proof_loop_canary",
+      "rollout_percentage": 10,
+      "rollback_target": "aim_act_prove_evolve_plan@1.0.0",
+      "required_evals": "passed"
+    },
+    "claim_boundary": {
+      "real_revenue_claimed": false,
+      "guaranteed_roi_claimed": false,
+      "actual_deployed_superintelligence_claimed": false,
+      "kardashev_type_ii_achievement_claimed": false,
+      "real_world_energy_capture_claimed": false,
+      "private_data_shared": false,
+      "rollback_required": true
+    }
+  },
+  "checksum": "24aa3cfb588d3b61aefdf100e8d9181c3c8dafe33ec84d049c067b1880c6c1fd"
+}
