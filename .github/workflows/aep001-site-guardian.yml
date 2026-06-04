@@ -1,0 +1,695 @@
+name: "AEP-001 Website Guardian"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/aep001-site-guardian.yml"
+      - "docs/standards/AEP-001/**"
+      - "releases/AEP-001/**"
+      - "site/standards/AEP-001/**"
+      - "site/standards/**"
+  schedule:
+    - cron: "30 */6 * * *"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: proof-gradient-aep001-site-guardian
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    name: "Add AEP-001 page without removing existing website"
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: "Check out repository"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: "Create AEP-001 public website page"
+        run: |
+          set -euo pipefail
+
+          python <<'PY'
+          from __future__ import annotations
+
+          from pathlib import Path
+          import datetime as dt
+          import html
+          import json
+          import shutil
+          import zipfile
+
+          ROOT = Path(".")
+          SITE = ROOT / "site"
+          DOCS = ROOT / "docs" / "standards" / "AEP-001"
+          RELEASES = ROOT / "releases" / "AEP-001"
+          OUT = SITE / "standards" / "AEP-001"
+          STANDARDS_INDEX = SITE / "standards" / "index.html"
+          EXTRACTED = ROOT / ".aep001_extracted"
+
+          OUT.mkdir(parents=True, exist_ok=True)
+
+          def esc(value: object) -> str:
+              return html.escape(str(value), quote=True)
+
+          def write(path: Path, text: str) -> None:
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(text, encoding="utf-8")
+              print(f"wrote {path}")
+
+          def copy_file(src: Path | None, dst: Path) -> bool:
+              if not src or not src.exists() or not src.is_file():
+                  return False
+              dst.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(src, dst)
+              print(f"copied {src} -> {dst}")
+              return True
+
+          def safe_unzip() -> list[Path]:
+              roots: list[Path] = []
+              if DOCS.exists():
+                  roots.append(DOCS)
+
+              zips = sorted(RELEASES.glob("*.zip")) if RELEASES.exists() else []
+              if zips:
+                  EXTRACTED.mkdir(parents=True, exist_ok=True)
+                  for z in zips:
+                      target = EXTRACTED / z.stem
+                      target.mkdir(parents=True, exist_ok=True)
+                      try:
+                          with zipfile.ZipFile(z) as archive:
+                              for member in archive.infolist():
+                                  name = member.filename
+                                  if name.startswith("/") or ".." in Path(name).parts:
+                                      continue
+                                  archive.extract(member, target)
+                          print(f"extracted {z} -> {target}")
+                          roots.append(target)
+                      except Exception as exc:
+                          print(f"warning: could not extract {z}: {exc}")
+              return roots
+
+          roots = safe_unzip()
+
+          def find_one(*needles: str, suffix: str | None = None, avoid: tuple[str, ...] = ()) -> Path | None:
+              needles_l = tuple(n.lower() for n in needles)
+              avoid_l = tuple(a.lower() for a in avoid)
+              for root in roots:
+                  if not root.exists():
+                      continue
+                  for path in sorted(root.rglob("*")):
+                      if not path.is_file():
+                          continue
+                      lower = path.name.lower()
+                      if suffix and path.suffix.lower() != suffix.lower():
+                          continue
+                      if any(a in lower for a in avoid_l):
+                          continue
+                      if all(n in lower for n in needles_l):
+                          return path
+              return None
+
+          def find_first_suffix(suffix: str, avoid: tuple[str, ...] = ()) -> Path | None:
+              avoid_l = tuple(a.lower() for a in avoid)
+              for root in roots:
+                  if not root.exists():
+                      continue
+                  for path in sorted(root.rglob("*")):
+                      if path.is_file() and path.suffix.lower() == suffix.lower():
+                          lower = path.name.lower()
+                          if not any(a in lower for a in avoid_l):
+                              return path
+              return None
+
+          paper_pdf = (
+              find_one("aep001", suffix=".pdf", avoid=("one_page", "one-page", "onepage"))
+              or find_one("proof-of-evolution", suffix=".pdf", avoid=("one_page", "one-page", "onepage"))
+              or find_first_suffix(".pdf", avoid=("one_page", "one-page", "onepage"))
+          )
+
+          one_page_pdf = (
+              find_one("one", "page", suffix=".pdf")
+              or find_one("constitution", suffix=".pdf")
+          )
+
+          schema_json = (
+              find_one("protocol", "schema", suffix=".json")
+              or find_one("schema", suffix=".json")
+          )
+
+          docket_md = (
+              find_one("evidence", "docket", suffix=".md")
+              or find_one("docket", suffix=".md")
+          )
+
+          one_page_md = (
+              find_one("one", "page", suffix=".md")
+              or find_one("constitution", suffix=".md")
+          )
+
+          copy_file(paper_pdf, OUT / "paper.pdf")
+
+          if one_page_pdf and one_page_pdf != paper_pdf:
+              copy_file(one_page_pdf, OUT / "one-page.pdf")
+
+          if schema_json:
+              copy_file(schema_json, OUT / "protocol_schema.json")
+          else:
+              write(
+                  OUT / "protocol_schema.json",
+                  json.dumps(
+                      {
+                          "standard": "AEP-001",
+                          "name": "GoalOS Proof-of-Evolution Constitution",
+                          "protocol": ["Commit", "Execute", "Prove", "Evolve"],
+                          "systems": ["Artifact Vault", "Run Fabric", "Proof Ledger", "Selection Gate"],
+                          "law": [
+                              "No proof, no evolution.",
+                              "No eval, no propagation.",
+                              "No rollback, no release."
+                          ],
+                          "claim_boundary": [
+                              "No achieved AGI claim.",
+                              "No achieved ASI claim.",
+                              "No guaranteed ROI claim.",
+                              "No safety certification claim.",
+                              "No Kardashev Type II achievement claim."
+                          ],
+                      },
+                      indent=2,
+                  ) + "\n",
+              )
+
+          if docket_md:
+              copy_file(docket_md, OUT / "evidence_docket_template.md")
+          else:
+              write(
+                  OUT / "evidence_docket_template.md",
+                  """# AEP-001 Evidence Docket Template
+
+## Manifest
+
+## Claims Matrix
+
+## Task Specification
+
+## Environment
+
+## Baselines
+
+## Proof Packets
+
+## Replay Instructions
+
+## Cost Ledger
+
+## Risk Ledger
+
+## Policy Ledger
+
+## Evaluator Attestations
+
+## Selection Certificate
+
+## Canary Plan
+
+## Rollback Plan
+
+## Public-Safe Report
+
+## Private Audit Appendix
+""",
+              )
+
+          if one_page_md:
+              copy_file(one_page_md, OUT / "one_page_constitution.md")
+          else:
+              write(
+                  OUT / "one_page_constitution.md",
+                  """# AEP-001 — GoalOS Proof-of-Evolution Constitution
+
+Commit → Execute → Prove → Evolve
+
+No proof, no evolution.  
+No eval, no propagation.  
+No rollback, no release.
+
+The Artifact Vault stores reusable intelligence.  
+The Run Fabric executes agents at scale.  
+The Proof Ledger records what happened.  
+The Selection Gate promotes only what proved itself.
+""",
+              )
+
+          figures_out = OUT / "figures"
+          figures_out.mkdir(parents=True, exist_ok=True)
+
+          figure_paths: list[Path] = []
+          for root in roots:
+              for path in sorted(root.rglob("*")):
+                  if path.is_file() and path.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp", ".svg"}:
+                      lower_parts = "/".join(part.lower() for part in path.parts)
+                      if "figure" in lower_parts or "fig" in path.name.lower() or "cover" in path.name.lower():
+                          target = figures_out / path.name
+                          copy_file(path, target)
+                          figure_paths.append(target)
+
+          figure_links = ""
+          if figure_paths:
+              figure_links = "".join(
+                  f'<a class="button ghost" href="figures/{esc(path.name)}">{esc(path.name)}</a>'
+                  for path in sorted(figure_paths)
+              )
+          else:
+              write(figures_out / "README.txt", "No figures were found automatically. Add figure PNG/SVG files here when available.\n")
+              figure_links = '<span class="muted">No figures were found automatically yet.</span>'
+
+          download_buttons = []
+          if (OUT / "paper.pdf").exists():
+              download_buttons.append('<a class="button" href="paper.pdf">Download PDF</a>')
+          if (OUT / "one-page.pdf").exists():
+              download_buttons.append('<a class="button" href="one-page.pdf">Download One-Page PDF</a>')
+          download_buttons.append('<a class="button" href="protocol_schema.json">View Protocol Schema</a>')
+          download_buttons.append('<a class="button" href="evidence_docket_template.md">View Evidence Docket Template</a>')
+          download_buttons.append('<a class="button ghost" href="https://github.com/MontrealAI/proof-gradient/tree/main/releases/AEP-001">View Release Archive</a>')
+
+          buttons_html = "\n".join(download_buttons)
+
+          page = f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AEP-001 — GoalOS Proof-of-Evolution Constitution</title>
+  <meta name="description" content="AEP-001 defines the GoalOS Proof-of-Evolution Constitution: Commit, Execute, Prove, Evolve." />
+  <style>
+    :root {{
+      color-scheme: dark;
+      --bg: #05070d;
+      --panel: rgba(11,16,32,.84);
+      --line: rgba(255,255,255,.14);
+      --text: #f7f8ff;
+      --muted: #aab3cf;
+      --gold: #f4c76b;
+      --blue: #8ab4ff;
+      --green: #91f2bf;
+      --violet: #b8a7ff;
+    }}
+    * {{ box-sizing: border-box; }}
+    body {{
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 6%, rgba(138,180,255,.20), transparent 30%),
+        radial-gradient(circle at 88% 7%, rgba(244,199,107,.20), transparent 30%),
+        linear-gradient(180deg, #05070d 0%, #090d18 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }}
+    main {{
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 70px 0 100px;
+    }}
+    .eyebrow {{
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-weight: 900;
+      font-size: 13px;
+    }}
+    h1 {{
+      font-size: clamp(48px, 8vw, 106px);
+      line-height: .9;
+      letter-spacing: -.075em;
+      margin: 18px 0 24px;
+    }}
+    h2 {{
+      font-size: clamp(30px, 4vw, 56px);
+      line-height: 1;
+      letter-spacing: -.055em;
+      margin: 56px 0 20px;
+    }}
+    p, li {{
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.62;
+    }}
+    a {{ color: var(--blue); }}
+    .hero-line {{
+      max-width: 900px;
+      font-size: 22px;
+    }}
+    .nav, .buttons {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 30px 0 36px;
+    }}
+    .nav a, .button {{
+      text-decoration: none;
+      color: #05070d;
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      padding: 11px 15px;
+      font-weight: 800;
+      display: inline-block;
+    }}
+    .button.ghost, .nav a.ghost {{
+      color: var(--muted);
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--line);
+    }}
+    .grid {{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }}
+    .grid3 {{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }}
+    .card {{
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      background: var(--panel);
+      min-height: 150px;
+      box-shadow: 0 18px 70px rgba(0,0,0,.25);
+    }}
+    .card b {{
+      display: block;
+      font-size: 21px;
+      margin-bottom: 10px;
+    }}
+    .feature {{
+      border: 1px solid rgba(244,199,107,.30);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(244,199,107,.16), transparent 36%),
+        radial-gradient(circle at 100% 0%, rgba(138,180,255,.14), transparent 30%),
+        var(--panel);
+    }}
+    pre {{
+      overflow: auto;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #070b14;
+      color: #dbe6ff;
+      white-space: pre-wrap;
+    }}
+    .muted {{ color: var(--muted); }}
+    @media (max-width: 950px) {{
+      .grid, .grid3 {{ grid-template-columns: 1fr; }}
+      main {{ padding: 44px 0; }}
+    }}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Proof Gradient · Protocol Standard</div>
+    <h1>AEP-001<br />GoalOS<br />Proof-of-Evolution<br />Constitution</h1>
+
+    <p class="hero-line">
+      The canonical institutional standard for Proof-Carrying Intelligence:
+      every job becomes a commitment, every execution produces proof, and only evidence-backed upgrades pass the Selection Gate.
+    </p>
+
+    <nav class="nav">
+      <a class="ghost" href="../../">← Main Command Center</a>
+      <a class="ghost" href="../../proofs/">Proof Archive</a>
+      <a class="ghost" href="../../production.html">Production Platform</a>
+      <a class="ghost" href="../../docs/">Docs</a>
+    </nav>
+
+    <div class="buttons">
+      {buttons_html}
+    </div>
+
+    <section class="card feature">
+      <h2 style="margin-top:0">Commit → Execute → Prove → Evolve</h2>
+      <p>
+        AEP-001 turns agent work into governed institutional capability.
+        GoalOS gives the network direction. PlanOS gives it strategy.
+        Capability artifacts give it skill. The Proof Gradient gives it evolution.
+      </p>
+      <pre>No proof, no evolution.
+No eval, no propagation.
+No rollback, no release.</pre>
+    </section>
+
+    <h2>The Four Systems</h2>
+    <div class="grid">
+      <div class="card"><b>Artifact Vault</b><p>Stores reusable intelligence: goals, plans, skills, tools, policies, evals, rubrics, and context recipes.</p></div>
+      <div class="card"><b>Run Fabric</b><p>Executes agents at scale through stateless runs that resolve artifacts and emit proof.</p></div>
+      <div class="card"><b>Proof Ledger</b><p>Records what happened: traces, evals, scores, costs, policy decisions, feedback, and credit assignment.</p></div>
+      <div class="card"><b>Selection Gate</b><p>Promotes only what proved itself through evaluation, approval, canary, monitoring, and rollback.</p></div>
+    </div>
+
+    <h2>Downloads & Machine-Readable Artifacts</h2>
+    <div class="grid3">
+      <div class="card"><b>Canonical PDF</b><p>The institutional paper edition of AEP-001.</p><p><a href="paper.pdf">Open PDF →</a></p></div>
+      <div class="card"><b>Protocol Schema</b><p>Machine-readable description of the Commit → Execute → Prove → Evolve protocol.</p><p><a href="protocol_schema.json">Open JSON →</a></p></div>
+      <div class="card"><b>Evidence Docket Template</b><p>The reusable proof package template for institutional agent runs.</p><p><a href="evidence_docket_template.md">Open template →</a></p></div>
+    </div>
+
+    <h2>Claim Boundary</h2>
+    <div class="card">
+      <p>
+        AEP-001 is a protocol standard and research/engineering architecture.
+        It does not claim achieved AGI, achieved ASI, guaranteed ROI, legal advice,
+        financial advice, safety certification, external customer production results,
+        energy abundance, or Kardashev Type II achievement.
+      </p>
+    </div>
+
+    <h2>Figures</h2>
+    <div class="buttons">
+      {figure_links}
+    </div>
+
+    <h2>Public Line</h2>
+    <pre>Every agent acts once.
+The network learns forever.</pre>
+  </main>
+</body>
+</html>
+"""
+
+          write(OUT / "index.html", page)
+
+          write(
+              OUT / "README.md",
+              """# AEP-001 — GoalOS Proof-of-Evolution Constitution
+
+This folder contains the public website page and downloadable public artifacts for AEP-001.
+
+Live URL:
+
+https://montrealai.github.io/proof-gradient/standards/AEP-001/
+
+Protocol:
+
+Commit → Execute → Prove → Evolve
+
+Canonical law:
+
+No proof, no evolution.  
+No eval, no propagation.  
+No rollback, no release.
+""",
+          )
+
+          standards_index = """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proof Gradient Standards</title>
+  <style>
+    body { margin:0; background:#05070d; color:#f7f8ff; font-family:Inter,system-ui,sans-serif; }
+    main { width:min(1000px,calc(100% - 40px)); margin:0 auto; padding:70px 0; }
+    h1 { font-size:clamp(46px,8vw,92px); line-height:.9; letter-spacing:-.07em; }
+    p { color:#aab3cf; font-size:20px; line-height:1.6; }
+    a { color:#8ab4ff; }
+    .card { border:1px solid rgba(255,255,255,.14); border-radius:24px; padding:24px; background:rgba(11,16,32,.84); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Proof Gradient<br />Standards.</h1>
+    <p>Canonical standards for governed agent evolution.</p>
+    <div class="card">
+      <h2>AEP-001 — GoalOS Proof-of-Evolution Constitution</h2>
+      <p>Commit → Execute → Prove → Evolve.</p>
+      <p><a href="AEP-001/">Open AEP-001 →</a></p>
+    </div>
+    <p><a href="../">← Main Command Center</a></p>
+  </main>
+</body>
+</html>
+"""
+          write(STANDARDS_INDEX, standards_index)
+
+          print("AEP-001 website source created under site/standards/AEP-001/")
+          PY
+
+      - name: "Commit AEP-001 website source files"
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add site/standards || true
+
+          if git diff --cached --quiet; then
+            echo "No source changes to commit."
+          else
+            git commit -m "Add AEP-001 public website page [skip ci]"
+            git push
+          fi
+
+      - name: "Build complete site using existing Proof Gradient builder"
+        run: |
+          set -euo pipefail
+
+          python <<'PY'
+          from pathlib import Path
+          import re
+          import subprocess
+          import sys
+
+          workflow = Path(".github/workflows/deploy-proof-gradient-pages.yml")
+          if not workflow.exists():
+              raise SystemExit("Existing deploy workflow not found: .github/workflows/deploy-proof-gradient-pages.yml")
+
+          text = workflow.read_text(encoding="utf-8", errors="ignore")
+
+          match = re.search(r"python <<'PY'\n(?P<script>.*?)(?:\n\s*PY\n)", text, flags=re.S)
+          if not match:
+              raise SystemExit("Could not extract existing Proof Gradient Pages builder. Stopping to avoid unsafe partial deploy.")
+
+          script = match.group("script")
+          build_script = Path("/tmp/proof_gradient_pages_builder.py")
+          build_script.write_text(script, encoding="utf-8")
+
+          print("Running existing Proof Gradient Pages builder.")
+          subprocess.run([sys.executable, str(build_script)], check=True)
+          PY
+
+      - name: "Add AEP-001 link and section to generated homepage"
+        run: |
+          set -euo pipefail
+
+          python <<'PY'
+          from pathlib import Path
+
+          index = Path("dist/index.html")
+          if not index.exists():
+              raise SystemExit("dist/index.html not found after build.")
+
+          text = index.read_text(encoding="utf-8", errors="ignore")
+
+          if "standards/AEP-001/" not in text:
+              text = text.replace(
+                  '<a href="docs/">Docs</a>',
+                  '<a href="docs/">Docs</a><a href="standards/AEP-001/">AEP-001 Constitution</a>'
+              )
+
+          section = """
+<h2>AEP-001 Constitution</h2>
+<div class="card feature">
+  <b>AEP-001 — GoalOS Proof-of-Evolution Constitution</b>
+  <p>The canonical protocol standard for Proof-Carrying Intelligence.</p>
+  <pre>Commit → Execute → Prove → Evolve
+
+No proof, no evolution.
+No eval, no propagation.
+No rollback, no release.</pre>
+  <p><a href="standards/AEP-001/">Open AEP-001 Constitution →</a></p>
+</div>
+"""
+
+          if "AEP-001 — GoalOS Proof-of-Evolution Constitution" not in text:
+              marker = "<h2>Proof Archive</h2>"
+              if marker in text:
+                  text = text.replace(marker, section + "\n" + marker, 1)
+              else:
+                  text = text.replace("</main>", section + "\n</main>", 1)
+
+          index.write_text(text, encoding="utf-8")
+          print("Generated homepage includes AEP-001.")
+          PY
+
+      - name: "Verify no important public pages are missing"
+        run: |
+          set -euo pipefail
+
+          required=(
+            "dist/index.html"
+            "dist/production.html"
+            "dist/proofs/index.html"
+            "dist/proofs/001-sovereign-swarm.html"
+            "dist/proofs/002-evolution-tournament.html"
+            "dist/proofs/003-recursive-evolution-ladder.html"
+            "dist/proofs/004-corporate-rsi-dominion.html"
+            "dist/proofs/005-enterprise-rsi-superorganism.html"
+            "dist/proofs/006-sovereign-enterprise-constellation.html"
+            "dist/proofs/007-sovereign-enterprise-proof-economy.html"
+            "dist/proofs/008-sovereign-domain-atlas.html"
+            "dist/proofs/009-sovereign-kardashev-capital-engine.html"
+            "dist/proofs/010-proof-carrying-intelligence.html"
+            "dist/proofs/011-the-proof-loop.html"
+            "dist/assets/proof-index.json"
+            "dist/docs/index.html"
+            "dist/standards/index.html"
+            "dist/standards/AEP-001/index.html"
+            "dist/standards/AEP-001/protocol_schema.json"
+            "dist/standards/AEP-001/evidence_docket_template.md"
+          )
+
+          for file in "${required[@]}"; do
+            test -f "$file" || { echo "Missing public file: $file"; exit 1; }
+          done
+
+          grep -q "AEP-001" dist/index.html || { echo "Homepage missing AEP-001"; exit 1; }
+          grep -q "Commit" dist/standards/AEP-001/index.html || { echo "AEP-001 page missing protocol copy"; exit 1; }
+
+          echo "AEP-001 page verified."
+          echo "Existing proof pages verified."
+          echo "Ready to deploy."
+
+      - name: "Configure GitHub Pages"
+        uses: actions/configure-pages@v5
+
+      - name: "Upload GitHub Pages artifact"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: "Deploy GitHub Pages"
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: "Show live URLs"
+        run: |
+          echo "Main: ${{ steps.deployment.outputs.page_url }}"
+          echo "AEP-001 Constitution: ${{ steps.deployment.outputs.page_url }}standards/AEP-001/"
+          echo "Standards Index: ${{ steps.deployment.outputs.page_url }}standards/"
+          echo "Proof Archive: ${{ steps.deployment.outputs.page_url }}proofs/"
