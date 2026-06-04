@@ -1,0 +1,27 @@
+GoalOS: The Proof-of-Evolution Constitution
+AEP-001 v12.1 Institutional Presentation Edition - QA Report
+
+Presentation upgrades completed:
+- Rebuilt the edition with an institutional cover, improved hierarchy, and stronger boardroom-style visual system.
+- Rebuilt all figures as bounded 1800x1050 raster assets with safe margins and no diagram overflow.
+- Added a cleaner public/private proof boundary, Selection Gate, Evidence Docket, Evolution Ledger, and deployment-wedge visual system.
+- Added a one-page constitution PDF for executive sharing.
+- Regenerated Markdown, LaTeX, DOCX, PDF, protocol schema, Evidence Docket template, references, checksums, and complete package.
+
+Visual QA performed:
+- Final PDF rendered to PNG with pdftoppm: 21 pages.
+- Final DOCX converted through LibreOffice to PDF and rendered with pdftoppm: 20 pages.
+- Contact sheets generated for both PDF and DOCX render outputs.
+
+QA observations:
+- No observed figure overflow.
+- No observed text-box overflow.
+- No observed clipped cover affiliation.
+- No observed table spillover in rendered PDF or DOCX contact sheets.
+- DOCX cover page now renders with the institutional dark-cover design and no blank page after the cover.
+
+Publication note:
+- The PDF is the prestige/publication version.
+- The DOCX is the editable collaboration version.
+- The LaTeX and Markdown files are revision sources.
+- Review legal, investment-sensitive, and public-claim language before external publication.
