@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-06-05T18:21:19.550505Z",
+  "standards": [
+    "AEP-001",
+    "AEP-002",
+    "AEP-003",
+    "AEP-004",
+    "AEP-005",
+    "AEP-006",
+    "AEP-007",
+    "AEP-008"
+  ],
+  "pages": 109,
+  "claim_boundary": "Public standard assets only; private evidence, secrets, credentials, paid products, protected traces, and restricted data should not be published here."
+}
