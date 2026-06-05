@@ -1,0 +1,18 @@
+{
+  "revocation_id": "revocation_demo_001",
+  "schema": "AEP-005-REVOCATION-RECEIPT",
+  "schema_version": "1.1",
+  "lease_id": "lease_demo_001",
+  "decision_id": "tool_decision_001",
+  "request_id": "tool_req_demo_001",
+  "tool_id": "tool_policy_lookup",
+  "revocation_reason": "demo manual revocation after canary window",
+  "revoked_by": "demo_operator",
+  "revoked_at": "2026-06-05T00:30:00Z",
+  "effective_immediately": true,
+  "affected_scope": {
+    "run_id": "run_demo_001"
+  },
+  "proof_packet_ref": "pp_revocation_demo_001",
+  "hash": "sha256:4710623dcddb1f969be8a5834c38749d7b06ed209b1551a4e2563c5503136d1e"
+}

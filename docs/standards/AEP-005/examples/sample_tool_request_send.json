@@ -1,0 +1,32 @@
+{
+  "request_id": "tool_req_demo_002",
+  "schema": "AEP-005-TOOL-REQUEST",
+  "schema_version": "1.1",
+  "tool_id": "tool_email_send",
+  "requester": {
+    "agent_id": "agent_customer_response_demo",
+    "role": "operator"
+  },
+  "tenant_id": "tenant_demo",
+  "workflow_id": "workflow_customer_response",
+  "run_id": "run_demo_001",
+  "commitment_id": "commit_demo_001",
+  "requested_permission_class": "send",
+  "intended_action": "Send approved customer response.",
+  "justification": "Needed to avoid unsupported refund claim.",
+  "input_summary": "customer asks for refund; no private payload stored in public proof",
+  "data_classes": [
+    "internal"
+  ],
+  "target_environment": "demo",
+  "external_effect": true,
+  "expected_side_effects": [
+    "external_message"
+  ],
+  "rollback_plan_ref": "",
+  "compensation_plan_ref": "compensation_demo_001",
+  "evidence_docket_ref": "ed_demo_001",
+  "proof_packet_refs": [
+    "pp_tool_request_demo_001"
+  ]
+}

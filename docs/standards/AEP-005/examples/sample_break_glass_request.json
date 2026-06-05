@@ -1,0 +1,21 @@
+{
+  "break_glass_id": "break_glass_demo_001",
+  "schema": "AEP-005-BREAK-GLASS-REQUEST",
+  "schema_version": "1.1",
+  "request_id": "tool_req_break_glass_001",
+  "tool_id": "tool_admin_recovery",
+  "requester": {
+    "human_id": "operator_demo"
+  },
+  "emergency_reason": "restore critical service after outage",
+  "risk_acceptance": "temporary elevated permission accepted by incident commander",
+  "emergency_scope": {
+    "duration_minutes": 30,
+    "environment": "recovery"
+  },
+  "approver": "incident_commander_demo",
+  "monitoring_required": true,
+  "post_incident_review_required": true,
+  "expires_at": "2026-06-05T00:30:00Z",
+  "proof_packet_ref": "pp_break_glass_demo_001"
+}

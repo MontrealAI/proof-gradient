@@ -1,0 +1,17 @@
+{
+  "compensation_id": "compensation_demo_001",
+  "schema": "AEP-005-COMPENSATION-RECEIPT",
+  "schema_version": "1.1",
+  "receipt_id": "tool_receipt_external_demo_001",
+  "tool_id": "tool_email_send",
+  "compensation_reason": "external message requires correction if error found",
+  "compensation_action": "send correction notice and update evidence docket",
+  "compensation_owner": "demo_operator",
+  "compensation_status": "planned",
+  "evidence_refs": [
+    "ev_compensation_plan_demo_001"
+  ],
+  "created_at": "2026-06-05T00:10:00Z",
+  "proof_packet_ref": "pp_compensation_demo_001",
+  "hash": "sha256:1284a1b6d7dbe674206594040953f72707287578d9f64b18698168bf78d80154"
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-005/schemas/approval_receipt.schema.json",
+  "title": "AEP-005 Approval Receipt",
+  "type": "object",
+  "required": [
+    "approval_id",
+    "schema",
+    "schema_version",
+    "decision_id",
+    "request_id",
+    "approver",
+    "approver_role",
+    "approval_status",
+    "approval_reason",
+    "approved_scope",
+    "issued_at",
+    "proof_packet_ref"
+  ],
+  "properties": {
+    "approval_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-005-APPROVAL-RECEIPT"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "decision_id": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "approver": {
+      "type": "string"
+    },
+    "approver_role": {
+      "type": "string"
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "denied",
+        "expired",
+        "revoked"
+      ]
+    },
+    "approval_reason": {
+      "type": "string"
+    },
+    "approved_scope": {
+      "type": "object"
+    },
+    "expiration": {
+      "type": "string"
+    },
+    "issued_at": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "object"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "decision_id": "tool_decision_003",
+  "schema": "AEP-005-TOOL-PERMISSION-DECISION",
+  "schema_version": "1.1",
+  "request_id": "tool_req_demo_003",
+  "tool_id": "tool_secret_store",
+  "decision": "deny",
+  "decision_reason": "Secret access is not authorized for this workflow.",
+  "allowed_scope": {},
+  "denied_scope": {
+    "permission_class": "secret_access"
+  },
+  "approval_required": false,
+  "approver_role": "",
+  "lease_ref": "",
+  "policy_refs": [
+    "tool_policy_demo_001"
+  ],
+  "risk_refs": [
+    "risk_tool_permission"
+  ],
+  "issued_at": "2026-06-05T00:00:00Z",
+  "expires_at": "2026-06-05T01:00:00Z",
+  "proof_packet_ref": "pp_tool_decision_003",
+  "hash": "sha256:1ca8b9212f9e4d8bf56dc986526498adbf16043f6c66527cc41db217f4e1dfe3"
+}

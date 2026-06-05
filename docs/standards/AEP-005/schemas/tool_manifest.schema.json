@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-005/schemas/tool_manifest.schema.json",
+  "title": "AEP-005 Tool Manifest",
+  "type": "object",
+  "required": [
+    "tool_id",
+    "schema",
+    "schema_version",
+    "tool_name",
+    "tool_version",
+    "provider",
+    "description",
+    "permission_classes_supported",
+    "default_permission",
+    "risk_class",
+    "side_effects",
+    "data_access",
+    "external_effect",
+    "rollback_supported",
+    "compensation_supported",
+    "approval_required_for",
+    "audit_required",
+    "evidence_required",
+    "owner",
+    "status"
+  ],
+  "properties": {
+    "tool_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-005-TOOL-MANIFEST"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "tool_name": {
+      "type": "string"
+    },
+    "tool_version": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "permission_classes_supported": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "none",
+          "read",
+          "draft",
+          "transform",
+          "write",
+          "execute",
+          "external_contact",
+          "send",
+          "delete",
+          "deploy",
+          "payment",
+          "secret_access",
+          "admin_change",
+          "protected_operation",
+          "break_glass"
+        ]
+      }
+    },
+    "default_permission": {
+      "type": "string",
+      "enum": [
+        "none",
+        "read",
+        "draft",
+        "transform",
+        "write",
+        "execute",
+        "external_contact",
+        "send",
+        "delete",
+        "deploy",
+        "payment",
+        "secret_access",
+        "admin_change",
+        "protected_operation",
+        "break_glass"
+      ]
+    },
+    "risk_class": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "protected",
+        "restricted"
+      ]
+    },
+    "side_effects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "data_access": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "external_effect": {
+      "type": "boolean"
+    },
+    "rollback_supported": {
+      "type": "boolean"
+    },
+    "compensation_supported": {
+      "type": "boolean"
+    },
+    "approval_required_for": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "none",
+          "read",
+          "draft",
+          "transform",
+          "write",
+          "execute",
+          "external_contact",
+          "send",
+          "delete",
+          "deploy",
+          "payment",
+          "secret_access",
+          "admin_change",
+          "protected_operation",
+          "break_glass"
+        ]
+      }
+    },
+    "audit_required": {
+      "type": "boolean"
+    },
+    "evidence_required": {
+      "type": "boolean"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "deprecated",
+        "disabled",
+        "quarantined",
+        "draft"
+      ]
+    }
+  }
+}

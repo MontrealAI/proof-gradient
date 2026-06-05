@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-005/schemas/tool_permission_policy.schema.json",
+  "title": "AEP-005 Tool Permission Policy",
+  "type": "object",
+  "required": [
+    "policy_id",
+    "schema",
+    "schema_version",
+    "policy_name",
+    "applicable_tools",
+    "allowed_permission_classes",
+    "denied_permission_classes",
+    "approval_required_for",
+    "max_risk_class",
+    "scope_constraints",
+    "time_constraints",
+    "budget_constraints",
+    "rate_limits",
+    "rollback_requirements",
+    "compensation_requirements",
+    "separation_of_duties",
+    "logging_requirements",
+    "fail_closed"
+  ],
+  "properties": {
+    "policy_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-005-TOOL-PERMISSION-POLICY"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "policy_name": {
+      "type": "string"
+    },
+    "applicable_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "applicable_agents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "applicable_workflows": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_permission_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "none",
+          "read",
+          "draft",
+          "transform",
+          "write",
+          "execute",
+          "external_contact",
+          "send",
+          "delete",
+          "deploy",
+          "payment",
+          "secret_access",
+          "admin_change",
+          "protected_operation",
+          "break_glass"
+        ]
+      }
+    },
+    "denied_permission_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "none",
+          "read",
+          "draft",
+          "transform",
+          "write",
+          "execute",
+          "external_contact",
+          "send",
+          "delete",
+          "deploy",
+          "payment",
+          "secret_access",
+          "admin_change",
+          "protected_operation",
+          "break_glass"
+        ]
+      }
+    },
+    "approval_required_for": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "none",
+          "read",
+          "draft",
+          "transform",
+          "write",
+          "execute",
+          "external_contact",
+          "send",
+          "delete",
+          "deploy",
+          "payment",
+          "secret_access",
+          "admin_change",
+          "protected_operation",
+          "break_glass"
+        ]
+      }
+    },
+    "max_risk_class": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "protected",
+        "restricted"
+      ]
+    },
+    "allowed_data_classes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_environments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scope_constraints": {
+      "type": "object"
+    },
+    "time_constraints": {
+      "type": "object"
+    },
+    "budget_constraints": {
+      "type": "object"
+    },
+    "rate_limits": {
+      "type": "object"
+    },
+    "rollback_requirements": {
+      "type": "object"
+    },
+    "compensation_requirements": {
+      "type": "object"
+    },
+    "separation_of_duties": {
+      "type": "object"
+    },
+    "logging_requirements": {
+      "type": "object"
+    },
+    "public_private_boundary": {
+      "type": "object"
+    },
+    "fail_closed": {
+      "type": "boolean"
+    }
+  }
+}

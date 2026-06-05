@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-005/schemas/tool_permission_decision.schema.json",
+  "title": "AEP-005 Tool Permission Decision",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "schema",
+    "schema_version",
+    "request_id",
+    "tool_id",
+    "decision",
+    "decision_reason",
+    "allowed_scope",
+    "denied_scope",
+    "approval_required",
+    "policy_refs",
+    "risk_refs",
+    "issued_at",
+    "hash"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-005-TOOL-PERMISSION-DECISION"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "tool_id": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "deny",
+        "approval_required",
+        "allow_readonly",
+        "allow_draft_only",
+        "allow_with_redaction",
+        "allow_with_canary",
+        "allow_with_rollback",
+        "allow_with_lease",
+        "allow_with_rate_limit",
+        "escalate",
+        "quarantine",
+        "break_glass_approved"
+      ]
+    },
+    "decision_reason": {
+      "type": "string"
+    },
+    "allowed_scope": {
+      "type": "object"
+    },
+    "denied_scope": {
+      "type": "object"
+    },
+    "approval_required": {
+      "type": "boolean"
+    },
+    "approver_role": {
+      "type": "string"
+    },
+    "lease_ref": {
+      "type": "string"
+    },
+    "policy_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "issued_at": {
+      "type": "string"
+    },
+    "expires_at": {
+      "type": "string"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

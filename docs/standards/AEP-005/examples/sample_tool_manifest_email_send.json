@@ -1,0 +1,31 @@
+{
+  "tool_id": "tool_email_send",
+  "schema": "AEP-005-TOOL-MANIFEST",
+  "schema_version": "1.1",
+  "tool_name": "Email Send",
+  "tool_version": "1.1.0",
+  "provider": "GoalOS Demo",
+  "description": "Send external email.",
+  "permission_classes_supported": [
+    "draft",
+    "send"
+  ],
+  "default_permission": "draft",
+  "risk_class": "high",
+  "side_effects": [
+    "external_message"
+  ],
+  "data_access": [
+    "customer_contact"
+  ],
+  "external_effect": true,
+  "rollback_supported": false,
+  "compensation_supported": true,
+  "approval_required_for": [
+    "send"
+  ],
+  "audit_required": true,
+  "evidence_required": true,
+  "owner": "demo_operator",
+  "status": "active"
+}

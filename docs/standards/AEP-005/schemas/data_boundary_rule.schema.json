@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-005 Data Boundary Rule",
+  "type": "object",
+  "required": [
+    "boundary_id",
+    "data_class",
+    "allowed_tools",
+    "allowed_permission_classes",
+    "publication_allowed",
+    "redaction_required"
+  ],
+  "properties": {
+    "boundary_id": {
+      "type": "string"
+    },
+    "data_class": {
+      "type": "string"
+    },
+    "allowed_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_permission_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "none",
+          "read",
+          "draft",
+          "transform",
+          "write",
+          "execute",
+          "external_contact",
+          "send",
+          "delete",
+          "deploy",
+          "payment",
+          "secret_access",
+          "admin_change",
+          "protected_operation",
+          "break_glass"
+        ]
+      }
+    },
+    "publication_allowed": {
+      "type": "boolean"
+    },
+    "redaction_required": {
+      "type": "boolean"
+    },
+    "protected_reason": {
+      "type": "string"
+    }
+  }
+}

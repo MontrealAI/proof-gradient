@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-005/schemas/tool_call_receipt.schema.json",
+  "title": "AEP-005 Tool Call Receipt",
+  "type": "object",
+  "required": [
+    "receipt_id",
+    "schema",
+    "schema_version",
+    "decision_id",
+    "request_id",
+    "tool_id",
+    "executed",
+    "execution_status",
+    "result_summary",
+    "side_effects_observed",
+    "evidence_refs",
+    "rollback_status",
+    "created_at",
+    "hash"
+  ],
+  "properties": {
+    "receipt_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-005-TOOL-CALL-RECEIPT"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "decision_id": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "tool_id": {
+      "type": "string"
+    },
+    "lease_id": {
+      "type": "string"
+    },
+    "executed": {
+      "type": "boolean"
+    },
+    "execution_status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "failed",
+        "cancelled",
+        "blocked",
+        "partial"
+      ]
+    },
+    "result_summary": {
+      "type": "string"
+    },
+    "side_effects_observed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "output_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cost_summary": {
+      "type": "object"
+    },
+    "latency_summary": {
+      "type": "object"
+    },
+    "rollback_status": {
+      "type": "string"
+    },
+    "compensation_status": {
+      "type": "string"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

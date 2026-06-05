@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\definecolor{goalosblue}{HTML}{0B1020}
+\definecolor{goalosgold}{HTML}{B78A00}
+\hypersetup{colorlinks=true, linkcolor=goalosblue, urlcolor=goalosblue}
+\title{\textbf{AEP-005 --- Tool Permission Standard}\\\large Scoped, Approved, Leased, Revocable, and Provable Tool Use}
+\author{Vincent Boucher\\QUEBEC.AI \& MONTREAL.AI}
+\date{Version 1.1 Institutional Edition --- 2026-06-05}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+AEP-005 defines the Tool Permission Standard: the governance layer that determines whether an AI agent, workflow, model route, human operator, or automated system may use a tool, under what scope, for how long, with which approvals, what evidence must be recorded, and what rollback or compensation path is required.
+\end{abstract}
+
+\section*{Canonical Thesis}
+A model can answer. An agent can act. An institution must prove. A network must select. A tool must be permitted.
+
+\section*{Canonical Law}
+No tool without permission.\\
+No action without scope.\\
+No high-risk tool without approval.\\
+No side effect without receipt.\\
+No irreversible action without rollback or compensation.\\
+No permanent authority without expiration.\\
+No proof, no evolution.
+
+\section{Permission Classes}
+\begin{longtable}{p{0.25\linewidth}p{0.65\linewidth}}
+\textbf{Class} & \textbf{Meaning}\\
+none & Tool unavailable.\\
+read & Observe, retrieve, inspect, list, or query without changing state.\\
+draft & Prepare output without applying it.\\
+transform & Transform data without external side effects.\\
+write & Change internal state or modify a system.\\
+execute & Run code, jobs, scripts, automations, or computational tasks.\\
+external\_contact & Contact external people, systems, vendors, customers, or public endpoints.\\
+send & Send a message, publication, email, form, API request, or external output.\\
+delete & Delete, destroy, revoke, remove, or irreversibly alter a resource.\\
+deploy & Release, publish, ship, merge, promote, or activate a capability.\\
+payment & Spend money, transfer value, initiate purchase, or access payment rails.\\
+secret\_access & Read or use secrets, credentials, tokens, keys, private data, or protected evidence.\\
+admin\_change & Change permissions, roles, policies, accounts, infrastructure, routing, or governance.\\
+protected\_operation & Perform high-impact or regulated operations requiring special authorization.\\
+break\_glass & Emergency use outside normal policy with mandatory justification and review.\\
+\end{longtable}
+
+\section{Core Objects}
+AEP-005 defines Tool Manifest, Tool Permission Policy, Tool Request, Tool Permission Decision, Permission Lease, Approval Receipt, Tool Call Receipt, Revocation Receipt, Compensation Receipt, Break-Glass Request, Data Boundary Rule, and Rate-Limit Policy.
+
+\section{Default-Deny Rule}
+The default decision is deny. A tool call must be denied when no manifest exists, no policy applies, the requested class is unsupported or denied, approval is absent, scope is missing, lease is absent or expired, rollback or compensation is required but missing, protected data lacks authorization, rate limits or budgets are exceeded, separation of duties is violated, or the gateway cannot evaluate policy.
+
+\section{Conformance Levels}
+\begin{longtable}{p{0.20\linewidth}p{0.70\linewidth}}
+Level 0 & Informal tool note.\\
+Level 1 & Tool manifest.\\
+Level 2 & Gateway decision.\\
+Level 3 & Scoped leased permission.\\
+Level 4 & Institutional permission with approval, leases, receipts, ProofPackets, rollback/compensation, revocation, and audit export.\\
+Level 5 & Sovereign / regulated permission with jurisdiction, retention, data boundary, authorized approvers, separation of duties, public/private/protected evidence boundary, institutional review, revocation, and post-incident controls.\\
+\end{longtable}
+
+\section{Claim Boundary}
+AEP-005 does not claim achieved AGI, achieved ASI, perfect safety, legal compliance certification, financial or legal advice, guaranteed ROI, production readiness, government endorsement, or national-security readiness. It defines a tool permission and proof standard.
+
+\section*{Canonical Public Line}
+AEP-001 defines the protocol. AEP-002 defines the docket. AEP-003 defines the packet. AEP-004 defines the gate. AEP-005 defines the permission. GoalOS allows only what is scoped, approved, leased, revocable, and provable.
+
+\end{document}

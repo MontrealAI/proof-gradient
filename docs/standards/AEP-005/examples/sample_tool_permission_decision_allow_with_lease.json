@@ -1,0 +1,29 @@
+{
+  "decision_id": "tool_decision_001",
+  "schema": "AEP-005-TOOL-PERMISSION-DECISION",
+  "schema_version": "1.1",
+  "request_id": "tool_req_demo_001",
+  "tool_id": "tool_policy_lookup",
+  "decision": "allow_with_lease",
+  "decision_reason": "Read-only policy lookup is allowed within leased demo scope.",
+  "allowed_scope": {
+    "tenant_id": "tenant_demo",
+    "workflow_id": "workflow_customer_response",
+    "run_id": "run_demo_001",
+    "permission_class": "read"
+  },
+  "denied_scope": {},
+  "approval_required": false,
+  "approver_role": "",
+  "lease_ref": "lease_demo_001",
+  "policy_refs": [
+    "tool_policy_demo_001"
+  ],
+  "risk_refs": [
+    "risk_tool_permission"
+  ],
+  "issued_at": "2026-06-05T00:00:00Z",
+  "expires_at": "2026-06-05T01:00:00Z",
+  "proof_packet_ref": "pp_tool_decision_001",
+  "hash": "sha256:14e1aa9808f26c6bc6f69065275a01e5131f4c628c01ade7bc4c238d342771e2"
+}

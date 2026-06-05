@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-005/schemas/break_glass_request.schema.json",
+  "title": "AEP-005 Break-Glass Request",
+  "type": "object",
+  "required": [
+    "break_glass_id",
+    "schema",
+    "schema_version",
+    "request_id",
+    "tool_id",
+    "requester",
+    "emergency_reason",
+    "risk_acceptance",
+    "emergency_scope",
+    "approver",
+    "monitoring_required",
+    "post_incident_review_required",
+    "expires_at",
+    "proof_packet_ref"
+  ],
+  "properties": {
+    "break_glass_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-005-BREAK-GLASS-REQUEST"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "tool_id": {
+      "type": "string"
+    },
+    "requester": {
+      "type": "object"
+    },
+    "emergency_reason": {
+      "type": "string"
+    },
+    "risk_acceptance": {
+      "type": "string"
+    },
+    "emergency_scope": {
+      "type": "object"
+    },
+    "approver": {
+      "type": "string"
+    },
+    "monitoring_required": {
+      "type": "boolean"
+    },
+    "post_incident_review_required": {
+      "type": "boolean"
+    },
+    "expires_at": {
+      "type": "string"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    }
+  }
+}
