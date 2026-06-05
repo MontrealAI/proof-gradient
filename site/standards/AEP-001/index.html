@@ -4,274 +4,56 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AEP-001 — GoalOS Proof-of-Evolution Constitution</title>
-  <meta name="description" content="AEP-001 defines the GoalOS Proof-of-Evolution Constitution: Commit, Execute, Prove, Evolve." />
   <style>
-    :root {
-      --bg: #05070d;
-      --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.085);
-      --text: #f6f7ff;
-      --muted: #b8c0da;
-      --line: rgba(255,255,255,.16);
-      --gold: #ffd76a;
-      --blue: #91b7ff;
-      --green: #9af0c8;
-      --purple: #b9a7ff;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 18% 5%, rgba(145,183,255,.22), transparent 32rem),
-        radial-gradient(circle at 88% 10%, rgba(255,215,106,.16), transparent 28rem),
-        radial-gradient(circle at 50% 80%, rgba(185,167,255,.12), transparent 35rem),
-        var(--bg);
-    }
-    main {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 72px 0 96px;
-    }
-    .eyebrow {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: .22em;
-      font-weight: 800;
-      font-size: 13px;
-    }
-    h1 {
-      max-width: 960px;
-      margin: 18px 0 20px;
-      font-size: clamp(48px, 8vw, 106px);
-      line-height: .9;
-      letter-spacing: -.075em;
-    }
-    .lead {
-      max-width: 850px;
-      color: var(--muted);
-      font-size: clamp(18px, 2vw, 24px);
-      line-height: 1.55;
-    }
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 30px 0 56px;
-    }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 15px;
-      border-radius: 999px;
-      color: var(--text);
-      text-decoration: none;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      font-weight: 700;
-    }
-    .pill.primary {
-      background: linear-gradient(135deg, rgba(255,215,106,.22), rgba(145,183,255,.16));
-      border-color: rgba(255,215,106,.35);
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-      margin: 30px 0 56px;
-    }
-    .card, .download-card, .panel {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, var(--panel2), var(--panel));
-      border-radius: 24px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.25);
-    }
-    .card {
-      padding: 24px;
-      min-height: 170px;
-    }
-    .card b {
-      display: block;
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    h2 {
-      margin-top: 56px;
-      font-size: clamp(32px, 5vw, 58px);
-      letter-spacing: -.05em;
-    }
-    .panel {
-      padding: 28px;
-      margin: 18px 0;
-    }
-    .doctrine {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-    .step {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(0,0,0,.28);
-      border: 1px solid rgba(255,255,255,.1);
-    }
-    .step strong {
-      display: block;
-      color: var(--gold);
-      font-size: 22px;
-      margin-bottom: 6px;
-    }
-    .downloads {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 22px;
-    }
-    .download-card {
-      display: block;
-      padding: 20px;
-      color: var(--text);
-      text-decoration: none;
-      min-height: 112px;
-      transition: transform .18s ease, border-color .18s ease;
-    }
-    .download-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,215,106,.55);
-    }
-    .download-card span {
-      display: block;
-      font-weight: 900;
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-    .download-card small {
-      display: block;
-      color: var(--muted);
-      line-height: 1.45;
-    }
-    .unavailable {
-      opacity: .58;
-    }
-    .law {
-      font-size: clamp(24px, 4vw, 44px);
-      line-height: 1.08;
-      letter-spacing: -.045em;
-    }
-    .footer {
-      margin-top: 60px;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      padding-top: 26px;
-    }
-    @media (max-width: 900px) {
-      .grid, .downloads, .doctrine { grid-template-columns: 1fr; }
-      main { width: min(100% - 28px, 1180px); padding-top: 42px; }
-    }
-  </style>
+    :root{--bg:#05070d;--text:#f6f7ff;--muted:#b8c0da;--gold:#ffd76a;--line:rgba(255,255,255,.16)}
+    *{box-sizing:border-box}
+    body{margin:0;background:
+      radial-gradient(circle at 18% 0%, rgba(145,183,255,.18), transparent 34rem),
+      radial-gradient(circle at 92% 5%, rgba(255,215,106,.12), transparent 28rem),
+      var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{width:min(1120px,calc(100% - 36px));margin:0 auto;padding:64px 0 92px}
+    .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-weight:900;font-size:12px}
+    h1{font-size:clamp(48px,8vw,96px);line-height:.9;letter-spacing:-.075em;margin:18px 0}
+    h2{font-size:clamp(30px,5vw,56px);letter-spacing:-.05em;margin-top:50px}
+    .lead{max-width:900px;color:var(--muted);font-size:21px;line-height:1.55}
+    .bar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 22px}
+    .btn{display:inline-flex;margin:0;padding:11px 15px;border:1px solid rgba(255,215,106,.48);border-radius:999px;text-decoration:none;font-weight:850;background:rgba(255,255,255,.06);color:var(--text)}
+    .btn.primary{background:rgba(255,215,106,.13)}
+    .panel,.card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border-radius:24px;padding:22px}
+    .law{font-size:clamp(24px,4vw,42px);line-height:1.13;letter-spacing:-.045em}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+    .card h3{margin-top:0}.card p{color:var(--muted);line-height:1.35}
+    .stack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0}
+    .stack .card{text-decoration:none;color:var(--text)}
+    .muted{color:var(--muted)}
+    footer{margin-top:40px;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.grid,.stack{grid-template-columns:1fr}}
+    </style>
 </head>
 <body>
   <main>
     <div class="eyebrow">Proof Gradient · Protocol Standard</div>
     <h1>AEP-001 — GoalOS Proof-of-Evolution Constitution</h1>
-    <p class="lead">
-      The canonical protocol standard for Proof-Carrying Intelligence:
-      every job becomes a commitment, every execution produces proof,
-      every reusable improvement becomes an artifact, and only what proves itself may evolve.
-    </p>
-
-    <div class="button-row">
-      <a class="pill primary" href="../../">← Main Command Center</a>
-      <a class="pill" href="paper.pdf">Download PDF</a>
-      <a class="pill" href="protocol_schema.json">Protocol Schema</a>
-      <a class="pill" href="complete-package.zip">Complete Package</a>
+    <p class="lead">The constitutional protocol for Proof-Carrying Intelligence: Commit → Execute → Prove → Evolve.</p>
+    <div class="bar">
+      <a class="btn" href="/proof-gradient/standards/AEP-001/">AEP-001</a>
+<a class="btn" href="/proof-gradient/standards/AEP-002/">AEP-002 Evidence Docket</a>
+<a class="btn" href="/proof-gradient/standards/AEP-003/">AEP-003 ProofPacket</a>
+<a class="btn" href="/proof-gradient/standards/AEP-004/">AEP-004 Selection Gate</a>
+<a class="btn" href="/proof-gradient/standards/AEP-005/">AEP-005 Tool Permission</a>
+<a class="btn" href="/proof-gradient/standards/AEP-006/">AEP-006 Rollback Receipt</a>
+<a class="btn" href="/proof-gradient/standards/AEP-007/">AEP-007 Public Proof</a>
+<a class="btn" href="/proof-gradient/standards/AEP-008/">AEP-008 Proof Room</a>
     </div>
-
-    <section class="grid" aria-label="AEP-001 systems">
-      <div class="card"><b>Artifact Vault</b><p>Stores reusable intelligence: goals, plans, skills, tools, policies, evals, context recipes, and proof-ready artifacts.</p></div>
-      <div class="card"><b>Run Fabric</b><p>Executes agents at scale by resolving artifacts, running bounded workflows, and emitting proof.</p></div>
-      <div class="card"><b>Proof Ledger</b><p>Records what happened: traces, evals, tool calls, policy decisions, cost, risk, and credit assignment.</p></div>
-      <div class="card"><b>Selection Gate</b><p>Promotes only what proved itself through eval, approval, canary, monitoring, and rollback.</p></div>
-    </section>
-
-    <section class="panel">
-      <h2 style="margin-top:0">Commit → Execute → Prove → Evolve</h2>
-      <div class="doctrine">
-        <div class="step"><strong>Commit</strong><span>The mission becomes explicit.</span></div>
-        <div class="step"><strong>Execute</strong><span>The system runs active artifacts.</span></div>
-        <div class="step"><strong>Prove</strong><span>Every execution creates evidence.</span></div>
-        <div class="step"><strong>Evolve</strong><span>Only proven upgrades propagate.</span></div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2 style="margin-top:0">Canonical Law</h2>
-      <div class="law">
-        No proof, no evolution.<br />
-        No eval, no propagation.<br />
-        No rollback, no release.
-      </div>
-    </section>
-
-    <section>
-      <h2>Downloads & Public Materials</h2>
-      <p class="lead">Use these files to read, cite, implement, audit, or extend AEP-001.</p>
-      <div class="downloads">
-        
-        <a class="download-card" href="paper.pdf">
-          <span>Download PDF</span>
-          <small>Canonical institutional edition.</small>
-        </a>
-
-        <a class="download-card" href="one-page.pdf">
-          <span>Download One-Page Constitution</span>
-          <small>Printable executive version.</small>
-        </a>
-
-        <a class="download-card" href="protocol_schema.json">
-          <span>View Protocol Schema</span>
-          <small>Machine-readable AEP-001 protocol object.</small>
-        </a>
-
-        <a class="download-card" href="evidence_docket_template.md">
-          <span>View Evidence Docket Template</span>
-          <small>Reusable proof package template.</small>
-        </a>
-
-        <a class="download-card" href="complete-package.zip">
-          <span>Download Complete Package</span>
-          <small>Frozen institutional archive package.</small>
-        </a>
-
-        <a class="download-card" href="figures/">
-          <span>View Figures</span>
-          <small>Canonical diagrams and visual system maps.</small>
-        </a>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2 style="margin-top:0">Claim Boundary</h2>
-      <p class="lead">
-        AEP-001 is a protocol architecture and standard. It does not claim achieved AGI, achieved ASI,
-        guaranteed ROI, legal advice, safety certification, energy abundance, or Kardashev Type II achievement.
-        It defines the proof, governance, rollout, and rollback discipline required for governed agent evolution.
-      </p>
-    </section>
-
-    <div class="footer">
-      <strong>Public line:</strong> Every agent acts once. The network learns forever.
-      <br />
-      <strong>Generated safely:</strong> this page was added without deleting existing website files.
+    <div class="bar">
+      <a class="btn primary" href="GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_Final.pdf">Download PDF</a>
     </div>
+    <section class="panel"><h2>Canonical Law</h2><div class="law">No proof, no evolution.<br>No eval, no propagation.<br>No rollback, no release.</div></section>
+    <section><h2>What AEP-001 Standardizes</h2><div class="grid"><div class="card"><h3>Protocol</h3><p>The core Commit → Execute → Prove → Evolve loop.</p></div>
+<div class="card"><h3>Artifact Vault</h3><p>Reusable intelligence: goals, plans, skills, tools, policies, evals, and contexts.</p></div>
+<div class="card"><h3>Selection Gate</h3><p>Promotes only what proved itself.</p></div></div></section>
+    <section class="panel"><h2>Foundational AEP Stack</h2><p class="lead">AEP-001 defines the protocol. AEP-002 defines the docket. AEP-003 defines the packet. AEP-004 defines the gate. AEP-005 defines the permission. AEP-006 defines recovery proof. AEP-007 defines public proof. AEP-008 defines the room.</p></section>
+    <footer>Public standard page generated from <code>docs/standards/AEP-001</code>. Private evidence, secrets, credentials, paid products, and protected traces should not be published here.</footer>
   </main>
 </body>
 </html>

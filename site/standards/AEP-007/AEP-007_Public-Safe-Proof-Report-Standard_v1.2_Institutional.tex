@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\definecolor{goalosblue}{HTML}{0B1020}
+\definecolor{goalosgold}{HTML}{B78A00}
+\hypersetup{colorlinks=true, linkcolor=goalosblue, urlcolor=goalosblue}
+\title{\textbf{AEP-007 --- Public-Safe Proof Report Standard}\\\large Public Proof Without Private Leakage}
+\author{Vincent Boucher\\QUEBEC.AI \& MONTREAL.AI}
+\date{Version 1.2 Institutional Edition --- 2026-06-05}
+\begin{document}
+\maketitle
+\begin{abstract}
+AEP-007 defines the Public-Safe Proof Report Standard: the reporting layer that converts private or protected machine-work evidence into a public-safe proof report that can be shared without leaking secrets, credentials, private prompts, full execution traces, raw customer data, regulated personal information, security vulnerabilities, private tool logs, protected operational details, privileged legal analysis, restricted datasets, or confidential model/infrastructure/evaluation details.
+\end{abstract}
+\section*{Canonical Law}
+No public claim without claim boundary.\\
+No public proof without redaction review.\\
+No private trace in public report.\\
+No protected data in public proof.\\
+No publication without approval.\\
+No correction without history.\\
+No proof, no evolution.
+\section{Disclosure Classes}
+\begin{longtable}{p{0.25\linewidth}p{0.65\linewidth}}
+public & Safe to publish.\\
+private & Internal only.\\
+protected & Restricted to authorized roles.\\
+forbidden & Never publish.\\
+embargoed & Not yet publishable.\\
+\end{longtable}
+\section{Public Claim Levels}
+\begin{longtable}{p{0.25\linewidth}p{0.65\linewidth}}
+verified & Directly supported by evidence and passed evaluations.\\
+supported & Supported by credible evidence but bounded by limitations.\\
+observed & Descriptive fact only; no broader conclusion.\\
+contextual & Background material, not a proof claim.\\
+not\_claimed & Explicitly outside the report boundary.\\
+\end{longtable}
+\section{Required Sections}
+A conforming report includes: Report Manifest, Source Evidence References, Public Claim Matrix, Evidence Summary, Evaluation Summary, Risk and Limitation Summary, Rollback / Recovery Summary, Redaction Ledger, Publication Approval, Correction and Retraction Policy, Public Artifact Links, and Final Claim Boundary.
+\section{Conformance Levels}
+\begin{longtable}{p{0.20\linewidth}p{0.70\linewidth}}
+Level 0 & Informal public proof with claim boundary.\\
+Level 1 & Basic report with manifest, claim matrix, evidence summary, limitations, and claim boundary.\\
+Level 2 & Reviewed report with redaction ledger and publication approval.\\
+Level 3 & Operational report with source docket refs, ProofPacket refs, eval summary, rollback summary, correction policy, and public artifact links.\\
+Level 4 & Institutional report with disclosure review, redaction audit, challenge window, correction/retraction history, report hash, and audit export.\\
+Level 5 & Sovereign / regulated report with jurisdiction, retention, protected-boundary review, responsible disclosure controls, authorized approvers, challenge/retraction governance, accessibility profile, and machine-readable bundle.\\
+\end{longtable}
+\section{Claim Boundary}
+AEP-007 does not claim achieved AGI, achieved ASI, perfect safety, legal compliance certification, financial or legal advice, guaranteed ROI, production readiness, government endorsement, or national-security readiness. It defines a public-safe proof reporting standard.
+\section*{Canonical Public Line}
+AEP-001 defines the protocol. AEP-002 defines the docket. AEP-003 defines the packet. AEP-004 defines the gate. AEP-005 defines the permission. AEP-006 defines the recovery proof. AEP-007 defines the public proof. GoalOS proves publicly without leaking privately.
+\end{document}

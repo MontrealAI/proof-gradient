@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\definecolor{goalosblue}{HTML}{0B1020}
+\definecolor{goalosgold}{HTML}{B78A00}
+\hypersetup{colorlinks=true, linkcolor=goalosblue, urlcolor=goalosblue}
+\title{\textbf{AEP-004 --- Selection Gate Standard}\\\large Promote Only What Proved Itself}
+\author{Vincent Boucher\\QUEBEC.AI \& MONTREAL.AI}
+\date{Version 1.1 Institutional Edition --- 2026-06-05}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+AEP-004 defines the Selection Gate: the propagation boundary that decides whether a candidate artifact, workflow, policy, tool, evaluation, context recipe, model route, agent behavior, or capability may be promoted, canaried, revised, rejected, archived, rolled back, or held for more evidence.
+\end{abstract}
+
+\section*{Canonical Thesis}
+A model can answer. An agent can act. An institution must prove. A network must select.
+
+\section*{Canonical Law}
+No proof, no evolution.\\
+No eval, no propagation.\\
+No rollback, no release.
+
+\section{Gate Decisions}
+\begin{longtable}{p{0.25\linewidth}p{0.65\linewidth}}
+\textbf{Decision} & \textbf{Meaning}\\
+promote & Candidate may become active default within approved scope.\\
+approve\_canary & Candidate may deploy to limited monitored scope.\\
+revise & Candidate has merit but must be modified and re-evaluated.\\
+reject & Candidate must not propagate.\\
+archive & Candidate is retained as evidence/history but not used.\\
+rollback & Existing promoted capability must be reverted to prior safe state.\\
+needs\_more\_evidence & Candidate cannot be judged until additional proof exists.\\
+\end{longtable}
+
+\section{Selection Certificate}
+A Selection Gate emits a Selection Certificate containing decision, gate mode, candidate reference, baseline reference, Evidence Docket references, ProofPacket references, eval references, risk references, policy references, decision reason, approved scope, canary plan, monitoring plan, rollback plan, challenge record, claim boundary, approver, issue timestamp, expiry, review date, and hash.
+
+\section{Invariants}
+Promote requires evidence, eval success, risk acceptance, scope, monitoring, and rollback readiness. Canary requires evidence, eval success, limited scope, monitoring, stop conditions, and rollback readiness. Protected-risk candidates must not promote automatically unless explicitly authorized. Under uncertainty, the gate must fail closed.
+
+\section{Conformance Levels}
+\begin{longtable}{p{0.20\linewidth}p{0.70\linewidth}}
+Level 0 & Informal selection with evidence and reason.\\
+Level 1 & Basic Selection Gate with candidate and decision record.\\
+Level 2 & Evaluated gate with eval, risk, and rollback status.\\
+Level 3 & Operational gate with policy, canary, monitoring, approval, challenge record, and claim boundary.\\
+Level 4 & Institutional gate with signed certificate, audit export, rollback readiness, expiry, review date, and public/private boundary.\\
+Level 5 & Sovereign / regulated gate with jurisdiction, protected-boundary classification, authorized approvers, evaluator attestations, timestamp authority, challenge window, revocation model, and public-safe controls.\\
+\end{longtable}
+
+\section{Claim Boundary}
+AEP-004 does not claim achieved AGI, achieved ASI, perfect safety, legal compliance certification, financial or legal advice, guaranteed ROI, production readiness, government endorsement, or national-security readiness. It defines a selection and propagation standard.
+
+\section*{Canonical Public Line}
+AEP-001 defines the protocol. AEP-002 defines the docket. AEP-003 defines the packet. AEP-004 defines the gate. GoalOS promotes only what proved itself.
+
+\end{document}
