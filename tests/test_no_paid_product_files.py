@@ -22,3 +22,19 @@ def test_releases_outside_aep001_are_public_guard_scope(tmp_path, monkeypatch):
     monkeypatch.setattr(guard, "ROOT", tmp_path)
 
     assert guard.find_offenders() == [Path("releases/GoalOS_AI_Efficiency_Sprint.zip")]
+
+
+def test_paid_zip_extension_matching_is_case_insensitive(tmp_path, monkeypatch):
+    site = tmp_path / "site"
+    docs = tmp_path / "docs"
+    site.mkdir()
+    docs.mkdir()
+    (site / "GoalOS_AI_Efficiency_Sprint.ZIP").write_bytes(b"forbidden uppercase suffix")
+    (docs / "GoalOS_SME_AI_Adoption.Zip").write_bytes(b"forbidden mixed-case suffix")
+
+    monkeypatch.setattr(guard, "ROOT", tmp_path)
+
+    assert guard.find_offenders() == [
+        Path("docs/GoalOS_SME_AI_Adoption.Zip"),
+        Path("site/GoalOS_AI_Efficiency_Sprint.ZIP"),
+    ]

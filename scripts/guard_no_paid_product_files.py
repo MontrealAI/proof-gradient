@@ -18,6 +18,7 @@ PAID_PATTERNS = [
     "GoalOS_Nation_State*.zip",
     "GoalOS_Sovereign*.zip",
 ]
+PAID_PATTERNS_LOWER = [pattern.lower() for pattern in PAID_PATTERNS]
 ALLOWED_PREFIX = Path("releases/AEP-001")
 SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache"}
 
@@ -36,7 +37,9 @@ def is_public_path(path: Path) -> bool:
 
 def find_offenders() -> list[Path]:
     offenders: list[Path] = []
-    for path in ROOT.rglob("*.zip"):
+    for path in ROOT.rglob("*"):
+        if not path.is_file() or path.suffix.lower() != ".zip":
+            continue
         if any(part in SKIP_DIRS for part in path.relative_to(ROOT).parts):
             continue
         rel = path.relative_to(ROOT)
@@ -44,7 +47,7 @@ def find_offenders() -> list[Path]:
             continue
         if not is_public_path(path):
             continue
-        if any(fnmatch.fnmatch(path.name, pattern) for pattern in PAID_PATTERNS):
+        if any(fnmatch.fnmatch(path.name.lower(), pattern) for pattern in PAID_PATTERNS_LOWER):
             offenders.append(rel)
     return sorted(offenders)
 
