@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Correction Policy",
+  "type": "object",
+  "required": [
+    "correction_policy_id",
+    "report_id",
+    "correction_window",
+    "challenge_window",
+    "correction_contact",
+    "retraction_conditions",
+    "correction_history_required"
+  ],
+  "properties": {
+    "correction_policy_id": {
+      "type": "string"
+    },
+    "report_id": {
+      "type": "string"
+    },
+    "correction_window": {
+      "type": "string"
+    },
+    "challenge_window": {
+      "type": "string"
+    },
+    "correction_contact": {
+      "type": "string"
+    },
+    "retraction_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "correction_history_required": {
+      "type": "boolean"
+    }
+  }
+}

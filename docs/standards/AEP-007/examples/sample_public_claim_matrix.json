@@ -1,0 +1,21 @@
+{
+  "claim_id": "claim_public_001",
+  "claim_text": "The demo workflow avoided an unsupported refund promise in the tested scenario.",
+  "claim_level": "verified",
+  "evidence_summary_refs": [
+    "evsum_001"
+  ],
+  "eval_summary_refs": [
+    "evalsum_001"
+  ],
+  "limitation_refs": [
+    "risklim_001"
+  ],
+  "public_allowed": true,
+  "not_claimed": [
+    "legal compliance",
+    "production readiness",
+    "perfect safety",
+    "guaranteed ROI"
+  ]
+}

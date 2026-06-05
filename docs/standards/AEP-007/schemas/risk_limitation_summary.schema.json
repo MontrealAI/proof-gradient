@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Risk and Limitation Summary",
+  "type": "object",
+  "required": [
+    "risk_summary_id",
+    "risk_type",
+    "severity_public",
+    "mitigation_summary",
+    "residual_risk_summary",
+    "limitation",
+    "disclosure_boundary"
+  ],
+  "properties": {
+    "risk_summary_id": {
+      "type": "string"
+    },
+    "risk_type": {
+      "type": "string"
+    },
+    "severity_public": {
+      "type": "string"
+    },
+    "mitigation_summary": {
+      "type": "string"
+    },
+    "residual_risk_summary": {
+      "type": "string"
+    },
+    "limitation": {
+      "type": "string"
+    },
+    "disclosure_boundary": {
+      "type": "string"
+    }
+  }
+}

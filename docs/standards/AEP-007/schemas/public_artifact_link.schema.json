@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Public Artifact Link",
+  "type": "object",
+  "required": [
+    "artifact_link_id",
+    "label",
+    "url",
+    "artifact_type",
+    "disclosure_class"
+  ],
+  "properties": {
+    "artifact_link_id": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "artifact_type": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string"
+    },
+    "disclosure_class": {
+      "type": "string",
+      "enum": [
+        "public",
+        "private",
+        "protected",
+        "forbidden",
+        "embargoed"
+      ]
+    },
+    "access_note": {
+      "type": "string"
+    }
+  }
+}

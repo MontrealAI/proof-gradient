@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Public Claim Matrix",
+  "type": "object",
+  "required": [
+    "claim_id",
+    "claim_text",
+    "claim_level",
+    "evidence_summary_refs",
+    "public_allowed",
+    "not_claimed"
+  ],
+  "properties": {
+    "claim_id": {
+      "type": "string"
+    },
+    "claim_text": {
+      "type": "string"
+    },
+    "claim_level": {
+      "type": "string",
+      "enum": [
+        "verified",
+        "supported",
+        "observed",
+        "contextual",
+        "not_claimed"
+      ]
+    },
+    "evidence_summary_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eval_summary_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "public_allowed": {
+      "type": "boolean"
+    },
+    "not_claimed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

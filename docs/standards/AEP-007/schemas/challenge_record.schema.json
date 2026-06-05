@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Challenge Record",
+  "type": "object",
+  "required": [
+    "challenge_id",
+    "report_id",
+    "challenger",
+    "challenge_type",
+    "challenged_claims",
+    "challenge_summary",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "challenge_id": {
+      "type": "string"
+    },
+    "report_id": {
+      "type": "string"
+    },
+    "challenger": {
+      "type": "string"
+    },
+    "challenge_type": {
+      "type": "string"
+    },
+    "challenged_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "challenge_summary": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "under_review",
+        "accepted",
+        "rejected",
+        "corrected",
+        "retracted",
+        "closed"
+      ]
+    },
+    "response_summary": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "resolved_at": {
+      "type": "string"
+    }
+  }
+}

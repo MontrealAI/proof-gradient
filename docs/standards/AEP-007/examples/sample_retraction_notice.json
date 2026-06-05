@@ -1,0 +1,12 @@
+{
+  "retraction_id": "retr_demo_001",
+  "report_id": "psr_demo_001",
+  "retraction_reason": "example only",
+  "affected_claims": [
+    "claim_public_001"
+  ],
+  "evidence_issue_summary": "not applicable demo",
+  "replacement_report_ref": "",
+  "issued_at": "2026-06-05T00:00:00Z",
+  "public_url": "https://example.invalid/proof/psr_demo_001/retraction"
+}

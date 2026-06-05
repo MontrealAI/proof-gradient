@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Publication Approval",
+  "type": "object",
+  "required": [
+    "approval_id",
+    "report_id",
+    "approver",
+    "approver_role",
+    "approval_status",
+    "approval_reason",
+    "approved_scope",
+    "issued_at",
+    "expires_at"
+  ],
+  "properties": {
+    "approval_id": {
+      "type": "string"
+    },
+    "report_id": {
+      "type": "string"
+    },
+    "approver": {
+      "type": "string"
+    },
+    "approver_role": {
+      "type": "string"
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "denied",
+        "expired",
+        "revoked"
+      ]
+    },
+    "approval_reason": {
+      "type": "string"
+    },
+    "approved_scope": {
+      "type": "object"
+    },
+    "issued_at": {
+      "type": "string"
+    },
+    "expires_at": {
+      "type": "string"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    }
+  }
+}

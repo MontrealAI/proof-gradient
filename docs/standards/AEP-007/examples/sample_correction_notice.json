@@ -1,0 +1,13 @@
+{
+  "correction_id": "corr_demo_001",
+  "report_id": "psr_demo_001",
+  "corrected_report_version": "1.0.1",
+  "correction_reason": "clarified limitation text",
+  "corrected_claims": [
+    "claim_public_001"
+  ],
+  "previous_text_summary": "limitation ambiguous",
+  "corrected_text_summary": "limitation now states synthetic demo only",
+  "issued_at": "2026-06-05T00:00:00Z",
+  "public_url": "https://example.invalid/proof/psr_demo_001/corrections/1"
+}

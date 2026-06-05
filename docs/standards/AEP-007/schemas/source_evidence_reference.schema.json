@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Source Evidence Reference",
+  "type": "object",
+  "required": [
+    "source_ref_id",
+    "source_type",
+    "source_id",
+    "disclosure_class",
+    "public_summary",
+    "access_note"
+  ],
+  "properties": {
+    "source_ref_id": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string"
+    },
+    "source_id": {
+      "type": "string"
+    },
+    "source_hash": {
+      "type": "string"
+    },
+    "disclosure_class": {
+      "type": "string",
+      "enum": [
+        "public",
+        "private",
+        "protected",
+        "forbidden",
+        "embargoed"
+      ]
+    },
+    "public_summary": {
+      "type": "string"
+    },
+    "access_note": {
+      "type": "string"
+    }
+  }
+}

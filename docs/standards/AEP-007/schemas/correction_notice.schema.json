@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Correction Notice",
+  "type": "object",
+  "required": [
+    "correction_id",
+    "report_id",
+    "corrected_report_version",
+    "correction_reason",
+    "corrected_claims",
+    "issued_at"
+  ],
+  "properties": {
+    "correction_id": {
+      "type": "string"
+    },
+    "report_id": {
+      "type": "string"
+    },
+    "corrected_report_version": {
+      "type": "string"
+    },
+    "correction_reason": {
+      "type": "string"
+    },
+    "corrected_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "previous_text_summary": {
+      "type": "string"
+    },
+    "corrected_text_summary": {
+      "type": "string"
+    },
+    "issued_at": {
+      "type": "string"
+    },
+    "public_url": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-007/schemas/public_safe_report.schema.json",
+  "title": "AEP-007 Public-Safe Proof Report",
+  "type": "object",
+  "required": [
+    "report_id",
+    "schema",
+    "schema_version",
+    "title",
+    "owner",
+    "organization",
+    "created_at",
+    "status",
+    "source_docket_refs",
+    "public_claim_matrix",
+    "evidence_summaries",
+    "redaction_ledger",
+    "publication_approval",
+    "claim_boundary",
+    "hash"
+  ],
+  "properties": {
+    "report_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-007-PUBLIC-SAFE-REPORT"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "redaction_review",
+        "approved",
+        "published",
+        "challenged",
+        "corrected",
+        "retracted",
+        "archived"
+      ]
+    },
+    "report_version": {
+      "type": "string"
+    },
+    "public_url": {
+      "type": "string"
+    },
+    "jurisdiction": {
+      "type": "string"
+    },
+    "source_docket_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_proof_packet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "public_claim_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "evidence_summaries": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "evaluation_summaries": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "risk_limitation_summaries": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "rollback_recovery_summary": {
+      "type": "object"
+    },
+    "redaction_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "publication_approval": {
+      "type": "object"
+    },
+    "correction_policy": {
+      "type": "object"
+    },
+    "public_artifact_links": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "claim_boundary": {
+      "type": "object"
+    },
+    "accessibility_profile": {
+      "type": "object"
+    },
+    "challenge_window": {
+      "type": "object"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Retraction Notice",
+  "type": "object",
+  "required": [
+    "retraction_id",
+    "report_id",
+    "retraction_reason",
+    "affected_claims",
+    "issued_at"
+  ],
+  "properties": {
+    "retraction_id": {
+      "type": "string"
+    },
+    "report_id": {
+      "type": "string"
+    },
+    "retraction_reason": {
+      "type": "string"
+    },
+    "affected_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_issue_summary": {
+      "type": "string"
+    },
+    "replacement_report_ref": {
+      "type": "string"
+    },
+    "issued_at": {
+      "type": "string"
+    },
+    "public_url": {
+      "type": "string"
+    }
+  }
+}

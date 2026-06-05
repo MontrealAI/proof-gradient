@@ -1,0 +1,14 @@
+{
+  "approval_id": "approval_public_001",
+  "report_id": "psr_demo_001",
+  "approver": "demo_approver",
+  "approver_role": "publisher",
+  "approval_status": "approved",
+  "approval_reason": "Public-safe summary contains no private traces or protected data.",
+  "approved_scope": {
+    "publication": "demo"
+  },
+  "issued_at": "2026-06-05T00:00:00Z",
+  "expires_at": "2026-07-05T00:00:00Z",
+  "proof_packet_ref": "pp_public_001"
+}

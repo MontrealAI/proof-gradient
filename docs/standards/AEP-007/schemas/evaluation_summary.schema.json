@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Evaluation Summary",
+  "type": "object",
+  "required": [
+    "eval_summary_id",
+    "eval_name",
+    "public_result",
+    "passed",
+    "limitations"
+  ],
+  "properties": {
+    "eval_summary_id": {
+      "type": "string"
+    },
+    "eval_name": {
+      "type": "string"
+    },
+    "public_result": {
+      "type": "string"
+    },
+    "passed": {
+      "type": "boolean"
+    },
+    "score_or_threshold": {},
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "private_eval_ref": {
+      "type": "string"
+    }
+  }
+}
