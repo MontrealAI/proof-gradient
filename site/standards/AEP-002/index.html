@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AEP-002 — Evidence Docket Standard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #070b14;
+      color: #f5f7fb;
+      line-height: 1.6;
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 64px 22px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+    h1 {
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 1.02;
+      margin: 22px 0;
+    }
+    h2 {
+      margin-top: 44px;
+      font-size: 30px;
+    }
+    a {
+      color: #7dd3fc;
+    }
+    .panel {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid #1e293b;
+      border-radius: 24px;
+      padding: 28px;
+      margin: 24px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .law {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    code {
+      background: #111827;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="badge">Proof Gradient · Protocol Standard</span>
+    <h1>AEP-002 — Evidence Docket Standard</h1>
+
+    <p>
+      AEP-002 defines the Evidence Docket: the portable proof package for machine work,
+      including commitments, claims, evidence, ProofPackets, evals, risks, costs, policy
+      decisions, Selection Certificates, rollout, rollback, and public-safe reports.
+    </p>
+
+    <p>
+      <a href="../AEP-001/">AEP-001 Constitution</a> ·
+      <a href="./paper.pdf">Download PDF</a> ·
+      <a href="./schemas/">Schemas</a> ·
+      <a href="./templates/">Templates</a> ·
+      <a href="./examples/">Examples</a>
+    </p>
+
+    <section class="panel">
+      <h2>Canonical Law</h2>
+      <p class="law">
+        No proof, no evolution.<br>
+        No eval, no propagation.<br>
+        No rollback, no release.
+      </p>
+    </section>
+
+    <section>
+      <h2>What AEP-002 Standardizes</h2>
+      <div class="grid">
+        <div class="panel">
+          <h3>Claims Matrix</h3>
+          <p>Separates what is claimed, what evidence supports it, and what is not claimed.</p>
+        </div>
+        <div class="panel">
+          <h3>ProofPackets</h3>
+          <p>Atomic evidence units for traces, evals, tool calls, policy decisions, and outputs.</p>
+        </div>
+        <div class="panel">
+          <h3>Selection Certificate</h3>
+          <p>Records whether a capability may be promoted, canaried, rejected, revised, archived, or rolled back.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Public Boundary</h2>
+      <p>
+        AEP-002 proves accountability without leaking private intelligence. Public reports
+        must preserve claim boundaries and keep sensitive prompts, data, traces, tools,
+        and protected details private.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

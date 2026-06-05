@@ -1,0 +1,50 @@
+{
+  "conformance_level": 4,
+  "report": {
+    "level_0": {
+      "passed": true,
+      "required": [
+        "commitment_record",
+        "execution_summary",
+        "evidence_inventory",
+        "claim_boundary"
+      ]
+    },
+    "level_1": {
+      "passed": true,
+      "required": [
+        "manifest",
+        "claims_matrix",
+        "commitment_record",
+        "execution_summary",
+        "evidence_inventory",
+        "evaluation_results",
+        "rollback_plan",
+        "claim_boundary"
+      ]
+    },
+    "level_2": {
+      "passed": true,
+      "required": [
+        "tool_use_ledger",
+        "policy_approval_ledger",
+        "cost_latency_ledger",
+        "risk_ledger",
+        "selection_certificate"
+      ]
+    },
+    "level_3": {
+      "passed": true,
+      "required": [
+        "rollout_canary_plan",
+        "public_safe_report"
+      ]
+    },
+    "level_4": {
+      "passed": true,
+      "required": [
+        "private_appendix"
+      ]
+    }
+  }
+}

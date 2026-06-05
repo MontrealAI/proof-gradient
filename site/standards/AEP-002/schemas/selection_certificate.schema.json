@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-002/schemas/selection_certificate.schema.json",
+  "title": "AEP-002 Selection Certificate",
+  "type": "object",
+  "required": [
+    "decision",
+    "reason",
+    "scope",
+    "rollback_target",
+    "approver"
+  ],
+  "properties": {
+    "decision": {
+      "type": "string",
+      "enum": [
+        "promote",
+        "approve_canary",
+        "reject",
+        "revise",
+        "archive",
+        "rollback",
+        "needs_more_evidence"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scope": {
+      "type": "string"
+    },
+    "canary_plan": {
+      "type": "string"
+    },
+    "monitoring_plan": {
+      "type": "string"
+    },
+    "rollback_target": {
+      "type": "string"
+    },
+    "approver": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    }
+  }
+}

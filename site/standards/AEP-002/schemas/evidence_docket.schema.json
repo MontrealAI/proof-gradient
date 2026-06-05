@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-002/schemas/evidence_docket.schema.json",
+  "title": "AEP-002 Evidence Docket",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "manifest",
+    "claims_matrix",
+    "commitment_record",
+    "execution_summary",
+    "evidence_inventory",
+    "evaluation_results",
+    "selection_certificate",
+    "rollback_plan",
+    "claim_boundary"
+  ],
+  "properties": {
+    "manifest": {
+      "type": "object",
+      "required": [
+        "docket_id",
+        "protocol",
+        "protocol_version",
+        "title",
+        "owner",
+        "created_at",
+        "status",
+        "confidentiality_class"
+      ],
+      "properties": {
+        "docket_id": {
+          "type": "string"
+        },
+        "protocol": {
+          "type": "string",
+          "const": "AEP-002"
+        },
+        "protocol_version": {
+          "type": "string"
+        },
+        "parent_standard": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "jurisdiction": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "confidentiality_class": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private",
+            "protected",
+            "restricted"
+          ]
+        },
+        "public_safe_available": {
+          "type": "boolean"
+        },
+        "checksum": {
+          "type": "string"
+        },
+        "related_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "claims_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim_id",
+          "claim_text",
+          "evidence_refs",
+          "public_claim_allowed"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string"
+          },
+          "claim_text": {
+            "type": "string"
+          },
+          "claim_type": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "eval_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "risk_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "unknown"
+            ]
+          },
+          "public_claim_allowed": {
+            "type": "boolean"
+          },
+          "not_claimed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "commitment_record": {
+      "type": "object",
+      "required": [
+        "goal",
+        "success_criteria",
+        "failure_criteria",
+        "constraints",
+        "risk_class",
+        "authorized_by",
+        "allowed_tools",
+        "required_evals",
+        "rollback_required"
+      ]
+    },
+    "execution_summary": {
+      "type": "object",
+      "required": [
+        "run_id",
+        "agent_or_system",
+        "status",
+        "output_summary"
+      ]
+    },
+    "evidence_inventory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "evidence_type",
+          "description",
+          "access_class",
+          "public_safe"
+        ]
+      }
+    },
+    "proof_packets": {
+      "type": "array",
+      "items": {
+        "$ref": "proof_packet.schema.json"
+      }
+    },
+    "tool_use_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "policy_approval_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "evaluation_results": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "cost_latency_ledger": {
+      "type": "object"
+    },
+    "risk_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "selection_certificate": {
+      "$ref": "selection_certificate.schema.json"
+    },
+    "rollout_canary_plan": {
+      "type": "object"
+    },
+    "rollback_plan": {
+      "type": "object"
+    },
+    "public_safe_report": {
+      "$ref": "public_safe_report.schema.json"
+    },
+    "private_appendix": {
+      "type": "object"
+    },
+    "claim_boundary": {
+      "type": "object",
+      "required": [
+        "supported_claims",
+        "not_claimed",
+        "public_boundary"
+      ]
+    }
+  }
+}
