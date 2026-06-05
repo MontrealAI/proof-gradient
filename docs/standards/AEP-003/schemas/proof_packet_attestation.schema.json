@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-003/schemas/proof_packet_attestation.schema.json",
+  "title": "AEP-003 ProofPacket Attestation",
+  "type": "object",
+  "required": [
+    "attestation_id",
+    "packet_id",
+    "attestor",
+    "attestation_type",
+    "statement",
+    "created_at"
+  ],
+  "properties": {
+    "attestation_id": {
+      "type": "string"
+    },
+    "packet_id": {
+      "type": "string"
+    },
+    "attestor": {
+      "type": "string"
+    },
+    "attestation_type": {
+      "type": "string",
+      "enum": [
+        "human_review",
+        "system_validation",
+        "eval_attestation",
+        "policy_attestation",
+        "external_audit",
+        "timestamp"
+      ]
+    },
+    "statement": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "object"
+    }
+  }
+}

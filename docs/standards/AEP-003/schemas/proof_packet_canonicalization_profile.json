@@ -1,0 +1,12 @@
+{
+  "profile": "AEP-003 canonical JSON profile v1.1",
+  "steps": [
+    "parse JSON as UTF-8",
+    "remove signature field",
+    "set hash to sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "sort object keys recursively",
+    "encode without insignificant whitespace using separators comma and colon",
+    "compute SHA-256",
+    "store as sha256:<hex>"
+  ]
+}

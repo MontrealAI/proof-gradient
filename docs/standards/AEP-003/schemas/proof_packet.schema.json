@@ -1,0 +1,273 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-003/schemas/proof_packet.schema.json",
+  "title": "AEP-003 ProofPacket",
+  "description": "Atomic proof unit for machine work under the Proof Gradient / Agent Evolution Protocol.",
+  "type": "object",
+  "required": [
+    "packet_id",
+    "schema",
+    "schema_version",
+    "packet_type",
+    "created_at",
+    "producer",
+    "docket_id",
+    "commitment_id",
+    "run_id",
+    "claim_refs",
+    "evidence_refs",
+    "boundary",
+    "payload",
+    "hash",
+    "claim_boundary"
+  ],
+  "properties": {
+    "packet_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-003"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "packet_type": {
+      "type": "string",
+      "enum": [
+        "commit",
+        "trace_event",
+        "tool_call",
+        "policy_decision",
+        "approval",
+        "eval_result",
+        "evidence_ref",
+        "risk_event",
+        "cost_event",
+        "selection_decision",
+        "rollout_event",
+        "rollback_event",
+        "public_report"
+      ]
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "producer": {
+      "type": "object",
+      "required": [
+        "name",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "agent",
+            "system",
+            "human",
+            "organization",
+            "workflow",
+            "validator"
+          ]
+        },
+        "version": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        }
+      }
+    },
+    "environment": {
+      "type": "string"
+    },
+    "docket_id": {
+      "type": "string"
+    },
+    "commitment_id": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "job_id": {
+      "type": "string"
+    },
+    "bundle_id": {
+      "type": "string"
+    },
+    "sequence_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "artifact_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "trace_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tool_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "policy_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selection_ref": {
+      "type": "string"
+    },
+    "rollback_ref": {
+      "type": "string"
+    },
+    "boundary": {
+      "type": "object",
+      "required": [
+        "access_class",
+        "public_safe",
+        "contains_sensitive_data",
+        "publication_allowed"
+      ],
+      "properties": {
+        "access_class": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private",
+            "protected",
+            "restricted"
+          ]
+        },
+        "public_safe": {
+          "type": "boolean"
+        },
+        "contains_sensitive_data": {
+          "type": "boolean"
+        },
+        "retention_policy": {
+          "type": "string"
+        },
+        "jurisdiction": {
+          "type": "string"
+        },
+        "publication_allowed": {
+          "type": "boolean"
+        },
+        "redaction_required": {
+          "type": "boolean"
+        },
+        "protected_reason": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "type": "object"
+    },
+    "cost_summary": {
+      "type": "object"
+    },
+    "latency_summary": {
+      "type": "object"
+    },
+    "canonicalization_method": {
+      "type": "string",
+      "default": "json-sort-keys-utf8-zero-hash"
+    },
+    "hash_algorithm": {
+      "type": "string",
+      "default": "sha256"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    },
+    "previous_packet_hash": {
+      "type": "string"
+    },
+    "docket_hash": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "object"
+    },
+    "attestations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "claim_boundary": {
+      "type": "object",
+      "required": [
+        "supports",
+        "does_not_support",
+        "limitations",
+        "public_claim_allowed"
+      ],
+      "properties": {
+        "supports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "does_not_support": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "public_claim_allowed": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

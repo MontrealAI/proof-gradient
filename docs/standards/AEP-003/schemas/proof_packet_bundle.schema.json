@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-003/schemas/proof_packet_bundle.schema.json",
+  "title": "AEP-003 ProofPacket Bundle",
+  "type": "object",
+  "required": [
+    "bundle_id",
+    "docket_id",
+    "schema",
+    "schema_version",
+    "packet_hashes",
+    "bundle_hash"
+  ],
+  "properties": {
+    "bundle_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-003-BUNDLE"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "docket_id": {
+      "type": "string"
+    },
+    "commitment_id": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "hash_algorithm": {
+      "type": "string",
+      "default": "sha256"
+    },
+    "aggregation_method": {
+      "type": "string",
+      "enum": [
+        "ordered_join",
+        "merkle_root"
+      ]
+    },
+    "packet_hashes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "packet_id",
+          "hash"
+        ],
+        "properties": {
+          "packet_id": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "bundle_hash": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}

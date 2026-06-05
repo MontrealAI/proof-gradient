@@ -1,0 +1,89 @@
+{
+  "packet_id": "pp_rollout_event_011",
+  "schema": "AEP-003",
+  "schema_version": "1.1",
+  "packet_type": "rollout_event",
+  "created_at": "2026-06-05T00:00:00Z",
+  "producer": {
+    "name": "GoalOS Demo System",
+    "type": "system",
+    "version": "1.1"
+  },
+  "environment": "demo",
+  "docket_id": "ed_demo_001",
+  "commitment_id": "commit_demo_001",
+  "run_id": "run_demo_001",
+  "job_id": "job_demo_001",
+  "bundle_id": "bundle_demo_001",
+  "sequence_index": 10,
+  "artifact_refs": [
+    "artifact_demo@1.0.0"
+  ],
+  "claim_refs": [
+    "claim_001"
+  ],
+  "evidence_refs": [
+    "ev_rollout_event_011"
+  ],
+  "trace_refs": [
+    "trace_root_demo_001"
+  ],
+  "tool_refs": [],
+  "policy_refs": [
+    "policy_no_unsupported_refund@1.0.0"
+  ],
+  "eval_refs": [],
+  "risk_refs": [
+    "risk_001"
+  ],
+  "selection_ref": "selection_demo_001",
+  "rollback_ref": "",
+  "boundary": {
+    "access_class": "private",
+    "public_safe": true,
+    "contains_sensitive_data": false,
+    "retention_policy": "demo",
+    "jurisdiction": "Canada",
+    "publication_allowed": true,
+    "redaction_required": false
+  },
+  "payload": {
+    "rollout_percentage": 10,
+    "scope": "internal canary",
+    "monitoring_plan": "manual review",
+    "stop_condition": "policy violation"
+  },
+  "cost_summary": {
+    "estimated_cost_usd": 0.0
+  },
+  "latency_summary": {
+    "wall_clock_ms": 1000
+  },
+  "canonicalization_method": "json-sort-keys-utf8-zero-hash",
+  "hash_algorithm": "sha256",
+  "hash": "sha256:1adb9749b4571d7555d99f45d448288d7c951e6566e354c44a038c67f01272ce",
+  "previous_packet_hash": "sha256:f8c9d20c511841ddbc8ba86b44cb2f40e86268a254d193623cb485aff2e6a6e5",
+  "docket_hash": "",
+  "signature": {},
+  "attestations": [
+    {
+      "attestation_type": "system_validation",
+      "statement": "Demo packet generated for AEP-003 conformance testing."
+    }
+  ],
+  "claim_boundary": {
+    "supports": [
+      "Demo packet records rollout_event event."
+    ],
+    "does_not_support": [
+      "legal compliance",
+      "production readiness",
+      "perfect safety",
+      "guaranteed ROI"
+    ],
+    "limitations": [
+      "Synthetic demo only."
+    ],
+    "public_claim_allowed": true
+  }
+}
