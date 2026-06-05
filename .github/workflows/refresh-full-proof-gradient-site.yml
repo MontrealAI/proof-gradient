@@ -2,25 +2,6 @@ name: Refresh Full Proof Gradient Site
 
 on:
   workflow_dispatch:
-    inputs:
-      deploy_pages:
-        description: "Deploy GitHub Pages after refreshing the full site?"
-        required: true
-        default: "true"
-        type: choice
-        options: ["true", "false"]
-      preserve_legacy_home:
-        description: "Preserve the current home page as legacy-command-center.html before replacing it?"
-        required: true
-        default: "true"
-        type: choice
-        options: ["true", "false"]
-      refresh_home_page:
-        description: "Refresh the main /proof-gradient/ home page?"
-        required: true
-        default: "true"
-        type: choice
-        options: ["true", "false"]
 
 permissions:
   contents: write
@@ -43,17 +24,15 @@ jobs:
           fetch-depth: 0
 
       - name: Generate refreshed public site
-        id: build
         shell: bash
         run: |
           set -euo pipefail
 
           WEB_ROOT="site"
-          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
-          mkdir -p "$WEB_ROOT"
+          mkdir -p "$WEB_ROOT/standards"
           touch "$WEB_ROOT/.nojekyll"
 
-          python3 <<'PY'
+          cat > /tmp/refresh_proof_gradient_site.py <<'PY'
           from pathlib import Path
           from urllib.parse import quote
           import html
@@ -62,12 +41,7 @@ jobs:
           import shutil
           import datetime
 
-          REFRESH_HOME = "${{ inputs.refresh_home_page }}" == "true"
-          PRESERVE_LEGACY_HOME = "${{ inputs.preserve_legacy_home }}" == "true"
-
           WEB_ROOT = Path("site")
-          if not WEB_ROOT.exists() and Path("public").exists():
-              WEB_ROOT = Path("public")
           WEB_STANDARDS = WEB_ROOT / "standards"
           DOC_STANDARDS = Path("docs/standards")
 
@@ -217,10 +191,7 @@ jobs:
               return """
               :root{--bg:#05070d;--text:#f6f7ff;--muted:#b8c0da;--gold:#ffd76a;--line:rgba(255,255,255,.16);--blue:#91b7ff}
               *{box-sizing:border-box}
-              body{margin:0;background:
-                radial-gradient(circle at 18% 0%, rgba(145,183,255,.18), transparent 34rem),
-                radial-gradient(circle at 92% 5%, rgba(255,215,106,.12), transparent 28rem),
-                var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+              body{margin:0;background:radial-gradient(circle at 18% 0%, rgba(145,183,255,.18), transparent 34rem),radial-gradient(circle at 92% 5%, rgba(255,215,106,.12), transparent 28rem),var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
               main{width:min(1160px,calc(100% - 36px));margin:0 auto;padding:64px 0 92px}
               .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-weight:900;font-size:12px}
               h1{font-size:clamp(48px,8vw,106px);line-height:.88;letter-spacing:-.08em;margin:18px 0}
@@ -258,14 +229,9 @@ jobs:
               md = first_file(dst, ["*.md"])
               if md:
                   buttons.append(f'<a class="btn" href="{quote(md.name)}">Markdown</a>')
-              if (dst / "schemas").exists():
-                  buttons.append('<a class="btn" href="schemas/">Schemas</a>')
-              if (dst / "examples").exists():
-                  buttons.append('<a class="btn" href="examples/">Examples</a>')
-              if (dst / "templates").exists():
-                  buttons.append('<a class="btn" href="templates/">Templates</a>')
-              if (dst / "tools").exists():
-                  buttons.append('<a class="btn" href="tools/">Tools</a>')
+              for name in ["schemas","examples","templates","tools"]:
+                  if (dst / name).exists():
+                      buttons.append(f'<a class="btn" href="{name}/">{name.title()}</a>')
               return "\n".join(buttons)
 
           def write_aep_page(sid: str, dst: Path):
@@ -289,7 +255,6 @@ jobs:
               (dst / "index.html").write_text(page, encoding="utf-8")
 
           def write_subdir_index(folder: Path, title: str):
-              folder.mkdir(parents=True, exist_ok=True)
               dirs = sorted([p for p in folder.iterdir() if p.is_dir() and p.name not in SKIP_DIR_NAMES])
               files = sorted([p for p in folder.iterdir() if p.is_file() and p.name != "index.html"])
               rows = [(d.name + "/", quote(d.name) + "/", "Directory") for d in dirs]
@@ -310,7 +275,7 @@ jobs:
           def backup_home():
               home = WEB_ROOT / "index.html"
               backup = WEB_ROOT / "legacy-command-center.html"
-              if PRESERVE_LEGACY_HOME and home.exists() and not backup.exists():
+              if home.exists() and not backup.exists():
                   backup.write_text(home.read_text(encoding="utf-8", errors="ignore"), encoding="utf-8")
 
           def discover_existing_links_from_home():
@@ -321,15 +286,11 @@ jobs:
                   return []
               text = home.read_text(encoding="utf-8", errors="ignore")
               hrefs = re.findall(r'href=["\']([^"\']+)["\']', text)
-              kept = []
-              seen = set()
+              kept, seen = [], set()
               for href in hrefs:
-                  if href.startswith("http") or href.startswith("#") or href.startswith("mailto:"):
-                      continue
-                  if href in seen:
+                  if href.startswith("http") or href.startswith("#") or href.startswith("mailto:") or href in seen:
                       continue
                   seen.add(href)
-                  # Keep links that likely point to proof/archive pages, while avoiding standards already rendered.
                   if "proof" in href.lower() or "evidence" in href.lower() or "data/" in href.lower():
                       kept.append(href)
               return kept[:24]
@@ -340,8 +301,7 @@ jobs:
               for sid in discover_aep_ids():
                   meta = AEP_META.get(sid, {"title": sid, "desc": ""})
                   aep_cards.append(f'<a class="card" href="standards/{sid}/"><h3>{html.escape(sid)} — {html.escape(meta["short"])}</h3><p>{html.escape(meta.get("desc",""))}</p></a>')
-              proof_links = discover_existing_links_from_home()
-              proof_cards = "".join(f'<a class="card" href="{html.escape(href)}"><h3>{html.escape(href.split("/")[-2] if href.endswith("/") and len(href.split("/"))>1 else href.split("/")[-1] or href)}</h3><p>Existing proof / evidence page preserved from the current site.</p></a>' for href in proof_links)
+              proof_cards = "".join(f'<a class="card" href="{html.escape(href)}"><h3>{html.escape(href.split("/")[-2] if href.endswith("/") and len(href.split("/"))>1 else href.split("/")[-1] or href)}</h3><p>Existing proof / evidence page preserved from the current site.</p></a>' for href in discover_existing_links_from_home())
               if not proof_cards:
                   proof_cards = '<div class="card"><h3>Proof Archive</h3><p>Existing proof pages are preserved. Add proof pages or evidence JSON to make them appear here automatically.</p></div>'
               four = [
@@ -404,40 +364,34 @@ jobs:
               }
               (WEB_ROOT / "site-health.json").write_text(json.dumps(health, indent=2), encoding="utf-8")
 
-          # Copy AEP public assets.
           for src in discover_standards():
               copy_public_assets(src, WEB_STANDARDS / src.name)
 
-          # Generate AEP landing pages.
           for sid in discover_aep_ids():
               dst = WEB_STANDARDS / sid
               if dst.exists():
                   write_aep_page(sid, dst)
 
-          # Generate directory indexes for all public directories.
           for sid in discover_aep_ids():
               dst = WEB_STANDARDS / sid
               if not dst.exists():
                   continue
               for folder in sorted([p for p in dst.rglob("*") if p.is_dir()], key=lambda p: len(p.parts), reverse=True):
-                  if folder.name in SKIP_DIR_NAMES or "__pycache__" in folder.parts:
-                      continue
-                  if folder == dst:
+                  if folder.name in SKIP_DIR_NAMES or "__pycache__" in folder.parts or folder == dst:
                       continue
                   rel = folder.relative_to(WEB_STANDARDS)
                   suffix = " / ".join(rel.parts[1:])
                   write_subdir_index(folder, f"{sid} / {suffix}")
 
           write_standards_index()
-          if REFRESH_HOME:
-              write_home_page()
+          write_home_page()
           write_404()
           write_sitemap_and_health()
 
-          print(f"Full Proof Gradient site refreshed in {WEB_ROOT}")
+          print("Full Proof Gradient site refreshed.")
           PY
 
-          echo "web_root=$WEB_ROOT" >> "$GITHUB_OUTPUT"
+          python3 /tmp/refresh_proof_gradient_site.py
 
       - name: Safety check — refuse deletions
         shell: bash
@@ -456,7 +410,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "${{ steps.build.outputs.web_root }}"
+          git add site
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
@@ -465,15 +419,12 @@ jobs:
           fi
 
       - name: Configure GitHub Pages
-        if: ${{ inputs.deploy_pages == 'true' }}
         uses: actions/configure-pages@v5
 
       - name: Upload GitHub Pages artifact
-        if: ${{ inputs.deploy_pages == 'true' }}
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ steps.build.outputs.web_root }}
+          path: site
 
       - name: Deploy GitHub Pages
-        if: ${{ inputs.deploy_pages == 'true' }}
         uses: actions/deploy-pages@v4
