@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-006/schemas/rollback_authorization.schema.json",
+  "title": "AEP-006 Rollback Authorization",
+  "type": "object",
+  "required": [
+    "authorization_id",
+    "schema",
+    "schema_version",
+    "rollback_request_id",
+    "authorized_by",
+    "authorizer_role",
+    "authorization_status",
+    "authorization_reason",
+    "authorized_scope",
+    "risk_acceptance",
+    "issued_at",
+    "proof_packet_ref"
+  ],
+  "properties": {
+    "authorization_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-006-ROLLBACK-AUTHORIZATION"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "rollback_request_id": {
+      "type": "string"
+    },
+    "authorized_by": {
+      "type": "string"
+    },
+    "authorizer_role": {
+      "type": "string"
+    },
+    "authorization_status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "denied",
+        "expired",
+        "revoked"
+      ]
+    },
+    "authorization_reason": {
+      "type": "string"
+    },
+    "authorized_scope": {
+      "type": "object"
+    },
+    "risk_acceptance": {
+      "type": "string"
+    },
+    "issued_at": {
+      "type": "string"
+    },
+    "expiration": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "object"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    }
+  }
+}

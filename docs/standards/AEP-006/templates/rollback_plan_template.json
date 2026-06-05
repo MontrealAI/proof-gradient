@@ -1,0 +1,34 @@
+{
+  "rollback_plan_id": "rollback_plan_demo_001",
+  "schema": "AEP-006-ROLLBACK-PLAN",
+  "schema_version": "1.1",
+  "rollback_target": "customer_response_plan@1.0.0",
+  "baseline_ref": "customer_response_plan@1.0.0",
+  "candidate_ref": "customer_response_plan@1.1.0-candidate",
+  "scope": {
+    "tenant_id": "tenant_demo",
+    "workflow_id": "workflow_customer_response",
+    "environment": "demo"
+  },
+  "owner": "demo_operator",
+  "preconditions": [
+    "baseline artifact available",
+    "tool permissions revocable"
+  ],
+  "rollback_steps": [
+    "stop canary",
+    "restore baseline workflow",
+    "revoke candidate tool lease",
+    "record receipt"
+  ],
+  "verification_steps": [
+    "run unsupported-claim eval",
+    "verify baseline active",
+    "monitor zero canary traffic"
+  ],
+  "compensation_plan_ref": "compensation_plan_demo_001",
+  "expected_recovery_time": "15 minutes",
+  "communication_required": false,
+  "evidence_required": true,
+  "post_rollback_review_required": true
+}

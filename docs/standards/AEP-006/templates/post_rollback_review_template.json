@@ -1,0 +1,39 @@
+{
+  "review_id": "post_rollback_review_demo_001",
+  "schema": "AEP-006-POST-ROLLBACK-REVIEW",
+  "schema_version": "1.1",
+  "receipt_id": "rollback_receipt_demo_001",
+  "root_cause_summary": "Candidate response workflow lacked sufficient send-boundary check during canary.",
+  "what_failed": [
+    "canary policy threshold reached"
+  ],
+  "what_worked": [
+    "rollback plan executed",
+    "baseline restored",
+    "verification passed"
+  ],
+  "evidence_gaps": [
+    "more granular tool-call evidence recommended"
+  ],
+  "policy_updates": [
+    "tighten send permission policy"
+  ],
+  "eval_updates": [
+    "add external-send boundary eval"
+  ],
+  "tool_permission_updates": [
+    "require approval for send"
+  ],
+  "selection_gate_updates": [
+    "require send-boundary eval before canary"
+  ],
+  "artifact_updates": [
+    "update workflow guardrails"
+  ],
+  "recurrence_prevention": [
+    "add tool permission eval to pre-canary checklist"
+  ],
+  "owner": "demo_operator",
+  "due_date": "2026-06-12",
+  "status": "complete"
+}

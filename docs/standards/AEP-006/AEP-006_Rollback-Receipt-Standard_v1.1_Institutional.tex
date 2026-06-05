@@ -1,0 +1,69 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\definecolor{goalosblue}{HTML}{0B1020}
+\definecolor{goalosgold}{HTML}{B78A00}
+\hypersetup{colorlinks=true, linkcolor=goalosblue, urlcolor=goalosblue}
+\title{\textbf{AEP-006 --- Rollback Receipt Standard}\\\large Recovery Must Be Proven}
+\author{Vincent Boucher\\QUEBEC.AI \& MONTREAL.AI}
+\date{Version 1.1 Institutional Edition --- 2026-06-05}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+AEP-006 defines the Rollback Receipt Standard: the proof standard for recovery, restoration, reversal, compensation, freeze, quarantine, post-rollback verification, and post-incident review after machine work fails, violates policy, exceeds scope, causes side effects, degrades quality, or requires controlled reversion.
+\end{abstract}
+
+\section*{Canonical Thesis}
+A model can answer. An agent can act. An institution must prove. A network must select. A tool must be permitted. A release must be recoverable.
+
+\section*{Canonical Law}
+No rollback, no release.\\
+No receipt, no recovery claim.\\
+No restore point, no promotion.\\
+No compensation path, no irreversible action.\\
+No post-rollback verification, no closure.\\
+No proof, no evolution.
+
+\section{Required Objects}
+AEP-006 defines Rollback Trigger, Rollback Plan, Rollback Request, Rollback Authorization, Rollback Receipt, Rollback Verification, Compensation Receipt, Post-Rollback Review, and Recovery Bundle.
+
+\section{Rollback Status Values}
+\begin{longtable}{p{0.3\linewidth}p{0.6\linewidth}}
+\textbf{Status} & \textbf{Meaning}\\
+not\_required & Rollback not required.\\
+ready & Rollback plan and target exist.\\
+requested & Rollback has been requested.\\
+authorized & Rollback has been approved.\\
+in\_progress & Rollback is executing.\\
+completed & Rollback steps completed.\\
+verified & Recovery verified.\\
+partial & Partial rollback occurred.\\
+failed & Rollback failed.\\
+compensation\_required & Compensation needed.\\
+compensated & Compensation completed.\\
+quarantined & Candidate or environment isolated.\\
+archived & Record retained.\\
+\end{longtable}
+
+\section{Conformance Levels}
+\begin{longtable}{p{0.20\linewidth}p{0.70\linewidth}}
+Level 0 & Informal rollback note.\\
+Level 1 & Rollback plan exists.\\
+Level 2 & Rollback execution receipt exists.\\
+Level 3 & Rollback verification exists.\\
+Level 4 & Institutional rollback with authorization, evidence, ProofPackets, Selection Certificate refs, tool receipts, compensation path, public/private boundary, and post-rollback review.\\
+Level 5 & Sovereign / regulated rollback with jurisdiction, retention, protected-boundary classification, authorized approvers, public-safe controls, affected-public notice rules, post-incident review, and audit export.\\
+\end{longtable}
+
+\section{Claim Boundary}
+AEP-006 does not claim achieved AGI, achieved ASI, perfect safety, legal compliance certification, financial or legal advice, guaranteed ROI, production readiness, government endorsement, or national-security readiness. It defines a recovery proof standard.
+
+\section*{Canonical Public Line}
+AEP-001 defines the protocol. AEP-002 defines the docket. AEP-003 defines the packet. AEP-004 defines the gate. AEP-005 defines the permission. AEP-006 defines the recovery proof. GoalOS releases only what can recover, and proves when recovery happens.
+
+\end{document}

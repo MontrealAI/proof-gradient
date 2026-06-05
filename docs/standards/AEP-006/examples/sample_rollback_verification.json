@@ -1,0 +1,27 @@
+{
+  "verification_id": "rollback_verification_demo_001",
+  "schema": "AEP-006-ROLLBACK-VERIFICATION",
+  "schema_version": "1.1",
+  "receipt_id": "rollback_receipt_demo_001",
+  "verified_by": "demo_verifier",
+  "verification_status": "passed",
+  "verification_method": "eval and route check",
+  "eval_refs": [
+    "eval_unsupported_claim@1.0.0"
+  ],
+  "test_refs": [
+    "test_baseline_route_active"
+  ],
+  "monitoring_refs": [
+    "monitor_canary_traffic_zero"
+  ],
+  "evidence_refs": [
+    "ev_rollback_verification_demo_001"
+  ],
+  "restored_baseline_confirmed": true,
+  "side_effects_remaining": [],
+  "residual_risk": "low",
+  "verified_at": "2026-06-05T00:09:00Z",
+  "proof_packet_ref": "pp_rollback_verification_demo_001",
+  "hash": "sha256:d47e1b6270e24d331d446b5466c52bc2bb6e7432af7f2dfbf91bb9b98704b12f"
+}

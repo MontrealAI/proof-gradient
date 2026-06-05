@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-006/schemas/rollback_plan.schema.json",
+  "title": "AEP-006 Rollback Plan",
+  "type": "object",
+  "required": [
+    "rollback_plan_id",
+    "schema",
+    "schema_version",
+    "rollback_target",
+    "baseline_ref",
+    "candidate_ref",
+    "scope",
+    "owner",
+    "preconditions",
+    "rollback_steps",
+    "verification_steps",
+    "expected_recovery_time",
+    "communication_required",
+    "evidence_required",
+    "post_rollback_review_required"
+  ],
+  "properties": {
+    "rollback_plan_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-006-ROLLBACK-PLAN"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "rollback_target": {
+      "type": "string"
+    },
+    "baseline_ref": {
+      "type": "string"
+    },
+    "candidate_ref": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "preconditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "compensation_plan_ref": {
+      "type": "string"
+    },
+    "expected_recovery_time": {
+      "type": "string"
+    },
+    "communication_required": {
+      "type": "boolean"
+    },
+    "evidence_required": {
+      "type": "boolean"
+    },
+    "post_rollback_review_required": {
+      "type": "boolean"
+    }
+  }
+}

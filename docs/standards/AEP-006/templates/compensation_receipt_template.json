@@ -1,0 +1,22 @@
+{
+  "compensation_id": "compensation_demo_001",
+  "schema": "AEP-006-COMPENSATION-RECEIPT",
+  "schema_version": "1.1",
+  "receipt_id": "rollback_receipt_demo_failed_001",
+  "compensation_reason": "Rollback target unavailable for affected scope.",
+  "compensation_action": "send correction notice and create manual remediation task",
+  "compensation_owner": "demo_operator",
+  "compensation_status": "completed",
+  "affected_scope": {
+    "tenant_id": "tenant_demo",
+    "workflow_id": "workflow_customer_response",
+    "environment": "demo"
+  },
+  "evidence_refs": [
+    "ev_compensation_demo_001"
+  ],
+  "user_or_customer_notice": "not required for synthetic demo",
+  "created_at": "2026-06-05T00:20:00Z",
+  "proof_packet_ref": "pp_compensation_demo_001",
+  "hash": "sha256:a33990c6f1181325786c07ec10ef93614982ecf05cd35d999695a3814d42a57b"
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-006/schemas/recovery_bundle.schema.json",
+  "title": "AEP-006 Recovery Bundle",
+  "type": "object",
+  "required": [
+    "bundle_id",
+    "schema",
+    "schema_version",
+    "rollback_receipt_refs",
+    "verification_refs",
+    "bundle_hash"
+  ],
+  "properties": {
+    "bundle_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-006-RECOVERY-BUNDLE"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "rollback_receipt_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "compensation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "post_rollback_review_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bundle_hash": {
+      "type": "string"
+    }
+  }
+}

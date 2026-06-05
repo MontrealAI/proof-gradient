@@ -1,0 +1,23 @@
+{
+  "trigger_id": "rollback_trigger_demo_001",
+  "schema": "AEP-006-ROLLBACK-TRIGGER",
+  "schema_version": "1.1",
+  "trigger_type": "policy_violation",
+  "severity": "medium",
+  "detected_by": "selection_gate_monitor",
+  "detected_at": "2026-06-05T00:00:00Z",
+  "related_candidate_ref": "customer_response_plan@1.1.0-candidate",
+  "related_baseline_ref": "customer_response_plan@1.0.0",
+  "evidence_refs": [
+    "ev_policy_violation_demo_001"
+  ],
+  "proof_packet_refs": [
+    "pp_policy_violation_demo_001"
+  ],
+  "selection_certificate_ref": "sc_demo_001",
+  "tool_decision_refs": [
+    "tool_decision_001"
+  ],
+  "description": "Canary triggered policy violation threshold.",
+  "recommended_action": "stop_canary"
+}

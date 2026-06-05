@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-006/schemas/rollback_request.schema.json",
+  "title": "AEP-006 Rollback Request",
+  "type": "object",
+  "required": [
+    "rollback_request_id",
+    "schema",
+    "schema_version",
+    "trigger_id",
+    "rollback_plan_id",
+    "requested_by",
+    "requested_at",
+    "reason",
+    "requested_scope",
+    "urgency",
+    "evidence_docket_refs",
+    "proof_packet_refs",
+    "authorization_required"
+  ],
+  "properties": {
+    "rollback_request_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-006-ROLLBACK-REQUEST"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "trigger_id": {
+      "type": "string"
+    },
+    "rollback_plan_id": {
+      "type": "string"
+    },
+    "requested_by": {
+      "type": "string"
+    },
+    "requested_at": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "requested_scope": {
+      "type": "object"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "emergency"
+      ]
+    },
+    "evidence_docket_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proof_packet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "affected_users_or_systems": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "authorization_required": {
+      "type": "boolean"
+    }
+  }
+}

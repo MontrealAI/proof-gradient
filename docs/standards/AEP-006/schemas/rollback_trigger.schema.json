@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-006/schemas/rollback_trigger.schema.json",
+  "title": "AEP-006 Rollback Trigger",
+  "type": "object",
+  "required": [
+    "trigger_id",
+    "schema",
+    "schema_version",
+    "trigger_type",
+    "severity",
+    "detected_by",
+    "detected_at",
+    "related_candidate_ref",
+    "related_baseline_ref",
+    "evidence_refs",
+    "proof_packet_refs",
+    "description",
+    "recommended_action"
+  ],
+  "properties": {
+    "trigger_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-006-ROLLBACK-TRIGGER"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "trigger_type": {
+      "type": "string",
+      "enum": [
+        "eval_failure",
+        "policy_violation",
+        "safety_incident",
+        "privacy_incident",
+        "security_incident",
+        "cost_overrun",
+        "latency_regression",
+        "quality_regression",
+        "unauthorized_tool_use",
+        "canary_stop_condition",
+        "user_report",
+        "monitoring_alert",
+        "manual_escalation"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "protected",
+        "restricted"
+      ]
+    },
+    "detected_by": {
+      "type": "string"
+    },
+    "detected_at": {
+      "type": "string"
+    },
+    "related_candidate_ref": {
+      "type": "string"
+    },
+    "related_baseline_ref": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proof_packet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selection_certificate_ref": {
+      "type": "string"
+    },
+    "tool_decision_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "restore_baseline",
+        "revert_artifact",
+        "revert_workflow",
+        "revoke_permission",
+        "stop_canary",
+        "freeze_rollout",
+        "quarantine",
+        "disable_agent",
+        "disable_tool",
+        "revert_deployment",
+        "undo_transaction",
+        "send_correction",
+        "compensate",
+        "escalate_incident",
+        "manual_review"
+      ]
+    }
+  }
+}
