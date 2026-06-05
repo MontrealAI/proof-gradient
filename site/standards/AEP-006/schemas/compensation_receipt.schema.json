@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-006/schemas/compensation_receipt.schema.json",
+  "title": "AEP-006 Compensation Receipt",
+  "type": "object",
+  "required": [
+    "compensation_id",
+    "schema",
+    "schema_version",
+    "receipt_id",
+    "compensation_reason",
+    "compensation_action",
+    "compensation_owner",
+    "compensation_status",
+    "affected_scope",
+    "evidence_refs",
+    "created_at",
+    "proof_packet_ref",
+    "hash"
+  ],
+  "properties": {
+    "compensation_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-006-COMPENSATION-RECEIPT"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "receipt_id": {
+      "type": "string"
+    },
+    "compensation_reason": {
+      "type": "string"
+    },
+    "compensation_action": {
+      "type": "string"
+    },
+    "compensation_owner": {
+      "type": "string"
+    },
+    "compensation_status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "in_progress",
+        "completed",
+        "failed",
+        "not_required"
+      ]
+    },
+    "affected_scope": {
+      "type": "object"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "user_or_customer_notice": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

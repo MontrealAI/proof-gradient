@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-006/schemas/post_rollback_review.schema.json",
+  "title": "AEP-006 Post-Rollback Review",
+  "type": "object",
+  "required": [
+    "review_id",
+    "schema",
+    "schema_version",
+    "receipt_id",
+    "root_cause_summary",
+    "what_failed",
+    "what_worked",
+    "evidence_gaps",
+    "recurrence_prevention",
+    "owner",
+    "due_date",
+    "status"
+  ],
+  "properties": {
+    "review_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-006-POST-ROLLBACK-REVIEW"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "receipt_id": {
+      "type": "string"
+    },
+    "root_cause_summary": {
+      "type": "string"
+    },
+    "what_failed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "what_worked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "policy_updates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eval_updates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tool_permission_updates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selection_gate_updates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifact_updates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recurrence_prevention": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "owner": {
+      "type": "string"
+    },
+    "due_date": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "in_progress",
+        "complete",
+        "archived"
+      ]
+    }
+  }
+}

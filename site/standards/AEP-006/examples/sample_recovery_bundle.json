@@ -1,0 +1,20 @@
+{
+  "bundle_id": "recovery_bundle_demo_001",
+  "schema": "AEP-006-RECOVERY-BUNDLE",
+  "schema_version": "1.1",
+  "rollback_receipt_refs": [
+    "rollback_receipt_demo_001",
+    "rollback_receipt_demo_failed_001",
+    "rollback_receipt_demo_partial_001"
+  ],
+  "verification_refs": [
+    "rollback_verification_demo_001"
+  ],
+  "compensation_refs": [
+    "compensation_demo_001"
+  ],
+  "post_rollback_review_refs": [
+    "post_rollback_review_demo_001"
+  ],
+  "bundle_hash": "sha256:65a153bfe416b988221701b46d3ff3eb8a8798a59dc41403fe71bf421b13f817"
+}

@@ -1,0 +1,62 @@
+{
+  "receipt_id": "rollback_receipt_demo_partial_001",
+  "schema": "AEP-006-ROLLBACK-RECEIPT",
+  "schema_version": "1.1",
+  "rollback_request_id": "rollback_request_demo_001",
+  "rollback_plan_id": "rollback_plan_demo_001",
+  "trigger_id": "rollback_trigger_demo_001",
+  "status": "partial",
+  "action_type": "stop_canary",
+  "rollback_target": "customer_response_plan@1.0.0",
+  "baseline_ref": "customer_response_plan@1.0.0",
+  "candidate_ref": "customer_response_plan@1.1.0-candidate",
+  "affected_scope": {
+    "tenant_id": "tenant_demo",
+    "workflow_id": "workflow_customer_response",
+    "environment": "demo"
+  },
+  "executed_by": "demo_operator",
+  "started_at": "2026-06-05T00:03:00Z",
+  "completed_at": "2026-06-05T00:08:00Z",
+  "steps_executed": [
+    "stopped canary",
+    "baseline restored for 80 percent of scope",
+    "manual review required"
+  ],
+  "evidence_refs": [
+    "ev_rollback_log_demo_001"
+  ],
+  "proof_packet_refs": [
+    "pp_rollback_receipt_demo_001"
+  ],
+  "tool_receipt_refs": [
+    "tool_receipt_demo_001"
+  ],
+  "selection_certificate_refs": [
+    "sc_demo_001"
+  ],
+  "verification_ref": "rollback_verification_demo_001",
+  "compensation_ref": "",
+  "residual_risk": "medium",
+  "public_private_boundary": {
+    "public_safe": true,
+    "private_traces_hidden": true,
+    "protected_data_exposed": false
+  },
+  "claim_boundary": {
+    "supports": [
+      "Canary rollback executed in demo scope."
+    ],
+    "does_not_support": [
+      "production readiness",
+      "legal compliance",
+      "perfect safety",
+      "guaranteed ROI"
+    ],
+    "limitations": [
+      "Synthetic demo only."
+    ]
+  },
+  "hash": "sha256:c263a5874886ca09f4f73f513d67ca18525c6d5c1987418d7fe380326e16c1a5",
+  "signature": {}
+}

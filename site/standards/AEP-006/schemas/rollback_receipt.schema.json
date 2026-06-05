@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-006/schemas/rollback_receipt.schema.json",
+  "title": "AEP-006 Rollback Receipt",
+  "type": "object",
+  "required": [
+    "receipt_id",
+    "schema",
+    "schema_version",
+    "rollback_request_id",
+    "rollback_plan_id",
+    "trigger_id",
+    "status",
+    "action_type",
+    "rollback_target",
+    "baseline_ref",
+    "candidate_ref",
+    "affected_scope",
+    "executed_by",
+    "started_at",
+    "completed_at",
+    "steps_executed",
+    "evidence_refs",
+    "proof_packet_refs",
+    "residual_risk",
+    "public_private_boundary",
+    "claim_boundary",
+    "hash"
+  ],
+  "properties": {
+    "receipt_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-006-ROLLBACK-RECEIPT"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "rollback_request_id": {
+      "type": "string"
+    },
+    "rollback_plan_id": {
+      "type": "string"
+    },
+    "trigger_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_required",
+        "ready",
+        "requested",
+        "authorized",
+        "in_progress",
+        "completed",
+        "verified",
+        "partial",
+        "failed",
+        "compensation_required",
+        "compensated",
+        "quarantined",
+        "archived"
+      ]
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "restore_baseline",
+        "revert_artifact",
+        "revert_workflow",
+        "revoke_permission",
+        "stop_canary",
+        "freeze_rollout",
+        "quarantine",
+        "disable_agent",
+        "disable_tool",
+        "revert_deployment",
+        "undo_transaction",
+        "send_correction",
+        "compensate",
+        "escalate_incident",
+        "manual_review"
+      ]
+    },
+    "rollback_target": {
+      "type": "string"
+    },
+    "baseline_ref": {
+      "type": "string"
+    },
+    "candidate_ref": {
+      "type": "string"
+    },
+    "affected_scope": {
+      "type": "object"
+    },
+    "executed_by": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "completed_at": {
+      "type": "string"
+    },
+    "steps_executed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proof_packet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tool_receipt_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selection_certificate_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification_ref": {
+      "type": "string"
+    },
+    "compensation_ref": {
+      "type": "string"
+    },
+    "residual_risk": {
+      "type": "string"
+    },
+    "public_private_boundary": {
+      "type": "object"
+    },
+    "claim_boundary": {
+      "type": "object"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    },
+    "signature": {
+      "type": "object"
+    }
+  }
+}

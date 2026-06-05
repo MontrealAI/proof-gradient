@@ -1,0 +1,26 @@
+{
+  "rollback_request_id": "rollback_request_demo_001",
+  "schema": "AEP-006-ROLLBACK-REQUEST",
+  "schema_version": "1.1",
+  "trigger_id": "rollback_trigger_demo_001",
+  "rollback_plan_id": "rollback_plan_demo_001",
+  "requested_by": "selection_gate_monitor",
+  "requested_at": "2026-06-05T00:01:00Z",
+  "reason": "Canary stop condition triggered by policy violation.",
+  "requested_scope": {
+    "tenant_id": "tenant_demo",
+    "workflow_id": "workflow_customer_response",
+    "environment": "demo"
+  },
+  "urgency": "high",
+  "evidence_docket_refs": [
+    "ed_demo_001"
+  ],
+  "proof_packet_refs": [
+    "pp_policy_violation_demo_001"
+  ],
+  "affected_users_or_systems": [
+    "internal demo canary"
+  ],
+  "authorization_required": true
+}

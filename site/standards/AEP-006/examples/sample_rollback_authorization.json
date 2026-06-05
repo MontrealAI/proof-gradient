@@ -1,0 +1,20 @@
+{
+  "authorization_id": "rollback_auth_demo_001",
+  "schema": "AEP-006-ROLLBACK-AUTHORIZATION",
+  "schema_version": "1.1",
+  "rollback_request_id": "rollback_request_demo_001",
+  "authorized_by": "demo_selection_gate",
+  "authorizer_role": "gate_approver",
+  "authorization_status": "approved",
+  "authorization_reason": "Canary violated policy threshold; rollback authorized.",
+  "authorized_scope": {
+    "tenant_id": "tenant_demo",
+    "workflow_id": "workflow_customer_response",
+    "environment": "demo"
+  },
+  "risk_acceptance": "Residual risk low after restoring baseline.",
+  "issued_at": "2026-06-05T00:02:00Z",
+  "expiration": "2026-06-05T01:00:00Z",
+  "signature": {},
+  "proof_packet_ref": "pp_rollback_auth_demo_001"
+}

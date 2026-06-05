@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-006/schemas/rollback_verification.schema.json",
+  "title": "AEP-006 Rollback Verification",
+  "type": "object",
+  "required": [
+    "verification_id",
+    "schema",
+    "schema_version",
+    "receipt_id",
+    "verified_by",
+    "verification_status",
+    "verification_method",
+    "eval_refs",
+    "test_refs",
+    "monitoring_refs",
+    "evidence_refs",
+    "restored_baseline_confirmed",
+    "residual_risk",
+    "verified_at",
+    "proof_packet_ref",
+    "hash"
+  ],
+  "properties": {
+    "verification_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-006-ROLLBACK-VERIFICATION"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "receipt_id": {
+      "type": "string"
+    },
+    "verified_by": {
+      "type": "string"
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "partial",
+        "pending"
+      ]
+    },
+    "verification_method": {
+      "type": "string"
+    },
+    "eval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "test_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "monitoring_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "restored_baseline_confirmed": {
+      "type": "boolean"
+    },
+    "side_effects_remaining": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "residual_risk": {
+      "type": "string"
+    },
+    "verified_at": {
+      "type": "string"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}
