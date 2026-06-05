@@ -1,0 +1,66 @@
+{
+  "bundle_id": "bundle_demo_001",
+  "schema": "AEP-003-BUNDLE",
+  "schema_version": "1.1",
+  "docket_id": "ed_demo_001",
+  "commitment_id": "commit_demo_001",
+  "run_id": "run_demo_001",
+  "hash_algorithm": "sha256",
+  "aggregation_method": "ordered_join",
+  "packet_hashes": [
+    {
+      "packet_id": "pp_commit_001",
+      "hash": "sha256:5592c0abfe1658f49125f76ad5b6c975cba3de681a1b74513b08246a1468c2e1"
+    },
+    {
+      "packet_id": "pp_trace_event_002",
+      "hash": "sha256:d75ea76613cbfdaed3e1a7e4c746017af42f384ed549526b2d49120fd923b074"
+    },
+    {
+      "packet_id": "pp_tool_call_003",
+      "hash": "sha256:f2297dd0800def848162670724a7714545acea5e6e9ecae0e94b5e525005ceb8"
+    },
+    {
+      "packet_id": "pp_policy_decision_004",
+      "hash": "sha256:e0d66e9664b92e147c4abd5773e8b29523851035e7ef4046250296b52f3a54b2"
+    },
+    {
+      "packet_id": "pp_approval_005",
+      "hash": "sha256:aa0d7438257ccfaeab797be2d2a792929930c296a26f39c81717c09c0c8db04a"
+    },
+    {
+      "packet_id": "pp_eval_result_006",
+      "hash": "sha256:814ac5be0fd010fc31697af48f4ee801e4a28c6f5a5f89fca54c7eb933277434"
+    },
+    {
+      "packet_id": "pp_evidence_ref_007",
+      "hash": "sha256:9e8f2368d7dbf4196ddf835afde69d65a8b2be317dcc2d589cb4513a5ba5862c"
+    },
+    {
+      "packet_id": "pp_risk_event_008",
+      "hash": "sha256:7836704afa36ba9278ee60a285d5bfe9e82dc54f55088438d9657a9ca3c2cb44"
+    },
+    {
+      "packet_id": "pp_cost_event_009",
+      "hash": "sha256:5dfc99e61553c8ea4cd136d54a274dcb88a61adbf74f06fc70e46e79d0464be2"
+    },
+    {
+      "packet_id": "pp_selection_decision_010",
+      "hash": "sha256:f8c9d20c511841ddbc8ba86b44cb2f40e86268a254d193623cb485aff2e6a6e5"
+    },
+    {
+      "packet_id": "pp_rollout_event_011",
+      "hash": "sha256:1adb9749b4571d7555d99f45d448288d7c951e6566e354c44a038c67f01272ce"
+    },
+    {
+      "packet_id": "pp_rollback_event_012",
+      "hash": "sha256:724c92151a4f7948407beb0fc3946d728caae56c7050ff554d78893ce93db9f2"
+    },
+    {
+      "packet_id": "pp_public_report_013",
+      "hash": "sha256:3f41f9927779a3335cc080c40ac3d1cee4809bc4ed78d1b5312423bb2c313c1a"
+    }
+  ],
+  "bundle_hash": "sha256:a3849b5812ace187edca1c41733591458503bed2d10a1d3ed7042485f2ad229c",
+  "created_at": "2026-06-05T00:00:00Z"
+}

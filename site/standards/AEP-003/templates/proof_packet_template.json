@@ -1,0 +1,34 @@
+{
+  "packet_id": "",
+  "schema": "AEP-003",
+  "schema_version": "1.1",
+  "packet_type": "eval_result",
+  "created_at": "",
+  "producer": {
+    "name": "",
+    "type": "system",
+    "version": ""
+  },
+  "environment": "",
+  "docket_id": "",
+  "commitment_id": "",
+  "run_id": "",
+  "claim_refs": [],
+  "evidence_refs": [],
+  "boundary": {
+    "access_class": "private",
+    "public_safe": false,
+    "contains_sensitive_data": false,
+    "retention_policy": "",
+    "jurisdiction": "",
+    "publication_allowed": false
+  },
+  "payload": {},
+  "hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "claim_boundary": {
+    "supports": [],
+    "does_not_support": [],
+    "limitations": [],
+    "public_claim_allowed": false
+  }
+}
