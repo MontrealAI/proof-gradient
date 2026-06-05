@@ -1,0 +1,46 @@
+name: AEP-002 Official Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag'
+        required: true
+        default: 'aep-002-v1.1'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Collect AEP-002 release assets
+        run: |
+          mkdir -p /tmp/aep002_assets
+          find docs/standards/AEP-002 site/standards/AEP-002 -maxdepth 4 -type f \( -name '*.zip' -o -name '*.pdf' -o -name '*.json' -o -name '*.md' -o -name '*.txt' -o -name '*.png' \) -exec cp {} /tmp/aep002_assets/ \; 2>/dev/null || true
+          ls -la /tmp/aep002_assets
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          cat > /tmp/aep002_notes.md <<'NOTES'
+# AEP-002 — Evidence Docket Standard v1.1
+
+AEP-002 defines the Evidence Docket: the portable proof package for machine work.
+
+Canonical law:
+
+No proof, no evolution.  
+No eval, no propagation.  
+No rollback, no release.
+
+Public page:
+https://montrealai.github.io/proof-gradient/standards/AEP-002/
+NOTES
+          if gh release view "$TAG" >/dev/null 2>&1; then gh release edit "$TAG" --title 'AEP-002 — Evidence Docket Standard v1.1' --notes-file /tmp/aep002_notes.md; else gh release create "$TAG" --title 'AEP-002 — Evidence Docket Standard v1.1' --notes-file /tmp/aep002_notes.md; fi
+          if compgen -G '/tmp/aep002_assets/*' >/dev/null; then gh release upload "$TAG" /tmp/aep002_assets/* --clobber; fi

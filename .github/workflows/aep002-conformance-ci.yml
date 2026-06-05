@@ -1,0 +1,27 @@
+name: AEP-002 Conformance CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  aep002:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate sample Evidence Dockets
+        run: |
+          python docs/standards/AEP-002/tools/validate_evidence_docket.py docs/standards/AEP-002/examples/basic_evidence_docket.json
+          python docs/standards/AEP-002/tools/validate_evidence_docket.py docs/standards/AEP-002/examples/institutional_evidence_docket.json
+      - name: Score conformance
+        run: |
+          python docs/standards/AEP-002/tools/score_conformance.py docs/standards/AEP-002/examples/institutional_evidence_docket.json
