@@ -1,0 +1,241 @@
+name: Fix AEP Public Directory Index Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_pages:
+        description: "Deploy GitHub Pages after fixing AEP directory indexes?"
+        required: true
+        default: "true"
+        type: choice
+        options: ["true", "false"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: proof-gradient-aep-directory-indexes
+  cancel-in-progress: false
+
+jobs:
+  fix-aep-directory-indexes:
+    name: Add public index pages for AEP subdirectories
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Copy AEP public assets and create directory indexes
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          mkdir -p "$WEB_ROOT/standards"
+
+          python3 <<'PY'
+          from pathlib import Path
+          from urllib.parse import quote
+          import html
+          import shutil
+
+          WEB_ROOT = Path("site")
+          if not WEB_ROOT.exists() and Path("public").exists():
+              WEB_ROOT = Path("public")
+          WEB_STANDARDS = WEB_ROOT / "standards"
+          DOC_STANDARDS = Path("docs/standards")
+
+          PUBLIC_EXTENSIONS = {
+              ".html", ".htm", ".md", ".json", ".txt", ".csv", ".pdf", ".docx", ".tex",
+              ".png", ".jpg", ".jpeg", ".webp", ".svg", ".py", ".yml", ".yaml"
+          }
+          SKIP_DIR_NAMES = {".git", "__pycache__", ".pytest_cache", ".DS_Store"}
+
+          def is_public_file(path: Path) -> bool:
+              if path.name.startswith(".DS_Store"):
+                  return False
+              if path.suffix.lower() not in PUBLIC_EXTENSIONS:
+                  return False
+              if any(part in SKIP_DIR_NAMES for part in path.parts):
+                  return False
+              return True
+
+          def write_index(folder: Path, title: str) -> None:
+              folder.mkdir(parents=True, exist_ok=True)
+
+              files = sorted([p for p in folder.iterdir() if p.is_file() and p.name != "index.html"])
+              dirs = sorted([p for p in folder.iterdir() if p.is_dir() and p.name not in SKIP_DIR_NAMES])
+
+              rows = []
+              for d in dirs:
+                  rows.append((d.name + "/", quote(d.name) + "/", "Directory"))
+              for f in files:
+                  rows.append((f.name, quote(f.name), f.suffix.lstrip(".").upper() or "FILE"))
+
+              if rows:
+                  links_html = "\n".join(
+                      '<a class="item" href="{href}"><span>{name}</span><em>{kind}</em></a>'.format(
+                          href=href,
+                          name=html.escape(name),
+                          kind=html.escape(kind),
+                      )
+                      for name, href, kind in rows
+                  )
+              else:
+                  links_html = '<p class="muted">No public files were found in this directory.</p>'
+
+              page = """<!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>__TITLE__</title>
+            <style>
+              :root {
+                --bg:#05070d; --panel:rgba(255,255,255,.07); --line:rgba(255,255,255,.16);
+                --text:#f6f7ff; --muted:#b8c0da; --gold:#ffd76a; --blue:#91b7ff;
+              }
+              * { box-sizing:border-box; }
+              body {
+                margin:0;
+                background:
+                  radial-gradient(circle at 15% 0%, rgba(145,183,255,.22), transparent 34rem),
+                  radial-gradient(circle at 100% 10%, rgba(255,215,106,.14), transparent 28rem),
+                  var(--bg);
+                color:var(--text);
+                font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+              }
+              main { width:min(1080px, calc(100% - 34px)); margin:0 auto; padding:56px 0 88px; }
+              .eyebrow { color:var(--gold); text-transform:uppercase; letter-spacing:.22em; font-size:12px; font-weight:900; }
+              h1 { font-size:clamp(38px,7vw,78px); line-height:.92; letter-spacing:-.07em; margin:14px 0 18px; }
+              .lead { color:var(--muted); max-width:820px; font-size:19px; line-height:1.55; }
+              .bar { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0 30px; }
+              .btn {
+                display:inline-flex; padding:10px 14px; border:1px solid rgba(255,215,106,.5);
+                border-radius:999px; color:var(--text); text-decoration:none; font-weight:800;
+                background:rgba(255,255,255,.06);
+              }
+              .grid { display:grid; gap:10px; margin-top:24px; }
+              .item {
+                display:flex; justify-content:space-between; gap:18px; align-items:center;
+                padding:15px 17px; border:1px solid var(--line); border-radius:16px;
+                color:var(--text); text-decoration:none; background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
+              }
+              .item:hover { border-color:rgba(255,215,106,.62); transform:translateY(-1px); }
+              .item span { overflow-wrap:anywhere; }
+              .item em { color:var(--gold); font-style:normal; font-size:12px; letter-spacing:.08em; font-weight:900; }
+              .muted { color:var(--muted); }
+              footer { margin-top:36px; color:var(--muted); font-size:13px; line-height:1.5; }
+            </style>
+          </head>
+          <body>
+            <main>
+              <div class="eyebrow">Proof Gradient · Public Standard Assets</div>
+              <h1>__TITLE__</h1>
+              <p class="lead">Public files for this AEP standard. GitHub Pages does not expose raw directory listings, so this index page makes schemas, examples, templates, figures, and tools directly navigable.</p>
+              <div class="bar">
+                <a class="btn" href="../">Parent</a>
+                <a class="btn" href="/proof-gradient/standards/AEP-001/">AEP-001</a>
+                <a class="btn" href="/proof-gradient/standards/AEP-002/">AEP-002</a>
+                <a class="btn" href="/proof-gradient/standards/AEP-003/">AEP-003</a>
+                <a class="btn" href="/proof-gradient/standards/AEP-004/">AEP-004</a>
+                <a class="btn" href="/proof-gradient/standards/AEP-005/">AEP-005</a>
+                <a class="btn" href="/proof-gradient/standards/AEP-006/">AEP-006</a>
+              </div>
+              <section class="grid">
+                __LINKS__
+              </section>
+              <footer>
+                <strong>Claim boundary:</strong> public standard assets only. Private evidence, paid products, protected data, secrets, credentials, private prompts, and restricted traces should not be published here.
+              </footer>
+            </main>
+          </body>
+          </html>
+          """
+              page = page.replace("__TITLE__", html.escape(title)).replace("__LINKS__", links_html)
+              (folder / "index.html").write_text(page, encoding="utf-8")
+
+          if not DOC_STANDARDS.exists():
+              raise SystemExit("docs/standards does not exist")
+
+          standards = sorted([p for p in DOC_STANDARDS.iterdir() if p.is_dir() and p.name.startswith("AEP-")])
+          if not standards:
+              raise SystemExit("No docs/standards/AEP-* directories found")
+
+          for src_standard in standards:
+              standard_id = src_standard.name
+              dst_standard = WEB_STANDARDS / standard_id
+              dst_standard.mkdir(parents=True, exist_ok=True)
+
+              # Copy public standard assets into the published site tree.
+              for src_file in sorted(src_standard.rglob("*")):
+                  if not src_file.is_file() or not is_public_file(src_file):
+                      continue
+                  rel = src_file.relative_to(src_standard)
+                  dst_file = dst_standard / rel
+                  dst_file.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copy2(src_file, dst_file)
+
+              # Generate index pages for subdirectories first.
+              subdirs = sorted([p for p in dst_standard.rglob("*") if p.is_dir()], key=lambda p: len(p.parts), reverse=True)
+              for folder in subdirs:
+                  rel = folder.relative_to(WEB_STANDARDS)
+                  suffix = " / ".join(rel.parts[1:])
+                  title = f"{standard_id} / {suffix}" if suffix else standard_id
+                  write_index(folder, title)
+
+              # Preserve an existing root landing page if it exists.
+              root_index = dst_standard / "index.html"
+              if not root_index.exists():
+                  write_index(dst_standard, f"{standard_id} Public Standard")
+
+          print(f"Fixed public directory indexes for {len(standards)} AEP standards in {WEB_ROOT}/standards")
+          PY
+
+          echo "web_root=$WEB_ROOT" >> "$GITHUB_OUTPUT"
+
+      - name: Safety check — refuse deletions
+        shell: bash
+        run: |
+          set -euo pipefail
+          deleted="$(git diff --name-status | awk '$1 ~ /^D/ {print}')"
+          if [ -n "$deleted" ]; then
+            echo "Refusing to continue because deletions were detected:"
+            echo "$deleted"
+            exit 1
+          fi
+
+      - name: Commit AEP directory index fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.build.outputs.web_root }}/standards"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Fix AEP public directory indexes"
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        if: ${{ inputs.deploy_pages == 'true' }}
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ inputs.deploy_pages == 'true' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.build.outputs.web_root }}
+
+      - name: Deploy GitHub Pages
+        if: ${{ inputs.deploy_pages == 'true' }}
+        uses: actions/deploy-pages@v4
