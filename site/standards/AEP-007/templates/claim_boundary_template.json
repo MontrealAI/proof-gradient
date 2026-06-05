@@ -1,0 +1,17 @@
+{
+  "supported_claims": [
+    "The demo workflow avoided an unsupported refund promise in one tested scenario."
+  ],
+  "not_claimed": [
+    "legal compliance",
+    "production readiness",
+    "perfect safety",
+    "guaranteed ROI"
+  ],
+  "limitations": [
+    "Synthetic demo only."
+  ],
+  "private_boundary": "Private prompts and traces withheld.",
+  "protected_boundary": "No protected data used in demo.",
+  "correction_policy_ref": "corr_policy_001"
+}

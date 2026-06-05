@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Evidence Summary",
+  "type": "object",
+  "required": [
+    "evidence_summary_id",
+    "source_evidence_refs",
+    "public_description",
+    "what_it_supports",
+    "what_it_does_not_support",
+    "disclosure_class"
+  ],
+  "properties": {
+    "evidence_summary_id": {
+      "type": "string"
+    },
+    "source_evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "public_description": {
+      "type": "string"
+    },
+    "what_it_supports": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "what_it_does_not_support": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "disclosure_class": {
+      "type": "string",
+      "enum": [
+        "public",
+        "private",
+        "protected",
+        "forbidden",
+        "embargoed"
+      ]
+    }
+  }
+}

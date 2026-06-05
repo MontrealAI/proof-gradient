@@ -1,0 +1,10 @@
+{
+  "redaction_id": "redact_001",
+  "source_ref": "src_prompt_001",
+  "redaction_type": "withheld_private_prompt",
+  "reason": "Private prompt must not be public.",
+  "before_disclosure_class": "private",
+  "after_disclosure_class": "forbidden",
+  "reviewer": "demo_reviewer",
+  "reviewed_at": "2026-06-05T00:00:00Z"
+}

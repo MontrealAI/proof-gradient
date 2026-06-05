@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Public-Safe Report Bundle",
+  "type": "object",
+  "required": [
+    "bundle_id",
+    "schema",
+    "schema_version",
+    "report_id",
+    "report_hash",
+    "assets",
+    "created_at"
+  ],
+  "properties": {
+    "bundle_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-007-REPORT-BUNDLE"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "report_id": {
+      "type": "string"
+    },
+    "report_hash": {
+      "type": "string"
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}

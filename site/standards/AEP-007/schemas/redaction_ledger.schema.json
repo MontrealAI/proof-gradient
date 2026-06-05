@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Redaction Ledger",
+  "type": "object",
+  "required": [
+    "redaction_id",
+    "source_ref",
+    "redaction_type",
+    "reason",
+    "before_disclosure_class",
+    "after_disclosure_class",
+    "reviewer",
+    "reviewed_at"
+  ],
+  "properties": {
+    "redaction_id": {
+      "type": "string"
+    },
+    "source_ref": {
+      "type": "string"
+    },
+    "redaction_type": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "before_disclosure_class": {
+      "type": "string",
+      "enum": [
+        "public",
+        "private",
+        "protected",
+        "forbidden",
+        "embargoed"
+      ]
+    },
+    "after_disclosure_class": {
+      "type": "string",
+      "enum": [
+        "public",
+        "private",
+        "protected",
+        "forbidden",
+        "embargoed"
+      ]
+    },
+    "reviewer": {
+      "type": "string"
+    },
+    "reviewed_at": {
+      "type": "string"
+    }
+  }
+}

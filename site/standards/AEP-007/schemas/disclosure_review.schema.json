@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Disclosure Review",
+  "type": "object",
+  "required": [
+    "review_id",
+    "report_id",
+    "reviewer",
+    "reviewed_sources",
+    "decision",
+    "reviewed_at"
+  ],
+  "properties": {
+    "review_id": {
+      "type": "string"
+    },
+    "report_id": {
+      "type": "string"
+    },
+    "reviewer": {
+      "type": "string"
+    },
+    "reviewed_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "approve",
+        "revise",
+        "withhold",
+        "embargo",
+        "reject"
+      ]
+    },
+    "reviewed_at": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

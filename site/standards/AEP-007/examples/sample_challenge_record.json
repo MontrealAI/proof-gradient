@@ -1,0 +1,14 @@
+{
+  "challenge_id": "challenge_demo_001",
+  "report_id": "psr_demo_001",
+  "challenger": "public_reader",
+  "challenge_type": "claim_scope",
+  "challenged_claims": [
+    "claim_public_001"
+  ],
+  "challenge_summary": "Clarify whether this implies production readiness.",
+  "status": "corrected",
+  "response_summary": "Report says production readiness is not claimed.",
+  "created_at": "2026-06-05T00:00:00Z",
+  "resolved_at": "2026-06-05T01:00:00Z"
+}

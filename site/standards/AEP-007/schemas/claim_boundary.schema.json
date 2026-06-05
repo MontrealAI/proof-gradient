@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-007 Claim Boundary",
+  "type": "object",
+  "required": [
+    "supported_claims",
+    "not_claimed",
+    "limitations",
+    "private_boundary",
+    "protected_boundary"
+  ],
+  "properties": {
+    "supported_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "not_claimed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "private_boundary": {
+      "type": "string"
+    },
+    "protected_boundary": {
+      "type": "string"
+    },
+    "correction_policy_ref": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "bundle_id": "bundle_psr_demo_001",
+  "schema": "AEP-007-REPORT-BUNDLE",
+  "schema_version": "1.2",
+  "report_id": "psr_demo_001",
+  "report_hash": "sha256:e7e8987e601b23f38ecb800064b19132e6457be615ff228d9a16b017ad728d9a",
+  "assets": [
+    {
+      "path": "sample_public_safe_report.json",
+      "hash": "sha256:e7e8987e601b23f38ecb800064b19132e6457be615ff228d9a16b017ad728d9a",
+      "type": "json"
+    }
+  ],
+  "created_at": "2026-06-05T00:00:00Z"
+}

@@ -1,0 +1,172 @@
+{
+  "report_id": "",
+  "schema": "AEP-007-PUBLIC-SAFE-REPORT",
+  "schema_version": "1.2",
+  "title": "",
+  "owner": "GoalOS Demo Owner",
+  "organization": "Example Organization",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "status": "published",
+  "report_version": "1.0.0",
+  "public_url": "https://example.invalid/proof/psr_demo_001",
+  "jurisdiction": "Canada",
+  "source_docket_refs": [
+    "ed_demo_001"
+  ],
+  "source_proof_packet_refs": [
+    "pp_eval_001",
+    "pp_rollback_001"
+  ],
+  "public_claim_matrix": [
+    {
+      "claim_id": "claim_public_001",
+      "claim_text": "The demo workflow avoided an unsupported refund promise in the tested scenario.",
+      "claim_level": "verified",
+      "evidence_summary_refs": [
+        "evsum_001"
+      ],
+      "eval_summary_refs": [
+        "evalsum_001"
+      ],
+      "limitation_refs": [
+        "risklim_001"
+      ],
+      "public_allowed": true,
+      "not_claimed": [
+        "legal compliance",
+        "production readiness",
+        "perfect safety",
+        "guaranteed ROI"
+      ]
+    }
+  ],
+  "evidence_summaries": [
+    {
+      "evidence_summary_id": "evsum_001",
+      "source_evidence_refs": [
+        "src_eval_001"
+      ],
+      "public_description": "A private evaluator report indicated that the candidate did not promise a refund without verification.",
+      "what_it_supports": [
+        "No unsupported refund promise in this demo case."
+      ],
+      "what_it_does_not_support": [
+        "General safety or legal compliance."
+      ],
+      "disclosure_class": "public"
+    }
+  ],
+  "evaluation_summaries": [
+    {
+      "eval_summary_id": "evalsum_001",
+      "eval_name": "unsupported_claim_eval",
+      "public_result": "passed",
+      "passed": true,
+      "score_or_threshold": "1.0 / pass",
+      "limitations": [
+        "Synthetic demo only."
+      ],
+      "private_eval_ref": "private://eval/001"
+    }
+  ],
+  "risk_limitation_summaries": [
+    {
+      "risk_summary_id": "risklim_001",
+      "risk_type": "unsupported_claim",
+      "severity_public": "medium",
+      "mitigation_summary": "Claim-boundary eval and human review requirement.",
+      "residual_risk_summary": "Requires review before external use.",
+      "limitation": "Demo scenario only.",
+      "disclosure_boundary": "Private prompts and traces withheld."
+    }
+  ],
+  "rollback_recovery_summary": {
+    "recovery_summary_id": "recov_001",
+    "rollback_status": "ready",
+    "rollback_receipt_refs": [
+      "rr_demo_001"
+    ],
+    "verification_summary": "Rollback target recorded.",
+    "compensation_summary": "not required",
+    "not_claimed": [
+      "production recovery guarantee"
+    ]
+  },
+  "redaction_ledger": [
+    {
+      "redaction_id": "redact_001",
+      "source_ref": "src_prompt_001",
+      "redaction_type": "withheld_private_prompt",
+      "reason": "Private prompt must not be public.",
+      "before_disclosure_class": "private",
+      "after_disclosure_class": "forbidden",
+      "reviewer": "demo_reviewer",
+      "reviewed_at": "2026-06-05T00:00:00Z"
+    }
+  ],
+  "publication_approval": {
+    "approval_id": "approval_public_001",
+    "report_id": "psr_demo_001",
+    "approver": "demo_approver",
+    "approver_role": "publisher",
+    "approval_status": "approved",
+    "approval_reason": "Public-safe summary contains no private traces or protected data.",
+    "approved_scope": {
+      "publication": "demo"
+    },
+    "issued_at": "2026-06-05T00:00:00Z",
+    "expires_at": "2026-07-05T00:00:00Z",
+    "proof_packet_ref": "pp_public_001"
+  },
+  "correction_policy": {
+    "correction_policy_id": "corr_policy_001",
+    "report_id": "psr_demo_001",
+    "correction_window": "ongoing",
+    "challenge_window": "30 days",
+    "correction_contact": "proof@example.invalid",
+    "retraction_conditions": [
+      "material claim invalidated",
+      "private data leakage discovered"
+    ],
+    "correction_history_required": true
+  },
+  "public_artifact_links": [
+    {
+      "artifact_link_id": "link_001",
+      "label": "AEP-007 Demo Report",
+      "url": "https://example.invalid/proof/psr_demo_001",
+      "artifact_type": "html",
+      "hash": "sha256:demo",
+      "disclosure_class": "public",
+      "access_note": "demo link"
+    }
+  ],
+  "claim_boundary": {
+    "supported_claims": [
+      "The demo workflow avoided an unsupported refund promise in one tested scenario."
+    ],
+    "not_claimed": [
+      "legal compliance",
+      "production readiness",
+      "perfect safety",
+      "guaranteed ROI"
+    ],
+    "limitations": [
+      "Synthetic demo only."
+    ],
+    "private_boundary": "Private prompts and traces withheld.",
+    "protected_boundary": "No protected data used in demo.",
+    "correction_policy_ref": "corr_policy_001"
+  },
+  "accessibility_profile": {
+    "language": "en",
+    "plain_language_summary": true,
+    "machine_readable_json": true
+  },
+  "challenge_window": {
+    "status": "open",
+    "duration": "30 days"
+  },
+  "hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}
