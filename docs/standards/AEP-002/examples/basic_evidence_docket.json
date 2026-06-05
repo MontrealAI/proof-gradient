@@ -1,0 +1,252 @@
+{
+  "manifest": {
+    "docket_id": "ed_basic_001",
+    "protocol": "AEP-002",
+    "protocol_version": "1.1",
+    "parent_standard": "AEP-001",
+    "title": "Basic AI workflow Evidence Docket",
+    "owner": "GoalOS Demo Owner",
+    "organization": "Example Organization",
+    "jurisdiction": "Canada",
+    "created_at": "2026-06-05T00:00:00Z",
+    "updated_at": "2026-06-05T00:00:00Z",
+    "status": "accepted",
+    "confidentiality_class": "private",
+    "public_safe_available": true,
+    "checksum": "sha256:demo",
+    "related_artifacts": [
+      "goal_demo@1.0.0"
+    ]
+  },
+  "claims_matrix": [
+    {
+      "claim_id": "claim_001",
+      "claim_text": "The workflow produced a reusable AI work system with a documented claim boundary.",
+      "claim_type": "operational",
+      "evidence_refs": [
+        "ev_001"
+      ],
+      "eval_refs": [
+        "eval_001"
+      ],
+      "risk_refs": [
+        "risk_001"
+      ],
+      "confidence": "medium",
+      "public_claim_allowed": true,
+      "not_claimed": [
+        "guaranteed ROI",
+        "production readiness",
+        "legal compliance"
+      ]
+    }
+  ],
+  "commitment_record": {
+    "goal": "Convert one repeated AI task into a reusable work system.",
+    "success_criteria": [
+      "context documented",
+      "rules documented",
+      "workflow documented",
+      "output checks defined",
+      "proof page created"
+    ],
+    "failure_criteria": [
+      "unsupported claims",
+      "missing rollback plan",
+      "no human review for high-risk output"
+    ],
+    "constraints": [
+      "do not publish private prompts",
+      "do not claim compliance"
+    ],
+    "risk_class": "medium",
+    "authorized_by": "demo_owner",
+    "allowed_tools": [
+      "AI assistant",
+      "document editor"
+    ],
+    "disallowed_tools": [
+      "external send without approval"
+    ],
+    "required_evals": [
+      "claim_boundary_check"
+    ],
+    "approval_rules": [
+      "human review before publication"
+    ],
+    "budget": {
+      "max_cost_usd": 5
+    },
+    "rollback_required": true
+  },
+  "execution_summary": {
+    "run_id": "run_demo_001",
+    "agent_or_system": "GoalOS demo workbench",
+    "model_or_engine_class": "LLM + workflow system",
+    "execution_environment": "local browser + AI assistant",
+    "started_at": "2026-06-05T00:00:00Z",
+    "completed_at": "2026-06-05T00:20:00Z",
+    "status": "completed",
+    "output_summary": "Reusable AI work system produced.",
+    "human_review_status": "completed",
+    "exceptions": [],
+    "incident_flags": []
+  },
+  "evidence_inventory": [
+    {
+      "evidence_id": "ev_001",
+      "evidence_type": "document",
+      "description": "Generated work system and proof page.",
+      "storage_location": "private://demo/work_system",
+      "hash": "sha256:demo",
+      "access_class": "private",
+      "public_safe": true,
+      "retention_policy": "demo",
+      "related_claims": [
+        "claim_001"
+      ]
+    }
+  ],
+  "proof_packets": [
+    {
+      "proof_packet_id": "pp_001",
+      "run_id": "run_demo_001",
+      "claim_ref": "claim_001",
+      "evidence_refs": [
+        "ev_001"
+      ],
+      "eval_status": "passed",
+      "policy_status": "approved",
+      "risk_status": "medium",
+      "cost_summary": {
+        "estimated_cost": 0
+      },
+      "latency_summary": {
+        "wall_clock_minutes": 20
+      },
+      "trace_root": "sha256:demo",
+      "checksum": "sha256:demo",
+      "signature": "demo",
+      "created_at": "2026-06-05T00:20:00Z"
+    }
+  ],
+  "tool_use_ledger": [],
+  "policy_approval_ledger": [
+    {
+      "policy_name": "claim_boundary_policy",
+      "decision": "approved",
+      "reason": "unsupported claims removed",
+      "actor": "demo_reviewer",
+      "timestamp": "2026-06-05T00:21:00Z"
+    }
+  ],
+  "evaluation_results": [
+    {
+      "eval_id": "eval_001",
+      "eval_name": "claim_boundary_check",
+      "eval_type": "human_review",
+      "passed": true,
+      "score": 1.0,
+      "limitations": "demo only"
+    }
+  ],
+  "cost_latency_ledger": {
+    "cost_currency": "USD",
+    "estimated_cost": 0,
+    "actual_cost": 0,
+    "wall_clock_time": "20 minutes",
+    "human_review_time": "5 minutes"
+  },
+  "risk_ledger": [
+    {
+      "risk_id": "risk_001",
+      "risk_type": "overclaiming",
+      "severity": "medium",
+      "likelihood": "medium",
+      "mitigation": "claim boundary",
+      "residual_risk": "low",
+      "owner": "demo_owner",
+      "status": "mitigated"
+    }
+  ],
+  "selection_certificate": {
+    "decision": "approve_canary",
+    "reason": "Docket includes evidence, eval, and rollback plan.",
+    "evidence_refs": [
+      "ev_001"
+    ],
+    "eval_refs": [
+      "eval_001"
+    ],
+    "scope": "demo",
+    "canary_plan": "limited internal use",
+    "monitoring_plan": "review output quality weekly",
+    "rollback_target": "previous manual workflow",
+    "approver": "demo_selection_gate",
+    "timestamp": "2026-06-05T00:22:00Z"
+  },
+  "rollout_canary_plan": {
+    "rollout_scope": "one team",
+    "rollout_percentage": 10,
+    "target_population": "internal users",
+    "monitoring_metrics": [
+      "quality",
+      "claim boundary incidents"
+    ],
+    "stop_conditions": [
+      "unsafe output",
+      "private data leakage"
+    ],
+    "escalation_path": "owner review",
+    "rollback_trigger": "policy violation"
+  },
+  "rollback_plan": {
+    "rollback_required": true,
+    "rollback_target": "previous manual workflow",
+    "rollback_trigger": "claim boundary violation",
+    "rollback_owner": "demo_owner",
+    "rollback_steps": [
+      "disable workflow",
+      "notify users",
+      "revert to manual process"
+    ],
+    "expected_recovery_time": "1 hour",
+    "user_or_customer_notice_required": false,
+    "post_rollback_review": true
+  },
+  "public_safe_report": {
+    "what_was_tested": "A reusable AI work system workflow.",
+    "what_happened": "The system produced context, rules, workflow, checks, and proof.",
+    "evidence_summary": "Demo artifacts were reviewed.",
+    "what_passed": [
+      "claim boundary exists"
+    ],
+    "what_failed": [],
+    "what_is_claimed": [
+      "The demo produced a structured reusable work system."
+    ],
+    "what_is_not_claimed": [
+      "legal compliance",
+      "production readiness",
+      "guaranteed ROI"
+    ],
+    "next_step": "limited canary",
+    "contact_or_owner": "demo_owner",
+    "publication_status": "draft"
+  },
+  "private_appendix": {},
+  "claim_boundary": {
+    "supported_claims": [
+      "Demo produced a structured reusable work system."
+    ],
+    "not_claimed": [
+      "legal compliance",
+      "production readiness",
+      "guaranteed ROI",
+      "perfect safety"
+    ],
+    "public_boundary": "Only public-safe summary may be shared.",
+    "private_boundary": "Prompts and traces remain private.",
+    "protected_boundary": "No protected data used."
+  }
+}

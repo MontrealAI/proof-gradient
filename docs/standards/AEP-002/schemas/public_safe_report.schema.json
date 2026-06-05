@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-002/schemas/public_safe_report.schema.json",
+  "title": "AEP-002 Public-Safe Report",
+  "type": "object",
+  "required": [
+    "what_was_tested",
+    "what_happened",
+    "evidence_summary",
+    "what_is_claimed",
+    "what_is_not_claimed",
+    "publication_status"
+  ],
+  "properties": {
+    "what_was_tested": {
+      "type": "string"
+    },
+    "what_happened": {
+      "type": "string"
+    },
+    "evidence_summary": {
+      "type": "string"
+    },
+    "what_passed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "what_failed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "what_is_claimed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "what_is_not_claimed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_step": {
+      "type": "string"
+    },
+    "contact_or_owner": {
+      "type": "string"
+    },
+    "publication_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "approved",
+        "published",
+        "restricted",
+        "not_allowed"
+      ]
+    }
+  }
+}

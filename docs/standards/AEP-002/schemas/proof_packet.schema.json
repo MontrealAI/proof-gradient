@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-002/schemas/proof_packet.schema.json",
+  "title": "AEP-002 ProofPacket",
+  "type": "object",
+  "required": [
+    "proof_packet_id",
+    "run_id",
+    "claim_ref",
+    "evidence_refs",
+    "eval_status",
+    "checksum"
+  ],
+  "properties": {
+    "proof_packet_id": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "claim_ref": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eval_status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "pending",
+        "not_applicable"
+      ]
+    },
+    "policy_status": {
+      "type": "string"
+    },
+    "risk_status": {
+      "type": "string"
+    },
+    "cost_summary": {
+      "type": "object"
+    },
+    "latency_summary": {
+      "type": "object"
+    },
+    "trace_root": {
+      "type": "string"
+    },
+    "checksum": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}
