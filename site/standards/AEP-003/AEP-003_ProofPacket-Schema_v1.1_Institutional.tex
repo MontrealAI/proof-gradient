@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\definecolor{goalosblue}{HTML}{0B1020}
+\definecolor{goalosgold}{HTML}{B78A00}
+\hypersetup{colorlinks=true, linkcolor=goalosblue, urlcolor=goalosblue}
+\title{\textbf{AEP-003 --- ProofPacket Schema}\\\large Atomic Proof Units for Machine Work}
+\author{Vincent Boucher\\QUEBEC.AI \& MONTREAL.AI}
+\date{Version 1.1 Institutional Edition --- 2026-06-05}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+AEP-003 defines the ProofPacket: the atomic evidence unit emitted by an AI-agent run, machine-work step, tool call, evaluation, policy decision, selection decision, rollout event, rollback event, or public-safe report event. AEP-001 defines the protocol. AEP-002 defines the Evidence Docket. AEP-003 defines the packet-level schema that makes machine work traceable, portable, tamper-evident, and composable.
+\end{abstract}
+
+\section*{Canonical Thesis}
+A model can answer. An agent can act. An institution must prove. AEP-003 makes proof atomic.
+
+\section*{Canonical Law}
+No proof, no evolution.\\
+No eval, no propagation.\\
+No rollback, no release.
+
+\section{Required Fields}
+A conforming ProofPacket must include packet\_id, schema, schema\_version, packet\_type, created\_at, producer, docket\_id, commitment\_id, run\_id, claim\_refs, evidence\_refs, boundary, payload, hash, and claim\_boundary.
+
+\section{Packet Types}
+\begin{longtable}{p{0.25\linewidth}p{0.65\linewidth}}
+\textbf{Packet Type} & \textbf{Purpose}\\
+commit & Records mission, authorization, constraints, success criteria, and failure criteria.\\
+trace\_event & Records a relevant execution event without necessarily publishing the full trace.\\
+tool\_call & Records tool use, permission class, approval state, and result summary.\\
+policy\_decision & Records policy decision, denial, escalation, or approval requirement.\\
+approval & Records human or institutional authorization.\\
+eval\_result & Records evaluation, test, check, score, or evaluator attestation.\\
+evidence\_ref & Records a reference to evidence stored elsewhere.\\
+risk\_event & Records a risk, incident, mitigation, or residual concern.\\
+cost\_event & Records cost, latency, token count, compute time, or human-review burden.\\
+selection\_decision & Records a Selection Gate decision.\\
+rollout\_event & Records canary scope, monitoring plan, and propagation limit.\\
+rollback\_event & Records rollback trigger, target, action, owner, and recovery.\\
+public\_report & Records a public-safe report publication event.\\
+\end{longtable}
+
+\section{Canonical JSON and Hashing}
+A ProofPacket should be hashed using deterministic canonical JSON: remove mutable signature fields, set hash to a zero-placeholder, sort object keys, encode as UTF-8, and hash using SHA-256.
+
+\[
+packet\_hash = SHA256(canonical\_json(packet\_without\_signature))
+\]
+
+\section{Conformance Levels}
+\begin{longtable}{p{0.20\linewidth}p{0.70\linewidth}}
+Level 0 & Informal human-readable proof fragment.\\
+Level 1 & Valid JSON packet.\\
+Level 2 & Hashable packet with valid canonical hash.\\
+Level 3 & Docket-linked packet.\\
+Level 4 & Institutional packet with policy, eval, risk, cost, boundary, attestation, and Selection Gate references.\\
+Level 5 & Sovereign / regulated packet with jurisdiction, retention, protected-boundary classification, signer, timestamp authority, and restricted appendix controls.\\
+\end{longtable}
+
+\section{Claim Boundary}
+AEP-003 does not claim achieved AGI, achieved ASI, perfect safety, legal compliance certification, financial or legal advice, guaranteed ROI, production readiness, government endorsement, or national-security readiness. It defines an atomic proof schema.
+
+\section*{Canonical Public Line}
+AEP-001 defines the protocol. AEP-002 defines the docket. AEP-003 defines the packet. GoalOS makes machine work provable one packet at a time.
+
+\end{document}
