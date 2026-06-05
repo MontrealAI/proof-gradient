@@ -1,0 +1,40 @@
+{
+  "candidate_id": "candidate_demo_001",
+  "schema": "AEP-004-CANDIDATE",
+  "schema_version": "1.1",
+  "candidate_type": "workflow",
+  "candidate_ref": "customer_response_plan@1.1.0-candidate",
+  "baseline_ref": "customer_response_plan@1.0.0",
+  "proposer": "demo_operator",
+  "reason_for_change": "Add policy-check step before drafting refund-related response.",
+  "intended_scope": "internal canary",
+  "evidence_docket_refs": [
+    "ed_demo_001"
+  ],
+  "proof_packet_refs": [
+    "pp_eval_001",
+    "pp_tool_001",
+    "pp_rollback_001"
+  ],
+  "eval_refs": [
+    "eval_unsupported_claim@1.0.0"
+  ],
+  "risk_refs": [
+    "risk_unsupported_claim"
+  ],
+  "policy_refs": [
+    "policy_no_unsupported_refund@1.0.0"
+  ],
+  "cost_summary": {
+    "estimated_delta_usd": 0.0,
+    "latency_delta_ms": 0
+  },
+  "rollback_target": "customer_response_plan@1.0.0",
+  "requested_decision": "approve_canary",
+  "claim_boundary": {
+    "does_not_support": [
+      "production readiness",
+      "legal compliance"
+    ]
+  }
+}

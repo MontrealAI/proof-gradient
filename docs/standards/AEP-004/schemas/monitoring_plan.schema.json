@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-004/schemas/monitoring_plan.schema.json",
+  "title": "AEP-004 Monitoring Plan",
+  "type": "object",
+  "required": [
+    "metrics",
+    "thresholds",
+    "frequency",
+    "owner",
+    "escalation_path",
+    "review_after",
+    "incident_triggers"
+  ],
+  "properties": {
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "thresholds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "frequency": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "escalation_path": {
+      "type": "string"
+    },
+    "review_after": {
+      "type": "string"
+    },
+    "incident_triggers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

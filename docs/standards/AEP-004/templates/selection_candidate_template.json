@@ -1,0 +1,20 @@
+{
+  "candidate_id": "",
+  "schema": "AEP-004-CANDIDATE",
+  "schema_version": "1.1",
+  "candidate_type": "workflow",
+  "candidate_ref": "",
+  "baseline_ref": "",
+  "proposer": "",
+  "reason_for_change": "",
+  "intended_scope": "",
+  "evidence_docket_refs": [],
+  "proof_packet_refs": [],
+  "eval_refs": [],
+  "risk_refs": [],
+  "policy_refs": [],
+  "cost_summary": {},
+  "rollback_target": "",
+  "requested_decision": "approve_canary",
+  "claim_boundary": {}
+}

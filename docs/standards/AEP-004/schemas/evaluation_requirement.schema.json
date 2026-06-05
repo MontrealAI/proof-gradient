@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-004/schemas/evaluation_requirement.schema.json",
+  "title": "AEP-004 Evaluation Requirement",
+  "type": "object",
+  "required": [
+    "requirement_id",
+    "eval_refs",
+    "required_status",
+    "regression_allowed",
+    "minimum_score"
+  ],
+  "properties": {
+    "requirement_id": {
+      "type": "string"
+    },
+    "eval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "passed_with_limitations",
+        "not_required"
+      ]
+    },
+    "regression_allowed": {
+      "type": "boolean"
+    },
+    "minimum_score": {
+      "type": "number"
+    },
+    "evaluator_attestation_required": {
+      "type": "boolean"
+    }
+  }
+}

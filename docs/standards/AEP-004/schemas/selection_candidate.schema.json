@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-004/schemas/selection_candidate.schema.json",
+  "title": "AEP-004 Selection Candidate",
+  "type": "object",
+  "required": [
+    "candidate_id",
+    "schema",
+    "schema_version",
+    "candidate_type",
+    "candidate_ref",
+    "baseline_ref",
+    "proposer",
+    "reason_for_change",
+    "intended_scope",
+    "evidence_docket_refs",
+    "proof_packet_refs",
+    "eval_refs",
+    "risk_refs",
+    "policy_refs",
+    "cost_summary",
+    "rollback_target",
+    "requested_decision"
+  ],
+  "properties": {
+    "candidate_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-004-CANDIDATE"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "candidate_type": {
+      "type": "string",
+      "enum": [
+        "goal",
+        "plan",
+        "skill",
+        "capability",
+        "policy",
+        "eval",
+        "tool",
+        "context",
+        "route",
+        "workflow",
+        "model",
+        "agent_behavior",
+        "artifact_version"
+      ]
+    },
+    "candidate_ref": {
+      "type": "string"
+    },
+    "baseline_ref": {
+      "type": "string"
+    },
+    "proposer": {
+      "type": "string"
+    },
+    "reason_for_change": {
+      "type": "string"
+    },
+    "intended_scope": {
+      "type": "string"
+    },
+    "evidence_docket_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proof_packet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "policy_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cost_summary": {
+      "type": "object"
+    },
+    "rollback_target": {
+      "type": "string"
+    },
+    "requested_decision": {
+      "type": "string",
+      "enum": [
+        "promote",
+        "approve_canary",
+        "revise",
+        "reject",
+        "archive",
+        "rollback",
+        "needs_more_evidence"
+      ]
+    },
+    "claim_boundary": {
+      "type": "object"
+    }
+  }
+}

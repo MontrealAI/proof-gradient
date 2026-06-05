@@ -1,0 +1,32 @@
+{
+  "certificate_id": "",
+  "schema": "AEP-004-SELECTION-CERTIFICATE",
+  "schema_version": "1.1",
+  "decision": "approve_canary",
+  "gate_mode": "manual",
+  "candidate_id": "",
+  "candidate_type": "workflow",
+  "candidate_ref": "",
+  "baseline_ref": "",
+  "evidence_docket_refs": [],
+  "proof_packet_refs": [],
+  "eval_refs": [],
+  "risk_refs": [],
+  "policy_refs": [],
+  "decision_reason": "",
+  "approved_scope": "",
+  "canary_plan": {},
+  "monitoring_plan": {},
+  "rollback_plan": {},
+  "challenge_record": {},
+  "claim_boundary": {
+    "supports": [],
+    "does_not_support": [],
+    "limitations": []
+  },
+  "approver": "",
+  "issued_at": "",
+  "expires_at": "",
+  "review_after": "",
+  "hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}

@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-004/schemas/selection_certificate.schema.json",
+  "title": "AEP-004 Selection Certificate",
+  "type": "object",
+  "required": [
+    "certificate_id",
+    "schema",
+    "schema_version",
+    "decision",
+    "gate_mode",
+    "candidate_id",
+    "candidate_type",
+    "candidate_ref",
+    "baseline_ref",
+    "evidence_docket_refs",
+    "proof_packet_refs",
+    "eval_refs",
+    "risk_refs",
+    "policy_refs",
+    "decision_reason",
+    "approved_scope",
+    "canary_plan",
+    "monitoring_plan",
+    "rollback_plan",
+    "challenge_record",
+    "claim_boundary",
+    "approver",
+    "issued_at",
+    "expires_at",
+    "review_after",
+    "hash"
+  ],
+  "properties": {
+    "certificate_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-004-SELECTION-CERTIFICATE"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "promote",
+        "approve_canary",
+        "revise",
+        "reject",
+        "archive",
+        "rollback",
+        "needs_more_evidence"
+      ]
+    },
+    "gate_mode": {
+      "type": "string",
+      "enum": [
+        "advisory",
+        "manual",
+        "automated_bounded",
+        "emergency"
+      ]
+    },
+    "candidate_id": {
+      "type": "string"
+    },
+    "candidate_type": {
+      "type": "string",
+      "enum": [
+        "goal",
+        "plan",
+        "skill",
+        "capability",
+        "policy",
+        "eval",
+        "tool",
+        "context",
+        "route",
+        "workflow",
+        "model",
+        "agent_behavior",
+        "artifact_version"
+      ]
+    },
+    "candidate_ref": {
+      "type": "string"
+    },
+    "baseline_ref": {
+      "type": "string"
+    },
+    "evidence_docket_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proof_packet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "policy_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decision_reason": {
+      "type": "string"
+    },
+    "approved_scope": {
+      "type": "string"
+    },
+    "canary_plan": {
+      "type": "object"
+    },
+    "monitoring_plan": {
+      "type": "object"
+    },
+    "rollback_plan": {
+      "type": "object"
+    },
+    "challenge_record": {
+      "type": "object"
+    },
+    "claim_boundary": {
+      "type": "object"
+    },
+    "approver": {
+      "type": "string"
+    },
+    "issued_at": {
+      "type": "string"
+    },
+    "expires_at": {
+      "type": "string"
+    },
+    "review_after": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    },
+    "previous_certificate_hash": {
+      "type": "string"
+    },
+    "supersedes_certificate": {
+      "type": "string"
+    },
+    "revocation_status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "superseded",
+        "revoked",
+        "expired",
+        "rolled_back"
+      ]
+    },
+    "signature": {
+      "type": "object"
+    },
+    "attestations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "public_safe_summary": {
+      "type": "string"
+    }
+  }
+}

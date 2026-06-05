@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-004/schemas/evidence_requirement.schema.json",
+  "title": "AEP-004 Evidence Requirement",
+  "type": "object",
+  "required": [
+    "requirement_id",
+    "evidence_level",
+    "required_docket_sections",
+    "required_packet_types",
+    "public_private_boundary_required"
+  ],
+  "properties": {
+    "requirement_id": {
+      "type": "string"
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": [
+        "level_0",
+        "level_1",
+        "level_2",
+        "level_3",
+        "level_4",
+        "level_5"
+      ]
+    },
+    "required_docket_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_packet_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "public_private_boundary_required": {
+      "type": "boolean"
+    },
+    "min_packet_count": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}
