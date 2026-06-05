@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-001 GoalOS Proof-of-Evolution Constitution Objects",
+  "type": "object",
+  "required": [
+    "goalOSCommit",
+    "runCommitment",
+    "proofPacket",
+    "selectionCertificate"
+  ],
+  "properties": {
+    "goalOSCommit": {
+      "type": "object",
+      "required": [
+        "objective",
+        "successCriteria",
+        "constraints",
+        "authority",
+        "riskClass",
+        "budget",
+        "requiredEvaluators",
+        "rollbackObligations"
+      ],
+      "properties": {
+        "objective": {
+          "type": "string"
+        },
+        "successCriteria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "authority": {
+          "type": "string"
+        },
+        "riskClass": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "budget": {
+          "type": "object"
+        },
+        "allowedTools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requiredEvaluators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rollbackObligations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "claimBoundary": {
+          "type": "object"
+        }
+      }
+    },
+    "runCommitment": {
+      "type": "object",
+      "required": [
+        "goalOSCommitHash",
+        "artifactVersionRoots",
+        "toolPermissionRoot",
+        "policyRoot",
+        "runtimeEnvironment",
+        "signerSet"
+      ],
+      "properties": {
+        "goalOSCommitHash": {
+          "type": "string"
+        },
+        "agentSet": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "artifactVersionRoots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "toolPermissionRoot": {
+          "type": "string"
+        },
+        "policyRoot": {
+          "type": "string"
+        },
+        "runtimeEnvironment": {
+          "type": "string"
+        },
+        "signerSet": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "proofPacket": {
+      "type": "object",
+      "required": [
+        "runId",
+        "runCommitmentHash",
+        "traceRoot",
+        "outputHash",
+        "evalResultRoot",
+        "evidenceURI",
+        "signatureBundle"
+      ],
+      "properties": {
+        "runId": {
+          "type": "string"
+        },
+        "runCommitmentHash": {
+          "type": "string"
+        },
+        "traceRoot": {
+          "type": "string"
+        },
+        "outputHash": {
+          "type": "string"
+        },
+        "evalResultRoot": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "number"
+        },
+        "latencyMs": {
+          "type": "integer"
+        },
+        "creditAssignment": {
+          "type": "object"
+        },
+        "evidenceURI": {
+          "type": "string"
+        },
+        "signatureBundle": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "selectionCertificate": {
+      "type": "object",
+      "required": [
+        "candidateVersion",
+        "decision",
+        "scope",
+        "rollbackTarget",
+        "monitoringPlan",
+        "signatures"
+      ],
+      "properties": {
+        "candidateVersion": {
+          "type": "string"
+        },
+        "decision": {
+          "enum": [
+            "reject",
+            "approve_canary",
+            "promote",
+            "pause",
+            "rollback"
+          ]
+        },
+        "scope": {
+          "type": "string"
+        },
+        "canaryPlan": {
+          "type": "object"
+        },
+        "rollbackTarget": {
+          "type": "string"
+        },
+        "monitoringPlan": {
+          "type": "object"
+        },
+        "challengeWindow": {
+          "type": "string"
+        },
+        "signatures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
