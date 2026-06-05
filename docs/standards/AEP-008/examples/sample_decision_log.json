@@ -1,0 +1,27 @@
+{
+  "decision_log_id": "decision_log_demo_001",
+  "room_id": "room_demo_001",
+  "decisions": [
+    {
+      "decision_id": "decision_demo_001",
+      "decision_type": "approve_canary",
+      "decision_summary": "Candidate may be internally canaried only.",
+      "evidence_refs": [
+        "ed_demo_001"
+      ],
+      "approver": "demo_gatekeeper",
+      "issued_at": "2026-06-05T00:10:00Z",
+      "claim_boundary": {
+        "supports": [
+          "internal canary"
+        ],
+        "does_not_support": [
+          "production deployment"
+        ]
+      },
+      "supersedes": "",
+      "status": "active"
+    }
+  ],
+  "hash": "sha256:406bd36ba328132576a35e43e690a70ab5d14e3460d6cc315ad86355bde2cde8"
+}

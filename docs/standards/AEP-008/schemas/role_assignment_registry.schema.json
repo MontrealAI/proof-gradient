@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-008 Role Assignment Registry",
+  "type": "object",
+  "required": [
+    "registry_id",
+    "room_id",
+    "assignments",
+    "separation_of_duties_required",
+    "exceptions",
+    "issued_at"
+  ],
+  "properties": {
+    "registry_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    },
+    "assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "actor_id",
+          "actor_type",
+          "role",
+          "permissions",
+          "restrictions"
+        ],
+        "properties": {
+          "actor_id": {
+            "type": "string"
+          },
+          "actor_type": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "room_owner",
+              "operator",
+              "reviewer",
+              "approver",
+              "gatekeeper",
+              "tool_steward",
+              "rollback_owner",
+              "redactor",
+              "auditor",
+              "incident_lead",
+              "observer"
+            ]
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "restrictions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "separation_of_duties_required": {
+      "type": "boolean"
+    },
+    "exceptions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "issued_at": {
+      "type": "string"
+    }
+  }
+}

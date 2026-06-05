@@ -1,0 +1,32 @@
+{
+  "registry_id": "work_demo_001",
+  "room_id": "room_demo_001",
+  "work_items": [
+    {
+      "work_item_id": "work_item_demo_001",
+      "title": "Customer response workflow proof",
+      "candidate_type": "workflow",
+      "candidate_ref": "customer_response_plan@1.1.0-candidate",
+      "commitment_ref": "commit_demo_001",
+      "run_refs": [
+        "run_demo_001"
+      ],
+      "status": "under_review",
+      "evidence_docket_refs": [
+        "ed_demo_001"
+      ],
+      "selection_certificate_refs": [
+        "sc_demo_001"
+      ],
+      "rollback_refs": [
+        "rollback_demo_001"
+      ],
+      "public_report_refs": [
+        "pspr_demo_001"
+      ]
+    }
+  ],
+  "intake_status": "accepted",
+  "owner": "demo_room_owner",
+  "created_at": "2026-06-05T00:00:00Z"
+}

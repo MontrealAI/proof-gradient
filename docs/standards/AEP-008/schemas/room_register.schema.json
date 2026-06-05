@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-008 Room Register",
+  "type": "object",
+  "required": [
+    "register_id",
+    "room_id",
+    "register_type",
+    "entries",
+    "updated_at"
+  ],
+  "properties": {
+    "register_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    },
+    "register_type": {
+      "type": "string",
+      "enum": [
+        "artifact",
+        "tool_permission",
+        "evidence_docket",
+        "proof_packet",
+        "selection_gate",
+        "rollback",
+        "public_report"
+      ]
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

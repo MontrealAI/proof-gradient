@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-008 Decision Log",
+  "type": "object",
+  "required": [
+    "decision_log_id",
+    "room_id",
+    "decisions",
+    "hash"
+  ],
+  "properties": {
+    "decision_log_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "decision_id",
+          "decision_type",
+          "decision_summary",
+          "evidence_refs",
+          "approver",
+          "issued_at",
+          "claim_boundary",
+          "status"
+        ],
+        "properties": {
+          "decision_id": {
+            "type": "string"
+          },
+          "decision_type": {
+            "type": "string"
+          },
+          "decision_summary": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "approver": {
+            "type": "string"
+          },
+          "issued_at": {
+            "type": "string"
+          },
+          "claim_boundary": {
+            "type": "object"
+          },
+          "supersedes": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-008/schemas/proof_room_charter.schema.json",
+  "title": "AEP-008 Proof Room Charter",
+  "type": "object",
+  "required": [
+    "charter_id",
+    "room_id",
+    "mission",
+    "success_criteria",
+    "failure_criteria",
+    "in_scope",
+    "out_of_scope",
+    "allowed_agents",
+    "allowed_tools",
+    "allowed_data_classes",
+    "allowed_environments",
+    "required_evals",
+    "required_gate_policy",
+    "rollback_required",
+    "publication_allowed",
+    "closure_conditions"
+  ],
+  "properties": {
+    "charter_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    },
+    "mission": {
+      "type": "string"
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "failure_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "in_scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "out_of_scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_agents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_data_classes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_environments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_evals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_gate_policy": {
+      "type": "string"
+    },
+    "rollback_required": {
+      "type": "boolean"
+    },
+    "publication_allowed": {
+      "type": "boolean"
+    },
+    "closure_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

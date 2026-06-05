@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-008 Evidence Boundary",
+  "type": "object",
+  "required": [
+    "evidence_boundary_id",
+    "room_id",
+    "public_evidence_allowed",
+    "private_evidence_allowed",
+    "protected_evidence_allowed",
+    "forbidden_evidence",
+    "redaction_required",
+    "publication_rules",
+    "retention_policy",
+    "access_rules"
+  ],
+  "properties": {
+    "evidence_boundary_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    },
+    "public_evidence_allowed": {
+      "type": "boolean"
+    },
+    "private_evidence_allowed": {
+      "type": "boolean"
+    },
+    "protected_evidence_allowed": {
+      "type": "boolean"
+    },
+    "forbidden_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "redaction_required": {
+      "type": "boolean"
+    },
+    "publication_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retention_policy": {
+      "type": "string"
+    },
+    "access_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

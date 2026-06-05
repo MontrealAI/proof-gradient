@@ -1,0 +1,19 @@
+{
+  "closure_id": "closure_demo_001",
+  "room_id": "room_demo_001",
+  "closure_status": "closed_with_limitations",
+  "what_was_done": "Evaluated one AI-assisted response workflow.",
+  "what_was_proved": "Candidate passed demo unsupported-claim eval.",
+  "what_was_promoted": "No production promotion; internal canary only.",
+  "what_was_rejected": "Production readiness claim rejected.",
+  "what_was_rolled_back": "None required in demo.",
+  "what_was_published": "Public-safe summary only.",
+  "what_remains_private": "Prompts, traces, internal notes.",
+  "unresolved_items": [
+    "No production deployment"
+  ],
+  "archive_location": "archive://proof-room-demo-001",
+  "closed_by": "demo_room_owner",
+  "closed_at": "2026-06-05T00:30:00Z",
+  "hash": "sha256:6bd757f2db25beaf29230ffa9872e18fd28b49b27a09795371b2eba0949af174"
+}

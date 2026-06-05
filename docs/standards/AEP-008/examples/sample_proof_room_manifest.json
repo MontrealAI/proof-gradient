@@ -1,0 +1,17 @@
+{
+  "room_id": "room_demo_001",
+  "schema": "AEP-008-PROOF-ROOM-MANIFEST",
+  "schema_version": "1.1",
+  "room_name": "GoalOS Demo Proof Room",
+  "room_mode": "institutional",
+  "owner": "demo_room_owner",
+  "organization": "Example Organization",
+  "jurisdiction": "Canada",
+  "purpose": "Govern one AI-assisted customer response workflow and produce public-safe proof.",
+  "opened_at": "2026-06-05T00:00:00Z",
+  "status": "open",
+  "confidentiality_class": "private",
+  "evidence_boundary_ref": "boundary_demo_001",
+  "charter_ref": "charter_demo_001",
+  "hash": "sha256:b75f81fdc6c60e7584c91cc87b851ea133dcfb5e22f03e4836acd4936bbcdcf3"
+}

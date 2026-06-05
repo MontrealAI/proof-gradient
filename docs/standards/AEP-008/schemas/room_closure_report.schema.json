@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-008 Room Closure Report",
+  "type": "object",
+  "required": [
+    "closure_id",
+    "room_id",
+    "closure_status",
+    "what_was_done",
+    "what_was_proved",
+    "what_was_promoted",
+    "what_was_rejected",
+    "what_was_rolled_back",
+    "what_was_published",
+    "what_remains_private",
+    "unresolved_items",
+    "archive_location",
+    "closed_by",
+    "closed_at",
+    "hash"
+  ],
+  "properties": {
+    "closure_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    },
+    "closure_status": {
+      "type": "string"
+    },
+    "what_was_done": {
+      "type": "string"
+    },
+    "what_was_proved": {
+      "type": "string"
+    },
+    "what_was_promoted": {
+      "type": "string"
+    },
+    "what_was_rejected": {
+      "type": "string"
+    },
+    "what_was_rolled_back": {
+      "type": "string"
+    },
+    "what_was_published": {
+      "type": "string"
+    },
+    "what_remains_private": {
+      "type": "string"
+    },
+    "archive_location": {
+      "type": "string"
+    },
+    "closed_by": {
+      "type": "string"
+    },
+    "closed_at": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string"
+    },
+    "unresolved_items": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

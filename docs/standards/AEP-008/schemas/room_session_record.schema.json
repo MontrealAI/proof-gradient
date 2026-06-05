@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-008 Room Session Record",
+  "type": "object",
+  "required": [
+    "session_id",
+    "room_id",
+    "session_type",
+    "started_at",
+    "participants",
+    "agenda",
+    "decisions",
+    "evidence_refs",
+    "action_items",
+    "proof_packet_refs"
+  ],
+  "properties": {
+    "session_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    },
+    "session_type": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "ended_at": {
+      "type": "string"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "agenda": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "action_items": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proof_packet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
