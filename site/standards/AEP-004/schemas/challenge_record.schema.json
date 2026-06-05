@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-004/schemas/challenge_record.schema.json",
+  "title": "AEP-004 Challenge Record",
+  "type": "object",
+  "required": [
+    "challenge_window_required",
+    "challenge_window_duration",
+    "challenge_status",
+    "unresolved_challenges",
+    "resolution_summary"
+  ],
+  "properties": {
+    "challenge_window_required": {
+      "type": "boolean"
+    },
+    "challenge_window_duration": {
+      "type": "string"
+    },
+    "challenge_status": {
+      "type": "string",
+      "enum": [
+        "not_required",
+        "open",
+        "cleared",
+        "unresolved",
+        "waived",
+        "emergency_override"
+      ]
+    },
+    "challenger_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unresolved_challenges": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "resolution_summary": {
+      "type": "string"
+    }
+  }
+}

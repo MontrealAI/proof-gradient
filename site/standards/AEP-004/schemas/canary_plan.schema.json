@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-004/schemas/canary_plan.schema.json",
+  "title": "AEP-004 Canary Plan",
+  "type": "object",
+  "required": [
+    "canary_required",
+    "canary_scope",
+    "canary_percentage",
+    "duration",
+    "monitoring_metrics",
+    "stop_conditions",
+    "promotion_conditions",
+    "owner"
+  ],
+  "properties": {
+    "canary_required": {
+      "type": "boolean"
+    },
+    "canary_scope": {
+      "type": "string"
+    },
+    "canary_percentage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "duration": {
+      "type": "string"
+    },
+    "monitoring_metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "stop_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "promotion_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "owner": {
+      "type": "string"
+    }
+  }
+}

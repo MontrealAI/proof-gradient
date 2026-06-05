@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-004/schemas/rollback_plan.schema.json",
+  "title": "AEP-004 Rollback Plan",
+  "type": "object",
+  "required": [
+    "rollback_required",
+    "rollback_target",
+    "rollback_trigger",
+    "rollback_owner",
+    "rollback_steps",
+    "expected_recovery_time"
+  ],
+  "properties": {
+    "rollback_required": {
+      "type": "boolean"
+    },
+    "rollback_target": {
+      "type": "string"
+    },
+    "rollback_trigger": {
+      "type": "string"
+    },
+    "rollback_owner": {
+      "type": "string"
+    },
+    "rollback_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_recovery_time": {
+      "type": "string"
+    },
+    "post_rollback_review": {
+      "type": "string"
+    }
+  }
+}

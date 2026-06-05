@@ -1,0 +1,35 @@
+{
+  "policy_id": "gate_policy_demo_001",
+  "policy_version": "1.1",
+  "gate_name": "GoalOS Demo Selection Gate",
+  "gate_mode": "manual",
+  "applicable_candidate_types": [
+    "workflow",
+    "policy",
+    "eval",
+    "tool",
+    "context",
+    "artifact_version"
+  ],
+  "required_evidence_level": "level_2",
+  "required_eval_status": "passed",
+  "quality_threshold": 0.0,
+  "safety_threshold": 0.95,
+  "cost_threshold": 1.0,
+  "latency_threshold": 120000,
+  "risk_threshold": "medium",
+  "approval_requirements": [
+    "selection_gate_approver"
+  ],
+  "challenge_window": {
+    "challenge_window_required": true,
+    "duration": "72 hours"
+  },
+  "canary_required": true,
+  "rollback_required": true,
+  "monitoring_required": true,
+  "expiration_required": true,
+  "publication_rules": [
+    "public-safe summary only"
+  ]
+}

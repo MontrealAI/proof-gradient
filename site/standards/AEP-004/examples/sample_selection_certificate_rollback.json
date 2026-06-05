@@ -1,0 +1,120 @@
+{
+  "certificate_id": "sc_demo_005",
+  "schema": "AEP-004-SELECTION-CERTIFICATE",
+  "schema_version": "1.1",
+  "decision": "rollback",
+  "gate_mode": "manual",
+  "candidate_id": "candidate_demo_001",
+  "candidate_type": "workflow",
+  "candidate_ref": "customer_response_plan@1.1.0-candidate",
+  "baseline_ref": "customer_response_plan@1.0.0",
+  "evidence_docket_refs": [
+    "ed_demo_001"
+  ],
+  "proof_packet_refs": [
+    "pp_eval_001",
+    "pp_tool_001",
+    "pp_rollback_001"
+  ],
+  "eval_refs": [
+    "eval_unsupported_claim@1.0.0"
+  ],
+  "risk_refs": [
+    "risk_unsupported_claim"
+  ],
+  "policy_refs": [
+    "policy_no_unsupported_refund@1.0.0"
+  ],
+  "decision_reason": "Existing active capability breached policy threshold.",
+  "approved_scope": "none",
+  "canary_plan": {
+    "canary_required": true,
+    "canary_scope": "internal demo users",
+    "canary_percentage": 10,
+    "duration": "7 days",
+    "monitoring_metrics": [
+      "policy violations",
+      "quality regressions",
+      "human rejection rate"
+    ],
+    "stop_conditions": [
+      "policy violation",
+      "unsafe external-send attempt"
+    ],
+    "promotion_conditions": [
+      "zero policy violations",
+      "human review acceptance"
+    ],
+    "owner": "demo_operator"
+  },
+  "monitoring_plan": {
+    "metrics": [
+      "policy_violation_count",
+      "eval_pass_rate",
+      "rollback_trigger_count"
+    ],
+    "thresholds": [
+      "policy_violation_count == 0",
+      "eval_pass_rate >= 0.95"
+    ],
+    "frequency": "daily",
+    "owner": "demo_operator",
+    "escalation_path": "Selection Gate review",
+    "review_after": "2026-06-12T00:00:00Z",
+    "incident_triggers": [
+      "policy violation",
+      "high severity risk"
+    ]
+  },
+  "rollback_plan": {
+    "rollback_required": true,
+    "rollback_target": "customer_response_plan@1.0.0",
+    "rollback_trigger": "policy violation or unsafe external-send attempt",
+    "rollback_owner": "demo_operator",
+    "rollback_steps": [
+      "disable candidate workflow",
+      "restore baseline",
+      "review incident"
+    ],
+    "expected_recovery_time": "15 minutes",
+    "post_rollback_review": "required"
+  },
+  "challenge_record": {
+    "challenge_window_required": true,
+    "challenge_window_duration": "72 hours",
+    "challenge_status": "cleared",
+    "challenger_refs": [],
+    "unresolved_challenges": 0,
+    "resolution_summary": "No unresolved challenges."
+  },
+  "claim_boundary": {
+    "supports": [
+      "Candidate may be canaried internally."
+    ],
+    "does_not_support": [
+      "legal compliance",
+      "production readiness",
+      "perfect safety",
+      "guaranteed ROI"
+    ],
+    "limitations": [
+      "Synthetic demo only."
+    ]
+  },
+  "approver": "demo_selection_gate",
+  "issued_at": "2026-06-05T00:00:00Z",
+  "expires_at": "2026-07-05T00:00:00Z",
+  "review_after": "2026-06-12T00:00:00Z",
+  "hash": "sha256:bb3ee5cc0e9122c40d58221cb81515931c18da98b13d8b60cb7957f46d3c7c31",
+  "previous_certificate_hash": "",
+  "supersedes_certificate": "",
+  "revocation_status": "rolled_back",
+  "signature": {},
+  "attestations": [
+    {
+      "attestation_type": "system_validation",
+      "statement": "Demo certificate generated for AEP-004 conformance testing."
+    }
+  ],
+  "public_safe_summary": "Candidate approved for internal canary only."
+}

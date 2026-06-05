@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-004/schemas/gate_policy.schema.json",
+  "title": "AEP-004 Gate Policy",
+  "type": "object",
+  "required": [
+    "policy_id",
+    "policy_version",
+    "gate_name",
+    "gate_mode",
+    "applicable_candidate_types",
+    "required_evidence_level",
+    "required_eval_status",
+    "risk_threshold",
+    "approval_requirements",
+    "canary_required",
+    "rollback_required",
+    "monitoring_required",
+    "challenge_window",
+    "expiration_required",
+    "publication_rules"
+  ],
+  "properties": {
+    "policy_id": {
+      "type": "string"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "gate_name": {
+      "type": "string"
+    },
+    "gate_mode": {
+      "type": "string",
+      "enum": [
+        "advisory",
+        "manual",
+        "automated_bounded",
+        "emergency"
+      ]
+    },
+    "applicable_candidate_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "goal",
+          "plan",
+          "skill",
+          "capability",
+          "policy",
+          "eval",
+          "tool",
+          "context",
+          "route",
+          "workflow",
+          "model",
+          "agent_behavior",
+          "artifact_version"
+        ]
+      }
+    },
+    "required_evidence_level": {
+      "type": "string",
+      "enum": [
+        "level_0",
+        "level_1",
+        "level_2",
+        "level_3",
+        "level_4",
+        "level_5"
+      ]
+    },
+    "required_eval_status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "passed_with_limitations",
+        "not_required",
+        "failed"
+      ]
+    },
+    "quality_threshold": {
+      "type": "number"
+    },
+    "safety_threshold": {
+      "type": "number"
+    },
+    "cost_threshold": {
+      "type": "number"
+    },
+    "latency_threshold": {
+      "type": "number"
+    },
+    "risk_threshold": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "protected",
+        "restricted"
+      ]
+    },
+    "approval_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "challenge_window": {
+      "type": "object"
+    },
+    "canary_required": {
+      "type": "boolean"
+    },
+    "rollback_required": {
+      "type": "boolean"
+    },
+    "monitoring_required": {
+      "type": "boolean"
+    },
+    "expiration_required": {
+      "type": "boolean"
+    },
+    "publication_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

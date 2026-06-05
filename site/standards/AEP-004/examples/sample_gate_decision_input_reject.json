@@ -1,0 +1,7 @@
+{
+  "evidence_level": "weak",
+  "eval_status": "failed",
+  "risk": "high",
+  "rollback_ready": false,
+  "approval_ready": false
+}
