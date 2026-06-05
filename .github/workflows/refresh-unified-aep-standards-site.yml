@@ -1,0 +1,440 @@
+name: Refresh Unified AEP Standards Site
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_pages:
+        description: "Deploy GitHub Pages after refreshing the unified AEP standards site?"
+        required: true
+        default: "true"
+        type: choice
+        options: ["true", "false"]
+      update_home_page:
+        description: "Add/refresh a non-destructive AEP Standards section on the site home page?"
+        required: true
+        default: "true"
+        type: choice
+        options: ["true", "false"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: proof-gradient-unified-aep-site
+  cancel-in-progress: false
+
+jobs:
+  refresh-unified-aep-site:
+    name: Refresh all AEP pages with unified navigation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate unified AEP standards site
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          mkdir -p "$WEB_ROOT/standards"
+          touch "$WEB_ROOT/.nojekyll"
+
+          python3 <<'PY'
+          from pathlib import Path
+          from urllib.parse import quote
+          import html
+          import shutil
+          import os
+
+          UPDATE_HOME_PAGE = "${{ inputs.update_home_page }}" == "true"
+
+          WEB_ROOT = Path("site")
+          if not WEB_ROOT.exists() and Path("public").exists():
+              WEB_ROOT = Path("public")
+          WEB_STANDARDS = WEB_ROOT / "standards"
+          DOC_STANDARDS = Path("docs/standards")
+
+          PUBLIC_EXTENSIONS = {
+              ".html", ".htm", ".md", ".json", ".txt", ".csv", ".pdf", ".docx", ".tex",
+              ".png", ".jpg", ".jpeg", ".webp", ".svg", ".py", ".yml", ".yaml"
+          }
+          SKIP_DIR_NAMES = {".git", "__pycache__", ".pytest_cache", ".DS_Store"}
+
+          AEP_META = {
+              "AEP-001": {
+                  "title": "GoalOS Proof-of-Evolution Constitution",
+                  "short": "Constitution",
+                  "desc": "The constitutional protocol for Proof-Carrying Intelligence: Commit → Execute → Prove → Evolve.",
+                  "law": ["No proof, no evolution.", "No eval, no propagation.", "No rollback, no release."],
+                  "cards": [
+                      ("Protocol", "The core Commit → Execute → Prove → Evolve loop."),
+                      ("Artifact Vault", "Reusable intelligence: goals, plans, skills, tools, policies, evals, and contexts."),
+                      ("Selection Gate", "Promotes only what proved itself.")
+                  ]
+              },
+              "AEP-002": {
+                  "title": "Evidence Docket Standard",
+                  "short": "Evidence Docket",
+                  "desc": "The portable proof package for machine work: claims, evidence, evals, risk, cost, rollback, and public-safe boundaries.",
+                  "law": ["No docket, no institutional proof.", "No boundary, no publication.", "No evidence, no claim."],
+                  "cards": [
+                      ("Evidence Docket", "A portable proof package for one governed run or workflow."),
+                      ("Claim Boundary", "Separates what is supported from what is not claimed."),
+                      ("Audit Trail", "Keeps evidence reviewable across contexts.")
+                  ]
+              },
+              "AEP-003": {
+                  "title": "ProofPacket Schema",
+                  "short": "ProofPacket",
+                  "desc": "The atomic proof unit for machine work: commitments, trace events, tool calls, policy decisions, approvals, eval results, risks, costs, selections, rollouts, rollbacks, and public reports.",
+                  "law": ["No proof, no evolution.", "No eval, no propagation.", "No rollback, no release."],
+                  "cards": [
+                      ("Atomic proof", "One coherent evidence record for one machine-work fact, event, check, or decision."),
+                      ("Hashable packets", "Deterministic canonical JSON and SHA-256 packet hashes for tamper-evident proof chains."),
+                      ("Docket composition", "Many ProofPackets compose into an AEP-002 Evidence Docket.")
+                  ]
+              },
+              "AEP-004": {
+                  "title": "Selection Gate Standard",
+                  "short": "Selection Gate",
+                  "desc": "The propagation boundary for machine intelligence: promote, canary, revise, reject, archive, rollback, or request more evidence.",
+                  "law": ["No proof, no evolution.", "No eval, no propagation.", "No rollback, no release.", "Under uncertainty, fail closed."],
+                  "cards": [
+                      ("Selection Candidate", "The proposed artifact, workflow, policy, tool, eval, route, context, or capability."),
+                      ("Gate Policy", "Required evidence, evals, approvals, canary rules, and rollback readiness."),
+                      ("Selection Certificate", "The recorded decision proving what may evolve and under what scope.")
+                  ]
+              },
+              "AEP-005": {
+                  "title": "Tool Permission Standard",
+                  "short": "Tool Permission",
+                  "desc": "The Tool Gateway standard for scoped, approved, leased, revocable, and provable tool use: manifests, policies, requests, decisions, leases, approvals, receipts, revocation, compensation, and proof requirements.",
+                  "law": ["No tool without permission.", "No action without scope.", "No high-risk tool without approval.", "No permanent authority without expiration.", "No side effect without receipt."],
+                  "cards": [
+                      ("Tool Gateway", "Evaluates requests, checks policies, issues leases, requires approval, emits decisions, and fails closed."),
+                      ("Permission Lease", "Time-bounded, scope-bounded, revocable authority for tool use."),
+                      ("Receipts", "Tool calls, revocations, and compensation actions leave proof records.")
+                  ]
+              },
+              "AEP-006": {
+                  "title": "Rollback Receipt Standard",
+                  "short": "Rollback Receipt",
+                  "desc": "The recovery proof standard for rollback, restoration, compensation, verification, and post-rollback review.",
+                  "law": ["No rollback, no release.", "No receipt, no recovery claim.", "No restore point, no promotion.", "No proof, no evolution."],
+                  "cards": [
+                      ("Rollback Trigger", "The signal that initiates recovery."),
+                      ("Rollback Receipt", "The execution proof that recovery happened."),
+                      ("Rollback Verification", "The confirmation that restoration actually worked.")
+                  ]
+              },
+              "AEP-007": {
+                  "title": "Public-Safe Proof Report Standard",
+                  "short": "Public Proof",
+                  "desc": "The public proof layer: report evidence safely, bound claims precisely, publish without leaking private or protected material, and preserve corrections.",
+                  "law": ["No public claim without claim boundary.", "No public proof without redaction review.", "No private trace in public report.", "No protected data in public proof.", "No correction without history."],
+                  "cards": [
+                      ("Public Claim Matrix", "Verified, supported, observed, contextual, and not-claimed public statements."),
+                      ("Redaction Ledger", "Disclosure review that shows what was withheld, summarized, embargoed, or forbidden."),
+                      ("Correction History", "Challenge, correction, and retraction records that preserve public trust.")
+                  ]
+              },
+              "AEP-008": {
+                  "title": "Proof Room Standard",
+                  "short": "Proof Room",
+                  "desc": "The governed workspace where machine work becomes institutional proof: charters, scope, roles, evidence boundaries, registers, decisions, audit exports, closure reports, and public-safe publication.",
+                  "law": ["No room without charter.", "No run without scope.", "No evidence without boundary.", "No promotion without gate.", "No closure without archive."],
+                  "cards": [
+                      ("Proof Room Charter", "Mission, scope, success criteria, allowed agents/tools/data, required evals, and closure conditions."),
+                      ("Room Registers", "Dockets, packets, tool permissions, gates, rollbacks, reports, and decisions."),
+                      ("Audit and Closure", "Reviewable proof export with archive, unresolved items, and claim boundaries.")
+                  ]
+              },
+          }
+
+          def is_public_file(path: Path) -> bool:
+              if path.name.startswith(".DS_Store"):
+                  return False
+              if path.suffix.lower() not in PUBLIC_EXTENSIONS:
+                  return False
+              if any(part in SKIP_DIR_NAMES for part in path.parts):
+                  return False
+              if "__pycache__" in path.parts:
+                  return False
+              if path.suffix.lower() in {".pyc", ".zip", ".rtf"}:
+                  return False
+              return True
+
+          def discover_standards():
+              if not DOC_STANDARDS.exists():
+                  raise SystemExit("docs/standards does not exist")
+              standards = sorted([p for p in DOC_STANDARDS.iterdir() if p.is_dir() and p.name.startswith("AEP-")])
+              if not standards:
+                  raise SystemExit("No docs/standards/AEP-* directories found")
+              return standards
+
+          def copy_public_assets(src_standard: Path, dst_standard: Path):
+              dst_standard.mkdir(parents=True, exist_ok=True)
+              for src_file in sorted(src_standard.rglob("*")):
+                  if not src_file.is_file() or not is_public_file(src_file):
+                      continue
+                  rel = src_file.relative_to(src_standard)
+                  dst_file = dst_standard / rel
+                  dst_file.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copy2(src_file, dst_file)
+
+          def first_file(folder: Path, patterns):
+              matches = []
+              for pattern in patterns:
+                  matches.extend(folder.glob(pattern))
+              matches = [p for p in matches if p.is_file()]
+              return sorted(matches, key=lambda p: (len(p.parts), p.name))[0] if matches else None
+
+          def latest_aep_ids():
+              ids = set()
+              if DOC_STANDARDS.exists():
+                  ids |= {p.name for p in DOC_STANDARDS.iterdir() if p.is_dir() and p.name.startswith("AEP-")}
+              if WEB_STANDARDS.exists():
+                  ids |= {p.name for p in WEB_STANDARDS.iterdir() if p.is_dir() and p.name.startswith("AEP-")}
+              return sorted(ids)
+
+          def nav_buttons(current=None):
+              buttons = []
+              for sid in latest_aep_ids():
+                  label = sid if sid == current else f"{sid} {AEP_META.get(sid, {}).get('short', '')}".strip()
+                  buttons.append(f'<a class="btn" href="/proof-gradient/standards/{html.escape(sid)}/">{html.escape(label)}</a>')
+              return "\n".join(buttons)
+
+          def action_buttons(sid: str, dst: Path):
+              buttons = []
+              pdf = first_file(dst, ["*.pdf"])
+              if pdf:
+                  buttons.append(f'<a class="btn primary" href="{quote(pdf.name)}">Download PDF</a>')
+              one_page = first_file(dst / "one_page", ["*.pdf"]) if (dst / "one_page").exists() else None
+              if one_page:
+                  buttons.append(f'<a class="btn" href="one_page/{quote(one_page.name)}">One-page</a>')
+              if (dst / "schemas").exists():
+                  buttons.append('<a class="btn" href="schemas/">Schemas</a>')
+              if (dst / "examples").exists():
+                  buttons.append('<a class="btn" href="examples/">Examples</a>')
+              if (dst / "templates").exists():
+                  buttons.append('<a class="btn" href="templates/">Templates</a>')
+              if (dst / "tools").exists():
+                  buttons.append('<a class="btn" href="tools/">Tools</a>')
+              return "\n".join(buttons)
+
+          def base_styles():
+              return """
+              :root{--bg:#05070d;--text:#f6f7ff;--muted:#b8c0da;--gold:#ffd76a;--line:rgba(255,255,255,.16)}
+              *{box-sizing:border-box}
+              body{margin:0;background:
+                radial-gradient(circle at 18% 0%, rgba(145,183,255,.18), transparent 34rem),
+                radial-gradient(circle at 92% 5%, rgba(255,215,106,.12), transparent 28rem),
+                var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+              main{width:min(1120px,calc(100% - 36px));margin:0 auto;padding:64px 0 92px}
+              .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-weight:900;font-size:12px}
+              h1{font-size:clamp(48px,8vw,96px);line-height:.9;letter-spacing:-.075em;margin:18px 0}
+              h2{font-size:clamp(30px,5vw,56px);letter-spacing:-.05em;margin-top:50px}
+              .lead{max-width:900px;color:var(--muted);font-size:21px;line-height:1.55}
+              .bar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 22px}
+              .btn{display:inline-flex;margin:0;padding:11px 15px;border:1px solid rgba(255,215,106,.48);border-radius:999px;text-decoration:none;font-weight:850;background:rgba(255,255,255,.06);color:var(--text)}
+              .btn.primary{background:rgba(255,215,106,.13)}
+              .panel,.card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border-radius:24px;padding:22px}
+              .law{font-size:clamp(24px,4vw,42px);line-height:1.13;letter-spacing:-.045em}
+              .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+              .card h3{margin-top:0}.card p{color:var(--muted);line-height:1.35}
+              .stack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0}
+              .stack .card{text-decoration:none;color:var(--text)}
+              .muted{color:var(--muted)}
+              footer{margin-top:40px;color:var(--muted);font-size:13px}
+              @media(max-width:900px){.grid,.stack{grid-template-columns:1fr}}
+              """
+
+          def write_aep_page(sid: str, dst: Path):
+              meta = AEP_META.get(sid, {"title": sid, "short": sid, "desc": "Proof Gradient standard.", "law": ["No proof, no evolution."], "cards": []})
+              cards = "\n".join(
+                  f'<div class="card"><h3>{html.escape(title)}</h3><p>{html.escape(body)}</p></div>'
+                  for title, body in meta["cards"]
+              )
+              if not cards:
+                  cards = '<div class="card"><h3>Standard assets</h3><p>Public files, schemas, examples, templates, and tools.</p></div>'
+              law = "<br>".join(html.escape(x) for x in meta["law"])
+              page = f"""<!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>{html.escape(sid)} — {html.escape(meta['title'])}</title>
+            <style>{base_styles()}</style>
+          </head>
+          <body>
+            <main>
+              <div class="eyebrow">Proof Gradient · Protocol Standard</div>
+              <h1>{html.escape(sid)} — {html.escape(meta['title'])}</h1>
+              <p class="lead">{html.escape(meta['desc'])}</p>
+              <div class="bar">
+                {nav_buttons(current=sid)}
+              </div>
+              <div class="bar">
+                {action_buttons(sid, dst)}
+              </div>
+              <section class="panel"><h2>Canonical Law</h2><div class="law">{law}</div></section>
+              <section><h2>What {html.escape(sid)} Standardizes</h2><div class="grid">{cards}</div></section>
+              <section class="panel"><h2>Foundational AEP Stack</h2><p class="lead">AEP-001 defines the protocol. AEP-002 defines the docket. AEP-003 defines the packet. AEP-004 defines the gate. AEP-005 defines the permission. AEP-006 defines recovery proof. AEP-007 defines public proof. AEP-008 defines the room.</p></section>
+              <footer>Public standard page generated from <code>docs/standards/{html.escape(sid)}</code>. Private evidence, secrets, credentials, paid products, and protected traces should not be published here.</footer>
+            </main>
+          </body>
+          </html>
+          """
+              (dst / "index.html").write_text(page, encoding="utf-8")
+
+          def write_subdir_index(folder: Path, title: str):
+              folder.mkdir(parents=True, exist_ok=True)
+              dirs = sorted([p for p in folder.iterdir() if p.is_dir() and p.name not in SKIP_DIR_NAMES])
+              files = sorted([p for p in folder.iterdir() if p.is_file() and p.name != "index.html"])
+              rows = []
+              for d in dirs:
+                  rows.append((d.name + "/", quote(d.name) + "/", "Directory"))
+              for f in files:
+                  rows.append((f.name, quote(f.name), f.suffix.lstrip(".").upper() or "FILE"))
+              links = "\n".join(
+                  f'<a class="card" href="{href}"><h3>{html.escape(name)}</h3><p>{html.escape(kind)}</p></a>'
+                  for name, href, kind in rows
+              ) or '<p class="muted">No public files found.</p>'
+              page = f"""<!doctype html>
+          <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{html.escape(title)}</title><style>{base_styles()}</style></head>
+          <body><main><div class="eyebrow">Proof Gradient · Public Standard Assets</div><h1>{html.escape(title)}</h1><p class="lead">Browsable public files for this standard directory.</p><div class="bar"><a class="btn" href="../">Parent</a>{nav_buttons()}</div><div class="grid">{links}</div></main></body></html>
+          """
+              (folder / "index.html").write_text(page, encoding="utf-8")
+
+          def write_standards_index():
+              cards = []
+              for sid in latest_aep_ids():
+                  meta = AEP_META.get(sid, {"title": sid, "desc": ""})
+                  cards.append(f'<a class="card" href="{sid}/"><h3>{html.escape(sid)} — {html.escape(meta["title"])}</h3><p>{html.escape(meta.get("desc",""))}</p></a>')
+              page = f"""<!doctype html>
+          <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Proof Gradient Standards</title><style>{base_styles()}</style></head>
+          <body><main><div class="eyebrow">Proof Gradient · Foundational AEP Stack</div><h1>Proof Gradient Standards</h1><p class="lead">The GoalOS / Proof Gradient governance stack for machine work: protocol, docket, packet, gate, permission, recovery, public proof, and proof room.</p><div class="stack">{''.join(cards)}</div></main></body></html>
+          """
+              (WEB_STANDARDS / "index.html").write_text(page, encoding="utf-8")
+
+          def update_home_page():
+              if not UPDATE_HOME_PAGE:
+                  return
+              home = WEB_ROOT / "index.html"
+              if not home.exists():
+                  return
+              text = home.read_text(encoding="utf-8", errors="ignore")
+              start = "<!-- AEP-STANDARDS-SECTION:START -->"
+              end = "<!-- AEP-STANDARDS-SECTION:END -->"
+              stack_links = "\n".join(
+                  f'<a class="btn" href="/proof-gradient/standards/{sid}/">{sid}</a>'
+                  for sid in latest_aep_ids()
+              )
+              block = f"""
+              {start}
+              <section id="aep-standards" style="margin:48px auto;max-width:1120px;padding:28px;border:1px solid rgba(255,255,255,.16);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));">
+                <p style="color:#ffd76a;text-transform:uppercase;letter-spacing:.18em;font-weight:900;font-size:12px;">Proof Gradient · Foundational AEP Stack</p>
+                <h2 style="font-size:clamp(30px,5vw,56px);line-height:.95;letter-spacing:-.05em;margin:10px 0 16px;">Machine work should leave proof.</h2>
+                <p style="color:#b8c0da;font-size:19px;line-height:1.5;max-width:820px;">Browse the complete AEP standards stack: protocol, docket, packet, gate, permission, recovery, public proof, and proof room.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;">
+                  <a class="btn" href="/proof-gradient/standards/">All Standards</a>
+                  {stack_links}
+                </div>
+              </section>
+              {end}
+              """
+              if start in text and end in text:
+                  before, rest = text.split(start, 1)
+                  _, after = rest.split(end, 1)
+                  text = before + block + after
+              elif "</main>" in text:
+                  text = text.replace("</main>", block + "\n</main>", 1)
+              elif "</body>" in text:
+                  text = text.replace("</body>", block + "\n</body>", 1)
+              else:
+                  text += block
+              home.write_text(text, encoding="utf-8")
+
+          standards = discover_standards()
+          for src_standard in standards:
+              sid = src_standard.name
+              dst_standard = WEB_STANDARDS / sid
+              copy_public_assets(src_standard, dst_standard)
+
+          for sid in latest_aep_ids():
+              dst_standard = WEB_STANDARDS / sid
+              if dst_standard.exists():
+                  write_aep_page(sid, dst_standard)
+
+          for sid in latest_aep_ids():
+              dst_standard = WEB_STANDARDS / sid
+              if not dst_standard.exists():
+                  continue
+              subdirs = sorted([p for p in dst_standard.rglob("*") if p.is_dir()], key=lambda p: len(p.parts), reverse=True)
+              for folder in subdirs:
+                  if folder.name in SKIP_DIR_NAMES or "__pycache__" in folder.parts:
+                      continue
+                  rel = folder.relative_to(WEB_STANDARDS)
+                  suffix = " / ".join(rel.parts[1:])
+                  title = f"{sid} / {suffix}" if suffix else sid
+                  if folder != dst_standard:
+                      write_subdir_index(folder, title)
+
+          write_standards_index()
+          update_home_page()
+
+          print(f"Unified AEP standards site refreshed for {len(latest_aep_ids())} standards in {WEB_ROOT}/standards")
+          PY
+
+          echo "web_root=$WEB_ROOT" >> "$GITHUB_OUTPUT"
+
+      - name: Safety check — refuse deletions
+        shell: bash
+        run: |
+          set -euo pipefail
+          deleted="$(git diff --name-status | awk '$1 ~ /^D/ {print}')"
+          if [ -n "$deleted" ]; then
+            echo "Refusing to continue because deletions were detected:"
+            echo "$deleted"
+            exit 1
+          fi
+
+      - name: Commit unified AEP standards site refresh
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.build.outputs.web_root }}/standards"
+          if [ -f "${{ steps.build.outputs.web_root }}/index.html" ]; then
+            git add "${{ steps.build.outputs.web_root }}/index.html"
+          fi
+          git add "${{ steps.build.outputs.web_root }}/.nojekyll"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Refresh unified AEP standards site"
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        if: ${{ inputs.deploy_pages == 'true' }}
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ inputs.deploy_pages == 'true' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.build.outputs.web_root }}
+
+      - name: Deploy GitHub Pages
+        if: ${{ inputs.deploy_pages == 'true' }}
+        uses: actions/deploy-pages@v4
