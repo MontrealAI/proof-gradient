@@ -1,0 +1,28 @@
+name: AEP-005 Tool Permission Conformance CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-aep005:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate sample Tool Permission objects
+        run: |
+          set -euo pipefail
+          if [ -d docs/standards/AEP-005/examples ]; then
+            python docs/standards/AEP-005/tools/validate_tool_permission.py docs/standards/AEP-005/examples/sample_tool_permission_decision_allow_with_lease.json
+            python docs/standards/AEP-005/tools/validate_permission_lease.py docs/standards/AEP-005/examples/sample_permission_lease.json
+            python docs/standards/AEP-005/tools/tool_gateway_audit.py docs/standards/AEP-005/examples/sample_tool_manifest.json docs/standards/AEP-005/examples/sample_tool_permission_policy.json docs/standards/AEP-005/examples/sample_tool_request_read.json docs/standards/AEP-005/examples/sample_tool_permission_decision_allow_with_lease.json docs/standards/AEP-005/examples/sample_permission_lease.json docs/standards/AEP-005/examples/sample_tool_call_receipt.json
+          fi
