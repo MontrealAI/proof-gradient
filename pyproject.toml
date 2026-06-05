@@ -36,7 +36,7 @@ include = ["proof_gradient*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
-python_files = ["test_proof_gradient_*.py"]
+python_files = ["test_*.py"]
 
 [tool.ruff]
 line-length = 160
