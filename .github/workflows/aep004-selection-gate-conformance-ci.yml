@@ -1,0 +1,30 @@
+name: AEP-004 Selection Gate Conformance CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-aep004:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate sample Selection Certificates
+        run: |
+          set -euo pipefail
+          if [ -d docs/standards/AEP-004/examples ]; then
+            for f in docs/standards/AEP-004/examples/sample_selection_certificate_*.json; do
+              [ -f "$f" ] || continue
+              python docs/standards/AEP-004/tools/validate_selection_certificate.py "$f"
+              python docs/standards/AEP-004/tools/selection_gate_audit.py "$f"
+            done
+          fi
