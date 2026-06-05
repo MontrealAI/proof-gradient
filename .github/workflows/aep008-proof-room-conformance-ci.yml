@@ -1,0 +1,35 @@
+name: AEP-008 Proof Room Conformance CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-aep008:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate sample Proof Room objects
+        run: |
+          set -euo pipefail
+          if [ -d docs/standards/AEP-008/examples ]; then
+            python docs/standards/AEP-008/tools/validate_proof_room_manifest.py docs/standards/AEP-008/examples/sample_proof_room_manifest.json
+            python docs/standards/AEP-008/tools/proof_room_audit.py \
+              docs/standards/AEP-008/examples/sample_proof_room_manifest.json \
+              docs/standards/AEP-008/examples/sample_proof_room_charter.json \
+              docs/standards/AEP-008/examples/sample_evidence_boundary.json \
+              docs/standards/AEP-008/examples/sample_role_assignment_registry.json \
+              docs/standards/AEP-008/examples/sample_work_item_registry.json \
+              docs/standards/AEP-008/examples/sample_decision_log.json \
+              docs/standards/AEP-008/examples/sample_room_audit_export.json \
+              docs/standards/AEP-008/examples/sample_room_closure_report.json
+          fi

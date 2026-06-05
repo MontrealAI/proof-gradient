@@ -1,0 +1,58 @@
+name: AEP-008 Official Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag"
+        required: true
+        default: "aep-008-v1.1"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect release assets
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/aep008_assets
+          find docs/standards/AEP-008 site/standards/AEP-008 -maxdepth 5 -type f \
+            \( -name '*.zip' -o -name '*.pdf' -o -name '*.json' -o -name '*.md' -o -name 'SHA256SUMS.txt' -o -name 'QA_REPORT.md' \) \
+            -exec cp {} /tmp/aep008_assets/ \; 2>/dev/null || true
+          ls -la /tmp/aep008_assets
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          cat > /tmp/aep008_notes.md <<'EOF'
+          # AEP-008 — Proof Room Standard v1.1
+
+          AEP-001 defines the protocol.  
+          AEP-002 defines the docket.  
+          AEP-003 defines the packet.  
+          AEP-004 defines the gate.  
+          AEP-005 defines the permission.  
+          AEP-006 defines recovery proof.  
+          AEP-007 defines public proof.  
+          AEP-008 defines the room.
+          EOF
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --title "AEP-008 — Proof Room Standard v1.1" --notes-file /tmp/aep008_notes.md
+          else
+            gh release create "$TAG" --title "AEP-008 — Proof Room Standard v1.1" --notes-file /tmp/aep008_notes.md
+          fi
+
+          if compgen -G "/tmp/aep008_assets/*" > /dev/null; then
+            gh release upload "$TAG" /tmp/aep008_assets/* --clobber
+          fi
