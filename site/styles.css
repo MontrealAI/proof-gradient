@@ -1,0 +1,11 @@
+/* Shared fallback stylesheet for legacy Proof Gradient site checks.
+ * Most public pages carry their own inline or page-specific styles; this file
+ * preserves the required static asset contract used by the repository QA.
+ */
+:root {
+  color-scheme: dark;
+}
+
+.js-enabled body {
+  text-rendering: optimizeLegibility;
+}
