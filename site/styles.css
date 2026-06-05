@@ -1,0 +1,6 @@
+/* Proof Gradient public site fallback stylesheet.
+ * Most existing pages carry inline critical CSS; this file preserves the QA contract.
+ */
+:root {
+  color-scheme: dark;
+}

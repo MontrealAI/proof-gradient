@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC_PREFIXES = ("site", "docs", "data", ".github")
+PUBLIC_PREFIXES = ("site", "docs", "data", ".github", "releases")
 PAID_PATTERNS = [
     "*BUYER_PRODUCT*.zip",
     "*CLIENT_PACKAGE*.zip",
