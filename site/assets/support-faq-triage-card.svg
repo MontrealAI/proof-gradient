@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><radialGradient id="g" cx="75%" cy="20%" r="70%"><stop offset="0%" stop-color="#263b74"/><stop offset="55%" stop-color="#070b15"/><stop offset="100%" stop-color="#05070d"/></radialGradient></defs>
+<rect width="1600" height="900" fill="url(#g)"/>
+<text x="90" y="100" fill="#ffd76a" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="8">GOALOS · AI EFFICIENCY SPRINT</text>
+<text x="90" y="230" fill="#f6f7ff" font-family="Arial, sans-serif" font-size="86" font-weight="900">Turn support questions</text>
+<text x="90" y="332" fill="#f6f7ff" font-family="Arial, sans-serif" font-size="86" font-weight="900">into self-serve answers.</text>
+<text x="90" y="440" fill="#b8c0da" font-family="Arial, sans-serif" font-size="38">Inbox → Triage → FAQ → Reply → Escalation → Proof note</text>
+<rect x="90" y="610" width="1420" height="135" rx="34" fill="rgba(255,255,255,.08)" stroke="#ffd76a" stroke-width="3"/>
+<text x="130" y="675" fill="#ffd76a" font-family="Arial, sans-serif" font-size="34" font-weight="800">Example 7:</text>
+<text x="340" y="675" fill="#f6f7ff" font-family="Arial, sans-serif" font-size="34" font-weight="800">Support inbox → low-management help system</text>
+<text x="130" y="720" fill="#b8c0da" font-family="Arial, sans-serif" font-size="26">Reduce repetitive support without hiding policies or overpromising.</text>
+</svg>
