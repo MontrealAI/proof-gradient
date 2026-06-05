@@ -1,0 +1,307 @@
+name: Add Reusable AI Workflow Example Page
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: reusable-ai-workflow-example-page
+  cancel-in-progress: false
+
+jobs:
+  add-example-page:
+    name: Add viral reusable AI workflow example page
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create reusable AI workflow example page safely
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          mkdir -p "$WEB_ROOT"
+          touch "$WEB_ROOT/.nojekyll"
+
+          cat > /tmp/add_reusable_ai_workflow_example.py <<'PY'
+          from pathlib import Path
+          import html
+          import shutil
+          import textwrap
+
+          WEB_ROOT = Path("site")
+          if not WEB_ROOT.exists() and Path("public").exists():
+              WEB_ROOT = Path("public")
+
+          WORKFLOW_DIR = WEB_ROOT / "workflow"
+          EXAMPLE_DIR = WEB_ROOT / "examples" / "build-one-reusable-ai-workflow"
+          EXAMPLES_INDEX_DIR = WEB_ROOT / "examples"
+          ASSETS_DIR = WEB_ROOT / "assets"
+          WORKFLOW_DIR.mkdir(parents=True, exist_ok=True)
+          EXAMPLE_DIR.mkdir(parents=True, exist_ok=True)
+          EXAMPLES_INDEX_DIR.mkdir(parents=True, exist_ok=True)
+          ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+
+          def styles():
+              return """
+              :root{--bg:#05070d;--text:#f6f7ff;--muted:#b8c0da;--gold:#ffd76a;--line:rgba(255,255,255,.16);--green:#89f7b3;--blue:#91b7ff}
+              *{box-sizing:border-box}
+              body{margin:0;background:radial-gradient(circle at 18% 0%,rgba(145,183,255,.20),transparent 34rem),radial-gradient(circle at 92% 5%,rgba(255,215,106,.14),transparent 28rem),var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+              main{width:min(1160px,calc(100% - 36px));margin:0 auto;padding:64px 0 92px}
+              .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-weight:900;font-size:12px}
+              h1{font-size:clamp(48px,8vw,104px);line-height:.88;letter-spacing:-.08em;margin:18px 0}
+              h2{font-size:clamp(30px,5vw,58px);letter-spacing:-.055em;margin-top:52px}
+              h3{margin-top:0}
+              .lead{max-width:920px;color:var(--muted);font-size:21px;line-height:1.55}
+              .bar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 22px}
+              .btn{display:inline-flex;margin:0;padding:12px 16px;border:1px solid rgba(255,215,106,.52);border-radius:999px;text-decoration:none;font-weight:850;background:rgba(255,255,255,.06);color:var(--text)}
+              .btn.primary{background:rgba(255,215,106,.16)}
+              .panel,.card,.step{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border-radius:24px;padding:22px}
+              .law{font-size:clamp(24px,4vw,42px);line-height:1.13;letter-spacing:-.045em}
+              .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+              .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
+              .steps{display:grid;gap:14px;margin:28px 0}
+              .step strong{color:var(--gold)}
+              .card p,.step p{color:var(--muted);line-height:1.45}
+              code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+              pre{white-space:pre-wrap;background:#080b13;border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:18px;color:#eaf0ff;line-height:1.45;overflow-wrap:anywhere}
+              .mini{font-size:14px;color:var(--muted)}
+              .pill{display:inline-flex;padding:7px 10px;border:1px solid rgba(255,215,106,.45);border-radius:999px;color:var(--gold);font-weight:850;font-size:13px;margin:4px 4px 4px 0}
+              .arrow{font-size:42px;color:var(--gold);font-weight:900}
+              footer{margin-top:44px;color:var(--muted);font-size:13px}
+              @media(max-width:900px){.grid,.two{grid-template-columns:1fr}}
+              """
+
+          SVG = """<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+            <defs>
+              <radialGradient id="g" cx="75%" cy="20%" r="70%"><stop offset="0%" stop-color="#263b74"/><stop offset="55%" stop-color="#070b15"/><stop offset="100%" stop-color="#05070d"/></radialGradient>
+            </defs>
+            <rect width="1600" height="900" fill="url(#g)"/>
+            <text x="90" y="100" fill="#ffd76a" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="8">GOALOS · AI EFFICIENCY SPRINT</text>
+            <text x="90" y="235" fill="#f6f7ff" font-family="Arial, sans-serif" font-size="92" font-weight="900">Build one reusable</text>
+            <text x="90" y="340" fill="#f6f7ff" font-family="Arial, sans-serif" font-size="92" font-weight="900">AI workflow.</text>
+            <text x="90" y="445" fill="#b8c0da" font-family="Arial, sans-serif" font-size="38">Stop asking AI from scratch.</text>
+            <text x="90" y="505" fill="#b8c0da" font-family="Arial, sans-serif" font-size="38">Context → Rules → Memory → Workflow → Checks → Proof</text>
+            <rect x="90" y="610" width="1420" height="135" rx="34" fill="rgba(255,255,255,.08)" stroke="#ffd76a" stroke-width="3"/>
+            <text x="130" y="675" fill="#ffd76a" font-family="Arial, sans-serif" font-size="34" font-weight="800">Example:</text>
+            <text x="300" y="675" fill="#f6f7ff" font-family="Arial, sans-serif" font-size="34" font-weight="800">Customer question → Clear reply → Proof note</text>
+            <text x="130" y="720" fill="#b8c0da" font-family="Arial, sans-serif" font-size="26">One messy repeated task becomes a reusable work system in under one hour.</text>
+          </svg>"""
+          (ASSETS_DIR / "reusable-ai-workflow-card.svg").write_text(SVG, encoding="utf-8")
+
+          page = f"""<!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>Build One Reusable AI Workflow — GoalOS</title>
+            <meta name="description" content="A super-simple example: turn one repeated AI task into a reusable work system with context, rules, memory, workflow, checks, and proof." />
+            <meta property="og:title" content="Build one reusable AI workflow." />
+            <meta property="og:description" content="Stop asking AI from scratch. Turn one repeated task into a reusable work system in under one hour." />
+            <meta property="og:image" content="/proof-gradient/assets/reusable-ai-workflow-card.svg" />
+            <style>{styles()}</style>
+          </head>
+          <body>
+            <main>
+              <div class="eyebrow">GoalOS · AI Efficiency Sprint</div>
+              <h1>Build one reusable AI workflow.</h1>
+              <p class="lead">Most people use AI like a chat box. They ask the same kind of question again and again. GoalOS turns one repeated AI task into a reusable work system with context, rules, memory, workflow, checks, and proof.</p>
+
+              <div class="bar">
+                <a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Get the kit</a>
+                <a class="btn" href="/proof-gradient/standards/">See the AEP standards</a>
+                <a class="btn" href="/proof-gradient/">Proof Gradient</a>
+                <a class="btn" href="https://github.com/MontrealAI/proof-gradient">GitHub</a>
+              </div>
+
+              <section class="panel">
+                <h2>The example</h2>
+                <div class="law">Turn messy customer questions into clear, consistent, public-safe replies.</div>
+                <p class="lead">This is the perfect first workflow because almost every founder, consultant, creator, or small team has to answer the same questions repeatedly.</p>
+              </section>
+
+              <section>
+                <h2>Before vs. after</h2>
+                <div class="two">
+                  <div class="card">
+                    <h3>Before: AI as a chat box</h3>
+                    <p>A customer asks, “Why is this worth $49?” You open ChatGPT, explain your product again, ask for a reply, edit heavily, then start over next time.</p>
+                    <p class="mini">Result: repeated work, inconsistent answers, easy to overpromise.</p>
+                  </div>
+                  <div class="card">
+                    <h3>After: AI as a work system</h3>
+                    <p>You paste the question into your reusable GoalOS workflow. It already knows your offer, tone, rules, limits, checks, and proof format.</p>
+                    <p class="mini">Result: clear reply, short version, next step, proof note, claim boundary.</p>
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <h2>The workflow in plain English</h2>
+                <div class="steps">
+                  <div class="step"><strong>1. Context</strong><p>Tell the AI what you sell, who it is for, what the buyer gets, and how you want to sound.</p></div>
+                  <div class="step"><strong>2. Rules</strong><p>Tell the AI what it must always do and what it must never claim: no guaranteed income, no legal advice, no fake certainty.</p></div>
+                  <div class="step"><strong>3. Memory</strong><p>Save reusable phrases, product facts, examples, objections, and explanations so you do not start from zero again.</p></div>
+                  <div class="step"><strong>4. Workflow</strong><p>The AI follows the same steps every time: understand concern → answer clearly → give example → add next step.</p></div>
+                  <div class="step"><strong>5. Checks</strong><p>The AI checks the reply before you use it: clear, specific, safe, not hypey, and aligned with your offer.</p></div>
+                  <div class="step"><strong>6. Proof</strong><p>The AI produces a short proof note: what was answered, what was claimed, what was avoided, and whether it is public-safe.</p></div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <h2>Copy-paste example</h2>
+                <p class="lead">Customer message:</p>
+                <pre>I don’t understand how this is worth $49. Isn’t it just a bunch of templates?</pre>
+                <p class="lead">Reusable workflow output:</p>
+                <pre>That’s a fair question.
+
+If it were only a folder of templates, it would not be worth $49.
+
+The value is that the kit helps you turn one repeated AI task into a reusable work system.
+
+For example, instead of asking AI from scratch every time you need to answer a customer, write a proposal, summarize a meeting, or create a weekly update, you build one reusable workflow with:
+
+context
+rules
+memory
+steps
+checks
+proof
+
+After that, you are not starting from zero every time.
+
+You have a system you can reuse, improve, and share.
+
+The goal is simple: stop repeating the same AI task manually.</pre>
+              </section>
+
+              <section>
+                <h2>What the buyer gets</h2>
+                <div>
+                  <span class="pill">Clear reply</span>
+                  <span class="pill">Short social version</span>
+                  <span class="pill">Next step</span>
+                  <span class="pill">Proof note</span>
+                  <span class="pill">Claim boundary</span>
+                  <span class="pill">Reusable workflow</span>
+                </div>
+                <div class="grid">
+                  <div class="card"><h3>Not another prompt</h3><p>A prompt is something you ask once. A workflow is a system you can run again.</p></div>
+                  <div class="card"><h3>Not hype</h3><p>The workflow avoids income guarantees, fake certainty, and risky claims.</p></div>
+                  <div class="card"><h3>Actual leverage</h3><p>One messy repeated task becomes an asset you can reuse, share, improve, and trust.</p></div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <h2>The one-sentence promise</h2>
+                <div class="law">Stop asking AI from scratch. Build one reusable AI workflow in under one hour.</div>
+                <div class="bar">
+                  <a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Get the GoalOS AI Efficiency Sprint Kit</a>
+                  <a class="btn" href="/proof-gradient/standards/AEP-008/">See the Proof Room Standard</a>
+                </div>
+              </section>
+
+              <footer>
+                This is an educational workflow example. It does not provide legal, financial, medical, tax, employment, security, or regulatory advice. It does not guarantee income, savings, compliance, safety, accuracy, or business results. Users are responsible for reviewing outputs and applying professional judgment.
+              </footer>
+            </main>
+          </body>
+          </html>"""
+          for path in [WORKFLOW_DIR / "index.html", EXAMPLE_DIR / "index.html"]:
+              path.write_text(page, encoding="utf-8")
+
+          examples_index = f"""<!doctype html>
+          <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Proof Gradient Examples</title><style>{styles()}</style></head>
+          <body><main>
+            <div class="eyebrow">Proof Gradient · Examples</div>
+            <h1>Examples that turn AI into leverage.</h1>
+            <p class="lead">Practical, public-safe examples for turning repeated AI tasks into reusable work systems.</p>
+            <div class="grid">
+              <a class="card" href="build-one-reusable-ai-workflow/"><h3>Build one reusable AI workflow</h3><p>Customer question → clear reply → proof note.</p></a>
+            </div>
+          </main></body></html>"""
+          (EXAMPLES_INDEX_DIR / "index.html").write_text(examples_index, encoding="utf-8")
+
+          home = WEB_ROOT / "index.html"
+          if home.exists():
+              backup = WEB_ROOT / "home-before-reusable-workflow-example.html"
+              if not backup.exists():
+                  backup.write_text(home.read_text(encoding="utf-8", errors="ignore"), encoding="utf-8")
+              text = home.read_text(encoding="utf-8", errors="ignore")
+              start = "<!-- REUSABLE-AI-WORKFLOW-EXAMPLE:START -->"
+              end = "<!-- REUSABLE-AI-WORKFLOW-EXAMPLE:END -->"
+              block = f"""
+              {start}
+              <section id="reusable-ai-workflow-example" style="margin:48px auto;max-width:1120px;padding:28px;border:1px solid rgba(255,255,255,.16);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));">
+                <p style="color:#ffd76a;text-transform:uppercase;letter-spacing:.18em;font-weight:900;font-size:12px;">GoalOS · AI Efficiency Sprint</p>
+                <h2 style="font-size:clamp(30px,5vw,58px);line-height:.95;letter-spacing:-.055em;margin:10px 0 16px;">Stop asking AI from scratch.</h2>
+                <p style="color:#b8c0da;font-size:19px;line-height:1.5;max-width:820px;">See the simplest example: turn messy customer questions into a reusable AI workflow that creates a clear reply, short version, next step, proof note, and claim boundary.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;">
+                  <a class="btn" href="/proof-gradient/workflow/">Build one reusable AI workflow</a>
+                  <a class="btn" href="https://www.quebecartificialintelligence.com/shop">Get the kit</a>
+                </div>
+              </section>
+              {end}
+              """
+              if start in text and end in text:
+                  before, rest = text.split(start, 1)
+                  _, after = rest.split(end, 1)
+                  text = before + block + after
+              elif "</main>" in text:
+                  text = text.replace("</main>", block + "\n</main>", 1)
+              elif "</body>" in text:
+                  text = text.replace("</body>", block + "\n</body>", 1)
+              else:
+                  text += block
+              home.write_text(text, encoding="utf-8")
+          PY
+
+          python3 /tmp/add_reusable_ai_workflow_example.py
+
+      - name: Safety check — refuse deletions
+        shell: bash
+        run: |
+          set -euo pipefail
+          deleted="$(git diff --name-status | awk '$1 ~ /^D/ {print}')"
+          if [ -n "$deleted" ]; then
+            echo "Refusing to continue because deletions were detected:"
+            echo "$deleted"
+            exit 1
+          fi
+
+      - name: Commit reusable AI workflow example page
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$WEB_ROOT"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add reusable AI workflow example page [skip ci]"
+            git push
+          fi
+        env:
+          WEB_ROOT: site
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy GitHub Pages
+        uses: actions/deploy-pages@v4
