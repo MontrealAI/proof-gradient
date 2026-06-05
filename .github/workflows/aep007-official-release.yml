@@ -1,0 +1,25 @@
+name: AEP-007 Official Release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        required: true
+        default: aep-007-v1.2
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          cat > /tmp/aep007_notes.md <<'EOF'
+          # AEP-007 — Public-Safe Proof Report Standard v1.2
+          GoalOS proves publicly without leaking privately.
+          EOF
+          gh release create "$TAG" --title "AEP-007 — Public-Safe Proof Report Standard v1.2" --notes-file /tmp/aep007_notes.md || gh release edit "$TAG" --title "AEP-007 — Public-Safe Proof Report Standard v1.2" --notes-file /tmp/aep007_notes.md
+          find docs/standards/AEP-007 -maxdepth 4 -type f \( -name '*.pdf' -o -name '*.json' -o -name '*.md' -o -name 'SHA256SUMS.txt' \) -print0 | xargs -0 -r gh release upload "$TAG" --clobber
