@@ -1,0 +1,130 @@
+name: Add AEP-003 ProofPacket Schema Website Page
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_pages:
+        description: "Deploy GitHub Pages after creating the AEP-003 page?"
+        required: true
+        default: "true"
+        type: choice
+        options: ["true", "false"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: proof-gradient-pages
+  cancel-in-progress: false
+
+jobs:
+  add-aep003-page:
+    name: Add AEP-003 page without removing existing website
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create AEP-003 website page safely
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          mkdir -p "$WEB_ROOT/standards/AEP-003/schemas"
+          mkdir -p "$WEB_ROOT/standards/AEP-003/examples"
+          mkdir -p "$WEB_ROOT/standards/AEP-003/templates"
+
+          cp -f docs/standards/AEP-003/AEP-003_ProofPacket-Schema_v1.1_Institutional.pdf "$WEB_ROOT/standards/AEP-003/paper.pdf" 2>/dev/null || true
+          cp -f docs/standards/AEP-003/AEP-003_ProofPacket-Schema_v1.1_Institutional.md "$WEB_ROOT/standards/AEP-003/source.md" 2>/dev/null || true
+          cp -f docs/standards/AEP-003/schemas/*.json "$WEB_ROOT/standards/AEP-003/schemas/" 2>/dev/null || true
+          cp -f docs/standards/AEP-003/examples/*.json "$WEB_ROOT/standards/AEP-003/examples/" 2>/dev/null || true
+          cp -f docs/standards/AEP-003/templates/* "$WEB_ROOT/standards/AEP-003/templates/" 2>/dev/null || true
+
+          cat > "$WEB_ROOT/standards/AEP-003/index.html" <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>AEP-003 — ProofPacket Schema</title>
+            <style>
+              body{margin:0;background:#05070d;color:#f6f7ff;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+              main{width:min(1120px,calc(100% - 36px));margin:0 auto;padding:64px 0 90px}
+              h1{font-size:clamp(48px,8vw,96px);line-height:.9;letter-spacing:-.075em;margin:18px 0}
+              h2{font-size:clamp(30px,5vw,56px);letter-spacing:-.05em;margin-top:50px}
+              .eyebrow{color:#ffd76a;text-transform:uppercase;letter-spacing:.22em;font-weight:900;font-size:12px}
+              .lead{max-width:880px;color:#b8c0da;font-size:21px;line-height:1.55}
+              .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+              .card,.panel{border:1px solid rgba(255,255,255,.16);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border-radius:24px;padding:22px}
+              a{color:#f6f7ff}.btn{display:inline-flex;margin:8px 8px 8px 0;padding:11px 15px;border:1px solid rgba(255,215,106,.45);border-radius:999px;text-decoration:none;font-weight:800;background:rgba(255,255,255,.06)}
+              .law{font-size:clamp(24px,4vw,42px);line-height:1.12;letter-spacing:-.04em}
+              @media(max-width:850px){.grid{grid-template-columns:1fr}}
+            </style>
+          </head>
+          <body>
+            <main>
+              <div class="eyebrow">Proof Gradient · Protocol Standard</div>
+              <h1>AEP-003 — ProofPacket Schema</h1>
+              <p class="lead">The atomic proof unit for machine work: commitments, trace events, tool calls, policy decisions, approvals, eval results, risk events, cost events, selection decisions, rollout events, rollback events, and public reports.</p>
+              <p>
+                <a class="btn" href="../AEP-001/">AEP-001 Constitution</a>
+                <a class="btn" href="../AEP-002/">AEP-002 Evidence Docket</a>
+                <a class="btn" href="paper.pdf">Download PDF</a>
+                <a class="btn" href="schemas/proof_packet.schema.json">Schema</a>
+                <a class="btn" href="examples/sample_proof_packet_06_eval_result.json">Sample Packet</a>
+              </p>
+              <section class="panel"><h2>Canonical Law</h2><div class="law">No proof, no evolution.<br>No eval, no propagation.<br>No rollback, no release.</div></section>
+              <section><h2>What AEP-003 Standardizes</h2><div class="grid">
+                <div class="card"><h3>Atomic proof</h3><p>One coherent evidence record for one machine-work fact, event, check, or decision.</p></div>
+                <div class="card"><h3>Hashable packets</h3><p>Deterministic canonical JSON and SHA-256 packet hashes for tamper-evident proof chains.</p></div>
+                <div class="card"><h3>Docket composition</h3><p>Many ProofPackets compose into an AEP-002 Evidence Docket.</p></div>
+              </div></section>
+              <section class="panel"><h2>Canonical Line</h2><p class="lead">AEP-001 defines the protocol. AEP-002 defines the docket. AEP-003 defines the packet. GoalOS makes machine work provable one packet at a time.</p></section>
+            </main>
+          </body>
+          </html>
+          HTML
+
+          echo "web_root=$WEB_ROOT" >> "$GITHUB_OUTPUT"
+
+      - name: Safety check — refuse deletions
+        run: |
+          deleted="$(git diff --name-status | awk '$1 ~ /^D/ {print}')"
+          if [ -n "$deleted" ]; then
+            echo "$deleted"
+            exit 1
+          fi
+
+      - name: Commit AEP-003 website page
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.build.outputs.web_root }}/standards/AEP-003"
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "Add AEP-003 ProofPacket Schema page"
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        if: ${{ inputs.deploy_pages == 'true' }}
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ inputs.deploy_pages == 'true' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.build.outputs.web_root }}
+
+      - name: Deploy GitHub Pages
+        if: ${{ inputs.deploy_pages == 'true' }}
+        uses: actions/deploy-pages@v4

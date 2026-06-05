@@ -1,0 +1,55 @@
+name: AEP-003 Official Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag"
+        required: true
+        default: "aep-003-v1.1"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect release assets
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/aep003_assets
+          find docs/standards/AEP-003 site/standards/AEP-003 -maxdepth 5 -type f \
+            \( -name '*.zip' -o -name '*.pdf' -o -name '*.json' -o -name '*.md' -o -name 'SHA256SUMS.txt' -o -name 'QA_REPORT.md' \) \
+            -exec cp {} /tmp/aep003_assets/ \; 2>/dev/null || true
+          ls -la /tmp/aep003_assets
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          cat > /tmp/aep003_notes.md <<'EOF'
+          # AEP-003 — ProofPacket Schema v1.1
+
+          AEP-001 defines the protocol.  
+          AEP-002 defines the docket.  
+          AEP-003 defines the packet.
+
+          GoalOS makes machine work provable one packet at a time.
+          EOF
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --title "AEP-003 — ProofPacket Schema v1.1" --notes-file /tmp/aep003_notes.md
+          else
+            gh release create "$TAG" --title "AEP-003 — ProofPacket Schema v1.1" --notes-file /tmp/aep003_notes.md
+          fi
+
+          if compgen -G "/tmp/aep003_assets/*" > /dev/null; then
+            gh release upload "$TAG" /tmp/aep003_assets/* --clobber
+          fi

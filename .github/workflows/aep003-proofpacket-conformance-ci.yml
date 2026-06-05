@@ -1,0 +1,30 @@
+name: AEP-003 ProofPacket Conformance CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-aep003:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate sample ProofPackets
+        run: |
+          set -euo pipefail
+          if [ -d docs/standards/AEP-003/examples ]; then
+            for f in docs/standards/AEP-003/examples/sample_proof_packet_*.json; do
+              [ -f "$f" ] || continue
+              python docs/standards/AEP-003/tools/validate_proof_packet.py "$f"
+            done
+            python docs/standards/AEP-003/tools/verify_packet_chain.py docs/standards/AEP-003/examples
+          fi
