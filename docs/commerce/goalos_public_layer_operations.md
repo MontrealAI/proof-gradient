@@ -28,7 +28,7 @@ This runbook keeps the public GoalOS proof and commercialization layer aligned w
 - Product 1 and Product 2 can use direct Squarespace digital-product checkout pages.
 - Product 3 can use a Squarespace service page with scheduling or inquiry handling.
 - Product 4 through Product 9 should use inquiry or discovery pages before scope, contract, or delivery decisions.
-- Replace CTA placeholders in the catalog only with public Squarespace checkout or inquiry URLs.
+- Replace CTA placeholder tokens in the catalog with full public Squarespace checkout or inquiry URLs only after those pages are live and tested.
 - Keep Stripe configured through Squarespace rather than adding payment handling to GitHub Pages.
 
 ## Release safety checklist
