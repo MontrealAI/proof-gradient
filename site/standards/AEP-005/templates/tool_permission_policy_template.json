@@ -1,0 +1,94 @@
+{
+  "policy_id": "tool_policy_demo_001",
+  "schema": "AEP-005-TOOL-PERMISSION-POLICY",
+  "schema_version": "1.1",
+  "policy_name": "Demo Tool Gateway Policy",
+  "applicable_tools": [
+    "tool_policy_lookup",
+    "tool_email_send",
+    "tool_secret_store"
+  ],
+  "applicable_agents": [
+    "agent_customer_response_demo"
+  ],
+  "applicable_workflows": [
+    "workflow_customer_response"
+  ],
+  "allowed_permission_classes": [
+    "read",
+    "draft",
+    "transform"
+  ],
+  "denied_permission_classes": [
+    "delete",
+    "payment",
+    "admin_change"
+  ],
+  "approval_required_for": [
+    "write",
+    "send",
+    "external_contact",
+    "deploy",
+    "secret_access",
+    "protected_operation",
+    "break_glass"
+  ],
+  "max_risk_class": "medium",
+  "allowed_data_classes": [
+    "public",
+    "internal"
+  ],
+  "allowed_environments": [
+    "demo",
+    "internal"
+  ],
+  "scope_constraints": {
+    "tenant_required": true,
+    "run_required": true,
+    "time_window_required": true
+  },
+  "time_constraints": {
+    "max_duration_minutes": 60
+  },
+  "budget_constraints": {
+    "max_cost_usd": 1.0
+  },
+  "rate_limits": {
+    "max_calls_per_hour": 30
+  },
+  "rollback_requirements": {
+    "required_for": [
+      "write",
+      "send",
+      "delete",
+      "deploy",
+      "payment",
+      "admin_change",
+      "protected_operation"
+    ]
+  },
+  "compensation_requirements": {
+    "required_for": [
+      "send",
+      "payment",
+      "external_contact"
+    ]
+  },
+  "separation_of_duties": {
+    "required_for": [
+      "payment",
+      "admin_change",
+      "secret_access",
+      "deploy"
+    ]
+  },
+  "logging_requirements": {
+    "proof_packet_required": true,
+    "receipt_required": true
+  },
+  "public_private_boundary": {
+    "public_receipt_allowed": true,
+    "private_inputs_hidden": true
+  },
+  "fail_closed": true
+}

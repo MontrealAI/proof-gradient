@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-005/schemas/revocation_receipt.schema.json",
+  "title": "AEP-005 Revocation Receipt",
+  "type": "object",
+  "required": [
+    "revocation_id",
+    "schema",
+    "schema_version",
+    "lease_id",
+    "decision_id",
+    "request_id",
+    "tool_id",
+    "revocation_reason",
+    "revoked_by",
+    "revoked_at",
+    "effective_immediately",
+    "affected_scope",
+    "proof_packet_ref",
+    "hash"
+  ],
+  "properties": {
+    "revocation_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-005-REVOCATION-RECEIPT"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "lease_id": {
+      "type": "string"
+    },
+    "decision_id": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "tool_id": {
+      "type": "string"
+    },
+    "revocation_reason": {
+      "type": "string"
+    },
+    "revoked_by": {
+      "type": "string"
+    },
+    "revoked_at": {
+      "type": "string"
+    },
+    "effective_immediately": {
+      "type": "boolean"
+    },
+    "affected_scope": {
+      "type": "object"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

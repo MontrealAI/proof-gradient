@@ -1,0 +1,26 @@
+{
+  "decision_id": "tool_decision_002",
+  "schema": "AEP-005-TOOL-PERMISSION-DECISION",
+  "schema_version": "1.1",
+  "request_id": "tool_req_demo_002",
+  "tool_id": "tool_email_send",
+  "decision": "approval_required",
+  "decision_reason": "External send requires approval.",
+  "allowed_scope": {},
+  "denied_scope": {
+    "permission_class": "send"
+  },
+  "approval_required": true,
+  "approver_role": "reviewer",
+  "lease_ref": "",
+  "policy_refs": [
+    "tool_policy_demo_001"
+  ],
+  "risk_refs": [
+    "risk_tool_permission"
+  ],
+  "issued_at": "2026-06-05T00:00:00Z",
+  "expires_at": "2026-06-05T01:00:00Z",
+  "proof_packet_ref": "pp_tool_decision_002",
+  "hash": "sha256:6ee2923a483221372e5666c66871259928cf50ddce0ee572d7fe61a313b2bbc3"
+}

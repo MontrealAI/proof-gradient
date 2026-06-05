@@ -1,0 +1,30 @@
+{
+  "receipt_id": "tool_receipt_demo_001",
+  "schema": "AEP-005-TOOL-CALL-RECEIPT",
+  "schema_version": "1.1",
+  "decision_id": "tool_decision_001",
+  "request_id": "tool_req_demo_001",
+  "tool_id": "tool_policy_lookup",
+  "lease_id": "lease_demo_001",
+  "executed": true,
+  "execution_status": "completed",
+  "result_summary": "Policy context retrieved.",
+  "side_effects_observed": [],
+  "output_refs": [
+    "ev_policy_context_demo_001"
+  ],
+  "evidence_refs": [
+    "ev_tool_receipt_demo_001"
+  ],
+  "cost_summary": {
+    "estimated_cost_usd": 0.0
+  },
+  "latency_summary": {
+    "wall_clock_ms": 50
+  },
+  "rollback_status": "not_applicable_read_only",
+  "compensation_status": "not_required",
+  "proof_packet_ref": "pp_tool_receipt_demo_001",
+  "created_at": "2026-06-05T00:01:00Z",
+  "hash": "sha256:503cd64e4df7dd112450b3b299220197a51723ee7c2068b7c6f3f64dfdbed0a0"
+}

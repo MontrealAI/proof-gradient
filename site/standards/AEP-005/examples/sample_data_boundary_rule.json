@@ -1,0 +1,13 @@
+{
+  "boundary_id": "data_boundary_demo_001",
+  "data_class": "protected_customer_data",
+  "allowed_tools": [
+    "tool_policy_lookup"
+  ],
+  "allowed_permission_classes": [
+    "read"
+  ],
+  "publication_allowed": false,
+  "redaction_required": true,
+  "protected_reason": "customer confidential"
+}

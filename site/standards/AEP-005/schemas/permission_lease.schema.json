@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-005/schemas/permission_lease.schema.json",
+  "title": "AEP-005 Permission Lease",
+  "type": "object",
+  "required": [
+    "lease_id",
+    "schema",
+    "schema_version",
+    "decision_id",
+    "request_id",
+    "tool_id",
+    "permission_class",
+    "scope",
+    "issued_at",
+    "expires_at",
+    "revocable",
+    "revocation_conditions",
+    "remaining_uses",
+    "proof_packet_ref",
+    "hash"
+  ],
+  "properties": {
+    "lease_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-005-PERMISSION-LEASE"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "decision_id": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "tool_id": {
+      "type": "string"
+    },
+    "permission_class": {
+      "type": "string",
+      "enum": [
+        "none",
+        "read",
+        "draft",
+        "transform",
+        "write",
+        "execute",
+        "external_contact",
+        "send",
+        "delete",
+        "deploy",
+        "payment",
+        "secret_access",
+        "admin_change",
+        "protected_operation",
+        "break_glass"
+      ]
+    },
+    "scope": {
+      "type": "object"
+    },
+    "issued_at": {
+      "type": "string"
+    },
+    "expires_at": {
+      "type": "string"
+    },
+    "revocable": {
+      "type": "boolean"
+    },
+    "revocation_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "remaining_uses": {
+      "type": "integer"
+    },
+    "rate_limit_ref": {
+      "type": "string"
+    },
+    "proof_packet_ref": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

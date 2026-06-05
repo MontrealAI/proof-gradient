@@ -1,0 +1,21 @@
+{
+  "approval_id": "approval_demo_001",
+  "schema": "AEP-005-APPROVAL-RECEIPT",
+  "schema_version": "1.1",
+  "decision_id": "tool_decision_002",
+  "request_id": "tool_req_demo_002",
+  "approver": "demo_reviewer",
+  "approver_role": "reviewer",
+  "approval_status": "approved",
+  "approval_reason": "Approved internal demo send simulation only.",
+  "approved_scope": {
+    "tenant_id": "tenant_demo",
+    "run_id": "run_demo_001",
+    "permission_class": "send",
+    "external_domain": "demo.invalid"
+  },
+  "expiration": "2026-06-05T01:00:00Z",
+  "issued_at": "2026-06-05T00:05:00Z",
+  "signature": {},
+  "proof_packet_ref": "pp_approval_demo_001"
+}

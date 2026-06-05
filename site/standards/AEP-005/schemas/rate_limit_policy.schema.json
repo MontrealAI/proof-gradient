@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-005 Rate Limit Policy",
+  "type": "object",
+  "required": [
+    "rate_limit_id",
+    "tool_id",
+    "permission_class",
+    "window",
+    "max_calls",
+    "max_cost"
+  ],
+  "properties": {
+    "rate_limit_id": {
+      "type": "string"
+    },
+    "tool_id": {
+      "type": "string"
+    },
+    "permission_class": {
+      "type": "string",
+      "enum": [
+        "none",
+        "read",
+        "draft",
+        "transform",
+        "write",
+        "execute",
+        "external_contact",
+        "send",
+        "delete",
+        "deploy",
+        "payment",
+        "secret_access",
+        "admin_change",
+        "protected_operation",
+        "break_glass"
+      ]
+    },
+    "window": {
+      "type": "string"
+    },
+    "max_calls": {
+      "type": "integer"
+    },
+    "max_cost": {
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-005/schemas/tool_request.schema.json",
+  "title": "AEP-005 Tool Request",
+  "type": "object",
+  "required": [
+    "request_id",
+    "schema",
+    "schema_version",
+    "tool_id",
+    "requester",
+    "tenant_id",
+    "workflow_id",
+    "run_id",
+    "commitment_id",
+    "requested_permission_class",
+    "intended_action",
+    "justification",
+    "input_summary",
+    "data_classes",
+    "target_environment",
+    "external_effect",
+    "expected_side_effects"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-005-TOOL-REQUEST"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "tool_id": {
+      "type": "string"
+    },
+    "requester": {
+      "type": "object"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "workflow_id": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "commitment_id": {
+      "type": "string"
+    },
+    "requested_permission_class": {
+      "type": "string",
+      "enum": [
+        "none",
+        "read",
+        "draft",
+        "transform",
+        "write",
+        "execute",
+        "external_contact",
+        "send",
+        "delete",
+        "deploy",
+        "payment",
+        "secret_access",
+        "admin_change",
+        "protected_operation",
+        "break_glass"
+      ]
+    },
+    "intended_action": {
+      "type": "string"
+    },
+    "justification": {
+      "type": "string"
+    },
+    "input_summary": {
+      "type": "string"
+    },
+    "data_classes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "target_environment": {
+      "type": "string"
+    },
+    "external_effect": {
+      "type": "boolean"
+    },
+    "expected_side_effects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback_plan_ref": {
+      "type": "string"
+    },
+    "compensation_plan_ref": {
+      "type": "string"
+    },
+    "evidence_docket_ref": {
+      "type": "string"
+    },
+    "proof_packet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "tool_id": "tool_policy_lookup",
+  "schema": "AEP-005-TOOL-MANIFEST",
+  "schema_version": "1.1",
+  "tool_name": "Policy Lookup",
+  "tool_version": "1.1.0",
+  "provider": "GoalOS Demo",
+  "description": "Retrieve approved policy context for customer response workflows.",
+  "permission_classes_supported": [
+    "read"
+  ],
+  "default_permission": "none",
+  "risk_class": "low",
+  "side_effects": [],
+  "data_access": [
+    "policy_public_internal"
+  ],
+  "external_effect": false,
+  "rollback_supported": false,
+  "compensation_supported": false,
+  "approval_required_for": [],
+  "audit_required": true,
+  "evidence_required": true,
+  "owner": "demo_operator",
+  "status": "active"
+}
