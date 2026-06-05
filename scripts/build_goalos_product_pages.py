@@ -6,6 +6,7 @@ import html
 import json
 from pathlib import Path
 from typing import Iterable
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "data" / "goalos_products.json"
@@ -138,7 +139,13 @@ def product_url(product: dict, from_products_root: bool = False) -> str:
     return f"{slug}/" if from_products_root else f"../products/{slug}/"
 
 def cta_href(product: dict) -> str:
-    return "#" + product["cta_url_placeholder"]
+    raw = str(product["cta_url_placeholder"]).strip()
+    parsed = urlparse(raw)
+    if parsed.scheme in {"http", "https", "mailto", "tel"}:
+        return raw
+    if raw.startswith("/") or raw.startswith("../") or raw.startswith("./"):
+        return raw
+    return "#" + raw
 
 def boundary_html(include_title: bool = True) -> str:
     title = "<h2>Claim boundary / Limite des revendications</h2>" if include_title else ""

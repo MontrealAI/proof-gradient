@@ -4,6 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+import build_goalos_product_pages as builder
 import check_site_links
 import validate_goalos_products as validator
 
@@ -15,3 +16,9 @@ def test_goalos_product_pages_exist_and_link_aep001():
 
 def test_site_local_links_resolve():
     assert check_site_links.find_broken() == []
+
+
+def test_cta_href_supports_placeholders_and_live_urls():
+    assert builder.cta_href({"cta_url_placeholder": "SQUARESPACE_PRODUCT_1_URL"}) == "#SQUARESPACE_PRODUCT_1_URL"
+    assert builder.cta_href({"cta_url_placeholder": "https://example.squarespace.com/product/goalos"}) == "https://example.squarespace.com/product/goalos"
+    assert builder.cta_href({"cta_url_placeholder": "mailto:hello@example.com"}) == "mailto:hello@example.com"
