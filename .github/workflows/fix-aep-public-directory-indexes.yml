@@ -1,4 +1,4 @@
-name: Fix AEP Public Directory Index Pages
+name: Fix AEP Public Directory Index Pages Dynamic
 
 on:
   workflow_dispatch:
@@ -16,12 +16,12 @@ permissions:
   id-token: write
 
 concurrency:
-  group: proof-gradient-aep-directory-indexes
+  group: proof-gradient-aep-directory-indexes-dynamic
   cancel-in-progress: false
 
 jobs:
   fix-aep-directory-indexes:
-    name: Add public index pages for AEP subdirectories
+    name: Add public index pages for existing AEP subdirectories
     runs-on: ubuntu-latest
 
     steps:
@@ -65,7 +65,25 @@ jobs:
                   return False
               if any(part in SKIP_DIR_NAMES for part in path.parts):
                   return False
+              if "__pycache__" in path.parts:
+                  return False
+              if path.suffix.lower() == ".pyc":
+                  return False
               return True
+
+          def standards_present():
+              doc_ids = {p.name for p in DOC_STANDARDS.iterdir() if p.is_dir() and p.name.startswith("AEP-")} if DOC_STANDARDS.exists() else set()
+              web_ids = {p.name for p in WEB_STANDARDS.iterdir() if p.is_dir() and p.name.startswith("AEP-")} if WEB_STANDARDS.exists() else set()
+              ids = sorted(doc_ids | web_ids)
+              return ids
+
+          def nav_links(current_depth: int) -> str:
+              # Use absolute GitHub Pages links only for standards that actually exist.
+              ids = standards_present()
+              links = ['<a class="btn" href="../">Parent</a>']
+              for sid in ids:
+                  links.append(f'<a class="btn" href="/proof-gradient/standards/{html.escape(sid)}/">{html.escape(sid)}</a>')
+              return "\n".join(links)
 
           def write_index(folder: Path, title: str) -> None:
               folder.mkdir(parents=True, exist_ok=True)
@@ -141,13 +159,7 @@ jobs:
               <h1>__TITLE__</h1>
               <p class="lead">Public files for this AEP standard. GitHub Pages does not expose raw directory listings, so this index page makes schemas, examples, templates, figures, and tools directly navigable.</p>
               <div class="bar">
-                <a class="btn" href="../">Parent</a>
-                <a class="btn" href="/proof-gradient/standards/AEP-001/">AEP-001</a>
-                <a class="btn" href="/proof-gradient/standards/AEP-002/">AEP-002</a>
-                <a class="btn" href="/proof-gradient/standards/AEP-003/">AEP-003</a>
-                <a class="btn" href="/proof-gradient/standards/AEP-004/">AEP-004</a>
-                <a class="btn" href="/proof-gradient/standards/AEP-005/">AEP-005</a>
-                <a class="btn" href="/proof-gradient/standards/AEP-006/">AEP-006</a>
+                __NAV__
               </div>
               <section class="grid">
                 __LINKS__
@@ -159,7 +171,7 @@ jobs:
           </body>
           </html>
           """
-              page = page.replace("__TITLE__", html.escape(title)).replace("__LINKS__", links_html)
+              page = page.replace("__TITLE__", html.escape(title)).replace("__LINKS__", links_html).replace("__NAV__", nav_links(len(folder.parts)))
               (folder / "index.html").write_text(page, encoding="utf-8")
 
           if not DOC_STANDARDS.exists():
@@ -222,7 +234,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Fix AEP public directory indexes"
+            git commit -m "Fix AEP public directory indexes dynamically"
             git push
           fi
 
