@@ -1,0 +1,403 @@
+name: Add Post Purchase Onboarding Workflow Example
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: post-purchase-onboarding-workflow-example
+  cancel-in-progress: false
+
+jobs:
+  add-post-purchase-example:
+    name: Add post-purchase-onboarding workflow example
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create post-purchase-onboarding workflow example safely
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          mkdir -p "$WEB_ROOT"
+          touch "$WEB_ROOT/.nojekyll"
+
+          python3 <<'PY'
+          from pathlib import Path
+
+          WEB_ROOT = Path("site")
+          if not WEB_ROOT.exists() and Path("public").exists():
+              WEB_ROOT = Path("public")
+
+          workflow_dir = WEB_ROOT / "workflow" / "post-purchase-onboarding"
+          examples_dir = WEB_ROOT / "examples"
+          example_dir = examples_dir / "post-purchase-onboarding"
+          assets_dir = WEB_ROOT / "assets"
+
+          for folder in [workflow_dir, examples_dir, example_dir, assets_dir]:
+              folder.mkdir(parents=True, exist_ok=True)
+
+          def styles():
+              return """
+              :root{--bg:#05070d;--text:#f6f7ff;--muted:#b8c0da;--gold:#ffd76a;--line:rgba(255,255,255,.16)}
+              *{box-sizing:border-box}
+              body{margin:0;background:radial-gradient(circle at 18% 0%,rgba(145,183,255,.20),transparent 34rem),radial-gradient(circle at 92% 5%,rgba(255,215,106,.14),transparent 28rem),var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+              main{width:min(1160px,calc(100% - 36px));margin:0 auto;padding:64px 0 92px}
+              .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-weight:900;font-size:12px}
+              h1{font-size:clamp(48px,8vw,104px);line-height:.88;letter-spacing:-.08em;margin:18px 0}
+              h2{font-size:clamp(30px,5vw,58px);letter-spacing:-.055em;margin-top:52px}
+              h3{margin-top:0}
+              .lead{max-width:920px;color:var(--muted);font-size:21px;line-height:1.55}
+              .bar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 22px}
+              .btn{display:inline-flex;margin:0;padding:12px 16px;border:1px solid rgba(255,215,106,.52);border-radius:999px;text-decoration:none;font-weight:850;background:rgba(255,255,255,.06);color:var(--text)}
+              .btn.primary{background:rgba(255,215,106,.16)}
+              .panel,.card,.step{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border-radius:24px;padding:22px}
+              .law{font-size:clamp(24px,4vw,42px);line-height:1.13;letter-spacing:-.045em}
+              .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+              .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
+              .steps{display:grid;gap:14px;margin:28px 0}
+              .step strong{color:var(--gold)}
+              .card p,.step p{color:var(--muted);line-height:1.45}
+              pre{white-space:pre-wrap;background:#080b13;border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:18px;color:#eaf0ff;line-height:1.45;overflow-wrap:anywhere}
+              .mini{font-size:14px;color:var(--muted)}
+              .pill{display:inline-flex;padding:7px 10px;border:1px solid rgba(255,215,106,.45);border-radius:999px;color:var(--gold);font-weight:850;font-size:13px;margin:4px}
+              footer{margin-top:44px;color:var(--muted);font-size:13px}
+              @media(max-width:900px){.grid,.two{grid-template-columns:1fr}}
+              """
+
+          svg = """<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+          <defs><radialGradient id="g" cx="75%" cy="20%" r="70%"><stop offset="0%" stop-color="#263b74"/><stop offset="55%" stop-color="#070b15"/><stop offset="100%" stop-color="#05070d"/></radialGradient></defs>
+          <rect width="1600" height="900" fill="url(#g)"/>
+          <text x="90" y="100" fill="#ffd76a" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="8">GOALOS · AI EFFICIENCY SPRINT</text>
+          <text x="90" y="230" fill="#f6f7ff" font-family="Arial, sans-serif" font-size="86" font-weight="900">Turn a purchase</text>
+          <text x="90" y="332" fill="#f6f7ff" font-family="Arial, sans-serif" font-size="86" font-weight="900">into activation.</text>
+          <text x="90" y="440" fill="#b8c0da" font-family="Arial, sans-serif" font-size="38">Order → Delivery → 60-minute plan → Upsell → Support boundary → Proof</text>
+          <rect x="90" y="610" width="1420" height="135" rx="34" fill="rgba(255,255,255,.08)" stroke="#ffd76a" stroke-width="3"/>
+          <text x="130" y="675" fill="#ffd76a" font-family="Arial, sans-serif" font-size="34" font-weight="800">Example 6:</text>
+          <text x="340" y="675" fill="#f6f7ff" font-family="Arial, sans-serif" font-size="34" font-weight="800">Purchase → onboarding → low-support buyer success</text>
+          <text x="130" y="720" fill="#b8c0da" font-family="Arial, sans-serif" font-size="26">The money machine does not end at checkout. It must deliver clearly and reduce support.</text>
+          </svg>"""
+          (assets_dir / "post-purchase-onboarding-card.svg").write_text(svg, encoding="utf-8")
+
+          rough_notes = """Rough post-purchase notes:
+          Product: GoalOS AI Efficiency Sprint Kit
+          Price: $49
+          Buyer just paid and gets instant access
+          Goal: help them use the kit quickly without asking support questions
+          Need: thank-you email, download instructions, 60-minute plan, first task suggestion, no-refund reminder, support boundary, upsell to $199 Team Pack
+          Rules: be friendly, clear, not pushy, no income guarantees, no ROI guarantees, no fake urgency
+          Policy: digital product, instant access, all sales final once delivered except where required by law or for duplicate charges / technical access failures"""
+
+          output_example = """Email 1 — Instant delivery
+          Subject: Your GoalOS AI Efficiency Sprint Kit
+
+          Thank you for your purchase.
+
+          Your kit is ready.
+
+          Start here:
+          1. Download the files.
+          2. Open START_HERE.pdf.
+          3. Pick one repeated AI task.
+          4. Follow the 60-minute sprint checklist.
+
+          Best first tasks:
+          - answer customer questions
+          - summarize meeting notes
+          - write weekly updates
+          - create product content
+          - prepare a sales-page section
+
+          Important:
+          This is a digital educational workflow product. Access is delivered instantly. All sales are final once delivered, except where required by law or for duplicate charges / technical access failures.
+
+          Email 2 — Your 60-minute plan
+          Subject: Do this first
+
+          Here is the simplest way to use the kit today.
+
+          Minute 0–10:
+          Pick one repeated AI task.
+
+          Minute 10–20:
+          Fill the context template.
+
+          Minute 20–30:
+          Fill the rules and memory templates.
+
+          Minute 30–45:
+          Build the workflow steps.
+
+          Minute 45–55:
+          Add checks.
+
+          Minute 55–60:
+          Create the proof note.
+
+          By the end, you should have one reusable AI workflow you can run again.
+
+          Email 3 — Avoid the common mistake
+          Subject: Do not start with ten workflows
+
+          The biggest mistake is trying to systematize everything at once.
+
+          Start with one task.
+
+          One customer reply.
+          One meeting summary.
+          One sales-page section.
+          One email sequence.
+
+          The goal is not to organize your entire business today.
+
+          The goal is to build one reusable workflow and understand the method.
+
+          Email 4 — Team Pack upsell
+          Subject: Want to use this with your team?
+
+          If you want to roll this out with a team, the Team Pack gives you:
+
+          - team workshop agenda
+          - manager guide
+          - team workflow inventory
+          - role assignment sheet
+          - team proof-room-lite template
+          - rollout checklist
+          - internal adoption email templates
+
+          Use the individual kit first.
+          Upgrade only if you want to run the sprint with other people.
+
+          Email 5 — Support boundary
+          Subject: Quick support note
+
+          To keep the kit simple and affordable, support is limited to access issues.
+
+          We can help if:
+          - your download link does not work
+          - you were charged twice
+          - the file is missing or corrupted
+
+          We cannot review every workflow personally at the $49 level.
+
+          The kit is designed to be self-serve."""
+
+          proof_note = """Proof note:
+          Source: rough post-purchase notes.
+          Outputs created: delivery email, 60-minute plan, mistake-prevention email, Team Pack upsell, support boundary email.
+          Claims made: the kit helps buyers build one reusable AI workflow.
+          Claims avoided: no income guarantee, no ROI guarantee, no done-for-you support promise, no legal/compliance claim.
+          Review needed: human should confirm download link, checkout platform settings, support inbox, final product contents, and applicable consumer rules before publishing.
+          Public-safe: yes."""
+
+          page = f"""<!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>Post-Purchase Onboarding — GoalOS Workflow Example</title>
+            <meta name="description" content="Turn a digital-product purchase into instant delivery, onboarding, support boundaries, upsell, and proof note." />
+            <meta property="og:title" content="Turn a purchase into activation." />
+            <meta property="og:description" content="Order → delivery → 60-minute plan → upsell → support boundary → proof note." />
+            <meta property="og:image" content="/proof-gradient/assets/post-purchase-onboarding-card.svg" />
+            <style>{styles()}</style>
+          </head>
+          <body>
+            <main>
+              <div class="eyebrow">GoalOS · AI Efficiency Sprint · Example 6</div>
+              <h1>Turn a purchase into activation.</h1>
+              <p class="lead">This reusable AI workflow turns a digital-product purchase into clear delivery, simple onboarding, first-use guidance, support boundaries, an upsell, and a proof note.</p>
+
+              <div class="bar">
+                <a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Get the kit</a>
+                <a class="btn" href="/proof-gradient/workflow/lead-magnet-email-sequence/">Example 5: email sequence</a>
+                <a class="btn" href="/proof-gradient/examples/">All examples</a>
+                <a class="btn" href="/proof-gradient/standards/">AEP standards</a>
+              </div>
+
+              <section class="panel">
+                <h2>The simple idea</h2>
+                <div class="law">The sale is not the finish line. The buyer still needs activation.</div>
+                <p class="lead">A low-support digital product needs clear delivery, clear first steps, clear terms, clear support boundaries, and a clean next offer.</p>
+              </section>
+
+              <section>
+                <h2>Before vs. after</h2>
+                <div class="two">
+                  <div class="card">
+                    <h3>Before: buyer confusion</h3>
+                    <p>The buyer pays, downloads files, and wonders: “Where do I start? What should I do first? Do I get support?”</p>
+                    <p class="mini">Result: more support, more confusion, more preventable disputes.</p>
+                  </div>
+                  <div class="card">
+                    <h3>After: automated activation</h3>
+                    <p>The buyer receives clear emails: download, start here, 60-minute plan, common mistake, Team Pack option, support boundary.</p>
+                    <p class="mini">Result: lower friction after purchase.</p>
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <h2>The workflow in plain English</h2>
+                <div class="steps">
+                  <div class="step"><strong>1. Context</strong><p>Tell the AI what the buyer purchased, price, delivery method, support level, and next offer.</p></div>
+                  <div class="step"><strong>2. Rules</strong><p>Tell the AI to be clear, friendly, honest, and not promise personal support or guaranteed results.</p></div>
+                  <div class="step"><strong>3. Memory</strong><p>Save your standard terms, support boundary, and “first 60 minutes” method.</p></div>
+                  <div class="step"><strong>4. Workflow</strong><p>The AI creates delivery, onboarding, first-use, mistake-prevention, upsell, and support-boundary emails.</p></div>
+                  <div class="step"><strong>5. Checks</strong><p>The AI checks for missing download instructions, unclear support promises, risky claims, and missing terms.</p></div>
+                  <div class="step"><strong>6. Proof</strong><p>The AI records what it created, what it claimed, what it avoided, and what still needs review.</p></div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <h2>Copy-paste example</h2>
+                <p class="lead">Rough post-purchase notes:</p>
+                <pre>{rough_notes}</pre>
+                <p class="lead">Reusable workflow output:</p>
+                <pre>{output_example}</pre>
+                <p class="lead">Proof note:</p>
+                <pre>{proof_note}</pre>
+              </section>
+
+              <section>
+                <h2>What the buyer gets</h2>
+                <div>
+                  <span class="pill">Delivery email</span>
+                  <span class="pill">60-minute plan</span>
+                  <span class="pill">Mistake-prevention email</span>
+                  <span class="pill">Team Pack upsell</span>
+                  <span class="pill">Support boundary</span>
+                  <span class="pill">Terms reminder</span>
+                  <span class="pill">Proof note</span>
+                </div>
+                <div class="grid">
+                  <div class="card"><h3>Built for automation</h3><p>Delivery and onboarding happen without manual hand-holding.</p></div>
+                  <div class="card"><h3>Lower support load</h3><p>The workflow explains where to start and what support is included.</p></div>
+                  <div class="card"><h3>Natural upsell</h3><p>The Team Pack appears as the next step only after the buyer understands the individual kit.</p></div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <h2>Digital product terms</h2>
+                <p class="lead">Suggested low-friction wording: digital product, instant access, all sales final once delivered, except where required by law or for duplicate charges / technical access failures.</p>
+              </section>
+
+              <section class="panel">
+                <h2>The one-sentence promise</h2>
+                <div class="law">Paste purchase notes. Get delivery, onboarding, upsell, support boundary, and proof.</div>
+                <div class="bar">
+                  <a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Get the GoalOS AI Efficiency Sprint Kit</a>
+                  <a class="btn" href="/proof-gradient/standards/AEP-007/">See Public-Safe Proof</a>
+                </div>
+              </section>
+
+              <footer>
+                Educational workflow example only. Not legal, financial, medical, tax, employment, security, or regulatory advice. No income, savings, compliance, safety, accuracy, or business-results guarantee. Users are responsible for review and judgment before using outputs.
+              </footer>
+            </main>
+          </body>
+          </html>"""
+
+          for path in [workflow_dir / "index.html", example_dir / "index.html"]:
+              path.write_text(page, encoding="utf-8")
+
+          examples_index = f"""<!doctype html>
+          <html lang="en">
+          <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Proof Gradient Examples</title><style>{styles()}</style></head>
+          <body><main>
+            <div class="eyebrow">Proof Gradient · Examples</div>
+            <h1>Examples that turn AI into leverage.</h1>
+            <p class="lead">Practical, public-safe examples for turning repeated AI tasks into reusable work systems.</p>
+            <div class="grid">
+              <a class="card" href="build-one-reusable-ai-workflow/"><h3>Example 1: Customer question → clear reply</h3><p>Turn messy customer questions into clear replies and proof notes.</p></a>
+              <a class="card" href="meeting-to-action-plan/"><h3>Example 2: Meeting notes → action plan</h3><p>Turn messy notes into decisions, owners, deadlines, follow-up email, and proof.</p></a>
+              <a class="card" href="idea-to-demand-engine/"><h3>Example 3: One idea → demand engine</h3><p>Turn a rough product idea into content, email, sales copy, and proof.</p></a>
+              <a class="card" href="offer-to-sales-page/"><h3>Example 4: Offer notes → sales page</h3><p>Turn rough offer notes into a clear product page, FAQ, terms, and proof note.</p></a>
+              <a class="card" href="lead-magnet-email-sequence/"><h3>Example 5: Lead magnet → email sequence</h3><p>Turn a free worksheet into opt-in emails, offer clarity, and proof.</p></a>
+              <a class="card" href="post-purchase-onboarding/"><h3>Example 6: Purchase → onboarding</h3><p>Turn a digital-product purchase into delivery, activation, upsell, support boundary, and proof.</p></a>
+            </div>
+          </main></body></html>"""
+          examples_dir.joinpath("index.html").write_text(examples_index, encoding="utf-8")
+
+          home = WEB_ROOT / "index.html"
+          if home.exists():
+              backup = WEB_ROOT / "home-before-post-purchase-onboarding-example.html"
+              if not backup.exists():
+                  backup.write_text(home.read_text(encoding="utf-8", errors="ignore"), encoding="utf-8")
+              text = home.read_text(encoding="utf-8", errors="ignore")
+              start = "<!-- POST-PURCHASE-ONBOARDING-EXAMPLE:START -->"
+              end = "<!-- POST-PURCHASE-ONBOARDING-EXAMPLE:END -->"
+              block = f"""
+          {start}
+          <section id="post-purchase-onboarding-example" style="margin:48px auto;max-width:1120px;padding:28px;border:1px solid rgba(255,255,255,.16);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));">
+            <p style="color:#ffd76a;text-transform:uppercase;letter-spacing:.18em;font-weight:900;font-size:12px;">GoalOS · AI Efficiency Sprint · Example 6</p>
+            <h2 style="font-size:clamp(30px,5vw,58px);line-height:.95;letter-spacing:-.055em;margin:10px 0 16px;">Turn a purchase into activation.</h2>
+            <p style="color:#b8c0da;font-size:19px;line-height:1.5;max-width:820px;">Paste post-purchase notes. Get delivery, onboarding, upsell, support boundary, terms reminder, and proof note.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;">
+              <a class="btn" href="/proof-gradient/workflow/post-purchase-onboarding/">See the post-purchase workflow</a>
+              <a class="btn" href="https://www.quebecartificialintelligence.com/shop">Get the kit</a>
+            </div>
+          </section>
+          {end}
+          """
+              if start in text and end in text:
+                  before, rest = text.split(start, 1)
+                  _, after = rest.split(end, 1)
+                  text = before + block + after
+              elif "</main>" in text:
+                  text = text.replace("</main>", block + "\n</main>", 1)
+              elif "</body>" in text:
+                  text = text.replace("</body>", block + "\n</body>", 1)
+              else:
+                  text += block
+              home.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Safety check — refuse deletions
+        shell: bash
+        run: |
+          set -euo pipefail
+          deleted="$(git diff --name-status | awk '$1 ~ /^D/ {print}')"
+          if [ -n "$deleted" ]; then
+            echo "Refusing to continue because deletions were detected:"
+            echo "$deleted"
+            exit 1
+          fi
+
+      - name: Commit post-purchase-onboarding example
+        shell: bash
+        run: |
+          set -euo pipefail
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$WEB_ROOT"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add post-purchase-onboarding workflow example [skip ci]"
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy GitHub Pages
+        uses: actions/deploy-pages@v4
