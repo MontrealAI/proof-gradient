@@ -1,0 +1,32 @@
+{
+  "audit_export_id": "audit_export_demo_001",
+  "room_id": "room_demo_001",
+  "manifest_ref": "room_demo_001",
+  "charter_ref": "charter_demo_001",
+  "evidence_boundary_ref": "boundary_demo_001",
+  "role_registry_ref": "roles_demo_001",
+  "work_item_refs": [
+    "work_item_demo_001"
+  ],
+  "docket_refs": [
+    "ed_demo_001"
+  ],
+  "packet_refs": [
+    "pp_eval_001"
+  ],
+  "selection_refs": [
+    "sc_demo_001"
+  ],
+  "permission_refs": [
+    "tool_decision_001"
+  ],
+  "rollback_refs": [
+    "rollback_demo_001"
+  ],
+  "public_report_refs": [
+    "pspr_demo_001"
+  ],
+  "decision_log_ref": "decision_log_demo_001",
+  "generated_at": "2026-06-05T00:20:00Z",
+  "hash": "sha256:835351f5e8e3510ab4e6de6bddab2ada39d24af4eef6e5077dfd26bbe815a3dd"
+}

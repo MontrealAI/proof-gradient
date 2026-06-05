@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/standards/AEP-008/schemas/proof_room_manifest.schema.json",
+  "title": "AEP-008 Proof Room Manifest",
+  "type": "object",
+  "required": [
+    "room_id",
+    "schema",
+    "schema_version",
+    "room_name",
+    "room_mode",
+    "owner",
+    "organization",
+    "jurisdiction",
+    "purpose",
+    "opened_at",
+    "status",
+    "confidentiality_class",
+    "evidence_boundary_ref",
+    "charter_ref",
+    "hash"
+  ],
+  "properties": {
+    "room_id": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string",
+      "const": "AEP-008-PROOF-ROOM-MANIFEST"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "room_name": {
+      "type": "string"
+    },
+    "room_mode": {
+      "type": "string",
+      "enum": [
+        "sandbox",
+        "team",
+        "institutional",
+        "public_safe",
+        "incident",
+        "sovereign"
+      ]
+    },
+    "owner": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "jurisdiction": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "opened_at": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "open",
+        "paused",
+        "under_review",
+        "incident",
+        "closing",
+        "closed",
+        "archived"
+      ]
+    },
+    "confidentiality_class": {
+      "type": "string",
+      "enum": [
+        "public",
+        "private",
+        "protected",
+        "restricted"
+      ]
+    },
+    "evidence_boundary_ref": {
+      "type": "string"
+    },
+    "charter_ref": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

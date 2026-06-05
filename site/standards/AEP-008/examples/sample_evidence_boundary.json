@@ -1,0 +1,22 @@
+{
+  "evidence_boundary_id": "boundary_demo_001",
+  "room_id": "room_demo_001",
+  "public_evidence_allowed": true,
+  "private_evidence_allowed": true,
+  "protected_evidence_allowed": false,
+  "forbidden_evidence": [
+    "secrets",
+    "credentials",
+    "private prompts",
+    "customer personal data"
+  ],
+  "redaction_required": true,
+  "publication_rules": [
+    "public-safe summaries only",
+    "claim boundary required"
+  ],
+  "retention_policy": "demo retention",
+  "access_rules": [
+    "room roles only"
+  ]
+}

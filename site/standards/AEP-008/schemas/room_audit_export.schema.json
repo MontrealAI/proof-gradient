@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-008 Room Audit Export",
+  "type": "object",
+  "required": [
+    "audit_export_id",
+    "room_id",
+    "manifest_ref",
+    "charter_ref",
+    "evidence_boundary_ref",
+    "role_registry_ref",
+    "work_item_refs",
+    "docket_refs",
+    "packet_refs",
+    "selection_refs",
+    "permission_refs",
+    "rollback_refs",
+    "public_report_refs",
+    "decision_log_ref",
+    "generated_at",
+    "hash"
+  ],
+  "properties": {
+    "work_item_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "docket_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "packet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selection_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "permission_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "public_report_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "audit_export_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    },
+    "manifest_ref": {
+      "type": "string"
+    },
+    "charter_ref": {
+      "type": "string"
+    },
+    "evidence_boundary_ref": {
+      "type": "string"
+    },
+    "role_registry_ref": {
+      "type": "string"
+    },
+    "decision_log_ref": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-fA-F0-9]{64}$"
+    }
+  }
+}

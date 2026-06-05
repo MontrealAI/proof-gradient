@@ -1,0 +1,48 @@
+{
+  "charter_id": "charter_demo_001",
+  "room_id": "room_demo_001",
+  "mission": "Turn a repeated AI-assisted response task into a reusable, checked, rollbackable, and public-safe proof workflow.",
+  "success_criteria": [
+    "candidate workflow passes unsupported-claim eval",
+    "tool use is permitted",
+    "rollback path exists",
+    "public-safe report contains no private traces"
+  ],
+  "failure_criteria": [
+    "unsupported public claim",
+    "unapproved tool use",
+    "missing rollback",
+    "private evidence leak"
+  ],
+  "in_scope": [
+    "customer response drafting workflow"
+  ],
+  "out_of_scope": [
+    "production deployment",
+    "legal compliance certification"
+  ],
+  "allowed_agents": [
+    "agent_customer_response_demo"
+  ],
+  "allowed_tools": [
+    "tool_policy_lookup"
+  ],
+  "allowed_data_classes": [
+    "public",
+    "internal"
+  ],
+  "allowed_environments": [
+    "demo"
+  ],
+  "required_evals": [
+    "unsupported_claim_eval"
+  ],
+  "required_gate_policy": "gate_policy_demo_001",
+  "rollback_required": true,
+  "publication_allowed": true,
+  "closure_conditions": [
+    "public-safe report approved",
+    "audit export generated",
+    "unresolved items recorded"
+  ]
+}

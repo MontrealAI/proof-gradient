@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-008 Work Item Registry",
+  "type": "object",
+  "required": [
+    "registry_id",
+    "room_id",
+    "work_items",
+    "intake_status",
+    "owner",
+    "created_at"
+  ],
+  "properties": {
+    "registry_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    },
+    "work_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "work_item_id",
+          "title",
+          "candidate_type",
+          "candidate_ref",
+          "commitment_ref",
+          "status"
+        ],
+        "properties": {
+          "work_item_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "candidate_type": {
+            "type": "string"
+          },
+          "candidate_ref": {
+            "type": "string"
+          },
+          "commitment_ref": {
+            "type": "string"
+          },
+          "run_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string"
+          },
+          "evidence_docket_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "selection_certificate_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rollback_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "public_report_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "intake_status": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEP-008 Scope Boundary",
+  "type": "object",
+  "required": [
+    "boundary_id",
+    "room_id",
+    "tenant_scope",
+    "workflow_scope",
+    "agent_scope",
+    "tool_scope",
+    "data_scope",
+    "environment_scope",
+    "jurisdiction_scope",
+    "time_scope",
+    "budget_scope",
+    "publication_scope"
+  ],
+  "properties": {
+    "tenant_scope": {
+      "type": "object"
+    },
+    "user_scope": {
+      "type": "object"
+    },
+    "workflow_scope": {
+      "type": "object"
+    },
+    "agent_scope": {
+      "type": "object"
+    },
+    "tool_scope": {
+      "type": "object"
+    },
+    "data_scope": {
+      "type": "object"
+    },
+    "environment_scope": {
+      "type": "object"
+    },
+    "jurisdiction_scope": {
+      "type": "object"
+    },
+    "time_scope": {
+      "type": "object"
+    },
+    "budget_scope": {
+      "type": "object"
+    },
+    "publication_scope": {
+      "type": "object"
+    },
+    "boundary_id": {
+      "type": "string"
+    },
+    "room_id": {
+      "type": "string"
+    }
+  }
+}

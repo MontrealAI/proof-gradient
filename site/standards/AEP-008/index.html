@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AEP-008 — Proof Room Standard</title>
+  <style>
+    body{margin:0;background:#05070d;color:#f6f7ff;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{width:min(1120px,calc(100% - 36px));margin:0 auto;padding:64px 0 90px}
+    h1{font-size:clamp(48px,8vw,96px);line-height:.9;letter-spacing:-.075em;margin:18px 0}
+    h2{font-size:clamp(30px,5vw,56px);letter-spacing:-.05em;margin-top:50px}
+    .eyebrow{color:#ffd76a;text-transform:uppercase;letter-spacing:.22em;font-weight:900;font-size:12px}
+    .lead{max-width:880px;color:#b8c0da;font-size:21px;line-height:1.55}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+    .card,.panel{border:1px solid rgba(255,255,255,.16);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border-radius:24px;padding:22px}
+    a{color:#f6f7ff}.btn{display:inline-flex;margin:8px 8px 8px 0;padding:11px 15px;border:1px solid rgba(255,215,106,.45);border-radius:999px;text-decoration:none;font-weight:800;background:rgba(255,255,255,.06)}
+    .law{font-size:clamp(24px,4vw,42px);line-height:1.12;letter-spacing:-.04em}
+    @media(max-width:850px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Proof Gradient · Protocol Standard</div>
+    <h1>AEP-008 — Proof Room Standard</h1>
+    <p class="lead">The governed workspace where machine work becomes institutional proof: charters, scope, roles, evidence boundaries, registers, decisions, audit exports, closure reports, and public-safe publication.</p>
+    <p>
+      <a class="btn" href="../AEP-001/">AEP-001</a>
+      <a class="btn" href="../AEP-002/">AEP-002</a>
+      <a class="btn" href="../AEP-003/">AEP-003</a>
+      <a class="btn" href="../AEP-004/">AEP-004</a>
+      <a class="btn" href="../AEP-005/">AEP-005</a>
+      <a class="btn" href="../AEP-006/">AEP-006</a>
+      <a class="btn" href="../AEP-007/">AEP-007</a>
+      <a class="btn" href="paper.pdf">Download PDF</a>
+      <a class="btn" href="schemas/proof_room_manifest.schema.json">Manifest Schema</a>
+    </p>
+    <section class="panel"><h2>Canonical Law</h2><div class="law">No room without charter.<br>No run without scope.<br>No evidence without boundary.<br>No promotion without gate.<br>No closure without archive.</div></section>
+    <section><h2>What AEP-008 Standardizes</h2><div class="grid">
+      <div class="card"><h3>Proof Room Charter</h3><p>Defines mission, scope, success criteria, allowed agents/tools/data, required evals, and closure conditions.</p></div>
+      <div class="card"><h3>Room Registers</h3><p>Organizes dockets, packets, tool permissions, gates, rollbacks, reports, and decisions.</p></div>
+      <div class="card"><h3>Audit and Closure</h3><p>Exports reviewable proof and closes the room with archive, unresolved items, and claim boundaries.</p></div>
+    </div></section>
+    <section class="panel"><h2>Canonical Line</h2><p class="lead">AEP-001 defines the protocol. AEP-002 defines the docket. AEP-003 defines the packet. AEP-004 defines the gate. AEP-005 defines the permission. AEP-006 defines recovery proof. AEP-007 defines public proof. AEP-008 defines the room.</p></section>
+  </main>
+</body>
+</html>

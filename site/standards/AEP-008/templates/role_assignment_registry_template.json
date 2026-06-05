@@ -1,0 +1,50 @@
+{
+  "registry_id": "roles_demo_001",
+  "room_id": "room_demo_001",
+  "assignments": [
+    {
+      "actor_id": "alice",
+      "actor_type": "human",
+      "role": "room_owner",
+      "permissions": [
+        "charter",
+        "close"
+      ],
+      "restrictions": [
+        "cannot self-audit"
+      ]
+    },
+    {
+      "actor_id": "bob",
+      "actor_type": "human",
+      "role": "operator",
+      "permissions": [
+        "run"
+      ],
+      "restrictions": [
+        "cannot approve promotion"
+      ]
+    },
+    {
+      "actor_id": "carol",
+      "actor_type": "human",
+      "role": "reviewer",
+      "permissions": [
+        "review"
+      ],
+      "restrictions": []
+    },
+    {
+      "actor_id": "dana",
+      "actor_type": "human",
+      "role": "redactor",
+      "permissions": [
+        "redaction_review"
+      ],
+      "restrictions": []
+    }
+  ],
+  "separation_of_duties_required": true,
+  "exceptions": [],
+  "issued_at": "2026-06-05T00:00:00Z"
+}
