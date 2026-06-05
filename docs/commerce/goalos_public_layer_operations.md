@@ -37,7 +37,7 @@ Before merging a public-layer update, confirm:
 
 - The AEP-001 public standard page still resolves.
 - Existing proof pages still resolve.
-- No paid buyer ZIP appears in `site/`, `docs/`, `data/`, `.github/`, or the repository root.
+- No paid buyer ZIP appears in `site/`, `docs/`, `data/`, `.github/`, `releases/`, or the repository root; the only release ZIP exception is the public AEP-001 standards archive under `releases/AEP-001/`.
 - Public pages include bilingual English and French material.
 - Public pages include claim-boundary text where the product page makes service, enterprise, nation, or sovereign claims.
 - High-ticket products use inquiry/discovery CTA labels rather than direct buy-now phrasing.
