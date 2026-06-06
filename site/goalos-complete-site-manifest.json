@@ -1,0 +1,3360 @@
+{
+  "generated_at": "2026-06-06T19:44:03Z",
+  "files": [
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "404.html",
+      "bytes": 2232,
+      "sha256": "86733ee2608446ea0636e341642436f48d792e2d6b038580498e468967dd7ac0"
+    },
+    {
+      "path": "ai-efficiency-score/index.html",
+      "bytes": 12470,
+      "sha256": "561e1ecdc25a4af4864e29ee2e7225d47796b15e689f9dff3e27355cb91c7ead"
+    },
+    {
+      "path": "app.js",
+      "bytes": 239,
+      "sha256": "4626803de03204fb49e22aef310b618c09cbed306e17121324cb4a544886d747"
+    },
+    {
+      "path": "assets/checkout-recovery-card.svg",
+      "bytes": 1498,
+      "sha256": "00057a9df10f15a2195ff37c20611f0447163c5787b8c4962f36d1687eb50c7f"
+    },
+    {
+      "path": "assets/department-ai-correction-rollback-card.svg",
+      "bytes": 1502,
+      "sha256": "caf3497d12496bd8402905d1a945947f4351cc53c0b96b0081b8c09e86bc789a"
+    },
+    {
+      "path": "assets/department-ai-permission-map-card.svg",
+      "bytes": 1473,
+      "sha256": "19bbc79706130561f39ac1ca916930b9db888438afb7cd609c009d410cd227d5"
+    },
+    {
+      "path": "assets/department-monthly-proof-report-card.svg",
+      "bytes": 1498,
+      "sha256": "3190fd4a7f8b4907fc6886a18727e0e0ad1e5d3004fcea110c79bb57a1a314ee"
+    },
+    {
+      "path": "assets/department-proof-room-lite-card.svg",
+      "bytes": 1479,
+      "sha256": "9d4a22238836392dfdb434dd9a0b358aedfe75545133f7f20fb2751c513d997b"
+    },
+    {
+      "path": "assets/department-public-safe-case-study-card.svg",
+      "bytes": 1488,
+      "sha256": "c8588ccf2ddfbd70466c5598e023e56be31e7250cd5571324d839c98bb66b3bc"
+    },
+    {
+      "path": "assets/department-weekly-proof-review-card.svg",
+      "bytes": 1486,
+      "sha256": "2f8bdb6b9f9f630566914aa4b9ca80f3310a6c8e1973505b2e936aac6d4976e2"
+    },
+    {
+      "path": "assets/feedback-to-product-update-card.svg",
+      "bytes": 1483,
+      "sha256": "d67c33364598e4328f7e11e2209b634d0eaf3885f391f78eb3f8946c7aeb653a"
+    },
+    {
+      "path": "assets/goalos-complete-site-og.svg",
+      "bytes": 1004,
+      "sha256": "e1440a53d3d38d4a0f93deec7f68b1f61c55060aa4986bd91a09d0cf5650d41b"
+    },
+    {
+      "path": "assets/goalos-complete-site.css",
+      "bytes": 5245,
+      "sha256": "20c1653eb7cb926f75868a4011de4648cb6f6bec405cbc6ff6e0840e7ec52b66"
+    },
+    {
+      "path": "assets/goalos-complete-site.js",
+      "bytes": 468,
+      "sha256": "2c5a5a9e329b2b2687bf95751f5a6a2266b241279f908ff4806bbd0e8d066733"
+    },
+    {
+      "path": "assets/goalos-product-ladder-og.svg",
+      "bytes": 1014,
+      "sha256": "acd28eae884c16a7db5759e436f3afe0459ed51e7fee17eeb812a1ba91749dd6"
+    },
+    {
+      "path": "assets/goalos-product-ladder.css",
+      "bytes": 5259,
+      "sha256": "4bbb97c1d7bb59518b1a16384c2d8ddbec4b7c14fa6d44dc12ceea5355faa9b0"
+    },
+    {
+      "path": "assets/goalos-product-ladder.js",
+      "bytes": 528,
+      "sha256": "7617a70f1a739165dd716b8a132f497bf2bcc6670512c715f85a40b563f7b2f1"
+    },
+    {
+      "path": "assets/goalos-products.css",
+      "bytes": 4495,
+      "sha256": "bd0e94c84a006f94921bc3104c9488788af5e8458f6f659d4f4c3f658e843fd6"
+    },
+    {
+      "path": "assets/goalos-products.js",
+      "bytes": 1564,
+      "sha256": "4861041db7764ed3bad8a8f9567745018d59a8beb688bc4a1ee6a7987dcf021b"
+    },
+    {
+      "path": "assets/idea-to-demand-engine-card.svg",
+      "bytes": 1472,
+      "sha256": "7ba2ba492a64edb0cb37390d827b36d8a0b7a9926d65102b98c97fa43b51f679"
+    },
+    {
+      "path": "assets/internal-approval-memo-card.svg",
+      "bytes": 1475,
+      "sha256": "90de1b2ea731a885dec3b891509fc03e50ff58318f151aab4dd64dcabf92e163"
+    },
+    {
+      "path": "assets/lead-magnet-email-sequence-card.svg",
+      "bytes": 1489,
+      "sha256": "0a95d30d8fd3ecb787e28b99f280f746809c04672b9d9a1496b19717e6fb4e03"
+    },
+    {
+      "path": "assets/meeting-to-action-plan-card.svg",
+      "bytes": 1511,
+      "sha256": "d32a0dee3638a1fa5af3248a2a82ab0b6507f4f997ec31e181d5f490e8309a14"
+    },
+    {
+      "path": "assets/monthly-workflow-vault-drop-card.svg",
+      "bytes": 1471,
+      "sha256": "65c1f3d13fb6c720f31e057376b3ddf05d5d59d5a3e001bfa56b9561e2de6ee7"
+    },
+    {
+      "path": "assets/offer-to-sales-page-card.svg",
+      "bytes": 1494,
+      "sha256": "aa0b47fa5ead505075e35ddcdc2b867d5bb4b302f2520b664584087c64a5d923"
+    },
+    {
+      "path": "assets/order-bump-builder-card.svg",
+      "bytes": 1454,
+      "sha256": "d4fafba527be0eb298f8b62ec28ea9c61e6e77c34ff8a3d60f5e4c218107c6ae"
+    },
+    {
+      "path": "assets/partner-referral-kit-card.svg",
+      "bytes": 1475,
+      "sha256": "d8e7a6f8b8f06d7abaea9047e8ca8cf7087607c5585b55027dcdf40edfde4275"
+    },
+    {
+      "path": "assets/post-purchase-onboarding-card.svg",
+      "bytes": 1507,
+      "sha256": "faa6c52b9c0c323af4bdb5ee5f396983f97c161e45cefa638d822d2cd3844134"
+    },
+    {
+      "path": "assets/proof-card-referral-loop-card.svg",
+      "bytes": 1496,
+      "sha256": "4775a42e952daf27db0c43a88395511003de684b7547ee2e995476029014f1ee"
+    },
+    {
+      "path": "assets/proof-gradient-og.svg",
+      "bytes": 910,
+      "sha256": "64f04c444ffce56a629798eade5b46dc832dd7c815ed58d38b07cc9264730939"
+    },
+    {
+      "path": "assets/proof-gradient-site.css",
+      "bytes": 6243,
+      "sha256": "d9196e2dd281558d2c6fc22d66e92398479223ba1b097ce879f69eb336882751"
+    },
+    {
+      "path": "assets/proof-gradient-site.js",
+      "bytes": 618,
+      "sha256": "39e1a53604b8fb7afbf871c0e33d4c660a0fa6cea852e4c5800ccb98f0c416ae"
+    },
+    {
+      "path": "assets/proof-index.json",
+      "bytes": 4758,
+      "sha256": "1b6db235f5448d9b85e2a6c39be2dfe9e0db203e25699b032fb9b3fef0c47449"
+    },
+    {
+      "path": "assets/proofs/001-sovereign-swarm.json",
+      "bytes": 735,
+      "sha256": "574dc318acf8621b3c7d4d749d4f987ef673414dc4349e5bbdebdf02be7e692d"
+    },
+    {
+      "path": "assets/proofs/002-evolution-tournament.json",
+      "bytes": 833,
+      "sha256": "72d8dadbe747d2112e7c1c349c2f58e970d93cd5db2b2bea9fff66e54ab4cec1"
+    },
+    {
+      "path": "assets/proofs/003-recursive-evolution-ladder.json",
+      "bytes": 899,
+      "sha256": "718176ed12958547e8f7941978814bb8177eddfbc37fc9965b17cdd5ad57e7e6"
+    },
+    {
+      "path": "assets/proofs/004-corporate-rsi-dominion.json",
+      "bytes": 886,
+      "sha256": "e71e58d717215b89def777bb8321950d951ca15fd2cbe5c60f9c6b4a8294fd0e"
+    },
+    {
+      "path": "assets/proofs/005-enterprise-rsi-superorganism.json",
+      "bytes": 1003,
+      "sha256": "c6d11096e5380d6f5539b137cd1dc2e296e22ab6ca27d6db69df51b50acc3ef5"
+    },
+    {
+      "path": "assets/proofs/006-sovereign-enterprise-constellation.json",
+      "bytes": 1055,
+      "sha256": "4ca49cacc7849aea4590fd950123c4794c42d47fd6ce5becd91faddb97112bae"
+    },
+    {
+      "path": "assets/proofs/007-sovereign-enterprise-proof-economy.json",
+      "bytes": 1092,
+      "sha256": "8fe1106128e38431c65ea469bbdec0c91542c7e401ebd25172244786a91f52b4"
+    },
+    {
+      "path": "assets/proofs/008-sovereign-domain-atlas.json",
+      "bytes": 953,
+      "sha256": "f3a1c4f0ebd2809e66926660a97ec85099bdf6f78e73f1469a264e5a55431e5d"
+    },
+    {
+      "path": "assets/proofs/009-sovereign-kardashev-capital-engine.json",
+      "bytes": 1115,
+      "sha256": "c0fdf0951d66837d2ed19acacf70ad2a69459f1bc7a2c4e4b713edfef38bb9c2"
+    },
+    {
+      "path": "assets/proofs/010-proof-carrying-intelligence.json",
+      "bytes": 654430,
+      "sha256": "8ee6ea6a749689219e1a057057fa6c03a8d33949560615fabe8e81a501f6f568"
+    },
+    {
+      "path": "assets/proofs/011-the-proof-loop.json",
+      "bytes": 10101,
+      "sha256": "ceba4b2a5a0f75e36a296029a1bad42091517fb6d9cd389a7c883fcd587065e0"
+    },
+    {
+      "path": "assets/reusable-ai-workflow-card.svg",
+      "bytes": 1644,
+      "sha256": "4437ff79b6f5963ae8b44b93569ab497fe78a3fa24ef92779cae6502b5ce0a22"
+    },
+    {
+      "path": "assets/support-faq-triage-card.svg",
+      "bytes": 1478,
+      "sha256": "df61f8def5bde945dbc64d7307e54a9d69679ad50ad2970ada66d2ace2919fd3"
+    },
+    {
+      "path": "assets/team-pack-upsell-card.svg",
+      "bytes": 1479,
+      "sha256": "78f4d8125422518f9a871a975919b26d8e6e2a755db2452608bf55eb19152acb"
+    },
+    {
+      "path": "assets/team-sprint-facilitator-card.svg",
+      "bytes": 1461,
+      "sha256": "6e049a70bb528c820e120e3372ef3cda5b4d137e6726ebb6ac43ac0f7349ce73"
+    },
+    {
+      "path": "assets/weekly-growth-review-card.svg",
+      "bytes": 1479,
+      "sha256": "aa8b78ae41b320c03fb059e34bb6cc09a05617f8d4c94fedec61a4e14165145f"
+    },
+    {
+      "path": "autonomous-market-readiness.html",
+      "bytes": 9605,
+      "sha256": "517dc2f40f8a6c2f3270ca42cdc1b31a238321f653a4867c0914b8fc36f9c95f"
+    },
+    {
+      "path": "badges/rsi-ai-first-governance-capital-engine-proof.svg",
+      "bytes": 491,
+      "sha256": "f41cd715fa89cf0683b8710bdb8505bc4ab0b30dc2d0994929974b02d09e9697"
+    },
+    {
+      "path": "badges/rsi-proof-forge-meta-coordination-proof.svg",
+      "bytes": 702,
+      "sha256": "a2ebe6341333ee7db20d0ae907ffe4a37777302e8eed0306dc22d75f9be1e783"
+    },
+    {
+      "path": "command-center/index.html",
+      "bytes": 4802,
+      "sha256": "528f40641e248787de9363d2a91d25d0a3b1b46cbb8098b174326f45e19e2352"
+    },
+    {
+      "path": "data/rsi-ai-first-governance-capital-engine-proof.json",
+      "bytes": 26571,
+      "sha256": "c78fa22fe0e6a2122723538dad3df976d975c3f160e010fbe7f1aa5c77471a18"
+    },
+    {
+      "path": "data/rsi-proof-forge-meta-coordination-proof.json",
+      "bytes": 37268,
+      "sha256": "1f74560277a1e58ce93578b4067ec946f16128eadd795da8b182ff31fc9434e1"
+    },
+    {
+      "path": "docs/index.html",
+      "bytes": 5971,
+      "sha256": "a966f24cf882564e3a66c36db0c1ad114bb61aa1ee6ed77ef040b14c5061c4d0"
+    },
+    {
+      "path": "docs/rsi-ai-first-governance-capital-engine-proof.md",
+      "bytes": 3921,
+      "sha256": "486f8ac39b6e862af81c14f2fe056d41c8abadacbcb4fae01f83ae202627e638"
+    },
+    {
+      "path": "docs/rsi-proof-forge-meta-coordination-proof.md",
+      "bytes": 3284,
+      "sha256": "712b40ed8bc69d623d605bf077d00c27994262fc4286b9f3df6e357e39dbf101"
+    },
+    {
+      "path": "enterprise-ops-proof.html",
+      "bytes": 9957,
+      "sha256": "d4801b46d7965b04e17f322e5fc27a75142b1d4b207afe4da3b344194a071189"
+    },
+    {
+      "path": "examples/build-one-reusable-ai-workflow/index.html",
+      "bytes": 13454,
+      "sha256": "c05039c56ae1098d27cf394b0cd02e91075ba3d9ea2f49d2bd8ba4ad23f61f87"
+    },
+    {
+      "path": "examples/checkout-recovery/index.html",
+      "bytes": 16394,
+      "sha256": "d238d60781e5a2ef8348914cf9474a7b10581832a6dd09842d10c5e6b4514055"
+    },
+    {
+      "path": "examples/department-ai-correction-rollback/index.html",
+      "bytes": 17681,
+      "sha256": "e50db94b2936afc9d0a8b939260bfea64b56912678b1e6ba2725260d37cebad0"
+    },
+    {
+      "path": "examples/department-ai-permission-map/index.html",
+      "bytes": 18098,
+      "sha256": "3eb8488893b6a55d0270196b6c53b672978fcec81d6c148a1199a0ab824bcb80"
+    },
+    {
+      "path": "examples/department-monthly-proof-report/index.html",
+      "bytes": 17526,
+      "sha256": "2c347eaed68e7d67617e2d3681a60c0c2e47b772827a0dfbdd4b9b2bd116dd91"
+    },
+    {
+      "path": "examples/department-proof-room-lite/index.html",
+      "bytes": 17238,
+      "sha256": "e102077263a09e1ecd4038136f49b7179edabf1bbaf06ec2d0504389d873489c"
+    },
+    {
+      "path": "examples/department-public-safe-case-study/index.html",
+      "bytes": 17979,
+      "sha256": "da4c82c818a6da66db404798c549199e60f6bf43e5d9a4b0cef9badfa8e41fd2"
+    },
+    {
+      "path": "examples/department-weekly-proof-review/index.html",
+      "bytes": 16391,
+      "sha256": "9336a56c68caa6c5e834b69c3b443a72c0052cfe1d92afdfb05d01fec40eeaba"
+    },
+    {
+      "path": "examples/feedback-to-product-update/index.html",
+      "bytes": 15678,
+      "sha256": "4c76a90c98e11a1b2ecc40bb06500d36d7669ce0600327f79e6b04f77a9114f7"
+    },
+    {
+      "path": "examples/idea-to-demand-engine/index.html",
+      "bytes": 14568,
+      "sha256": "ce0dece90f3be76530bb8267a7d7b81b4ebfaff8e18cbb69e3788995fc336f24"
+    },
+    {
+      "path": "examples/index.html",
+      "bytes": 8433,
+      "sha256": "b891665917a484f60000a2b2c65d4bd4b26e65aeb3f178cf5051a42b2e120d34"
+    },
+    {
+      "path": "examples/internal-approval-memo/index.html",
+      "bytes": 16235,
+      "sha256": "6cf8737864f0ab80d8a26a078f1779d41c37045f8d7eede415f92f579251e588"
+    },
+    {
+      "path": "examples/lead-magnet-email-sequence/index.html",
+      "bytes": 16075,
+      "sha256": "5d76317771cd4104fb21d62e6493997404b90b75fed7dbd43b2d18be22bcbad3"
+    },
+    {
+      "path": "examples/meeting-to-action-plan/index.html",
+      "bytes": 14170,
+      "sha256": "ed38fa3c6608cd4aa4e0908452bb3a1a8353aea0cf862bc0e66c5680f9404854"
+    },
+    {
+      "path": "examples/monthly-workflow-vault-drop/index.html",
+      "bytes": 15978,
+      "sha256": "73cc5f48d81ea734ead24ef80b72a47cb8ff8c8a353b2cc455c3a9ba94a4e497"
+    },
+    {
+      "path": "examples/offer-to-sales-page/index.html",
+      "bytes": 15035,
+      "sha256": "fd870c59b58f0eee7d39b0dc01166519e2b698c6d978c4cc2ad8cda77e679db2"
+    },
+    {
+      "path": "examples/order-bump-builder/index.html",
+      "bytes": 15303,
+      "sha256": "a4ad4c90ca99599a966c5797d723b83d6f3e017276e665dbaa56db7a822e845f"
+    },
+    {
+      "path": "examples/partner-referral-kit/index.html",
+      "bytes": 16355,
+      "sha256": "03fa5b59c550f5892b8d441f8d0eda9e8a8423993c8ca51694c38f0bde6e1e50"
+    },
+    {
+      "path": "examples/post-purchase-onboarding/index.html",
+      "bytes": 15772,
+      "sha256": "cea90d9f707d8cd26e63d0cd20781ffb9424fe11c71d73d957f65bf7960059bf"
+    },
+    {
+      "path": "examples/proof-card-referral-loop/index.html",
+      "bytes": 15335,
+      "sha256": "d0a4178b156ad4ee42bae7d5f0f02dc915afc406fa8f0706972dede0ae142dcb"
+    },
+    {
+      "path": "examples/support-faq-triage/index.html",
+      "bytes": 16824,
+      "sha256": "5d5e06fb1205ed4cb622b77e9b3ad5f6b2146ef7461dc781bd6d2299b795c760"
+    },
+    {
+      "path": "examples/team-pack-upsell/index.html",
+      "bytes": 16595,
+      "sha256": "8d4985b83c5741269ce04a5f0853e045a12354ebd0dedad1a92bf5a50f506658"
+    },
+    {
+      "path": "examples/team-sprint-facilitator/index.html",
+      "bytes": 15975,
+      "sha256": "b3993b9c484b198828d605b2523cd9394eecb1899d94ddb5e82c71226072de90"
+    },
+    {
+      "path": "examples/weekly-growth-review/index.html",
+      "bytes": 15426,
+      "sha256": "0ac23d1d649cbd61549cea41937a4610cba7ef9b325aa4f119369d2b9e62a307"
+    },
+    {
+      "path": "goalos/index.html",
+      "bytes": 9023,
+      "sha256": "49f57ea003668dd03a9413ed18d44c7635d7568e9449092798508c5ec3c65990"
+    },
+    {
+      "path": "goalos-product-ladder-site-manifest.json",
+      "bytes": 122371,
+      "sha256": "7a7d5832655465174e217aaf292df2c4fb739f102ee049fe4edbcc409d2e09ff"
+    },
+    {
+      "path": "home-before-checkout-recovery-example.html",
+      "bytes": 28656,
+      "sha256": "39fecf3c993352b16f80d70efc38ca73aa6db5b4815cd51bf9153904a74fe46c"
+    },
+    {
+      "path": "home-before-demand-engine-example.html",
+      "bytes": 17492,
+      "sha256": "67d38fe0781f4a13cb5a2860aff6c1d297eeccc9990fd94027e8bdae3e40cdcd"
+    },
+    {
+      "path": "home-before-department-ai-correction-rollback-example.html",
+      "bytes": 38857,
+      "sha256": "dcbbec67c1b6db1b378f054f52a1885f8964eb5a6518b4382b87321230e6587d"
+    },
+    {
+      "path": "home-before-department-ai-permission-map-example.html",
+      "bytes": 37677,
+      "sha256": "ef1c116f1a2218e2e5bf4ed42869eac7a209ed5972bcb79519be0d9d62fb3dbd"
+    },
+    {
+      "path": "home-before-department-monthly-proof-report-example.html",
+      "bytes": 36486,
+      "sha256": "b985192fe8ac462514e1d2787e3825ecf18fbb3039795a8c9dd44489a07464c3"
+    },
+    {
+      "path": "home-before-department-proof-room-lite-example.html",
+      "bytes": 34141,
+      "sha256": "8d91e165494ad8d79010aa6404733141784d0620d6d9e1244e83ca3a35fe314d"
+    },
+    {
+      "path": "home-before-department-public-safe-case-study-example.html",
+      "bytes": 40053,
+      "sha256": "f30675d189ec0db68f49eea5d56ea87042c6d014834ac29ea62ab68a8bb1ffc0"
+    },
+    {
+      "path": "home-before-department-weekly-proof-review-example.html",
+      "bytes": 35317,
+      "sha256": "5bb8c83b6f5a960b762aa8e77786b1dd98b04e43be2637c7091c890500265b68"
+    },
+    {
+      "path": "home-before-feedback-to-product-update-example.html",
+      "bytes": 23052,
+      "sha256": "349724dffddf7b216681bfd69baeb235e3e3fbf11a4badc2ac9d39132a2280bb"
+    },
+    {
+      "path": "home-before-internal-approval-memo-example.html",
+      "bytes": 31928,
+      "sha256": "3c43fe09964705fa789f44fc03f88cc0f67f968375c91416dbc289b80e9c9aac"
+    },
+    {
+      "path": "home-before-lead-magnet-email-sequence-example.html",
+      "bytes": 19690,
+      "sha256": "100ed9f233bdb1ff510553f6e65d0bc9c973a11c78dafab43683e6691ca6eeb8"
+    },
+    {
+      "path": "home-before-meeting-workflow-example.html",
+      "bytes": 16373,
+      "sha256": "e2d37705730f2b83612a9ce8159d4a72d5be5387a6882cfe85f18aef6136c962"
+    },
+    {
+      "path": "home-before-monthly-workflow-vault-drop-example.html",
+      "bytes": 25287,
+      "sha256": "82397af82ae2392b7910d3c6eebafca7b41cebe6467e9771f7b78d0bc1eb9c83"
+    },
+    {
+      "path": "home-before-offer-to-sales-page-example.html",
+      "bytes": 18580,
+      "sha256": "2b29305cfc55276f109520d44898856187379f0765c344e829b3ffc88a9b610a"
+    },
+    {
+      "path": "home-before-order-bump-builder-example.html",
+      "bytes": 29750,
+      "sha256": "2376620d11db0ffd19015e6a408885c61f0b36cd0c0e3a319509b2eb022f90d5"
+    },
+    {
+      "path": "home-before-partner-referral-kit-example.html",
+      "bytes": 26429,
+      "sha256": "00c2798ae093af359588cd55e2c57e6a1a8a92e5e92afdad819536c8dfabf336"
+    },
+    {
+      "path": "home-before-post-purchase-onboarding-example.html",
+      "bytes": 20836,
+      "sha256": "cf2a84ecf0e887f4b70b97e5b8f7ac5851ecc7f97bf21d2e9c8ee066bfb598eb"
+    },
+    {
+      "path": "home-before-proof-card-referral-loop-example.html",
+      "bytes": 24167,
+      "sha256": "cc5dbed1c859581fb9a37243738e94c3bb71f0a8d839bed425ecf69738bf2e0e"
+    },
+    {
+      "path": "home-before-reusable-workflow-example.html",
+      "bytes": 15252,
+      "sha256": "21953e74298bfff7a69ed9fbed690b079abcccadbf1741ae2897f527da49be12"
+    },
+    {
+      "path": "home-before-support-faq-triage-example.html",
+      "bytes": 21952,
+      "sha256": "aed5d529aa32c47e2d2292fb44b22702b7c840c05255d58d0a08d13093ce2c86"
+    },
+    {
+      "path": "home-before-team-pack-upsell-example.html",
+      "bytes": 30843,
+      "sha256": "5085fa1c3b7aa8c0dd5df9c4cc0cc5d649f88db63fb67d6fccccae6c62faf82b"
+    },
+    {
+      "path": "home-before-team-sprint-facilitator-example.html",
+      "bytes": 33015,
+      "sha256": "e67bca1e502a7c666960ba02f90b8056ff0e2d7e74f8bab01040cd0c0778d765"
+    },
+    {
+      "path": "home-before-weekly-growth-review-example.html",
+      "bytes": 27524,
+      "sha256": "312bd7bfc070e59049a63b45f1ef648941ceb9ae71154994cedb8200ddc4de2b"
+    },
+    {
+      "path": "implementation/goalos-proof-room-implementation-sprint/index.html",
+      "bytes": 3085,
+      "sha256": "9d6b493a8b2f6b30989cd9d8eaa70aa0f3dc9d45b9184a9e6625e3e7594be2c2"
+    },
+    {
+      "path": "index.html",
+      "bytes": 26462,
+      "sha256": "e41edd4e5bc70f75c73568ff89f4de2fe03f23564be46420896112a6ac41dd20"
+    },
+    {
+      "path": "launch/index.html",
+      "bytes": 6502,
+      "sha256": "6bc442a94d3661b317297d592eaa9bfe5d6169ae4dc8fbfa5ba8a56f49b299b0"
+    },
+    {
+      "path": "legacy-command-center.html",
+      "bytes": 39639,
+      "sha256": "6000df28c73e504e37061b59c7cead3c8b79f9795450d1496f614143f0d39e84"
+    },
+    {
+      "path": "pricing/index.html",
+      "bytes": 4539,
+      "sha256": "a8fcf1df0bb0fcaeb1e2415bf8898dba92d7373b95f524ffba925b5ec4f52aa9"
+    },
+    {
+      "path": "production.html",
+      "bytes": 9665,
+      "sha256": "39603bdf51c641ba49cbaa20b264ba44ca67113b20812d48bbd7daf8f0544fe0"
+    },
+    {
+      "path": "products/ai-efficiency-sprint/index.html",
+      "bytes": 9339,
+      "sha256": "f646cdff54c1734864543439f45a0acc988bade1555d18ad1a17de0af2a6eea6"
+    },
+    {
+      "path": "products/department-proof-room-lite/index.html",
+      "bytes": 6302,
+      "sha256": "e9b659d55656c219fd63f22427cc74682f9f9204da2657d1f51b02e944fccc24"
+    },
+    {
+      "path": "products/enterprise-proof-room-agent-control-plane/index.html",
+      "bytes": 9317,
+      "sha256": "2f08efbb6e5cf87c5e1fae22ebf0cd0d28f813acfa9cbe7a61bba69036bee1e1"
+    },
+    {
+      "path": "products/goalos-ai-efficiency-sprint-kit/index.html",
+      "bytes": 3300,
+      "sha256": "991b1591b4083cde2423cff6c540c7997642101db2c31c9c7fab74776325d2ad"
+    },
+    {
+      "path": "products/goalos-enterprise-pilot/index.html",
+      "bytes": 3729,
+      "sha256": "e5b99bdaf035862edbd04762692933ef7905536c1605218f2d151fdb025dadae"
+    },
+    {
+      "path": "products/goalos-proof-room-implementation-sprint/index.html",
+      "bytes": 3630,
+      "sha256": "113ec42a5d11f2f82fd915cccef83f7b68c9f3ce66353b1a28d9592b78c3974e"
+    },
+    {
+      "path": "products/goalos-proof-room-lite/index.html",
+      "bytes": 3681,
+      "sha256": "9f128bd97715229a5b35568e53aa9a7814622f2f71c35e73b28993c147f66fdf"
+    },
+    {
+      "path": "products/goalos-rsi-lite/index.html",
+      "bytes": 3311,
+      "sha256": "1ba48bebbc0ed1dff8d58c12a97594b4e7855b38fb1876d7249b93a8362d7784"
+    },
+    {
+      "path": "products/goalos-rsi-sprint-workshop/index.html",
+      "bytes": 3472,
+      "sha256": "347b3e6c554cf307e9c8771e932c828850afbb520d5edce3482d9d0d35e0dfad"
+    },
+    {
+      "path": "products/index.html",
+      "bytes": 3447,
+      "sha256": "14f16ca5e10409e8dc24bb1c138b9882a85b86261abadfb6804525399c6ce386"
+    },
+    {
+      "path": "products/nation-state-ai-leverage-proof-infrastructure/index.html",
+      "bytes": 9355,
+      "sha256": "925d3786795c775eca97e820c895fa40081d5f11eb8b15e06c60db8902897d4a"
+    },
+    {
+      "path": "products/proof-page-template-pack/index.html",
+      "bytes": 6170,
+      "sha256": "a6459dc4b43f82d65a599cf2e0ce31e07ba033547b4b32487bd3336684d0b100"
+    },
+    {
+      "path": "products/sme-ai-adoption-sprint/index.html",
+      "bytes": 9244,
+      "sha256": "19e9cd9ca06879df91007ff9b1df95718ce4b78f9d4ebc570677e1fd8d9cd915"
+    },
+    {
+      "path": "products/sovereign-country-ai-operating-system/index.html",
+      "bytes": 9484,
+      "sha256": "0832aece4cf81baf994ea55698ad61e987fe405b3e75223122f2b59035c94a86"
+    },
+    {
+      "path": "products/sovereign-empire-ai-operating-system/index.html",
+      "bytes": 10090,
+      "sha256": "b69e414aac1993a85a538e6537de83a9183a7ddf1efbbb44bcd87a25e78af74a"
+    },
+    {
+      "path": "products/sovereign-nation-state/index.html",
+      "bytes": 9513,
+      "sha256": "333bd8c56b17fe9bb9629791f9cafbef8cccda457b342140dfecb04a1572113b"
+    },
+    {
+      "path": "products/team-pack/index.html",
+      "bytes": 6275,
+      "sha256": "0ef841cae614558f4866b706e2409bdf12bbe577299df4cde69d509d567697bf"
+    },
+    {
+      "path": "products/workflow-vault/index.html",
+      "bytes": 6219,
+      "sha256": "8baa17b01d6e9e369de5d2e2b5a70c15f498bd1ba2461279635579fc0c8d2bb3"
+    },
+    {
+      "path": "products/workshop/index.html",
+      "bytes": 9168,
+      "sha256": "2817b4b0e2ce6c60374bf91271bedd41f6cd478aa94f974fc4861a99e0aacfcb"
+    },
+    {
+      "path": "proof-registry.json",
+      "bytes": 1628,
+      "sha256": "20406f4143407fb9a060840fa9bb92fdc27db36d0225425abbd82ad9fe295afd"
+    },
+    {
+      "path": "proof-room-lite/index.html",
+      "bytes": 2565,
+      "sha256": "34d2dc441d31006b8e4e374de6e426bb590ec3b23bfba8e2f3dda922edaaff15"
+    },
+    {
+      "path": "proofs/001-sovereign-swarm.html",
+      "bytes": 9205,
+      "sha256": "0e48fb783cdb1859ad2392a7b9417714ee4bbd20a8ec8cab7b73713aecbb1659"
+    },
+    {
+      "path": "proofs/002-evolution-tournament.html",
+      "bytes": 9309,
+      "sha256": "42ea1008758a2b572e04acfc0e9772807b8223cae25eb9b6846b275c4bbd4194"
+    },
+    {
+      "path": "proofs/003-recursive-evolution-ladder.html",
+      "bytes": 9363,
+      "sha256": "144f454639c173ed8901fcd0f08edcf7d17ba40744093e4a8dac530107ee72e2"
+    },
+    {
+      "path": "proofs/004-corporate-rsi-dominion.html",
+      "bytes": 9358,
+      "sha256": "0fc1d41466836b4ab66dbc6eef169f0ec7ec9099ef263c0dc19db559d3d544a4"
+    },
+    {
+      "path": "proofs/005-enterprise-rsi-superorganism.html",
+      "bytes": 9463,
+      "sha256": "2b15b9d7277be58130c5f12977b8835d9872ca76cc2383e398383ddc78726ab2"
+    },
+    {
+      "path": "proofs/006-sovereign-enterprise-constellation.html",
+      "bytes": 9503,
+      "sha256": "bb74eb96428812156f02a4d34adc41dabb0ad3348706ba1719107ba851f41d7d"
+    },
+    {
+      "path": "proofs/007-sovereign-enterprise-proof-economy.html",
+      "bytes": 9540,
+      "sha256": "b9091fcaffeff842e936fbd4c865520e12326a81d729156401d5166af3c124ea"
+    },
+    {
+      "path": "proofs/008-sovereign-domain-atlas.html",
+      "bytes": 9425,
+      "sha256": "5b8a790a2d8b816e3e535e33ab09469a93de030b62aadddcd7c3b8845fe3bff4"
+    },
+    {
+      "path": "proofs/009-sovereign-kardashev-capital-engine.html",
+      "bytes": 9563,
+      "sha256": "a6bf03728151bb0867373900a1a50b30b57cc6cf85efa857fa9be77934d5256e"
+    },
+    {
+      "path": "proofs/010-proof-carrying-intelligence.html",
+      "bytes": 827765,
+      "sha256": "1d48309583b30705795ed3e33e060eca51d6ef18409ed018f42921da15963ad5"
+    },
+    {
+      "path": "proofs/011-the-proof-loop.html",
+      "bytes": 40507,
+      "sha256": "44f5b86ba4ecb03706575dbd5043e111a29d685ced6e0ac1854b9f348a3b1044"
+    },
+    {
+      "path": "proofs/index.html",
+      "bytes": 12387,
+      "sha256": "0381ff3983f636ac391a7c816abb3635e0a3d9adf0a9ad3b3a5393c874f2bec0"
+    },
+    {
+      "path": "robots.txt",
+      "bytes": 88,
+      "sha256": "fcbc7ff57179766b5ab743d7ebc645ec404bf57a87fae126aaf50d458ce7cc7e"
+    },
+    {
+      "path": "rsi-adversarial-multi-agent-market-command-center-proof.html",
+      "bytes": 18158,
+      "sha256": "8399d35d92a1a07546cc67ddf49c060cf948890de094c3bb3ce531c6b97d2d2d"
+    },
+    {
+      "path": "rsi-ai-first-blockchain-capital-machine-proof.html",
+      "bytes": 47022,
+      "sha256": "69f52daec611c8a5e914c9f6b59268bbc87e7621623f37511ea3608cbd7c3bcf"
+    },
+    {
+      "path": "rsi-ai-first-governance-capital-engine-proof.html",
+      "bytes": 22187,
+      "sha256": "afaa166220f0043faef57a9f3232a6d59cf74aaae0f2af7641d686e2211c0891"
+    },
+    {
+      "path": "rsi-capability-command-center-proof.html",
+      "bytes": 18486,
+      "sha256": "eda68c106101267dfbcf651c161c7526991c46bbf22ddd21ece7d9522ce24ec0"
+    },
+    {
+      "path": "rsi-capability-command-center-v17-proof.html",
+      "bytes": 15194,
+      "sha256": "eed12bea7783a3bc937eefffa8a4c2ad0d92bf8041c622b4b6aad8e4e0a68890"
+    },
+    {
+      "path": "rsi-capital-to-capability-engine-proof.html",
+      "bytes": 19729,
+      "sha256": "fb516f9bffe8dc5ce7e3e1011850ed223276f9922340c7d756d7847c7efd4932"
+    },
+    {
+      "path": "rsi-cloudops-proof.html",
+      "bytes": 13487,
+      "sha256": "cf82a8708a39b168ca452deab7ee1d8da5cef157d5cdbcbc51d1d7540cd53dcb"
+    },
+    {
+      "path": "rsi-corporate-os-proof.html",
+      "bytes": 14842,
+      "sha256": "b93a23e55ecc83f5d4aa223a758febc37c534fbc5dc30ed391b0985cbad1658f"
+    },
+    {
+      "path": "rsi-cyberdefense-proof.html",
+      "bytes": 14072,
+      "sha256": "d8f0f90c3d0d2c350d329c1254d65271424985238c57db3b28f1e74bf2037182"
+    },
+    {
+      "path": "rsi-marketplace-flywheel-proof.html",
+      "bytes": 14017,
+      "sha256": "efad4ece18722af5310a003f7f799bbc92f7f710ee3bfa51e43d84a5720e3cfa"
+    },
+    {
+      "path": "rsi-metamaterials-discovery-proof.html",
+      "bytes": 32991,
+      "sha256": "6e478bbe1d46dbf45f0427300def2e56cb86d05f273a4d0d424da40018770053"
+    },
+    {
+      "path": "rsi-proof-forge-meta-coordination-proof.html",
+      "bytes": 19601,
+      "sha256": "cd9ccc7c6c6dcf700195ce7495c79a977f7e32234c03242d197bfd7ff87bfe31"
+    },
+    {
+      "path": "rsi-revenue-experiment-factory-proof.html",
+      "bytes": 13840,
+      "sha256": "76bca623abbe6cb2001b9c6647ca8a66ef11afb32433edbde0597d7f17699236"
+    },
+    {
+      "path": "rsi-silicon-verification-proof.html",
+      "bytes": 14426,
+      "sha256": "d4e52f15862ee49b610e9a64d4976480fa6236ce92f6aeda135577d4bb6061b9"
+    },
+    {
+      "path": "rsi-unit-economics-proof.html",
+      "bytes": 13596,
+      "sha256": "5274dfb8202544df0e5ed0c34b1c607b84dfed35d4aa003199a76ce1b0c1d165"
+    },
+    {
+      "path": "services/index.html",
+      "bytes": 3542,
+      "sha256": "367fdffcd190497baab47af93827d9324990a5bf38a78bc4f0f3e8891192c818"
+    },
+    {
+      "path": "site-health.json",
+      "bytes": 383,
+      "sha256": "698d6df756de5b3748bea4d215d81416d22a6efe560049f3657dcd8a83913fa8"
+    },
+    {
+      "path": "site-manifest.json",
+      "bytes": 121177,
+      "sha256": "4483cc4635788421ca61f9ad5931a1f98cc3bd06a1f0d6d3b196e25c22b1761b"
+    },
+    {
+      "path": "site-map/index.html",
+      "bytes": 10137,
+      "sha256": "c17125c8d1132ea1b90968d97199c9988a3a3c747ae32326663f56709f2ba91a"
+    },
+    {
+      "path": "sitemap.xml",
+      "bytes": 6424,
+      "sha256": "9b7aaf70184c5fb58fde4a1060ce5bccf019577fa40055cbae82674c9450af15"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional.docx",
+      "bytes": 1562377,
+      "sha256": "e8711cffec010fb9b4cdc8690f4438361a6d4175b9fa7459e064dfdbd5dc23a8"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional.md",
+      "bytes": 29506,
+      "sha256": "e01a948a1b6269a4db052fbb8825bf4441baf34066b5530cde089b842de3b72e"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional.tex",
+      "bytes": 43075,
+      "sha256": "ac75c060091ac72c40e47e171290904317e76fc4228b57da3be9a25a8fa78504"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_Final.pdf",
+      "bytes": 1962282,
+      "sha256": "7512c3def0b89f48f1ec42be32b8f64bbf94fb447f3b3ca0aeb2a54428b5f033"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_QA_Report.txt",
+      "bytes": 1468,
+      "sha256": "c612221e2d8ee091038ae94b2240ff24defc49515b832dc0589869194f66344f"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_SHA256SUMS.txt",
+      "bytes": 1780,
+      "sha256": "b219f22c14ba304f708ae4d4504fdcc6bf8f84825ccc28f6c4cb8db57a06ec65"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_docx_contact_sheet.jpg",
+      "bytes": 395453,
+      "sha256": "09522427243e69d7a1b3beb54f20ae52c31acae6cac5b48424bf2e8235bc6b2f"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_evidence_docket_template.md",
+      "bytes": 993,
+      "sha256": "bee3d20d6cf603dc066456a130a031df76bfec01244024efff2b9d8054e53d0b"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_one_page_constitution.md",
+      "bytes": 669,
+      "sha256": "0db5d5d21b00437d15af6354df588a19c80b8a83b306426632b2879acd697c2c"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_one_page_constitution.pdf",
+      "bytes": 2521,
+      "sha256": "7866a2a1cf3d53c30603a5f8939d3e43dc3eee9a28eb19769ae6d3dd7f93620b"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_pdf_contact_sheet.jpg",
+      "bytes": 406300,
+      "sha256": "5dae1855d5d211962a6601ebbae45671283fed6d3832b260da6ae1ac2234e392"
+    },
+    {
+      "path": "standards/AEP-001/GoalOS_Proof-of-Evolution-Constitution_AEP001_v12.1_Institutional_protocol_schema.json",
+      "bytes": 4465,
+      "sha256": "38e096f805a7b012107c801efa321189f131832d41c9986f0759d6f75b72957c"
+    },
+    {
+      "path": "standards/AEP-001/README.md",
+      "bytes": 2862,
+      "sha256": "b5e460c6a9ca8ce4b81ee208999282c58ab633e56e0c5de692825971cb9beed9"
+    },
+    {
+      "path": "standards/AEP-001/complete-package.zip",
+      "bytes": 5277717,
+      "sha256": "ef2256919853c77395eeef265dbce65544646d91d41ca3e02cd0ab602e19f855"
+    },
+    {
+      "path": "standards/AEP-001/evidence_docket_template.md",
+      "bytes": 993,
+      "sha256": "bee3d20d6cf603dc066456a130a031df76bfec01244024efff2b9d8054e53d0b"
+    },
+    {
+      "path": "standards/AEP-001/figures/cover.png",
+      "bytes": 320563,
+      "sha256": "90b9e3da36349e76afee928b524b414fbf8a25025c5f0f7fcdfe6b4b316bf871"
+    },
+    {
+      "path": "standards/AEP-001/figures/fig01_constitution_stack.png",
+      "bytes": 173288,
+      "sha256": "f21e3d8045da21c7d46e437154f8ef288ad4f3c907473f99abe57592172ce187"
+    },
+    {
+      "path": "standards/AEP-001/figures/fig02_loop.png",
+      "bytes": 129419,
+      "sha256": "8789de376fac60254aad8cf80cb717ded6595a2af17fa7572f8b4815d0f97a1d"
+    },
+    {
+      "path": "standards/AEP-001/figures/fig03_boundary.png",
+      "bytes": 116105,
+      "sha256": "0454893a9f5cd9f9545975103a4803e7dded9b2a17261de7e9fb90866ce3380d"
+    },
+    {
+      "path": "standards/AEP-001/figures/fig04_object_graph.png",
+      "bytes": 141961,
+      "sha256": "c2441bb79086f3f1d4f74897b8932bf6979d9f1933c345eb2adf207d80de3dd6"
+    },
+    {
+      "path": "standards/AEP-001/figures/fig05_contract_suite.png",
+      "bytes": 176767,
+      "sha256": "37c4e2d98e30d5934cce1c2fc0ad9baf84db641abb361bc3d34030f9995061c0"
+    },
+    {
+      "path": "standards/AEP-001/figures/fig06_selection_gate.png",
+      "bytes": 111460,
+      "sha256": "544b27e5407efa1ba052c53bc1ca3c7e0a6f23d7e9fab4245b5540a64b51ae9f"
+    },
+    {
+      "path": "standards/AEP-001/figures/fig07_evidence_docket.png",
+      "bytes": 138553,
+      "sha256": "785e6e399ddf2d6ff092942e4309ff70233784bd91252eff6216dfbd1bcae924"
+    },
+    {
+      "path": "standards/AEP-001/figures/fig08_evolution_ledger.png",
+      "bytes": 131449,
+      "sha256": "63c1b9d32985031fb8dfb027a57e864408d7e6686675ef65becd55e0f4ac9911"
+    },
+    {
+      "path": "standards/AEP-001/figures/fig09_deployment.png",
+      "bytes": 127879,
+      "sha256": "157da167cf18b73f509027031db93cdd9b82ca55356513c8799c25fd00ece5b0"
+    },
+    {
+      "path": "standards/AEP-001/figures/index.html",
+      "bytes": 8676,
+      "sha256": "c995e5944506730f639d1256530104d0e09aa2ceba0df406bd01dcd631d45d5a"
+    },
+    {
+      "path": "standards/AEP-001/index.html",
+      "bytes": 9078,
+      "sha256": "d1782af0b96972854e8b99bddce54324d4d2f9c3949fd293e33895d170ceef95"
+    },
+    {
+      "path": "standards/AEP-001/one-page.pdf",
+      "bytes": 2521,
+      "sha256": "7866a2a1cf3d53c30603a5f8939d3e43dc3eee9a28eb19769ae6d3dd7f93620b"
+    },
+    {
+      "path": "standards/AEP-001/one_page_constitution.md",
+      "bytes": 669,
+      "sha256": "0db5d5d21b00437d15af6354df588a19c80b8a83b306426632b2879acd697c2c"
+    },
+    {
+      "path": "standards/AEP-001/paper.docx",
+      "bytes": 1562377,
+      "sha256": "e8711cffec010fb9b4cdc8690f4438361a6d4175b9fa7459e064dfdbd5dc23a8"
+    },
+    {
+      "path": "standards/AEP-001/paper.pdf",
+      "bytes": 1962282,
+      "sha256": "7512c3def0b89f48f1ec42be32b8f64bbf94fb447f3b3ca0aeb2a54428b5f033"
+    },
+    {
+      "path": "standards/AEP-001/protocol_schema.json",
+      "bytes": 4465,
+      "sha256": "38e096f805a7b012107c801efa321189f131832d41c9986f0759d6f75b72957c"
+    },
+    {
+      "path": "standards/AEP-001/source.md",
+      "bytes": 29506,
+      "sha256": "e01a948a1b6269a4db052fbb8825bf4441baf34066b5530cde089b842de3b72e"
+    },
+    {
+      "path": "standards/AEP-001/source.tex",
+      "bytes": 43075,
+      "sha256": "ac75c060091ac72c40e47e171290904317e76fc4228b57da3be9a25a8fa78504"
+    },
+    {
+      "path": "standards/AEP-002/AEP-002_Evidence-Docket-Standard_v1.1_Institutional.docx",
+      "bytes": 267096,
+      "sha256": "a1a6d997525ee359ad5474c0e57f235ca7bdf82ab9b49d148118264706a87aba"
+    },
+    {
+      "path": "standards/AEP-002/AEP-002_Evidence-Docket-Standard_v1.1_Institutional.md",
+      "bytes": 10347,
+      "sha256": "d49afacbe1cd4682cd9a9231905d37d68321a5f59c166de7cfe79f1fda790963"
+    },
+    {
+      "path": "standards/AEP-002/AEP-002_Evidence-Docket-Standard_v1.1_Institutional.pdf",
+      "bytes": 311384,
+      "sha256": "36573fe65e68cac217aaff5c65d66996e4494377488e61a9b25db6f6a52710dc"
+    },
+    {
+      "path": "standards/AEP-002/AEP-002_Evidence-Docket-Standard_v1.1_Institutional.tex",
+      "bytes": 2478,
+      "sha256": "fab7ccdf61b205935671895357bd5f689fe977a7efad6513232906b09074db43"
+    },
+    {
+      "path": "standards/AEP-002/AEP-002_One-Page_Evidence-Docket-Standard_v1.1.docx",
+      "bytes": 37283,
+      "sha256": "ee819bf027735e5bb18d7cab5e94ca6772e4fe4d86dbd9192382eaf9d26232b7"
+    },
+    {
+      "path": "standards/AEP-002/AEP-002_One-Page_Evidence-Docket-Standard_v1.1.pdf",
+      "bytes": 49605,
+      "sha256": "aeca93523f301e0214e80736eca97bf9ffcebc4f7f147467aa65b3a817cee21b"
+    },
+    {
+      "path": "standards/AEP-002/INSTALL_IN_PROOF_GRADIENT.md",
+      "bytes": 551,
+      "sha256": "dc8e5a79a1ecd6c09d7fb04f56e567b5256e90f27c3f77c43d6f043a203df676"
+    },
+    {
+      "path": "standards/AEP-002/QA_REPORT.md",
+      "bytes": 1194,
+      "sha256": "fa7c1fb1b494623dba6dc02a7428d71599821b692da50c1a1e40b7874996e469"
+    },
+    {
+      "path": "standards/AEP-002/README.md",
+      "bytes": 882,
+      "sha256": "54784eb1f9869c85356c8dae681d46c6a15941491383edd268f848d3e82bd2df"
+    },
+    {
+      "path": "standards/AEP-002/RELEASE_NOTES_AEP002_v1.1.md",
+      "bytes": 970,
+      "sha256": "911eafcff43a24d60b58d6f89c5a249191c87583e486ac5735826d7f178b2329"
+    },
+    {
+      "path": "standards/AEP-002/SHA256SUMS.txt",
+      "bytes": 3454,
+      "sha256": "7f87f8630a3ac9da532c3a0e292fe1ada81265818832dab80c68614111fb17dd"
+    },
+    {
+      "path": "standards/AEP-002/conformance/aep002_conformance_checklist.md",
+      "bytes": 1274,
+      "sha256": "a6dcd57e1be55599f947359caf3180427273125171d37c29b15e002b28e90375"
+    },
+    {
+      "path": "standards/AEP-002/conformance/index.html",
+      "bytes": 7893,
+      "sha256": "5ee1a8295b794d4b2521e1a7be32da7965ff42742d805fbed1b6fb6848e55d98"
+    },
+    {
+      "path": "standards/AEP-002/examples/basic_evidence_docket.json",
+      "bytes": 6828,
+      "sha256": "fb71393aab044d883029e7e59af9a18ab6b87ab156659351ba50749779cf9d6b"
+    },
+    {
+      "path": "standards/AEP-002/examples/generated_public_safe_report.md",
+      "bytes": 428,
+      "sha256": "5f4549d2c1d63e4545fd4158b7a8d5cd5bb75291e0660638dbbc9ae24594afbe"
+    },
+    {
+      "path": "standards/AEP-002/examples/index.html",
+      "bytes": 8321,
+      "sha256": "730d8bb7e729487313864289b4b649ca62e2979409b215bfdc5c1d97049eaaaa"
+    },
+    {
+      "path": "standards/AEP-002/examples/institutional_conformance_score.json",
+      "bytes": 977,
+      "sha256": "c4d234895fe462d890e0730fb4cad0cee8f22e32d09186b4c2ced488e3e81281"
+    },
+    {
+      "path": "standards/AEP-002/examples/institutional_evidence_docket.json",
+      "bytes": 6844,
+      "sha256": "7332f1e3fb2621b0aa3876101855bd95ebee0b9fed74ac2ecdff0623b1009b4f"
+    },
+    {
+      "path": "standards/AEP-002/examples/public_safe_report.json",
+      "bytes": 572,
+      "sha256": "c0d9ba452430aec23bc2b721a9f4b12f78b20ca67a52cb5ec9dab3f3d5ef23d5"
+    },
+    {
+      "path": "standards/AEP-002/figures/fig01_aep002_docket_stack.png",
+      "bytes": 118830,
+      "sha256": "882c065f863c7d910d0039ee8213c48b0c147712d11fe966801d3c4ade8689f1"
+    },
+    {
+      "path": "standards/AEP-002/figures/fig02_docket_lifecycle.png",
+      "bytes": 69531,
+      "sha256": "b6fe5cdd699b7ca2ca31096fe01ff0f2ce49b2e84294c124d726d653fbf89d0c"
+    },
+    {
+      "path": "standards/AEP-002/figures/fig03_evidence_boundary.png",
+      "bytes": 64535,
+      "sha256": "263bfb8dae13c6421c579ec8a94bc22c9809ea203d640d21ecf6d344198a1ff1"
+    },
+    {
+      "path": "standards/AEP-002/figures/index.html",
+      "bytes": 8084,
+      "sha256": "b7a6f311bf7d18b3e955410f523c69557da8177971319d45ef7f6df8647c6e35"
+    },
+    {
+      "path": "standards/AEP-002/index.html",
+      "bytes": 9205,
+      "sha256": "431b1c42af6b68fa36140dce46c7983f24d4a519dc6db15e5661ce02608a40c4"
+    },
+    {
+      "path": "standards/AEP-002/paper.pdf",
+      "bytes": 311384,
+      "sha256": "36573fe65e68cac217aaff5c65d66996e4494377488e61a9b25db6f6a52710dc"
+    },
+    {
+      "path": "standards/AEP-002/schemas/evidence_docket.schema.json",
+      "bytes": 5127,
+      "sha256": "a473a1523a6bd787ddeb369e9eaf33dd6bbe85821723a72f3c1ecb30c975f661"
+    },
+    {
+      "path": "standards/AEP-002/schemas/index.html",
+      "bytes": 8200,
+      "sha256": "5e707e21695db78c8a42d66932a3b11ec25cdc933c2b0a3e6cc6d97c95fb5b36"
+    },
+    {
+      "path": "standards/AEP-002/schemas/proof_packet.schema.json",
+      "bytes": 1194,
+      "sha256": "4171b8feca8d465a61ad179f5600ebe0f73b65aba8721f273a567afb926c6d39"
+    },
+    {
+      "path": "standards/AEP-002/schemas/public_safe_report.schema.json",
+      "bytes": 1294,
+      "sha256": "66603f0cfb79e67d8f4125973987a6eed550b94093ff8c570d4f9594d5cb6780"
+    },
+    {
+      "path": "standards/AEP-002/schemas/selection_certificate.schema.json",
+      "bytes": 1142,
+      "sha256": "4797d57f00b405595e06ace382fd39fd6e31765018b25d1d8f477c2f96a0ced7"
+    },
+    {
+      "path": "standards/AEP-002/source.md",
+      "bytes": 10347,
+      "sha256": "d49afacbe1cd4682cd9a9231905d37d68321a5f59c166de7cfe79f1fda790963"
+    },
+    {
+      "path": "standards/AEP-002/templates/claim_boundary_template.md",
+      "bytes": 242,
+      "sha256": "53af25adb41b9ed11082d14fcf2b2a04785267a2647bb6229dd90260477e5a11"
+    },
+    {
+      "path": "standards/AEP-002/templates/evidence_docket_template.md",
+      "bytes": 3045,
+      "sha256": "e9b07497a1121e225ad57372309ff66e19be95c2ab58242b68c42bd0c4401aa7"
+    },
+    {
+      "path": "standards/AEP-002/templates/index.html",
+      "bytes": 8087,
+      "sha256": "1111a7d6a47a0880e3855c6e18544581291d159f1ea76ab6ac273d807efca2fa"
+    },
+    {
+      "path": "standards/AEP-002/templates/public_safe_report_template.md",
+      "bytes": 235,
+      "sha256": "333f89b97c890b09c56ff6841d40e3f656023bec9576155d1843c53685dd9d57"
+    },
+    {
+      "path": "standards/AEP-002/tools/generate_public_safe_report.py",
+      "bytes": 1033,
+      "sha256": "16b1f4efecc55b8e496e7beb506e157529913f03ad9e36b0bb69ceda3baa953c"
+    },
+    {
+      "path": "standards/AEP-002/tools/index.html",
+      "bytes": 8067,
+      "sha256": "e402c2a0bb0d22fc9825c2ed5e19f6820ed1412d640f74bb0b2300efb28a8594"
+    },
+    {
+      "path": "standards/AEP-002/tools/score_conformance.py",
+      "bytes": 906,
+      "sha256": "46a7ebe1ffb80570833aa5c82e12c048185bf7c1c608baafdbf0a34d72c136c9"
+    },
+    {
+      "path": "standards/AEP-002/tools/validate_evidence_docket.py",
+      "bytes": 1545,
+      "sha256": "d4e44105b6112e2b7e703dd5a25df3fa31498c757bc3f9651b13612ee60a4108"
+    },
+    {
+      "path": "standards/AEP-003/AEP-003_ProofPacket-Schema_v1.1_Institutional.docx",
+      "bytes": 265928,
+      "sha256": "005c1d3a9a28ab5862b29ec6e24084e3d42ace9a1f739733b243e4e17154345c"
+    },
+    {
+      "path": "standards/AEP-003/AEP-003_ProofPacket-Schema_v1.1_Institutional.md",
+      "bytes": 9837,
+      "sha256": "152e4745eca5aab7fafb832d813aa3d5345969b9b2fd4e1c13b8c577a08670fb"
+    },
+    {
+      "path": "standards/AEP-003/AEP-003_ProofPacket-Schema_v1.1_Institutional.pdf",
+      "bytes": 313936,
+      "sha256": "7df87c0a5cdca4267b27deab61d65e4a731187cf5603f72b57a275079507245c"
+    },
+    {
+      "path": "standards/AEP-003/AEP-003_ProofPacket-Schema_v1.1_Institutional.tex",
+      "bytes": 3976,
+      "sha256": "0d7cbfdce3523236712483da7599d542aba5536241e059353ff6b22f9164eefe"
+    },
+    {
+      "path": "standards/AEP-003/CODEX_IMPLEMENTATION_PROMPT_AEP003.md",
+      "bytes": 872,
+      "sha256": "3a417c3dd508838c96a18345b8fa437fef37c4254b50f6517a6c629c1e4b8174"
+    },
+    {
+      "path": "standards/AEP-003/INSTALL_IN_PROOF_GRADIENT.md",
+      "bytes": 571,
+      "sha256": "175828519d47ea11b640209b367c9c0f3d03d12b8d3ec303c943ea744053a97f"
+    },
+    {
+      "path": "standards/AEP-003/QA_REPORT.md",
+      "bytes": 1841,
+      "sha256": "8eca413e566296809b1eba55a947263d89588b8a56da271ed82ea2009b2c2cd0"
+    },
+    {
+      "path": "standards/AEP-003/README.md",
+      "bytes": 978,
+      "sha256": "0933b1d6f02cf6c45dffe671c14ba3afb034fc0d02538a459a4f88f15b683ecd"
+    },
+    {
+      "path": "standards/AEP-003/RELEASE_NOTES_AEP003_v1.1.md",
+      "bytes": 616,
+      "sha256": "93e7763f3d657a236ee80fe60e0daf092b74c19f9eda3e9d5f0dc9e95c7f33f1"
+    },
+    {
+      "path": "standards/AEP-003/SHA256SUMS.txt",
+      "bytes": 5243,
+      "sha256": "7c7ebf71e125bf6db782908f15fa5f6db7e1afa3b55c9160f34ca30b10068644"
+    },
+    {
+      "path": "standards/AEP-003/conformance/aep003_conformance_checklist.md",
+      "bytes": 1256,
+      "sha256": "84ac1f7d52cf80b8cdc5cff3a112ebf8ccee25c1c86eb5515b9911f3eab7d0f9"
+    },
+    {
+      "path": "standards/AEP-003/conformance/index.html",
+      "bytes": 7893,
+      "sha256": "f284e809817a15fbfc2b4bda29d82ccbfe30772f60d39a7db715598d3d6027bd"
+    },
+    {
+      "path": "standards/AEP-003/examples/index.html",
+      "bytes": 9554,
+      "sha256": "6b52b6a47b7b5fe297f2eb6485f6bf68c5b607e1f48f41dfe59b605120ac84b1"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_01_commit.json",
+      "bytes": 2147,
+      "sha256": "51f6c290c0ec8cce104c6a52833b10f1b11d18f8529fd6afc0cc89e6faf65bda"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_02_trace_event.json",
+      "bytes": 2136,
+      "sha256": "64b62f1ae8967925d0e2384e3b5a72fb9e1a18922fd8c09defd095d3b398d2e4"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_03_tool_call.json",
+      "bytes": 2205,
+      "sha256": "08897e61732ed59c28b90f9a0a838e96388ecffb4b084f35c83267e64c70ac26"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_04_policy_decision.json",
+      "bytes": 2151,
+      "sha256": "53a94f14d0b19879928016845105c214d03ca30bef0c1be7a54e7bb98193a35c"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_05_approval.json",
+      "bytes": 2121,
+      "sha256": "33a51bd5f0f2e351e870bd4b622f9a24f4e8c64cee68ab5d6e9e3724e2291820"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_06_eval_result.json",
+      "bytes": 2190,
+      "sha256": "3eb10b347533e5ffe26381766191e7d37f5c3a3a998ffa62c61bc3e525ef1f8a"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_07_evidence_ref.json",
+      "bytes": 2175,
+      "sha256": "5d99791dd9c85023fc55405d192b96b5f2f69cf88a147b7b1b3a957508de3ce6"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_08_risk_event.json",
+      "bytes": 2182,
+      "sha256": "0991b9b5315d45467d1b1c341b62b179d4d76e69002263b4ddb534e685c687a5"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_09_cost_event.json",
+      "bytes": 2122,
+      "sha256": "5e734aee51c9b0b69cd435970e3d8d3f8d1111df878497051c3b0c24f06f5551"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_10_selection_decision.json",
+      "bytes": 2224,
+      "sha256": "f7701c189f2c8b1d4ba374edb3934aa5cbc8496b6dbf53a73edb948936205132"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_11_rollout_event.json",
+      "bytes": 2186,
+      "sha256": "b3377be2583ea43e6164557f3fa3d53dc4629ae4ed2dd6a2a3151efd4bb16d4d"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_12_rollback_event.json",
+      "bytes": 2258,
+      "sha256": "6917b6f5cc64baff8cd6b49874deb27dd3fd0828e768e1971056c456410de626"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_13_public_report.json",
+      "bytes": 2216,
+      "sha256": "a4756e353e7f6687b5838352b7757bbf9c1f8e2bf87c1e8bdd4ee8d908767ecf"
+    },
+    {
+      "path": "standards/AEP-003/examples/sample_proof_packet_bundle.json",
+      "bytes": 2270,
+      "sha256": "9df38c2d43e508784839afe51878927eb8b89970144d8cacd994dd656a27760e"
+    },
+    {
+      "path": "standards/AEP-003/figures/fig01_proofpacket_anatomy.png",
+      "bytes": 113375,
+      "sha256": "38f111b604a11f602b13b9349267523ecc51027112f8b1062aabb40ca7f6ea11"
+    },
+    {
+      "path": "standards/AEP-003/figures/fig02_proofpacket_hash_chain.png",
+      "bytes": 58907,
+      "sha256": "b3f3d40308083e037b16b6b8017bd165e8827ae2512ecc43a12fb96a49dbfbe3"
+    },
+    {
+      "path": "standards/AEP-003/figures/fig03_proofpacket_lifecycle.png",
+      "bytes": 79462,
+      "sha256": "161f9584c02679489e0353c96a345daab6de079cf272e55ab66ce4bd93b8ddbb"
+    },
+    {
+      "path": "standards/AEP-003/figures/index.html",
+      "bytes": 8104,
+      "sha256": "f275e579dfb97e52a962727dfd35de3bc0276dfc7f2b4b2409547846fd6ae483"
+    },
+    {
+      "path": "standards/AEP-003/implementation/AEP-003_Implementation_Guide.md",
+      "bytes": 1002,
+      "sha256": "b7cb7e15d9508e887ff40978f34d7439644a6a5a7d68dd7cfb9b6824c8810ad4"
+    },
+    {
+      "path": "standards/AEP-003/implementation/AEP-003_Interop_Profile.md",
+      "bytes": 607,
+      "sha256": "7016b2be91e8fcb9b16bba7b4f8790f94240dae05e63f0d134ad98a6f2742bb9"
+    },
+    {
+      "path": "standards/AEP-003/implementation/AEP-003_Security_Privacy_Guide.md",
+      "bytes": 818,
+      "sha256": "32dbbe09e61c7da37c9e011eb974de9600621e6f52fefde5c2094123d207d9d1"
+    },
+    {
+      "path": "standards/AEP-003/implementation/index.html",
+      "bytes": 8111,
+      "sha256": "be43300246baa91d578557fbdb6a10cbc7b89dd8305696ed64bf1db6eaedfae2"
+    },
+    {
+      "path": "standards/AEP-003/index.html",
+      "bytes": 9321,
+      "sha256": "57429018c003af4138b730daf43f190f4de189f7541cadcc1affa07ea5508bd2"
+    },
+    {
+      "path": "standards/AEP-003/one_page/AEP-003_One-Page_ProofPacket-Schema_v1.1.docx",
+      "bytes": 37291,
+      "sha256": "aecf24b47e9381b10d97fcc4d7bfffe48375f5075de041898f02e849bfc405e5"
+    },
+    {
+      "path": "standards/AEP-003/one_page/AEP-003_One-Page_ProofPacket-Schema_v1.1.md",
+      "bytes": 982,
+      "sha256": "d91ad39e7fa86bb5bf83d5e23b92108e57ee12189b03122a3fa433af49beb46b"
+    },
+    {
+      "path": "standards/AEP-003/one_page/AEP-003_One-Page_ProofPacket-Schema_v1.1.pdf",
+      "bytes": 48517,
+      "sha256": "f5d2998d19550159505cfcd77b4443583672c423c6f3d546ba688768563c54ef"
+    },
+    {
+      "path": "standards/AEP-003/one_page/index.html",
+      "bytes": 8186,
+      "sha256": "c78a0f790d269c163a534765e5ef82398929063fcee626b8891e5d073677987e"
+    },
+    {
+      "path": "standards/AEP-003/paper.pdf",
+      "bytes": 313936,
+      "sha256": "7df87c0a5cdca4267b27deab61d65e4a731187cf5603f72b57a275079507245c"
+    },
+    {
+      "path": "standards/AEP-003/schemas/index.html",
+      "bytes": 8238,
+      "sha256": "eba77976c18b8a4a96a721bad9761abe15fbe5df53e66d01c5ba34f1a6c15b37"
+    },
+    {
+      "path": "standards/AEP-003/schemas/proof_packet.schema.json",
+      "bytes": 5392,
+      "sha256": "b846b9e03c9a0bcf520c2b60229cbcd811a38837eeda67c15326b35c66f0755b"
+    },
+    {
+      "path": "standards/AEP-003/schemas/proof_packet_attestation.schema.json",
+      "bytes": 942,
+      "sha256": "7fb6b726e8f9d9b2eb3163ed90d8142e3ed6b5761f6aa68f8bfe4be6fc07f3cc"
+    },
+    {
+      "path": "standards/AEP-003/schemas/proof_packet_bundle.schema.json",
+      "bytes": 1371,
+      "sha256": "6e8bab942733f78e45f882c54bd6b7c98bebb257d0ed557ad127c5b160e5cba1"
+    },
+    {
+      "path": "standards/AEP-003/schemas/proof_packet_canonicalization_profile.json",
+      "bytes": 388,
+      "sha256": "c07d56da13bb088855698b1320981d047b77697b6531df35f2eff7a47f327d3d"
+    },
+    {
+      "path": "standards/AEP-003/source.md",
+      "bytes": 9837,
+      "sha256": "152e4745eca5aab7fafb832d813aa3d5345969b9b2fd4e1c13b8c577a08670fb"
+    },
+    {
+      "path": "standards/AEP-003/templates/index.html",
+      "bytes": 7976,
+      "sha256": "0f1f5968dcebd1bace577570572069daf38404e11ac4e1bcca05ba7645e1c80e"
+    },
+    {
+      "path": "standards/AEP-003/templates/proof_packet_template.json",
+      "bytes": 758,
+      "sha256": "4f3018f2fb1702582163cc32c3174b205e623ee60a9220d7d6f34f844de194af"
+    },
+    {
+      "path": "standards/AEP-003/templates/proof_packet_template.md",
+      "bytes": 908,
+      "sha256": "aefd4fbda99ce977634596cf958a27e26d3a5132660fa69f7166c0ca8d7e49a5"
+    },
+    {
+      "path": "standards/AEP-003/tools/index.html",
+      "bytes": 8249,
+      "sha256": "7429c52a87f66ecc96c505459b77ded97ceaafe711e95b2dc448649bb5b04561"
+    },
+    {
+      "path": "standards/AEP-003/tools/proof_packet_bundle.py",
+      "bytes": 1515,
+      "sha256": "dff2c06f8b0212c18f7a6f7de4c34c4ef6adb66068e4d0ba453f0b27bf81a17b"
+    },
+    {
+      "path": "standards/AEP-003/tools/proof_packet_conformance_score.py",
+      "bytes": 1331,
+      "sha256": "4bb5da2aa8d32f04b42fba62d6ea5e8fd3e2d75ce212f7f27d011f65aa633f83"
+    },
+    {
+      "path": "standards/AEP-003/tools/proof_packet_hash.py",
+      "bytes": 788,
+      "sha256": "d1308919c795cb091d92b3e803f046c3b1f6c70bdbc85b57e3587ed3a26fe76b"
+    },
+    {
+      "path": "standards/AEP-003/tools/validate_proof_packet.py",
+      "bytes": 2876,
+      "sha256": "dff0875441b4a4c5a378a75c7bb34ba1fb631665a7e70c9bf8a0011297ec3383"
+    },
+    {
+      "path": "standards/AEP-003/tools/verify_packet_chain.py",
+      "bytes": 1153,
+      "sha256": "f030a56e46f2c4f20ea70420750ed5751053f57c675d273290d86c1aa990ac15"
+    },
+    {
+      "path": "standards/AEP-004/AEP-004_Selection-Gate-Standard_v1.1_Institutional.docx",
+      "bytes": 376120,
+      "sha256": "dd3e8e8353acc5b679ac7d1bacfd714b2e1425f3d7fbfe0ed47efc538c712793"
+    },
+    {
+      "path": "standards/AEP-004/AEP-004_Selection-Gate-Standard_v1.1_Institutional.md",
+      "bytes": 12213,
+      "sha256": "cac46e50196d7ce25cdce11c1158c2a709fc926389e3c9fdffb5167a114107fe"
+    },
+    {
+      "path": "standards/AEP-004/AEP-004_Selection-Gate-Standard_v1.1_Institutional.pdf",
+      "bytes": 399994,
+      "sha256": "fd2f6444177e019a482a785eaed57e21ae9de874851faaf4884423d17a12469e"
+    },
+    {
+      "path": "standards/AEP-004/AEP-004_Selection-Gate-Standard_v1.1_Institutional.tex",
+      "bytes": 3768,
+      "sha256": "74eb8430ac3052d104d4e573d1442e71095d34c7ab8d318e43b5a1e1d3e2a470"
+    },
+    {
+      "path": "standards/AEP-004/CODEX_IMPLEMENTATION_PROMPT_AEP004.md",
+      "bytes": 931,
+      "sha256": "988428535ac9c41ca4f78b08025e817427485cc591afae573d55e6f54b04d161"
+    },
+    {
+      "path": "standards/AEP-004/INSTALL_IN_PROOF_GRADIENT.md",
+      "bytes": 611,
+      "sha256": "ebc35f35d213f831df3f11b28194a6980568f17fdca9ca47c22852d34152bd08"
+    },
+    {
+      "path": "standards/AEP-004/QA_REPORT.md",
+      "bytes": 1843,
+      "sha256": "5fdd4619513543370d13c49e852d3d3754800992f01ef94735419d40aea78874"
+    },
+    {
+      "path": "standards/AEP-004/README.md",
+      "bytes": 1050,
+      "sha256": "a5f1821ed7073e31035d485428bc54b5bd0dea81c74ca86157e8a27266a3cc1d"
+    },
+    {
+      "path": "standards/AEP-004/RELEASE_NOTES_AEP004_v1.1.md",
+      "bytes": 502,
+      "sha256": "c556fda3fcd58b15f5833d8344db1767ea0e9d402399b5026fe9dcbe34aa4355"
+    },
+    {
+      "path": "standards/AEP-004/SHA256SUMS.txt",
+      "bytes": 5599,
+      "sha256": "0589258fbe56b804e0aed887e8c57ed2b427f8d081feeccababced0b2c27fe4a"
+    },
+    {
+      "path": "standards/AEP-004/conformance/aep004_conformance_checklist.md",
+      "bytes": 1351,
+      "sha256": "bd6949d4f87e8b6c7833138979e8e5184eaddfb987252ca7e2079fe8e2179b95"
+    },
+    {
+      "path": "standards/AEP-004/conformance/index.html",
+      "bytes": 7893,
+      "sha256": "c57abf690bdcfcd9543ed9f01c8acd15aa0192927920cf0513e5cd396eafde72"
+    },
+    {
+      "path": "standards/AEP-004/examples/index.html",
+      "bytes": 9189,
+      "sha256": "3b1da0024b7127a62c6827bc33844af7323fa662f9d2be0f3b3532ee33094cf6"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_gate_decision_input_promote.json",
+      "bytes": 129,
+      "sha256": "708e8c7e58694d9ad8b257c2c768b79fc834c6b32131401e44e43554ecefcc73"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_gate_decision_input_reject.json",
+      "bytes": 130,
+      "sha256": "6a5cd5ee2a1fa8d434c06023f7228e5da6d536dfbc2161774894cba24553f5a4"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_gate_policy.json",
+      "bytes": 826,
+      "sha256": "5b5ad6c3dc508994a4885eaefc7b4fa927196c7ce3726e1c594e08c727151ae1"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_selection_candidate.json",
+      "bytes": 1011,
+      "sha256": "f893cbbdfcba8e29ae63a7eb82a07c215e894ec32bca7c112b15c9e8dac72514"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_selection_certificate_approve_canary.json",
+      "bytes": 3366,
+      "sha256": "5fe29b045d38b75723e9ca5c4b41159c504b18996c9f70a8b5360cb86ea1be93"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_selection_certificate_archive.json",
+      "bytes": 3292,
+      "sha256": "5ec0b875e0579f399314843c0fa48f1715d44f5215e8dea17ecd3cd97e271281"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_selection_certificate_needs_more_evidence.json",
+      "bytes": 3296,
+      "sha256": "3111ef1b1facad4ec21a68a472625c4a0ed82d4d048689dc5ad8fe3db735122a"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_selection_certificate_promote.json",
+      "bytes": 3337,
+      "sha256": "75a69c316de0debad24dcd28da47ac9f06ea524d917fc4d297b5d8b959dd7475"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_selection_certificate_reject.json",
+      "bytes": 3291,
+      "sha256": "0f40e98834519926f0f3c6a94848ea2fd4a06cc47c00e8bbcdf15f6406cabbef"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_selection_certificate_revise.json",
+      "bytes": 3326,
+      "sha256": "7c7352515eb02d283a64352222fa21c294390404ce07eafad1f6708c2aeba52a"
+    },
+    {
+      "path": "standards/AEP-004/examples/sample_selection_certificate_rollback.json",
+      "bytes": 3311,
+      "sha256": "af54406794988c60ee08c5214f1793caba5c665dcefbc0674e6d8ea2d8536747"
+    },
+    {
+      "path": "standards/AEP-004/figures/fig01_selection_gate_flow.png",
+      "bytes": 118660,
+      "sha256": "672304ed601e01d4bad641c6930d8c3af630cbd9e70fe4cc9622fef482d3c05f"
+    },
+    {
+      "path": "standards/AEP-004/figures/fig02_selection_certificate_model.png",
+      "bytes": 94185,
+      "sha256": "0cd2bfeea4dce6c35048108d8d3d1b69c22686f6be763aceac1626010b2bacd7"
+    },
+    {
+      "path": "standards/AEP-004/figures/fig03_selection_gate_risk_matrix.png",
+      "bytes": 84151,
+      "sha256": "899c05d99a0769d846bfae09992d2a7bb1f369431987e744bc8ba0662ba13e86"
+    },
+    {
+      "path": "standards/AEP-004/figures/fig04_selection_gate_lifecycle.png",
+      "bytes": 75093,
+      "sha256": "f23bcc0ac4ca1822abbd50438bfbd4992c2f86dadb0f291bd42cd45d60bee123"
+    },
+    {
+      "path": "standards/AEP-004/figures/index.html",
+      "bytes": 8240,
+      "sha256": "19dbab80983eb163c0901db40d8ee10823a034efbcb50db959129bd4a17fb78f"
+    },
+    {
+      "path": "standards/AEP-004/implementation/AEP-004_Implementation_Guide.md",
+      "bytes": 1089,
+      "sha256": "ee4ae4318c237ba977a11f8c468673d0bc8ec08041644b7689dbcd920a481ad6"
+    },
+    {
+      "path": "standards/AEP-004/implementation/AEP-004_Policy_Profiles.md",
+      "bytes": 768,
+      "sha256": "007bb02a5f774fe3e3cba8df0fa2dbc9b87d4cac445e30b49aa7616de592ab52"
+    },
+    {
+      "path": "standards/AEP-004/implementation/AEP-004_Security_Privacy_Guide.md",
+      "bytes": 613,
+      "sha256": "436f450c8c248215930dfab5a6dba576526041961850ac3c661dcd5059547341"
+    },
+    {
+      "path": "standards/AEP-004/implementation/index.html",
+      "bytes": 8111,
+      "sha256": "3d46c1a33ceea2625a41cdbde5070dafd3e787b0d5494cdd07aaab88fe1bb8b9"
+    },
+    {
+      "path": "standards/AEP-004/index.html",
+      "bytes": 9315,
+      "sha256": "de91af7455d139f016214ff6c5dcfe9e9a9e84a7f14ff63bfee0b97e3c655792"
+    },
+    {
+      "path": "standards/AEP-004/one_page/AEP-004_One-Page_Selection-Gate-Standard_v1.1.docx",
+      "bytes": 37303,
+      "sha256": "8cd823131f73ae4fc3277ff1cb0f9a265b6bf6efd5f934f60a7017fe58a524be"
+    },
+    {
+      "path": "standards/AEP-004/one_page/AEP-004_One-Page_Selection-Gate-Standard_v1.1.md",
+      "bytes": 797,
+      "sha256": "53190e6ce5ecc9563dfd45971b8b9f1fdf1071f664262ded91ec2a260e481309"
+    },
+    {
+      "path": "standards/AEP-004/one_page/AEP-004_One-Page_Selection-Gate-Standard_v1.1.pdf",
+      "bytes": 50108,
+      "sha256": "27e54196114ce7effa8d4bd0d5c8ce4177ebd4e52b2eedef64635bdc69047684"
+    },
+    {
+      "path": "standards/AEP-004/one_page/index.html",
+      "bytes": 8216,
+      "sha256": "44d2720a348ba48dedc34e77d4176a73d909c6e2de054ad56a980b25233bd52e"
+    },
+    {
+      "path": "standards/AEP-004/paper.pdf",
+      "bytes": 399994,
+      "sha256": "fd2f6444177e019a482a785eaed57e21ae9de874851faaf4884423d17a12469e"
+    },
+    {
+      "path": "standards/AEP-004/schemas/canary_plan.schema.json",
+      "bytes": 1063,
+      "sha256": "8449e5a1d462f1f54fdfec042c3ebab46e95d360e98b0aa49c1503d3d684b88e"
+    },
+    {
+      "path": "standards/AEP-004/schemas/challenge_record.schema.json",
+      "bytes": 1006,
+      "sha256": "a550659f232215c68b867c6ed3f288bfc9370a90cc6ba1feb8500c6ae3119048"
+    },
+    {
+      "path": "standards/AEP-004/schemas/evaluation_requirement.schema.json",
+      "bytes": 889,
+      "sha256": "12322e322a66c95ac1f4addc4524b36720d75ea8f83a71056c9d266e509c9f82"
+    },
+    {
+      "path": "standards/AEP-004/schemas/evidence_requirement.schema.json",
+      "bytes": 1050,
+      "sha256": "bd32a7599f7c043a36403edc609cab63f3b3cd354f78f22a2de9af85fabfc857"
+    },
+    {
+      "path": "standards/AEP-004/schemas/gate_policy.schema.json",
+      "bytes": 2647,
+      "sha256": "312bb265d2d33703748ed686224b096c22a940534be4d7a3d412ef448761d452"
+    },
+    {
+      "path": "standards/AEP-004/schemas/index.html",
+      "bytes": 8729,
+      "sha256": "813734f97a0aaafb5baa4d0905d78ae4e38e44424204febef8750161e91dffd4"
+    },
+    {
+      "path": "standards/AEP-004/schemas/monitoring_plan.schema.json",
+      "bytes": 910,
+      "sha256": "107eddf082177c62ab69a0c8d6e2e30cde2bf3e9578e6a9b238f4a0a44596fec"
+    },
+    {
+      "path": "standards/AEP-004/schemas/rollback_plan.schema.json",
+      "bytes": 865,
+      "sha256": "a3032510d604aba2f85ce1724c666ee1be4bccbd9892c9716a5952345426dabe"
+    },
+    {
+      "path": "standards/AEP-004/schemas/selection_candidate.schema.json",
+      "bytes": 2327,
+      "sha256": "4c6620789f27e559c7fa42925b77b75117b44b031575d1e02f1b20d44d663a9a"
+    },
+    {
+      "path": "standards/AEP-004/schemas/selection_certificate.schema.json",
+      "bytes": 3573,
+      "sha256": "7b0686e7200e4d13aa9d8e0183c113ba612262ca9a38934cbe8ab17710637de3"
+    },
+    {
+      "path": "standards/AEP-004/source.md",
+      "bytes": 12213,
+      "sha256": "cac46e50196d7ce25cdce11c1158c2a709fc926389e3c9fdffb5167a114107fe"
+    },
+    {
+      "path": "standards/AEP-004/templates/index.html",
+      "bytes": 8127,
+      "sha256": "9ce3bffd60c25fcf2d5efbada341a3dd0a37df409d5d9fa06d3c1fcb6ebdab3b"
+    },
+    {
+      "path": "standards/AEP-004/templates/selection_candidate_template.json",
+      "bytes": 460,
+      "sha256": "03218abf5ec248218e5563e74df940ba0c6d4d6cdc82766594d9228a821d6d0a"
+    },
+    {
+      "path": "standards/AEP-004/templates/selection_certificate_template.json",
+      "bytes": 776,
+      "sha256": "d053acdfd8e8340c916408cd7f2f7e04bc25f1432c276e91565c61aba9984e9a"
+    },
+    {
+      "path": "standards/AEP-004/templates/selection_gate_review_template.md",
+      "bytes": 794,
+      "sha256": "f2e852866aa85657a05825e3c5b78e49f02709ab1064b0afd236a2934958b02d"
+    },
+    {
+      "path": "standards/AEP-004/tools/index.html",
+      "bytes": 8295,
+      "sha256": "24ce93e77df69bfafe8806086cdc6d294a5dc0f5424259154b3d6140b5e87c5b"
+    },
+    {
+      "path": "standards/AEP-004/tools/selection_certificate_hash.py",
+      "bytes": 742,
+      "sha256": "87e093f0eb96fa04675bf873b3ce5445bdea816a5848e4e3448ead08353fa75c"
+    },
+    {
+      "path": "standards/AEP-004/tools/selection_gate_audit.py",
+      "bytes": 1144,
+      "sha256": "14ec35fd880a00b5c21ec09c5ef09fc0e77e5d2ef05ecadf7d9291ef85bc4ebb"
+    },
+    {
+      "path": "standards/AEP-004/tools/selection_gate_conformance_score.py",
+      "bytes": 1218,
+      "sha256": "e44f49374aaa8896b0986f1b7c2dee21c9f21004357d2de34c9b0d8e6a044c01"
+    },
+    {
+      "path": "standards/AEP-004/tools/selection_gate_decide.py",
+      "bytes": 1319,
+      "sha256": "12adeea71b66ca11378b3b88a6bb8ad98ec7c5b349c61c98a73436d656cbde32"
+    },
+    {
+      "path": "standards/AEP-004/tools/validate_selection_certificate.py",
+      "bytes": 2881,
+      "sha256": "9ecc3f1a67daf2337169f52d6bd7a043058b10d1badc18775c57986442e50bb8"
+    },
+    {
+      "path": "standards/AEP-005/AEP-005_Tool-Permission-Standard_v1.1_Institutional.docx",
+      "bytes": 361956,
+      "sha256": "3961fb5191c0c303ae250658cd11c00fa4d25e8a7c6beeb1de3926c56872ca6f"
+    },
+    {
+      "path": "standards/AEP-005/AEP-005_Tool-Permission-Standard_v1.1_Institutional.md",
+      "bytes": 14644,
+      "sha256": "318be1e9b772e3903408f3a8e3f68ac8d881fbbc27d2bae425d9bbdb6fc5a9be"
+    },
+    {
+      "path": "standards/AEP-005/AEP-005_Tool-Permission-Standard_v1.1_Institutional.pdf",
+      "bytes": 409726,
+      "sha256": "50352f91744da0a03f01d875a15de7494649b0909c66324e61f723077ec398d7"
+    },
+    {
+      "path": "standards/AEP-005/AEP-005_Tool-Permission-Standard_v1.1_Institutional.tex",
+      "bytes": 4538,
+      "sha256": "bfe61efb38a14fbb764e6468b93ba3b9a71630ad83b241421084fc58bbe62f16"
+    },
+    {
+      "path": "standards/AEP-005/CODEX_IMPLEMENTATION_PROMPT_AEP005.md",
+      "bytes": 989,
+      "sha256": "13e7eb552c56a3d3d61b9248f3f66370c4714a1e26242100d7d7755c853fe542"
+    },
+    {
+      "path": "standards/AEP-005/INSTALL_IN_PROOF_GRADIENT.md",
+      "bytes": 639,
+      "sha256": "ea5c7181a2b3cbaaa5466e036b7c4bb7c52cc9a8e6cc77afeef7d46948c8d812"
+    },
+    {
+      "path": "standards/AEP-005/QA_REPORT.md",
+      "bytes": 1833,
+      "sha256": "3924f02faa4871fbb29a0c9ef2a9a091f6648477f7c002c86ec49080d72d1da7"
+    },
+    {
+      "path": "standards/AEP-005/README.md",
+      "bytes": 1232,
+      "sha256": "46b7047ad1f4acf681d3f0af70dc37e71d2afa38ccb72ea6d581baf082541ee8"
+    },
+    {
+      "path": "standards/AEP-005/RELEASE_NOTES_AEP005_v1.1.md",
+      "bytes": 660,
+      "sha256": "7f747d71ea59707ad6146ea2f9aa70945f8be1ea68e1c94c12fd1f86b3617391"
+    },
+    {
+      "path": "standards/AEP-005/SHA256SUMS.txt",
+      "bytes": 7293,
+      "sha256": "c083cc03943a7fe5708b4e7d565028eaeeae13d4802476b49fa1a677ccc70461"
+    },
+    {
+      "path": "standards/AEP-005/conformance/aep005_conformance_checklist.md",
+      "bytes": 1449,
+      "sha256": "3d4be93301703dab21be43a2176f356276666219c69c5758a4b42c95fa4ed59e"
+    },
+    {
+      "path": "standards/AEP-005/conformance/index.html",
+      "bytes": 7893,
+      "sha256": "a3acb9f0e64fffea6db6ecd046ddbd82378f7a15f48d5eb73a419c755969463b"
+    },
+    {
+      "path": "standards/AEP-005/examples/index.html",
+      "bytes": 9638,
+      "sha256": "0eb72e143fbc3f8db43dc7853158c8525eb70e15f843e997663835c560fa9d21"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_approval_receipt.json",
+      "bytes": 650,
+      "sha256": "e4791dd013e77875e6e3312e889bdfc9a30ecf817e578869d441e2a51b6f9145"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_break_glass_request.json",
+      "bytes": 687,
+      "sha256": "e96a3f2c9adce9a1265ae3fcf54ad5144d66143b8a4df087181fd691549ae325"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_compensation_receipt.json",
+      "bytes": 674,
+      "sha256": "ce12670c0566f020d4a58252e163af68ae236ed91cb20f70a7d885a2e027e323"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_data_boundary_rule.json",
+      "bytes": 299,
+      "sha256": "da0dda6070719934284d6b2be029da5b915029a755ffcac996460120a0533162"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_permission_lease.json",
+      "bytes": 788,
+      "sha256": "dbe933d0621fe1df98dbbf4573db763cf81db4ed230c5ff956896b687f135491"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_rate_limit_policy.json",
+      "bytes": 170,
+      "sha256": "7a4f12be8f7073df078d79c5f5fd9aade5f39b5d192f21739b2d7eac9373993b"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_revocation_receipt.json",
+      "bytes": 620,
+      "sha256": "dbf36819b1b61baf0d3e60390b968412bbc732ffd8cf8113af40141c93a374ff"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_tool_call_receipt.json",
+      "bytes": 875,
+      "sha256": "bd49784390f69d9e8fd7afb96f12486e966591c47643ffa3eceb568ae0a34780"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_tool_manifest.json",
+      "bytes": 688,
+      "sha256": "14b075b0f6d364e4fd29a0ef70ceef831e775ecc4a465dbedf0603e1d8c5049e"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_tool_manifest_email_send.json",
+      "bytes": 684,
+      "sha256": "a52ba1cd269082ffbf11e5d4a141e6ecf3bcb853d598f5732b7211217ed4aa4e"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_tool_permission_decision_allow_with_lease.json",
+      "bytes": 893,
+      "sha256": "adba2a0c7dbf6183ccd8251e9f5e98981ea74f2afe9ae5ee8871a7d72037c33f"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_tool_permission_decision_approval_required.json",
+      "bytes": 745,
+      "sha256": "866325d83ea072dc7f737f95e8cda3fdd5645df4fa2e8abc35334ffc37e555ab"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_tool_permission_decision_deny.json",
+      "bytes": 754,
+      "sha256": "1a5351cb693486a7e601b169b71f01c30f2e2ef512d1ab3c1638a8e8dcbcdf0d"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_tool_permission_policy.json",
+      "bytes": 1836,
+      "sha256": "e527ab663fc462fa46ac64f5029c774bac905b2a8d70883ed67c850dd12880bd"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_tool_request_read.json",
+      "bytes": 914,
+      "sha256": "1e3705f5fd25924adb2b5d20c0db5ad3a7752e3460a131128273adcbc09ae068"
+    },
+    {
+      "path": "standards/AEP-005/examples/sample_tool_request_send.json",
+      "bytes": 958,
+      "sha256": "271e149136f3f436867ff73a0d9d008468ee3e73f7fa4919cf650123b3b07c6e"
+    },
+    {
+      "path": "standards/AEP-005/figures/fig01_tool_permission_flow_v11.png",
+      "bytes": 125177,
+      "sha256": "a4a9e05dc62e0724ec45cc42a81f867848b9a9b290e8c8ee8fda8cd75505e42b"
+    },
+    {
+      "path": "standards/AEP-005/figures/fig02_tool_permission_lattice_v11.png",
+      "bytes": 64670,
+      "sha256": "a836811ae7ac69f62bddb9ff34911fc1326872d92744e263b9fd2e97709a2b8d"
+    },
+    {
+      "path": "standards/AEP-005/figures/fig03_tool_gateway_boundary_model_v11.png",
+      "bytes": 97334,
+      "sha256": "70956c8400837f40a84d6682598b53a1c233ed725154b34ecb26b0f272798252"
+    },
+    {
+      "path": "standards/AEP-005/figures/fig04_lease_revocation_compensation_v11.png",
+      "bytes": 68687,
+      "sha256": "890a183d231ff87ea5470f3cf91b3ecab1a2819fd9365acbc35842188d595292"
+    },
+    {
+      "path": "standards/AEP-005/figures/index.html",
+      "bytes": 8278,
+      "sha256": "f9b955eb4c0a8b23c83e3f494e65d63caf368ad5ab3d364fb4571210a3bfb575"
+    },
+    {
+      "path": "standards/AEP-005/implementation/AEP-005_Implementation_Guide.md",
+      "bytes": 1606,
+      "sha256": "5b5380c9579d8c2d8efcc52c39d2ea01cf9f992b72038f7c8a03c5e4653ce464"
+    },
+    {
+      "path": "standards/AEP-005/implementation/AEP-005_Least_Privilege_Profile.md",
+      "bytes": 591,
+      "sha256": "bb50aca395672e64150e28214b43c7a06d03aedcdeca08bfd5fd93b409465518"
+    },
+    {
+      "path": "standards/AEP-005/implementation/AEP-005_Security_Privacy_Guide.md",
+      "bytes": 812,
+      "sha256": "481726aedc7237761a0cf990c1eab9ab1ecc57060333e234ddc048f9619c52db"
+    },
+    {
+      "path": "standards/AEP-005/implementation/AEP-005_Tool_Gateway_Profile.md",
+      "bytes": 757,
+      "sha256": "d49bd99613669ed6a0eb1046088d1b8077cbafbfa8492db537cc677d4791fa47"
+    },
+    {
+      "path": "standards/AEP-005/implementation/index.html",
+      "bytes": 8236,
+      "sha256": "e487c15bc2abeae908f4757cf63bf507bfbc47366e527a5e3d02bef75d69fbe0"
+    },
+    {
+      "path": "standards/AEP-005/index.html",
+      "bytes": 9338,
+      "sha256": "2a232a6ce92acc2fec54118e71975b2070609bdc16e0c5559962675e11d9f804"
+    },
+    {
+      "path": "standards/AEP-005/one_page/AEP-005_One-Page_Tool-Permission-Standard_v1.1.docx",
+      "bytes": 37453,
+      "sha256": "7930410ec7ad2b1f61337f55d6ee878bade62127f8bd1105155e7e2919bad38a"
+    },
+    {
+      "path": "standards/AEP-005/one_page/AEP-005_One-Page_Tool-Permission-Standard_v1.1.md",
+      "bytes": 1086,
+      "sha256": "b339a16851cd55cae76626a3dbf75d56f0613f14d53dabdf4a38cd178086bced"
+    },
+    {
+      "path": "standards/AEP-005/one_page/AEP-005_One-Page_Tool-Permission-Standard_v1.1.pdf",
+      "bytes": 50025,
+      "sha256": "f45168f872811a23cafe3827b60e6d2cc6e0675ed9d21aaf3fd08ca3e16e2349"
+    },
+    {
+      "path": "standards/AEP-005/one_page/index.html",
+      "bytes": 8222,
+      "sha256": "8c45fc17c02264d13682887d4d3d853ab452b1d6da3f0b36a357cc5cd9555758"
+    },
+    {
+      "path": "standards/AEP-005/paper.pdf",
+      "bytes": 409726,
+      "sha256": "50352f91744da0a03f01d875a15de7494649b0909c66324e61f723077ec398d7"
+    },
+    {
+      "path": "standards/AEP-005/schemas/approval_receipt.schema.json",
+      "bytes": 1378,
+      "sha256": "bf70ae7da593c1a6276758d26f6e3ef6c07ad609e4a76c24a12f33fe00bb3e3e"
+    },
+    {
+      "path": "standards/AEP-005/schemas/break_glass_request.schema.json",
+      "bytes": 1378,
+      "sha256": "5c529aaf4079544db2e0937b60e21c1bb110a8a25de067de685e666eb9d9153a"
+    },
+    {
+      "path": "standards/AEP-005/schemas/compensation_receipt.schema.json",
+      "bytes": 1519,
+      "sha256": "d2ba9f93c34aba419fdce24b63c7ff3066c24ecea82454ea04552ec98eddc69e"
+    },
+    {
+      "path": "standards/AEP-005/schemas/data_boundary_rule.schema.json",
+      "bytes": 1173,
+      "sha256": "3a9dddb81e5161372c1954710c406029db3f6972d764cbd19612ebc8ac2756f9"
+    },
+    {
+      "path": "standards/AEP-005/schemas/index.html",
+      "bytes": 9076,
+      "sha256": "491281b71badb58fb55d0b97606d8d2e6b7fbe41646059ed0380bb19b54bc156"
+    },
+    {
+      "path": "standards/AEP-005/schemas/permission_lease.schema.json",
+      "bytes": 1842,
+      "sha256": "ed43b96260ea92ace1a85b47b23e895c5e0004e6fd7009c0503d39796f56fdfe"
+    },
+    {
+      "path": "standards/AEP-005/schemas/rate_limit_policy.schema.json",
+      "bytes": 905,
+      "sha256": "f7b43eb08e48026bf2e723c735f356c952ecf14a28ae94139ba681875b985353"
+    },
+    {
+      "path": "standards/AEP-005/schemas/revocation_receipt.schema.json",
+      "bytes": 1365,
+      "sha256": "829415f916ff1cafccc267c14847561036ae5b245250cf8d2218b6d067aff2ae"
+    },
+    {
+      "path": "standards/AEP-005/schemas/tool_call_receipt.schema.json",
+      "bytes": 1951,
+      "sha256": "ebf75f4003c887aac4398bcccf2a33838ca0d6eced1c3dd7a3712a4cfee250ee"
+    },
+    {
+      "path": "standards/AEP-005/schemas/tool_manifest.schema.json",
+      "bytes": 3307,
+      "sha256": "46cc74a77fea0da9630fa8c6696439aa17acb45b68d9e80dd85643e75f2688ed"
+    },
+    {
+      "path": "standards/AEP-005/schemas/tool_permission_decision.schema.json",
+      "bytes": 2028,
+      "sha256": "a9e4e644a8b70fbbb8b36352991556ee7a4a78aab3c9802ffb9d75369596bcc5"
+    },
+    {
+      "path": "standards/AEP-005/schemas/tool_permission_policy.schema.json",
+      "bytes": 3718,
+      "sha256": "fe9d069bac7903a9486201169d449b8462dc78b46bf905137cb2f5f067560b26"
+    },
+    {
+      "path": "standards/AEP-005/schemas/tool_request.schema.json",
+      "bytes": 2276,
+      "sha256": "444602f1a328cacaae970a1ca541cac8b3dd991da778356fb0e30807b70d9a55"
+    },
+    {
+      "path": "standards/AEP-005/source.md",
+      "bytes": 14644,
+      "sha256": "318be1e9b772e3903408f3a8e3f68ac8d881fbbc27d2bae425d9bbdb6fc5a9be"
+    },
+    {
+      "path": "standards/AEP-005/templates/compensation_receipt_template.json",
+      "bytes": 674,
+      "sha256": "ce12670c0566f020d4a58252e163af68ae236ed91cb20f70a7d885a2e027e323"
+    },
+    {
+      "path": "standards/AEP-005/templates/index.html",
+      "bytes": 8795,
+      "sha256": "6ca4909eb00e46b8d0ecd020ef5790bcc8bcd49c02cf0cd66f4f861ede64c50d"
+    },
+    {
+      "path": "standards/AEP-005/templates/permission_lease_template.json",
+      "bytes": 788,
+      "sha256": "dbe933d0621fe1df98dbbf4573db763cf81db4ed230c5ff956896b687f135491"
+    },
+    {
+      "path": "standards/AEP-005/templates/revocation_receipt_template.json",
+      "bytes": 620,
+      "sha256": "dbf36819b1b61baf0d3e60390b968412bbc732ffd8cf8113af40141c93a374ff"
+    },
+    {
+      "path": "standards/AEP-005/templates/tool_call_receipt_template.json",
+      "bytes": 875,
+      "sha256": "bd49784390f69d9e8fd7afb96f12486e966591c47643ffa3eceb568ae0a34780"
+    },
+    {
+      "path": "standards/AEP-005/templates/tool_manifest_template.json",
+      "bytes": 688,
+      "sha256": "14b075b0f6d364e4fd29a0ef70ceef831e775ecc4a465dbedf0603e1d8c5049e"
+    },
+    {
+      "path": "standards/AEP-005/templates/tool_permission_decision_template.json",
+      "bytes": 893,
+      "sha256": "adba2a0c7dbf6183ccd8251e9f5e98981ea74f2afe9ae5ee8871a7d72037c33f"
+    },
+    {
+      "path": "standards/AEP-005/templates/tool_permission_policy_template.json",
+      "bytes": 1836,
+      "sha256": "e527ab663fc462fa46ac64f5029c774bac905b2a8d70883ed67c850dd12880bd"
+    },
+    {
+      "path": "standards/AEP-005/templates/tool_permission_review_template.md",
+      "bytes": 929,
+      "sha256": "b484977285026b32d05f4e34fb40d32f5b71e52d817ae8e79b87e685a429f117"
+    },
+    {
+      "path": "standards/AEP-005/templates/tool_request_template.json",
+      "bytes": 914,
+      "sha256": "1e3705f5fd25924adb2b5d20c0db5ad3a7752e3460a131128273adcbc09ae068"
+    },
+    {
+      "path": "standards/AEP-005/tools/authorize_tool_request.py",
+      "bytes": 2048,
+      "sha256": "407d3760794262e2064b4e8ba5b523631fc81bdad44c9c47f3655639246cd977"
+    },
+    {
+      "path": "standards/AEP-005/tools/index.html",
+      "bytes": 8374,
+      "sha256": "2bae22445ae800b08ab8855f8637d09c62240ba8a1248bbefeeae3c2b8d6d9fe"
+    },
+    {
+      "path": "standards/AEP-005/tools/tool_gateway_audit.py",
+      "bytes": 1609,
+      "sha256": "412e04f6f7fa49687bb5176c0481c5e68e8fe631dd2bbda396f9ab841b25abf1"
+    },
+    {
+      "path": "standards/AEP-005/tools/tool_permission_conformance_score.py",
+      "bytes": 1423,
+      "sha256": "a8ae2cee30099f0f2195dd82880ff760027af0043f6376e5e92da49f50415482"
+    },
+    {
+      "path": "standards/AEP-005/tools/tool_permission_hash.py",
+      "bytes": 648,
+      "sha256": "1e7a82bb1338a6d5cd07e7983be3fd6b11f04452f9c84e0b0df0b40374eab4cc"
+    },
+    {
+      "path": "standards/AEP-005/tools/validate_permission_lease.py",
+      "bytes": 1389,
+      "sha256": "63c6c7813da434a1427cceec5367b568602812720d750589325d0c3b33afc236"
+    },
+    {
+      "path": "standards/AEP-005/tools/validate_tool_permission.py",
+      "bytes": 1897,
+      "sha256": "51be940ced1eb5deea0dffd35a658b7765a132ce78a27e2d798bda83958bd0df"
+    },
+    {
+      "path": "standards/AEP-006/AEP-006_Rollback-Receipt-Standard_v1.1_Institutional.docx",
+      "bytes": 351259,
+      "sha256": "c9f0ff671324b652f6b009901110a9d75ffbbd6bc398b2f6e5a3c5a130de4d55"
+    },
+    {
+      "path": "standards/AEP-006/AEP-006_Rollback-Receipt-Standard_v1.1_Institutional.md",
+      "bytes": 9610,
+      "sha256": "0ba9a9ed7a3753756eaed736a3a5efb1a7771100061f4efa29bbec81016af6e6"
+    },
+    {
+      "path": "standards/AEP-006/AEP-006_Rollback-Receipt-Standard_v1.1_Institutional.pdf",
+      "bytes": 364789,
+      "sha256": "ba40e36734ef615646a8c1865d412440c9834286767b9eec81d5cdcc3ee39d05"
+    },
+    {
+      "path": "standards/AEP-006/AEP-006_Rollback-Receipt-Standard_v1.1_Institutional.tex",
+      "bytes": 3448,
+      "sha256": "733c48cf7994c3210beef08b7f4d22f35bb5934a9ce06d9b61d71957f226629f"
+    },
+    {
+      "path": "standards/AEP-006/CODEX_IMPLEMENTATION_PROMPT_AEP006.md",
+      "bytes": 773,
+      "sha256": "914eea1e817091bd8d878a8a4716699530a30480801ded02af256e850a46936e"
+    },
+    {
+      "path": "standards/AEP-006/INSTALL_IN_PROOF_GRADIENT.md",
+      "bytes": 501,
+      "sha256": "eee3dc71152fab480db9bb6890349c007a622a14840af4d02dd66ce547ab10f8"
+    },
+    {
+      "path": "standards/AEP-006/QA_REPORT.md",
+      "bytes": 1532,
+      "sha256": "5b2d242df7a43fbe6c66040fe1fea86c738f8b566b567a8a0ed1a876a0dbd0c7"
+    },
+    {
+      "path": "standards/AEP-006/README.md",
+      "bytes": 862,
+      "sha256": "dd3d6a15813b426ad1b7c119c168b7761821f8f75dcdb1b87faa661ae0bb3b24"
+    },
+    {
+      "path": "standards/AEP-006/RELEASE_NOTES_AEP006_v1.1.md",
+      "bytes": 655,
+      "sha256": "1b6680395407b54c2770ff2c331011b017f7a05ff94f001f229aab4f7dc2e560"
+    },
+    {
+      "path": "standards/AEP-006/SHA256SUMS.txt",
+      "bytes": 6164,
+      "sha256": "ab885c595d481d471acd3657a92482fab748fd8fcf796d7a892e70c1a61ec63d"
+    },
+    {
+      "path": "standards/AEP-006/conformance/aep006_conformance_checklist.md",
+      "bytes": 1243,
+      "sha256": "e4b59d7f231fb1bc65d3525c7861d850c994ffe1144d33adbc1f17143bda3372"
+    },
+    {
+      "path": "standards/AEP-006/conformance/index.html",
+      "bytes": 7893,
+      "sha256": "3a72c1cfbe102c66b52709d8e951ac87485ce420f685a99de9e22a94a5cf362c"
+    },
+    {
+      "path": "standards/AEP-006/examples/index.html",
+      "bytes": 9053,
+      "sha256": "c62a8c966caa8a501a1a6cc44a3118865d17f938904b6a7a7016cf05c0dfd6f8"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_compensation_receipt.json",
+      "bytes": 843,
+      "sha256": "8d4970edc22789c759c09a6bd299de68eecc7ced787c539b203ba28c5ed709a2"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_post_rollback_review.json",
+      "bytes": 1027,
+      "sha256": "bb70c8a287350940b17e6143f8d6d59a046e0c66157db3ff369aa1a1a8f3cc7e"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_recovery_bundle.json",
+      "bytes": 550,
+      "sha256": "a88b513974bb65dc020d43d9c0eb0a68176f5ebc60391f69199756eb6f125e93"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_rollback_authorization.json",
+      "bytes": 733,
+      "sha256": "b0d3a66e4d0a06137a21169faf1fc8ffc5679e52d0305cba5f76984799ceb6fa"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_rollback_plan.json",
+      "bytes": 994,
+      "sha256": "5592e3c4fe97641229d29f8571ed85667bf4ba0c53ce6716273229c3ea90d4a6"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_rollback_receipt_failed_compensation_required.json",
+      "bytes": 1752,
+      "sha256": "6cb5a7fc68339174741af6f2b86493e0fbb458d78229c059ade2e5a686baafad"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_rollback_receipt_partial.json",
+      "bytes": 1742,
+      "sha256": "ba0c6c2b81d21035bd921c6d067eb1f0f19ade33c1646bb5844aa56f649c84c2"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_rollback_receipt_success.json",
+      "bytes": 1765,
+      "sha256": "b407fe74ece51cc547e4ab0fd82d3a7e448703315bd19c0b98c866a557c5c24c"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_rollback_request.json",
+      "bytes": 742,
+      "sha256": "0c9c509d8ced911b35777605f52e59b5b907eaa630edb8155bee977a684a2dc1"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_rollback_trigger.json",
+      "bytes": 719,
+      "sha256": "dba84bdbd382fa50b424446bea355dea5f85a65494ec400d218a82bf0dec6301"
+    },
+    {
+      "path": "standards/AEP-006/examples/sample_rollback_verification.json",
+      "bytes": 815,
+      "sha256": "7e50132f9e2fa9e594ae5f56f8a536e236161523681f63bd135d9896f37d8cef"
+    },
+    {
+      "path": "standards/AEP-006/figures/fig01_rollback_receipt_loop.png",
+      "bytes": 124034,
+      "sha256": "2f3e20d72f8e8fa41a819b617729bb886c0fe3d833d4dcd4589316a9a0bed030"
+    },
+    {
+      "path": "standards/AEP-006/figures/fig02_rollback_receipt_object_model.png",
+      "bytes": 96472,
+      "sha256": "8180f21b32232128cd44a9ffa7f6132e9e9ffac713a37b40483cb0ca52a1dce5"
+    },
+    {
+      "path": "standards/AEP-006/figures/fig03_rollback_decision_matrix.png",
+      "bytes": 77230,
+      "sha256": "b7d5d545bd39cc8d9dac2bfd5e1e0c11699858d4bee1a6a06f12d41b02343328"
+    },
+    {
+      "path": "standards/AEP-006/figures/fig04_recovery_timeline.png",
+      "bytes": 50302,
+      "sha256": "c844de2adf896ae19dd5a5679ea7a8c809857a587c25a25e186370db3812be0c"
+    },
+    {
+      "path": "standards/AEP-006/figures/index.html",
+      "bytes": 8230,
+      "sha256": "201553422326536721eec146b1e3d8b7e226d7a76ac90ac3752b818f73a5a5c9"
+    },
+    {
+      "path": "standards/AEP-006/implementation/AEP-006_Implementation_Guide.md",
+      "bytes": 957,
+      "sha256": "57f3fc2e46c4a06228e8bc1192cdc74384bd5d5d48b4d2393b0294187a5d409b"
+    },
+    {
+      "path": "standards/AEP-006/implementation/AEP-006_Recovery_Runbook.md",
+      "bytes": 581,
+      "sha256": "ebb3d51b19dad84ec343483ed4184a7a3f3a2654308ca52ed323731ed01dbad8"
+    },
+    {
+      "path": "standards/AEP-006/implementation/AEP-006_Security_Privacy_Guide.md",
+      "bytes": 475,
+      "sha256": "2c5a29f7332016748fee7bed2aa23e8e8cc1733475748a188dd687577e9bff7a"
+    },
+    {
+      "path": "standards/AEP-006/implementation/index.html",
+      "bytes": 8113,
+      "sha256": "8d50e4cd4d5d52621b584567dd04c53cf6e5fcdcdb2fd207015578357a5ce383"
+    },
+    {
+      "path": "standards/AEP-006/index.html",
+      "bytes": 9213,
+      "sha256": "e1cdf9e3b29c80109f10cccbe5972e16d4528eea4aafc42d07ce7f898c7837d6"
+    },
+    {
+      "path": "standards/AEP-006/one_page/AEP-006_One-Page_Rollback-Receipt-Standard_v1.1.docx",
+      "bytes": 37248,
+      "sha256": "06556d68cf74c76ba3f334375bf50a67575cc88d9dc113edb9fd4ea324210c7a"
+    },
+    {
+      "path": "standards/AEP-006/one_page/AEP-006_One-Page_Rollback-Receipt-Standard_v1.1.md",
+      "bytes": 959,
+      "sha256": "6e9d2d96d058f295d5a88c2f10deb5a11da60d8020f15b035950ceeac2c5d8d1"
+    },
+    {
+      "path": "standards/AEP-006/one_page/AEP-006_One-Page_Rollback-Receipt-Standard_v1.1.pdf",
+      "bytes": 48332,
+      "sha256": "60b2e32ea5157d8bd31367ad42da9811b1ab3814b8d0e467151bd1c074b52d6f"
+    },
+    {
+      "path": "standards/AEP-006/one_page/index.html",
+      "bytes": 8228,
+      "sha256": "7e570c11d28ce3e2f878d81d1c24abab099bf83aa857eacaaddbf5682c7ba6ca"
+    },
+    {
+      "path": "standards/AEP-006/paper.pdf",
+      "bytes": 364789,
+      "sha256": "ba40e36734ef615646a8c1865d412440c9834286767b9eec81d5cdcc3ee39d05"
+    },
+    {
+      "path": "standards/AEP-006/schemas/compensation_receipt.schema.json",
+      "bytes": 1596,
+      "sha256": "6874bbf8ed0a989cc870be99478409fa44a06bab6f4478b8524d29539a0d77da"
+    },
+    {
+      "path": "standards/AEP-006/schemas/index.html",
+      "bytes": 8751,
+      "sha256": "ff7259ab321e9cbd8a446e55c57d68b06badd84b3fd5fe57887279ec148bfa76"
+    },
+    {
+      "path": "standards/AEP-006/schemas/post_rollback_review.schema.json",
+      "bytes": 2011,
+      "sha256": "c721ff1cca7df1beff1202d43973dc3d0d19db6e1dbd4895e26014fe52f4d4f4"
+    },
+    {
+      "path": "standards/AEP-006/schemas/recovery_bundle.schema.json",
+      "bytes": 1082,
+      "sha256": "ea657cde0cbaf81d69396240b3c5d61c1a305d9f871cab11183f7c7402747755"
+    },
+    {
+      "path": "standards/AEP-006/schemas/rollback_authorization.schema.json",
+      "bytes": 1470,
+      "sha256": "c69132e6bdc93daffbb3258935f07ca2b7b7300da26a9ca35f6473f7a87dba18"
+    },
+    {
+      "path": "standards/AEP-006/schemas/rollback_plan.schema.json",
+      "bytes": 1686,
+      "sha256": "9f8aa0fd5645f1879aebbfa2213c872f122e5e2df606093cfd6f1437925aa3f9"
+    },
+    {
+      "path": "standards/AEP-006/schemas/rollback_receipt.schema.json",
+      "bytes": 3231,
+      "sha256": "8cec850c0093845f947d82a4a6082046ef52f8395fb230027b27f26411f1ca01"
+    },
+    {
+      "path": "standards/AEP-006/schemas/rollback_request.schema.json",
+      "bytes": 1605,
+      "sha256": "71bec1311c4fdb13f79e8f1d7b097557ba412a37eb32b6585dd3b91705369e30"
+    },
+    {
+      "path": "standards/AEP-006/schemas/rollback_trigger.schema.json",
+      "bytes": 2481,
+      "sha256": "ce5bf4c56027524cb1957f25cc8bc2f77ddeec68b4618a8b02959329436fbd24"
+    },
+    {
+      "path": "standards/AEP-006/schemas/rollback_verification.schema.json",
+      "bytes": 1980,
+      "sha256": "d30aa65cf12cbf5977bbfe9febc417c11a00d978c48141e8b6990303ea39eb39"
+    },
+    {
+      "path": "standards/AEP-006/source.md",
+      "bytes": 9610,
+      "sha256": "0ba9a9ed7a3753756eaed736a3a5efb1a7771100061f4efa29bbec81016af6e6"
+    },
+    {
+      "path": "standards/AEP-006/templates/compensation_receipt_template.json",
+      "bytes": 843,
+      "sha256": "8d4970edc22789c759c09a6bd299de68eecc7ced787c539b203ba28c5ed709a2"
+    },
+    {
+      "path": "standards/AEP-006/templates/index.html",
+      "bytes": 8785,
+      "sha256": "5187b50d575cd71f8d45841deec911c0c6e9a888a7264a139b920ad8237baaa5"
+    },
+    {
+      "path": "standards/AEP-006/templates/post_rollback_review_template.json",
+      "bytes": 1027,
+      "sha256": "bb70c8a287350940b17e6143f8d6d59a046e0c66157db3ff369aa1a1a8f3cc7e"
+    },
+    {
+      "path": "standards/AEP-006/templates/rollback_authorization_template.json",
+      "bytes": 733,
+      "sha256": "b0d3a66e4d0a06137a21169faf1fc8ffc5679e52d0305cba5f76984799ceb6fa"
+    },
+    {
+      "path": "standards/AEP-006/templates/rollback_plan_template.json",
+      "bytes": 994,
+      "sha256": "5592e3c4fe97641229d29f8571ed85667bf4ba0c53ce6716273229c3ea90d4a6"
+    },
+    {
+      "path": "standards/AEP-006/templates/rollback_receipt_template.json",
+      "bytes": 1765,
+      "sha256": "b407fe74ece51cc547e4ab0fd82d3a7e448703315bd19c0b98c866a557c5c24c"
+    },
+    {
+      "path": "standards/AEP-006/templates/rollback_request_template.json",
+      "bytes": 742,
+      "sha256": "0c9c509d8ced911b35777605f52e59b5b907eaa630edb8155bee977a684a2dc1"
+    },
+    {
+      "path": "standards/AEP-006/templates/rollback_review_template.md",
+      "bytes": 763,
+      "sha256": "90b57945bfb868315626ea12ca11e6040600aa323b6693986aef212fc5c1b8b6"
+    },
+    {
+      "path": "standards/AEP-006/templates/rollback_trigger_template.json",
+      "bytes": 719,
+      "sha256": "dba84bdbd382fa50b424446bea355dea5f85a65494ec400d218a82bf0dec6301"
+    },
+    {
+      "path": "standards/AEP-006/templates/rollback_verification_template.json",
+      "bytes": 815,
+      "sha256": "7e50132f9e2fa9e594ae5f56f8a536e236161523681f63bd135d9896f37d8cef"
+    },
+    {
+      "path": "standards/AEP-006/tools/index.html",
+      "bytes": 8239,
+      "sha256": "44606d71a628d59aa4751572a1ffbbeff8cc09d8c8b72803e6d8c2009b0522c4"
+    },
+    {
+      "path": "standards/AEP-006/tools/rollback_audit.py",
+      "bytes": 1382,
+      "sha256": "4e778c1fd96db74741f9409b7a984b6b997ee8952449be7f41cd49a8114984db"
+    },
+    {
+      "path": "standards/AEP-006/tools/rollback_conformance_score.py",
+      "bytes": 1288,
+      "sha256": "89512d25ccfaa126d72416a2effe84d0e40f2cd595f0f4ff5074bc56f788fdb5"
+    },
+    {
+      "path": "standards/AEP-006/tools/rollback_decide.py",
+      "bytes": 859,
+      "sha256": "e73af396b731c7bf76cbf773ecdca6880cd3d8811281ed36cd6b837dab147a92"
+    },
+    {
+      "path": "standards/AEP-006/tools/rollback_receipt_hash.py",
+      "bytes": 636,
+      "sha256": "bc03ce7639d7e41b6acd7b4de320e67a9093a9702df8a1332c5a83933fd4aa2e"
+    },
+    {
+      "path": "standards/AEP-006/tools/validate_rollback_receipt.py",
+      "bytes": 1987,
+      "sha256": "705fce9131c33c1e06d5b981e5af8d4d217cdb9277901724b541b3b0743ca298"
+    },
+    {
+      "path": "standards/AEP-007/AEP-007_Public-Safe-Proof-Report-Standard_v1.2_Institutional.docx",
+      "bytes": 363355,
+      "sha256": "cb23402ac92716f58879302e8b5857d866a5c54599a382919db96676ffa74cb2"
+    },
+    {
+      "path": "standards/AEP-007/AEP-007_Public-Safe-Proof-Report-Standard_v1.2_Institutional.md",
+      "bytes": 10037,
+      "sha256": "5bd848d84fce5e80cddf4bb35f9f2778841bc649eb6b845aa91f1c357ddc07d0"
+    },
+    {
+      "path": "standards/AEP-007/AEP-007_Public-Safe-Proof-Report-Standard_v1.2_Institutional.pdf",
+      "bytes": 380502,
+      "sha256": "6f03c24e684e5e03ce79c55d586385ba92b75b1b40c81ef80883d4af7a48e079"
+    },
+    {
+      "path": "standards/AEP-007/AEP-007_Public-Safe-Proof-Report-Standard_v1.2_Institutional.tex",
+      "bytes": 3871,
+      "sha256": "e165ca38255b87f9fae806410c1a2d6dca20ecf46f033a4da86067475b288643"
+    },
+    {
+      "path": "standards/AEP-007/CODEX_IMPLEMENTATION_PROMPT_AEP007.md",
+      "bytes": 651,
+      "sha256": "319ab24634763c6871c981028118ebde477acfe61e112d83d4a00bbb2892d143"
+    },
+    {
+      "path": "standards/AEP-007/INSTALL_IN_PROOF_GRADIENT.md",
+      "bytes": 312,
+      "sha256": "861f527245d720e6e5674c366917c7ff1d8bb004eccc626bed926a3d789a9959"
+    },
+    {
+      "path": "standards/AEP-007/QA_REPORT.md",
+      "bytes": 1403,
+      "sha256": "11f16d153ca5fe96596643fd4edd0a65e95111b3b58399aee5c115ca91403ff3"
+    },
+    {
+      "path": "standards/AEP-007/README.md",
+      "bytes": 765,
+      "sha256": "36effd280bb563a840097d197fda46ca3288649f7b2a19ca5a7462f9ee33dd8f"
+    },
+    {
+      "path": "standards/AEP-007/RELEASE_NOTES_AEP007_v1.2.md",
+      "bytes": 388,
+      "sha256": "334b2a6690ee3c6359034ae886ad9dbc4fe2ae47d98ca2889e2899188607696b"
+    },
+    {
+      "path": "standards/AEP-007/SHA256SUMS.txt",
+      "bytes": 7161,
+      "sha256": "26c3b4306f48def59c40905369dc368062bb02204590b13443bd56ffe2afa443"
+    },
+    {
+      "path": "standards/AEP-007/conformance/aep007_conformance_checklist.md",
+      "bytes": 1373,
+      "sha256": "ac365a7e14aaf0309cda3a32bb8263773ff44030ee1483c3fe14e0269a6210a7"
+    },
+    {
+      "path": "standards/AEP-007/conformance/index.html",
+      "bytes": 7893,
+      "sha256": "d756ad207d6259c05110bb868a5a2d52a9153478a1ee6b2229b5ed0f643e3aa3"
+    },
+    {
+      "path": "standards/AEP-007/examples/index.html",
+      "bytes": 8634,
+      "sha256": "73118f85c285af89aa377d4c24dfc40e0c0fe3d570c41f0a382bcaf3d153d875"
+    },
+    {
+      "path": "standards/AEP-007/examples/sample_challenge_record.json",
+      "bytes": 452,
+      "sha256": "22f02f1af4796c313f4efcbb567195087fc336bd93266beaeffb5e8cfc3b5b47"
+    },
+    {
+      "path": "standards/AEP-007/examples/sample_correction_notice.json",
+      "bytes": 452,
+      "sha256": "f403052619b363d2e7470f6f0e20a88d3a27648302e829de53c6249fba221fd2"
+    },
+    {
+      "path": "standards/AEP-007/examples/sample_public_claim_matrix.json",
+      "bytes": 454,
+      "sha256": "fb2a47948e16675f80e738a77916cb6740c97a8d613dd6e064116c3306285acd"
+    },
+    {
+      "path": "standards/AEP-007/examples/sample_public_safe_report.json",
+      "bytes": 5110,
+      "sha256": "170275e52945b9618f68362518e9fcf90b0ced47a933d5d6ba5b3293b5a6e57a"
+    },
+    {
+      "path": "standards/AEP-007/examples/sample_publication_approval.json",
+      "bytes": 431,
+      "sha256": "8fe04a0a53c6c4a0c52e0d573053efe6b2f1fd9207aeabb7881ef5d6919b2bd0"
+    },
+    {
+      "path": "standards/AEP-007/examples/sample_redaction_ledger.json",
+      "bytes": 319,
+      "sha256": "e70e5cccc6e797d8d206a052fafc71156fe809b4101e398ee9a723ead7542a49"
+    },
+    {
+      "path": "standards/AEP-007/examples/sample_report_bundle.json",
+      "bytes": 457,
+      "sha256": "adc27494748b4c3c64f05a74a1ee7e749181f67c2ceedcd46307daec51ae9ea0"
+    },
+    {
+      "path": "standards/AEP-007/examples/sample_retraction_notice.json",
+      "bytes": 355,
+      "sha256": "22293304d10933d88ee473cb80da94924af7d49721ea731d9b2d4829bcb8f052"
+    },
+    {
+      "path": "standards/AEP-007/figures/fig01_public_safe_report_flow.png",
+      "bytes": 130370,
+      "sha256": "953e90ccc75d9eb447e63c042e18b5f257d578907428784d1bf9e2093bb5aa38"
+    },
+    {
+      "path": "standards/AEP-007/figures/fig02_disclosure_classification.png",
+      "bytes": 80996,
+      "sha256": "bff9ecfcfa5edcc12082753343a80bce6b7c1de0867a0826669b4361b82a5282"
+    },
+    {
+      "path": "standards/AEP-007/figures/fig03_public_report_lifecycle.png",
+      "bytes": 70155,
+      "sha256": "b91f68c509ebf7e09ffa986da457dc83e5fdf8c70db16c431c6ffe27186c515f"
+    },
+    {
+      "path": "standards/AEP-007/figures/fig04_claim_boundary_ladder.png",
+      "bytes": 76305,
+      "sha256": "8dc6c2db43f9a66a946332de8f6f67830a048a645526c8bec91a2a74cf7f5971"
+    },
+    {
+      "path": "standards/AEP-007/figures/index.html",
+      "bytes": 8232,
+      "sha256": "27a70e7cad736c2957159cdc298b33ecc17fcb6dda6316308e53d2cf9d5ef378"
+    },
+    {
+      "path": "standards/AEP-007/implementation/AEP-007_Correction_Retraction_Playbook.md",
+      "bytes": 403,
+      "sha256": "752139955cd0ff51a8e30e8dfb90f3d1561d67af1a9ffc5db92dbe64e211e7fe"
+    },
+    {
+      "path": "standards/AEP-007/implementation/AEP-007_Implementation_Guide.md",
+      "bytes": 868,
+      "sha256": "a55a53426926dff234dfb79e0fe45f0a0b3ea86e7617805493862d288c96a8ac"
+    },
+    {
+      "path": "standards/AEP-007/implementation/AEP-007_Proof_Card_Profile.md",
+      "bytes": 213,
+      "sha256": "3ffda536e6531da3ebb3383cbec3fac97046004a60642a20d8a6021459a2b826"
+    },
+    {
+      "path": "standards/AEP-007/implementation/AEP-007_Publication_Workflow.md",
+      "bytes": 333,
+      "sha256": "c0cd8bc19c563cb7e1c758b9989ee096521b3bdf58c6f628bc81c33b74203dae"
+    },
+    {
+      "path": "standards/AEP-007/implementation/AEP-007_Redaction_Guide.md",
+      "bytes": 422,
+      "sha256": "6567d89269f0238e6276a27af3f6248266daf4aff9c4c4b29c67cf137a19df73"
+    },
+    {
+      "path": "standards/AEP-007/implementation/AEP-007_Security_Privacy_Guide.md",
+      "bytes": 331,
+      "sha256": "ba065ce23dcd26f21a52904a3a6d307bf10cb8379ec72e1da3b437e2dd01e9e3"
+    },
+    {
+      "path": "standards/AEP-007/implementation/AEP-007_Website_Publishing_Profile.md",
+      "bytes": 360,
+      "sha256": "e14f88b535e86efa2e3eb5c64681384e86b7e5168e8091517b52665aa8ea2129"
+    },
+    {
+      "path": "standards/AEP-007/implementation/index.html",
+      "bytes": 8575,
+      "sha256": "15bd2502f202b186b89887238549599ad254665180010db6af4ed06cc03d7409"
+    },
+    {
+      "path": "standards/AEP-007/index.html",
+      "bytes": 9473,
+      "sha256": "ac24d67b18ac589eb67f859dbabb4c8b8f9aad5971a43fd561f068280fe70e9b"
+    },
+    {
+      "path": "standards/AEP-007/one_page/AEP-007_One-Page_Public-Safe-Proof-Report-Standard_v1.2.docx",
+      "bytes": 37320,
+      "sha256": "f35f51c020f08298efc6a3bdca732d98ba351b752af70593fbd0032d01a5201b"
+    },
+    {
+      "path": "standards/AEP-007/one_page/AEP-007_One-Page_Public-Safe-Proof-Report-Standard_v1.2.pdf",
+      "bytes": 49845,
+      "sha256": "ab0745b450287cc32df5ad3c402a65d4b69744509d468ddbf468bb253fa89591"
+    },
+    {
+      "path": "standards/AEP-007/one_page/index.html",
+      "bytes": 8113,
+      "sha256": "d649d77a4fa7f7bd9cb586c6fe9b0ca89da9aabeb024116e788e707a09279de5"
+    },
+    {
+      "path": "standards/AEP-007/paper.pdf",
+      "bytes": 380502,
+      "sha256": "6f03c24e684e5e03ce79c55d586385ba92b75b1b40c81ef80883d4af7a48e079"
+    },
+    {
+      "path": "standards/AEP-007/schemas/challenge_record.schema.json",
+      "bytes": 1060,
+      "sha256": "bc7877fa05231f901a1cb9e1dc55a9de766b7c0434175cc9fe66b6e0968adc57"
+    },
+    {
+      "path": "standards/AEP-007/schemas/claim_boundary.schema.json",
+      "bytes": 758,
+      "sha256": "480292487192c2fb5aae5eaf59cf13dfcceaa3be7f558bdfea40d8f1b2e3f0f8"
+    },
+    {
+      "path": "standards/AEP-007/schemas/correction_notice.schema.json",
+      "bytes": 853,
+      "sha256": "c79e22e56014e4662d5db508121cbc9a09eaa63fcd5bd5fc65042e5e9f67b758"
+    },
+    {
+      "path": "standards/AEP-007/schemas/correction_policy.schema.json",
+      "bytes": 809,
+      "sha256": "bc4861396129f896fc33f5f45eff09b0fb2f025471b9399b6f242e08fdc51a75"
+    },
+    {
+      "path": "standards/AEP-007/schemas/disclosure_review.schema.json",
+      "bytes": 789,
+      "sha256": "e11b833b20b4aa4c888e149b2ff79acae58878aa9f6bb16242c8d85bcc207a39"
+    },
+    {
+      "path": "standards/AEP-007/schemas/evaluation_summary.schema.json",
+      "bytes": 652,
+      "sha256": "d113e3586fe613166b37d71ccbfc499c7a07f6154211d8676b0a36180dc003d5"
+    },
+    {
+      "path": "standards/AEP-007/schemas/evidence_summary.schema.json",
+      "bytes": 953,
+      "sha256": "5eb81a9439303d6bc5a86d76ef6966d21a5f1feb9025592e86c877aa8a2d641d"
+    },
+    {
+      "path": "standards/AEP-007/schemas/index.html",
+      "bytes": 9625,
+      "sha256": "f6bca3e81059616c6e403a026644eb228b1526a484aafa8d8c59631faa893a7c"
+    },
+    {
+      "path": "standards/AEP-007/schemas/public_artifact_link.schema.json",
+      "bytes": 734,
+      "sha256": "15d5972def7606f427cad333f1dcb2f454a91219b22548b9d94193b4c5098d2f"
+    },
+    {
+      "path": "standards/AEP-007/schemas/public_claim_matrix.schema.json",
+      "bytes": 1049,
+      "sha256": "3a78ecfd252f82476151d312d5d8555051a3fd0becd602925d75a5b7c8cc4227"
+    },
+    {
+      "path": "standards/AEP-007/schemas/public_safe_report.schema.json",
+      "bytes": 2737,
+      "sha256": "b8d4c3464c3718146a7dc5c5aacd23611c0a4b9d56bc88529376466733fd5e3c"
+    },
+    {
+      "path": "standards/AEP-007/schemas/publication_approval.schema.json",
+      "bytes": 965,
+      "sha256": "16d5f3d56c33e40bb216119d2c7333034ed856f74e1ae39827422743b786cb1a"
+    },
+    {
+      "path": "standards/AEP-007/schemas/redaction_decision.schema.json",
+      "bytes": 635,
+      "sha256": "4ac11a3007934c3ed2c3d05a6ab744295aa63dd378f587f9306eea329a7ce031"
+    },
+    {
+      "path": "standards/AEP-007/schemas/redaction_ledger.schema.json",
+      "bytes": 1009,
+      "sha256": "c8978b3ae965ba4e1f9c5bf1b36d27945c0891759d5f5babd55f5ef9e43ea563"
+    },
+    {
+      "path": "standards/AEP-007/schemas/report_bundle.schema.json",
+      "bytes": 730,
+      "sha256": "26009e80a3185e9470ac1e22e75790afc36c2d6f00c81734d693d018b9288ab0"
+    },
+    {
+      "path": "standards/AEP-007/schemas/retraction_notice.schema.json",
+      "bytes": 756,
+      "sha256": "fd0dc3f4a50dd2867bbe950446e421f365a2d168d4605ead867563d04c8ed5bf"
+    },
+    {
+      "path": "standards/AEP-007/schemas/risk_limitation_summary.schema.json",
+      "bytes": 726,
+      "sha256": "a7c081262b3c2930e4565c5d8ad02fb748f6eb73d2f0249dc1d49fca47124c8e"
+    },
+    {
+      "path": "standards/AEP-007/schemas/source_evidence_reference.schema.json",
+      "bytes": 785,
+      "sha256": "d915498ec2646f8411d809f37f541a9b3936711e4ed26edf7c9d2d18c5f90308"
+    },
+    {
+      "path": "standards/AEP-007/source.md",
+      "bytes": 10037,
+      "sha256": "5bd848d84fce5e80cddf4bb35f9f2778841bc649eb6b845aa91f1c357ddc07d0"
+    },
+    {
+      "path": "standards/AEP-007/templates/challenge_record_template.json",
+      "bytes": 229,
+      "sha256": "fe6c65c5c5d2de03145c9ee188af046a76ace7c787c928ffaef0617616375fe0"
+    },
+    {
+      "path": "standards/AEP-007/templates/claim_boundary_template.json",
+      "bytes": 455,
+      "sha256": "df202e173973db59a0f3e1b14d20785a95db0daea23bbaec0b94a7ea83ba87da"
+    },
+    {
+      "path": "standards/AEP-007/templates/claim_boundary_template.md",
+      "bytes": 167,
+      "sha256": "cb03385ba8637ad1b471ee336acec5bfe7869f5012936d8192146cb19f733ed9"
+    },
+    {
+      "path": "standards/AEP-007/templates/correction_notice_template.json",
+      "bytes": 234,
+      "sha256": "49ffafed3d090b37e015c0b85253c893613fb349804a660dfb634aa3793fb14f"
+    },
+    {
+      "path": "standards/AEP-007/templates/disclosure_review_template.json",
+      "bytes": 146,
+      "sha256": "2e598d5632d21989ff925e8050ca82e76df5d9996aaa13443a3dad24b3f2b9f9"
+    },
+    {
+      "path": "standards/AEP-007/templates/index.html",
+      "bytes": 8755,
+      "sha256": "21751de8eab706c038c3d019c18d8e5d7eeb6b4908b1a108eedd114384575fb6"
+    },
+    {
+      "path": "standards/AEP-007/templates/public_safe_report_template.json",
+      "bytes": 5069,
+      "sha256": "aab2b60d852e4d51050d37d902157746c3ab9039ebeba450aff9d70354c187bc"
+    },
+    {
+      "path": "standards/AEP-007/templates/public_safe_report_template.md",
+      "bytes": 687,
+      "sha256": "b9ad64b5b0d8dc67c62be50ef3308ef7c8dcca957da404f2a1104a91ec2317e4"
+    },
+    {
+      "path": "standards/AEP-007/templates/publication_approval_template.json",
+      "bytes": 431,
+      "sha256": "8fe04a0a53c6c4a0c52e0d573053efe6b2f1fd9207aeabb7881ef5d6919b2bd0"
+    },
+    {
+      "path": "standards/AEP-007/templates/redaction_review_template.md",
+      "bytes": 490,
+      "sha256": "0b1b0cea49838744e73f820ee610ec2f3b48fe652b22d5535cc89032c893bae1"
+    },
+    {
+      "path": "standards/AEP-007/tools/build_report_bundle.py",
+      "bytes": 802,
+      "sha256": "c2744526c0963acee2f4b4293c7688e4a924ffdaca9ddf90aa15253223a4ed4b"
+    },
+    {
+      "path": "standards/AEP-007/tools/generate_public_safe_report.py",
+      "bytes": 1020,
+      "sha256": "bb228170973cfb0691fda0df5f1253d7daacbbbe2b35d37c0dea5025b6faa0f0"
+    },
+    {
+      "path": "standards/AEP-007/tools/index.html",
+      "bytes": 8394,
+      "sha256": "0d6cbefc3a7e90621d79e2ec229967430c16bbb55ce4515b3eb1d51fa34bb2f2"
+    },
+    {
+      "path": "standards/AEP-007/tools/public_safe_conformance_score.py",
+      "bytes": 1261,
+      "sha256": "3e11231c189d519e953511af3cb74368ecc247628277f3b6365884b69d663466"
+    },
+    {
+      "path": "standards/AEP-007/tools/public_safe_redaction_audit.py",
+      "bytes": 1198,
+      "sha256": "0805a7a093cc2bb9550cce6a9d03899c9025c344ddbeb7098d33f9fe490643e1"
+    },
+    {
+      "path": "standards/AEP-007/tools/public_safe_report_hash.py",
+      "bytes": 623,
+      "sha256": "fd065cc39135a757fb1c7befa63a3e5effcf770968e86328415bd64eaf7d8f7c"
+    },
+    {
+      "path": "standards/AEP-007/tools/validate_public_safe_report.py",
+      "bytes": 1997,
+      "sha256": "147f6d14faf7292f63ddb918a4c6d08b01f962aa66d93e64ee6067d91416777e"
+    },
+    {
+      "path": "standards/AEP-008/AEP-008_Proof-Room-Standard_v1.1_Institutional.docx",
+      "bytes": 352480,
+      "sha256": "dc91676e31be7b932c3b4a2478c01215e1e716bbdf518d065bbd67da8fa88482"
+    },
+    {
+      "path": "standards/AEP-008/AEP-008_Proof-Room-Standard_v1.1_Institutional.md",
+      "bytes": 10988,
+      "sha256": "58e2154c5605dcaf24aa957eeae59ea6b3d3d3a3d0fdbdb45a881e47f2f8f9a3"
+    },
+    {
+      "path": "standards/AEP-008/AEP-008_Proof-Room-Standard_v1.1_Institutional.pdf",
+      "bytes": 387525,
+      "sha256": "ddc5e1caa6b7eb87b95cb7ef232c90e0a554068f292c876d34351af5823ccb9d"
+    },
+    {
+      "path": "standards/AEP-008/AEP-008_Proof-Room-Standard_v1.1_Institutional.tex",
+      "bytes": 4026,
+      "sha256": "8ad0d97e5d456eb5f2c3f1aef089cb13b178b1697c16fdf604dd750e28d51d47"
+    },
+    {
+      "path": "standards/AEP-008/CODEX_IMPLEMENTATION_PROMPT_AEP008.md",
+      "bytes": 882,
+      "sha256": "9a26429da5f646814752b3c6c2be391fd1970bb517c8fd0a011e15c48d8dc588"
+    },
+    {
+      "path": "standards/AEP-008/INSTALL_IN_PROOF_GRADIENT.md",
+      "bytes": 565,
+      "sha256": "0b8e58aec1acc1fc70cc8d7a54e50d02ba6471ffaf95dfc2656ae0d2cc88a1ff"
+    },
+    {
+      "path": "standards/AEP-008/QA_REPORT.md",
+      "bytes": 1743,
+      "sha256": "5ba2184a0968cabe7a09ed36e3b34fef1d09ceb166ae49afbed27a3f7fe14bcb"
+    },
+    {
+      "path": "standards/AEP-008/README.md",
+      "bytes": 1269,
+      "sha256": "eb0800976cb09937372acdebce82cb9c223ff729fcc87a77e01c49bbe84e5ed5"
+    },
+    {
+      "path": "standards/AEP-008/RELEASE_NOTES_AEP008_v1.1.md",
+      "bytes": 998,
+      "sha256": "b6a2347e39cd26ff95f7bf4db980bdfc04524d5e638d32ebe93972d88b474c31"
+    },
+    {
+      "path": "standards/AEP-008/SHA256SUMS.txt",
+      "bytes": 6119,
+      "sha256": "e502b182ce4d424aa29cd58ec8de5fe9fe6f672e8bb5a3f908438a28a863653c"
+    },
+    {
+      "path": "standards/AEP-008/conformance/aep008_conformance_checklist.md",
+      "bytes": 1402,
+      "sha256": "07487af0029fd5ed90b95c96746238615397f1858d80050cc5ba99a6d0247cb3"
+    },
+    {
+      "path": "standards/AEP-008/conformance/index.html",
+      "bytes": 7893,
+      "sha256": "aec432afea45615fcab027ebb883d9b9247e35d167cc5b2a42ae066cbce3b30f"
+    },
+    {
+      "path": "standards/AEP-008/examples/index.html",
+      "bytes": 8650,
+      "sha256": "7274815cd66d07ed8a82a4db1d374700c86cb8101caa259501f0e8fef4e5652c"
+    },
+    {
+      "path": "standards/AEP-008/examples/sample_decision_log.json",
+      "bytes": 708,
+      "sha256": "a545ca813dcf24f03af848ab1a1f964f14a3ff5fe026bd509e973e924482598c"
+    },
+    {
+      "path": "standards/AEP-008/examples/sample_evidence_boundary.json",
+      "bytes": 518,
+      "sha256": "8614443f14dbe92e25d54a13158c25a28d8e129ac344b1bdcb26dafce209b48b"
+    },
+    {
+      "path": "standards/AEP-008/examples/sample_proof_room_charter.json",
+      "bytes": 1200,
+      "sha256": "4f924721b1a738ff4cc02da9c8d5ce9af3de31db8cb48160d0ae81c98b1242ea"
+    },
+    {
+      "path": "standards/AEP-008/examples/sample_proof_room_manifest.json",
+      "bytes": 640,
+      "sha256": "c259bc471f400d76a17716bac8769da59b5e876ea1375cdd045a59567b6d3195"
+    },
+    {
+      "path": "standards/AEP-008/examples/sample_role_assignment_registry.json",
+      "bytes": 968,
+      "sha256": "ad5b0445609fd608b28c637efae94b393052f4976eec9c9c983bb285ced5ede4"
+    },
+    {
+      "path": "standards/AEP-008/examples/sample_room_audit_export.json",
+      "bytes": 748,
+      "sha256": "733e6235813a4ac4369fafe937c8d81e7c0f58dfb8be8694e3b5450797e99170"
+    },
+    {
+      "path": "standards/AEP-008/examples/sample_room_closure_report.json",
+      "bytes": 829,
+      "sha256": "9baa83500b25390719216703d9376464eb440f0ac8f8b22d6281b3a4bdd04647"
+    },
+    {
+      "path": "standards/AEP-008/examples/sample_work_item_registry.json",
+      "bytes": 782,
+      "sha256": "d5d8705ddbceeb0b29e5a7b616a6dc486ca1592ff58f689a4e5a2b1d23fc296e"
+    },
+    {
+      "path": "standards/AEP-008/figures/fig01_proof_room_architecture_v11.png",
+      "bytes": 130935,
+      "sha256": "3e956fccec9e693418a45b4f5cd9213242f865001efe4cddb6fd94f37fdc3042"
+    },
+    {
+      "path": "standards/AEP-008/figures/fig02_proof_room_lifecycle_v11.png",
+      "bytes": 70385,
+      "sha256": "c9ee5eb945dbb1441f131e7310485888bbc1c9bb58941155d0e665973618fd6a"
+    },
+    {
+      "path": "standards/AEP-008/figures/fig03_proof_room_roles_boundaries_v11.png",
+      "bytes": 60798,
+      "sha256": "45ceb4d8b4088a553e48f5f49db8a4ef0b7f6d226a94f53c75996611da3e3760"
+    },
+    {
+      "path": "standards/AEP-008/figures/fig04_proof_room_operating_modes_v11.png",
+      "bytes": 83692,
+      "sha256": "c546e13fa56d0b8df4adfe6e86f6e134c9e88168d608c29a96ad6d93dddb3386"
+    },
+    {
+      "path": "standards/AEP-008/figures/index.html",
+      "bytes": 8272,
+      "sha256": "872f5ad8bfad98d214f205dccfb11cd1492fcbe2af0148f08c7ae933db57ed99"
+    },
+    {
+      "path": "standards/AEP-008/implementation/AEP-008_Implementation_Guide.md",
+      "bytes": 1316,
+      "sha256": "a36f259df0859dff1aa21e7e0f85413ff709ccf4e172e17887a32b9f329983d2"
+    },
+    {
+      "path": "standards/AEP-008/implementation/AEP-008_Proof_Room_Runbook.md",
+      "bytes": 682,
+      "sha256": "7f9b55afb3eed1b6b7a6542a89a7fbe9f4efe425ead24d901434d5794b76d67f"
+    },
+    {
+      "path": "standards/AEP-008/implementation/AEP-008_Role_Separation_Profile.md",
+      "bytes": 600,
+      "sha256": "c8c1e84798e86f55092d81127c39e2a9fac2d9f031d43b2b361b8fb3f149d1eb"
+    },
+    {
+      "path": "standards/AEP-008/implementation/AEP-008_Security_Privacy_Guide.md",
+      "bytes": 845,
+      "sha256": "b2ffae553ded3766acc6079b4348d43de6429476bcc73cd8466f57aad8478a5b"
+    },
+    {
+      "path": "standards/AEP-008/implementation/index.html",
+      "bytes": 8232,
+      "sha256": "23c0fe1dad1862a44beec8b1aac595a206a537481abcf1aa104f23c55248f375"
+    },
+    {
+      "path": "standards/AEP-008/index.html",
+      "bytes": 9430,
+      "sha256": "3883afb9824417ca12f0a7fff3abf2eca6ba1e98bfe5e901f20fd52538f493c4"
+    },
+    {
+      "path": "standards/AEP-008/one_page/AEP-008_One-Page_Proof-Room-Standard_v1.1.docx",
+      "bytes": 37274,
+      "sha256": "5d33902e46b1728d126d5b65002df4efdccea5cbe4e2f9970215fe7191438d04"
+    },
+    {
+      "path": "standards/AEP-008/one_page/AEP-008_One-Page_Proof-Room-Standard_v1.1.md",
+      "bytes": 1098,
+      "sha256": "d76283d0e6a2a847c4d0614ea30a0f3c7b6b78383d2e2b2fabc254005e9ffe40"
+    },
+    {
+      "path": "standards/AEP-008/one_page/AEP-008_One-Page_Proof-Room-Standard_v1.1.pdf",
+      "bytes": 51165,
+      "sha256": "5c693003a56ff903285809e992244ed760a118bc213b87e45bf90d81452e67ca"
+    },
+    {
+      "path": "standards/AEP-008/one_page/index.html",
+      "bytes": 8192,
+      "sha256": "7745a049b5dde3b43b5ad23d46449510dab473e31a4a96df523fd5d0d67f7117"
+    },
+    {
+      "path": "standards/AEP-008/paper.pdf",
+      "bytes": 387525,
+      "sha256": "ddc5e1caa6b7eb87b95cb7ef232c90e0a554068f292c876d34351af5823ccb9d"
+    },
+    {
+      "path": "standards/AEP-008/schemas/decision_log.schema.json",
+      "bytes": 1476,
+      "sha256": "45c47e11d4ea3a8d2b58362f9bac7ed3c7ce5c6413638de0da21a283889baeb7"
+    },
+    {
+      "path": "standards/AEP-008/schemas/evidence_boundary.schema.json",
+      "bytes": 1162,
+      "sha256": "244edade5151bc4f336d99668825d76a32bf315b48b75116e24226e8c7f628f2"
+    },
+    {
+      "path": "standards/AEP-008/schemas/index.html",
+      "bytes": 8959,
+      "sha256": "77cb05d2d30329be79fb6c1ce496398b923f4cb4ff9e2ef9b3bbdf966b58ee54"
+    },
+    {
+      "path": "standards/AEP-008/schemas/proof_room_charter.schema.json",
+      "bytes": 2012,
+      "sha256": "fbb2b63271839280e313cdb09c4418f636de90e8bf03fa4836aad553ad3603b1"
+    },
+    {
+      "path": "standards/AEP-008/schemas/proof_room_manifest.schema.json",
+      "bytes": 1827,
+      "sha256": "338530b533356f0a69262b2e52030e902ff488f9f345379a2027d0005539c0ad"
+    },
+    {
+      "path": "standards/AEP-008/schemas/role_assignment_registry.schema.json",
+      "bytes": 1842,
+      "sha256": "58132e26d7d6bbd3fad8980469eee4cf318ed9c7178ae9fb59f78cc1d8db456f"
+    },
+    {
+      "path": "standards/AEP-008/schemas/room_audit_export.schema.json",
+      "bytes": 1751,
+      "sha256": "416229bff5497d6c3e968880b48e28703dcbdf42f638fc64e9dc892a2461129a"
+    },
+    {
+      "path": "standards/AEP-008/schemas/room_closure_report.schema.json",
+      "bytes": 1348,
+      "sha256": "9bacfb48e960c9976ab4859bc2a1732beb4102f29443ed7b78cb04ecd23db286"
+    },
+    {
+      "path": "standards/AEP-008/schemas/room_register.schema.json",
+      "bytes": 741,
+      "sha256": "4eab4e7dd1882c2449580109c939b31455582b7e4db7d3dd32d0229badfdf3f1"
+    },
+    {
+      "path": "standards/AEP-008/schemas/room_session_record.schema.json",
+      "bytes": 1212,
+      "sha256": "5d760c3c63ec65e540e930bed2f1b5eba212cccf23d5888a80c88b2269ad6c80"
+    },
+    {
+      "path": "standards/AEP-008/schemas/scope_boundary.schema.json",
+      "bytes": 1087,
+      "sha256": "653bcfda96c9d58e096e5f92466c3a896c8da6b502c468cc4e53b614ec4e4740"
+    },
+    {
+      "path": "standards/AEP-008/schemas/work_item_registry.schema.json",
+      "bytes": 1958,
+      "sha256": "66d8433cd7134e410ee288bc10a3996f96fd55a594da38549b6ee94ad6056f90"
+    },
+    {
+      "path": "standards/AEP-008/source.md",
+      "bytes": 10988,
+      "sha256": "58e2154c5605dcaf24aa957eeae59ea6b3d3d3a3d0fdbdb45a881e47f2f8f9a3"
+    },
+    {
+      "path": "standards/AEP-008/templates/decision_log_template.json",
+      "bytes": 708,
+      "sha256": "a545ca813dcf24f03af848ab1a1f964f14a3ff5fe026bd509e973e924482598c"
+    },
+    {
+      "path": "standards/AEP-008/templates/evidence_boundary_template.json",
+      "bytes": 518,
+      "sha256": "8614443f14dbe92e25d54a13158c25a28d8e129ac344b1bdcb26dafce209b48b"
+    },
+    {
+      "path": "standards/AEP-008/templates/index.html",
+      "bytes": 8789,
+      "sha256": "f888ed96e3e26498d95050dcc77a827db8e6a59a87d7e3525cd7f061d3d8b09d"
+    },
+    {
+      "path": "standards/AEP-008/templates/proof_room_charter_template.json",
+      "bytes": 1200,
+      "sha256": "4f924721b1a738ff4cc02da9c8d5ce9af3de31db8cb48160d0ae81c98b1242ea"
+    },
+    {
+      "path": "standards/AEP-008/templates/proof_room_manifest_template.json",
+      "bytes": 640,
+      "sha256": "c259bc471f400d76a17716bac8769da59b5e876ea1375cdd045a59567b6d3195"
+    },
+    {
+      "path": "standards/AEP-008/templates/proof_room_review_template.md",
+      "bytes": 924,
+      "sha256": "5d7797b027975ed910608d15481686aacbc0f6adc17808f97dc78dd98291c6d6"
+    },
+    {
+      "path": "standards/AEP-008/templates/role_assignment_registry_template.json",
+      "bytes": 968,
+      "sha256": "ad5b0445609fd608b28c637efae94b393052f4976eec9c9c983bb285ced5ede4"
+    },
+    {
+      "path": "standards/AEP-008/templates/room_audit_export_template.json",
+      "bytes": 748,
+      "sha256": "733e6235813a4ac4369fafe937c8d81e7c0f58dfb8be8694e3b5450797e99170"
+    },
+    {
+      "path": "standards/AEP-008/templates/room_closure_report_template.json",
+      "bytes": 829,
+      "sha256": "9baa83500b25390719216703d9376464eb440f0ac8f8b22d6281b3a4bdd04647"
+    },
+    {
+      "path": "standards/AEP-008/templates/work_item_registry_template.json",
+      "bytes": 782,
+      "sha256": "d5d8705ddbceeb0b29e5a7b616a6dc486ca1592ff58f689a4e5a2b1d23fc296e"
+    },
+    {
+      "path": "standards/AEP-008/tools/generate_proof_room_index.py",
+      "bytes": 750,
+      "sha256": "6559abd40a3193fd8556c1042827cf6dde40d4eaac888d88b6b1dca4499b9ee2"
+    },
+    {
+      "path": "standards/AEP-008/tools/index.html",
+      "bytes": 8261,
+      "sha256": "0cffa986e8583c18e627208be46c0f069711a2826a37e93d56db33dc56e60ec3"
+    },
+    {
+      "path": "standards/AEP-008/tools/proof_room_audit.py",
+      "bytes": 1684,
+      "sha256": "47e741afb539862bdeb92680c001e7b77b6b39d155cf5a3fbf1353e3b2fc58fa"
+    },
+    {
+      "path": "standards/AEP-008/tools/proof_room_conformance_score.py",
+      "bytes": 1522,
+      "sha256": "6d64549039aa16885d5768404011d59da41b389fa0b0da03c01afe57cec24e3d"
+    },
+    {
+      "path": "standards/AEP-008/tools/proof_room_hash.py",
+      "bytes": 643,
+      "sha256": "3cfaa04480f2eb3b02cc190cd3981c46ce2cedf9269c946acbe83d1ec5a7a31e"
+    },
+    {
+      "path": "standards/AEP-008/tools/validate_proof_room_manifest.py",
+      "bytes": 1500,
+      "sha256": "01f5f1772b99c3ad994edfaa4a2d5191da696a2b4ff9000cf757a1c28f668e94"
+    },
+    {
+      "path": "standards/index.html",
+      "bytes": 3467,
+      "sha256": "7857a90e6d1d90a9b797b8c7e1af6463975bf77d0709c5962f60b352106ba774"
+    },
+    {
+      "path": "start-here/index.html",
+      "bytes": 3885,
+      "sha256": "11e65c1749220c030c46051056840cc193f2e79da7e76823935dedc2975a216a"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 319,
+      "sha256": "e5a492209095bf1a9546d1895a47e4e15151df5b231abc6df62f99f4cc47bbf0"
+    },
+    {
+      "path": "workflow/build-one-reusable-ai-workflow/index.html",
+      "bytes": 6740,
+      "sha256": "1fbad02c2a633ae2e4d1adb0b9ef7edf66e7872b5f7dd130efab8cb81e820155"
+    },
+    {
+      "path": "workflow/checkout-recovery/index.html",
+      "bytes": 16394,
+      "sha256": "d238d60781e5a2ef8348914cf9474a7b10581832a6dd09842d10c5e6b4514055"
+    },
+    {
+      "path": "workflow/department-ai-correction-rollback/index.html",
+      "bytes": 17681,
+      "sha256": "e50db94b2936afc9d0a8b939260bfea64b56912678b1e6ba2725260d37cebad0"
+    },
+    {
+      "path": "workflow/department-ai-permission-map/index.html",
+      "bytes": 18098,
+      "sha256": "3eb8488893b6a55d0270196b6c53b672978fcec81d6c148a1199a0ab824bcb80"
+    },
+    {
+      "path": "workflow/department-monthly-proof-report/index.html",
+      "bytes": 17526,
+      "sha256": "2c347eaed68e7d67617e2d3681a60c0c2e47b772827a0dfbdd4b9b2bd116dd91"
+    },
+    {
+      "path": "workflow/department-proof-room-lite/index.html",
+      "bytes": 17238,
+      "sha256": "e102077263a09e1ecd4038136f49b7179edabf1bbaf06ec2d0504389d873489c"
+    },
+    {
+      "path": "workflow/department-public-safe-case-study/index.html",
+      "bytes": 17979,
+      "sha256": "da4c82c818a6da66db404798c549199e60f6bf43e5d9a4b0cef9badfa8e41fd2"
+    },
+    {
+      "path": "workflow/department-weekly-proof-review/index.html",
+      "bytes": 16391,
+      "sha256": "9336a56c68caa6c5e834b69c3b443a72c0052cfe1d92afdfb05d01fec40eeaba"
+    },
+    {
+      "path": "workflow/feedback-to-product-update/index.html",
+      "bytes": 15678,
+      "sha256": "4c76a90c98e11a1b2ecc40bb06500d36d7669ce0600327f79e6b04f77a9114f7"
+    },
+    {
+      "path": "workflow/idea-to-demand-engine/index.html",
+      "bytes": 14568,
+      "sha256": "ce0dece90f3be76530bb8267a7d7b81b4ebfaff8e18cbb69e3788995fc336f24"
+    },
+    {
+      "path": "workflow/index.html",
+      "bytes": 12668,
+      "sha256": "7fd3ee5516e3fa63fc0039d9344363b58fd2b69386ec8f0ad88db4af61c4488a"
+    },
+    {
+      "path": "workflow/internal-approval-memo/index.html",
+      "bytes": 16235,
+      "sha256": "6cf8737864f0ab80d8a26a078f1779d41c37045f8d7eede415f92f579251e588"
+    },
+    {
+      "path": "workflow/lead-magnet-email-sequence/index.html",
+      "bytes": 16075,
+      "sha256": "5d76317771cd4104fb21d62e6493997404b90b75fed7dbd43b2d18be22bcbad3"
+    },
+    {
+      "path": "workflow/meeting-to-action-plan/index.html",
+      "bytes": 14170,
+      "sha256": "ed38fa3c6608cd4aa4e0908452bb3a1a8353aea0cf862bc0e66c5680f9404854"
+    },
+    {
+      "path": "workflow/monthly-workflow-vault-drop/index.html",
+      "bytes": 15978,
+      "sha256": "73cc5f48d81ea734ead24ef80b72a47cb8ff8c8a353b2cc455c3a9ba94a4e497"
+    },
+    {
+      "path": "workflow/offer-to-sales-page/index.html",
+      "bytes": 15035,
+      "sha256": "fd870c59b58f0eee7d39b0dc01166519e2b698c6d978c4cc2ad8cda77e679db2"
+    },
+    {
+      "path": "workflow/order-bump-builder/index.html",
+      "bytes": 15303,
+      "sha256": "a4ad4c90ca99599a966c5797d723b83d6f3e017276e665dbaa56db7a822e845f"
+    },
+    {
+      "path": "workflow/partner-referral-kit/index.html",
+      "bytes": 16355,
+      "sha256": "03fa5b59c550f5892b8d441f8d0eda9e8a8423993c8ca51694c38f0bde6e1e50"
+    },
+    {
+      "path": "workflow/post-purchase-onboarding/index.html",
+      "bytes": 15772,
+      "sha256": "cea90d9f707d8cd26e63d0cd20781ffb9424fe11c71d73d957f65bf7960059bf"
+    },
+    {
+      "path": "workflow/proof-card-referral-loop/index.html",
+      "bytes": 15335,
+      "sha256": "d0a4178b156ad4ee42bae7d5f0f02dc915afc406fa8f0706972dede0ae142dcb"
+    },
+    {
+      "path": "workflow/rsi-lite-self-improving-workflows/index.html",
+      "bytes": 2601,
+      "sha256": "42166dd67a68a71453c6610da6cf7172eb75f95c81ac3cc96c85ac20eb55326c"
+    },
+    {
+      "path": "workflow/support-faq-triage/index.html",
+      "bytes": 16824,
+      "sha256": "5d5e06fb1205ed4cb622b77e9b3ad5f6b2146ef7461dc781bd6d2299b795c760"
+    },
+    {
+      "path": "workflow/team-pack-upsell/index.html",
+      "bytes": 16595,
+      "sha256": "8d4985b83c5741269ce04a5f0853e045a12354ebd0dedad1a92bf5a50f506658"
+    },
+    {
+      "path": "workflow/team-sprint-facilitator/index.html",
+      "bytes": 15975,
+      "sha256": "b3993b9c484b198828d605b2523cd9394eecb1899d94ddb5e82c71226072de90"
+    },
+    {
+      "path": "workflow/weekly-growth-review/index.html",
+      "bytes": 15426,
+      "sha256": "0ac23d1d649cbd61549cea41937a4610cba7ef9b325aa4f119369d2b9e62a307"
+    },
+    {
+      "path": "workshop/goalos-proof-room-implementation-sprint/index.html",
+      "bytes": 3089,
+      "sha256": "0a666d101251f37cdad4a1a244dd2a5d7e9d91486a60faab189ac3b1286876a3"
+    },
+    {
+      "path": "workshop/goalos-rsi-sprint-workshop/index.html",
+      "bytes": 2448,
+      "sha256": "65d36e486686e5df7bccac55bbaaf11165f3bd3cc6bcee8e512639abea4bb738"
+    }
+  ]
+}
