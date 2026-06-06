@@ -1,0 +1,32 @@
+[
+  {
+    "path": "README.md",
+    "bytes": 1113,
+    "sha256": "a92981a70ef817fbadab671649e639e04bbdb6fb9d957494cd9175caa9e7c8f2"
+  },
+  {
+    "path": "assets/app.js",
+    "bytes": 13358,
+    "sha256": "fd01ff9b09c69239eb66c9eae1482eb0f3a0f38c841178c488a6c4c20a0989d5"
+  },
+  {
+    "path": "assets/goalos-core.mjs",
+    "bytes": 19008,
+    "sha256": "28a8324695b47f9f3a1d82a5ceb90842124f340fb93dcc5268a7c7d2e431be97"
+  },
+  {
+    "path": "assets/styles.css",
+    "bytes": 4430,
+    "sha256": "cc7a8c2227a5122692c303bec36a2dc3349770c44fcda29103cf6936801b4df9"
+  },
+  {
+    "path": "index.html",
+    "bytes": 6549,
+    "sha256": "8fbc96a18077a000b07c82c98acb8e4593eb1ee4c3422bfad4b1ae7ae4ea2cf2"
+  },
+  {
+    "path": "tests/goalos-core.test.mjs",
+    "bytes": 1529,
+    "sha256": "a2ef0e006b57b8f38469dba62ce0feb84b5e5f2a7b74919708d2ce6297dda3a9"
+  }
+]
