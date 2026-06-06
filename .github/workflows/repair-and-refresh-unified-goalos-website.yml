@@ -1,0 +1,520 @@
+name: Repair and Refresh Unified GoalOS Website
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: repair-refresh-unified-goalos-website
+  cancel-in-progress: false
+
+jobs:
+  repair-site:
+    name: Remove duplicate site shells and refresh pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Repair duplicate navigation and refresh public site
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          mkdir -p "$WEB_ROOT"
+          touch "$WEB_ROOT/.nojekyll"
+          echo "web_root=$WEB_ROOT" >> "$GITHUB_OUTPUT"
+
+          cat > "$RUNNER_TEMP/repair_complete_goalos_website.py" <<'PY'
+          from pathlib import Path
+          from html import escape
+          import re, json, hashlib, datetime, shutil
+
+          WEB_ROOT = Path("site")
+          if not WEB_ROOT.exists() and Path("public").exists():
+              WEB_ROOT = Path("public")
+          WEB_ROOT.mkdir(parents=True, exist_ok=True)
+          BASE = "/proof-gradient"
+          SHOP = "https://www.quebecartificialintelligence.com/shop"
+          GITHUB = "https://github.com/MontrealAI/proof-gradient"
+          NOW = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+
+          assets = WEB_ROOT / "assets"
+          assets.mkdir(parents=True, exist_ok=True)
+          archive = WEB_ROOT / "_archive" / "before_unified_site_shell"
+          archive.mkdir(parents=True, exist_ok=True)
+
+          report = {
+              "generated_at": NOW,
+              "web_root": str(WEB_ROOT),
+              "backups_created": [],
+              "pages_written": [],
+              "html_files_repaired": [],
+              "duplicate_shells_removed_estimate": 0,
+              "paid_files_policy": "No buyer ZIPs, paid workshop materials, or private delivery assets are uploaded by this action."
+          }
+
+          products = [
+              {
+                  "slug": "goalos-ai-efficiency-sprint-kit",
+                  "price": "$49",
+                  "title": "GoalOS AI Efficiency Sprint Kit",
+                  "fr": "Trousse GoalOS Sprint d’efficacité IA",
+                  "promise": "Build one reusable AI workflow.",
+                  "type": "Self-serve digital product",
+                  "for": "Beginners, creators, freelancers, consultants, small-business owners.",
+                  "bullets": ["60-minute first win", "offline builder", "copy-paste prompts", "editable templates", "proof note"]
+              },
+              {
+                  "slug": "goalos-rsi-lite",
+                  "price": "$199",
+                  "title": "GoalOS RSI Lite",
+                  "fr": "GoalOS RSI Lite",
+                  "promise": "Build one self-improving AI workflow.",
+                  "type": "Premium self-serve system",
+                  "for": "Serious operators, consultants, agencies, creators, small teams.",
+                  "bullets": ["Run", "Score", "Diagnose", "Improve", "Version", "Prove", "Re-run"]
+              },
+              {
+                  "slug": "goalos-proof-room-lite",
+                  "price": "$997",
+                  "title": "GoalOS Proof Room Lite / Department Pack",
+                  "fr": "GoalOS Proof Room Lite / Pack Département",
+                  "promise": "Set up a lightweight department Proof Room.",
+                  "type": "Premium department pack",
+                  "for": "Department leads, operations managers, AI champions, team leads.",
+                  "bullets": ["owners", "permissions", "proof notes", "weekly reviews", "executive reports", "rollback", "public-safe proof"]
+              },
+              {
+                  "slug": "goalos-rsi-sprint-workshop",
+                  "price": "$2,500+",
+                  "title": "GoalOS RSI Sprint Workshop",
+                  "fr": "Atelier GoalOS RSI Sprint",
+                  "promise": "Build the first self-improving workflow live.",
+                  "type": "Private workshop",
+                  "for": "Founders, operators, teams, consultants, agencies.",
+                  "bullets": ["workflow v1.0", "first run", "scorecard", "diagnosis", "workflow v1.1", "proof note"]
+              },
+              {
+                  "slug": "goalos-proof-room-implementation-sprint",
+                  "price": "$9,500+",
+                  "title": "GoalOS Proof Room Implementation Sprint",
+                  "fr": "Sprint de mise en œuvre GoalOS Proof Room",
+                  "promise": "Department RSI in 30 days.",
+                  "type": "Done-with-you implementation",
+                  "for": "Department leaders, AI champions, operations executives.",
+                  "bullets": ["3 workflows", "permission map", "proof review", "monthly report", "rollback procedure", "case study"]
+              },
+              {
+                  "slug": "goalos-enterprise-rsi-pilot",
+                  "price": "$49,000+",
+                  "title": "GoalOS Enterprise RSI Pilot",
+                  "fr": "GoalOS Enterprise RSI Pilot",
+                  "promise": "Pilot the Recursive Workflow OS.",
+                  "type": "Enterprise pilot",
+                  "for": "Enterprise AI governance, CIO/CDO office, support/ops executives.",
+                  "bullets": ["90-day pilot", "workflow family", "benchmark", "proof records", "v1.1 proposal", "architecture blueprint"]
+              },
+          ]
+
+          standards = [
+              ("AEP-001", "GoalOS Proof-of-Evolution Constitution"),
+              ("AEP-002", "Evidence Docket Standard"),
+              ("AEP-003", "ProofPacket Schema"),
+              ("AEP-004", "Selection Gate Standard"),
+              ("AEP-005", "Tool Permission Standard"),
+              ("AEP-006", "Rollback Receipt Standard"),
+              ("AEP-007", "Public-Safe Proof Report Standard"),
+              ("AEP-008", "Proof Room Standard")
+          ]
+
+          def href(path):
+              if path.startswith("http"):
+                  return path
+              return BASE + path
+
+          def backup(path):
+              if not path.exists() or not path.is_file():
+                  return
+              rel = path.relative_to(WEB_ROOT)
+              dest = archive / rel
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              if not dest.exists():
+                  shutil.copy2(path, dest)
+                  report["backups_created"].append(dest.relative_to(WEB_ROOT).as_posix())
+
+          def page(title, desc, body):
+              return f"""<!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
+            <title>{escape(title)}</title>
+            <meta name="description" content="{escape(desc)}">
+            <meta property="og:title" content="{escape(title)}">
+            <meta property="og:description" content="{escape(desc)}">
+            <meta property="og:image" content="{BASE}/assets/goalos-unified-og.svg">
+            <link rel="stylesheet" href="{BASE}/assets/goalos-unified-site-shell.css" data-goalos-unified-css>
+            <script defer src="{BASE}/assets/goalos-unified-site.js" data-goalos-unified-js></script>
+          </head>
+          <body>
+          <main class="unified-wrap">
+          {body}
+          </main>
+          </body>
+          </html>
+          """
+
+          css = r"""
+          :root{--bg:#05070d;--panel:rgba(255,255,255,.078);--panel2:rgba(255,255,255,.045);--line:rgba(255,255,255,.16);--text:#f7f8ff;--muted:#b8c0da;--gold:#ffd76a;--cyan:#8ff3ff;--green:#7ce0a3;--radius:26px;--shadow:0 28px 78px rgba(0,0,0,.36)}
+          *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 14% -8%,rgba(143,179,255,.22),transparent 34rem),radial-gradient(circle at 90% 0%,rgba(255,215,106,.13),transparent 30rem),linear-gradient(180deg,#05070d,#080b13 55%,#05070d);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}.unified-shell{position:sticky;top:0;z-index:9999;backdrop-filter:blur(18px);background:rgba(5,7,13,.9);border-bottom:1px solid var(--line)}.unified-nav{width:min(1240px,calc(100% - 28px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 0}.unified-brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:950;letter-spacing:-.035em}.unified-mark{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,215,106,.65);display:grid;place-items:center;color:var(--gold);font-weight:950;background:rgba(255,215,106,.08)}.unified-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}.unified-links a{font-size:13px;text-decoration:none;padding:9px 11px;border:1px solid transparent;border-radius:999px;color:var(--muted);font-weight:850}.unified-links a:hover{color:var(--text);border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06)}.unified-links a.shop{color:#05070d;background:var(--gold);border-color:var(--gold)}.unified-wrap{width:min(1240px,calc(100% - 36px));margin:0 auto;padding:68px 0 94px}.unified-hero{padding:42px 0}.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-weight:950;font-size:12px;margin-bottom:18px}.unified-wrap h1{font-size:clamp(50px,8vw,114px);line-height:.86;letter-spacing:-.085em;margin:0 0 24px;max-width:1130px}.unified-wrap h2{font-size:clamp(34px,5.4vw,66px);line-height:.92;letter-spacing:-.065em;margin:0 0 18px}.unified-wrap h3{font-size:24px;letter-spacing:-.04em;margin:0 0 10px}.lead{font-size:clamp(19px,2vw,24px);line-height:1.55;color:var(--muted);max-width:960px;margin:0 0 24px}.fr{color:#d7def6}.actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 17px;border:1px solid rgba(255,215,106,.52);border-radius:999px;text-decoration:none;font-weight:900;background:rgba(255,255,255,.055);color:var(--text)}.btn.primary{background:var(--gold);color:#05070d;border-color:var(--gold)}.section{margin:62px 0}.panel,.card{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--panel2));border-radius:var(--radius);box-shadow:var(--shadow)}.panel{padding:30px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid.two{grid-template-columns:repeat(2,1fr)}.card{padding:22px;text-decoration:none;display:flex;flex-direction:column;min-height:188px}.card:hover{transform:translateY(-2px);border-color:rgba(255,215,106,.5)}.card p{color:var(--muted);line-height:1.45;margin:0 0 12px}.price{font-size:44px;font-weight:950;letter-spacing:-.06em;color:var(--gold);margin:4px 0 12px}.badge{display:inline-flex;align-self:flex-start;margin-bottom:13px;font-size:12px;color:var(--gold);border:1px solid rgba(255,215,106,.45);border-radius:999px;padding:6px 9px;font-weight:900}.list{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none}.list li{padding-left:26px;position:relative;color:var(--muted);line-height:1.42}.list li:before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:950}.law{font-size:clamp(26px,3.6vw,46px);line-height:1.1;letter-spacing:-.05em;margin:0;color:var(--text)}.loop{display:inline-flex;border:1px solid rgba(255,215,106,.45);border-radius:999px;color:var(--gold);background:rgba(255,215,106,.08);padding:10px 14px;font-weight:900;margin:12px 0}.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:24px}.steps div{border:1px solid var(--line);border-radius:20px;padding:16px;background:rgba(255,255,255,.045)}.steps strong{display:block;color:var(--gold);font-size:13px;margin-bottom:8px}.steps span{color:var(--muted);font-size:14px;line-height:1.35}.table{width:100%;border-collapse:separate;border-spacing:0 8px}.table td,.table th{padding:14px;background:rgba(255,255,255,.055);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:left;color:var(--muted);vertical-align:top}.table th{color:var(--text)}.table td:first-child,.table th:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px}.table td:last-child,.table th:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}.search input{width:100%;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:#080b13;color:var(--text);font-size:17px;outline:none}.unified-footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:13px;background:rgba(5,7,13,.74)}.unified-footer-inner{width:min(1240px,calc(100% - 36px));margin:0 auto;display:flex;gap:18px;justify-content:space-between;flex-wrap:wrap}.unified-footer a{color:var(--muted);text-decoration:none;margin-right:14px}@media(max-width:980px){.grid,.grid.two,.steps{grid-template-columns:1fr}.unified-links{display:none}.unified-wrap{padding-top:42px}}
+          """
+          (assets / "goalos-unified-site-shell.css").write_text(css, encoding="utf-8")
+
+          js = r"""
+          (function(){function ready(f){document.readyState!=="loading"?f():document.addEventListener("DOMContentLoaded",f)}
+          ready(function(){var input=document.querySelector("[data-unified-search]");if(!input)return;var cards=[].slice.call(document.querySelectorAll("[data-unified-card]"));input.addEventListener("input",function(){var q=input.value.toLowerCase().trim();cards.forEach(function(c){c.style.display=!q||c.textContent.toLowerCase().indexOf(q)!==-1?"":"none"})})})})();
+          """
+          (assets / "goalos-unified-site.js").write_text(js, encoding="utf-8")
+
+          og = """<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs><radialGradient id="g" cx="76%" cy="20%" r="70%"><stop offset="0%" stop-color="#263b74"/><stop offset="55%" stop-color="#070b15"/><stop offset="100%" stop-color="#05070d"/></radialGradient></defs><rect width="1600" height="900" fill="url(#g)"/><text x="90" y="105" fill="#ffd76a" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="8">GOALOS · PROOF GRADIENT</text><text x="90" y="250" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="88" font-weight="900">One unified site.</text><text x="90" y="360" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="88" font-weight="900">Recursive workflows.</text><text x="90" y="470" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="88" font-weight="900">Proof Rooms.</text><text x="90" y="560" fill="#b8c0da" font-family="Arial, sans-serif" font-size="36">$49 · $199 · $997 · $2,500+ · $9,500+ · $49,000+</text></svg>"""
+          (assets / "goalos-unified-og.svg").write_text(og, encoding="utf-8")
+
+          def card(item, path="/products/"):
+              return f"""<a class="card" data-unified-card href="{href(path + item['slug'] + '/')}">
+            <span class="badge">{escape(item['price'])}</span>
+            <h3>{escape(item['title'])}</h3>
+            <p class="fr">{escape(item['fr'])}</p>
+            <p>{escape(item['promise'])}</p>
+          </a>"""
+
+          def bullets(items):
+              return "<ul class='list'>" + "".join(f"<li>{escape(x)}</li>" for x in items) + "</ul>"
+
+          def write_page(rel, title, desc, body, backup_existing=True):
+              out = WEB_ROOT / rel / "index.html" if rel else WEB_ROOT / "index.html"
+              out.parent.mkdir(parents=True, exist_ok=True)
+              if backup_existing:
+                  backup(out)
+              out.write_text(page(title, desc, body), encoding="utf-8")
+              report["pages_written"].append(out.relative_to(WEB_ROOT).as_posix())
+
+          home_body = f"""
+          <section class="unified-hero">
+            <div class="eyebrow">GoalOS · Proof Gradient</div>
+            <h1>A model can answer. An agent can act. An institution must prove.</h1>
+            <p class="lead">GoalOS turns repeated AI work into owned, scored, versioned, approved, monitored, and recursively improving workflows.</p>
+            <div class="loop">Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run</div>
+            <div class="actions"><a class="btn primary" href="{href('/app/goalos-cloud-mvp/')}">Open GoalOS Cloud MVP</a><a class="btn" href="{href('/pricing/')}">View ladder</a><a class="btn" href="{SHOP}">Shop / Apply</a></div>
+          </section>
+          <section class="section panel">
+            <div class="eyebrow">Latest software proof</div>
+            <p class="law">GoalOS Cloud MVP 0.2 proves recursive workflow improvement running in software.</p>
+            <p class="lead">One workflow family. One proof room. One improvement proposal. One approval gate. One rollback target. One public-safe proof card.</p>
+            <div class="actions"><a class="btn primary" href="{href('/app/goalos-cloud-mvp/')}">Open the MVP</a><a class="btn" href="{href('/products/goalos-cloud-mvp/')}">Read about it</a></div>
+          </section>
+          <section class="section">
+            <div class="eyebrow">Commercial ladder</div>
+            <h2>From reusable workflow to Enterprise RSI.</h2>
+            <div class="grid">{''.join(card(p) for p in products)}</div>
+          </section>
+          <section class="section panel">
+            <h2>Safe boundary</h2>
+            <p class="lead">GoalOS does not modify AI models. It improves workflows around AI through instructions, checks, scorecards, proof records, memory, evidence standards, versions, approvals, monitoring, and rollback.</p>
+            <p class="lead fr">GoalOS ne modifie pas les modèles IA. Il améliore les flux autour de l’IA grâce aux instructions, vérifications, grilles de score, dossiers de preuve, mémoire, standards de preuve, versions, approbations, monitoring et rollback.</p>
+          </section>
+          """
+          write_page("", "GoalOS · Proof Gradient", "GoalOS Recursive Workflow OS and Proof Gradient public site.", home_body)
+
+          products_body = f"""
+          <section class="unified-hero"><div class="eyebrow">Products / Produits</div><h1>Choose your GoalOS path.</h1><p class="lead">Start with one reusable AI workflow, upgrade to self-improving workflows, then install Proof Rooms and Enterprise RSI.</p><div class="actions"><a class="btn primary" href="{SHOP}">Shop / Apply</a><a class="btn" href="{href('/pricing/')}">Compare pricing</a></div></section>
+          <section class="section"><div class="grid">{''.join(card(p) for p in products)}</div></section>
+          """
+          write_page("products", "GoalOS Products", "GoalOS product and service ladder.", products_body)
+
+          pricing_rows = "\n".join(f"<tr><td>{escape(p['price'])}</td><td><strong>{escape(p['title'])}</strong><br><span class='fr'>{escape(p['fr'])}</span></td><td>{escape(p['promise'])}</td><td>{escape(p['type'])}</td></tr>" for p in products)
+          pricing_body = f"""
+          <section class="unified-hero"><div class="eyebrow">Pricing / Tarifs</div><h1>Clear ladder. Clear outcomes.</h1><p class="lead">$49 → $199 → $997 → $2,500+ → $9,500+ → $49,000+.</p><div class="actions"><a class="btn primary" href="{SHOP}">Shop / Apply</a></div></section>
+          <section class="section"><table class="table"><tr><th>Price</th><th>Offer</th><th>Outcome</th><th>Type</th></tr>{pricing_rows}</table></section>
+          """
+          write_page("pricing", "GoalOS Pricing", "GoalOS pricing ladder.", pricing_body)
+
+          services_body = f"""
+          <section class="unified-hero"><div class="eyebrow">Services / Implementation</div><h1>From live workshop to Enterprise RSI Pilot.</h1><p class="lead">Use services to produce paid proof, install department Proof Rooms, and validate the enterprise platform.</p><div class="actions"><a class="btn primary" href="{SHOP}">Apply / Buy</a></div></section>
+          <section class="section"><div class="grid">{''.join(card(p) for p in products[3:])}</div></section>
+          """
+          write_page("services", "GoalOS Services", "GoalOS workshops, implementation, and enterprise pilots.", services_body)
+
+          start_body = f"""
+          <section class="unified-hero"><div class="eyebrow">Start Here / Départ</div><h1>Start with the outcome you need.</h1><p class="lead">Reusable workflow, self-improving workflow, department Proof Room, live RSI workshop, implementation sprint, or enterprise pilot.</p></section>
+          <section class="section"><div class="grid">{''.join(card(p) for p in products)}</div></section>
+          """
+          write_page("start-here", "Start Here · GoalOS", "Choose your GoalOS path.", start_body)
+
+          mvp_body = f"""
+          <section class="unified-hero"><div class="eyebrow">GoalOS Cloud MVP 0.2</div><h1>Enterprise recursive workflow proof, running in software.</h1><p class="lead">A public MVP proving: Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run.</p><div class="actions"><a class="btn primary" href="{href('/app/goalos-cloud-mvp/')}">Open the MVP</a><a class="btn" href="{href('/products/goalos-enterprise-rsi-pilot/')}">Enterprise RSI Pilot</a></div></section>
+          <section class="section panel"><h2>What it proves</h2><div class="steps"><div><strong>1</strong><span>Workflow Studio</span></div><div><strong>2</strong><span>Evaluation Engine</span></div><div><strong>3</strong><span>Proof Room</span></div><div><strong>4</strong><span>Improvement Proposal</span></div><div><strong>5</strong><span>Approval Gate</span></div><div><strong>6</strong><span>Rollback Target</span></div></div></section>
+          """
+          write_page("products/goalos-cloud-mvp", "GoalOS Cloud MVP 0.2", "Enterprise recursive workflow proof running in software.", mvp_body)
+
+          for p in products:
+              body = f"""
+          <section class="unified-hero"><div class="eyebrow">{escape(p['price'])} · {escape(p['type'])}</div><h1>{escape(p['title'])}</h1><p class="lead fr">{escape(p['fr'])}</p><p class="lead">{escape(p['promise'])}</p><div class="actions"><a class="btn primary" href="{SHOP}">Shop / Apply</a><a class="btn" href="{href('/pricing/')}">Compare</a></div></section>
+          <section class="section panel"><div class="price">{escape(p['price'])}</div><h2>Best for</h2><p class="lead">{escape(p['for'])}</p>{bullets(p['bullets'])}</section>
+          <section class="section panel"><h2>Boundary</h2><p class="lead">No guaranteed ROI, income, compliance certification, safety guarantee, legal advice, or uncontrolled autonomous deployment. Human review required.</p></section>
+          """
+              write_page(f"products/{p['slug']}", p["title"], p["promise"], body)
+
+          implementation_body = """
+          <section class="unified-hero"><div class="eyebrow">Department RSI</div><h1>Department RSI in 30 days.</h1><p class="lead">Deploy Recursive Self-Improving Workflows in one department.</p><div class="actions"><a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Apply / Buy</a></div></section>
+          <section class="section panel"><p class="law">In 30 days, set up the first version of a lightweight Proof Room for three repeated department AI workflows.</p></section>
+          """
+          write_page("implementation/goalos-proof-room-implementation-sprint", "Department RSI in 30 Days", "GoalOS Proof Room Implementation Sprint.", implementation_body)
+          write_page("workshop/goalos-proof-room-implementation-sprint", "GoalOS Proof Room Implementation Sprint", "Department RSI in 30 Days.", implementation_body)
+
+          workshop_body = """
+          <section class="unified-hero"><div class="eyebrow">GoalOS RSI Sprint Workshop</div><h1>Build your first self-improving AI workflow live.</h1><p class="lead">In one live session, build workflow v1.0, run it, score it, diagnose what failed, improve it to v1.1, save a proof note, and leave with a 30-day next-run plan.</p><div class="actions"><a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Apply / Buy</a></div></section>
+          """
+          write_page("workshop/goalos-rsi-sprint-workshop", "GoalOS RSI Sprint Workshop", "Build your first self-improving AI workflow live.", workshop_body)
+
+          enterprise_body = """
+          <section class="unified-hero"><div class="eyebrow">Enterprise RSI</div><h1>Enterprise RSI without model self-modification.</h1><p class="lead">Pilot the Recursive Workflow Operating System for one enterprise workflow family.</p><div class="loop">Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run</div><div class="actions"><a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Apply / Buy</a></div></section>
+          <section class="section panel"><h2>Formal platform name</h2><p class="law">GoalOS Recursive Workflow OS</p></section>
+          """
+          write_page("enterprise/goalos-enterprise-rsi-pilot", "GoalOS Enterprise RSI Pilot", "Enterprise RSI without model self-modification.", enterprise_body)
+          write_page("platform/goalos-recursive-workflow-os", "GoalOS Recursive Workflow OS", "Enterprise Recursive Workflow OS platform direction.", enterprise_body)
+
+          standards_body = f"""
+          <section class="unified-hero"><div class="eyebrow">AEP Standards</div><h1>The public trust layer.</h1><p class="lead">AEP standards provide the vocabulary for proof, permission, rollback, public-safe reports, and Proof Rooms.</p></section>
+          <section class="section"><div class="grid">{''.join(f'<a class="card" data-unified-card href="{href("/standards/" + code + "/")}"><span class="badge">AEP</span><h3>{escape(code)}</h3><p>{escape(title)}</p></a>' for code,title in standards)}</div></section>
+          """
+          write_page("standards", "AEP Standards", "Proof Gradient standards.", standards_body)
+
+          for code,title in standards:
+              out = WEB_ROOT / "standards" / code / "index.html"
+              if not out.exists():
+                  write_page(f"standards/{code}", f"{code} — {title}", title, f"""<section class="unified-hero"><div class="eyebrow">AEP Standard</div><h1>{escape(code)} — {escape(title)}</h1><p class="lead">Public trust layer for GoalOS and Proof Gradient.</p><div class="actions"><a class="btn" href="{href('/standards/')}">All standards</a></div></section>""", backup_existing=False)
+
+          examples = [
+              ("build-one-reusable-ai-workflow", "Build one reusable AI workflow", "Customer question → clear reply."),
+              ("rsi-lite-self-improving-workflows", "Recursive Self-Improving Workflows", "Run, score, diagnose, improve, version, prove, and re-run."),
+              ("department-proof-room-lite", "Department Proof Room Lite", "Set up owners, permissions, proof notes, reviews, reports, and rollback."),
+              ("department-ai-permission-map", "AI Permission Map", "Green / Yellow / Red boundaries for department AI use."),
+              ("department-public-safe-case-study", "Public-safe case study", "Turn internal proof into safe external evidence.")
+          ]
+          examples_body = f"""
+          <section class="unified-hero"><div class="eyebrow">Examples</div><h1>Practical GoalOS examples.</h1><p class="lead">Examples that teach reusable workflows, RSI Lite, Proof Room Lite, and Department RSI.</p><div class="search"><input data-unified-search placeholder="Search examples..."></div></section>
+          <section class="section"><div class="grid">{''.join(f'<a class="card" data-unified-card href="{href("/workflow/" + slug + "/")}"><span class="badge">Example</span><h3>{escape(title)}</h3><p>{escape(desc)}</p></a>' for slug,title,desc in examples)}</div></section>
+          """
+          write_page("examples", "GoalOS Examples", "Practical GoalOS workflow examples.", examples_body)
+
+          for slug,title,desc in examples:
+              out = WEB_ROOT / "workflow" / slug / "index.html"
+              if not out.exists():
+                  write_page(f"workflow/{slug}", title, desc, f"""<section class="unified-hero"><div class="eyebrow">GoalOS Example</div><h1>{escape(title)}</h1><p class="lead">{escape(desc)}</p><div class="actions"><a class="btn" href="{href('/examples/')}">All examples</a><a class="btn primary" href="{SHOP}">Shop / Apply</a></div></section><section class="section panel"><h2>GoalOS structure</h2><p class="lead">Context → Rules → Memory → Workflow → Checks → Proof.</p></section>""", backup_existing=False)
+
+          command_cards = ''.join(card(p) for p in products)
+          command_cards += f'<a class="card" data-unified-card href="{href("/products/goalos-cloud-mvp/")}"><span class="badge">MVP</span><h3>GoalOS Cloud MVP 0.2</h3><p>Enterprise recursive workflow proof running in software.</p></a>'
+          command_body = f"""
+          <section class="unified-hero"><div class="eyebrow">Command Center</div><h1>One site. One command center.</h1><p class="lead">Search the unified GoalOS / Proof Gradient website.</p><div class="search"><input data-unified-search placeholder="Search products, services, examples, standards..."></div></section>
+          <section class="section"><div class="grid">{command_cards}</div></section>
+          """
+          write_page("command-center", "GoalOS Command Center", "Unified GoalOS command center.", command_body)
+
+          # Site map and URLs
+          urls = [
+              "/", "/start-here/", "/products/", "/pricing/", "/services/", "/examples/", "/standards/", "/command-center/",
+              "/products/goalos-cloud-mvp/", "/app/goalos-cloud-mvp/",
+              "/implementation/goalos-proof-room-implementation-sprint/",
+              "/workshop/goalos-rsi-sprint-workshop/",
+              "/workshop/goalos-proof-room-implementation-sprint/",
+              "/enterprise/goalos-enterprise-rsi-pilot/",
+              "/platform/goalos-recursive-workflow-os/"
+          ]
+          urls += [f"/products/{p['slug']}/" for p in products]
+          urls += [f"/standards/{code}/" for code,_ in standards]
+          urls += [f"/workflow/{slug}/" for slug,_,_ in examples]
+          rows = "".join(f"<tr><td>{escape(u)}</td><td><a href='{href(u)}'>{href(u)}</a></td></tr>" for u in sorted(set(urls)))
+          write_page("site-map", "GoalOS Site Map", "Unified GoalOS site map.", f"""<section class="unified-hero"><div class="eyebrow">Site Map</div><h1>Unified site map.</h1></section><section class="section"><table class="table"><tr><th>Path</th><th>URL</th></tr>{rows}</table></section>""")
+
+          (WEB_ROOT / "404.html").write_text(page("404 · GoalOS", "Page not found.", f"""<section class="unified-hero"><div class="eyebrow">404</div><h1>Page not found.</h1><p class="lead">Use the Command Center to find the right GoalOS page.</p><div class="actions"><a class="btn primary" href="{href('/command-center/')}">Open Command Center</a><a class="btn" href="{href('/')}">Home</a></div></section>"""), encoding="utf-8")
+
+          sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+          for u in sorted(set(urls)):
+              sitemap += f"  <url><loc>https://montrealai.github.io{BASE}{u}</loc><lastmod>{NOW[:10]}</lastmod></url>\n"
+          sitemap += "</urlset>\n"
+          (WEB_ROOT / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+          (WEB_ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io{BASE}/sitemap.xml\n", encoding="utf-8")
+
+          # Unified nav/footer insertion and duplicate cleanup.
+          nav = f"""<!-- GOALOS-UNIFIED-SHELL:START -->
+          <header class="unified-shell">
+            <nav class="unified-nav" aria-label="GoalOS unified navigation">
+              <a class="unified-brand" href="{href('/')}"><span class="unified-mark">G</span><span>GoalOS · Proof Gradient</span></a>
+              <div class="unified-links">
+                <a href="{href('/start-here/')}">Start</a>
+                <a href="{href('/products/')}">Products</a>
+                <a href="{href('/pricing/')}">Pricing</a>
+                <a href="{href('/services/')}">Services</a>
+                <a href="{href('/products/goalos-cloud-mvp/')}">Cloud MVP</a>
+                <a href="{href('/implementation/goalos-proof-room-implementation-sprint/')}">Department RSI</a>
+                <a href="{href('/examples/')}">Examples</a>
+                <a href="{href('/standards/')}">Standards</a>
+                <a class="shop" href="{SHOP}">Shop</a>
+              </div>
+            </nav>
+          </header>
+          <!-- GOALOS-UNIFIED-SHELL:END -->"""
+
+          footer = f"""<!-- GOALOS-UNIFIED-FOOTER:START -->
+          <footer class="unified-footer">
+            <div class="unified-footer-inner">
+              <div>GoalOS · Recursive Workflows · Proof Rooms · Enterprise RSI</div>
+              <div><a href="{href('/site-map/')}">Site Map</a><a href="{href('/pricing/')}">Pricing</a><a href="{GITHUB}">GitHub</a><a href="{SHOP}">Shop</a></div>
+            </div>
+          </footer>
+          <!-- GOALOS-UNIFIED-FOOTER:END -->"""
+
+          css_link = f'<link rel="stylesheet" href="{BASE}/assets/goalos-unified-site-shell.css" data-goalos-unified-css>'
+          js_link = f'<script defer src="{BASE}/assets/goalos-unified-site.js" data-goalos-unified-js></script>'
+
+          marker_patterns = [
+              r"<!-- GOALOS-UNIFIED-SHELL:START -->.*?<!-- GOALOS-UNIFIED-SHELL:END -->",
+              r"<!-- GOALOS-UNIFIED-FOOTER:START -->.*?<!-- GOALOS-UNIFIED-FOOTER:END -->",
+              r"<!-- GOALOS-COMPLETE-NAV:START -->.*?<!-- GOALOS-COMPLETE-NAV:END -->",
+              r"<!-- GOALOS-COMPLETE-FOOTER:START -->.*?<!-- GOALOS-COMPLETE-FOOTER:END -->",
+              r"<!-- GOALOS-PRODUCT-LADDER-NAV:START -->.*?<!-- GOALOS-PRODUCT-LADDER-NAV:END -->",
+              r"<!-- GOALOS-PRODUCT-LADDER-FOOTER:START -->.*?<!-- GOALOS-PRODUCT-LADDER-FOOTER:END -->",
+              r"<!-- GOALOS-LATEST-PRODUCT-LADDER:START -->.*?<!-- GOALOS-LATEST-PRODUCT-LADDER:END -->",
+              r"<!-- GOALOS-CLOUD-MVP:START -->.*?<!-- GOALOS-CLOUD-MVP:END -->",
+              r"<!-- GOALOS-CLOUD-MVP-V02:START -->.*?<!-- GOALOS-CLOUD-MVP-V02:END -->",
+          ]
+
+          def repair_html(path):
+              text = path.read_text(encoding="utf-8", errors="ignore")
+              if "<html" not in text.lower():
+                  return
+              original = text
+
+              for pat in marker_patterns:
+                  text, n = re.subn(pat, "", text, flags=re.S | re.I)
+                  report["duplicate_shells_removed_estimate"] += n
+
+              # Remove old stylesheet/script links that were injected by previous automated site actions.
+              text = re.sub(r'<link[^>]+data-goalos-(?:complete|ladder|product|unified)[^>]*>\s*', "", text, flags=re.I)
+              text = re.sub(r'<script[^>]+data-goalos-(?:complete|ladder|product|unified)[^>]*></script>\s*', "", text, flags=re.I)
+
+              # Remove stacked navigation headers immediately after body.
+              body_header_pat = r'(<body[^>]*>)\s*(?:(?:<!--.*?-->\s*)?<header\b(?=[^>]*class=["\'][^"\']*(?:unified-shell|gpl-shell|shell|topbar|site-header|nav-shell)[^"\']*["\'])[\s\S]*?</header>\s*)+'
+              text, n = re.subn(body_header_pat, r"\1\n", text, count=1, flags=re.I)
+              report["duplicate_shells_removed_estimate"] += n
+
+              # Remove stacked footers near bottom.
+              footer_pat = r'(?:\s*<footer\b(?=[^>]*class=["\'][^"\']*(?:unified-footer|gpl-footer|footer)[^"\']*["\'])[\s\S]*?</footer>\s*)+(?=</body>)'
+              text, n = re.subn(footer_pat, "\n", text, flags=re.I)
+              report["duplicate_shells_removed_estimate"] += n
+
+              # Add canonical CSS/JS.
+              if "</head>" in text:
+                  text = text.replace("</head>", f"  {css_link}\n  {js_link}\n</head>", 1)
+
+              # Insert exactly one nav.
+              if "<body" in text.lower():
+                  text = re.sub(r"(<body[^>]*>)", r"\1\n" + nav + "\n", text, count=1, flags=re.I)
+              else:
+                  text = nav + "\n" + text
+
+              # Insert exactly one footer.
+              if "</body>" in text:
+                  text = text.replace("</body>", footer + "\n</body>", 1)
+              else:
+                  text += "\n" + footer
+
+              if text != original:
+                  path.write_text(text, encoding="utf-8")
+                  report["html_files_repaired"].append(path.relative_to(WEB_ROOT).as_posix())
+
+          for html in sorted(WEB_ROOT.rglob("*.html")):
+              if "_archive" in html.parts or ".git" in html.parts:
+                  continue
+              repair_html(html)
+
+          # Local link check for generated absolute internal links.
+          missing = []
+          for html in WEB_ROOT.rglob("*.html"):
+              if "_archive" in html.parts:
+                  continue
+              text = html.read_text(encoding="utf-8", errors="ignore")
+              for m in re.finditer(r'href=["\'](/proof-gradient/[^"#?\']*)["\']', text):
+                  target = m.group(1)[len(BASE):] or "/"
+                  fs = WEB_ROOT / target.lstrip("/")
+                  if target.endswith("/"):
+                      fs = fs / "index.html"
+                  if not fs.exists():
+                      missing.append((html.relative_to(WEB_ROOT).as_posix(), m.group(1)))
+          if missing:
+              raise SystemExit("Generated local link check failed:\n" + "\n".join(f"{s} -> {u}" for s,u in missing[:200]))
+
+          # Manifest and report.
+          manifest = []
+          for p in sorted(WEB_ROOT.rglob("*")):
+              if p.is_file() and ".git" not in p.parts:
+                  manifest.append({"path": p.relative_to(WEB_ROOT).as_posix(), "bytes": p.stat().st_size, "sha256": hashlib.sha256(p.read_bytes()).hexdigest()})
+          (WEB_ROOT / "goalos-unified-site-manifest.json").write_text(json.dumps({"generated_at": NOW, "files": manifest}, indent=2) + "\n", encoding="utf-8")
+          (WEB_ROOT / "goalos-unified-site-repair-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+
+          print("GoalOS unified website repair complete.")
+          print("Web root:", WEB_ROOT)
+          print("Pages written:", len(report["pages_written"]))
+          print("HTML files repaired:", len(report["html_files_repaired"]))
+          print("Duplicate shell removals estimate:", report["duplicate_shells_removed_estimate"])
+          PY
+
+          python3 "$RUNNER_TEMP/repair_complete_goalos_website.py"
+
+      - name: Safety check — refuse deletions
+        shell: bash
+        run: |
+          set -euo pipefail
+          deleted="$(git diff --name-status | awk '$1 ~ /^D/ {print}')"
+          if [ -n "$deleted" ]; then
+            echo "Refusing to continue because deletions were detected:"
+            echo "$deleted"
+            exit 1
+          fi
+
+      - name: Commit unified website repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          WEB_ROOT="${{ steps.build.outputs.web_root }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$WEB_ROOT"
+          if git diff --cached --quiet; then
+            echo "No website changes to commit."
+          else
+            git commit -m "Repair and refresh unified GoalOS website [skip ci]"
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.build.outputs.web_root }}
+
+      - name: Deploy GitHub Pages
+        uses: actions/deploy-pages@v4
