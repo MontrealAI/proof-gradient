@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/proof-gradient/app/goalos-cloud-mvp/schemas/workflow.schema.json",
+  "title": "GoalOS Workflow Version",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "status",
+    "definition"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "definition": {
+      "type": "object",
+      "required": [
+        "goal",
+        "context",
+        "rules",
+        "steps",
+        "checks",
+        "proofRequirements"
+      ],
+      "properties": {
+        "goal": {
+          "type": "string"
+        },
+        "context": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "memoryRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proofRequirements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

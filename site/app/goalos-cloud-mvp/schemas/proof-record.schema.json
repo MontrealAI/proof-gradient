@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GoalOS Proof Record",
+  "type": "object",
+  "required": [
+    "id",
+    "workflowName",
+    "workflowVersion",
+    "inputSummary",
+    "outputSummary",
+    "checksPerformed",
+    "claimsAvoided",
+    "approvalStatus"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "workflowName": {
+      "type": "string"
+    },
+    "workflowVersion": {
+      "type": "string"
+    },
+    "inputSummary": {
+      "type": "string"
+    },
+    "outputSummary": {
+      "type": "string"
+    },
+    "checksPerformed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claimsAvoided": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approvalStatus": {
+      "type": "string"
+    }
+  }
+}

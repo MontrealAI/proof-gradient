@@ -1,0 +1,49 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GoalOS Cloud MVP API Blueprint",
+    "version": "0.2.0"
+  },
+  "paths": {
+    "/workflows": {
+      "get": {
+        "summary": "List workflows"
+      }
+    },
+    "/workflows/{id}/versions": {
+      "post": {
+        "summary": "Create workflow version"
+      }
+    },
+    "/runs": {
+      "post": {
+        "summary": "Run workflow"
+      }
+    },
+    "/runs/{id}/proof": {
+      "get": {
+        "summary": "Get proof record"
+      }
+    },
+    "/benchmarks/run": {
+      "post": {
+        "summary": "Run benchmark suite"
+      }
+    },
+    "/improvement-proposals": {
+      "post": {
+        "summary": "Generate improvement proposal"
+      }
+    },
+    "/improvement-proposals/{id}/approve": {
+      "post": {
+        "summary": "Approve improvement proposal"
+      }
+    },
+    "/workflow-versions/{id}/rollback": {
+      "post": {
+        "summary": "Rollback to workflow version"
+      }
+    }
+  }
+}

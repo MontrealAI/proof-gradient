@@ -1,24 +1,30 @@
-# GoalOS Cloud MVP 0.1
+# GoalOS Cloud MVP 0.2
 
-This is the smallest production-grade public GoalOS proof app.
+This is the stronger public software proof for GoalOS Recursive Workflow OS.
 
-It demonstrates the recursive workflow improvement loop end to end:
+It demonstrates:
 
 `Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run`
 
-## What it proves
+## Included modules
 
-- Workflow Studio with immutable versions
-- Execution Engine demo
-- Evaluation Engine demo
-- Proof Room records
-- Recursive Improvement Proposal
+- Governance / organization / roles
+- Policy engine
+- Controlled memory
+- Model gateway restrictions
+- Workflow Studio
+- Execution Engine
+- Evaluation Engine
+- Proof Room
+- Recursive Improvement Engine
 - Human approval gate
-- Version comparison
-- Rollback target
+- Versioning and rollback
+- Proof Graph export
 - Public-safe proof card export
-- Full JSON export
+- Executive report export
 - Audit log
+- Browser-local persistence
+- Node unit tests
 
 ## Safe boundary
 
@@ -26,14 +32,12 @@ GoalOS does not modify AI models.
 
 It improves workflows around AI through instructions, checks, scorecards, proof records, versions, approvals, monitoring, and rollback.
 
-## Demo workflow
+## What this is
 
-Customer Support Reply Workflow.
+A static public MVP hosted on GitHub Pages. It proves the software loop and gives a production-grade skeleton for future backend/SaaS work.
 
-v1.0 intentionally misses refund/access policy classification.
+## What this is not
 
-The system detects the failure pattern, proposes v1.1, benchmarks it, requires approval, deploys it, and preserves rollback to v1.0.
-
-## Note
-
-This is a static public MVP. It stores demo state in browser localStorage. It is not the full enterprise SaaS backend.
+It is not the full enterprise SaaS backend yet.
+It does not upload paid buyer ZIPs.
+It does not include private delivery materials.

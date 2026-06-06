@@ -1,301 +1,158 @@
 import {
-  SAMPLE_CASES,
-  initialWorkflow,
-  runWorkflow,
+  DEMO_CASES,
+  createInitialState,
+  executeWorkflow,
   evaluateRun,
   createProofRecord,
-  benchmarkWorkflow,
-  detectFailurePattern,
+  runBenchmark,
   proposeImprovement,
-  approveProposal,
+  approveImprovement,
+  rollback,
+  buildProofGraph,
   createPublicSafeProofCard,
-  exportState
-} from "./goalos-core.mjs";
+  findVersionById,
+  audit
+} from "./enterprise-core.mjs";
 
-const STORAGE_KEY = "goalos_cloud_mvp_0_1_state";
+const KEY = "goalos_cloud_mvp_v0_2_state";
+let state = load();
 
-function defaultState() {
-  const workflow = initialWorkflow();
-  return {
-    organization: {
-      id: "org_demo",
-      name: "GoalOS Demo Organization",
-      workspace: "Proof Room Demo",
-      role: "Owner / Reviewer"
-    },
-    workflows: [workflow],
-    activeWorkflowVersion: workflow.version,
-    activeCaseId: SAMPLE_CASES[0].id,
-    runs: [],
-    evaluations: [],
-    proofRecords: [],
-    benchmarks: [],
-    proposals: [],
-    approvals: [],
-    auditLog: [{
-      time: new Date().toISOString(),
-      action: "mvp_initialized",
-      actor: "system",
-      detail: "GoalOS Cloud MVP initialized with Customer Support Reply Workflow v1.0."
-    }]
-  };
+function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || createInitialState(); } catch { return createInitialState(); } }
+function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+function log(action, detail, target=null){ state.auditLogs.unshift(audit("demo-user", action, detail, target)); state.auditLogs = state.auditLogs.slice(0,160); save(); }
+function el(id){ return document.getElementById(id); }
+function pretty(x){ return JSON.stringify(x, null, 2); }
+function active(){ return findVersionById(state, state.activeWorkflowVersionId); }
+function activeCase(){ return DEMO_CASES.find(c => c.id === el("caseSelect")?.value) || DEMO_CASES[0]; }
+
+function tab(name){
+  document.querySelectorAll("[data-tab]").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
+  document.querySelectorAll("[data-panel]").forEach(p => p.hidden = p.dataset.panel !== name);
 }
-
-let state = loadState();
-
-function loadState() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : defaultState();
-  } catch {
-    return defaultState();
-  }
+function render(){
+  renderMetrics(); renderGovernance(); renderStudio(); renderRun(); renderEval(); renderProof(); renderImprove(); renderVersions(); renderGraph(); renderAdmin();
 }
-
-function saveState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+function renderMetrics(){
+  const latestBench = state.benchmarkRuns[0];
+  const graph = buildProofGraph(state);
+  el("metrics").innerHTML = [
+    ["Versions", state.workflows[0].versions.length],
+    ["Runs", state.runs.length],
+    ["Proof", state.proofRecords.length],
+    ["Proposals", state.improvementProposals.length],
+    ["Graph nodes", graph.nodes.length],
+    ["Latest pass", latestBench ? latestBench.passRate + "%" : "—"]
+  ].map(([a,b]) => `<div class="metric"><strong>${b}</strong><span>${a}</span></div>`).join("");
 }
-
-function log(action, detail) {
-  state.auditLog.unshift({
-    time: new Date().toISOString(),
-    action,
-    actor: "demo-user",
-    detail
-  });
-  state.auditLog = state.auditLog.slice(0, 100);
-  saveState();
+function renderGovernance(){
+  el("orgJson").textContent = pretty({ organization: state.organization, workspace: state.workspace, users: state.users });
+  el("policyJson").textContent = pretty(state.policies[0]);
+  el("memoryJson").textContent = pretty(state.memoryItems);
+  el("modelJson").textContent = pretty(state.modelProviders);
 }
-
-function currentWorkflow() {
-  return state.workflows.find(w => w.version === state.activeWorkflowVersion) || state.workflows[0];
+function renderStudio(){
+  const found = active();
+  el("versionSelect").innerHTML = state.workflows[0].versions.map(v => `<option value="${v.id}" ${v.id === state.activeWorkflowVersionId ? "selected" : ""}>${v.version} — ${v.status}</option>`).join("");
+  el("workflowSummary").innerHTML = `<h3>${state.workflows[0].name}</h3><p><b>Active:</b> ${found.version.version} · <b>Status:</b> ${found.version.status} · <b>Risk:</b> ${found.version.riskLevel}</p><p>${found.version.definition.goal}</p>`;
+  el("workflowJson").value = pretty(found.version);
 }
-
-function currentCase() {
-  return SAMPLE_CASES.find(c => c.id === state.activeCaseId) || SAMPLE_CASES[0];
+function renderRun(){
+  el("caseSelect").innerHTML = DEMO_CASES.map(c => `<option value="${c.id}">${c.title} — ${c.type} — ${c.dataClass}</option>`).join("");
+  const latest = state.runs[0];
+  el("latestRun").textContent = latest ? pretty(latest) : "No run yet.";
 }
-
-function el(id) { return document.getElementById(id); }
-function pretty(obj) { return JSON.stringify(obj, null, 2); }
-
-function setTab(name) {
-  document.querySelectorAll("[data-tab]").forEach(btn => btn.classList.toggle("active", btn.dataset.tab === name));
-  document.querySelectorAll("[data-panel]").forEach(panel => panel.hidden = panel.dataset.panel !== name);
+function renderEval(){
+  const latest = state.evaluations[0];
+  el("latestEval").textContent = latest ? pretty(latest) : "No evaluation yet.";
 }
-
-function render() {
-  renderStatus();
-  renderStudio();
-  renderRun();
-  renderProofRoom();
-  renderImprovement();
-  renderVersions();
-  renderAdmin();
+function renderProof(){
+  el("proofRows").innerHTML = state.proofRecords.map(p => `<tr><td>${p.createdAt.slice(0,19).replace("T"," ")}</td><td>${p.workflowVersion}</td><td>${p.inputSummary}</td><td>${p.approvalStatus}</td><td>${p.finalDecision}</td></tr>`).join("") || `<tr><td colspan="5">No proof records.</td></tr>`;
+  el("latestProof").textContent = state.proofRecords[0] ? pretty(state.proofRecords[0]) : "No proof yet.";
 }
-
-function renderStatus() {
-  const latestBenchmark = state.benchmarks[0];
-  const approved = state.workflows.find(w => w.status.includes("approved"));
-  el("statusCards").innerHTML = `
-    <div class="metric"><strong>${state.workflows.length}</strong><span>Workflow versions</span></div>
-    <div class="metric"><strong>${state.runs.length}</strong><span>Runs</span></div>
-    <div class="metric"><strong>${state.proofRecords.length}</strong><span>Proof records</span></div>
-    <div class="metric"><strong>${latestBenchmark ? latestBenchmark.passRate + "%" : "—"}</strong><span>Latest pass rate</span></div>
-    <div class="metric"><strong>${approved ? approved.version : "—"}</strong><span>Approved version</span></div>
-  `;
+function renderImprove(){
+  el("latestBenchmark").textContent = state.benchmarkRuns[0] ? pretty(summaryBenchmark(state.benchmarkRuns[0])) : "No benchmark yet.";
+  el("latestProposal").textContent = state.improvementProposals[0] ? pretty(state.improvementProposals[0]) : "No proposal yet.";
+  const canApprove = state.improvementProposals[0]?.status === "pending-approval";
+  el("approveBtn").disabled = !canApprove;
 }
-
-function renderStudio() {
-  const workflow = currentWorkflow();
-  el("workflowVersionSelect").innerHTML = state.workflows.map(w => `<option value="${w.version}" ${w.version === state.activeWorkflowVersion ? "selected" : ""}>${w.name} ${w.version} — ${w.status}</option>`).join("");
-  el("workflowJson").value = pretty(workflow);
-  el("workflowSummary").innerHTML = `
-    <h3>${workflow.name}</h3>
-    <p><b>Version:</b> ${workflow.version} · <b>Status:</b> ${workflow.status} · <b>Risk:</b> ${workflow.riskLevel}</p>
-    <p>${workflow.goal}</p>
-    <div class="pillrow">${workflow.checks.map(c => `<span>${c}</span>`).join("")}</div>
-  `;
+function renderVersions(){
+  el("versionsRows").innerHTML = state.workflows[0].versions.map(v => `<tr><td>${v.version}</td><td>${v.status}</td><td>${v.approvalStatus}</td><td>${v.rollbackOption || "—"}</td><td>${v.changeSummary}</td></tr>`).join("");
+  const b10 = state.benchmarkRuns.find(b => b.workflowVersion === "1.0.0");
+  const b11 = state.benchmarkRuns.find(b => b.workflowVersion === "1.1.0");
+  el("versionCompare").textContent = pretty({ v1_0: b10 ? summaryBenchmark(b10) : null, v1_1: b11 ? summaryBenchmark(b11) : null, rollbackTarget: "wfv_1_0_0" });
 }
-
-function renderRun() {
-  el("caseSelect").innerHTML = SAMPLE_CASES.map(c => `<option value="${c.id}" ${c.id === state.activeCaseId ? "selected" : ""}>${c.title} — ${c.issueType}</option>`).join("");
-  const input = currentCase();
-  el("caseDetails").innerHTML = `<h3>${input.title}</h3><p><b>Issue:</b> ${input.issueType} · <b>Risk:</b> ${input.risk}</p><blockquote>${input.customerMessage}</blockquote><p><b>Expected qualities:</b> ${input.expectedQualities.join(", ")}</p>`;
-  const latestRun = state.runs[0];
-  const latestEval = state.evaluations[0];
-  el("latestRun").textContent = latestRun ? pretty(latestRun) : "No run yet.";
-  el("latestEvaluation").textContent = latestEval ? pretty(latestEval) : "No evaluation yet.";
+function renderGraph(){
+  const graph = buildProofGraph(state);
+  el("graphJson").textContent = pretty(graph);
+  el("graphSummary").innerHTML = `<p><b>${graph.nodes.length}</b> nodes · <b>${graph.edges.length}</b> edges</p><p>workflow → version → run → evaluation → proof → proposal → approval</p>`;
 }
-
-function renderProofRoom() {
-  el("proofTable").innerHTML = state.proofRecords.map(p => `
-    <tr>
-      <td>${p.createdAt.slice(0,19).replace("T", " ")}</td>
-      <td>${p.workflowVersion}</td>
-      <td>${p.inputSummary}</td>
-      <td>${p.approvalStatus}</td>
-      <td>${p.finalDecision}</td>
-    </tr>
-  `).join("") || `<tr><td colspan="5">No proof records yet.</td></tr>`;
-  el("proofJson").textContent = state.proofRecords.length ? pretty(state.proofRecords[0]) : "Run a workflow to generate proof.";
+function renderAdmin(){
+  el("auditLog").innerHTML = state.auditLogs.map(a => `<li><b>${a.time.slice(0,19).replace("T"," ")}</b> — ${a.action}: ${a.detail}</li>`).join("");
+  el("stateExport").value = pretty(state);
 }
+function summaryBenchmark(b){ return { version: b.workflowVersion, avgScore: b.avgScore, passRate: b.passRate, refundPolicyCompliance: b.refundPolicyCompliance, caseCount: b.caseCount, createdAt: b.createdAt }; }
 
-function renderImprovement() {
-  const latestBenchmark = state.benchmarks[0];
-  const latestProposal = state.proposals[0];
-  el("benchmarkJson").textContent = latestBenchmark ? pretty({
-    workflowVersion: latestBenchmark.workflowVersion,
-    avgScore: latestBenchmark.avgScore,
-    passRate: latestBenchmark.passRate,
-    refundPolicyCompliance: latestBenchmark.refundPolicyCompliance,
-    runCount: latestBenchmark.runCount,
-    createdAt: latestBenchmark.createdAt
-  }) : "No benchmark yet.";
-  el("proposalJson").textContent = latestProposal ? pretty(latestProposal) : "No improvement proposal yet.";
-  el("approveProposalBtn").disabled = !latestProposal || latestProposal.status !== "pending-approval";
+function runCase(){
+  const run = executeWorkflow(state, activeCase());
+  const ev = evaluateRun(state, run);
+  const proof = createProofRecord(state, run, ev);
+  state.runs.unshift(run); state.evaluations.unshift(ev); state.proofRecords.unshift(proof);
+  log("workflow_run", `${run.workflowVersion} ${run.input.caseId} score ${ev.overallScore}`, run.id);
+  save(); render(); tab("run");
 }
-
-function renderVersions() {
-  el("versionTable").innerHTML = state.workflows.map(w => `
-    <tr>
-      <td>${w.version}</td>
-      <td>${w.status}</td>
-      <td>${w.riskLevel}</td>
-      <td>${w.versionNotes || ""}</td>
-    </tr>
-  `).join("");
-  const v10 = state.benchmarks.find(b => b.workflowVersion === "1.0.0");
-  const v11 = state.benchmarks.find(b => b.workflowVersion === "1.1.0");
-  el("comparisonJson").textContent = pretty({
-    v1_0: v10 ? { avgScore: v10.avgScore, passRate: v10.passRate, refundPolicyCompliance: v10.refundPolicyCompliance } : null,
-    v1_1: v11 ? { avgScore: v11.avgScore, passRate: v11.passRate, refundPolicyCompliance: v11.refundPolicyCompliance } : null,
-    rollbackTarget: "1.0.0"
-  });
+function benchmark(){
+  const b = runBenchmark(state, state.activeWorkflowVersionId);
+  state.benchmarkRuns.unshift(b);
+  state.runs.unshift(...b.runs.reverse()); state.evaluations.unshift(...b.evaluations.reverse()); state.proofRecords.unshift(...b.proofRecords.reverse());
+  log("benchmark_run", `${b.workflowVersion}: pass ${b.passRate}%, refund policy ${b.refundPolicyCompliance}%`, b.id);
+  save(); render(); tab("improve");
 }
-
-function renderAdmin() {
-  el("auditLog").innerHTML = state.auditLog.map(a => `<li><b>${a.time.slice(0,19).replace("T", " ")}</b> — ${a.action}: ${a.detail}</li>`).join("");
-  el("exportJson").value = exportState(state);
+function proposal(){
+  let b = state.benchmarkRuns.find(x => x.workflowVersionId === state.activeWorkflowVersionId);
+  if (!b){ b = runBenchmark(state, state.activeWorkflowVersionId); state.benchmarkRuns.unshift(b); }
+  const p = proposeImprovement(state, b);
+  state.improvementProposals.unshift(p);
+  log("improvement_proposal", p.problemDetected, p.id);
+  save(); render(); tab("improve");
 }
-
-function runCurrentCase() {
-  const workflow = currentWorkflow();
-  const input = currentCase();
-  const run = runWorkflow(workflow, input);
-  const evaluation = evaluateRun(workflow, input, run);
-  const proof = createProofRecord(workflow, input, run, evaluation);
-  state.runs.unshift(run);
-  state.evaluations.unshift(evaluation);
-  state.proofRecords.unshift(proof);
-  log("workflow_run_completed", `${workflow.name} ${workflow.version} ran on ${input.id}; score ${evaluation.overallScore}.`);
-  render();
-  setTab("run");
+function approve(){
+  const p = state.improvementProposals[0];
+  if (!p || p.status !== "pending-approval") return;
+  const res = approveImprovement(state, p);
+  state.approvals.unshift(res.approval); state.deployments.unshift(res.deployment);
+  const b = runBenchmark(state, res.approvedVersion.id);
+  state.benchmarkRuns.unshift(b);
+  state.runs.unshift(...b.runs.reverse()); state.evaluations.unshift(...b.evaluations.reverse()); state.proofRecords.unshift(...b.proofRecords.reverse());
+  log("proposal_approved", `Approved ${res.approvedVersion.version} with rollback target ${res.approval.rollbackTargetVersionId}`, res.approval.id);
+  save(); render(); tab("versions");
 }
-
-function runBenchmark() {
-  const workflow = currentWorkflow();
-  const result = benchmarkWorkflow(workflow);
-  state.benchmarks.unshift(result);
-  state.runs.unshift(...result.runs.reverse());
-  state.evaluations.unshift(...result.evaluations.reverse());
-  state.proofRecords.unshift(...result.proofRecords.reverse());
-  log("benchmark_completed", `${workflow.version}: pass ${result.passRate}%, refund compliance ${result.refundPolicyCompliance}%.`);
-  saveState();
-  render();
-  setTab("improve");
+function doRollback(){
+  const ev = rollback(state);
+  log("rollback", "Rollback target selected: wfv_1_0_0", ev.id);
+  save(); render(); tab("versions");
 }
-
-function generateProposal() {
-  let benchmark = state.benchmarks.find(b => b.workflowVersion === currentWorkflow().version);
-  if (!benchmark) {
-    benchmark = benchmarkWorkflow(currentWorkflow());
-    state.benchmarks.unshift(benchmark);
-  }
-  const pattern = detectFailurePattern(benchmark);
-  const proposal = proposeImprovement(currentWorkflow(), pattern);
-
-  const proposedBenchmark = benchmarkWorkflow(proposal.proposedWorkflow);
-  proposal.testResults = {
-    proposedAvgScore: proposedBenchmark.avgScore,
-    proposedPassRate: proposedBenchmark.passRate,
-    proposedRefundPolicyCompliance: proposedBenchmark.refundPolicyCompliance
-  };
-  proposal.benchmarkComparison = {
-    current: {
-      version: benchmark.workflowVersion,
-      avgScore: benchmark.avgScore,
-      passRate: benchmark.passRate,
-      refundPolicyCompliance: benchmark.refundPolicyCompliance
-    },
-    proposed: {
-      version: proposal.proposedVersion,
-      avgScore: proposedBenchmark.avgScore,
-      passRate: proposedBenchmark.passRate,
-      refundPolicyCompliance: proposedBenchmark.refundPolicyCompliance
-    }
-  };
-  state.proposals.unshift(proposal);
-  state.benchmarks.unshift(proposedBenchmark);
-  log("improvement_proposal_created", `${proposal.proposalId}: ${proposal.problemDetected}`);
-  saveState();
-  render();
+function download(filename, text, type="application/json"){
+  const blob = new Blob([text], { type });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = filename; a.click(); URL.revokeObjectURL(a.href);
 }
-
-function approveLatestProposal() {
-  const proposal = state.proposals[0];
-  if (!proposal || proposal.status !== "pending-approval") return;
-  const approval = approveProposal(proposal);
-  proposal.status = "approved";
-  state.approvals.unshift(approval);
-  state.workflows.unshift(approval.approvedWorkflow);
-  state.activeWorkflowVersion = approval.approvedWorkflow.version;
-
-  const benchmark = benchmarkWorkflow(approval.approvedWorkflow);
-  state.benchmarks.unshift(benchmark);
-  state.runs.unshift(...benchmark.runs.reverse());
-  state.evaluations.unshift(...benchmark.evaluations.reverse());
-  state.proofRecords.unshift(...benchmark.proofRecords.reverse());
-
-  log("proposal_approved_and_deployed", `Approved ${approval.approvedWorkflow.version}; rollback target ${approval.rollbackTarget}.`);
-  saveState();
-  render();
-  setTab("versions");
-}
-
-function rollbackToV10() {
-  if (!state.workflows.find(w => w.version === "1.0.0")) return;
-  state.activeWorkflowVersion = "1.0.0";
-  log("rollback_selected", "Active workflow set back to v1.0.0. This demo preserves all versions.");
-  saveState();
-  render();
-}
-
-function generateProofCard() {
-  const before = state.benchmarks.find(b => b.workflowVersion === "1.0.0");
-  const after = state.benchmarks.find(b => b.workflowVersion === "1.1.0");
-  const card = createPublicSafeProofCard(state.proofRecords, before, after);
-  const blob = new Blob([pretty(card)], { type: "application/json" });
-  downloadBlob(blob, "goalos_public_safe_proof_card_001.json");
-  log("public_safe_proof_card_exported", "Exported public-safe proof card.");
-}
-
-function downloadReport() {
-  const before = state.benchmarks.find(b => b.workflowVersion === "1.0.0");
-  const after = state.benchmarks.find(b => b.workflowVersion === "1.1.0");
-  const report = `GoalOS Cloud MVP 0.1 Proof Room Report
+function exportGraph(){ download("goalos_proof_graph.json", pretty(buildProofGraph(state))); log("export_graph", "Proof Graph exported."); }
+function proofCard(){ download("goalos_public_safe_proof_card_001.json", pretty(createPublicSafeProofCard(state))); log("export_public_safe_proof_card", "Public-safe proof card exported."); }
+function report(){
+  const b10 = state.benchmarkRuns.find(b => b.workflowVersion === "1.0.0");
+  const b11 = state.benchmarkRuns.find(b => b.workflowVersion === "1.1.0");
+  const txt = `GoalOS Cloud MVP 0.2 Executive Proof Room Report
 
 Loop:
 Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run
 
-Workflow:
+Workflow family:
 Customer Support Reply Workflow
 
-Versions:
-${state.workflows.map(w => `- ${w.version}: ${w.status} — ${w.versionNotes}`).join("\n")}
+v1.0:
+${b10 ? `${b10.passRate}% pass rate, ${b10.refundPolicyCompliance}% refund-policy compliance, average score ${b10.avgScore}` : "not run"}
 
-Benchmark summary:
-v1.0: ${before ? `${before.passRate}% pass rate, ${before.refundPolicyCompliance}% refund-policy compliance` : "not run"}
-v1.1: ${after ? `${after.passRate}% pass rate, ${after.refundPolicyCompliance}% refund-policy compliance` : "not approved/run"}
+v1.1:
+${b11 ? `${b11.passRate}% pass rate, ${b11.refundPolicyCompliance}% refund-policy compliance, average score ${b11.avgScore}` : "not approved/run"}
 
 Proof records:
 ${state.proofRecords.length}
@@ -306,43 +163,23 @@ GoalOS does not modify AI models. It improves workflows around AI through instru
 Claims avoided:
 No ROI guarantee. No productivity guarantee. No compliance certification. No autonomous sending claim. No model self-modification claim.
 `;
-  downloadBlob(new Blob([report], { type: "text/plain" }), "goalos_proof_room_report.txt");
-  log("proof_room_report_downloaded", "Downloaded text proof report.");
+  download("goalos_cloud_mvp_executive_report.txt", txt, "text/plain"); log("export_report", "Executive report exported.");
 }
-
-function downloadBlob(blob, filename) {
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-
-function downloadState() {
-  downloadBlob(new Blob([exportState(state)], { type: "application/json" }), "goalos_cloud_mvp_state.json");
-}
-
-function resetDemo() {
-  if (!confirm("Reset GoalOS Cloud MVP demo state?")) return;
-  state = defaultState();
-  saveState();
-  render();
-  log("demo_reset", "Demo state reset.");
-}
+function exportState(){ download("goalos_cloud_mvp_state.json", pretty(state)); }
+function reset(){ if(!confirm("Reset demo state?")) return; state = createInitialState(); save(); render(); log("reset", "State reset."); }
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("[data-tab]").forEach(btn => btn.addEventListener("click", () => setTab(btn.dataset.tab)));
-  el("workflowVersionSelect").addEventListener("change", e => { state.activeWorkflowVersion = e.target.value; saveState(); render(); });
-  el("caseSelect").addEventListener("change", e => { state.activeCaseId = e.target.value; saveState(); render(); });
-  el("runCaseBtn").addEventListener("click", runCurrentCase);
-  el("benchmarkBtn").addEventListener("click", runBenchmark);
-  el("proposalBtn").addEventListener("click", generateProposal);
-  el("approveProposalBtn").addEventListener("click", approveLatestProposal);
-  el("rollbackBtn").addEventListener("click", rollbackToV10);
-  el("downloadStateBtn").addEventListener("click", downloadState);
-  el("downloadReportBtn").addEventListener("click", downloadReport);
-  el("proofCardBtn").addEventListener("click", generateProofCard);
-  el("resetBtn").addEventListener("click", resetDemo);
-  setTab("studio");
-  render();
+  document.querySelectorAll("[data-tab]").forEach(btn => btn.addEventListener("click", () => tab(btn.dataset.tab)));
+  el("versionSelect").addEventListener("change", e => { state.activeWorkflowVersionId = e.target.value; save(); render(); });
+  el("runBtn").addEventListener("click", runCase);
+  el("benchmarkBtn").addEventListener("click", benchmark);
+  el("proposalBtn").addEventListener("click", proposal);
+  el("approveBtn").addEventListener("click", approve);
+  el("rollbackBtn").addEventListener("click", doRollback);
+  el("proofCardBtn").addEventListener("click", proofCard);
+  el("reportBtn").addEventListener("click", report);
+  el("graphBtn").addEventListener("click", exportGraph);
+  el("stateBtn").addEventListener("click", exportState);
+  el("resetBtn").addEventListener("click", reset);
+  tab("governance"); render();
 });
