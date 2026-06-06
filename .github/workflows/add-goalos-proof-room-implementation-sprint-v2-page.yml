@@ -1,0 +1,65 @@
+name: Add GoalOS Proof Room Implementation Sprint Public Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: goalos-proof-room-implementation-sprint-public-pages
+  cancel-in-progress: false
+
+jobs:
+  add-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create public pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          mkdir -p "$WEB_ROOT/workshop/goalos-proof-room-implementation-sprint" "$WEB_ROOT/products/goalos-proof-room-implementation-sprint" "$WEB_ROOT/assets"
+          cat > "$WEB_ROOT/workshop/goalos-proof-room-implementation-sprint/index.html" <<'HTML'
+          <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>GoalOS Proof Room Implementation Sprint</title>
+          <style>body{margin:0;background:#05070d;color:#f7f8ff;font-family:system-ui}main{max-width:1100px;margin:auto;padding:70px 24px}h1{font-size:clamp(44px,8vw,96px);line-height:.9;letter-spacing:-.06em}p{color:#b8c0da;font-size:20px;line-height:1.5}.btn{display:inline-block;background:#ffd76a;color:#05070d;padding:14px 18px;border-radius:999px;text-decoration:none;font-weight:900}.card{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);border-radius:24px;padding:24px;margin:20px 0}</style>
+          </head><body><main>
+          <p style="color:#ffd76a;text-transform:uppercase;letter-spacing:.2em;font-weight:900">GoalOS · Department RSI</p>
+          <h1>Department RSI in 30 Days.</h1>
+          <p>Deploy Recursive Self-Improving Workflows in one department.</p>
+          <p>GoalOS Proof Room Implementation Sprint helps a department set up owners, permissions, proof notes, weekly reviews, monthly reports, correction paths, rollback receipts, and public-safe proof for three repeated AI workflows.</p>
+          <a class="btn" href="https://www.quebecartificialintelligence.com/shop">Apply / Buy on QUEBEC.AI</a>
+          <div class="card"><h2>Safe boundary</h2><p>GoalOS does not modify AI models. It improves workflows around AI through instructions, checks, scorecards, proof notes, versions, approvals, and human review.</p></div>
+          </main></body></html>
+          HTML
+          cp "$WEB_ROOT/workshop/goalos-proof-room-implementation-sprint/index.html" "$WEB_ROOT/products/goalos-proof-room-implementation-sprint/index.html"
+
+      - name: Refuse deletions
+        shell: bash
+        run: |
+          deleted="$(git diff --name-status | awk '$1 ~ /^D/ {print}')"
+          if [ -n "$deleted" ]; then echo "$deleted"; exit 1; fi
+
+      - name: Commit pages
+        shell: bash
+        run: |
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$WEB_ROOT"
+          git diff --cached --quiet || (git commit -m "Add GoalOS Proof Room Implementation Sprint public pages [skip ci]" && git push)
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - uses: actions/deploy-pages@v4
