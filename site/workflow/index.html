@@ -1,161 +1,155 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Build One Reusable AI Workflow — GoalOS</title>
-  <meta name="description" content="Turn one repeated AI task into a reusable work system with context, rules, memory, workflow, checks, and proof." />
-  <meta property="og:title" content="Build one reusable AI workflow." />
-  <meta property="og:description" content="Stop asking AI from scratch. Turn one repeated task into a reusable work system in under one hour." />
-  <meta property="og:image" content="/proof-gradient/assets/reusable-ai-workflow-card.svg" />
-  <style>
-    :root{--bg:#05070d;--text:#f6f7ff;--muted:#b8c0da;--gold:#ffd76a;--line:rgba(255,255,255,.16)}
-    *{box-sizing:border-box}
-    body{margin:0;background:radial-gradient(circle at 18% 0%,rgba(145,183,255,.20),transparent 34rem),radial-gradient(circle at 92% 5%,rgba(255,215,106,.14),transparent 28rem),var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    main{width:min(1160px,calc(100% - 36px));margin:0 auto;padding:64px 0 92px}
-    .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-weight:900;font-size:12px}
-    h1{font-size:clamp(48px,8vw,104px);line-height:.88;letter-spacing:-.08em;margin:18px 0}
-    h2{font-size:clamp(30px,5vw,58px);letter-spacing:-.055em;margin-top:52px}
-    h3{margin-top:0}
-    .lead{max-width:920px;color:var(--muted);font-size:21px;line-height:1.55}
-    .bar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 22px}
-    .btn{display:inline-flex;margin:0;padding:12px 16px;border:1px solid rgba(255,215,106,.52);border-radius:999px;text-decoration:none;font-weight:850;background:rgba(255,255,255,.06);color:var(--text)}
-    .btn.primary{background:rgba(255,215,106,.16)}
-    .panel,.card,.step{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border-radius:24px;padding:22px}
-    .law{font-size:clamp(24px,4vw,42px);line-height:1.13;letter-spacing:-.045em}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
-    .steps{display:grid;gap:14px;margin:28px 0}
-    .step strong{color:var(--gold)}
-    .card p,.step p{color:var(--muted);line-height:1.45}
-    pre{white-space:pre-wrap;background:#080b13;border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:18px;color:#eaf0ff;line-height:1.45;overflow-wrap:anywhere}
-    .mini{font-size:14px;color:var(--muted)}
-    .pill{display:inline-flex;padding:7px 10px;border:1px solid rgba(255,215,106,.45);border-radius:999px;color:var(--gold);font-weight:850;font-size:13px;margin:4px}
-    footer{margin-top:44px;color:var(--muted);font-size:13px}
-    @media(max-width:900px){.grid,.two{grid-template-columns:1fr}}
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workflow Library · Proof Gradient</title>
+  <meta name="description" content="Reusable GoalOS workflow pages.">
+  <meta property="og:title" content="Workflow Library · Proof Gradient">
+  <meta property="og:description" content="Reusable GoalOS workflow pages.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/proof-gradient/assets/proof-gradient-og.svg">
+    <link rel="stylesheet" href="/proof-gradient/assets/proof-gradient-site.css" data-pg-site-css>
+  <script defer src="/proof-gradient/assets/proof-gradient-site.js" data-pg-site-js></script>
 </head>
 <body>
-  <main>
-    <div class="eyebrow">GoalOS · AI Efficiency Sprint</div>
-    <h1>Build one reusable AI workflow.</h1>
-    <p class="lead">Most people use AI like a chat box. They ask the same kind of question again and again. GoalOS turns one repeated AI task into a reusable work system with context, rules, memory, workflow, checks, and proof.</p>
-
-    <div class="bar">
-      <a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Get the kit</a>
-      <a class="btn" href="/proof-gradient/standards/">See the AEP standards</a>
-      <a class="btn" href="/proof-gradient/">Proof Gradient</a>
-      <a class="btn" href="https://github.com/MontrealAI/proof-gradient">GitHub</a>
+<!-- PG-SITE-SHELL:START -->
+<header class="pg-site-shell">
+  <nav class="pg-nav" aria-label="Proof Gradient">
+    <a class="pg-brand" href="/proof-gradient/"><span class="pg-mark">G</span><span>Proof Gradient · GoalOS</span></a>
+    <div class="pg-links">
+      <a href="/proof-gradient/start-here/">Start / Départ</a>
+      <a href="/proof-gradient/products/">Products</a>
+      <a href="/proof-gradient/examples/">Examples</a>
+      <a href="/proof-gradient/workflow/">Workflows</a>
+      <a href="/proof-gradient/standards/">Standards</a>
+      <a href="/proof-gradient/proof-room-lite/">Proof Room Lite</a>
+      <a href="/proof-gradient/command-center/">Command Center</a>
+      <a class="pg-shop" href="https://www.quebecartificialintelligence.com/shop">Shop</a>
     </div>
+  </nav>
+</header>
+<!-- PG-SITE-SHELL:END -->
 
-    <section class="panel">
-      <h2>The example</h2>
-      <div class="law">Turn messy customer questions into clear, consistent, public-safe replies.</div>
-      <p class="lead">This is the perfect first workflow because almost every founder, consultant, creator, or small team has to answer the same questions repeatedly.</p>
-    </section>
+  <main class="pg-wrap">
+    
+<section class="pg-hero">
+  <div class="pg-eyebrow">Workflow Library</div>
+  <h1 class="pg-h1">Reusable workflow pages.</h1>
+  <p class="pg-lead">Each workflow page shows a practical path from messy repeated work to context, rules, memory, workflow, checks, and proof.</p>
+  <div class="pg-command"><input data-pg-search placeholder="Search workflow pages..."></div>
+</section>
+<section class="pg-section">
+  <div class="pg-grid">
+    <a class="pg-card" data-pg-card href="/proof-gradient/workflow/build-one-reusable-ai-workflow/">
+      <span class="pg-badge">Individual</span>
+      <h3 class="pg-h3">Example 1: Customer question → clear reply</h3>
+      <p>Turn messy customer questions into clear replies and proof notes.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/meeting-to-action-plan/">
+      <span class="pg-badge">Individual</span>
+      <h3 class="pg-h3">Example 2: Meeting notes → action plan</h3>
+      <p>Turn messy notes into decisions, owners, deadlines, follow-up email, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/idea-to-demand-engine/">
+      <span class="pg-badge">Demand</span>
+      <h3 class="pg-h3">Example 3: One idea → demand engine</h3>
+      <p>Turn a rough product idea into content, email, sales copy, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/offer-to-sales-page/">
+      <span class="pg-badge">Demand</span>
+      <h3 class="pg-h3">Example 4: Offer notes → sales page</h3>
+      <p>Turn rough offer notes into a clear product page, FAQ, terms, and proof note.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/lead-magnet-email-sequence/">
+      <span class="pg-badge">Demand</span>
+      <h3 class="pg-h3">Example 5: Lead magnet → email sequence</h3>
+      <p>Turn a free worksheet into opt-in emails, offer clarity, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/post-purchase-onboarding/">
+      <span class="pg-badge">Delivery</span>
+      <h3 class="pg-h3">Example 6: Purchase → onboarding</h3>
+      <p>Turn a digital-product purchase into delivery, activation, upsell, support boundary, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/support-faq-triage/">
+      <span class="pg-badge">Delivery</span>
+      <h3 class="pg-h3">Example 7: Support questions → self-serve answers</h3>
+      <p>Turn repeated support questions into FAQ, canned replies, escalation rules, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/feedback-to-product-update/">
+      <span class="pg-badge">Product</span>
+      <h3 class="pg-h3">Example 8: Feedback → product update</h3>
+      <p>Turn buyer feedback into product improvements, changelog, buyer email, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/proof-card-referral-loop/">
+      <span class="pg-badge">Proof</span>
+      <h3 class="pg-h3">Example 9: Usage → proof card</h3>
+      <p>Turn real usage into public-safe proof, social post, referral ask, and permission request.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/monthly-workflow-vault-drop/">
+      <span class="pg-badge">Recurring</span>
+      <h3 class="pg-h3">Example 10: Requests → Vault drop</h3>
+      <p>Turn buyer requests into a recurring template library, announcement email, changelog, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/partner-referral-kit/">
+      <span class="pg-badge">Distribution</span>
+      <h3 class="pg-h3">Example 11: Partner interest → referral kit</h3>
+      <p>Turn partner interest into clear promo copy, disclosure language, FAQ, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/weekly-growth-review/">
+      <span class="pg-badge">Growth</span>
+      <h3 class="pg-h3">Example 12: Weekly numbers → growth move</h3>
+      <p>Turn weekly numbers into a growth experiment, content plan, and proof note.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/checkout-recovery/">
+      <span class="pg-badge">Checkout</span>
+      <h3 class="pg-h3">Example 13: Checkout signal → recovery sequence</h3>
+      <p>Turn almost-buyers into clear decisions with calm email, FAQ, terms, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/order-bump-builder/">
+      <span class="pg-badge">Checkout</span>
+      <h3 class="pg-h3">Example 14: Main offer → order bump</h3>
+      <p>Turn an add-on idea into optional checkout copy, FAQ, terms, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/team-pack-upsell/">
+      <span class="pg-badge">Team</span>
+      <h3 class="pg-h3">Example 15: Individual kit → Team Pack</h3>
+      <p>Turn one buyer into a team rollout with optional upgrade copy, email, FAQ, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/internal-approval-memo/">
+      <span class="pg-badge">Team</span>
+      <h3 class="pg-h3">Example 16: Interest → approval memo</h3>
+      <p>Turn an internal champion into a manager memo, procurement email, rollout plan, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/team-sprint-facilitator/">
+      <span class="pg-badge">Team</span>
+      <h3 class="pg-h3">Example 17: Team Pack → self-run sprint</h3>
+      <p>Turn a team meeting into a reusable AI workflow session, role assignments, checks, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/department-proof-room-lite/">
+      <span class="pg-badge">Department</span>
+      <h3 class="pg-h3">Example 18: Department Pack → Proof Room Lite setup</h3>
+      <p>Turn scattered department AI use into workflow priorities, roles, checks, dashboard fields, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/department-weekly-proof-review/">
+      <span class="pg-badge">Department</span>
+      <h3 class="pg-h3">Example 19: Weekly proof review</h3>
+      <p>Turn dashboard notes into keep/revise/stop decisions, manager update, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/department-monthly-proof-report/">
+      <span class="pg-badge">Department</span>
+      <h3 class="pg-h3">Example 20: Monthly proof report</h3>
+      <p>Turn 30 days of Proof Room Lite notes into an executive report, leadership email, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/department-ai-permission-map/">
+      <span class="pg-badge">Department</span>
+      <h3 class="pg-h3">Example 21: Department AI Permission Map</h3>
+      <p>Turn AI tool confusion into Green / Yellow / Red rules, task permissions, escalation, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/department-ai-correction-rollback/">
+      <span class="pg-badge">Department</span>
+      <h3 class="pg-h3">Example 22: AI correction / rollback</h3>
+      <p>Turn an AI workflow issue into severity, correction, rule update, rollback receipt, and proof.</p>
+    </a><a class="pg-card" data-pg-card href="/proof-gradient/workflow/department-public-safe-case-study/">
+      <span class="pg-badge">Department</span>
+      <h3 class="pg-h3">Example 23: Public-safe case study</h3>
+      <p>Turn internal Proof Room evidence into a safe case study, claim matrix, redaction checklist, and proof.</p>
+    </a>
+  </div>
+</section>
 
-    <section>
-      <h2>Before vs. after</h2>
-      <div class="two">
-        <div class="card">
-          <h3>Before: AI as a chat box</h3>
-          <p>A customer asks, “Why is this worth $49?” You open ChatGPT, explain your product again, ask for a reply, edit heavily, then start over next time.</p>
-          <p class="mini">Result: repeated work, inconsistent answers, easy to overpromise.</p>
-        </div>
-        <div class="card">
-          <h3>After: AI as a work system</h3>
-          <p>You paste the question into your reusable GoalOS workflow. It already knows your offer, tone, rules, limits, checks, and proof format.</p>
-          <p class="mini">Result: clear reply, short version, next step, proof note, claim boundary.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>The workflow in plain English</h2>
-      <div class="steps">
-        <div class="step"><strong>1. Context</strong><p>Tell the AI what you sell, who it is for, what the buyer gets, and how you want to sound.</p></div>
-        <div class="step"><strong>2. Rules</strong><p>Tell the AI what it must always do and what it must never claim: no guaranteed income, no legal advice, no fake certainty.</p></div>
-        <div class="step"><strong>3. Memory</strong><p>Save reusable phrases, product facts, examples, objections, and explanations so you do not start from zero again.</p></div>
-        <div class="step"><strong>4. Workflow</strong><p>The AI follows the same steps every time: understand concern → answer clearly → give example → add next step.</p></div>
-        <div class="step"><strong>5. Checks</strong><p>The AI checks the reply before you use it: clear, specific, safe, not hypey, and aligned with your offer.</p></div>
-        <div class="step"><strong>6. Proof</strong><p>The AI produces a short proof note: what was answered, what was claimed, what was avoided, and whether it is public-safe.</p></div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>Copy-paste example</h2>
-      <p class="lead">Customer message:</p>
-      <pre>I don’t understand how this is worth $49. Isn’t it just a bunch of templates?</pre>
-      <p class="lead">Reusable workflow output:</p>
-      <pre>That’s a fair question.
-
-If it were only a folder of templates, it would not be worth $49.
-
-The value is that the kit helps you turn one repeated AI task into a reusable work system.
-
-For example, instead of asking AI from scratch every time you need to answer a customer, write a proposal, summarize a meeting, or create a weekly update, you build one reusable workflow with:
-
-context
-rules
-memory
-steps
-checks
-proof
-
-After that, you are not starting from zero every time.
-
-You have a system you can reuse, improve, and share.
-
-The goal is simple: stop repeating the same AI task manually.</pre>
-      <p class="lead">Proof note:</p>
-      <pre>Customer concern:
-The buyer questioned whether the product is worth $49.
-
-Answer given:
-Explained that the product is not just templates; it helps create one reusable AI workflow.
-
-Claims made:
-The kit helps the buyer structure one repeated AI task into a reusable system.
-
-Claims avoided:
-No income guarantee.
-No ROI guarantee.
-No legal, financial, medical, or compliance claim.
-No promise of perfect accuracy.
-
-Public-safe:
-Yes.</pre>
-    </section>
-
-    <section>
-      <h2>What the buyer gets</h2>
-      <div>
-        <span class="pill">Clear reply</span>
-        <span class="pill">Short social version</span>
-        <span class="pill">Next step</span>
-        <span class="pill">Proof note</span>
-        <span class="pill">Claim boundary</span>
-        <span class="pill">Reusable workflow</span>
-      </div>
-      <div class="grid">
-        <div class="card"><h3>Not another prompt</h3><p>A prompt is something you ask once. A workflow is a system you can run again.</p></div>
-        <div class="card"><h3>Not hype</h3><p>The workflow avoids income guarantees, fake certainty, and risky claims.</p></div>
-        <div class="card"><h3>Actual leverage</h3><p>One messy repeated task becomes an asset you can reuse, share, improve, and trust.</p></div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>The one-sentence promise</h2>
-      <div class="law">Stop asking AI from scratch. Build one reusable AI workflow in under one hour.</div>
-      <div class="bar">
-        <a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Get the GoalOS AI Efficiency Sprint Kit</a>
-        <a class="btn" href="/proof-gradient/standards/AEP-008/">See the Proof Room Standard</a>
-      </div>
-    </section>
-
-    <footer>
-      This is an educational workflow example. It does not provide legal, financial, medical, tax, employment, security, or regulatory advice. It does not guarantee income, savings, compliance, safety, accuracy, or business results. Users are responsible for reviewing outputs and applying professional judgment.
-    </footer>
   </main>
+<!-- PG-SITE-FOOTER:START -->
+<footer class="pg-footer">
+  <div class="pg-footer-inner">
+    <div>Proof Gradient · GoalOS · Reusable AI workflows · Provable machine work</div>
+    <div>
+      <a href="/proof-gradient/site-map/">Site Map</a>
+      <a href="/proof-gradient/standards/">AEP Standards</a>
+      <a href="https://github.com/MontrealAI/proof-gradient">GitHub</a>
+      <a href="https://www.quebecartificialintelligence.com/shop">Shop</a>
+    </div>
+  </div>
+</footer>
+<!-- PG-SITE-FOOTER:END -->
 </body>
 </html>

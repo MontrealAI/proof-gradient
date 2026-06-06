@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><radialGradient id="g" cx="76%" cy="20%" r="70%"><stop offset="0%" stop-color="#263b74"/><stop offset="55%" stop-color="#070b15"/><stop offset="100%" stop-color="#05070d"/></radialGradient></defs>
+<rect width="1600" height="900" fill="url(#g)"/>
+<text x="90" y="110" fill="#ffd76a" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="8">PROOF GRADIENT · GOALOS</text>
+<text x="90" y="260" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="90" font-weight="900">Reusable AI workflows.</text>
+<text x="90" y="365" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="90" font-weight="900">Provable machine work.</text>
+<text x="90" y="470" fill="#b8c0da" font-family="Arial, sans-serif" font-size="38">Context · Rules · Memory · Workflow · Checks · Proof</text>
+</svg>
