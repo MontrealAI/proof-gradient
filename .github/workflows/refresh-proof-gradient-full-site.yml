@@ -1,0 +1,741 @@
+name: Refresh Full Proof Gradient Site
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh-full-proof-gradient-site
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Refresh full public site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate refreshed site
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          mkdir -p "$WEB_ROOT"
+          touch "$WEB_ROOT/.nojekyll"
+          echo "web_root=$WEB_ROOT" >> "$GITHUB_OUTPUT"
+
+          python3 <<'PY'
+          from pathlib import Path
+          from html import escape
+          import json, re, hashlib, datetime
+
+          WEB_ROOT = Path("site")
+          if not WEB_ROOT.exists() and Path("public").exists():
+              WEB_ROOT = Path("public")
+          WEB_ROOT.mkdir(parents=True, exist_ok=True)
+
+          BASE = "/proof-gradient"
+          SHOP = "https://www.quebecartificialintelligence.com/shop"
+          GITHUB = "https://github.com/MontrealAI/proof-gradient"
+          NOW = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+
+          assets = WEB_ROOT / "assets"
+          assets.mkdir(parents=True, exist_ok=True)
+
+          standards = [
+              ("AEP-001", "GoalOS Proof-of-Evolution Constitution", "The canonical law: Commit → Execute → Prove → Evolve."),
+              ("AEP-002", "Evidence Docket Standard", "The docket for evidence bundles, artifacts, decisions, checks, and release proof."),
+              ("AEP-003", "ProofPacket Schema", "Atomic proof units for machine-work events, tool calls, evaluations, risks, costs, rollouts, and reports."),
+              ("AEP-004", "Selection Gate Standard", "A standard for promotion decisions: evidence, challenge, canary, monitoring, rollback."),
+              ("AEP-005", "Tool Permission Standard", "Scoped, approved, leased, revocable, provable tool use."),
+              ("AEP-006", "Rollback Receipt Standard", "Recovery proof for rollback, restoration, compensation, verification, and review."),
+              ("AEP-007", "Public-Safe Proof Report Standard", "Public proof without leaking protected data or unsupported claims."),
+              ("AEP-008", "Proof Room Standard", "A governed workspace where machine work becomes institutional proof.")
+          ]
+
+          examples = [
+              ("build-one-reusable-ai-workflow", "Example 1", "Customer question → clear reply", "Turn messy customer questions into clear replies and proof notes.", "Individual"),
+              ("meeting-to-action-plan", "Example 2", "Meeting notes → action plan", "Turn messy notes into decisions, owners, deadlines, follow-up email, and proof.", "Individual"),
+              ("idea-to-demand-engine", "Example 3", "One idea → demand engine", "Turn a rough product idea into content, email, sales copy, and proof.", "Demand"),
+              ("offer-to-sales-page", "Example 4", "Offer notes → sales page", "Turn rough offer notes into a clear product page, FAQ, terms, and proof note.", "Demand"),
+              ("lead-magnet-email-sequence", "Example 5", "Lead magnet → email sequence", "Turn a free worksheet into opt-in emails, offer clarity, and proof.", "Demand"),
+              ("post-purchase-onboarding", "Example 6", "Purchase → onboarding", "Turn a digital-product purchase into delivery, activation, upsell, support boundary, and proof.", "Delivery"),
+              ("support-faq-triage", "Example 7", "Support questions → self-serve answers", "Turn repeated support questions into FAQ, canned replies, escalation rules, and proof.", "Delivery"),
+              ("feedback-to-product-update", "Example 8", "Feedback → product update", "Turn buyer feedback into product improvements, changelog, buyer email, and proof.", "Product"),
+              ("proof-card-referral-loop", "Example 9", "Usage → proof card", "Turn real usage into public-safe proof, social post, referral ask, and permission request.", "Proof"),
+              ("monthly-workflow-vault-drop", "Example 10", "Requests → Vault drop", "Turn buyer requests into a recurring template library, announcement email, changelog, and proof.", "Recurring"),
+              ("partner-referral-kit", "Example 11", "Partner interest → referral kit", "Turn partner interest into clear promo copy, disclosure language, FAQ, and proof.", "Distribution"),
+              ("weekly-growth-review", "Example 12", "Weekly numbers → growth move", "Turn weekly numbers into a growth experiment, content plan, and proof note.", "Growth"),
+              ("checkout-recovery", "Example 13", "Checkout signal → recovery sequence", "Turn almost-buyers into clear decisions with calm email, FAQ, terms, and proof.", "Checkout"),
+              ("order-bump-builder", "Example 14", "Main offer → order bump", "Turn an add-on idea into optional checkout copy, FAQ, terms, and proof.", "Checkout"),
+              ("team-pack-upsell", "Example 15", "Individual kit → Team Pack", "Turn one buyer into a team rollout with optional upgrade copy, email, FAQ, and proof.", "Team"),
+              ("internal-approval-memo", "Example 16", "Interest → approval memo", "Turn an internal champion into a manager memo, procurement email, rollout plan, and proof.", "Team"),
+              ("team-sprint-facilitator", "Example 17", "Team Pack → self-run sprint", "Turn a team meeting into a reusable AI workflow session, role assignments, checks, and proof.", "Team"),
+              ("department-proof-room-lite", "Example 18", "Department Pack → Proof Room Lite setup", "Turn scattered department AI use into workflow priorities, roles, checks, dashboard fields, and proof.", "Department"),
+              ("department-weekly-proof-review", "Example 19", "Weekly proof review", "Turn dashboard notes into keep/revise/stop decisions, manager update, and proof.", "Department"),
+              ("department-monthly-proof-report", "Example 20", "Monthly proof report", "Turn 30 days of Proof Room Lite notes into an executive report, leadership email, and proof.", "Department"),
+              ("department-ai-permission-map", "Example 21", "Department AI Permission Map", "Turn AI tool confusion into Green / Yellow / Red rules, task permissions, escalation, and proof.", "Department"),
+              ("department-ai-correction-rollback", "Example 22", "AI correction / rollback", "Turn an AI workflow issue into severity, correction, rule update, rollback receipt, and proof.", "Department"),
+              ("department-public-safe-case-study", "Example 23", "Public-safe case study", "Turn internal Proof Room evidence into a safe case study, claim matrix, redaction checklist, and proof.", "Department")
+          ]
+
+          products = [
+              ("goalos-ai-efficiency-sprint-kit", "$49", "GoalOS AI Efficiency Sprint Kit", "Build one reusable AI workflow in under one hour.", "Individual / Solo operators", ["Open First map", "Offline Workflow Builder", "60-minute sprint checklist", "Context, rules, memory, workflow, checks, proof templates", "Completed examples and recipes"]),
+              ("proof-page-template-pack", "$29", "Proof Page Template Pack", "Extra proof-page examples and claim-boundary templates.", "Order bump", ["10 proof-page templates", "10 claim-boundary examples", "Public-safe proof cards", "Proof-note prompts"]),
+              ("team-pack", "$199", "GoalOS AI Efficiency Sprint Team Pack", "Run the sprint with coworkers, clients, students, or a small team.", "Team / Workshop", ["Team workshop agenda", "Manager facilitation guide", "Role assignment sheet", "Rollout checklist", "Team scoring rubric"]),
+              ("department-proof-room-lite", "$499–$999", "GoalOS Department Pack / Proof Room Lite", "Turn scattered department AI use into a lightweight proof room.", "Department", ["Task inventory", "Proof Room Lite charter", "AI permission map", "Weekly proof review", "Monthly proof report", "Correction / rollback templates"]),
+              ("workflow-vault", "$29–$99/mo", "GoalOS Workflow Vault", "Monthly reusable workflow drops, proof cards, and claim-boundary examples.", "Recurring", ["New workflow drops", "New proof-note examples", "Department templates", "Public-safe proof cards"])
+          ]
+
+          css = r'''
+          :root{
+            --pg-bg:#05070d;
+            --pg-bg2:#090d17;
+            --pg-panel:rgba(255,255,255,.075);
+            --pg-panel2:rgba(255,255,255,.045);
+            --pg-line:rgba(255,255,255,.16);
+            --pg-text:#f7f8ff;
+            --pg-muted:#b8c0da;
+            --pg-gold:#ffd76a;
+            --pg-red:#ff4545;
+            --pg-blue:#8fb3ff;
+            --pg-green:#7ce0a3;
+            --pg-radius:26px;
+            --pg-shadow:0 30px 80px rgba(0,0,0,.35);
+          }
+          *{box-sizing:border-box}
+          html{scroll-behavior:smooth}
+          body{
+            margin:0;
+            background:
+              radial-gradient(circle at 18% -8%,rgba(143,179,255,.22),transparent 34rem),
+              radial-gradient(circle at 86% 8%,rgba(255,215,106,.12),transparent 30rem),
+              linear-gradient(180deg,#05070d 0%,#080b13 55%,#05070d 100%);
+            color:var(--pg-text);
+            font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+          }
+          a{color:inherit}
+          .pg-site-shell{position:sticky;top:0;z-index:1000;backdrop-filter:blur(18px);background:rgba(5,7,13,.82);border-bottom:1px solid var(--pg-line)}
+          .pg-nav{width:min(1220px,calc(100% - 28px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 0}
+          .pg-brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:950;letter-spacing:-.035em}
+          .pg-mark{width:32px;height:32px;border-radius:9px;border:1px solid rgba(255,215,106,.65);display:grid;place-items:center;color:var(--pg-gold);font-weight:950;background:rgba(255,215,106,.08)}
+          .pg-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+          .pg-links a{font-size:13px;text-decoration:none;padding:9px 11px;border:1px solid transparent;border-radius:999px;color:var(--pg-muted);font-weight:800}
+          .pg-links a:hover{color:var(--pg-text);border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
+          .pg-links a.pg-shop{color:#05070d;background:var(--pg-gold);border-color:var(--pg-gold)}
+          .pg-wrap{width:min(1220px,calc(100% - 36px));margin:0 auto;padding:70px 0 94px}
+          .pg-hero{padding:44px 0 42px}
+          .pg-eyebrow{color:var(--pg-gold);text-transform:uppercase;letter-spacing:.22em;font-weight:950;font-size:12px;margin-bottom:18px}
+          .pg-h1{font-size:clamp(52px,8vw,118px);line-height:.86;letter-spacing:-.085em;margin:0 0 26px;max-width:1120px}
+          .pg-h2{font-size:clamp(34px,5.5vw,68px);line-height:.92;letter-spacing:-.065em;margin:0 0 18px}
+          .pg-h3{font-size:24px;letter-spacing:-.04em;margin:0 0 10px}
+          .pg-lead{font-size:clamp(19px,2vw,24px);line-height:1.55;color:var(--pg-muted);max-width:920px;margin:0 0 24px}
+          .pg-sublead{font-size:17px;line-height:1.55;color:var(--pg-muted);max-width:780px}
+          .pg-actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}
+          .pg-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 17px;border:1px solid rgba(255,215,106,.52);border-radius:999px;text-decoration:none;font-weight:900;background:rgba(255,255,255,.055);color:var(--pg-text)}
+          .pg-btn:hover{background:rgba(255,255,255,.1)}
+          .pg-btn.primary{background:var(--pg-gold);color:#05070d;border-color:var(--pg-gold)}
+          .pg-btn.red{border-color:rgba(255,69,69,.55)}
+          .pg-section{margin:62px 0}
+          .pg-panel,.pg-card,.pg-feature{
+            border:1px solid var(--pg-line);
+            background:linear-gradient(180deg,var(--pg-panel),var(--pg-panel2));
+            border-radius:var(--pg-radius);
+            box-shadow:var(--pg-shadow);
+          }
+          .pg-panel{padding:30px}
+          .pg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+          .pg-grid.two{grid-template-columns:repeat(2,1fr)}
+          .pg-grid.four{grid-template-columns:repeat(4,1fr)}
+          .pg-card{padding:22px;text-decoration:none;min-height:164px;display:flex;flex-direction:column}
+          .pg-card:hover{transform:translateY(-2px);border-color:rgba(255,215,106,.5)}
+          .pg-card p{color:var(--pg-muted);line-height:1.45;margin:0}
+          .pg-badge{display:inline-flex;align-self:flex-start;margin-bottom:13px;font-size:12px;color:var(--pg-gold);border:1px solid rgba(255,215,106,.45);border-radius:999px;padding:6px 9px;font-weight:900}
+          .pg-price{font-size:42px;font-weight:950;letter-spacing:-.06em;color:var(--pg-gold);margin:6px 0}
+          .pg-kicker{color:var(--pg-muted);font-size:13px;text-transform:uppercase;letter-spacing:.13em;font-weight:900;margin-bottom:10px}
+          .pg-list{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none}
+          .pg-list li{padding-left:26px;position:relative;color:var(--pg-muted);line-height:1.4}
+          .pg-list li:before{content:"✓";position:absolute;left:0;color:var(--pg-gold);font-weight:950}
+          .pg-law{font-size:clamp(26px,3.6vw,48px);line-height:1.1;letter-spacing:-.05em;margin:0;color:var(--pg-text)}
+          .pg-path{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:24px}
+          .pg-path div{border:1px solid var(--pg-line);border-radius:20px;padding:16px;background:rgba(255,255,255,.045)}
+          .pg-path strong{display:block;color:var(--pg-gold);font-size:13px;margin-bottom:8px}
+          .pg-path span{color:var(--pg-muted);font-size:14px;line-height:1.35}
+          .pg-command input{width:100%;padding:16px 18px;border-radius:18px;border:1px solid var(--pg-line);background:#080b13;color:var(--pg-text);font-size:17px;outline:none}
+          .pg-table{width:100%;border-collapse:separate;border-spacing:0 8px}
+          .pg-table td,.pg-table th{padding:14px;background:rgba(255,255,255,.055);border-top:1px solid var(--pg-line);border-bottom:1px solid var(--pg-line);text-align:left;color:var(--pg-muted)}
+          .pg-table th{color:var(--pg-text)}
+          .pg-table td:first-child,.pg-table th:first-child{border-left:1px solid var(--pg-line);border-radius:14px 0 0 14px}
+          .pg-table td:last-child,.pg-table th:last-child{border-right:1px solid var(--pg-line);border-radius:0 14px 14px 0}
+          .pg-footer{border-top:1px solid var(--pg-line);padding:34px 0;color:var(--pg-muted);font-size:13px;background:rgba(5,7,13,.7)}
+          .pg-footer-inner{width:min(1220px,calc(100% - 36px));margin:0 auto;display:flex;gap:18px;justify-content:space-between;flex-wrap:wrap}
+          .pg-footer a{color:var(--pg-muted);text-decoration:none;margin-right:14px}
+          .pg-footer a:hover{color:var(--pg-text)}
+          .pg-small{font-size:13px;color:var(--pg-muted)}
+          .pg-fr{color:#d7def6}
+          .pg-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,106,.45),transparent);margin:28px 0}
+          @media(max-width:960px){
+            .pg-grid,.pg-grid.two,.pg-grid.four,.pg-path{grid-template-columns:1fr}
+            .pg-links{display:none}
+            .pg-wrap{padding-top:42px}
+          }
+          '''
+          (assets / "proof-gradient-site.css").write_text(css, encoding="utf-8")
+
+          js = r'''
+          (function(){
+            function ready(fn){ if(document.readyState !== "loading"){fn()} else {document.addEventListener("DOMContentLoaded",fn)} }
+            ready(function(){
+              var input = document.querySelector("[data-pg-search]");
+              if(!input) return;
+              var cards = Array.prototype.slice.call(document.querySelectorAll("[data-pg-card]"));
+              input.addEventListener("input", function(){
+                var q = input.value.toLowerCase().trim();
+                cards.forEach(function(card){
+                  var text = card.textContent.toLowerCase();
+                  card.style.display = (!q || text.indexOf(q) !== -1) ? "" : "none";
+                });
+              });
+            });
+          })();
+          '''
+          (assets / "proof-gradient-site.js").write_text(js, encoding="utf-8")
+
+          def href(path):
+              if path.startswith("http"):
+                  return path
+              return BASE + path
+
+          def card(title, desc, url, badge=None):
+              return f'''<a class="pg-card" data-pg-card href="{href(url)}">
+                {f'<span class="pg-badge">{escape(badge)}</span>' if badge else ''}
+                <h3 class="pg-h3">{escape(title)}</h3>
+                <p>{escape(desc)}</p>
+              </a>'''
+
+          def page(title, desc, body, extra_head=""):
+              return f'''<!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>{escape(title)}</title>
+            <meta name="description" content="{escape(desc)}">
+            <meta property="og:title" content="{escape(title)}">
+            <meta property="og:description" content="{escape(desc)}">
+            <meta property="og:type" content="website">
+            <meta property="og:image" content="{BASE}/assets/proof-gradient-og.svg">
+            <link rel="stylesheet" href="{BASE}/assets/proof-gradient-site.css" data-pg-site-css>
+            <script defer src="{BASE}/assets/proof-gradient-site.js" data-pg-site-js></script>
+            {extra_head}
+          </head>
+          <body>
+            <main class="pg-wrap">
+              {body}
+            </main>
+          </body>
+          </html>'''
+
+          og = '''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+          <defs><radialGradient id="g" cx="76%" cy="20%" r="70%"><stop offset="0%" stop-color="#263b74"/><stop offset="55%" stop-color="#070b15"/><stop offset="100%" stop-color="#05070d"/></radialGradient></defs>
+          <rect width="1600" height="900" fill="url(#g)"/>
+          <text x="90" y="110" fill="#ffd76a" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="8">PROOF GRADIENT · GOALOS</text>
+          <text x="90" y="260" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="90" font-weight="900">Reusable AI workflows.</text>
+          <text x="90" y="365" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="90" font-weight="900">Provable machine work.</text>
+          <text x="90" y="470" fill="#b8c0da" font-family="Arial, sans-serif" font-size="38">Context · Rules · Memory · Workflow · Checks · Proof</text>
+          </svg>'''
+          (assets / "proof-gradient-og.svg").write_text(og, encoding="utf-8")
+
+          home_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Proof Gradient · GoalOS · Canada / Québec</div>
+            <h1 class="pg-h1">Reusable AI workflows. Provable machine work.</h1>
+            <p class="pg-lead">Stop asking AI from scratch. Build reusable work systems with context, rules, memory, workflow, checks, and proof.</p>
+            <p class="pg-sublead pg-fr">Cessez de recommencer avec l’IA à chaque fois. Transformez les tâches répétées en systèmes de travail réutilisables, vérifiables et faciles à améliorer.</p>
+            <div class="pg-actions">
+              <a class="pg-btn primary" href="{SHOP}">Get the $49 Kit / Obtenir la trousse</a>
+              <a class="pg-btn" href="{href('/start-here/')}">Start Here / Départ</a>
+              <a class="pg-btn" href="{href('/examples/')}">Explore Examples</a>
+              <a class="pg-btn" href="{href('/standards/')}">AEP Standards</a>
+            </div>
+          </section>
+
+          <section class="pg-section pg-panel">
+            <div class="pg-eyebrow">Operating thesis</div>
+            <p class="pg-law">Access is not enough. Adoption is not enough. AI leverage needs proof.</p>
+            <div class="pg-divider"></div>
+            <p class="pg-lead">GoalOS packages repeated AI work into reusable workflows. Proof Gradient records what happened, what was checked, what changed, and what can be shared safely.</p>
+          </section>
+
+          <section class="pg-section">
+            <div class="pg-eyebrow">Choose your path / Choisissez votre parcours</div>
+            <h2 class="pg-h2">From one workflow to a department Proof Room.</h2>
+            <div class="pg-grid">
+              {card("Individual", "Build your first reusable AI workflow in under one hour.", "/products/goalos-ai-efficiency-sprint-kit/", "$49")}
+              {card("Team", "Run the same sprint with coworkers, clients, students, or a small team.", "/products/team-pack/", "$199")}
+              {card("Department", "Set up Proof Room Lite for repeated AI work across a department.", "/proof-room-lite/", "$499–$999")}
+            </div>
+          </section>
+
+          <section class="pg-section">
+            <div class="pg-eyebrow">Product ladder</div>
+            <h2 class="pg-h2">A complete self-serve path.</h2>
+            <div class="pg-path">
+              <div><strong>1 · Kit</strong><span>$49 Sprint Kit</span></div>
+              <div><strong>2 · Bump</strong><span>$29 Proof Page Pack</span></div>
+              <div><strong>3 · Team</strong><span>$199 Team Pack</span></div>
+              <div><strong>4 · Dept</strong><span>Proof Room Lite</span></div>
+              <div><strong>5 · Vault</strong><span>Monthly workflow drops</span></div>
+            </div>
+          </section>
+
+          <section class="pg-section">
+            <div class="pg-eyebrow">Featured proof paths</div>
+            <h2 class="pg-h2">The site is now navigable by intent.</h2>
+            <div class="pg-grid">
+              {card("Build one reusable AI workflow", "The core buyer transformation: one repeated task becomes a reusable system.", "/workflow/build-one-reusable-ai-workflow/", "Start")}
+              {card("Proof Room Lite", "Department task inventory, charter, permissions, reviews, reports, and public-safe case studies.", "/proof-room-lite/", "Department")}
+              {card("Command Center", "Search products, examples, standards, workflows, and proof-room pages from one place.", "/command-center/", "Navigate")}
+            </div>
+          </section>
+
+          <section class="pg-section">
+            <div class="pg-eyebrow">Standards / Normes</div>
+            <h2 class="pg-h2">The public trust layer.</h2>
+            <div class="pg-grid four">
+              {''.join(card(code, title, f'/standards/{code}/', "AEP") for code, title, desc in standards[:4])}
+            </div>
+            <div class="pg-actions"><a class="pg-btn" href="{href('/standards/')}">View all standards</a></div>
+          </section>
+          '''
+          (WEB_ROOT / "index.html").write_text(page("Proof Gradient · GoalOS", "Reusable AI workflows and provable machine work.", home_body), encoding="utf-8")
+
+          def ensure_dir_file(rel, content, title, desc):
+              out = WEB_ROOT / rel / "index.html"
+              out.parent.mkdir(parents=True, exist_ok=True)
+              out.write_text(page(title, desc, content), encoding="utf-8")
+
+          start_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Start Here / Départ</div>
+            <h1 class="pg-h1">Find the right path in 30 seconds.</h1>
+            <p class="pg-lead">Use the site by choosing the problem you want to solve: build one workflow, sell a kit, run a team sprint, or operate a department Proof Room.</p>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid two">
+              {card("I want the $49 kit", "Build one reusable AI workflow in under one hour.", "/products/goalos-ai-efficiency-sprint-kit/", "Buyer")}
+              {card("I want examples", "See practical workflows for sales, support, onboarding, referrals, and department operations.", "/examples/", "Examples")}
+              {card("I manage a team", "Use Team Pack materials to run a self-serve 60-minute sprint.", "/workflow/team-sprint-facilitator/", "Team")}
+              {card("I manage a department", "Set up Proof Room Lite with owners, permissions, reviews, reports, and correction loops.", "/proof-room-lite/", "Department")}
+            </div>
+          </section>
+          <section class="pg-section pg-panel">
+            <h2 class="pg-h2">The core method</h2>
+            <div class="pg-path">
+              <div><strong>Context</strong><span>What the AI needs to know.</span></div>
+              <div><strong>Rules</strong><span>What it must and must not do.</span></div>
+              <div><strong>Memory</strong><span>Reusable facts and phrases.</span></div>
+              <div><strong>Workflow</strong><span>Repeatable steps.</span></div>
+              <div><strong>Proof</strong><span>What happened and what was checked.</span></div>
+            </div>
+          </section>
+          '''
+          ensure_dir_file("start-here", start_body, "Start Here · Proof Gradient", "Choose the right GoalOS and Proof Gradient path.")
+
+          products_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Products / Produits</div>
+            <h1 class="pg-h1">Self-serve kits for reusable AI work.</h1>
+            <p class="pg-lead">Digital products first. Services optional later. The public standards remain free; the paid products are practical implementation kits.</p>
+            <div class="pg-actions"><a class="pg-btn primary" href="{SHOP}">Shop / Acheter</a></div>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid">
+              {''.join(card(f"{price} · {name}", desc, f"/products/{slug}/", audience) for slug, price, name, desc, audience, items in products)}
+            </div>
+          </section>
+          <section class="pg-section pg-panel">
+            <h2 class="pg-h2">Plain-English final-sale boundary</h2>
+            <p class="pg-lead">Digital product. Instant access. All sales are final once delivered, except where required by law or for duplicate charges / technical access failures.</p>
+            <p class="pg-sublead">Produit numérique avec accès instantané. Toutes les ventes sont finales une fois le produit livré, sauf lorsque la loi l’exige ou en cas de double facturation / problème technique d’accès.</p>
+          </section>
+          '''
+          ensure_dir_file("products", products_body, "Products · Proof Gradient", "GoalOS self-serve digital product ladder.")
+
+          for slug, price, name, desc, audience, items in products:
+              body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">{escape(audience)}</div>
+            <h1 class="pg-h1">{escape(name)}</h1>
+            <p class="pg-lead">{escape(desc)}</p>
+            <div class="pg-actions"><a class="pg-btn primary" href="{SHOP}">Get it / Obtenir</a><a class="pg-btn" href="{href('/examples/')}">See examples</a></div>
+          </section>
+          <section class="pg-section pg-panel">
+            <div class="pg-kicker">Price</div>
+            <div class="pg-price">{escape(price)}</div>
+            <ul class="pg-list">{''.join('<li>'+escape(i)+'</li>' for i in items)}</ul>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid two">
+              <div class="pg-card"><h3 class="pg-h3">Best for</h3><p>{escape(audience)} buyers who want a self-serve, low-friction implementation path.</p></div>
+              <div class="pg-card"><h3 class="pg-h3">Boundary</h3><p>No income guarantee. No ROI guarantee. No compliance certification. Human review required.</p></div>
+            </div>
+          </section>
+          '''
+              ensure_dir_file(f"products/{slug}", body, f"{name} · Proof Gradient", desc)
+
+          examples_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Examples / Exemples</div>
+            <h1 class="pg-h1">Examples that turn AI into leverage.</h1>
+            <p class="pg-lead">Practical, public-safe examples for turning repeated AI tasks into reusable work systems.</p>
+            <div class="pg-command"><input data-pg-search placeholder="Search examples, workflows, products, departments..."></div>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid">
+              {''.join(card(f"{num}: {title}", desc, f"/examples/{slug}/", badge) for slug, num, title, desc, badge in examples)}
+            </div>
+          </section>
+          '''
+          ensure_dir_file("examples", examples_body, "Examples · Proof Gradient", "GoalOS workflow example library.")
+
+          workflow_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Workflow Library</div>
+            <h1 class="pg-h1">Reusable workflow pages.</h1>
+            <p class="pg-lead">Each workflow page shows a practical path from messy repeated work to context, rules, memory, workflow, checks, and proof.</p>
+            <div class="pg-command"><input data-pg-search placeholder="Search workflow pages..."></div>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid">
+              {''.join(card(f"{num}: {title}", desc, f"/workflow/{slug}/", badge) for slug, num, title, desc, badge in examples)}
+            </div>
+          </section>
+          '''
+          ensure_dir_file("workflow", workflow_body, "Workflow Library · Proof Gradient", "Reusable GoalOS workflow pages.")
+
+          fallback_template = '''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">{badge}</div>
+            <h1 class="pg-h1">{title}</h1>
+            <p class="pg-lead">{desc}</p>
+            <div class="pg-actions">
+              <a class="pg-btn primary" href="{shop}">Get the kit / Obtenir la trousse</a>
+              <a class="pg-btn" href="{examples_url}">Back to examples</a>
+            </div>
+          </section>
+          <section class="pg-section pg-panel">
+            <h2 class="pg-h2">Reusable workflow structure</h2>
+            <div class="pg-path">
+              <div><strong>Context</strong><span>Define the task and buyer/user situation.</span></div>
+              <div><strong>Rules</strong><span>Define what to do, avoid, check, and escalate.</span></div>
+              <div><strong>Memory</strong><span>Save reusable facts, phrases, examples, and boundaries.</span></div>
+              <div><strong>Workflow</strong><span>Turn the task into steps that can be run again.</span></div>
+              <div><strong>Proof</strong><span>Record what was created, claimed, avoided, and reviewed.</span></div>
+            </div>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid two">
+              <div class="pg-card"><h3 class="pg-h3">Why it matters</h3><p>This page exists so visitors always have a clean, navigable fallback even if a deeper example page has not been generated yet.</p></div>
+              <div class="pg-card"><h3 class="pg-h3">Claim boundary</h3><p>Educational workflow example only. No guaranteed income, ROI, compliance, safety, accuracy, or business results.</p></div>
+            </div>
+          </section>
+          '''
+          for slug, num, title, desc, badge in examples:
+              for root in ["examples", "workflow"]:
+                  out = WEB_ROOT / root / slug / "index.html"
+                  if not out.exists():
+                      out.parent.mkdir(parents=True, exist_ok=True)
+                      out.write_text(page(f"{num}: {title} · Proof Gradient", desc, fallback_template.format(badge=escape(badge), title=escape(title), desc=escape(desc), shop=SHOP, examples_url=href("/examples/"))), encoding="utf-8")
+
+          standards_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">AEP Standards / Normes</div>
+            <h1 class="pg-h1">The public trust layer.</h1>
+            <p class="pg-lead">The standards stay public. The paid products are implementation kits that help buyers use the method in real work.</p>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid">
+              {''.join(card(f"{code} — {title}", desc, f"/standards/{code}/", "Protocol") for code, title, desc in standards)}
+            </div>
+          </section>
+          '''
+          ensure_dir_file("standards", standards_body, "AEP Standards · Proof Gradient", "Agent Evolution Protocol standards index.")
+
+          standard_body_template = '''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Proof Gradient · Protocol Standard</div>
+            <h1 class="pg-h1">{code} — {title}</h1>
+            <p class="pg-lead">{desc}</p>
+            <div class="pg-actions"><a class="pg-btn" href="{standards_url}">All standards</a><a class="pg-btn primary" href="{shop}">Get implementation kits</a></div>
+          </section>
+          <section class="pg-section pg-panel">
+            <h2 class="pg-h2">Canonical law</h2>
+            <p class="pg-law">No proof, no evolution. No review, no release. No boundary, no public claim.</p>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid two">
+              <div class="pg-card"><h3 class="pg-h3">Purpose</h3><p>This standard gives Proof Gradient a public vocabulary for provable machine work.</p></div>
+              <div class="pg-card"><h3 class="pg-h3">Implementation</h3><p>Use the GoalOS kits and examples to convert the standard into practical workflow assets.</p></div>
+            </div>
+          </section>
+          '''
+          for code, title, desc in standards:
+              out = WEB_ROOT / "standards" / code / "index.html"
+              if not out.exists():
+                  out.parent.mkdir(parents=True, exist_ok=True)
+                  out.write_text(page(f"{code} — {title}", desc, standard_body_template.format(code=escape(code), title=escape(title), desc=escape(desc), standards_url=href("/standards/"), shop=SHOP)), encoding="utf-8")
+
+          proof_room_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Proof Room Lite / Salle de preuve légère</div>
+            <h1 class="pg-h1">Turn department AI chaos into a proof room.</h1>
+            <p class="pg-lead">GoalOS Department Pack / Proof Room Lite helps a department organize repeated AI work with owners, permissions, weekly reviews, monthly reports, correction loops, and public-safe case studies.</p>
+            <div class="pg-actions"><a class="pg-btn primary" href="{SHOP}">Get the Department Pack</a><a class="pg-btn" href="{href('/standards/AEP-008/')}">AEP-008 Proof Room</a></div>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid">
+              {card("Proof Room setup", "Task inventory, top priorities, charter, role assignments, and 30-day rollout.", "/workflow/department-proof-room-lite/", "Setup")}
+              {card("Weekly proof review", "Keep, revise, stop, monitor, and manager update decisions.", "/workflow/department-weekly-proof-review/", "Operate")}
+              {card("Monthly proof report", "Executive report, workflow status table, next-month plan, and public-safe summary.", "/workflow/department-monthly-proof-report/", "Report")}
+              {card("AI permission map", "Green / Yellow / Red data boundaries and task permissions.", "/workflow/department-ai-permission-map/", "Permission")}
+              {card("Correction / rollback", "Severity, correction, rule update, rollback receipt, and proof note.", "/workflow/department-ai-correction-rollback/", "Recover")}
+              {card("Public-safe case study", "Claim matrix, redaction checklist, approval checklist, and public proof.", "/workflow/department-public-safe-case-study/", "Share")}
+            </div>
+          </section>
+          <section class="pg-section pg-panel">
+            <h2 class="pg-h2">Department operating rhythm</h2>
+            <div class="pg-path">
+              <div><strong>Setup</strong><span>Inventory tasks and create the room.</span></div>
+              <div><strong>Permission</strong><span>Define Green, Yellow, Red data rules.</span></div>
+              <div><strong>Review</strong><span>Run weekly proof decisions.</span></div>
+              <div><strong>Report</strong><span>Send monthly leadership proof.</span></div>
+              <div><strong>Improve</strong><span>Correct, roll back, and publish safely.</span></div>
+            </div>
+          </section>
+          '''
+          ensure_dir_file("proof-room-lite", proof_room_body, "Proof Room Lite · Proof Gradient", "GoalOS Department Pack and Proof Room Lite operating path.")
+
+          launch_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Launch / Lancement</div>
+            <h1 class="pg-h1">Package. Publish. Sell. Measure. Improve.</h1>
+            <p class="pg-lead">The public site should guide visitors from proof to product, then from product to examples, and from examples to the right kit.</p>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid">
+              {card("Launch the $49 kit", "Use the official bilingual buyer product and the seller documentation.", "/products/goalos-ai-efficiency-sprint-kit/", "First")}
+              {card("Add the order bump", "Proof Page Template Pack increases order value without pressure.", "/products/proof-page-template-pack/", "Bump")}
+              {card("Prepare the Team Pack", "The next self-serve upsell for teams.", "/products/team-pack/", "Upsell")}
+            </div>
+          </section>
+          <section class="pg-section pg-panel">
+            <h2 class="pg-h2">Low-friction terms</h2>
+            <p class="pg-lead">This is a digital educational product with instant access. All sales are final once delivered, except where required by law or for duplicate charges / technical access failures.</p>
+          </section>
+          '''
+          ensure_dir_file("launch", launch_body, "Launch · Proof Gradient", "Launch path for GoalOS digital products.")
+
+          all_cards = []
+          for code, title, desc in standards:
+              all_cards.append(card(f"{code} — {title}", desc, f"/standards/{code}/", "AEP"))
+          for slug, num, title, desc, badge in examples:
+              all_cards.append(card(f"{num}: {title}", desc, f"/workflow/{slug}/", badge))
+          for slug, price, name, desc, audience, items in products:
+              all_cards.append(card(f"{price} · {name}", desc, f"/products/{slug}/", audience))
+          all_cards.append(card("Proof Room Lite", "Department AI operating room with owners, checks, permissions, reviews, reports, and public-safe proof.", "/proof-room-lite/", "Department"))
+          all_cards.append(card("Launch", "Package, publish, sell, measure, improve.", "/launch/", "Seller"))
+
+          command_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Command Center</div>
+            <h1 class="pg-h1">Find anything on Proof Gradient.</h1>
+            <p class="pg-lead">Search products, examples, workflows, standards, and department Proof Room Lite pages.</p>
+            <div class="pg-command"><input data-pg-search placeholder="Search the full site..."></div>
+          </section>
+          <section class="pg-section">
+            <div class="pg-grid">
+              {''.join(all_cards)}
+            </div>
+          </section>
+          '''
+          ensure_dir_file("command-center", command_body, "Command Center · Proof Gradient", "Search and navigate the full Proof Gradient site.")
+
+          site_map_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">Site Map</div>
+            <h1 class="pg-h1">Complete navigation.</h1>
+            <p class="pg-lead">A human-readable map of the refreshed Proof Gradient site.</p>
+          </section>
+          <section class="pg-section">
+            <table class="pg-table">
+              <tr><th>Section</th><th>Link</th></tr>
+              <tr><td>Home</td><td><a href="{href('/')}">Proof Gradient</a></td></tr>
+              <tr><td>Start Here</td><td><a href="{href('/start-here/')}">Start Here</a></td></tr>
+              <tr><td>Products</td><td><a href="{href('/products/')}">Products</a></td></tr>
+              <tr><td>Examples</td><td><a href="{href('/examples/')}">Examples</a></td></tr>
+              <tr><td>Workflow Library</td><td><a href="{href('/workflow/')}">Workflow Library</a></td></tr>
+              <tr><td>Standards</td><td><a href="{href('/standards/')}">AEP Standards</a></td></tr>
+              <tr><td>Proof Room Lite</td><td><a href="{href('/proof-room-lite/')}">Proof Room Lite</a></td></tr>
+              <tr><td>Command Center</td><td><a href="{href('/command-center/')}">Command Center</a></td></tr>
+            </table>
+          </section>
+          '''
+          ensure_dir_file("site-map", site_map_body, "Site Map · Proof Gradient", "Complete human-readable Proof Gradient site map.")
+
+          not_found_body = f'''
+          <section class="pg-hero">
+            <div class="pg-eyebrow">404</div>
+            <h1 class="pg-h1">Page not found.</h1>
+            <p class="pg-lead">Use the Command Center to find standards, examples, products, and Proof Room Lite pages.</p>
+            <div class="pg-actions"><a class="pg-btn primary" href="{href('/command-center/')}">Open Command Center</a><a class="pg-btn" href="{href('/')}">Home</a></div>
+          </section>
+          '''
+          (WEB_ROOT / "404.html").write_text(page("404 · Proof Gradient", "Page not found.", not_found_body), encoding="utf-8")
+
+          urls = ["/", "/start-here/", "/products/", "/examples/", "/workflow/", "/standards/", "/proof-room-lite/", "/launch/", "/command-center/", "/site-map/"]
+          urls += [f"/standards/{code}/" for code, _, _ in standards]
+          urls += [f"/examples/{slug}/" for slug, *_ in examples]
+          urls += [f"/workflow/{slug}/" for slug, *_ in examples]
+          urls += [f"/products/{slug}/" for slug, *_ in products]
+          sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+          for u in sorted(set(urls)):
+              sitemap += f"  <url><loc>https://montrealai.github.io{BASE}{u}</loc><lastmod>{NOW[:10]}</lastmod></url>\n"
+          sitemap += "</urlset>\n"
+          (WEB_ROOT / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+          (WEB_ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io{BASE}/sitemap.xml\n", encoding="utf-8")
+
+          nav = f'''<!-- PG-SITE-SHELL:START -->
+          <header class="pg-site-shell">
+            <nav class="pg-nav" aria-label="Proof Gradient">
+              <a class="pg-brand" href="{href('/')}"><span class="pg-mark">G</span><span>Proof Gradient · GoalOS</span></a>
+              <div class="pg-links">
+                <a href="{href('/start-here/')}">Start / Départ</a>
+                <a href="{href('/products/')}">Products</a>
+                <a href="{href('/examples/')}">Examples</a>
+                <a href="{href('/workflow/')}">Workflows</a>
+                <a href="{href('/standards/')}">Standards</a>
+                <a href="{href('/proof-room-lite/')}">Proof Room Lite</a>
+                <a href="{href('/command-center/')}">Command Center</a>
+                <a class="pg-shop" href="{SHOP}">Shop</a>
+              </div>
+            </nav>
+          </header>
+          <!-- PG-SITE-SHELL:END -->'''
+          footer = f'''<!-- PG-SITE-FOOTER:START -->
+          <footer class="pg-footer">
+            <div class="pg-footer-inner">
+              <div>Proof Gradient · GoalOS · Reusable AI workflows · Provable machine work</div>
+              <div>
+                <a href="{href('/site-map/')}">Site Map</a>
+                <a href="{href('/standards/')}">AEP Standards</a>
+                <a href="{GITHUB}">GitHub</a>
+                <a href="{SHOP}">Shop</a>
+              </div>
+            </div>
+          </footer>
+          <!-- PG-SITE-FOOTER:END -->'''
+
+          css_link = f'<link rel="stylesheet" href="{BASE}/assets/proof-gradient-site.css" data-pg-site-css>'
+          js_link = f'<script defer src="{BASE}/assets/proof-gradient-site.js" data-pg-site-js></script>'
+
+          def inject_shell(path: Path):
+              text = path.read_text(encoding="utf-8", errors="ignore")
+              if "<html" not in text.lower():
+                  return
+              text = re.sub(r'<!-- PG-SITE-SHELL:START -->.*?<!-- PG-SITE-SHELL:END -->', '', text, flags=re.S)
+              text = re.sub(r'<!-- PG-SITE-FOOTER:START -->.*?<!-- PG-SITE-FOOTER:END -->', '', text, flags=re.S)
+              text = re.sub(r'<link[^>]+data-pg-site-css[^>]*>\s*', '', text, flags=re.I)
+              text = re.sub(r'<script[^>]+data-pg-site-js[^>]*></script>\s*', '', text, flags=re.I)
+              if "</head>" in text:
+                  text = text.replace("</head>", f"  {css_link}\n  {js_link}\n</head>", 1)
+              if "<body" in text:
+                  text = re.sub(r'(<body[^>]*>)', r'\1\n' + nav + "\n", text, count=1, flags=re.I)
+              else:
+                  text = nav + "\n" + text
+              if "</body>" in text:
+                  text = text.replace("</body>", footer + "\n</body>", 1)
+              else:
+                  text += "\n" + footer
+              path.write_text(text, encoding="utf-8")
+
+          for html in WEB_ROOT.rglob("*.html"):
+              if ".git" not in html.parts:
+                  inject_shell(html)
+
+          manifest = []
+          for p in sorted(WEB_ROOT.rglob("*")):
+              if p.is_file() and ".git" not in p.parts:
+                  rel = p.relative_to(WEB_ROOT).as_posix()
+                  manifest.append({"path": rel, "bytes": p.stat().st_size, "sha256": hashlib.sha256(p.read_bytes()).hexdigest()})
+          (WEB_ROOT / "site-manifest.json").write_text(json.dumps({"generated_at": NOW, "files": manifest}, indent=2) + "\n", encoding="utf-8")
+
+          missing = []
+          for html in WEB_ROOT.rglob("*.html"):
+              text = html.read_text(encoding="utf-8", errors="ignore")
+              for m in re.finditer(r'href="(/proof-gradient/[^"#?]*)"', text):
+                  target = m.group(1)[len(BASE):]
+                  if not target:
+                      target = "/"
+                  if target.endswith("/"):
+                      fs = WEB_ROOT / target.lstrip("/") / "index.html"
+                  else:
+                      fs = WEB_ROOT / target.lstrip("/")
+                  if not fs.exists():
+                      missing.append((html.relative_to(WEB_ROOT).as_posix(), m.group(1)))
+          if missing:
+              report = "\n".join(f"{src} -> {url}" for src, url in missing[:200])
+              raise SystemExit("Generated local link check failed:\n" + report)
+
+          print("Proof Gradient full site refresh complete.")
+          print("Web root:", WEB_ROOT)
+          print("Generated files:", len(manifest))
+          PY
+
+      - name: Refuse deletions
+        shell: bash
+        run: |
+          set -euo pipefail
+          deleted="$(git diff --name-status | awk '$1 ~ /^D/ {print}')"
+          if [ -n "$deleted" ]; then
+            echo "Refusing to continue because deletions were detected:"
+            echo "$deleted"
+            exit 1
+          fi
+
+      - name: Commit refreshed site
+        shell: bash
+        run: |
+          set -euo pipefail
+          WEB_ROOT="${{ steps.build.outputs.web_root }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$WEB_ROOT"
+          if git diff --cached --quiet; then
+            echo "No refreshed site changes to commit."
+          else
+            git commit -m "Refresh full Proof Gradient public site [skip ci]"
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.build.outputs.web_root }}
+
+      - name: Deploy GitHub Pages
+        uses: actions/deploy-pages@v4
