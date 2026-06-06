@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://montrealai.github.io/proof-gradient/</loc><lastmod>2026-06-06</lastmod></url>
+  <url><loc>https://montrealai.github.io/proof-gradient/app/goalos-cloud-mvp/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/command-center/</loc><lastmod>2026-06-06</lastmod></url>
+  <url><loc>https://montrealai.github.io/proof-gradient/enterprise/goalos-enterprise-rsi-pilot/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/examples/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/implementation/goalos-proof-room-implementation-sprint/</loc><lastmod>2026-06-06</lastmod></url>
+  <url><loc>https://montrealai.github.io/proof-gradient/platform/goalos-recursive-workflow-os/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/pricing/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/products/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/products/goalos-ai-efficiency-sprint-kit/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/products/goalos-enterprise-pilot/</loc><lastmod>2026-06-06</lastmod></url>
+  <url><loc>https://montrealai.github.io/proof-gradient/products/goalos-cloud-mvp/</loc><lastmod>2026-06-06</lastmod></url>
+  <url><loc>https://montrealai.github.io/proof-gradient/products/goalos-enterprise-rsi-pilot/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/products/goalos-proof-room-implementation-sprint/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/products/goalos-proof-room-lite/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/products/goalos-rsi-lite/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/products/goalos-rsi-sprint-workshop/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/proof-room-lite/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/services/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/standards/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/standards/AEP-001/</loc><lastmod>2026-06-06</lastmod></url>
@@ -25,31 +28,10 @@
   <url><loc>https://montrealai.github.io/proof-gradient/standards/AEP-008/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/start-here/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/workflow/build-one-reusable-ai-workflow/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/checkout-recovery/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/department-ai-correction-rollback/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/workflow/department-ai-permission-map/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/department-monthly-proof-report/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/workflow/department-proof-room-lite/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/workflow/department-public-safe-case-study/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/department-weekly-proof-review/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/feedback-to-product-update/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/idea-to-demand-engine/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/internal-approval-memo/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/lead-magnet-email-sequence/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/meeting-to-action-plan/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/monthly-workflow-vault-drop/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/offer-to-sales-page/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/order-bump-builder/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/partner-referral-kit/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/post-purchase-onboarding/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/proof-card-referral-loop/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/workflow/rsi-lite-self-improving-workflows/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/support-faq-triage/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/team-pack-upsell/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/team-sprint-facilitator/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/workflow/weekly-growth-review/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/workshop/goalos-proof-room-implementation-sprint/</loc><lastmod>2026-06-06</lastmod></url>
   <url><loc>https://montrealai.github.io/proof-gradient/workshop/goalos-rsi-sprint-workshop/</loc><lastmod>2026-06-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/app/goalos-cloud-mvp/</loc></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/products/goalos-cloud-mvp/</loc></url>
 </urlset>
