@@ -1,0 +1,616 @@
+name: Refresh GoalOS Product Ladder Website
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh-goalos-product-ladder-website
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Refresh public product ladder pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate latest GoalOS public site pages
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          WEB_ROOT="site"
+          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
+          mkdir -p "$WEB_ROOT"
+          touch "$WEB_ROOT/.nojekyll"
+          echo "web_root=$WEB_ROOT" >> "$GITHUB_OUTPUT"
+
+          cat > "$RUNNER_TEMP/refresh_goalos_product_ladder.py" <<'PY'
+          from pathlib import Path
+          from html import escape
+          import re, json, hashlib, datetime
+
+          WEB_ROOT = Path("site")
+          if not WEB_ROOT.exists() and Path("public").exists():
+              WEB_ROOT = Path("public")
+          WEB_ROOT.mkdir(parents=True, exist_ok=True)
+
+          BASE = "/proof-gradient"
+          SHOP = "https://www.quebecartificialintelligence.com/shop"
+          NOW = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+
+          assets = WEB_ROOT / "assets"
+          assets.mkdir(parents=True, exist_ok=True)
+
+          products = [
+              {
+                  "slug": "goalos-ai-efficiency-sprint-kit",
+                  "price": "$49",
+                  "title": "GoalOS AI Efficiency Sprint Kit",
+                  "title_fr": "Trousse GoalOS Sprint d’efficacité IA",
+                  "promise": "Build one reusable AI workflow.",
+                  "promise_fr": "Construire un flux IA réutilisable.",
+                  "for": "Beginners, solo operators, creators, freelancers, and small-business owners.",
+                  "for_fr": "Débutants, travailleurs autonomes, créateurs, consultants et petites entreprises.",
+                  "outcome": "In under one hour, create a first reusable AI workflow with context, rules, memory, steps, checks, and a proof note.",
+                  "outcome_fr": "En moins d’une heure, créer un premier flux IA réutilisable avec contexte, règles, mémoire, étapes, vérifications et note de preuve.",
+                  "bullets": [
+                      "Open First guide",
+                      "Offline Workflow Builder",
+                      "60-minute guided walkthrough",
+                      "Editable templates",
+                      "Copy-paste prompts",
+                      "Completed beginner examples",
+                      "Proof note and public-safe proof card templates"
+                  ]
+              },
+              {
+                  "slug": "goalos-rsi-lite",
+                  "price": "$199",
+                  "title": "GoalOS RSI Lite",
+                  "title_fr": "GoalOS RSI Lite",
+                  "promise": "Build one self-improving AI workflow.",
+                  "promise_fr": "Construire un flux IA auto-améliorant.",
+                  "for": "Serious operators, consultants, creators, agencies, and small teams who want improvement over time.",
+                  "for_fr": "Opérateurs sérieux, consultants, créateurs, agences et petites équipes qui veulent améliorer leurs flux au fil du temps.",
+                  "outcome": "Build workflow v1.0, run it, score it, diagnose what failed, upgrade to v1.1, save a proof note, and keep improving.",
+                  "outcome_fr": "Construire le flux v1.0, l’exécuter, le noter, diagnostiquer les faiblesses, passer à v1.1, sauvegarder une note de preuve et continuer à l’améliorer.",
+                  "bullets": [
+                      "Recursive Self-Improving Workflow guide",
+                      "RSI Lite offline builder",
+                      "Run → Score → Diagnose → Improve → Version → Prove → Re-run loop",
+                      "Scorecard and version tracker",
+                      "Improvement prompt pack",
+                      "Three completed RSI examples from v1.0 to v1.2",
+                      "Classic GoalOS method bonus"
+                  ]
+              },
+              {
+                  "slug": "goalos-proof-room-lite",
+                  "price": "$997",
+                  "title": "GoalOS Proof Room Lite / Department Pack",
+                  "title_fr": "GoalOS Proof Room Lite / Pack Département",
+                  "promise": "Set up a lightweight department Proof Room for repeated AI workflows.",
+                  "promise_fr": "Mettre en place une Salle de preuve légère pour les flux IA répétés d’un département.",
+                  "for": "Department leads, operations managers, AI champions, and small-business managers.",
+                  "for_fr": "Responsables de département, opérations, champions IA et dirigeants de petites entreprises.",
+                  "outcome": "In 30 days, set up owners, permissions, checks, proof notes, weekly reviews, monthly reports, correction paths, rollback receipts, and public-safe proof for three repeated AI workflows.",
+                  "outcome_fr": "En 30 jours, mettre en place responsables, permissions, vérifications, notes de preuve, revues hebdomadaires, rapports mensuels, corrections, reçus de rollback et preuves publiques sécuritaires pour trois flux IA répétés.",
+                  "bullets": [
+                      "30-day department implementation system",
+                      "Proof Room Lite charter",
+                      "AI permission map: Green / Yellow / Red",
+                      "Workflow owner cards and proof notes",
+                      "Weekly proof review",
+                      "Monthly executive proof report",
+                      "Correction / rollback playbook",
+                      "Public-safe case study system",
+                      "Executive dashboard and offline command center"
+                  ]
+              }
+          ]
+
+          standards = [
+              ("AEP-001", "Constitution"),
+              ("AEP-002", "Evidence Docket"),
+              ("AEP-003", "ProofPacket"),
+              ("AEP-004", "Selection Gate"),
+              ("AEP-005", "Tool Permission"),
+              ("AEP-006", "Rollback Receipt"),
+              ("AEP-007", "Public-Safe Proof"),
+              ("AEP-008", "Proof Room")
+          ]
+
+          css = r"""
+          :root{
+            --bg:#05070d;--panel:rgba(255,255,255,.075);--panel2:rgba(255,255,255,.045);
+            --line:rgba(255,255,255,.16);--text:#f7f8ff;--muted:#b8c0da;--gold:#ffd76a;
+            --blue:#8fb3ff;--green:#7ce0a3;--radius:26px;--shadow:0 28px 78px rgba(0,0,0,.36)
+          }
+          *{box-sizing:border-box}
+          body{margin:0;background:radial-gradient(circle at 12% -8%,rgba(143,179,255,.20),transparent 34rem),radial-gradient(circle at 90% 0%,rgba(255,215,106,.13),transparent 30rem),linear-gradient(180deg,#05070d,#080b13 55%,#05070d);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+          a{color:inherit}
+          .gpl-shell{position:sticky;top:0;z-index:1000;backdrop-filter:blur(18px);background:rgba(5,7,13,.84);border-bottom:1px solid var(--line)}
+          .gpl-nav{width:min(1220px,calc(100% - 28px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 0}
+          .gpl-brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:950;letter-spacing:-.035em}
+          .gpl-mark{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,215,106,.65);display:grid;place-items:center;color:var(--gold);font-weight:950;background:rgba(255,215,106,.08)}
+          .gpl-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+          .gpl-links a{font-size:13px;text-decoration:none;padding:9px 11px;border:1px solid transparent;border-radius:999px;color:var(--muted);font-weight:850}
+          .gpl-links a:hover{color:var(--text);border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
+          .gpl-links a.shop{color:#05070d;background:var(--gold);border-color:var(--gold)}
+          .gpl-wrap{width:min(1220px,calc(100% - 36px));margin:0 auto;padding:68px 0 94px}
+          .gpl-hero{padding:42px 0}
+          .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-weight:950;font-size:12px;margin-bottom:18px}
+          h1{font-size:clamp(50px,8vw,112px);line-height:.86;letter-spacing:-.085em;margin:0 0 24px;max-width:1120px}
+          h2{font-size:clamp(34px,5.5vw,66px);line-height:.92;letter-spacing:-.065em;margin:0 0 18px}
+          h3{font-size:24px;letter-spacing:-.04em;margin:0 0 10px}
+          .lead{font-size:clamp(19px,2vw,24px);line-height:1.55;color:var(--muted);max-width:940px;margin:0 0 24px}
+          .fr{color:#d7def6}
+          .actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}
+          .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 17px;border:1px solid rgba(255,215,106,.52);border-radius:999px;text-decoration:none;font-weight:900;background:rgba(255,255,255,.055);color:var(--text)}
+          .btn.primary{background:var(--gold);color:#05070d;border-color:var(--gold)}
+          .section{margin:62px 0}
+          .panel,.card{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--panel2));border-radius:var(--radius);box-shadow:var(--shadow)}
+          .panel{padding:30px}
+          .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+          .grid.two{grid-template-columns:repeat(2,1fr)}
+          .card{padding:22px;text-decoration:none;display:flex;flex-direction:column;min-height:188px}
+          .card:hover{transform:translateY(-2px);border-color:rgba(255,215,106,.5)}
+          .card p{color:var(--muted);line-height:1.45;margin:0 0 12px}
+          .price{font-size:46px;font-weight:950;letter-spacing:-.06em;color:var(--gold);margin:4px 0 12px}
+          .badge{display:inline-flex;align-self:flex-start;margin-bottom:13px;font-size:12px;color:var(--gold);border:1px solid rgba(255,215,106,.45);border-radius:999px;padding:6px 9px;font-weight:900}
+          .list{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none}
+          .list li{padding-left:26px;position:relative;color:var(--muted);line-height:1.42}
+          .list li:before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:950}
+          .law{font-size:clamp(26px,3.6vw,46px);line-height:1.1;letter-spacing:-.05em;margin:0;color:var(--text)}
+          .steps{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:24px}
+          .steps div{border:1px solid var(--line);border-radius:20px;padding:16px;background:rgba(255,255,255,.045)}
+          .steps strong{display:block;color:var(--gold);font-size:13px;margin-bottom:8px}
+          .steps span{color:var(--muted);font-size:14px;line-height:1.35}
+          .compare{width:100%;border-collapse:separate;border-spacing:0 8px}
+          .compare td,.compare th{padding:14px;background:rgba(255,255,255,.055);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:left;color:var(--muted)}
+          .compare th{color:var(--text)}
+          .compare td:first-child,.compare th:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px}
+          .compare td:last-child,.compare th:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}
+          .search input{width:100%;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:#080b13;color:var(--text);font-size:17px;outline:none}
+          .gpl-footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:13px;background:rgba(5,7,13,.7)}
+          .gpl-footer-inner{width:min(1220px,calc(100% - 36px));margin:0 auto;display:flex;gap:18px;justify-content:space-between;flex-wrap:wrap}
+          .gpl-footer a{color:var(--muted);text-decoration:none;margin-right:14px}
+          @media(max-width:960px){.grid,.grid.two,.steps{grid-template-columns:1fr}.gpl-links{display:none}.gpl-wrap{padding-top:42px}}
+          """
+          (assets / "goalos-product-ladder.css").write_text(css, encoding="utf-8")
+
+          js = r"""
+          (function(){
+            function ready(fn){document.readyState!=="loading"?fn():document.addEventListener("DOMContentLoaded",fn)}
+            ready(function(){
+              var input=document.querySelector("[data-product-search]");
+              if(!input)return;
+              var cards=[].slice.call(document.querySelectorAll("[data-product-card]"));
+              input.addEventListener("input",function(){
+                var q=input.value.toLowerCase().trim();
+                cards.forEach(function(c){c.style.display=!q||c.textContent.toLowerCase().indexOf(q)!==-1?"":"none"});
+              });
+            });
+          })();
+          """
+          (assets / "goalos-product-ladder.js").write_text(js, encoding="utf-8")
+
+          og = """<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+          <defs><radialGradient id="g" cx="76%" cy="20%" r="70%"><stop offset="0%" stop-color="#263b74"/><stop offset="55%" stop-color="#070b15"/><stop offset="100%" stop-color="#05070d"/></radialGradient></defs>
+          <rect width="1600" height="900" fill="url(#g)"/>
+          <text x="90" y="105" fill="#ffd76a" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="8">GOALOS PRODUCT LADDER</text>
+          <text x="90" y="250" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="90" font-weight="900">$49 · $199 · $997</text>
+          <text x="90" y="365" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="86" font-weight="900">Reusable. Self-improving.</text>
+          <text x="90" y="468" fill="#f7f8ff" font-family="Arial, sans-serif" font-size="86" font-weight="900">Proof-ready.</text>
+          <text x="90" y="560" fill="#b8c0da" font-family="Arial, sans-serif" font-size="36">AI workflows · RSI Lite · Proof Room Lite</text>
+          </svg>"""
+          (assets / "goalos-product-ladder-og.svg").write_text(og, encoding="utf-8")
+
+          def href(path):
+              if path.startswith("http"):
+                  return path
+              return BASE + path
+
+          def page(title, desc, body):
+              return f"""<!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>{escape(title)}</title>
+            <meta name="description" content="{escape(desc)}">
+            <meta property="og:title" content="{escape(title)}">
+            <meta property="og:description" content="{escape(desc)}">
+            <meta property="og:image" content="{BASE}/assets/goalos-product-ladder-og.svg">
+            <link rel="stylesheet" href="{BASE}/assets/goalos-product-ladder.css" data-goalos-ladder-css>
+            <script defer src="{BASE}/assets/goalos-product-ladder.js" data-goalos-ladder-js></script>
+          </head>
+          <body>
+            <main class="gpl-wrap">
+          {body}
+            </main>
+          </body>
+          </html>"""
+
+          def card(product):
+              return f"""<a class="card" data-product-card href="{href('/products/' + product['slug'] + '/')}">
+            <span class="badge">{escape(product['price'])}</span>
+            <h3>{escape(product['title'])}</h3>
+            <p class="fr">{escape(product['title_fr'])}</p>
+            <p>{escape(product['promise'])}</p>
+            <p class="fr">{escape(product['promise_fr'])}</p>
+          </a>"""
+
+          def ensure_page(rel, title, desc, body):
+              out = WEB_ROOT / rel / "index.html"
+              out.parent.mkdir(parents=True, exist_ok=True)
+              out.write_text(page(title, desc, body), encoding="utf-8")
+
+          home_block = f"""
+          <!-- GOALOS-LATEST-PRODUCT-LADDER:START -->
+          <section class="section panel" id="goalos-latest-product-ladder">
+            <div class="eyebrow">Latest GoalOS product ladder / Offre GoalOS actuelle</div>
+            <p class="law">$49 reusable workflow → $199 self-improving workflow → $997 department Proof Room.</p>
+            <p class="lead">A simple path from one AI workflow to recursive improvement to department-level proof.</p>
+            <p class="lead fr">Un parcours simple : un flux IA, puis un flux auto-améliorant, puis une Salle de preuve légère pour un département.</p>
+            <div class="grid">
+              {''.join(card(p) for p in products)}
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="{SHOP}">Shop / Acheter</a>
+              <a class="btn" href="{href('/pricing/')}">Compare pricing</a>
+            </div>
+          </section>
+          <!-- GOALOS-LATEST-PRODUCT-LADDER:END -->
+          """
+
+          if (WEB_ROOT / "index.html").exists():
+              home = WEB_ROOT / "index.html"
+              html = home.read_text(encoding="utf-8", errors="ignore")
+              html = re.sub(r"<!-- GOALOS-LATEST-PRODUCT-LADDER:START -->.*?<!-- GOALOS-LATEST-PRODUCT-LADDER:END -->", home_block, html, flags=re.S)
+              if "GOALOS-LATEST-PRODUCT-LADDER:START" not in html:
+                  if "</main>" in html:
+                      html = html.replace("</main>", home_block + "\n</main>", 1)
+                  elif "</body>" in html:
+                      html = html.replace("</body>", home_block + "\n</body>", 1)
+                  else:
+                      html += home_block
+              home.write_text(html, encoding="utf-8")
+          else:
+              body = f"""
+          <section class="gpl-hero">
+            <div class="eyebrow">GoalOS · Proof Gradient</div>
+            <h1>Reusable. Self-improving. Proof-ready.</h1>
+            <p class="lead">A practical product ladder for AI workflows: build one reusable workflow, upgrade it into a self-improving workflow, then set up a department Proof Room Lite.</p>
+            <div class="actions"><a class="btn primary" href="{SHOP}">Shop / Acheter</a><a class="btn" href="{href('/pricing/')}">Compare products</a></div>
+          </section>
+          {home_block}
+          """
+              (WEB_ROOT / "index.html").write_text(page("GoalOS · Proof Gradient", "GoalOS product ladder for reusable AI workflows, RSI Lite, and Proof Room Lite.", body), encoding="utf-8")
+
+          products_body = f"""
+          <section class="gpl-hero">
+            <div class="eyebrow">Products / Produits</div>
+            <h1>Choose the right GoalOS product.</h1>
+            <p class="lead">Start with one reusable AI workflow. Upgrade to recursive self-improving workflows. Then set up a lightweight department Proof Room.</p>
+            <p class="lead fr">Commencez avec un flux IA réutilisable. Passez ensuite à un flux auto-améliorant. Puis mettez en place une Salle de preuve légère pour un département.</p>
+            <div class="actions"><a class="btn primary" href="{SHOP}">Shop / Acheter</a><a class="btn" href="{href('/pricing/')}">Pricing / Tarifs</a></div>
+          </section>
+          <section class="section">
+            <div class="grid">
+              {''.join(card(p) for p in products)}
+            </div>
+          </section>
+          <section class="section panel">
+            <h2>The safe boundary / La limite claire</h2>
+            <p class="lead">GoalOS does not modify AI models. It improves the workflows around AI: instructions, checks, scorecards, proof notes, versions, approvals, and rollback boundaries.</p>
+            <p class="lead fr">GoalOS ne modifie pas les modèles IA. Il améliore les flux autour de l’IA : instructions, vérifications, grilles de score, notes de preuve, versions, approbations et limites de rollback.</p>
+          </section>
+          """
+          ensure_page("products", "GoalOS Products · Proof Gradient", "GoalOS product ladder: $49 Kit, $199 RSI Lite, $997 Proof Room Lite.", products_body)
+
+          pricing_rows = "\n".join(
+              f"<tr><td>{escape(p['price'])}</td><td><strong>{escape(p['title'])}</strong><br><span class='fr'>{escape(p['title_fr'])}</span></td><td>{escape(p['promise'])}<br><span class='fr'>{escape(p['promise_fr'])}</span></td><td>{escape(p['for'])}</td></tr>"
+              for p in products
+          )
+          pricing_body = f"""
+          <section class="gpl-hero">
+            <div class="eyebrow">Pricing / Tarifs</div>
+            <h1>Simple ladder. Clear outcomes.</h1>
+            <p class="lead">$49 builds one reusable workflow. $199 builds one self-improving workflow. $997 sets up a lightweight department Proof Room.</p>
+            <div class="actions"><a class="btn primary" href="{SHOP}">Shop / Acheter</a></div>
+          </section>
+          <section class="section">
+            <table class="compare">
+              <tr><th>Price</th><th>Product</th><th>Outcome</th><th>Best for</th></tr>
+              {pricing_rows}
+            </table>
+          </section>
+          <section class="section panel">
+            <h2>What buyers are paying for</h2>
+            <div class="steps">
+              <div><strong>$49</strong><span>Build one reusable workflow.</span></div>
+              <div><strong>$199</strong><span>Run, score, improve, version, and prove one workflow.</span></div>
+              <div><strong>$997</strong><span>Set up department owners, permissions, proof reviews, reports, corrections, and public-safe proof.</span></div>
+              <div><strong>$9,500+</strong><span>Optional done-with-you department implementation.</span></div>
+              <div><strong>Later</strong><span>$1,497 standard Proof Room Lite price after launch proof.</span></div>
+              <div><strong>Boundary</strong><span>No ROI, compliance, safety, or autonomous AI guarantee.</span></div>
+            </div>
+          </section>
+          """
+          ensure_page("pricing", "GoalOS Pricing · Proof Gradient", "Compare GoalOS $49, $199, and $997 products.", pricing_body)
+
+          for p in products:
+              bullets = "".join(f"<li>{escape(b)}</li>" for b in p["bullets"])
+              body = f"""
+          <section class="gpl-hero">
+            <div class="eyebrow">{escape(p['price'])} · GoalOS</div>
+            <h1>{escape(p['title'])}</h1>
+            <p class="lead fr">{escape(p['title_fr'])}</p>
+            <p class="lead">{escape(p['promise'])}</p>
+            <p class="lead fr">{escape(p['promise_fr'])}</p>
+            <div class="actions"><a class="btn primary" href="{SHOP}">Buy on QUEBEC.AI / Acheter sur QUEBEC.AI</a><a class="btn" href="{href('/pricing/')}">Compare products</a></div>
+          </section>
+          <section class="section panel">
+            <div class="price">{escape(p['price'])}</div>
+            <h2>Buyer outcome / Résultat acheteur</h2>
+            <p class="lead">{escape(p['outcome'])}</p>
+            <p class="lead fr">{escape(p['outcome_fr'])}</p>
+            <ul class="list">{bullets}</ul>
+          </section>
+          <section class="section">
+            <div class="grid two">
+              <div class="card"><span class="badge">Best for</span><h3>Who should buy this</h3><p>{escape(p['for'])}</p><p class="fr">{escape(p['for_fr'])}</p></div>
+              <div class="card"><span class="badge">Boundary</span><h3>What this is not</h3><p>No guaranteed ROI, income, compliance certification, safety guarantee, legal advice, or autonomous deployment. Human review required.</p><p class="fr">Aucune garantie de ROI, revenu, conformité, sécurité, conseil juridique ou déploiement autonome. La revue humaine est requise.</p></div>
+            </div>
+          </section>
+          """
+              ensure_page(f"products/{p['slug']}", f"{p['title']} · Proof Gradient", p["promise"], body)
+
+          rsi_body = f"""
+          <section class="gpl-hero">
+            <div class="eyebrow">Recursive Self-Improving Workflows</div>
+            <h1>Run → Score → Diagnose → Improve → Version → Prove → Re-run.</h1>
+            <p class="lead">GoalOS RSI Lite is the practical, safe version of recursive self-improvement for business AI workflows.</p>
+            <p class="lead fr">GoalOS RSI Lite est la version pratique et sécuritaire de l’auto-amélioration récursive appliquée aux flux IA d’affaires.</p>
+            <div class="actions"><a class="btn primary" href="{SHOP}">Get GoalOS RSI Lite</a><a class="btn" href="{href('/products/goalos-rsi-lite/')}">Product page</a></div>
+          </section>
+          <section class="section panel">
+            <p class="law">The AI model does not improve itself. Your workflow improves around the AI.</p>
+            <p class="lead fr">Le modèle IA ne s’améliore pas lui-même. C’est votre flux de travail autour de l’IA qui s’améliore.</p>
+          </section>
+          <section class="section">
+            <div class="steps">
+              <div><strong>Run</strong><span>Use workflow v1.0 on one repeated task.</span></div>
+              <div><strong>Score</strong><span>Rate clarity, completeness, accuracy, usefulness, and safety.</span></div>
+              <div><strong>Diagnose</strong><span>Identify what failed and why.</span></div>
+              <div><strong>Improve</strong><span>Generate workflow v1.1 with better rules and checks.</span></div>
+              <div><strong>Version</strong><span>Record what changed and why.</span></div>
+              <div><strong>Prove</strong><span>Save a proof note and re-run.</span></div>
+            </div>
+          </section>
+          """
+          ensure_page("workflow/rsi-lite-self-improving-workflows", "GoalOS RSI Lite Workflow · Proof Gradient", "Recursive Self-Improving Workflows for business AI.", rsi_body)
+
+          proof_body = f"""
+          <section class="gpl-hero">
+            <div class="eyebrow">GoalOS Proof Room Lite</div>
+            <h1>Set up a lightweight department Proof Room.</h1>
+            <p class="lead">For repeated department AI workflows: owners, permissions, checks, proof notes, weekly reviews, monthly reports, correction paths, rollback receipts, and public-safe proof.</p>
+            <p class="lead fr">Pour les flux IA répétés d’un département : responsables, permissions, vérifications, notes de preuve, revues hebdomadaires, rapports mensuels, corrections, reçus de rollback et preuves publiques sécuritaires.</p>
+            <div class="actions"><a class="btn primary" href="{SHOP}">Get Proof Room Lite</a><a class="btn" href="{href('/products/goalos-proof-room-lite/')}">Product page</a></div>
+          </section>
+          <section class="section">
+            <div class="grid">
+              <div class="card"><span class="badge">1</span><h3>Set up the room</h3><p>Choose three repeated workflows, assign owners, and define the charter.</p></div>
+              <div class="card"><span class="badge">2</span><h3>Map permissions</h3><p>Use Green / Yellow / Red data boundaries and escalation rules.</p></div>
+              <div class="card"><span class="badge">3</span><h3>Operate weekly</h3><p>Run proof reviews, revise workflows, and record corrections.</p></div>
+            </div>
+          </section>
+          <section class="section panel">
+            <h2>Safe boundary / Limite claire</h2>
+            <p class="lead">GoalOS Proof Room Lite does not certify compliance, guarantee ROI, or make AI outputs safe without review. It gives your department a practical operating structure.</p>
+            <p class="lead fr">GoalOS Proof Room Lite ne certifie pas la conformité, ne garantit pas le ROI et ne rend pas les sorties IA sécuritaires sans revue. Il fournit une structure opérationnelle pratique.</p>
+          </section>
+          """
+          ensure_page("proof-room-lite", "GoalOS Proof Room Lite · Proof Gradient", "Set up a lightweight department Proof Room for repeated AI workflows.", proof_body)
+
+          start_body = f"""
+          <section class="gpl-hero">
+            <div class="eyebrow">Start Here / Départ</div>
+            <h1>Which GoalOS product should you choose?</h1>
+            <p class="lead">Pick the outcome you want. One reusable workflow, one self-improving workflow, or one department Proof Room.</p>
+          </section>
+          <section class="section">
+            <div class="grid">
+              {''.join(card(p) for p in products)}
+            </div>
+          </section>
+          """
+          ensure_page("start-here", "Start Here · GoalOS", "Choose the right GoalOS product.", start_body)
+
+          command_cards = "".join(card(p) for p in products)
+          extra_cards = f"""
+          <a class="card" data-product-card href="{href('/pricing/')}"><span class="badge">Compare</span><h3>Pricing</h3><p>Compare $49, $199, and $997 products.</p></a>
+          <a class="card" data-product-card href="{href('/workflow/rsi-lite-self-improving-workflows/')}"><span class="badge">RSI</span><h3>Recursive Self-Improving Workflows</h3><p>Run, score, diagnose, improve, version, prove, and re-run.</p></a>
+          <a class="card" data-product-card href="{href('/proof-room-lite/')}"><span class="badge">Department</span><h3>Proof Room Lite</h3><p>Department-level AI workflow proof, permissions, reviews, and reporting.</p></a>
+          """
+          command_body = f"""
+          <section class="gpl-hero">
+            <div class="eyebrow">Command Center</div>
+            <h1>Find the right GoalOS page.</h1>
+            <p class="lead">Search the latest product ladder and workflow pages.</p>
+            <div class="search"><input data-product-search placeholder="Search GoalOS products, RSI Lite, Proof Room Lite..."></div>
+          </section>
+          <section class="section">
+            <div class="grid">{command_cards}{extra_cards}</div>
+          </section>
+          """
+          ensure_page("command-center", "GoalOS Command Center · Proof Gradient", "Search the GoalOS product ladder.", command_body)
+
+          sitemap_body = f"""
+          <section class="gpl-hero">
+            <div class="eyebrow">Site Map</div>
+            <h1>Latest GoalOS product pages.</h1>
+          </section>
+          <section class="section">
+            <table class="compare">
+              <tr><th>Page</th><th>URL</th></tr>
+              <tr><td>Products</td><td><a href="{href('/products/')}">{href('/products/')}</a></td></tr>
+              <tr><td>Pricing</td><td><a href="{href('/pricing/')}">{href('/pricing/')}</a></td></tr>
+              <tr><td>$49 Kit</td><td><a href="{href('/products/goalos-ai-efficiency-sprint-kit/')}">{href('/products/goalos-ai-efficiency-sprint-kit/')}</a></td></tr>
+              <tr><td>$199 RSI Lite</td><td><a href="{href('/products/goalos-rsi-lite/')}">{href('/products/goalos-rsi-lite/')}</a></td></tr>
+              <tr><td>$997 Proof Room Lite</td><td><a href="{href('/products/goalos-proof-room-lite/')}">{href('/products/goalos-proof-room-lite/')}</a></td></tr>
+              <tr><td>RSI Workflow</td><td><a href="{href('/workflow/rsi-lite-self-improving-workflows/')}">{href('/workflow/rsi-lite-self-improving-workflows/')}</a></td></tr>
+              <tr><td>Proof Room Lite</td><td><a href="{href('/proof-room-lite/')}">{href('/proof-room-lite/')}</a></td></tr>
+            </table>
+          </section>
+          """
+          ensure_page("site-map", "GoalOS Site Map · Proof Gradient", "Latest GoalOS site map.", sitemap_body)
+
+          # Navigation injection
+          nav = f"""<!-- GOALOS-PRODUCT-LADDER-NAV:START -->
+          <header class="gpl-shell">
+            <nav class="gpl-nav" aria-label="GoalOS product ladder">
+              <a class="gpl-brand" href="{href('/')}"><span class="gpl-mark">G</span><span>GoalOS · Proof Gradient</span></a>
+              <div class="gpl-links">
+                <a href="{href('/start-here/')}">Start / Départ</a>
+                <a href="{href('/products/')}">Products</a>
+                <a href="{href('/pricing/')}">Pricing</a>
+                <a href="{href('/workflow/rsi-lite-self-improving-workflows/')}">RSI Lite</a>
+                <a href="{href('/proof-room-lite/')}">Proof Room Lite</a>
+                <a href="{href('/standards/')}">AEP Standards</a>
+                <a class="shop" href="{SHOP}">Shop</a>
+              </div>
+            </nav>
+          </header>
+          <!-- GOALOS-PRODUCT-LADDER-NAV:END -->"""
+          footer = f"""<!-- GOALOS-PRODUCT-LADDER-FOOTER:START -->
+          <footer class="gpl-footer">
+            <div class="gpl-footer-inner">
+              <div>GoalOS · Reusable workflows · Recursive Self-Improving Workflows · Proof Room Lite</div>
+              <div><a href="{href('/site-map/')}">Site Map</a><a href="{href('/pricing/')}">Pricing</a><a href="{SHOP}">Shop</a></div>
+            </div>
+          </footer>
+          <!-- GOALOS-PRODUCT-LADDER-FOOTER:END -->"""
+
+          css_link = f'<link rel="stylesheet" href="{BASE}/assets/goalos-product-ladder.css" data-goalos-ladder-css>'
+          js_link = f'<script defer src="{BASE}/assets/goalos-product-ladder.js" data-goalos-ladder-js></script>'
+
+          def inject(path):
+              text = path.read_text(encoding="utf-8", errors="ignore")
+              if "<html" not in text.lower():
+                  return
+              text = re.sub(r"<!-- GOALOS-PRODUCT-LADDER-NAV:START -->.*?<!-- GOALOS-PRODUCT-LADDER-NAV:END -->", "", text, flags=re.S)
+              text = re.sub(r"<!-- GOALOS-PRODUCT-LADDER-FOOTER:START -->.*?<!-- GOALOS-PRODUCT-LADDER-FOOTER:END -->", "", text, flags=re.S)
+              text = re.sub(r'<link[^>]+data-goalos-ladder-css[^>]*>\s*', "", text, flags=re.I)
+              text = re.sub(r'<script[^>]+data-goalos-ladder-js[^>]*></script>\s*', "", text, flags=re.I)
+              if "</head>" in text:
+                  text = text.replace("</head>", f"  {css_link}\n  {js_link}\n</head>", 1)
+              if "<body" in text:
+                  text = re.sub(r"(<body[^>]*>)", r"\1\n" + nav + "\n", text, count=1, flags=re.I)
+              else:
+                  text = nav + "\n" + text
+              if "</body>" in text:
+                  text = text.replace("</body>", footer + "\n</body>", 1)
+              else:
+                  text += "\n" + footer
+              path.write_text(text, encoding="utf-8")
+
+          for html in WEB_ROOT.rglob("*.html"):
+              if ".git" not in html.parts:
+                  inject(html)
+
+          # robots and sitemap update
+          urls = [
+              "/", "/start-here/", "/products/", "/pricing/", "/command-center/", "/site-map/",
+              "/workflow/rsi-lite-self-improving-workflows/", "/proof-room-lite/"
+          ]
+          urls += [f"/products/{p['slug']}/" for p in products]
+          existing_sitemap = WEB_ROOT / "sitemap.xml"
+          sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+          for u in sorted(set(urls)):
+              sitemap += f"  <url><loc>https://montrealai.github.io{BASE}{u}</loc><lastmod>{NOW[:10]}</lastmod></url>\n"
+          sitemap += "</urlset>\n"
+          existing_sitemap.write_text(sitemap, encoding="utf-8")
+          (WEB_ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: https://montrealai.github.io{BASE}/sitemap.xml\n", encoding="utf-8")
+
+          # manifest
+          manifest = []
+          for p in sorted(WEB_ROOT.rglob("*")):
+              if p.is_file() and ".git" not in p.parts:
+                  manifest.append({
+                      "path": p.relative_to(WEB_ROOT).as_posix(),
+                      "bytes": p.stat().st_size,
+                      "sha256": hashlib.sha256(p.read_bytes()).hexdigest()
+                  })
+          (WEB_ROOT / "goalos-product-ladder-site-manifest.json").write_text(json.dumps({"generated_at": NOW, "files": manifest}, indent=2) + "\n", encoding="utf-8")
+
+          # local link check
+          missing = []
+          for html in WEB_ROOT.rglob("*.html"):
+              text = html.read_text(encoding="utf-8", errors="ignore")
+              for m in re.finditer(r'href="(/proof-gradient/[^"#?]*)"', text):
+                  target = m.group(1)[len(BASE):] or "/"
+                  fs = WEB_ROOT / target.lstrip("/")
+                  if target.endswith("/"):
+                      fs = fs / "index.html"
+                  if not fs.exists() and not m.group(1).startswith("/proof-gradient/standards/"):
+                      missing.append((html.relative_to(WEB_ROOT).as_posix(), m.group(1)))
+          if missing:
+              raise SystemExit("Generated local link check failed:\n" + "\n".join(f"{s} -> {u}" for s,u in missing[:100]))
+
+          print("GoalOS product ladder website update complete.")
+          print("Web root:", WEB_ROOT)
+          print("Products:", ", ".join(p["price"] + " " + p["title"] for p in products))
+          PY
+
+          python3 "$RUNNER_TEMP/refresh_goalos_product_ladder.py"
+
+      - name: Safety check — refuse deletions
+        shell: bash
+        run: |
+          set -euo pipefail
+          deleted="$(git diff --name-status | awk '$1 ~ /^D/ {print}')"
+          if [ -n "$deleted" ]; then
+            echo "Refusing to continue because deletions were detected:"
+            echo "$deleted"
+            exit 1
+          fi
+
+      - name: Commit website update
+        shell: bash
+        run: |
+          set -euo pipefail
+          WEB_ROOT="${{ steps.build.outputs.web_root }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$WEB_ROOT"
+          if git diff --cached --quiet; then
+            echo "No website changes to commit."
+          else
+            git commit -m "Refresh GoalOS product ladder website [skip ci]"
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.build.outputs.web_root }}
+
+      - name: Deploy GitHub Pages
+        uses: actions/deploy-pages@v4
