@@ -1,43 +1,53 @@
 # GoalOS Cloud MVP 0.2
 
-This is the stronger public software proof for GoalOS Recursive Workflow OS.
+GoalOS Cloud MVP 0.2 is a public static software proof for the GoalOS Recursive Workflow OS.
 
 It demonstrates:
 
 `Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run`
 
+## Runtime boundary
+
+- Runs fully in the browser.
+- Uses browser `localStorage` for demo persistence.
+- Requires no secrets and no backend.
+- Does not include paid buyer ZIPs, paid workshop materials, implementation bundles, or enterprise delivery kits.
+- Does not modify AI models; recursive improvement happens at the workflow layer.
+
 ## Included modules
 
-- Governance / organization / roles
+- Organization, workspace, and user roles
 - Policy engine
 - Controlled memory
-- Model gateway restrictions
+- Model-provider restrictions
 - Workflow Studio
-- Execution Engine
-- Evaluation Engine
-- Proof Room
+- Workflow versioning
+- Execution Engine demo
+- Evaluation Engine demo
+- Proof Room records
 - Recursive Improvement Engine
+- Improvement Proposal
 - Human approval gate
-- Versioning and rollback
+- Version comparison
+- Rollback target
 - Proof Graph export
 - Public-safe proof card export
-- Executive report export
+- Executive proof report export
 - Audit log
-- Browser-local persistence
+- OpenAPI blueprint
+- JSON schemas
 - Node unit tests
 
-## Safe boundary
+## Demo workflow
 
-GoalOS does not modify AI models.
+**Customer Support Reply Workflow**
 
-It improves workflows around AI through instructions, checks, scorecards, proof records, versions, approvals, monitoring, and rollback.
+v1.0 intentionally misses refund/access policy classification. The MVP runs support cases, evaluates outputs, creates proof records, detects the refund-policy failure, generates a v1.1 improvement proposal, benchmarks v1.0 vs v1.1, requires human approval, deploys approved v1.1, preserves rollback target v1.0, and exports a public-safe proof card plus Proof Graph.
 
-## What this is
+## Test
 
-A static public MVP hosted on GitHub Pages. It proves the software loop and gives a production-grade skeleton for future backend/SaaS work.
+```bash
+node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
+```
 
-## What this is not
-
-It is not the full enterprise SaaS backend yet.
-It does not upload paid buyer ZIPs.
-It does not include private delivery materials.
+The test asserts that v1.0 exposes the refund-policy weakness, v1.1 improves refund-policy compliance, approval requires a rollback target, confidential-data provider restrictions work, the Proof Graph has nodes and edges, and the public-safe proof card avoids ROI, compliance, and model-self-modification claims.

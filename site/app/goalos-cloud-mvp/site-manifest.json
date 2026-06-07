@@ -1,67 +1,67 @@
-[
-  {
-    "path": "README.md",
-    "bytes": 1129,
-    "sha256": "ffdc9fe04ec185c8573fcca9b1bb02c6bd87acdff88bef0cfa049d038c281a83"
-  },
-  {
-    "path": "assets/app.js",
-    "bytes": 10382,
-    "sha256": "b2f3c1326cb360395185453d231b31ce2e422d5917f4ef88cac526e1c83c498e"
-  },
-  {
-    "path": "assets/enterprise-core.mjs",
-    "bytes": 28687,
-    "sha256": "bae5acb27ea11f0006030605dfc4dfa2eeea96aac34c9d44f5dbb01bdab3c790"
-  },
-  {
-    "path": "assets/goalos-core.mjs",
-    "bytes": 19008,
-    "sha256": "28a8324695b47f9f3a1d82a5ceb90842124f340fb93dcc5268a7c7d2e431be97"
-  },
-  {
-    "path": "assets/styles.css",
-    "bytes": 4249,
-    "sha256": "eed6526e7c3c12a6b3b72a9311d923047274fc06dcbad27a7fd074eef34577af"
-  },
-  {
-    "path": "docs/STATE_OF_THE_ART_ENTERPRISE_GATES.md",
-    "bytes": 854,
-    "sha256": "3f338ca621daf14d8821abaf026e6cc80954a08ec4073901f6c6b61f7c187a2f"
-  },
-  {
-    "path": "index.html",
-    "bytes": 5999,
-    "sha256": "b70f51fb2c24b57afe5191e6e8d3bdbc494434f974d212f88fd080800453848a"
-  },
-  {
-    "path": "openapi.json",
-    "bytes": 958,
-    "sha256": "8386aabee35f7d4039d68737da396e66de40639198c72a980a19e11c967c8f99"
-  },
-  {
-    "path": "schemas/proof-record.schema.json",
-    "bytes": 835,
-    "sha256": "04721f3eac6035307721eeee51236322f86d7fd682c23cbfb2df9822a1024e92"
-  },
-  {
-    "path": "schemas/workflow.schema.json",
-    "bytes": 1475,
-    "sha256": "531b101af24c9c7ac69f44c6479ff739a634d07277428397b5163ad41e0c9026"
-  },
-  {
-    "path": "site-manifest.json",
-    "bytes": 852,
-    "sha256": "49460abffa614757632a783b4a9c356a046b3dd5347c3efdc1e678db1b36514c"
-  },
-  {
-    "path": "tests/enterprise-core.test.mjs",
-    "bytes": 2407,
-    "sha256": "7a6ca3f724c743ab4347840bcf5577a489627c5d172391d662aa7d35b0cbd655"
-  },
-  {
-    "path": "tests/goalos-core.test.mjs",
-    "bytes": 1529,
-    "sha256": "a2ef0e006b57b8f38469dba62ce0feb84b5e5f2a7b74919708d2ce6297dda3a9"
-  }
-]
+{
+  "name": "GoalOS Cloud MVP 0.2",
+  "runtime": "static browser localStorage no-secrets",
+  "safeBoundary": "GoalOS does not modify AI models; workflow-layer improvement only.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1898,
+      "sha256": "76c8465a900f632bfa2239d9426b1bc81bb74070dd8f33da4edbfa21a26c1b87"
+    },
+    {
+      "path": "assets/app.js",
+      "bytes": 10382,
+      "sha256": "b2f3c1326cb360395185453d231b31ce2e422d5917f4ef88cac526e1c83c498e"
+    },
+    {
+      "path": "assets/enterprise-core.mjs",
+      "bytes": 28687,
+      "sha256": "bae5acb27ea11f0006030605dfc4dfa2eeea96aac34c9d44f5dbb01bdab3c790"
+    },
+    {
+      "path": "assets/goalos-core.mjs",
+      "bytes": 19008,
+      "sha256": "28a8324695b47f9f3a1d82a5ceb90842124f340fb93dcc5268a7c7d2e431be97"
+    },
+    {
+      "path": "assets/styles.css",
+      "bytes": 4249,
+      "sha256": "eed6526e7c3c12a6b3b72a9311d923047274fc06dcbad27a7fd074eef34577af"
+    },
+    {
+      "path": "docs/STATE_OF_THE_ART_ENTERPRISE_GATES.md",
+      "bytes": 854,
+      "sha256": "3f338ca621daf14d8821abaf026e6cc80954a08ec4073901f6c6b61f7c187a2f"
+    },
+    {
+      "path": "index.html",
+      "bytes": 7250,
+      "sha256": "0ea3a666d7e806bebdca598301116e2b9f034768ddb7f6d8605ae6c8ed6bbca7"
+    },
+    {
+      "path": "openapi.json",
+      "bytes": 958,
+      "sha256": "8386aabee35f7d4039d68737da396e66de40639198c72a980a19e11c967c8f99"
+    },
+    {
+      "path": "schemas/proof-record.schema.json",
+      "bytes": 835,
+      "sha256": "04721f3eac6035307721eeee51236322f86d7fd682c23cbfb2df9822a1024e92"
+    },
+    {
+      "path": "schemas/workflow.schema.json",
+      "bytes": 1475,
+      "sha256": "531b101af24c9c7ac69f44c6479ff739a634d07277428397b5163ad41e0c9026"
+    },
+    {
+      "path": "tests/enterprise-core.test.mjs",
+      "bytes": 2407,
+      "sha256": "7a6ca3f724c743ab4347840bcf5577a489627c5d172391d662aa7d35b0cbd655"
+    },
+    {
+      "path": "tests/goalos-core.test.mjs",
+      "bytes": 1529,
+      "sha256": "a2ef0e006b57b8f38469dba62ce0feb84b5e5f2a7b74919708d2ce6297dda3a9"
+    }
+  ]
+}
