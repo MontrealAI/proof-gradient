@@ -1,0 +1,39 @@
+name: GoalOS Public Site Release v12
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: goalos-public-site-release-v12
+  cancel-in-progress: false
+
+jobs:
+  validate-and-deploy:
+    name: Validate shared rules and deploy Pages artifact
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate public site classification and shell rules
+        run: python scripts/validate_goalos_public_site.py
+      - name: Check paid/private artifact boundary
+        run: python scripts/check_no_paid_artifacts.py
+      - name: Validate docs tables and figures
+        run: python scripts/validate_docs_tables_figures.py
+      - name: Validate GoalOS catalog
+        run: python scripts/validate_goalos_catalog.py
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

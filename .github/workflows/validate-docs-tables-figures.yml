@@ -1,0 +1,21 @@
+name: Validate Docs Tables Figures
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'scripts/**'
+      - '.github/workflows/validate-docs-tables-figures.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate documentation tables, figures, and artifact links
+        run: python scripts/validate_docs_tables_figures.py

@@ -1,59 +1,38 @@
 #!/usr/bin/env python3
-"""Fail if paid buyer or private delivery artifacts are present in the public site.
-
-All checkout / apply buttons must point to:
-https://www.quebecartificialintelligence.com/shop
-"""
+"""Fail if paid buyer or private delivery artifacts are present in the public deploy root."""
 from __future__ import annotations
 
-import fnmatch
 import sys
 from pathlib import Path
 
+from goalos_public_site_rules import is_blocked_paid_or_private_artifact, normalize_rel
+
 ROOT = Path(__file__).resolve().parents[1]
-SITE = ROOT / "site"
-PATTERNS = [
-    "*.zip",
-    "*BUYER*",
-    "*COMPLETE_BUNDLE*",
-    "*DELIVERY_KIT*",
-    "*SELLER_ASSETS*",
-    "*WORKSHOP*",
-    "*IMPLEMENTATION*",
-    "*ENTERPRISE_PILOT*",
-]
-# Public documentation/action-kit exceptions. These are standards or docs, not paid buyer products.
-WHITELIST = {
-    "standards/AEP-001/complete-package.zip",
-}
-WHITELIST_PREFIXES = (
-    "standards/AEP-",  # public standards implementation documentation and schemas
-    "_archive/",       # historical backup, not linked as paid product material
-)
 
 
-def is_whitelisted(rel: str) -> bool:
-    return rel in WHITELIST or any(rel.startswith(prefix) for prefix in WHITELIST_PREFIXES)
+def public_root() -> Path:
+    if (ROOT / "site").is_dir():
+        return ROOT / "site"
+    if (ROOT / "public").is_dir():
+        return ROOT / "public"
+    return ROOT / "site"
 
 
 def main() -> int:
+    root = public_root()
     violations: list[str] = []
-    for path in SITE.rglob("*"):
-        if not path.is_file():
-            continue
-        rel = path.relative_to(SITE).as_posix()
-        if is_whitelisted(rel):
-            continue
-        name = path.name
-        full = rel
-        if any(fnmatch.fnmatch(name, pattern) or fnmatch.fnmatch(full, pattern) for pattern in PATTERNS):
-            violations.append(rel)
+    if root.exists():
+        for path in sorted(p for p in root.rglob("*") if p.is_file() and "_archive" not in p.parts):
+            rel = normalize_rel(path.relative_to(root))
+            if is_blocked_paid_or_private_artifact(rel):
+                violations.append(rel)
+
     if violations:
-        print("Paid/private artifact guard failed. Remove or explicitly whitelist public documentation only:", file=sys.stderr)
+        print("Paid/private artifact guard failed. Public AEP complete-package.zip files are allowed; buyer/private artifacts are not:", file=sys.stderr)
         for rel in violations:
-            print(f"- site/{rel}", file=sys.stderr)
+            print(f"- {root.name}/{rel}", file=sys.stderr)
         return 1
-    print("Paid/private artifact guard passed for site/.")
+    print(f"Paid/private artifact guard passed for {root.name}/.")
     return 0
 
 
