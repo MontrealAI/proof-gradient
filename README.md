@@ -105,3 +105,7 @@ The paid-artifact guard blocks paid buyer ZIPs, paid workshop files, implementat
 ## Repository foundation
 
 The repository also preserves the broader Proof Gradient foundation: GitHub Actions, static site assets, docs, schemas, examples, tests, Python package area, Docker files, data files, and GitHub Pages content.
+
+## GoalOS public-site validation
+
+Public files are validated by classification rather than by one blanket HTML/ZIP rule. Canonical marketing pages require the GoalOS shell/footer, standalone proof pages may use explicit proof metadata, app pages use their app shell, public AEP standard packages matching `standards/AEP-###/complete-package.zip` are allowed, and buyer/private artifacts remain blocked. See `docs/GOALOS_PUBLIC_SITE_VALIDATION.md` and `docs/GOALOS_PAID_ARTIFACT_POLICY.md`.

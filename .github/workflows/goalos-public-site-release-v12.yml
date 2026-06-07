@@ -1,14 +1,28 @@
-name: goalos-public-site-release-v5-quebec-ai-seal (obsolete; delegates to v12 validation)
+name: GoalOS Public Site Release v12
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'site/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'docs/GOALOS_PUBLIC_SITE_VALIDATION.md'
+      - 'docs/GOALOS_PAID_ARTIFACT_POLICY.md'
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   validate:
-    name: Obsolete release workflow delegated to shared v12 scripts
+    name: Validate shared GoalOS release rules
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
