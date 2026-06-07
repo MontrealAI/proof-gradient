@@ -1,0 +1,49 @@
+name: Refresh Complete GoalOS Public Site
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: goalos-pages
+  cancel-in-progress: false
+
+jobs:
+  validate-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Detect site root
+        id: root
+        run: |
+          if [ -d site ]; then echo "root=site" >> "$GITHUB_OUTPUT"; elif [ -d public ]; then echo "root=public" >> "$GITHUB_OUTPUT"; else echo "No site/ or public/ root found"; exit 1; fi
+      - name: Refuse repository deletions
+        run: |
+          if git diff --name-only --diff-filter=D --exit-code HEAD -- .; then echo "No deletions detected."; else echo "Deletion detected; refusing deploy."; exit 1; fi
+      - name: Run GoalOS Cloud MVP test
+        run: node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
+      - name: Validate canonical site shell and links
+        run: python scripts/validate_goalos_site_v2.py
+      - name: Run paid artifact guard
+        run: python scripts/check_no_paid_artifacts.py
+      - name: Produce deployment manifest summary
+        run: |
+          test -f site/goalos-site-manifest-v2.json
+          test -f site/goalos-site-repair-v2-report.json
+          python -m json.tool site/goalos-site-manifest-v2.json >/dev/null
+          python -m json.tool site/goalos-site-repair-v2-report.json >/dev/null
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.root.outputs.root }}
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
