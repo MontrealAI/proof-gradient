@@ -1,4 +1,4 @@
-name: Validate GoalOS Public Site v12
+name: GoalOS Validation Hotfix v12
 
 on:
   workflow_dispatch:
@@ -9,14 +9,14 @@ on:
       - 'scripts/**'
       - 'tests/**'
       - 'docs/**'
-      - '.github/workflows/validate-goalos-public-site-v12.yml'
+      - '.github/workflows/**'
 
 permissions:
   contents: read
 
 jobs:
   validate:
-    name: Shared public-site validation
+    name: Shared GoalOS validation hotfix v12
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -31,5 +31,5 @@ jobs:
         run: python scripts/check_no_paid_artifacts.py
       - name: Validate public site classification and shell rules
         run: python scripts/validate_goalos_public_site.py
-      - name: Run GoalOS public-site rule regression tests
+      - name: Run public-site rule regression tests
         run: python -m pytest tests/test_goalos_public_site_rules.py -q

@@ -11,19 +11,18 @@ from goalos_public_site_rules import (
     BRAND_ASSET_MANIFEST_PATH,
     BRAND_MANIFEST_PATH,
     CANONICAL_FOOTER_MARKER,
-    CANONICAL_NAV_MARKER,
+    CANONICAL_SHELL_MARKER,
     LINK_RE,
-    OLD_SHELL_MARKER_RE,
     REQUIRED_ICON_PATHS,
+    classify_html_page,
     contains_blocked_claim_language,
     has_goalos_or_proof_gradient_escape,
     has_meta_description,
+    has_old_shell_marker,
     has_quebec_ai_visible_brand,
     has_standalone_marker,
     has_title,
-    is_app_page,
     is_blocked_paid_or_private_artifact,
-    is_standalone_proof_page,
     normalize_rel,
     page_class,
     requires_canonical_shell,
@@ -33,6 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def public_root() -> Path:
+    """Detect the public deploy root, preferring site/ and falling back to public/."""
     if (ROOT / "site").is_dir():
         return ROOT / "site"
     if (ROOT / "public").is_dir():
@@ -59,53 +59,7 @@ def add_error(errors: list[str], rel: str, reason: str, fix: str) -> None:
     errors.append(f"{rel}: {reason}. Suggested fix: {fix}")
 
 
-def validate_html(root: Path, path: Path, errors: list[str]) -> None:
-    rel = normalize_rel(path.relative_to(root))
-    text = path.read_text(encoding="utf-8", errors="ignore")
-    cls = page_class(rel, text)
-
-    if requires_canonical_shell(rel, text):
-        nav_count = text.count(CANONICAL_NAV_MARKER)
-        footer_count = text.count(CANONICAL_FOOTER_MARKER)
-        if nav_count != 1:
-            add_error(
-                errors,
-                rel,
-                f"classified as canonical_page but has {nav_count} canonical shells",
-                "inject exactly one canonical GoalOS shell or mark as GOALOS-STANDALONE-PROOF if intentionally standalone",
-            )
-        if footer_count != 1:
-            add_error(
-                errors,
-                rel,
-                f"classified as canonical_page but has {footer_count} canonical footers",
-                "inject exactly one canonical GoalOS footer or mark as GOALOS-STANDALONE-PROOF if intentionally standalone",
-            )
-    elif is_standalone_proof_page(rel, text) and text.count(CANONICAL_NAV_MARKER) == 0 and text.count(CANONICAL_FOOTER_MARKER) == 0:
-        if not has_standalone_marker(text):
-            add_error(
-                errors,
-                rel,
-                "matches standalone proof path but lacks explicit standalone metadata",
-                "add <!-- GOALOS-STANDALONE-PROOF --> and <meta name=\"goalos-page-type\" content=\"standalone-proof\">",
-            )
-        if not has_title(text):
-            add_error(errors, rel, "standalone_proof_page lacks a non-empty <title>", "add a concise proof title")
-        if not has_meta_description(text):
-            add_error(errors, rel, "standalone_proof_page lacks meta description", "add <meta name=\"description\" content=\"...\">")
-        if not has_goalos_or_proof_gradient_escape(text):
-            add_error(errors, rel, "standalone_proof_page lacks visible GoalOS / Proof Gradient escape link", "add <a href=\"/proof-gradient/\">GoalOS · Proof Gradient</a>")
-        if not has_quebec_ai_visible_brand(text):
-            add_error(errors, rel, "standalone_proof_page lacks visible QUEBEC.AI ⚜️✨ brand boundary", "include QUEBEC.AI ⚜️✨ in visible page copy")
-        if contains_blocked_claim_language(text):
-            add_error(errors, rel, "contains blocked claim language", "remove unsupported superintelligence, investment, token, or model self-modification claims")
-    elif is_app_page(rel):
-        if not has_title(text):
-            add_error(errors, rel, "app_page lacks a non-empty <title>", "add an app-shell title")
-
-    if OLD_SHELL_MARKER_RE.search(text):
-        add_error(errors, rel, "old GoalOS shell marker remains", "remove legacy shell markers and keep only current canonical/app/standalone markers")
-
+def validate_blocked_references(root: Path, rel: str, text: str, errors: list[str]) -> None:
     for raw in LINK_RE.findall(text):
         parsed = urlparse(raw)
         link_path = parsed.path
@@ -113,19 +67,69 @@ def validate_html(root: Path, path: Path, errors: list[str]) -> None:
             add_error(errors, rel, f"broken internal link {raw}", "update the link or add the target file under the public root")
         if link_path and is_blocked_paid_or_private_artifact(link_path):
             add_error(errors, rel, f"links to paid/private artifact {raw}", "remove the link or move the file outside the public deploy root")
-
-    for raw in LINK_RE.findall(text):
         if is_blocked_paid_or_private_artifact(raw):
             add_error(errors, rel, f"references paid/private artifact {raw}", "remove public references to buyer/private artifacts")
+
+
+def validate_html(root: Path, path: Path, errors: list[str]) -> None:
+    rel = normalize_rel(path.relative_to(root))
+    text = path.read_text(encoding="utf-8", errors="ignore")
+    cls = classify_html_page(rel, text)
+
+    if requires_canonical_shell(rel, text):
+        shell_count = text.count(CANONICAL_SHELL_MARKER)
+        footer_count = text.count(CANONICAL_FOOTER_MARKER)
+        if shell_count != 1:
+            add_error(
+                errors,
+                rel,
+                f"is classified as canonical_page but has {shell_count} canonical shells",
+                "inject exactly one canonical shell, or mark it as GOALOS-STANDALONE-PROOF if intentionally standalone",
+            )
+        if footer_count != 1:
+            add_error(
+                errors,
+                rel,
+                f"is classified as canonical_page but has {footer_count} canonical footers",
+                "inject exactly one canonical footer, or mark it as GOALOS-STANDALONE-PROOF if intentionally standalone",
+            )
+
+    if cls == "standalone_proof_page":
+        if not has_standalone_marker(text):
+            add_error(
+                errors,
+                rel,
+                "is classified as standalone_proof_page by path but lacks explicit standalone proof metadata",
+                "add <!-- GOALOS-STANDALONE-PROOF --> and <meta name=\"goalos-page-type\" content=\"standalone-proof\">",
+            )
+        if not has_title(text):
+            add_error(errors, rel, "is classified as standalone_proof_page but lacks a useful <title>", "add a concise proof title")
+        if not has_meta_description(text):
+            add_error(errors, rel, "is classified as standalone_proof_page but lacks meta description", "add <meta name=\"description\" content=\"...\">")
+        if not has_goalos_or_proof_gradient_escape(text):
+            add_error(errors, rel, "is classified as standalone_proof_page but lacks a GoalOS / Proof Gradient link back", "add <a href=\"/proof-gradient/\">QUEBEC.AI ⚜️✨ · GoalOS · Proof Gradient</a>")
+        if not has_quebec_ai_visible_brand(text):
+            add_error(errors, rel, "is classified as standalone_proof_page but lacks QUEBEC.AI identity", "include QUEBEC.AI, ⚜️✨, or quebecaisealv5 in the page")
+        if contains_blocked_claim_language(text):
+            add_error(errors, rel, "contains blocked claim language", "remove unsupported investment or model self-modification claims")
+
+    if cls == "app_page" and not has_title(text):
+        add_error(errors, rel, "is classified as app_page but lacks a useful <title>", "add an app-shell title")
+
+    if has_old_shell_marker(text):
+        add_error(errors, rel, "contains an old GoalOS shell marker", "remove legacy shell markers and keep only current canonical/app/standalone markers")
+
+    validate_blocked_references(root, rel, text, errors)
 
 
 def validate_public_assets(root: Path, errors: list[str]) -> None:
     for required in REQUIRED_ICON_PATHS:
         if not (root / required).exists():
-            add_error(errors, required, "required QUEBEC.AI seal/icon file is missing", "generate/copy the public brand asset before deploy")
+            add_error(errors, required, "required public identity asset is missing", "restore the QUEBEC.AI seal/icon asset before deploy")
 
-    if (root / "assets" / "brand").exists() and not (root / BRAND_MANIFEST_PATH).exists():
-        add_error(errors, BRAND_MANIFEST_PATH, "brand assets exist but site.webmanifest is missing", "add the public brand manifest")
+    if not (root / BRAND_MANIFEST_PATH).exists():
+        add_error(errors, BRAND_MANIFEST_PATH, "required site.webmanifest is missing", "add the public web app manifest")
+
     if (root / "assets" / "brand").exists() and not (root / BRAND_ASSET_MANIFEST_PATH).exists():
         add_error(errors, BRAND_ASSET_MANIFEST_PATH, "brand assets exist but brand asset manifest is missing", "add assets/brand-assets-v8.json")
     elif (root / BRAND_ASSET_MANIFEST_PATH).exists():
@@ -139,7 +143,7 @@ def validate_public_assets(root: Path, errors: list[str]) -> None:
     for path in sorted(p for p in root.rglob("*") if p.is_file() and "_archive" not in p.parts):
         rel = normalize_rel(path.relative_to(root))
         if is_blocked_paid_or_private_artifact(rel):
-            add_error(errors, rel, f"classified as {page_class(rel)} and is blocked from public deploy", "remove from public root or add a narrow reviewed public allowlist rule in goalos_public_site_rules.py")
+            add_error(errors, rel, f"is classified as {page_class(rel)} and is blocked from public deploy", "remove from public root or add a narrow reviewed public allowlist rule in goalos_public_site_rules.py")
 
 
 def main() -> int:

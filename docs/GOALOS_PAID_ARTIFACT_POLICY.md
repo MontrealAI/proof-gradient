@@ -15,7 +15,7 @@ standards/AEP-###/complete-package.zip
 Blocked:
 
 ```text
-all other ZIPs in public deploy roots unless explicitly reviewed and added to the public allowlist.
+all other ZIPs in public deploy roots unless explicitly reviewed and added to a narrow public allowlist.
 ```
 
 ## Blocked examples

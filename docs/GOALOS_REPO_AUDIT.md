@@ -71,3 +71,9 @@ Branch: `feature/goalos-public-site-mvp-unification`
 - Classified standalone proof HTML pages so immersive RSI proof microsites are not treated as broken marketing pages when they explicitly carry standalone proof metadata.
 - Centralized validation rules in `scripts/goalos_public_site_rules.py` for path normalization, page classification, canonical shell requirements, app-page handling, AEP package allowlisting, paid/private artifact blocking, icon/seal checks, link checks, and claim-boundary checks.
 - Updated workflows to call shared Python validation scripts instead of embedding duplicate paid-file or shell logic in YAML.
+
+
+## 2026 validation hotfix v12 verification note
+
+- `pytest` now relies on `pythonpath = ["."]` in `pyproject.toml` so the standalone `pytest` command can import both `proof_gradient` and shared `scripts` modules consistently.
+- Installed development dependencies with `python -m pip install -e '.[dev]'` in this validation environment before running full repository tests.
