@@ -21,19 +21,31 @@ PATTERNS = [
     "*WORKSHOP*",
     "*IMPLEMENTATION*",
     "*ENTERPRISE_PILOT*",
+    "*BUYER_OFFICIAL*",
+    "*MASTER_PACK*",
+    "*COMMERCIALIZATION_READY*",
+    "*QUICK_LAUNCH*",
 ]
-# Public documentation/action-kit exceptions. These are standards or docs, not paid buyer products.
-WHITELIST = {
-    "standards/AEP-001/complete-package.zip",
-}
+# Public documentation/action-kit exceptions. Public markdown, HTML, schemas, JSON, YAML,
+# JavaScript, CSS, and SVG are allowed; deployable ZIPs or private bundle names are not.
+WHITELIST = set()
 WHITELIST_PREFIXES = (
-    "standards/AEP-",  # public standards implementation documentation and schemas
     "_archive/",       # historical backup, not linked as paid product material
 )
+PUBLIC_DOC_PREFIXES = (
+    "standards/AEP-",  # public AEP standard markdown, examples, schemas, conformance docs
+)
+PUBLIC_DOC_EXTENSIONS = {".md", ".html", ".json", ".yaml", ".yml", ".txt", ".css", ".js", ".mjs", ".svg", ".xml"}
 
 
-def is_whitelisted(rel: str) -> bool:
-    return rel in WHITELIST or any(rel.startswith(prefix) for prefix in WHITELIST_PREFIXES)
+def is_whitelisted(rel: str, path: Path) -> bool:
+    if path.suffix.lower() == ".zip":
+        return False
+    if rel in WHITELIST or any(rel.startswith(prefix) for prefix in WHITELIST_PREFIXES):
+        return True
+    if path.suffix.lower() in PUBLIC_DOC_EXTENSIONS and any(rel.startswith(prefix) for prefix in PUBLIC_DOC_PREFIXES):
+        return True
+    return False
 
 
 def main() -> int:
@@ -42,7 +54,7 @@ def main() -> int:
         if not path.is_file():
             continue
         rel = path.relative_to(SITE).as_posix()
-        if is_whitelisted(rel):
+        if is_whitelisted(rel, path):
             continue
         name = path.name
         full = rel

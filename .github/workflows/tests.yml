@@ -31,3 +31,12 @@ jobs:
 
       - name: JavaScript syntax check
         run: node --check site/app.js
+      - name: Run GoalOS Cloud MVP test
+        run: node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
+
+      - name: Run GoalOS public site validation
+        run: python scripts/validate_goalos_site_v2.py
+
+      - name: Run paid artifact guard
+        run: python scripts/check_no_paid_artifacts.py
+

@@ -38,6 +38,8 @@ jobs:
           python -m json.tool site/app/goalos-cloud-mvp/openapi.json >/dev/null
           python -m json.tool site/app/goalos-cloud-mvp/schemas/workflow.schema.json >/dev/null
           python -m json.tool site/app/goalos-cloud-mvp/schemas/proof-record.schema.json >/dev/null
+      - name: Validate canonical shell
+        run: python scripts/validate_goalos_site_v2.py
       - name: Run paid artifact guard
         run: python scripts/check_no_paid_artifacts.py
       - name: Upload GitHub Pages artifact

@@ -100,7 +100,7 @@ python scripts/check_no_paid_artifacts.py
 pytest
 ```
 
-The paid-artifact guard blocks paid buyer ZIPs, paid workshop files, implementation bundles, enterprise delivery kits, and seller assets from the GitHub Pages public site, except explicitly whitelisted public standards/action documentation.
+The paid-artifact guard blocks ZIPs, paid buyer files, paid workshop files, implementation bundles, enterprise delivery kits, seller assets, master packs, commercialization-ready packs, and quick-launch packs from the GitHub Pages public site while allowing public documentation and standards files.
 
 ## Repository foundation
 
