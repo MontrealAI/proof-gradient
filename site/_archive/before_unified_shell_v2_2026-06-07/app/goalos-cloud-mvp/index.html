@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GoalOS Cloud MVP 0.2 — Enterprise Recursive Workflow OS</title><meta name="description" content="Enterprise-grade static MVP proving recursive workflow improvement end to end."><link rel="stylesheet" href="./assets/styles.css">    <link rel="stylesheet" href="/proof-gradient/assets/goalos-site-v2.css" data-goalos-canonical-css>
+  <script defer src="/proof-gradient/assets/goalos-site-v2.js" data-goalos-canonical-js></script>
+</head><body>
+<!-- GOALOS-CANONICAL-SHELL:START -->
+<header class="goalos-shell">
+  <nav class="goalos-nav" aria-label="GoalOS canonical navigation">
+    <a class="goalos-brand" href="/proof-gradient/"><span class="goalos-mark">G</span><span>GoalOS · Proof Gradient</span></a>
+    <div class="goalos-links">
+      <a href="/proof-gradient/start-here/">Start</a>
+      <a href="/proof-gradient/products/">Products</a>
+      <a href="/proof-gradient/pricing/">Pricing</a>
+      <a href="/proof-gradient/services/">Services</a>
+      <a href="/proof-gradient/products/goalos-cloud-mvp/">Cloud MVP</a>
+      <a href="/proof-gradient/implementation/goalos-proof-room-implementation-sprint/">Department RSI</a>
+      <a href="/proof-gradient/examples/">Examples</a>
+      <a href="/proof-gradient/standards/">Standards</a>
+      <a class="shop" href="https://www.quebecartificialintelligence.com/shop">Shop</a>
+    </div>
+  </nav>
+</header>
+<!-- GOALOS-CANONICAL-SHELL:END -->
+
+
+
+<main>
+<section class="hero"><p class="eyebrow">Enterprise Recursive Workflow OS · software proof</p><h1>Run. Score. Prove. Improve. Approve. Version. Monitor. Re-run.</h1><p class="lead">A working public MVP proving recursive workflow improvement on one enterprise workflow family: Customer Support Reply Workflow.</p><div class="loop">Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run</div><p class="boundary">GoalOS does not modify AI models. It improves workflows around AI through instructions, checks, scorecards, proof records, versions, approvals, monitoring, and rollback.</p></section>
+<section id="metrics" class="metrics"></section>
+<section class="tabs"><button data-tab="governance" class="active">1 · Governance</button><button data-tab="studio">2 · Workflow Studio</button><button data-tab="run">3 · Run</button><button data-tab="eval">4 · Evaluate</button><button data-tab="proof">5 · Proof Room</button><button data-tab="improve">6 · Improve</button><button data-tab="versions">7 · Versions</button><button data-tab="graph">8 · Proof Graph</button><button data-tab="admin">9 · Admin</button></section>
+
+<section data-panel="governance" class="panel"><h2>Governance + model gateway</h2><p>Tenant, roles, policy, memory, model-provider restrictions, and safe execution boundaries.</p><div class="grid2"><div><h3>Organization</h3><pre id="orgJson"></pre></div><div><h3>Policy</h3><pre id="policyJson"></pre></div><div><h3>Memory</h3><pre id="memoryJson"></pre></div><div><h3>Model providers</h3><pre id="modelJson"></pre></div></div></section>
+
+<section data-panel="studio" class="panel" hidden><div class="panelHead"><div><h2>Workflow Studio</h2><p>Versioned workflow definition with GoalOS structure.</p></div><select id="versionSelect"></select></div><div id="workflowSummary" class="callout"></div><textarea id="workflowJson" spellcheck="false"></textarea></section>
+
+<section data-panel="run" class="panel" hidden><div class="panelHead"><div><h2>Execution Engine</h2><p>Run the active workflow against one demo case.</p></div><button id="runBtn">Run selected case</button></div><label>Demo case</label><select id="caseSelect"></select><h3>Latest run</h3><pre id="latestRun"></pre></section>
+
+<section data-panel="eval" class="panel" hidden><div class="panelHead"><div><h2>Evaluation Engine</h2><p>Score accuracy, completeness, clarity, brand fit, policy, and proof readiness.</p></div><button id="benchmarkBtn">Run benchmark suite</button></div><pre id="latestEval"></pre></section>
+
+<section data-panel="proof" class="panel" hidden><div class="panelHead"><div><h2>Proof Room</h2><p>Every run creates an auditable proof record.</p></div><div class="buttons"><button id="proofCardBtn">Public-safe proof card</button><button id="reportBtn">Executive report</button></div></div><table><thead><tr><th>Time</th><th>Version</th><th>Input</th><th>Approval</th><th>Decision</th></tr></thead><tbody id="proofRows"></tbody></table><h3>Latest proof</h3><pre id="latestProof"></pre></section>
+
+<section data-panel="improve" class="panel" hidden><div class="panelHead"><div><h2>Recursive Improvement Engine</h2><p>Detect repeated failure, draft v1.1, compare benchmarks, require approval.</p></div><div class="buttons"><button id="proposalBtn">Generate proposal</button><button id="approveBtn">Approve + deploy v1.1</button></div></div><div class="grid2"><div><h3>Latest benchmark</h3><pre id="latestBenchmark"></pre></div><div><h3>Improvement proposal</h3><pre id="latestProposal"></pre></div></div></section>
+
+<section data-panel="versions" class="panel" hidden><div class="panelHead"><div><h2>Versioning + rollback</h2><p>Immutable versions, approval state, rollback target.</p></div><button id="rollbackBtn">Select rollback v1.0</button></div><table><thead><tr><th>Version</th><th>Status</th><th>Approval</th><th>Rollback</th><th>Summary</th></tr></thead><tbody id="versionsRows"></tbody></table><pre id="versionCompare"></pre></section>
+
+<section data-panel="graph" class="panel" hidden><div class="panelHead"><div><h2>Proof Graph</h2><p>workflow → version → run → evaluation → proof → proposal → approval</p></div><button id="graphBtn">Export Proof Graph</button></div><div id="graphSummary" class="callout"></div><pre id="graphJson"></pre></section>
+
+<section data-panel="admin" class="panel" hidden><div class="panelHead"><div><h2>Admin / Export</h2><p>Audit logs and state export. Static MVP state persists in browser storage.</p></div><div class="buttons"><button id="stateBtn">Download state</button><button id="resetBtn" class="danger">Reset</button></div></div><h3>Audit log</h3><ul id="auditLog" class="audit"></ul><h3>State export</h3><textarea id="stateExport"></textarea></section>
+
+<section class="panel final"><h2>Enterprise acceptance test</h2><p>v1.0 runs → evaluations detect refund-policy failure → Recursive Improvement Engine proposes v1.1 → human approval deploys v1.1 → benchmark improves → rollback target remains available → Proof Room exports public-safe proof.</p></section>
+</main>
+<script type="module" src="./assets/app.js"></script>
+<!-- GOALOS-CANONICAL-FOOTER:START -->
+<footer class="goalos-footer">
+  <div class="goalos-footer-inner">
+    <div>GoalOS · Recursive Workflow OS · Proof Rooms · Enterprise RSI</div>
+    <div><a href="/proof-gradient/site-map/">Site Map</a><a href="/proof-gradient/pricing/">Pricing</a><a href="https://github.com/MontrealAI/proof-gradient">GitHub</a><a href="https://www.quebecartificialintelligence.com/shop">Shop</a></div>
+  </div>
+</footer>
+<!-- GOALOS-CANONICAL-FOOTER:END -->
+</body></html>

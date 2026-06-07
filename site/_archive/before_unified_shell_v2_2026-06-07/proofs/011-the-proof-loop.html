@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Proof #11 — The Proof Loop</title>
+    <style>
+    :root {
+      color-scheme: dark;
+      --bg: #05070d;
+      --panel: rgba(11,16,32,.82);
+      --line: rgba(255,255,255,.14);
+      --text: #f7f8ff;
+      --muted: #aab3cf;
+      --gold: #f4c76b;
+      --blue: #8ab4ff;
+      --green: #91f2bf;
+      --violet: #b8a7ff;
+      --red: #ff9c9c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 6%, rgba(138,180,255,.20), transparent 30%),
+        radial-gradient(circle at 88% 8%, rgba(244,199,107,.16), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(184,167,255,.10), transparent 38%),
+        linear-gradient(180deg, #05070d 0%, #090d18 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { width: min(1260px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 90px; }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-weight: 800; font-size: 13px; }
+    h1 { font-size: clamp(48px, 8vw, 112px); line-height: .92; letter-spacing: -.075em; margin: 18px 0 20px; }
+    h2 { font-size: clamp(30px, 4vw, 56px); line-height: 1; letter-spacing: -.055em; margin: 50px 0 20px; }
+    h3 { font-size: 24px; margin-top: 0; }
+    p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
+    a { color: var(--blue); }
+    .hero-line { max-width: 920px; font-size: 22px; }
+    .nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 36px; }
+    .nav a { text-decoration: none; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; background: rgba(255,255,255,.045); }
+    .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+    .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: var(--panel); min-height: 160px; box-shadow: 0 18px 70px rgba(0,0,0,.25); }
+    .card b { display: block; font-size: 21px; margin-bottom: 10px; }
+    .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
+    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 680px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; color: var(--muted); vertical-align: top; }
+    th { color: var(--text); background: rgba(255,255,255,.07); }
+    tr:last-child td { border-bottom: 0; }
+    .visual { border: 1px solid var(--line); border-radius: 26px; padding: 24px; background: rgba(11,16,32,.86); margin: 24px 0; }
+    svg { width: 100%; height: auto; display: block; }
+    .small { font-size: 15px; }
+    @media (max-width: 1000px) { .grid, .grid3 { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+    </style>
+      <link rel="stylesheet" href="/proof-gradient/assets/proof-gradient-site.css" data-pg-site-css>
+  <script defer src="/proof-gradient/assets/proof-gradient-site.js" data-pg-site-js></script>
+      <link rel="stylesheet" href="/proof-gradient/assets/goalos-site-v2.css" data-goalos-canonical-css>
+  <script defer src="/proof-gradient/assets/goalos-site-v2.js" data-goalos-canonical-js></script>
+</head>
+  <body>
+<!-- GOALOS-CANONICAL-SHELL:START -->
+<header class="goalos-shell">
+  <nav class="goalos-nav" aria-label="GoalOS canonical navigation">
+    <a class="goalos-brand" href="/proof-gradient/"><span class="goalos-mark">G</span><span>GoalOS · Proof Gradient</span></a>
+    <div class="goalos-links">
+      <a href="/proof-gradient/start-here/">Start</a>
+      <a href="/proof-gradient/products/">Products</a>
+      <a href="/proof-gradient/pricing/">Pricing</a>
+      <a href="/proof-gradient/services/">Services</a>
+      <a href="/proof-gradient/products/goalos-cloud-mvp/">Cloud MVP</a>
+      <a href="/proof-gradient/implementation/goalos-proof-room-implementation-sprint/">Department RSI</a>
+      <a href="/proof-gradient/examples/">Examples</a>
+      <a href="/proof-gradient/standards/">Standards</a>
+      <a class="shop" href="https://www.quebecartificialintelligence.com/shop">Shop</a>
+    </div>
+  </nav>
+</header>
+<!-- GOALOS-CANONICAL-SHELL:END -->
+
+
+
+<!-- PG-SITE-SHELL:END -->
+
+
+
+    <main>
+      <div class="eyebrow">Proof Gradient · Permanent Proof Page</div>
+      
+    <h1>Proof #11 — The Proof Loop</h1>
+    <p class="hero-line">Aim → Act → Prove → Evolve. The simplest sovereign protocol for compounding agent intelligence.</p>
+    <p><span class="pill">passed</span></p>
+    
+    <nav class="nav">
+      <a href="../index.html">← Main Command Center</a>
+      <a href="../production.html">Production Platform</a>
+      <a href="../proofs/index.html">Proof Archive</a>
+      <a href="../docs/index.html">Docs</a>
+      <a href="001-sovereign-swarm.html">Proof #1</a>
+      <a href="002-evolution-tournament.html">Proof #2</a>
+      <a href="003-recursive-evolution-ladder.html">Proof #3</a>
+      <a href="004-corporate-rsi-dominion.html">Proof #4</a>
+      <a href="005-enterprise-rsi-superorganism.html">Proof #5</a>
+      <a href="006-sovereign-enterprise-constellation.html">Proof #6</a>
+      <a href="007-sovereign-enterprise-proof-economy.html">Proof #7</a>
+      <a href="008-sovereign-domain-atlas.html">Proof #8</a>
+      <a href="009-sovereign-kardashev-capital-engine.html">Proof #9</a>
+      <a href="010-proof-carrying-intelligence.html">Proof #10</a>
+      <a href="011-the-proof-loop.html">Proof #11</a>
+      <a href="../assets/proofs/011-the-proof-loop.json">Evidence JSON</a>
+    </nav>
+    
+
+    <h2>Summary</h2>
+    <pre>{
+  &quot;protocol&quot;: &quot;Aim → Act → Prove → Evolve&quot;,
+  &quot;agents&quot;: 8388608,
+  &quot;sovereign_domains&quot;: 1280,
+  &quot;guilds&quot;: 128,
+  &quot;rsi_cycles&quot;: 512,
+  &quot;eval_cases&quot;: 2684354560,
+  &quot;aims&quot;: 655360,
+  &quot;actions&quot;: 655360,
+  &quot;proofs&quot;: 655360,
+  &quot;selected_improvements&quot;: 648704,
+  &quot;rejected_improvements&quot;: 6656,
+  &quot;rollbacks&quot;: 6656,
+  &quot;goals_used&quot;: 4,
+  &quot;plans_used&quot;: 4,
+  &quot;skills_used&quot;: 8,
+  &quot;policies_used&quot;: 4,
+  &quot;evals_used&quot;: 4,
+  &quot;tools_used&quot;: 3,
+  &quot;contexts_used&quot;: 2,
+  &quot;verdict&quot;: &quot;aim_act_prove_evolve_proven_as_the_simplest_sovereign_agent_evolution_protocol&quot;
+}</pre>
+
+    <h2>Institutional Graphs</h2>
+    
+    <div class="visual">
+      <h3>Agent Evolution Protocol</h3>
+      <svg viewBox="0 0 1120 320" role="img" aria-label="Aim Act Prove Evolve protocol">
+        <rect x="0" y="0" width="1120" height="320" rx="26" fill="#070b14"/>
+        <text x="60" y="60" fill="#f4c76b" font-size="30" font-weight="800">Aim → Act → Prove → Evolve</text>
+        <text x="60" y="92" fill="#aab3cf" font-size="18">Every agent acts. Every action leaves proof. Every proof earns improvement. Every improvement strengthens the network.</text>
+
+        <rect x="90" y="142" width="180" height="90" rx="22" fill="#f4c76b" opacity=".20" stroke="#f4c76b" stroke-width="3"/>
+        <text x="122" y="190" fill="#f7f8ff" font-size="30" font-weight="800">Aim</text>
+        <text x="122" y="215" fill="#aab3cf" font-size="14">direction artifact</text>
+
+        <line x1="282" y1="187" x2="340" y2="187" stroke="#f4c76b" stroke-width="5"/>
+        <polygon points="340,187 324,177 324,197" fill="#f4c76b"/>
+
+        <rect x="360" y="142" width="180" height="90" rx="22" fill="#8ab4ff" opacity=".20" stroke="#8ab4ff" stroke-width="3"/>
+        <text x="392" y="190" fill="#f7f8ff" font-size="30" font-weight="800">Act</text>
+        <text x="392" y="215" fill="#aab3cf" font-size="14">run fabric</text>
+
+        <line x1="552" y1="187" x2="610" y2="187" stroke="#f4c76b" stroke-width="5"/>
+        <polygon points="610,187 594,177 594,197" fill="#f4c76b"/>
+
+        <rect x="630" y="142" width="180" height="90" rx="22" fill="#91f2bf" opacity=".20" stroke="#91f2bf" stroke-width="3"/>
+        <text x="662" y="190" fill="#f7f8ff" font-size="30" font-weight="800">Prove</text>
+        <text x="662" y="215" fill="#aab3cf" font-size="14">evidence ledger</text>
+
+        <line x1="822" y1="187" x2="880" y2="187" stroke="#f4c76b" stroke-width="5"/>
+        <polygon points="880,187 864,177 864,197" fill="#f4c76b"/>
+
+        <rect x="900" y="142" width="180" height="90" rx="22" fill="#b8a7ff" opacity=".20" stroke="#b8a7ff" stroke-width="3"/>
+        <text x="932" y="190" fill="#f7f8ff" font-size="30" font-weight="800">Evolve</text>
+        <text x="932" y="215" fill="#aab3cf" font-size="14">selection gate</text>
+      </svg>
+    </div>
+    
+    
+    <div class="visual">
+      <h3>Capital / Compute / Energy / Trust Flywheel</h3>
+      <svg viewBox="0 0 1000 500" role="img" aria-label="Capital compute energy trust proof flywheel">
+        <rect x="0" y="0" width="1000" height="500" rx="24" fill="#070b14"/>
+        <path d="M540 98 C690 100, 790 140, 800 210" fill="none" stroke="#f4c76b" stroke-width="5"/>
+        <path d="M790 280 C730 395, 630 430, 540 416" fill="none" stroke="#8ab4ff" stroke-width="5"/>
+        <path d="M460 410 C320 380, 210 330, 210 270" fill="none" stroke="#91f2bf" stroke-width="5"/>
+        <path d="M220 210 C250 115, 350 80, 460 78" fill="none" stroke="#b8a7ff" stroke-width="5"/>
+
+        <circle cx="500" cy="78" r="58" fill="#f4c76b" opacity=".20" stroke="#f4c76b" stroke-width="3"/>
+        <text x="500" y="84" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Capital</text>
+
+        <circle cx="790" cy="240" r="58" fill="#8ab4ff" opacity=".20" stroke="#8ab4ff" stroke-width="3"/>
+        <text x="790" y="246" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Compute</text>
+
+        <circle cx="500" cy="410" r="58" fill="#91f2bf" opacity=".20" stroke="#91f2bf" stroke-width="3"/>
+        <text x="500" y="416" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Energy</text>
+
+        <circle cx="210" cy="240" r="58" fill="#b8a7ff" opacity=".20" stroke="#b8a7ff" stroke-width="3"/>
+        <text x="210" y="246" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Trust</text>
+
+        <circle cx="500" cy="240" r="72" fill="#ffffff" opacity=".12" stroke="#ffffff" stroke-width="3"/>
+        <text x="500" y="246" text-anchor="middle" fill="#f7f8ff" font-size="22" font-weight="700">Proof</text>
+
+        <text x="38" y="462" fill="#aab3cf" font-size="18">Proof is the clearing layer. Selection routes capital, compute, energy, and trust toward verified artifacts.</text>
+      </svg>
+    </div>
+    
+    
+    <div class="visual">
+      <h3>Synthetic Network Index</h3>
+      <svg viewBox="0 0 760 330" role="img" aria-label="Synthetic Network Index">
+        <rect x="0" y="0" width="760" height="330" rx="24" fill="#070b14"/>
+        <line x1="70" y1="260" x2="675" y2="260" stroke="rgba(255,255,255,.24)"/>
+        <line x1="70" y1="42" x2="70" y2="260" stroke="rgba(255,255,255,.24)"/>
+        <polyline points="70,260 125,256 180,250 235,240 290,226 345,208 400,188 455,164 510,138 565,110 620,78 675,42" fill="none" stroke="#8ab4ff" stroke-width="5"/>
+        <text x="70" y="30" fill="#aab3cf" font-size="18">network index: 100000.0 → 312000411.224</text>
+        <text x="545" y="295" fill="#aab3cf" font-size="16">512 RSI cycles</text>
+        <circle cx="70" cy="260" r="5" fill="#8ab4ff"/>
+        <circle cx="125" cy="256" r="5" fill="#8ab4ff"/>
+        <circle cx="180" cy="250" r="5" fill="#8ab4ff"/>
+        <circle cx="235" cy="240" r="5" fill="#8ab4ff"/>
+        <circle cx="290" cy="226" r="5" fill="#8ab4ff"/>
+        <circle cx="345" cy="208" r="5" fill="#8ab4ff"/>
+        <circle cx="400" cy="188" r="5" fill="#8ab4ff"/>
+        <circle cx="455" cy="164" r="5" fill="#8ab4ff"/>
+        <circle cx="510" cy="138" r="5" fill="#8ab4ff"/>
+        <circle cx="565" cy="110" r="5" fill="#8ab4ff"/>
+        <circle cx="620" cy="78" r="5" fill="#8ab4ff"/>
+        <circle cx="675" cy="42" r="5" fill="#8ab4ff"/>
+      </svg>
+    </div>
+    
+    
+    <div class="visual">
+      <h3>Synthetic Kardashev Scenario Index</h3>
+      <svg viewBox="0 0 760 330" role="img" aria-label="Synthetic Kardashev Scenario Index">
+        <rect x="0" y="0" width="760" height="330" rx="24" fill="#070b14"/>
+        <line x1="70" y1="260" x2="675" y2="260" stroke="rgba(255,255,255,.24)"/>
+        <line x1="70" y1="42" x2="70" y2="260" stroke="rgba(255,255,255,.24)"/>
+        <polyline points="70,260 125,256 180,250 235,240 290,226 345,208 400,188 455,164 510,138 565,110 620,78 675,42" fill="none" stroke="#91f2bf" stroke-width="5"/>
+        <text x="70" y="30" fill="#aab3cf" font-size="18">scenario index: 0.000001 → 0.00674432</text>
+        <text x="545" y="295" fill="#aab3cf" font-size="16">512 RSI cycles</text>
+        <circle cx="70" cy="260" r="5" fill="#91f2bf"/>
+        <circle cx="125" cy="256" r="5" fill="#91f2bf"/>
+        <circle cx="180" cy="250" r="5" fill="#91f2bf"/>
+        <circle cx="235" cy="240" r="5" fill="#91f2bf"/>
+        <circle cx="290" cy="226" r="5" fill="#91f2bf"/>
+        <circle cx="345" cy="208" r="5" fill="#91f2bf"/>
+        <circle cx="400" cy="188" r="5" fill="#91f2bf"/>
+        <circle cx="455" cy="164" r="5" fill="#91f2bf"/>
+        <circle cx="510" cy="138" r="5" fill="#91f2bf"/>
+        <circle cx="565" cy="110" r="5" fill="#91f2bf"/>
+        <circle cx="620" cy="78" r="5" fill="#91f2bf"/>
+        <circle cx="675" cy="42" r="5" fill="#91f2bf"/>
+      </svg>
+    </div>
+    
+    
+    <div class="visual">
+      <h3>Selection Gate Funnel</h3>
+      <svg viewBox="0 0 1000 360" role="img" aria-label="Selection Gate funnel">
+        <rect x="0" y="0" width="1000" height="360" rx="24" fill="#070b14"/>
+        <text x="42" y="48" fill="#f4c76b" font-size="24" font-weight="800">Only proof-carrying upgrades propagate</text>
+
+        <text x="42" y="108" fill="#dbe6ff" font-size="18">Aims</text>
+        <rect x="210" y="86" width="700" height="30" rx="10" fill="#f4c76b" opacity=".76"/>
+        <text x="925" y="108" fill="#aab3cf" font-size="16">2048</text>
+
+        <text x="42" y="158" fill="#dbe6ff" font-size="18">Actions</text>
+        <rect x="210" y="136" width="700" height="30" rx="10" fill="#8ab4ff" opacity=".76"/>
+        <text x="925" y="158" fill="#aab3cf" font-size="16">2048</text>
+
+        <text x="42" y="208" fill="#dbe6ff" font-size="18">Proofs</text>
+        <rect x="210" y="186" width="700" height="30" rx="10" fill="#91f2bf" opacity=".76"/>
+        <text x="925" y="208" fill="#aab3cf" font-size="16">2048</text>
+
+        <text x="42" y="258" fill="#dbe6ff" font-size="18">Selected</text>
+        <rect x="210" y="236" width="696" height="30" rx="10" fill="#b8a7ff" opacity=".76"/>
+        <text x="925" y="258" fill="#aab3cf" font-size="16">2035</text>
+
+        <text x="42" y="308" fill="#dbe6ff" font-size="18">Rolled back</text>
+        <rect x="210" y="286" width="8" height="30" rx="4" fill="#ff9c9c" opacity=".90"/>
+        <text x="238" y="308" fill="#aab3cf" font-size="16">13</text>
+      </svg>
+    </div>
+    
+
+    <h2>The Four Systems</h2>
+    <div class="grid">
+        <div class="card">
+          <b>Artifact Vault</b>
+          <p>Stores reusable intelligence.</p>
+          <p>Stores immutable, versioned, scoped, auditable, rollbackable artifacts.</p>
+        </div>
+        
+        <div class="card">
+          <b>Run Fabric</b>
+          <p>Executes agents at scale.</p>
+          <p>Resolves artifacts, executes stateless runs, records traces, and emits proof.</p>
+        </div>
+        
+        <div class="card">
+          <b>Proof Ledger</b>
+          <p>Records what happened.</p>
+          <p>Append-only evidence for runs, evals, scores, policy decisions, feedback, costs, latency, and credit assignment.</p>
+        </div>
+        
+        <div class="card">
+          <b>Selection Gate</b>
+          <p>Promotes only what proved itself.</p>
+          <p>Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back upgrades.</p>
+        </div>
+        </div>
+
+    <h2>The Four Primitives</h2>
+    <table><thead><tr><th>Primitive</th><th>System</th><th>Meaning</th><th>Line</th></tr></thead><tbody><tr><td>Aim</td><td>Artifact Vault</td><td>The mission becomes explicit as reusable Direction artifacts.</td><td>No aim, no intelligence.</td></tr><tr><td>Act</td><td>Run Fabric</td><td>The active artifacts execute through a stateless agent runtime.</td><td>The agent acts once.</td></tr><tr><td>Prove</td><td>Proof Ledger</td><td>Every execution emits evidence.</td><td>Without proof, learning is mythology.</td></tr><tr><td>Evolve</td><td>Selection Gate</td><td>Only proven improvements earn propagation.</td><td>Only proven intelligence propagates.</td></tr></tbody></table>
+
+    <h2>GoalOS / Aim Artifacts Used</h2>
+    <table><thead><tr><th>Artifact</th><th>Class</th><th>Goal</th><th>Explanation</th></tr></thead><tbody><tr><td>sovereign_direction@1.0.0</td><td>GoalOS / Aim Artifact</td><td>Sovereign Direction</td><td>Defines the mission for proof-bounded sovereign-domain evolution.</td></tr><tr><td>network_improvement_goal@1.0.0</td><td>GoalOS / Aim Artifact</td><td>Network Improvement Goal</td><td>Requires every improvement to strengthen the authorized network only through proof.</td></tr><tr><td>kardashev_scenario_boundary@1.0.0</td><td>GoalOS / Aim Artifact</td><td>Kardashev Scenario Boundary</td><td>Keeps civilization-scale language labeled as a strategic scenario unless empirical evidence exists.</td></tr><tr><td>sovereign_safety_goal@1.0.0</td><td>GoalOS / Aim Artifact</td><td>Sovereign Safety Goal</td><td>Prevents private data propagation, unsupported claims, and unrollbackable release.</td></tr></tbody></table>
+
+    <h2>PlanOS / Strategy Artifacts Used</h2>
+    <table><thead><tr><th>Artifact</th><th>Class</th><th>Plan</th><th>Explanation</th></tr></thead><tbody><tr><td>aim_act_prove_evolve_plan@1.0.0</td><td>PlanOS / Strategy Artifact</td><td>Aim–Act–Prove–Evolve Plan</td><td>The canonical four-step Proof Loop.</td></tr><tr><td>selection_gate_plan@1.0.0</td><td>PlanOS / Strategy Artifact</td><td>Selection Gate Plan</td><td>Turns proof into evaluated, scoped, canaried, rollbackable upgrades.</td></tr><tr><td>sovereign_domain_routing_plan@1.0.0</td><td>PlanOS / Strategy Artifact</td><td>Sovereign Domain Routing Plan</td><td>Routes generalized, redacted, proof-backed artifacts across sovereign domains.</td></tr><tr><td>capital_compute_energy_trust_plan@1.0.0</td><td>PlanOS / Strategy Artifact</td><td>Capital–Compute–Energy–Trust Plan</td><td>Routes synthetic capital, compute, energy, and trust toward proof-backed winners.</td></tr></tbody></table>
+
+    <h2>SkillOS / Capability Artifacts Used</h2>
+    <table><thead><tr><th>Artifact</th><th>Class</th><th>Skill</th><th>Explanation</th></tr></thead><tbody><tr><td>mission_framing_skill@1.0.0</td><td>SkillOS / Capability Artifact</td><td>Mission Framing Skill</td><td>Turns a vague job into a clear Aim with success criteria and constraints.</td></tr><tr><td>stateless_run_skill@1.0.0</td><td>SkillOS / Capability Artifact</td><td>Stateless Run Skill</td><td>Executes resolved artifacts without carrying the whole network in the agent.</td></tr><tr><td>proof_emission_skill@1.0.0</td><td>SkillOS / Capability Artifact</td><td>Proof Emission Skill</td><td>Emits traces, scores, cost, latency, policy decisions, and feedback.</td></tr><tr><td>credit_assignment_skill@1.0.0</td><td>SkillOS / Capability Artifact</td><td>Credit Assignment Skill</td><td>Determines whether credit or blame belongs to a goal, plan, skill, tool, policy, eval, context, routing rule, or runtime.</td></tr><tr><td>patch_generation_skill@1.0.0</td><td>SkillOS / Capability Artifact</td><td>Patch Generation Skill</td><td>Creates typed, proof-backed candidate artifact upgrades.</td></tr><tr><td>baseline_eval_skill@1.0.0</td><td>SkillOS / Capability Artifact</td><td>Baseline Eval Skill</td><td>Compares candidates to baselines before propagation.</td></tr><tr><td>rollback_skill@1.0.0</td><td>SkillOS / Capability Artifact</td><td>Rollback Skill</td><td>Restores the last safe baseline when a candidate fails.</td></tr><tr><td>claim_boundary_skill@1.0.0</td><td>SkillOS / Capability Artifact</td><td>Claim Boundary Skill</td><td>Blocks unsupported claims about revenue, ROI, superintelligence, energy capture, or Kardashev achievement.</td></tr></tbody></table>
+
+    <h2>Policy / Guardrail Artifacts Used</h2>
+    <table><thead><tr><th>Artifact</th><th>Class</th><th>Policy</th><th>Explanation</th></tr></thead><tbody><tr><td>no_proof_no_evolution@1.0.0</td><td>Policy / Guardrail Artifact</td><td>No Proof, No Evolution</td><td>No candidate improvement can propagate without proof.</td></tr><tr><td>no_eval_no_propagation@1.0.0</td><td>Policy / Guardrail Artifact</td><td>No Eval, No Propagation</td><td>No candidate can spread without required eval gates.</td></tr><tr><td>no_rollback_no_release@1.0.0</td><td>Policy / Guardrail Artifact</td><td>No Rollback, No Release</td><td>Every release must include a rollback target.</td></tr><tr><td>sovereign_privacy_boundary@1.0.0</td><td>Policy / Guardrail Artifact</td><td>Sovereign Privacy Boundary</td><td>Only generalized, redacted, eval-passed artifacts may cross sovereign boundaries.</td></tr></tbody></table>
+
+    <h2>Eval / Judgment Artifacts Used</h2>
+    <table><thead><tr><th>Artifact</th><th>Class</th><th>Eval</th><th>Explanation</th></tr></thead><tbody><tr><td>aim_integrity_eval@1.0.0</td><td>Eval / Judgment Artifact</td><td>Aim Integrity Eval</td><td>Checks that each Aim has success criteria, constraints, risk, and required evals.</td></tr><tr><td>proof_completeness_eval@1.0.0</td><td>Eval / Judgment Artifact</td><td>Proof Completeness Eval</td><td>Checks that each action emitted traces, score, cost, latency, policy decisions, and credit assignment.</td></tr><tr><td>selection_gate_eval@1.0.0</td><td>Eval / Judgment Artifact</td><td>Selection Gate Eval</td><td>Checks that upgrades pass baseline comparison, approval, canary, monitoring, and rollback readiness.</td></tr><tr><td>claim_boundary_eval@1.0.0</td><td>Eval / Judgment Artifact</td><td>Claim Boundary Eval</td><td>Checks that synthetic scenarios are not presented as real-world revenue, ROI, superintelligence, energy capture, or Kardashev achievement.</td></tr></tbody></table>
+
+    <h2>Tool / Action Artifacts Used</h2>
+    <table><thead><tr><th>Artifact</th><th>Class</th><th>Tool</th><th>Explanation</th></tr></thead><tbody><tr><td>artifact_resolver_tool@1.0.0</td><td>Tool / Action Artifact</td><td>Artifact Resolver Tool</td><td>Resolves active artifact versions for a run.</td></tr><tr><td>proof_export_tool@1.0.0</td><td>Tool / Action Artifact</td><td>Proof Export Tool</td><td>Exports public, redacted proof records.</td></tr><tr><td>rollout_router_tool@1.0.0</td><td>Tool / Action Artifact</td><td>Rollout Router Tool</td><td>Routes canary traffic and preserves rollback paths.</td></tr></tbody></table>
+
+    <h2>Context / Grounding Artifacts Used</h2>
+    <table><thead><tr><th>Artifact</th><th>Class</th><th>Context</th><th>Explanation</th></tr></thead><tbody><tr><td>sovereign_domain_context@1.0.0</td><td>Context / Grounding Artifact</td><td>Sovereign Domain Context</td><td>Grounds proof in sovereign-domain operating constraints.</td></tr><tr><td>kardashev_scenario_context@1.0.0</td><td>Context / Grounding Artifact</td><td>Kardashev Scenario Context</td><td>Grounds the Kardashev quote as an ambition and scenario, not an achieved result.</td></tr></tbody></table>
+
+    <h2>Capital / Compute / Energy / Trust Routing</h2>
+    <table><thead><tr><th>Route</th><th>Allocated Domains</th><th>Rule</th></tr></thead><tbody><tr><td>Capital</td><td>512</td><td>route synthetic capital to proof-backed winners</td></tr><tr><td>Compute</td><td>768</td><td>route synthetic compute to low-risk high-delta artifacts</td></tr><tr><td>Energy</td><td>512</td><td>route synthetic energy to capital-compute-energy flywheel winners</td></tr><tr><td>Trust</td><td>384</td><td>route synthetic trust to artifacts with high proof reputation and low rollback risk</td></tr></tbody></table>
+
+    <h2>Claim-Boundary Ledger</h2>
+    <table><thead><tr><th>Claim Boundary</th><th>Status</th></tr></thead><tbody><tr><td>Vision treatment</td><td>strategic scenario, not empirical claim</td></tr><tr><td>Real revenue claimed</td><td>False</td></tr><tr><td>Guaranteed ROI claimed</td><td>False</td></tr><tr><td>Actual deployed superintelligence claimed</td><td>False</td></tr><tr><td>Kardashev Type II achieved claimed</td><td>False</td></tr><tr><td>Real-world energy capture claimed</td><td>False</td></tr><tr><td>Private data shared</td><td>False</td></tr><tr><td>Rollback required</td><td>True</td></tr></tbody></table>
+
+    <h2>Meta-RSI Upgrade Ledger</h2>
+    <table><thead><tr><th>Cycle</th><th>Upgrade</th><th>Meaning</th></tr></thead><tbody><tr><td>16</td><td>aim_schema_upgrade</td><td>The network improved part of its own Aim machinery.</td></tr><tr><td>32</td><td>run_fabric_router_upgrade</td><td>The network improved part of its own Act machinery.</td></tr><tr><td>48</td><td>proof_compression_upgrade</td><td>The network improved part of its own Prove machinery.</td></tr><tr><td>64</td><td>credit_assignment_upgrade</td><td>The network improved artifact-level credit assignment.</td></tr><tr><td>80</td><td>selection_gate_upgrade</td><td>The network improved part of its own Evolve machinery.</td></tr><tr><td>96</td><td>rollback_predictor_upgrade</td><td>The network improved rollback readiness.</td></tr><tr><td>112</td><td>claim_boundary_upgrade</td><td>The network improved claim-boundary protection.</td></tr><tr><td>128</td><td>capital_compute_energy_router_upgrade</td><td>The network improved resource routing.</td></tr></tbody></table>
+
+    <h2>Evidence</h2>
+    <pre>{
+  &quot;proof_type&quot;: &quot;the_proof_loop&quot;,
+  &quot;protocol&quot;: &quot;Aim → Act → Prove → Evolve&quot;,
+  &quot;public_line&quot;: &quot;Every agent acts. Every action leaves proof. Every proof earns improvement. Every improvement strengthens the network.&quot;,
+  &quot;not_claiming&quot;: [
+    &quot;real revenue&quot;,
+    &quot;real profit&quot;,
+    &quot;guaranteed ROI&quot;,
+    &quot;investment advice&quot;,
+    &quot;actual deployed superintelligence&quot;,
+    &quot;real-world energy capture&quot;,
+    &quot;Kardashev Type II achievement&quot;,
+    &quot;external customer production results&quot;
+  ],
+  &quot;vision_treatment&quot;: &quot;strategic scenario, not empirical claim&quot;,
+  &quot;systems&quot;: [
+    {
+      &quot;name&quot;: &quot;Artifact Vault&quot;,
+      &quot;promise&quot;: &quot;Stores reusable intelligence.&quot;,
+      &quot;meaning&quot;: &quot;Stores immutable, versioned, scoped, auditable, rollbackable artifacts.&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Run Fabric&quot;,
+      &quot;promise&quot;: &quot;Executes agents at scale.&quot;,
+      &quot;meaning&quot;: &quot;Resolves artifacts, executes stateless runs, records traces, and emits proof.&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Proof Ledger&quot;,
+      &quot;promise&quot;: &quot;Records what happened.&quot;,
+      &quot;meaning&quot;: &quot;Append-only evidence for runs, evals, scores, policy decisions, feedback, costs, latency, and credit assignment.&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Selection Gate&quot;,
+      &quot;promise&quot;: &quot;Promotes only what proved itself.&quot;,
+      &quot;meaning&quot;: &quot;Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back upgrades.&quot;
+    }
+  ],
+  &quot;goals_used&quot;: [
+    [
+      &quot;sovereign_direction@1.0.0&quot;,
+      &quot;GoalOS / Aim Artifact&quot;,
+      &quot;Sovereign Direction&quot;,
+      &quot;Defines the mission for proof-bounded sovereign-domain evolution.&quot;
+    ],
+    [
+      &quot;network_improvement_goal@1.0.0&quot;,
+      &quot;GoalOS / Aim Artifact&quot;,
+      &quot;Network Improvement Goal&quot;,
+      &quot;Requires every improvement to strengthen the authorized network only through proof.&quot;
+    ],
+    [
+      &quot;kardashev_scenario_boundary@1.0.0&quot;,
+      &quot;GoalOS / Aim Artifact&quot;,
+      &quot;Kardashev Scenario Boundary&quot;,
+      &quot;Keeps civilization-scale language labeled as a strategic scenario unless empirical evidence exists.&quot;
+    ],
+    [
+      &quot;sovereign_safety_goal@1.0.0&quot;,
+      &quot;GoalOS / Aim Artifact&quot;,
+      &quot;Sovereign Safety Goal&quot;,
+      &quot;Prevents private data propagation, unsupported claims, and unrollbackable release.&quot;
+    ]
+  ],
+  &quot;plans_used&quot;: [
+    [
+      &quot;aim_act_prove_evolve_plan@1.0.0&quot;,
+      &quot;PlanOS / Strategy Artifact&quot;,
+      &quot;Aim–Act–Prove–Evolve Plan&quot;,
+      &quot;The canonical four-step Proof Loop.&quot;
+    ],
+    [
+      &quot;selection_gate_plan@1.0.0&quot;,
+      &quot;PlanOS / Strategy Artifact&quot;,
+      &quot;Selection Gate Plan&quot;,
+      &quot;Turns proof into evaluated, scoped, canaried, rollbackable upgrades.&quot;
+    ],
+    [
+      &quot;sovereign_domain_routing_plan@1.0.0&quot;,
+      &quot;PlanOS / Strategy Artifact&quot;,
+      &quot;Sovereign Domain Routing Plan&quot;,
+      &quot;Routes generalized, redacted, proof-backed artifacts across sovereign domains.&quot;
+    ],
+    [
+      &quot;capital_compute_energy_trust_plan@1.0.0&quot;,
+      &quot;PlanOS / Strategy Artifact&quot;,
+      &quot;Capital–Compute–Energy–Trust Plan&quot;,
+      &quot;Routes synthetic capital, compute, energy, and trust toward proof-backed winners.&quot;
+    ]
+  ],
+  &quot;skills_used&quot;: [
+    [
+      &quot;mission_framing_skill@1.0.0&quot;,
+      &quot;SkillOS / Capability Artifact&quot;,
+      &quot;Mission Framing Skill&quot;,
+      &quot;Turns a vague job into a clear Aim with success criteria and constraints.&quot;
+    ],
+    [
+      &quot;stateless_run_skill@1.0.0&quot;,
+      &quot;SkillOS / Capability Artifact&quot;,
+      &quot;Stateless Run Skill&quot;,
+      &quot;Executes resolved artifacts without carrying the whole network in the agent.&quot;
+    ],
+    [
+      &quot;proof_emission_skill@1.0.0&quot;,
+      &quot;SkillOS / Capability Artifact&quot;,
+      &quot;Proof Emission Skill&quot;,
+      &quot;Emits traces, scores, cost, latency, policy decisions, and feedback.&quot;
+    ],
+    [
+      &quot;credit_assignment_skill@1.0.0&quot;,
+      &quot;SkillOS / Capability Artifact&quot;,
+      &quot;Credit Assignment Skill&quot;,
+      &quot;Determines whether credit or blame belongs to a goal, plan, skill, tool, policy, eval, context, routing rule, or runtime.&quot;
+    ],
+    [
+      &quot;patch_generation_skill@1.0.0&quot;,
+      &quot;SkillOS / Capability Artifact&quot;,
+      &quot;Patch Generation Skill&quot;,
+      &quot;Creates typed, proof-backed candidate artifact upgrades.&quot;
+    ],
+    [
+      &quot;baseline_eval_skill@1.0.0&quot;,
+      &quot;SkillOS / Capability Artifact&quot;,
+      &quot;Baseline Eval Skill&quot;,
+      &quot;Compares candidates to baselines before propagation.&quot;
+    ],
+    [
+      &quot;rollback_skill@1.0.0&quot;,
+      &quot;SkillOS / Capability Artifact&quot;,
+      &quot;Rollback Skill&quot;,
+      &quot;Restores the last safe baseline when a candidate fails.&quot;
+    ],
+    [
+      &quot;claim_boundary_skill@1.0.0&quot;,
+      &quot;SkillOS / Capability Artifact&quot;,
+      &quot;Claim Boundary Skill&quot;,
+      &quot;Blocks unsupported claims about revenue, ROI, superintelligence, energy capture, or Kardashev achievement.&quot;
+    ]
+  ],
+  &quot;policies_used&quot;: [
+    [
+      &quot;no_proof_no_evolution@1.0.0&quot;,
+      &quot;Policy / Guardrail Artifact&quot;,
+      &quot;No Proof, No Evolution&quot;,
+      &quot;No candidate improvement can propagate without proof.&quot;
+    ],
+    [
+      &quot;no_eval_no_propagation@1.0.0&quot;,
+      &quot;Policy / Guardrail Artifact&quot;,
+      &quot;No Eval, No Propagation&quot;,
+      &quot;No candidate can spread without required eval gates.&quot;
+    ],
+    [
+      &quot;no_rollback_no_release@1.0.0&quot;,
+      &quot;Policy / Guardrail Artifact&quot;,
+      &quot;No Rollback, No Release&quot;,
+      &quot;Every release must include a rollback target.&quot;
+    ],
+    [
+      &quot;sovereign_privacy_boundary@1.0.0&quot;,
+      &quot;Policy / Guardrail Artifact&quot;,
+      &quot;Sovereign Privacy Boundary&quot;,
+      &quot;Only generalized, redacted, eval-passed artifacts may cross sovereign boundaries.&quot;
+    ]
+  ],
+  &quot;evals_used&quot;: [
+    [
+      &quot;aim_integrity_eval@1.0.0&quot;,
+      &quot;Eval / Judgment Artifact&quot;,
+      &quot;Aim Integrity Eval&quot;,
+      &quot;Checks that each Aim has success criteria, constraints, risk, and required evals.&quot;
+    ],
+    [
+      &quot;proof_completeness_eval@1.0.0&quot;,
+      &quot;Eval / Judgment Artifact&quot;,
+      &quot;Proof Completeness Eval&quot;,
+      &quot;Checks that each action emitted traces, score, cost, latency, policy decisions, and credit assignment.&quot;
+    ],
+    [
+      &quot;selection_gate_eval@1.0.0&quot;,
+      &quot;Eval / Judgment Artifact&quot;,
+      &quot;Selection Gate Eval&quot;,
+      &quot;Checks that upgrades pass baseline comparison, approval, canary, monitoring, and rollback readiness.&quot;
+    ],
+    [
+      &quot;claim_boundary_eval@1.0.0&quot;,
+      &quot;Eval / Judgment Artifact&quot;,
+      &quot;Claim Boundary Eval&quot;,
+      &quot;Checks that synthetic scenarios are not presented as real-world revenue, ROI, superintelligence, energy capture, or Kardashev achievement.&quot;
+    ]
+  ],
+  &quot;tools_used&quot;: [
+    [
+      &quot;artifact_resolver_tool@1.0.0&quot;,
+      &quot;Tool / Action Artifact&quot;,
+      &quot;Artifact Resolver Tool&quot;,
+      &quot;Resolves active artifact versions for a run.&quot;
+    ],
+    [
+      &quot;proof_export_tool@1.0.0&quot;,
+      &quot;Tool / Action Artifact&quot;,
+      &quot;Proof Export Tool&quot;,
+      &quot;Exports public, redacted proof records.&quot;
+    ],
+    [
+      &quot;rollout_router_tool@1.0.0&quot;,
+      &quot;Tool / Action Artifact&quot;,
+      &quot;Rollout Router Tool&quot;,
+      &quot;Routes canary traffic and preserves rollback paths.&quot;
+    ]
+  ],
+  &quot;contexts_used&quot;: [
+    [
+      &quot;sovereign_domain_context@1.0.0&quot;,
+      &quot;Context / Grounding Artifact&quot;,
+      &quot;Sovereign Domain Context&quot;,
+      &quot;Grounds proof in sovereign-domain operating constraints.&quot;
+    ],
+    [
+      &quot;kardashev_scenario_context@1.0.0&quot;,
+      &quot;Context / Grounding Artifact&quot;,
+      &quot;Kardashev Scenario Context&quot;,
+      &quot;Grounds the Kardashev quote as an ambition and scenario, not an achieved result.&quot;
+    ]
+  ],
+  &quot;agent_mesh&quot;: {
+    &quot;name&quot;: &quot;Maximum-Effect Sovereign Agent Coordination Lattice&quot;,
+    &quot;agent_count&quot;: 8388608,
+    &quot;sovereign_domains&quot;: 1280,
+    &quot;guilds&quot;: 128,
+    &quot;coordination_verdict&quot;: &quot;large_multi_agent_coordination_to_maximum_effect_verified_deterministically&quot;
+  },
+  &quot;recursive_self_improvement&quot;: {
+    &quot;rsi_cycles&quot;: 512,
+    &quot;eval_cases&quot;: 2684354560,
+    &quot;aims&quot;: 655360,
+    &quot;actions&quot;: 655360,
+    &quot;proofs&quot;: 655360,
+    &quot;selected_improvements&quot;: 648704,
+    &quot;rejected_improvements&quot;: 6656,
+    &quot;rollbacks&quot;: 6656,
+    &quot;meta_rsi_upgrades&quot;: 32,
+    &quot;synthetic_network_index_start&quot;: 100000.0,
+    &quot;synthetic_network_index_final&quot;: 312000411.224,
+    &quot;synthetic_kardashev_scenario_index_start&quot;: 1e-06,
+    &quot;synthetic_kardashev_scenario_index_final&quot;: 0.00674432
+  },
+  &quot;selection_gate&quot;: {
+    &quot;decision&quot;: &quot;approve_the_proof_loop_canary&quot;,
+    &quot;rollout_percentage&quot;: 10,
+    &quot;rollback_target&quot;: &quot;aim_act_prove_evolve_plan@1.0.0&quot;,
+    &quot;required_evals&quot;: &quot;passed&quot;
+  },
+  &quot;claim_boundary&quot;: {
+    &quot;real_revenue_claimed&quot;: false,
+    &quot;guaranteed_roi_claimed&quot;: false,
+    &quot;actual_deployed_superintelligence_claimed&quot;: false,
+    &quot;kardashev_type_ii_achievement_claimed&quot;: false,
+    &quot;real_world_energy_capture_claimed&quot;: false,
+    &quot;private_data_shared&quot;: false,
+    &quot;rollback_required&quot;: true
+  }
+}</pre>
+
+    <h2>Checksum</h2>
+    <pre>24aa3cfb588d3b61aefdf100e8d9181c3c8dafe33ec84d049c067b1880c6c1fd</pre>
+    
+    </main>
+  
+<!-- PG-SITE-FOOTER:START -->
+
+
+<!-- PG-SITE-FOOTER:END -->
+
+
+
+<!-- GOALOS-CANONICAL-FOOTER:START -->
+<footer class="goalos-footer">
+  <div class="goalos-footer-inner">
+    <div>GoalOS · Recursive Workflow OS · Proof Rooms · Enterprise RSI</div>
+    <div><a href="/proof-gradient/site-map/">Site Map</a><a href="/proof-gradient/pricing/">Pricing</a><a href="https://github.com/MontrealAI/proof-gradient">GitHub</a><a href="https://www.quebecartificialintelligence.com/shop">Shop</a></div>
+  </div>
+</footer>
+<!-- GOALOS-CANONICAL-FOOTER:END -->
+</body>
+</html>

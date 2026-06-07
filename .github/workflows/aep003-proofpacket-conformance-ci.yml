@@ -22,7 +22,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ -d docs/standards/AEP-003/examples ]; then
-            for f in docs/standards/AEP-003/examples/sample_proof_packet_*.json; do
+            for f in docs/standards/AEP-003/examples/sample_proof_packet_[0-9][0-9]_*.json; do
               [ -f "$f" ] || continue
               python docs/standards/AEP-003/tools/validate_proof_packet.py "$f"
             done
