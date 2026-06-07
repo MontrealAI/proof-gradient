@@ -1,0 +1,9 @@
+code,title,public_package_allowed
+AEP-001,GoalOS Proof-of-Evolution Constitution,standards/AEP-001/complete-package.zip
+AEP-002,Evidence Docket Standard,standards/AEP-002/complete-package.zip
+AEP-003,ProofPacket Schema,standards/AEP-003/complete-package.zip
+AEP-004,Selection Gate Standard,standards/AEP-004/complete-package.zip
+AEP-005,Tool Permission Standard,standards/AEP-005/complete-package.zip
+AEP-006,Rollback Receipt Standard,standards/AEP-006/complete-package.zip
+AEP-007,Public-Safe Proof Report Standard,standards/AEP-007/complete-package.zip
+AEP-008,Proof Room Standard,standards/AEP-008/complete-package.zip

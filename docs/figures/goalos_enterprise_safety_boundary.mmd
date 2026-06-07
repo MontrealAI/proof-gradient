@@ -1,0 +1,5 @@
+flowchart LR
+AI[Base AI model unchanged]-->Gateway[Model gateway restrictions]
+Gateway-->Workflow[Workflow instructions/memory/scorecards]
+Workflow-->Approval[Human approval gate]
+Approval-->Release[Versioned release and rollback]

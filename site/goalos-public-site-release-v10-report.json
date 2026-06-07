@@ -1,0 +1,32 @@
+{
+  "release": "GoalOS Public Site Release v10",
+  "date": "2026-06-07",
+  "canonical_shell": "one nav and one footer per generated public HTML page",
+  "required_pages": [
+    "index.html",
+    "start-here/index.html",
+    "products/index.html",
+    "pricing/index.html",
+    "services/index.html",
+    "examples/index.html",
+    "standards/index.html",
+    "command-center/index.html",
+    "site-map/index.html",
+    "404.html",
+    "products/goalos-ai-efficiency-sprint-kit/index.html",
+    "products/goalos-rsi-lite/index.html",
+    "products/goalos-proof-room-lite/index.html",
+    "products/goalos-rsi-sprint-workshop/index.html",
+    "products/goalos-proof-room-implementation-sprint/index.html",
+    "products/goalos-enterprise-rsi-pilot/index.html",
+    "products/goalos-cloud-mvp/index.html",
+    "workshop/goalos-rsi-sprint-workshop/index.html",
+    "workshop/goalos-proof-room-implementation-sprint/index.html",
+    "implementation/goalos-proof-room-implementation-sprint/index.html",
+    "enterprise/goalos-enterprise-rsi-pilot/index.html",
+    "platform/goalos-recursive-workflow-os/index.html",
+    "brand/visual-system/index.html"
+  ],
+  "asset_count": 55,
+  "safe_boundary": "GoalOS does not modify base AI models. GoalOS improves workflows around AI through instructions, prompts, memory, scorecards, proof records, evaluations, approvals, versions, monitoring, and rollback."
+}

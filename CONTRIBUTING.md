@@ -1,26 +1,15 @@
 # Contributing
 
-Thank you for improving Agent SkillOS.
+Use GoalOS Public Site Release v10 as the current path.
 
-## Local setup
+Before opening a PR:
 
 ```bash
-python -m skillos.cli demo
-python -m unittest discover -s tests
+python scripts/validate_goalos_catalog.py
+python scripts/check_no_paid_artifacts.py
+python scripts/validate_docs_tables_figures.py
+node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
+pytest
 ```
 
-## Development principles
-
-1. Keep the core loop easy to understand.
-2. Prefer small, inspectable skill artifacts over opaque behavior.
-3. Every new skill update path needs tests.
-4. Every release path needs rollback.
-5. Do not mix private knowledge with shared skill.
-
-## Pull request checklist
-
-- [ ] Tests pass.
-- [ ] New behavior is documented.
-- [ ] New skill behavior is versioned.
-- [ ] Permission changes are explicit.
-- [ ] No local `.skillos` data is committed.
+Public copy must keep QUEBEC.AI ⚜️✨ together, use the official seal from `assets/quebecaisealv5.png`, point all buy/apply CTAs to `https://www.quebecartificialintelligence.com/shop`, and preserve the safe boundary that GoalOS does not modify base AI models.

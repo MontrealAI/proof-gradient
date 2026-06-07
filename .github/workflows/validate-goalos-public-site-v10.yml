@@ -1,0 +1,45 @@
+name: Validate GoalOS Public Site v10
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'site/**'
+      - 'public/**'
+      - 'assets/**'
+      - 'docs/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
+      - 'README.md'
+      - 'data/goalos_products.json'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Python validation dependencies
+        run: python -m pip install pyyaml pytest httpx2
+      - name: Validate catalog and public site shell
+        run: python scripts/validate_goalos_catalog.py
+      - name: Check paid/private artifacts
+        run: python scripts/check_no_paid_artifacts.py
+      - name: Validate docs, tables, and figures
+        run: python scripts/validate_docs_tables_figures.py
+      - name: Run Cloud MVP enterprise core test when present
+        run: |
+          if [ -f site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs ]; then
+            node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
+          else
+            echo "Cloud MVP enterprise core test not present; see docs/GOALOS_CLOUD_MVP_0_2.md"
+            exit 1
+          fi
