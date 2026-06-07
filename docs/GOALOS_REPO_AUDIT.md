@@ -1,7 +1,7 @@
 # GoalOS / Proof Gradient Repository Audit
 
 Date: 2026-06-07
-Branch: `feature/goalos-public-site-mvp-unification`
+Branch: `feature/goalos-unified-site-cloud-mvp`
 
 ## Current site root
 
@@ -25,7 +25,7 @@ Branch: `feature/goalos-public-site-mvp-unification`
 
 - Paid-risk filename patterns found before repair included standards ZIP material under `site/standards/AEP-001/complete-package.zip` and release ZIP material outside the public site under `releases/`.
 - Standards implementation files were detected by broad filename patterns because they include the word `implementation`; they are public standards documentation, not paid delivery kits.
-- `scripts/check_no_paid_artifacts.py` now blocks ZIPs and paid buyer/workshop/implementation/enterprise bundle patterns from `site/`, with explicit public documentation/action-kit whitelisting only.
+- `scripts/check_no_paid_artifacts.py` now blocks active public-site ZIPs and paid buyer/workshop/implementation/enterprise bundle patterns from `site/`, while allowing public standards markdown/HTML/schema/action documentation.
 
 ## Files changed
 
@@ -41,7 +41,7 @@ Branch: `feature/goalos-public-site-mvp-unification`
 
 ## Files preserved
 
-- Existing standards, docs, examples, schemas, tests, package files, Docker files, workflows, data files, and previous public pages were preserved.
+- Existing standards, docs, examples, schemas, tests, package files, Docker files, workflows, data files, and previous public pages were preserved; the active public-site standards ZIP was removed from deploy scope to satisfy the no-ZIP public artifact boundary.
 - Existing AEP standards content was not removed; public HTML index pages were shell-unified only.
 - Paid buyer products were not added to the repository. Public buttons point to QUEBEC.AI shop.
 
@@ -56,11 +56,12 @@ Branch: `feature/goalos-public-site-mvp-unification`
 - `python scripts/check_no_paid_artifacts.py` — passed.
 - `python scripts/validate_goalos_products.py` — passed.
 - `python scripts/check_site_links.py` — passed.
-- `pytest` — passed: 72 tests, 2 warnings.
-- `make test` — passed: 56 unittest tests.
+- `pytest` — passed: 72 tests, 3 warnings after installing editable dev dependencies (`python -m pip install -e .[dev]`).
+- `make test` — passed: 56 unittest tests after installing editable dev dependencies.
 
 ## Known limitations
 
+- Initial `pytest` / `make test` attempts failed because the container did not have the editable package and `httpx` test dependency installed; rerun passed after `python -m pip install -e .[dev]`.
 - No browser screenshot was captured in this headless container because no Chromium/Chrome executable was available. Local HTML was validated by static checks and test suites.
 - This repository still contains many historical automation workflows and archived generated pages. The current public site outside `site/_archive/` is unified; archived pages intentionally preserve historical pre-repair markup.
 - `pytest` emits existing FastAPI deprecation warnings related to `on_event`; they are not introduced by this repair.

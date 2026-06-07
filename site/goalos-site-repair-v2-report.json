@@ -5,7 +5,9 @@
     "backed up public HTML",
     "created canonical CSS/JS",
     "refreshed commercial pages",
-    "canonicalized public HTML shell/footer"
+    "canonicalized public HTML shell/footer",
+    "removed three residual legacy proof-page nav bars before main content",
+    "removed active public-site ZIP artifacts from deploy scope"
   ],
   "canonicalMarkers": [
     "GOALOS-CANONICAL-SHELL",

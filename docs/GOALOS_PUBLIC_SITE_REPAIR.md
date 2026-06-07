@@ -29,7 +29,7 @@ Public HTML files were backed up before canonicalization under:
 
 ## Validation
 
-Validation is implemented in `scripts/validate_goalos_site_v2.py` and checks that every public HTML page outside `site/_archive/` has exactly one canonical nav marker, exactly one canonical footer marker, no old GoalOS shell markers, no duplicate Cloud MVP homepage marker, and no broken internal `/proof-gradient/...` links.
+Validation is implemented in `scripts/validate_goalos_site_v2.py` and checks that every public HTML page outside `site/_archive/` has exactly one canonical nav marker, exactly one canonical footer marker, no old GoalOS shell markers, no duplicate Cloud MVP homepage marker, no duplicate topbar/header/nav blocks before main content, and no broken internal `/proof-gradient/...` links.
 
 ## Security guard
 

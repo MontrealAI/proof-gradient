@@ -85,6 +85,14 @@ The AEP standards are the public trust layer. They provide the vocabulary for pr
 
 Existing standards content, schemas, examples, conformance materials, and documentation are preserved.
 
+## Strategy docs
+
+- `docs/GOALOS_COMMERCIALIZATION_STATUS.md` — public commercialization status and ladder.
+- `docs/GOALOS_CLOUD_MVP_0_2.md` — Cloud MVP scope, demo story, and validation.
+- `docs/GOALOS_PUBLIC_SITE_REPAIR.md` — canonical shell repair notes and validation.
+- `docs/GOALOS_RECURSIVE_WORKFLOW_OS.md` — platform definition and safe recursive workflow loop.
+- `docs/GOALOS_PAID_ARTIFACT_POLICY.md` — paid/private artifact boundary for the public repo and Pages site.
+
 ## Claim boundary
 
 This repository and public site do not claim guaranteed ROI, income, productivity, compliance certification, safety guarantees, legal advice, financial advice, investment advice, autonomous deployment, uncontrolled autonomous AGI, AI model self-modification, real revenue, real profit, or real-world energy capture.
