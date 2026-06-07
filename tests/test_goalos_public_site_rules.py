@@ -69,3 +69,18 @@ def test_near_miss_aep_zip_paths_are_blocked():
     assert not is_public_aep_package("standards/AEP-001/buyer-package.zip")
     assert is_blocked_paid_or_private_artifact("standards/AEP-001/buyer-package.zip")
     assert is_blocked_paid_or_private_artifact("standards/AEP-001/complete-package-v2.zip")
+
+
+def test_path_normalization_and_public_root_stripping():
+    from scripts.goalos_public_site_rules import normalize_rel, strip_public_root
+
+    assert normalize_rel(r".\\site\\standards\\AEP-001\\complete-package.zip") == "site/standards/AEP-001/complete-package.zip"
+    assert strip_public_root("public/standards/AEP-002/complete-package.zip") == "standards/AEP-002/complete-package.zip"
+    assert strip_public_root("/site/pricing/index.html") == "pricing/index.html"
+
+
+def test_site_prefixed_rsi_and_app_pages_keep_classification():
+    assert is_standalone_proof_page("site/rsi-ai-first-blockchain-capital-machine-proof.html", "")
+    assert not requires_canonical_shell("public/rsi-ai-first-governance-capital-engine-proof.html", "")
+    assert is_app_page("site/app/goalos-cloud-mvp/index.html")
+    assert not requires_canonical_shell("site/app/goalos-cloud-mvp/index.html", "<html></html>")

@@ -73,9 +73,15 @@ All other ZIPs in public deploy roots remain blocked unless a narrow reviewed pu
 ## Run locally
 
 ```bash
-python scripts/validate_goalos_public_site.py
+python -m pytest tests/test_goalos_public_site_rules.py -q
 python scripts/check_no_paid_artifacts.py
-python scripts/validate_docs_tables_figures.py
-python scripts/validate_goalos_catalog.py
-python -m pytest tests/test_goalos_public_site_rules.py
+python scripts/validate_goalos_public_site.py
+pytest
+make test
+```
+
+If full repository tests fail because optional development dependencies are missing, install the dev extra first:
+
+```bash
+python -m pip install -e '.[dev]'
 ```
