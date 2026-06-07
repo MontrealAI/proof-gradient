@@ -35,6 +35,7 @@ proof-gradient = "proof_gradient.cli:main"
 include = ["proof_gradient*"]
 
 [tool.pytest.ini_options]
+pythonpath = ["."]
 testpaths = ["tests"]
 addopts = "-q"
 python_files = ["test_*.py"]
