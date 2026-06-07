@@ -1,15 +1,11 @@
 # Security Policy
 
-Agent SkillOS is a reference implementation. It is designed to demonstrate safe skill learning patterns, not to replace enterprise security controls.
+GoalOS / Proof Gradient public surfaces must preserve the safe AI boundary: GoalOS does not modify base AI models. GoalOS improves workflows around AI through instructions, prompts, memory, scorecards, proof records, evaluations, approvals, versions, monitoring, and rollback.
 
-## Core safety expectations
+Do not publish paid buyer files, private delivery bundles, workshop delivery kits, implementation bundles, enterprise pilot bundles, seller assets, or private operating materials. Run:
 
-- Do not let agents silently publish global skill changes.
-- Do not let private data become a shared network skill.
-- Do not grant tool access through skill text alone.
-- Require approval for high-impact actions.
-- Keep release history and rollback paths.
+```bash
+python scripts/check_no_paid_artifacts.py
+```
 
-## Reporting issues
-
-For a real deployment, route security reports through your organization's vulnerability disclosure process.
+Report security concerns through the repository maintainers. This repository does not provide legal, financial, tax, HR, security, medical, or regulatory advice.
