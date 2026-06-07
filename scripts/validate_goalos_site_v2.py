@@ -18,6 +18,7 @@ CANONICAL_FOOTER = "GOALOS-CANONICAL-FOOTER:START"
 DUPLICATE_MVP = "GOALOS-CLOUD-MVP homepage duplicate"
 PG_MARKUP = ("pg-", "data-pg-search", "data-pg-card")
 LINK_RE = re.compile(r"(?:href|src)=[\"']([^\"']+)[\"']", re.IGNORECASE)
+EXTRA_TOPBAR_RE = re.compile(r"<(?:nav|header)\b|class=[\"'][^\"']*(?:topbar|navbar|navlinks|shell)[^\"']*[\"']", re.IGNORECASE)
 
 
 def is_public_html(path: Path) -> bool:
@@ -54,6 +55,12 @@ def main() -> int:
             failures.append(f"{rel}: expected exactly one canonical footer marker, found {text.count(CANONICAL_FOOTER)}")
         if OLD_MARKERS.search(text):
             failures.append(f"{rel}: old GoalOS shell marker remains")
+        shell_end = text.find("GOALOS-CANONICAL-SHELL:END")
+        main_start = text.lower().find("<main", shell_end if shell_end != -1 else 0)
+        if shell_end != -1 and main_start != -1:
+            between_shell_and_main = text[shell_end:main_start]
+            if EXTRA_TOPBAR_RE.search(between_shell_and_main):
+                failures.append(f"{rel}: duplicate topbar/header/nav remains before main content")
         if DUPLICATE_MVP in text:
             failures.append(f"{rel}: duplicate Cloud MVP homepage block marker remains")
         if any(marker in text for marker in PG_MARKUP):
