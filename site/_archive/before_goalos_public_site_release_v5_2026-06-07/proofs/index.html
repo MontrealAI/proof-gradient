@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Proof Gradient · Proof Archive</title>
+    <style>
+    :root {
+      color-scheme: dark;
+      --bg: #05070d;
+      --panel: rgba(11,16,32,.82);
+      --line: rgba(255,255,255,.14);
+      --text: #f7f8ff;
+      --muted: #aab3cf;
+      --gold: #f4c76b;
+      --blue: #8ab4ff;
+      --green: #91f2bf;
+      --violet: #b8a7ff;
+      --red: #ff9c9c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 6%, rgba(138,180,255,.20), transparent 30%),
+        radial-gradient(circle at 88% 8%, rgba(244,199,107,.16), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(184,167,255,.10), transparent 38%),
+        linear-gradient(180deg, #05070d 0%, #090d18 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { width: min(1260px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 90px; }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-weight: 800; font-size: 13px; }
+    h1 { font-size: clamp(48px, 8vw, 112px); line-height: .92; letter-spacing: -.075em; margin: 18px 0 20px; }
+    h2 { font-size: clamp(30px, 4vw, 56px); line-height: 1; letter-spacing: -.055em; margin: 50px 0 20px; }
+    h3 { font-size: 24px; margin-top: 0; }
+    p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
+    a { color: var(--blue); }
+    .hero-line { max-width: 920px; font-size: 22px; }
+    .nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 36px; }
+    .nav a { text-decoration: none; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; background: rgba(255,255,255,.045); }
+    .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+    .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: var(--panel); min-height: 160px; box-shadow: 0 18px 70px rgba(0,0,0,.25); }
+    .card b { display: block; font-size: 21px; margin-bottom: 10px; }
+    .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
+    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 680px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; color: var(--muted); vertical-align: top; }
+    th { color: var(--text); background: rgba(255,255,255,.07); }
+    tr:last-child td { border-bottom: 0; }
+    .visual { border: 1px solid var(--line); border-radius: 26px; padding: 24px; background: rgba(11,16,32,.86); margin: 24px 0; }
+    svg { width: 100%; height: auto; display: block; }
+    .small { font-size: 15px; }
+    @media (max-width: 1000px) { .grid, .grid3 { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+    </style>
+            <link rel="stylesheet" href="/proof-gradient/assets/goalos-opulent-v4.css" data-goalos-canonical-css>
+  <script defer src="/proof-gradient/assets/goalos-opulent-v4.js" data-goalos-canonical-js></script>
+</head>
+  <body>
+<!-- GOALOS-CANONICAL-SHELL:START -->
+<header class="goalos-shell">
+  <nav class="goalos-nav" aria-label="GoalOS canonical navigation">
+    <a class="goalos-brand" href="/proof-gradient/"><span class="goalos-mark">G</span><span>GoalOS · Proof Gradient</span></a>
+    <div class="goalos-links">
+      <a href="/proof-gradient/start-here/">Start / Départ</a>
+      <a href="/proof-gradient/products/">Products / Produits</a>
+      <a href="/proof-gradient/pricing/">Pricing / Tarifs</a>
+      <a href="/proof-gradient/services/">Services</a>
+      <a href="/proof-gradient/workshop/goalos-rsi-sprint-workshop/">RSI Workshop</a>
+      <a href="/proof-gradient/products/goalos-cloud-mvp/">Cloud MVP</a>
+      <a href="/proof-gradient/standards/">Standards</a>
+      <a class="shop" href="https://www.quebecartificialintelligence.com/shop">Shop</a>
+    </div>
+  </nav>
+</header>
+<!-- GOALOS-CANONICAL-SHELL:END -->
+
+
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+
+
+
+<!-- PG-SITE-SHELL:END -->
+
+
+
+    <main>
+      <div class="eyebrow">Proof Gradient · Proof Archive</div>
+      
+    <h1>Proof<br>Archive.</h1>
+    <p class="hero-line">Every proof has a permanent webpage and evidence JSON.</p>
+    <nav class="nav">
+      <a href="../index.html">Command Center</a>
+      <a href="../production.html">Production Platform</a>
+      <a href="index.html">Proof Archive</a>
+      <a href="../docs/index.html">Docs</a>
+    </nav>
+    <div class="grid3">
+        <div class="card">
+          <b>Proof #1 — Sovereign Swarm</b>
+          <p>A deterministic large multi-agent coordination lattice.</p>
+          <p><a href="001-sovereign-swarm.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/001-sovereign-swarm.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #2 — Evolution Tournament</b>
+          <p>Candidates compete against baselines.</p>
+          <p><a href="002-evolution-tournament.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/002-evolution-tournament.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #3 — Recursive Evolution Ladder</b>
+          <p>Selected artifacts become the next baseline.</p>
+          <p><a href="003-recursive-evolution-ladder.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/003-recursive-evolution-ladder.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #4 — Corporate RSI Dominion</b>
+          <p>Corporate-domain recursive self-improvement.</p>
+          <p><a href="004-corporate-rsi-dominion.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/004-corporate-rsi-dominion.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #5 — Enterprise RSI Superorganism</b>
+          <p>An AI-first corporate operating system that recursively improves enterprise artifacts.</p>
+          <p><a href="005-enterprise-rsi-superorganism.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/005-enterprise-rsi-superorganism.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #6 — Sovereign Enterprise Constellation</b>
+          <p>A network of sovereign enterprises evolving through proof.</p>
+          <p><a href="006-sovereign-enterprise-constellation.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/006-sovereign-enterprise-constellation.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #7 — Sovereign Enterprise Proof Economy</b>
+          <p>A proof market for reusable intelligence.</p>
+          <p><a href="007-sovereign-enterprise-proof-economy.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/007-sovereign-enterprise-proof-economy.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #8 — Sovereign Domain Atlas</b>
+          <p>An institutional RSI atlas across sovereign domains.</p>
+          <p><a href="008-sovereign-domain-atlas.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/008-sovereign-domain-atlas.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #9 — Sovereign Kardashev Capital Engine</b>
+          <p>A capital–compute–energy scenario engine.</p>
+          <p><a href="009-sovereign-kardashev-capital-engine.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/009-sovereign-kardashev-capital-engine.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #10 — Proof-Carrying Intelligence</b>
+          <p>Every change carries proof.</p>
+          <p><a href="010-proof-carrying-intelligence.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/010-proof-carrying-intelligence.json">Evidence JSON →</a></p>
+        </div>
+        
+        <div class="card">
+          <b>Proof #11 — The Proof Loop</b>
+          <p>Aim → Act → Prove → Evolve.</p>
+          <p><a href="011-the-proof-loop.html">Open proof →</a></p>
+          <p><a href="../assets/proofs/011-the-proof-loop.json">Evidence JSON →</a></p>
+        </div>
+        </div>
+    
+    </main>
+  
+<!-- PG-SITE-FOOTER:START -->
+
+
+<!-- PG-SITE-FOOTER:END -->
+
+
+
+
+
+
+<!-- GOALOS-CANONICAL-FOOTER:START -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>GoalOS · Recursive Workflow OS · Atelier RSI Sprint · Proof Rooms</div>
+    <div><a href="/proof-gradient/site-map/">Site Map</a><a href="/proof-gradient/pricing/">Pricing</a><a href="https://github.com/MontrealAI/proof-gradient">GitHub</a><a href="https://www.quebecartificialintelligence.com/shop">Shop</a></div>
+  </div>
+</footer>
+<!-- GOALOS-CANONICAL-FOOTER:END -->
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Internal Approval Memo — GoalOS Workflow Example</title>
+  <meta name="description" content="Turn interest in the Team Pack into an internal approval memo, procurement email, rollout plan, manager FAQ, and proof note." />
+  <meta property="og:title" content="Turn interest into approval." />
+  <meta property="og:description" content="Buyer note → manager memo → procurement email → rollout plan → proof note." />
+  <meta property="og:image" content="/proof-gradient/assets/internal-approval-memo-card.svg" />
+  <style>
+    :root{--bg:#05070d;--text:#f6f7ff;--muted:#b8c0da;--gold:#ffd76a;--line:rgba(255,255,255,.16)}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 18% 0%,rgba(145,183,255,.20),transparent 34rem),radial-gradient(circle at 92% 5%,rgba(255,215,106,.14),transparent 28rem),var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{width:min(1160px,calc(100% - 36px));margin:0 auto;padding:64px 0 92px}
+    .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-weight:900;font-size:12px}
+    h1{font-size:clamp(48px,8vw,104px);line-height:.88;letter-spacing:-.08em;margin:18px 0}
+    h2{font-size:clamp(30px,5vw,58px);letter-spacing:-.055em;margin-top:52px}
+    h3{margin-top:0}
+    .lead{max-width:920px;color:var(--muted);font-size:21px;line-height:1.55}
+    .bar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 22px}
+    .btn{display:inline-flex;margin:0;padding:12px 16px;border:1px solid rgba(255,215,106,.52);border-radius:999px;text-decoration:none;font-weight:850;background:rgba(255,255,255,.06);color:var(--text)}
+    .btn.primary{background:rgba(255,215,106,.16)}
+    .panel,.card,.step{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border-radius:24px;padding:22px}
+    .law{font-size:clamp(24px,4vw,42px);line-height:1.13;letter-spacing:-.045em}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
+    .steps{display:grid;gap:14px;margin:28px 0}
+    .step strong{color:var(--gold)}
+    .card p,.step p{color:var(--muted);line-height:1.45}
+    pre{white-space:pre-wrap;background:#080b13;border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:18px;color:#eaf0ff;line-height:1.45;overflow-wrap:anywhere}
+    .mini{font-size:14px;color:var(--muted)}
+    .pill{display:inline-flex;padding:7px 10px;border:1px solid rgba(255,215,106,.45);border-radius:999px;color:var(--gold);font-weight:850;font-size:13px;margin:4px}
+    footer{margin-top:44px;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.grid,.two{grid-template-columns:1fr}}
+    </style>
+          <link rel="stylesheet" href="/proof-gradient/assets/goalos-opulent-v4.css" data-goalos-canonical-css>
+  <script defer src="/proof-gradient/assets/goalos-opulent-v4.js" data-goalos-canonical-js></script>
+</head>
+<body>
+<!-- GOALOS-CANONICAL-SHELL:START -->
+<header class="goalos-shell">
+  <nav class="goalos-nav" aria-label="GoalOS canonical navigation">
+    <a class="goalos-brand" href="/proof-gradient/"><span class="goalos-mark">G</span><span>GoalOS · Proof Gradient</span></a>
+    <div class="goalos-links">
+      <a href="/proof-gradient/start-here/">Start / Départ</a>
+      <a href="/proof-gradient/products/">Products / Produits</a>
+      <a href="/proof-gradient/pricing/">Pricing / Tarifs</a>
+      <a href="/proof-gradient/services/">Services</a>
+      <a href="/proof-gradient/workshop/goalos-rsi-sprint-workshop/">RSI Workshop</a>
+      <a href="/proof-gradient/products/goalos-cloud-mvp/">Cloud MVP</a>
+      <a href="/proof-gradient/standards/">Standards</a>
+      <a class="shop" href="https://www.quebecartificialintelligence.com/shop">Shop</a>
+    </div>
+  </nav>
+</header>
+<!-- GOALOS-CANONICAL-SHELL:END -->
+
+
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+
+
+
+<!-- PG-SITE-SHELL:END -->
+
+
+
+  <main>
+    <div class="eyebrow">GoalOS · B2B Loop · Example 16</div>
+    <h1>Turn interest into approval.</h1>
+    <p class="lead">This reusable AI workflow turns one interested employee, consultant, teacher, or team lead into an internal champion with a manager memo, procurement email, rollout plan, FAQ, and proof note.</p>
+
+    <div class="bar">
+      <a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Get the kit</a>
+      <a class="btn" href="/proof-gradient/workflow/team-pack-upsell/">Example 15: Team Pack upsell</a>
+      <a class="btn" href="/proof-gradient/examples/">All examples</a>
+      <a class="btn" href="/proof-gradient/standards/">AEP standards</a>
+    </div>
+
+    <section class="panel">
+      <h2>The simple idea</h2>
+      <div class="law">A team buyer often needs approval before buying.</div>
+      <p class="lead">Instead of making an interested person explain everything from scratch, give them a reusable workflow that creates the approval memo for them.</p>
+    </section>
+
+    <section>
+      <h2>Before vs. after</h2>
+      <div class="two">
+        <div class="card">
+          <h3>Before: internal friction</h3>
+          <p>Someone wants the Team Pack but must explain it to a manager, budget owner, or procurement person. They hesitate or never ask.</p>
+          <p class="mini">Result: interest disappears before purchase.</p>
+        </div>
+        <div class="card">
+          <h3>After: approval workflow</h3>
+          <p>The workflow creates a clear internal memo, procurement email, rollout plan, manager FAQ, and proof note.</p>
+          <p class="mini">Result: easier team purchase without manual sales calls.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>The workflow in plain English</h2>
+      <div class="steps">
+        <div class="step"><strong>1. Context</strong><p>Tell the AI the product, price, buyer role, approval audience, team use case, and contents.</p></div>
+        <div class="step"><strong>2. Rules</strong><p>Tell the AI not to promise ROI, productivity, compliance, or automatic approval.</p></div>
+        <div class="step"><strong>3. Memory</strong><p>Save the standard explanation: ChatGPT is the tool; GoalOS helps the team build reusable workflows around repeated work.</p></div>
+        <div class="step"><strong>4. Workflow</strong><p>The AI creates the manager memo, procurement email, rollout plan, manager FAQ, and proof note.</p></div>
+        <div class="step"><strong>5. Checks</strong><p>The AI checks whether the memo is clear, calm, specific, and not overpromising.</p></div>
+        <div class="step"><strong>6. Proof</strong><p>The AI records what was claimed, what was avoided, and what needs internal review.</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Copy-paste example</h2>
+      <p class="lead">Rough internal approval notes:</p>
+      <pre>Rough internal approval notes:
+Product: GoalOS AI Efficiency Sprint Team Pack
+Price: $199
+Buyer: employee, consultant, team lead, teacher, or manager who wants approval to buy the Team Pack
+Audience: manager, budget owner, procurement person, or team lead
+Goal: make it easy to request approval without hype
+Use case: run a 60-minute team session to turn one repeated AI task into a reusable workflow
+Team Pack includes:
+- individual kit
+- team workshop agenda
+- manager facilitation guide
+- team workflow inventory
+- role assignment sheet
+- proof-room-lite template
+- rollout checklist
+- internal adoption email templates
+- team scoring rubric
+Rules:
+- no guaranteed ROI
+- no guaranteed productivity
+- no legal/compliance claims
+- no fake urgency
+- no fake testimonials
+- no claim that approval is automatic
+Digital product terms:
+instant access; all sales final once delivered except where required by law or for duplicate charges / technical access failures</pre>
+      <p class="lead">Reusable workflow output:</p>
+      <pre>Internal Approval Memo:
+Subject: Request to purchase GoalOS AI Efficiency Sprint Team Pack
+
+I would like approval to purchase the GoalOS AI Efficiency Sprint Team Pack.
+
+Purpose:
+Use the kit to run a 60-minute internal session where we turn one repeated AI task into a reusable workflow.
+
+Why this may help:
+Our team often repeats the same AI-assisted tasks from scratch. The Team Pack gives us a simple structure for turning one repeated task into a reusable workflow with:
+
+- context
+- rules
+- memory
+- workflow steps
+- checks
+- proof note
+
+Proposed first use case:
+Turn our recurring meeting notes or customer replies into a reusable workflow.
+
+What is included:
+- individual sprint kit
+- team workshop agenda
+- manager facilitation guide
+- team workflow inventory
+- role assignment sheet
+- proof-room-lite template
+- rollout checklist
+- internal adoption email templates
+- team scoring rubric
+
+Cost:
+$199 one-time digital product.
+
+Important boundaries:
+This is a self-serve digital product.
+It does not guarantee productivity, ROI, income, legal compliance, or perfect accuracy.
+Outputs still require human review.
+
+Suggested next step:
+Approve purchase and run one 60-minute pilot session with one repeated task.
+
+Procurement / Purchase Email:
+Hi,
+
+We would like to purchase the GoalOS AI Efficiency Sprint Team Pack.
+
+Product:
+GoalOS AI Efficiency Sprint Team Pack
+
+Price:
+$199
+
+Purpose:
+Internal team AI workflow training / reusable workflow development.
+
+Please confirm the preferred purchase method.
+
+Thanks.
+
+Mini Rollout Plan:
+1. Choose one repeated team task.
+2. Invite 3–6 people involved in that task.
+3. Run the 60-minute sprint.
+4. Build one reusable workflow.
+5. Add checks.
+6. Create a proof note.
+7. Decide whether to repeat with another task.
+
+Manager FAQ:
+Q: Is this software?
+A: It is a digital workflow kit, not enterprise software.
+
+Q: Does it guarantee productivity?
+A: No. It provides a structured method and templates. Results depend on use and review.
+
+Q: Does it replace policy or compliance review?
+A: No. It is not legal, financial, medical, employment, security, or compliance advice.
+
+Q: Why not just use ChatGPT?
+A: ChatGPT is the tool. The kit helps the team build a reusable workflow around repeated work instead of starting from scratch every time.
+
+Q: Is this a subscription?
+A: No. The Team Pack is a one-time digital kit.</pre>
+      <p class="lead">Proof note:</p>
+      <pre>Proof note:
+Source: rough internal approval notes.
+Outputs created: internal approval memo, procurement email, rollout plan, manager FAQ.
+Claims made: the Team Pack provides materials to run a team sprint and build one reusable workflow.
+Claims avoided: no guaranteed ROI, no guaranteed productivity, no compliance claim, no legal advice, no automatic approval claim.
+Review needed: human should confirm internal purchasing rules, exact product contents, budget authority, and digital product terms before sending.
+Public-safe: yes, if internal company details are removed.</pre>
+    </section>
+
+    <section>
+      <h2>What the buyer gets</h2>
+      <div>
+        <span class="pill">Manager memo</span>
+        <span class="pill">Procurement email</span>
+        <span class="pill">Rollout plan</span>
+        <span class="pill">Manager FAQ</span>
+        <span class="pill">Claim boundary</span>
+        <span class="pill">Proof note</span>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Built for B2B demand</h3><p>Help internal champions explain the Team Pack to decision-makers.</p></div>
+        <div class="card"><h3>No inflated claims</h3><p>The workflow avoids ROI, productivity, and compliance promises.</p></div>
+        <div class="card"><h3>Low-touch selling</h3><p>Buyers can self-serve the approval request instead of booking a call.</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Digital product terms</h2>
+      <p class="lead">Suggested low-friction wording: digital product, instant access, all sales final once delivered, except where required by law or for duplicate charges / technical access failures.</p>
+    </section>
+
+    <section class="panel">
+      <h2>The one-sentence promise</h2>
+      <div class="law">Paste approval notes. Get a manager memo and proof.</div>
+      <div class="bar">
+        <a class="btn primary" href="https://www.quebecartificialintelligence.com/shop">Get the GoalOS Team Pack</a>
+        <a class="btn" href="/proof-gradient/standards/AEP-008/">See the Proof Room Standard</a>
+      </div>
+    </section>
+
+    <footer>
+      Educational workflow example only. Not legal, financial, medical, tax, employment, procurement, security, or regulatory advice. No income, savings, compliance, safety, accuracy, productivity, or business-results guarantee. Review internal purchase rules and product terms before sending.
+    </footer>
+  </main>
+
+<!-- PG-SITE-FOOTER:START -->
+
+
+<!-- PG-SITE-FOOTER:END -->
+
+
+
+
+
+
+<!-- GOALOS-CANONICAL-FOOTER:START -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>GoalOS · Recursive Workflow OS · Atelier RSI Sprint · Proof Rooms</div>
+    <div><a href="/proof-gradient/site-map/">Site Map</a><a href="/proof-gradient/pricing/">Pricing</a><a href="https://github.com/MontrealAI/proof-gradient">GitHub</a><a href="https://www.quebecartificialintelligence.com/shop">Shop</a></div>
+  </div>
+</footer>
+<!-- GOALOS-CANONICAL-FOOTER:END -->
+</body>
+</html>
