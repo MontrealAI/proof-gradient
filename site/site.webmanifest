@@ -1,0 +1,22 @@
+{
+  "name": "QUEBEC.AI ⚜️✨ · GoalOS · Proof Gradient",
+  "short_name": "GoalOS ⚜️✨",
+  "description": "Bilingual public site for GoalOS Recursive Workflow OS, RSI Sprint Workshop, and Proof Rooms.",
+  "start_url": "/proof-gradient/",
+  "scope": "/proof-gradient/",
+  "display": "standalone",
+  "background_color": "#05070d",
+  "theme_color": "#ffd76a",
+  "icons": [
+    {
+      "src": "/proof-gradient/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/proof-gradient/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
