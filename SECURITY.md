@@ -1,15 +1,5 @@
 # Security Policy
 
-Agent SkillOS is a reference implementation. It is designed to demonstrate safe skill learning patterns, not to replace enterprise security controls.
+GoalOS public materials are not security advice. Public pages preserve the safe boundary: GoalOS does not modify base AI models. GoalOS improves workflows around AI through instructions, prompts, memory, scorecards, proof records, evaluations, approvals, versions, monitoring, and rollback.
 
-## Core safety expectations
-
-- Do not let agents silently publish global skill changes.
-- Do not let private data become a shared network skill.
-- Do not grant tool access through skill text alone.
-- Require approval for high-impact actions.
-- Keep release history and rollback paths.
-
-## Reporting issues
-
-For a real deployment, route security reports through your organization's vulnerability disclosure process.
+Report issues through GitHub Issues. Do not publish secrets, private buyer materials, or delivery bundles.

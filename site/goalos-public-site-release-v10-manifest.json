@@ -1,0 +1,31 @@
+{
+  "release": "GoalOS Public Site Release v10",
+  "date": "2026-06-07",
+  "pages": [
+    "/",
+    "/start-here/",
+    "/products/",
+    "/pricing/",
+    "/services/",
+    "/examples/",
+    "/standards/",
+    "/command-center/",
+    "/site-map/",
+    "/products/goalos-ai-efficiency-sprint-kit/",
+    "/products/goalos-rsi-lite/",
+    "/products/goalos-proof-room-lite/",
+    "/products/goalos-rsi-sprint-workshop/",
+    "/products/goalos-proof-room-implementation-sprint/",
+    "/products/goalos-enterprise-rsi-pilot/",
+    "/workshop/goalos-rsi-sprint-workshop/",
+    "/workshop/goalos-proof-room-implementation-sprint/",
+    "/implementation/goalos-proof-room-implementation-sprint/",
+    "/enterprise/goalos-enterprise-rsi-pilot/",
+    "/platform/goalos-recursive-workflow-os/",
+    "/brand/visual-system/",
+    "/app/goalos-cloud-mvp/"
+  ],
+  "shop_url": "https://www.quebecartificialintelligence.com/shop",
+  "seal": "site/assets/quebecaisealv5.png",
+  "brand_manifest": "site/assets/brand-assets-v10.json"
+}
