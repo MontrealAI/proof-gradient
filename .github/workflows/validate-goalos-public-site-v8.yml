@@ -1,4 +1,4 @@
-name: Validate GoalOS Public Site v8
+name: validate-goalos-public-site-v8 (delegates to shared v12 rules)
 
 on:
   workflow_dispatch:
@@ -6,7 +6,8 @@ on:
     paths:
       - 'site/**'
       - 'public/**'
-      - 'assets/quebecaisealv5.png'
+      - 'scripts/**'
+      - 'tests/test_goalos_public_site_rules.py'
       - '.github/workflows/**'
 
 permissions:
@@ -14,108 +15,18 @@ permissions:
 
 jobs:
   validate:
-    name: Validate public site, QUEBEC.AI Seal/icon, intelligent assets, links, and paid-file policy
+    name: Delegate to shared GoalOS public-site scripts
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
       - name: Validate GoalOS public site
-        shell: bash
-        run: |
-          set -euo pipefail
-          WEB_ROOT="site"
-          if [ ! -d "$WEB_ROOT" ] && [ -d "public" ]; then WEB_ROOT="public"; fi
-
-          cat > "$RUNNER_TEMP/validate_goalos_public_site_v8.py" <<'PY'
-          from pathlib import Path
-          import re, sys, json
-
-          WEB_ROOT = Path("site")
-          if not WEB_ROOT.exists() and Path("public").exists():
-              WEB_ROOT = Path("public")
-          BASE = "/proof-gradient"
-          errors = []
-
-          def is_public_standard_package(rel):
-              rel = rel.replace("\\", "/").lower()
-              return re.fullmatch(r"standards/aep-[0-9]{3}/complete-package\.zip", rel) is not None
-
-          blocked_terms = [
-              "buyer", "buyer_official", "complete_bundle", "delivery_kit", "seller_assets",
-              "master_pack", "commercialization_ready", "quick_launch", "opulent_institutional",
-              "institutional_boardroom", "implementation_sprint", "enterprise_rsi_pilot",
-              "workshop_v", "buyer_facilitator"
-          ]
-
-          # Seal/icon check. v6 requires the QUEBEC.AI Seal and generated website icons.
-          if not (WEB_ROOT / "assets" / "quebecaisealv5.png").exists():
-              errors.append("Missing QUEBEC.AI seal at site/assets/quebecaisealv5.png. Expected source: assets/quebecaisealv5.png")
-          if not (WEB_ROOT / "favicon.png").exists():
-              errors.append("Missing favicon.png generated from QUEBEC.AI seal.")
-          if not (WEB_ROOT / "assets" / "apple-touch-icon.png").exists():
-              errors.append("Missing apple-touch-icon.png generated from QUEBEC.AI seal.")
-          if not (WEB_ROOT / "site.webmanifest").exists():
-              errors.append("Missing site.webmanifest generated for QUEBEC.AI / GoalOS.")
-          if not (WEB_ROOT / "assets" / "brand-assets-v8.json").exists():
-              errors.append("Missing brand asset manifest at site/assets/brand-assets-v8.json.")
-          else:
-              try:
-                  import json
-                  manifest = json.loads((WEB_ROOT / "assets" / "brand-assets-v8.json").read_text(encoding="utf-8"))
-                  if "assets" not in manifest:
-                      errors.append("Brand asset manifest exists but does not include an assets list.")
-              except Exception as exc:
-                  errors.append(f"Brand asset manifest could not be parsed: {exc}")
-          if not (WEB_ROOT / "brand" / "visual-system" / "index.html").exists():
-              errors.append("Missing brand visual system page at site/brand/visual-system/index.html.")
-
-          for html in sorted(WEB_ROOT.rglob("*.html")):
-              if "_archive" in html.parts:
-                  continue
-              text = html.read_text(encoding="utf-8", errors="ignore")
-              if text.count("GOALOS-CANONICAL-SHELL:START") != 1:
-                  errors.append(f"{html.relative_to(WEB_ROOT)} has {text.count('GOALOS-CANONICAL-SHELL:START')} canonical shells")
-              if text.count("GOALOS-CANONICAL-FOOTER:START") != 1:
-                  errors.append(f"{html.relative_to(WEB_ROOT)} has {text.count('GOALOS-CANONICAL-FOOTER:START')} canonical footers")
-              for old in ["GOALOS-COMPLETE-NAV","GOALOS-PRODUCT-LADDER-NAV","GOALOS-UNIFIED-SHELL","GOALOS-CLOUD-MVP:START","GOALOS-CLOUD-MVP-V02:START"]:
-                  if old in text:
-                      errors.append(f"{html.relative_to(WEB_ROOT)} still has old marker {old}")
-
-          for html in WEB_ROOT.rglob("*.html"):
-              if "_archive" in html.parts:
-                  continue
-              text = html.read_text(encoding="utf-8", errors="ignore")
-              for m in re.finditer(r'href=["\'](/proof-gradient/[^"#?\']*)["\']', text):
-                  target = m.group(1)[len(BASE):] or "/"
-                  fs = WEB_ROOT / target.lstrip("/")
-                  if target.endswith("/"):
-                      fs = fs / "index.html"
-                  if not fs.exists():
-                      errors.append(f"Broken link in {html.relative_to(WEB_ROOT)} -> {m.group(1)}")
-
-          for p in WEB_ROOT.rglob("*"):
-              if not p.is_file() or "_archive" in p.parts:
-                  continue
-              rel = p.relative_to(WEB_ROOT).as_posix()
-              name = p.name.lower()
-              if name.endswith(".zip") and not is_public_standard_package(rel):
-                  errors.append(f"Paid/private ZIP detected in public site: {rel}")
-              if any(term in name for term in blocked_terms):
-                  if not name.endswith((".md",".html",".json",".txt",".yml",".yaml",".css",".js",".svg")):
-                      errors.append(f"Suspicious paid/private artifact detected: {rel}")
-
-          if errors:
-              print("\n".join(errors))
-              sys.exit(1)
-
-          print("GoalOS public site validation v8 passed.")
-          PY
-
-          python3 "$RUNNER_TEMP/validate_goalos_public_site_v8.py"
-
-          if [ -f "$WEB_ROOT/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs" ]; then
-            node "$WEB_ROOT/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs"
-          else
-            echo "Cloud MVP Node test not found; skipping because app may be installed by separate workflow."
-          fi
+        run: python scripts/validate_goalos_public_site.py
+      - name: Check paid/private artifacts
+        run: python scripts/check_no_paid_artifacts.py
+      - name: Validate docs, tables, and figures
+        run: python scripts/validate_docs_tables_figures.py
+      - name: Validate GoalOS catalog
+        run: python scripts/validate_goalos_catalog.py
+      - name: Run public-site rule regression tests
+        run: pytest tests/test_goalos_public_site_rules.py
