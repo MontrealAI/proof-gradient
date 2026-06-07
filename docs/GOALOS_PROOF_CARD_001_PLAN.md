@@ -1,12 +1,12 @@
-# GoalOS Commercialization Status
+# GoalOS Proof Card 001 Plan
 
 ## English summary
 
-GoalOS is positioned as the Recursive Workflow OS for Recursive Self-Improving Workflows. The current commercialization ladder routes all buy/apply actions through QUEBEC.AI and keeps paid buyer artifacts private.
+Proof Card 001 should be the first public-safe evidence artifact for a real or demo workflow that has consent, redaction, approval, rollback context, and a clear proof trail.
 
 ## Résumé français
 
-GoalOS est positionné comme le Recursive Workflow OS pour les flux de travail auto-améliorants récursifs. L’échelle commerciale actuelle dirige tous les achats et candidatures vers QUEBEC.AI et garde les artefacts payants privés.
+La Proof Card 001 doit être le premier artefact de preuve public et sûr pour un flux réel ou démo avec consentement, caviardage, approbation, contexte de rollback et traçabilité.
 
 ## Current status
 
@@ -18,14 +18,12 @@ Owner: GoalOS documentation owner. Audience: engineers, partners, communications
 
 ## What is ready
 
-- Product ladder is documented with current prices and versions.
-- Shop URL is the single public checkout/apply destination.
-- Workshop, department, and enterprise pilot offers are positioned as proof-generating services.
+- Plan is documented.
+- Approval and public-safe boundaries are stated.
 
 ## What is not ready
 
-- Full production SaaS is not yet shipped.
-- Revenue scenarios remain planning estimates, not guarantees.
+- No unapproved client outputs or private proof records are public.
 
 ## Safe-boundary language
 

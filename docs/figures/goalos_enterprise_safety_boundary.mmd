@@ -1,0 +1,6 @@
+flowchart TB
+  Base[Base AI models]:::blocked
+  Workflow[Workflow-level improvement]:::ok --> Instructions --> Prompts --> Memory --> Scorecards --> ProofRecords[Proof records] --> Evaluations --> Approvals --> Versions --> Monitoring --> Rollback
+  Workflow -. does not modify .-> Base
+  classDef blocked fill:#fee,stroke:#900
+  classDef ok fill:#efe,stroke:#090

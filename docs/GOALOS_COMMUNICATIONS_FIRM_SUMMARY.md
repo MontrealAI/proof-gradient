@@ -1,12 +1,12 @@
-# GoalOS Commercialization Status
+# GoalOS Communications Firm Summary
 
 ## English summary
 
-GoalOS is positioned as the Recursive Workflow OS for Recursive Self-Improving Workflows. The current commercialization ladder routes all buy/apply actions through QUEBEC.AI and keeps paid buyer artifacts private.
+The Communications Firm Briefing Pack v1.0 packages the master narrative, public line, commercial line, enterprise line, launch plan, claims boundary, press-room brief, social/email content bank, and KPI plan. The first communications objective is: Launch the GoalOS RSI Sprint Workshop as the first premium proof-generating offer.
 
 ## Résumé français
 
-GoalOS est positionné comme le Recursive Workflow OS pour les flux de travail auto-améliorants récursifs. L’échelle commerciale actuelle dirige tous les achats et candidatures vers QUEBEC.AI et garde les artefacts payants privés.
+Le pack de briefing communication v1.0 regroupe le récit maître, la ligne publique, la ligne commerciale, la ligne entreprise, le plan de lancement, la limite des revendications, le brief presse, la banque de contenus social/email et le plan KPI. Premier objectif communication : Lancer l’Atelier GoalOS RSI Sprint comme première offre premium génératrice de preuve.
 
 ## Current status
 
@@ -14,18 +14,18 @@ Documentation current for the GoalOS / Proof Gradient / QUEBEC.AI ⚜️✨ publ
 
 ## Owner / audience
 
-Owner: GoalOS documentation owner. Audience: engineers, partners, communications, and enterprise buyers.
+Owner: GoalOS documentation owner. Audience: communications firm, founder, PR, launch operators, and enterprise GTM.
 
 ## What is ready
 
-- Product ladder is documented with current prices and versions.
-- Shop URL is the single public checkout/apply destination.
-- Workshop, department, and enterprise pilot offers are positioned as proof-generating services.
+- Public line: A model can answer. An agent can act. An institution must prove.
+- Commercial line: ChatGPT gives you answers. GoalOS gives you workflows that get better every time they run.
+- Enterprise line: Enterprise RSI without model self-modification.
 
 ## What is not ready
 
-- Full production SaaS is not yet shipped.
-- Revenue scenarios remain planning estimates, not guarantees.
+- Media claims must stay inside the approved claim boundary.
+- KPI plans are planning tools, not revenue guarantees.
 
 ## Safe-boundary language
 

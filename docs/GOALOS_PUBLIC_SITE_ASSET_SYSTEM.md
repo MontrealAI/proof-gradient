@@ -1,12 +1,12 @@
-# GoalOS Commercialization Status
+# GoalOS Public Site Asset System
 
 ## English summary
 
-GoalOS is positioned as the Recursive Workflow OS for Recursive Self-Improving Workflows. The current commercialization ladder routes all buy/apply actions through QUEBEC.AI and keeps paid buyer artifacts private.
+The public site and asset system are documented for separation of README, docs, assets, and site files. This PR does not edit website files.
 
 ## Résumé français
 
-GoalOS est positionné comme le Recursive Workflow OS pour les flux de travail auto-améliorants récursifs. L’échelle commerciale actuelle dirige tous les achats et candidatures vers QUEBEC.AI et garde les artefacts payants privés.
+Le site public et le système d’actifs sont documentés afin de séparer README, docs, actifs et fichiers du site. Cette PR ne modifie pas les fichiers web.
 
 ## Current status
 
@@ -18,14 +18,12 @@ Owner: GoalOS documentation owner. Audience: engineers, partners, communications
 
 ## What is ready
 
-- Product ladder is documented with current prices and versions.
-- Shop URL is the single public checkout/apply destination.
-- Workshop, department, and enterprise pilot offers are positioned as proof-generating services.
+- QUEBEC.AI Seal presence is documented.
+- Public site release v8 intelligent assets are summarized.
 
 ## What is not ready
 
-- Full production SaaS is not yet shipped.
-- Revenue scenarios remain planning estimates, not guarantees.
+- No site/public/root website HTML/CSS/JS files are changed here.
 
 ## Safe-boundary language
 

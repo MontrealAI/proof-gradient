@@ -1,12 +1,12 @@
-# GoalOS Commercialization Status
+# GoalOS Legal / Payments / Buyer Success Summary
 
 ## English summary
 
-GoalOS is positioned as the Recursive Workflow OS for Recursive Self-Improving Workflows. The current commercialization ladder routes all buy/apply actions through QUEBEC.AI and keeps paid buyer artifacts private.
+The Legal / Payments / Buyer Success Operating Pack v2.0 summarizes the official terms suite, claims boundary, payment and chargeback operations, buyer success/support manual, counsel signoff and risk register, refund exception matrix, chargeback evidence checklist, proof-card consent, and final counsel review requirement.
 
 ## Résumé français
 
-GoalOS est positionné comme le Recursive Workflow OS pour les flux de travail auto-améliorants récursifs. L’échelle commerciale actuelle dirige tous les achats et candidatures vers QUEBEC.AI et garde les artefacts payants privés.
+Le pack Legal / Payments / Buyer Success v2.0 résume la suite officielle de conditions, la limite des revendications, les opérations de paiement et chargeback, le manuel support/succès acheteur, la validation juridique et le registre de risques, la matrice d’exceptions de remboursement, la checklist de preuves chargeback, le consentement proof-card et l’exigence de révision finale par avocat.
 
 ## Current status
 
@@ -14,18 +14,18 @@ Documentation current for the GoalOS / Proof Gradient / QUEBEC.AI ⚜️✨ publ
 
 ## Owner / audience
 
-Owner: GoalOS documentation owner. Audience: engineers, partners, communications, and enterprise buyers.
+Owner: GoalOS documentation owner. Audience: counsel, payments, buyer success, support, founders, and repository governance.
 
 ## What is ready
 
-- Product ladder is documented with current prices and versions.
-- Shop URL is the single public checkout/apply destination.
-- Workshop, department, and enterprise pilot offers are positioned as proof-generating services.
+- Operating summary is counsel-review-ready.
+- Refund exceptions and chargeback evidence are named.
+- Proof-card consent and final counsel review are required.
 
 ## What is not ready
 
-- Full production SaaS is not yet shipped.
-- Revenue scenarios remain planning estimates, not guarantees.
+- This is counsel-review-ready operating documentation, not a substitute for licensed legal advice.
+- Cette documentation opérationnelle est prête pour révision juridique, mais ne remplace pas un avis juridique d’un avocat autorisé.
 
 ## Safe-boundary language
 

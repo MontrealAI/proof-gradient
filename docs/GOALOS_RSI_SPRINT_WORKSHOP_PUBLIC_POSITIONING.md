@@ -1,12 +1,12 @@
-# GoalOS Commercialization Status
+# GoalOS RSI Sprint Workshop Public Positioning
 
 ## English summary
 
-GoalOS is positioned as the Recursive Workflow OS for Recursive Self-Improving Workflows. The current commercialization ladder routes all buy/apply actions through QUEBEC.AI and keeps paid buyer artifacts private.
+The RSI Sprint Workshop is the first premium proof-generating offer: build the first self-improving workflow live.
 
 ## Résumé français
 
-GoalOS est positionné comme le Recursive Workflow OS pour les flux de travail auto-améliorants récursifs. L’échelle commerciale actuelle dirige tous les achats et candidatures vers QUEBEC.AI et garde les artefacts payants privés.
+L’Atelier RSI Sprint est la première offre premium génératrice de preuve : construire le premier flux auto-améliorant en direct.
 
 ## Current status
 
@@ -18,14 +18,12 @@ Owner: GoalOS documentation owner. Audience: engineers, partners, communications
 
 ## What is ready
 
-- Product ladder is documented with current prices and versions.
-- Shop URL is the single public checkout/apply destination.
-- Workshop, department, and enterprise pilot offers are positioned as proof-generating services.
+- Public positioning is aligned to v6.0.
+- Outcome language avoids unsupported productivity or ROI promises.
 
 ## What is not ready
 
-- Full production SaaS is not yet shipped.
-- Revenue scenarios remain planning estimates, not guarantees.
+- Workshop delivery kits are private and not public repository assets.
 
 ## Safe-boundary language
 
