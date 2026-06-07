@@ -85,3 +85,10 @@ Branch: `feature/goalos-public-site-mvp-unification`
 - Required public-site validator command: `python scripts/validate_goalos_public_site.py` — passed.
 - Existing repository tests: `pytest` — passed with existing FastAPI deprecation warnings.
 - Existing make-based tests: `make test` — passed.
+
+## 2026 validation hotfix v12 dependency verification update
+
+- A fresh `pytest` / `make test` attempt initially failed because the local container had Starlette/FastAPI installed without the optional `httpx`/`httpx2` test client dependency available to `fastapi.testclient`.
+- Installed the missing test-client dependency in the validation environment with `python -m pip install httpx`; the project dev extra already declares `httpx` and `httpx2` for normal contributor setup.
+- Re-ran `pytest` successfully after adding validation regression coverage: 85 tests passed with existing FastAPI/Starlette deprecation warnings.
+- Re-ran `make test` successfully: 56 unittest tests passed, with the same existing Starlette `httpx` deprecation warning.
