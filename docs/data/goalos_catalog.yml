@@ -1,0 +1,177 @@
+brand:
+  quebec_ai: "QUEBEC.AI ⚜️✨"
+  proof_gradient: "Proof Gradient"
+  goalos: "GoalOS"
+  public_line: "A model can answer. An agent can act. An institution must prove."
+  commercial_line: "ChatGPT gives you answers. GoalOS gives you workflows that get better every time they run."
+  enterprise_line: "Enterprise RSI without model self-modification."
+category: "Recursive Self-Improving Workflows"
+platform: "GoalOS Recursive Workflow OS"
+shop_url: "https://www.quebecartificialintelligence.com/shop"
+core_loop:
+  - Run
+  - Score
+  - Prove
+  - Diagnose
+  - Improve
+  - Approve
+  - Version
+  - Monitor
+  - Re-run
+goalos_law:
+  en:
+    - "No proof, no evolution."
+    - "No eval, no propagation."
+    - "No rollback, no release."
+  fr:
+    - "Pas de preuve, pas d’évolution."
+    - "Pas d’évaluation, pas de propagation."
+    - "Pas de rollback, pas de publication."
+safe_ai_boundary:
+  en: "GoalOS does not modify base AI models. GoalOS improves workflows around AI through instructions, prompts, memory, scorecards, proof records, evaluations, approvals, versions, monitoring, and rollback."
+  fr: "GoalOS ne modifie pas les modèles IA de base. GoalOS améliore les flux autour de l’IA grâce aux instructions, prompts, mémoire, grilles de score, dossiers de preuve, évaluations, approbations, versions, surveillance et rollback."
+product_ladder:
+  - price: "$49"
+    name: "GoalOS AI Efficiency Sprint Kit"
+    version: "v1.4"
+    description_en: "Build one reusable AI workflow."
+    description_fr: "Construisez un flux IA réutilisable."
+    url: "https://www.quebecartificialintelligence.com/shop"
+  - price: "$199"
+    name: "GoalOS RSI Lite"
+    version: "v1.6"
+    description_en: "Build one self-improving AI workflow."
+    description_fr: "Construisez un flux IA auto-améliorant."
+    url: "https://www.quebecartificialintelligence.com/shop"
+  - price: "$997"
+    name: "GoalOS Proof Room Lite / Department Pack"
+    version: "v2.0"
+    description_en: "Set up a lightweight department Proof Room."
+    description_fr: "Mettez en place une Salle de preuve légère pour un département."
+    url: "https://www.quebecartificialintelligence.com/shop"
+  - price: "$2,500+"
+    name: "GoalOS RSI Sprint Workshop"
+    version: "v6.0"
+    description_en: "Build the first self-improving workflow live."
+    description_fr: "Construisez le premier flux auto-améliorant en direct."
+    url: "https://www.quebecartificialintelligence.com/shop"
+  - price: "$9,500+"
+    name: "GoalOS Proof Room Implementation Sprint"
+    version: "v2.0"
+    description_en: "Department RSI in 30 days."
+    description_fr: "RSI départemental en 30 jours."
+    url: "https://www.quebecartificialintelligence.com/shop"
+  - price: "$49,000+"
+    name: "GoalOS Enterprise RSI Pilot"
+    version: "v2.0"
+    description_en: "Pilot the Recursive Workflow OS."
+    description_fr: "Pilotez le Recursive Workflow OS."
+    url: "https://www.quebecartificialintelligence.com/shop"
+current_packages:
+  - name: "GoalOS Cloud MVP"
+    version: "0.2"
+    status: "public static proof / demo, not production SaaS"
+  - name: "GoalOS Public Site Release"
+    version: "v8 Intelligent Assets"
+    status: "public website asset system documented; not modified by this PR"
+  - name: "GoalOS Legal / Payments / Buyer Success Operating Pack"
+    version: "v2.0"
+    status: "counsel-review-ready operating documentation, not legal advice"
+  - name: "GoalOS World-Class Communications Firm Briefing Pack"
+    version: "v1.0"
+    status: "communications briefing pack summary"
+approved_claims:
+  - "Build one reusable AI workflow."
+  - "Build one self-improving AI workflow."
+  - "Set up a lightweight department Proof Room."
+  - "Build your first self-improving AI workflow live."
+  - "Department RSI in 30 days."
+  - "Enterprise RSI without model self-modification."
+  - "GoalOS applies recursive self-improvement principles to workflows, not base models."
+prohibited_claims:
+  - "guaranteed ROI"
+  - "guaranteed revenue"
+  - "guaranteed productivity"
+  - "certified compliance"
+  - "certified AI safety"
+  - "legal advice"
+  - "financial advice"
+  - "tax advice"
+  - "HR advice"
+  - "security advice"
+  - "medical advice"
+  - "regulatory advice"
+  - "autonomous AGI"
+  - "base-model self-modification"
+  - "uncontrolled autonomous deployment"
+public_urls:
+  shop: "https://www.quebecartificialintelligence.com/shop"
+  documentation_index: "docs/GOALOS_DOCUMENTATION_INDEX.md"
+  cloud_mvp_summary: "docs/GOALOS_CLOUD_MVP_0_2.md"
+documentation_urls:
+  claims_boundary: "docs/GOALOS_CLAIMS_AND_SAFE_BOUNDARY.md"
+  paid_policy: "docs/GOALOS_PAID_ARTIFACT_POLICY.md"
+  roadmap: "docs/GOALOS_ENGINEERING_ROADMAP.md"
+aep_standards:
+  - id: "AEP-001"
+    title: "GoalOS Proof-of-Evolution Constitution"
+    version: "v12.1"
+    path: "docs/standards/AEP-001/README.md"
+  - id: "AEP-002"
+    title: "Evidence Docket Standard"
+    version: "v1.1"
+    path: "docs/standards/AEP-002/README.md"
+  - id: "AEP-003"
+    title: "ProofPacket Schema"
+    version: "v1.1"
+    path: "docs/standards/AEP-003/README.md"
+  - id: "AEP-004"
+    title: "Selection Gate Standard"
+    version: "v1.1"
+    path: "docs/standards/AEP-004/README.md"
+  - id: "AEP-005"
+    title: "Tool Permission Standard"
+    version: "v1.1"
+    path: "docs/standards/AEP-005/README.md"
+  - id: "AEP-006"
+    title: "Rollback Receipt Standard"
+    version: "v1.1"
+    path: "docs/standards/AEP-006/README.md"
+  - id: "AEP-007"
+    title: "Public-Safe Proof Report Standard"
+    version: "v1.2"
+    path: "docs/standards/AEP-007/README.md"
+  - id: "AEP-008"
+    title: "Proof Room Standard"
+    version: "v1.1"
+    path: "docs/standards/AEP-008/README.md"
+public_asset_references:
+  - "assets/quebecaisealv5.png"
+paid_private_file_policy:
+  public_allowed:
+    - README
+    - docs
+    - examples
+    - schemas
+    - public AEP standard packages
+    - public website pages
+    - public brand assets
+    - public Cloud MVP demo
+  public_aep_zip_allowed: "standards/AEP-###/complete-package.zip"
+  private_not_public:
+    - buyer ZIPs
+    - paid workshop bundles
+    - buyer/facilitator delivery kits
+    - implementation delivery kits
+    - enterprise pilot delivery kits
+    - seller asset bundles
+    - commercialization master packs
+    - private client data
+    - proof cards without approval
+    - exact buyer outputs without approval
+    - sensitive prompts or private policies
+release_status:
+  documentation: "current in this PR"
+  cloud_mvp: "0.2 public static proof; backend prototype not yet production"
+  website: "public site v8 intelligent assets; no website files modified in this PR"
+  commercialization: "offer ladder documented; paid artifacts stay private"

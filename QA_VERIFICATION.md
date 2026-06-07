@@ -52,3 +52,33 @@ projected annual savings under demo assumptions vs human baseline at 10,000 jobs
 ```
 
 The GitHub Pages deploy refuses to publish if the reference workflow proof fails.
+
+## GoalOS documentation validation
+
+This documentation-only refresh adds two local validators that do not edit files and do not inspect or modify website implementation files.
+
+Recommended documentation commands:
+
+```bash
+python scripts/validate_docs_tables_figures.py
+python scripts/validate_goalos_catalog.py
+```
+
+What is checked:
+
+- required GoalOS docs exist;
+- required CSV tables are parseable;
+- required Mermaid figure sources exist;
+- `docs/data/goalos_catalog.yml` is parseable;
+- README and documentation-index local links resolve;
+- product ladder prices and versions match the catalog;
+- safe-boundary language appears in key docs;
+- prohibited claims are controlled as claim-boundary language, not live promises;
+- direct paid ZIP public links are flagged;
+- documentation-only scope is respected by changed-file checks.
+
+Skipped by design:
+
+- Mermaid SVG export unless Mermaid CLI (`mmdc`) is installed;
+- website-file edits or generated GitHub Pages changes;
+- application-code fixes for failures outside documentation scope.

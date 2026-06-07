@@ -1,0 +1,21 @@
+classification,artifact,public_policy
+public allowed,README,allowed
+public allowed,docs,allowed
+public allowed,examples,allowed
+public allowed,schemas,allowed
+public allowed,public AEP standard packages,allowed
+public allowed,public website pages,allowed
+public allowed,public brand assets,allowed
+public allowed,public Cloud MVP demo,allowed
+private not public,buyer ZIPs,do not publish
+private not public,paid workshop bundles,do not publish
+private not public,buyer/facilitator delivery kits,do not publish
+private not public,implementation delivery kits,do not publish
+private not public,enterprise pilot delivery kits,do not publish
+private not public,seller asset bundles,do not publish
+private not public,commercialization master packs,do not publish
+private not public,private client data,do not publish
+private not public,proof cards without approval,do not publish
+private not public,exact buyer outputs without approval,do not publish
+private not public,sensitive prompts or private policies,do not publish
+public AEP ZIP allowed,standards/AEP-###/complete-package.zip,allowed

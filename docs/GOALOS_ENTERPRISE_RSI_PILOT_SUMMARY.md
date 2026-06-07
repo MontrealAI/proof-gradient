@@ -1,12 +1,12 @@
-# GoalOS Commercialization Status
+# GoalOS Enterprise RSI Pilot Summary
 
 ## English summary
 
-GoalOS is positioned as the Recursive Workflow OS for Recursive Self-Improving Workflows. The current commercialization ladder routes all buy/apply actions through QUEBEC.AI and keeps paid buyer artifacts private.
+The Enterprise RSI Pilot v2.0 pilots the Recursive Workflow OS for an enterprise workflow family without model self-modification.
 
 ## Résumé français
 
-GoalOS est positionné comme le Recursive Workflow OS pour les flux de travail auto-améliorants récursifs. L’échelle commerciale actuelle dirige tous les achats et candidatures vers QUEBEC.AI et garde les artefacts payants privés.
+Le Pilot Enterprise RSI v2.0 pilote le Recursive Workflow OS pour une famille de flux d’entreprise sans auto-modification du modèle.
 
 ## Current status
 
@@ -18,14 +18,12 @@ Owner: GoalOS documentation owner. Audience: engineers, partners, communications
 
 ## What is ready
 
-- Product ladder is documented with current prices and versions.
-- Shop URL is the single public checkout/apply destination.
-- Workshop, department, and enterprise pilot offers are positioned as proof-generating services.
+- $49,000+ starting point and v2.0 are documented.
+- Enterprise safety boundary is central.
 
 ## What is not ready
 
-- Full production SaaS is not yet shipped.
-- Revenue scenarios remain planning estimates, not guarantees.
+- Enterprise procurement, SOC 2 readiness, and integrations require future work.
 
 ## Safe-boundary language
 

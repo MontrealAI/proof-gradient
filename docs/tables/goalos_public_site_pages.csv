@@ -1,0 +1,4 @@
+page_or_area,status,notes
+site/,public website area,listed only; not modified
+site/app/goalos-cloud-mvp/,Cloud MVP public demo,listed only; not modified
+README/docs/assets separation,documented,no website edits in this PR

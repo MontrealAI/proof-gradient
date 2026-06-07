@@ -1,0 +1,9 @@
+id,title,version,path
+AEP-001,GoalOS Proof-of-Evolution Constitution,v12.1,docs/standards/AEP-001/README.md
+AEP-002,Evidence Docket Standard,v1.1,docs/standards/AEP-002/README.md
+AEP-003,ProofPacket Schema,v1.1,docs/standards/AEP-003/README.md
+AEP-004,Selection Gate Standard,v1.1,docs/standards/AEP-004/README.md
+AEP-005,Tool Permission Standard,v1.1,docs/standards/AEP-005/README.md
+AEP-006,Rollback Receipt Standard,v1.1,docs/standards/AEP-006/README.md
+AEP-007,Public-Safe Proof Report Standard,v1.2,docs/standards/AEP-007/README.md
+AEP-008,Proof Room Standard,v1.1,docs/standards/AEP-008/README.md

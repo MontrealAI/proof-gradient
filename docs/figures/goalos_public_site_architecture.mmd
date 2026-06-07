@@ -1,0 +1,10 @@
+flowchart TB
+  R[README.md] --> D[docs/**]
+  D --> A[assets/** public references]
+  S[site/** public website files]:::blocked
+  P[public/** public website files]:::blocked
+  N[No website edits in this PR]:::note
+  N -. protects .-> S
+  N -. protects .-> P
+  classDef blocked fill:#fee,stroke:#900
+  classDef note fill:#eef,stroke:#33f
