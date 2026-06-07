@@ -7,7 +7,7 @@
     "slug": "rsi-ai-first-blockchain-capital-machine-proof",
     "status": "passing",
     "title": "Autonomous RSI AI-First Blockchain Capital Machine Proof",
-    "updated_at": "2026-06-06T17:04:10Z",
+    "updated_at": "2026-06-07T01:32:37Z",
     "workflow": ".github/workflows/autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml"
   },
   {
@@ -19,7 +19,7 @@
     "slug": "rsi-ai-first-governance-capital-engine-proof",
     "status": "passing",
     "title": "Autonomous RSI AI-First Governance Capital Engine Proof",
-    "updated_at": "2026-06-06T16:45:24Z",
+    "updated_at": "2026-06-07T01:28:50Z",
     "workflow": ".github/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml"
   },
   {
