@@ -21,6 +21,12 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install validation test dependencies
+        run: python -m pip install pytest
       - name: Validate public site classification and shell rules
         run: python scripts/validate_goalos_public_site.py
       - name: Check paid/private artifact boundary
@@ -30,4 +36,4 @@ jobs:
       - name: Validate GoalOS catalog
         run: python scripts/validate_goalos_catalog.py
       - name: Run GoalOS public-site rule regression tests
-        run: pytest tests/test_goalos_public_site_rules.py
+        run: python -m pytest tests/test_goalos_public_site_rules.py

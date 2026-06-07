@@ -77,5 +77,5 @@ python scripts/validate_goalos_public_site.py
 python scripts/check_no_paid_artifacts.py
 python scripts/validate_docs_tables_figures.py
 python scripts/validate_goalos_catalog.py
-pytest tests/test_goalos_public_site_rules.py
+python -m pytest tests/test_goalos_public_site_rules.py
 ```
