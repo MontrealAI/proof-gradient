@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "data" / "goalos_products.json"
 SITE = ROOT / "site"
 ASSETS = SITE / "assets"
+SHOP_URL = "https://www.quebecartificialintelligence.com/shop"
 MARKER = "<!-- GENERATED_BY_GOALOS_PRODUCT_BUILDER -->"
 AEP_LINK_FROM_ROOT = "../standards/AEP-001/"
 BOUNDARY_EN = (
@@ -102,34 +103,49 @@ def write(path: Path, content: str) -> None:
 
 def page(title: str, main: str, css_prefix: str = "../") -> str:
     return f"""<!doctype html>
-<html lang=\"en\">
+<html lang="en">
 <head>
-  <meta charset=\"utf-8\">
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{e(title)}</title>
-  <meta name=\"description\" content=\"Public GoalOS proof and product information by QUEBEC.AI / MONTREAL.AI.\">
-  <link rel=\"stylesheet\" href=\"{css_prefix}assets/goalos-products.css\">
+  <meta name="description" content="Public GoalOS proof and product information by QUEBEC.AI / MONTREAL.AI.">
+  <link rel="stylesheet" href="/proof-gradient/assets/goalos-site-v2.css" data-goalos-canonical-css>
+  <link rel="stylesheet" href="{css_prefix}assets/goalos-products.css">
+  <script defer src="/proof-gradient/assets/goalos-site-v2.js" data-goalos-canonical-js></script>
 </head>
-<body class=\"goalos-page\">
-<a class=\"skip-link\" href=\"#main\">Skip to content</a>
-<header class=\"shell topnav\" aria-label=\"GoalOS navigation\">
-  <a class=\"brand\" href=\"{css_prefix}\">QUEBEC.AI / MONTREAL.AI</a>
-  <nav class=\"navlinks\" aria-label=\"Primary\">
-    <a href=\"{css_prefix}goalos/\">GoalOS</a>
-    <a href=\"{css_prefix}products/\">Products</a>
-    <a href=\"{css_prefix}ai-efficiency-score/\">AI Efficiency Score</a>
-    <a href=\"{css_prefix}standards/AEP-001/\">AEP-001</a>
+<body class="goalos-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- GOALOS-CANONICAL-SHELL:START -->
+<header class="goalos-shell">
+  <nav class="goalos-nav" aria-label="GoalOS canonical navigation">
+    <a class="goalos-brand" href="/proof-gradient/"><span class="goalos-mark">G</span><span>GoalOS · Proof Gradient</span></a>
+    <div class="goalos-links">
+      <a href="/proof-gradient/start-here/">Start</a>
+      <a href="/proof-gradient/products/">Products</a>
+      <a href="/proof-gradient/pricing/">Pricing</a>
+      <a href="/proof-gradient/services/">Services</a>
+      <a href="/proof-gradient/products/goalos-cloud-mvp/">Cloud MVP</a>
+      <a href="/proof-gradient/implementation/goalos-proof-room-implementation-sprint/">Department RSI</a>
+      <a href="/proof-gradient/examples/">Examples</a>
+      <a href="/proof-gradient/standards/">Standards</a>
+      <a class="shop" href="{SHOP_URL}">Shop</a>
+    </div>
   </nav>
 </header>
-<main id=\"main\" class=\"shell\">
+<!-- GOALOS-CANONICAL-SHELL:END -->
+<main id="main" class="shell">
 {MARKER}
 {main}
 </main>
-<footer class=\"shell footer\">
-  <p><strong>Commit → Execute → Prove → Evolve</strong></p>
-  <p>No proof, no evolution. No eval, no propagation. No rollback, no release.</p>
+<!-- GOALOS-CANONICAL-FOOTER:START -->
+<footer class="goalos-footer">
+  <div class="goalos-footer-inner">
+    <div>GoalOS · Recursive Workflow OS · Proof Rooms · Enterprise RSI</div>
+    <div><a href="/proof-gradient/site-map/">Site Map</a><a href="/proof-gradient/pricing/">Pricing</a><a href="https://github.com/MontrealAI/proof-gradient">GitHub</a><a href="{SHOP_URL}">Shop</a></div>
+  </div>
 </footer>
-<script src=\"{css_prefix}assets/goalos-products.js\"></script>
+<!-- GOALOS-CANONICAL-FOOTER:END -->
+<script src="{css_prefix}assets/goalos-products.js"></script>
 </body>
 </html>
 """
@@ -201,8 +217,18 @@ def render_hub(products: list[dict]) -> str:
         groups.append(f"<section class=\"ladder-group\"><h2>{e(group_en)} <span class=\"muted\">/ {e(group_fr)}</span></h2><div class=\"cards\">{''.join(cards)}</div></section>")
     note = "Paid digital products are delivered through Squarespace + Stripe. GitHub hosts public proof, standards, and product information only."
     note_fr = "Les produits numériques payants sont livrés via Squarespace + Stripe. GitHub héberge uniquement la preuve publique, les standards et l’information produit."
+    current_ladder = """<section class="section"><h2>Current GoalOS / Proof Gradient ladder</h2><div class="cards">
+<article class="card product-card"><span class="price">$49</span><h3>GoalOS AI Efficiency Sprint Kit</h3><p>Build one reusable AI workflow.</p><div class="cta-row"><a class="cta primary" href="/proof-gradient/products/goalos-ai-efficiency-sprint-kit/">View offer</a></div></article>
+<article class="card product-card"><span class="price">$199</span><h3>GoalOS RSI Lite</h3><p>Build one self-improving AI workflow.</p><div class="cta-row"><a class="cta primary" href="/proof-gradient/products/goalos-rsi-lite/">View offer</a></div></article>
+<article class="card product-card"><span class="price">$997</span><h3>GoalOS Proof Room Lite / Department Pack</h3><p>Set up a lightweight department Proof Room.</p><div class="cta-row"><a class="cta primary" href="/proof-gradient/products/goalos-proof-room-lite/">View offer</a></div></article>
+<article class="card product-card"><span class="price">$2,500+</span><h3>GoalOS RSI Sprint Workshop</h3><p>Build the first self-improving workflow live.</p><div class="cta-row"><a class="cta blue" href="/proof-gradient/products/goalos-rsi-sprint-workshop/">View service</a></div></article>
+<article class="card product-card"><span class="price">$9,500+</span><h3>GoalOS Proof Room Implementation Sprint</h3><p>Department RSI in 30 days.</p><div class="cta-row"><a class="cta blue" href="/proof-gradient/products/goalos-proof-room-implementation-sprint/">View service</a></div></article>
+<article class="card product-card"><span class="price">$49,000+</span><h3>GoalOS Enterprise RSI Pilot</h3><p>Pilot the Recursive Workflow OS for one enterprise workflow family.</p><div class="cta-row"><a class="cta blue" href="/proof-gradient/products/goalos-enterprise-rsi-pilot/">View pilot</a></div></article>
+</div></section>"""
     main = f"""
-<section class=\"hero\"><p class=\"eyebrow\">GoalOS Product Ladder</p><h1>AI access is not leverage.<br>Proof-ready systems are leverage.</h1><p class=\"lead\">GoalOS turns AI work into reusable, checked, provable capability.</p><p class=\"lead fr\">GoalOS transforme le travail IA en capacité réutilisable, vérifiée et prouvable.</p><div class=\"note\"><p>{e(note)}</p><p class=\"fr\">{e(note_fr)}</p></div></section>
+<section class="hero"><p class="eyebrow">GoalOS Product Ladder</p><h1>AI access is not leverage.<br>Proof-ready systems are leverage.</h1><p class="lead">GoalOS turns AI work into reusable, checked, provable capability.</p><p class="lead fr">GoalOS transforme le travail IA en capacité réutilisable, vérifiée et prouvable.</p><div class="note"><p>{e(note)}</p><p class="fr">{e(note_fr)}</p></div></section>
+{current_ladder}
+<section class="section"><h2>Additional public catalog pages</h2><p class="muted">These legacy public pages remain preserved for continuity while the current ladder above leads the commercialization path.</p></section>
 {''.join(groups)}
 {boundary_html()}
 """
@@ -257,38 +283,12 @@ def render_quiz(products: list[dict]) -> str:
     return page("AI Efficiency Score", main, "../")
 
 def update_homepage() -> None:
-    path = SITE / "index.html"
-    if not path.exists():
-        return
-    start = "<!-- GOALOS_PRODUCT_LADDER_START -->"
-    end = "<!-- GOALOS_PRODUCT_LADDER_END -->"
-    block = f"""{start}
-<section id=\"goalos-product-ladder\" class=\"card\" style=\"margin:48px 0;padding:28px;border:1px solid rgba(244,199,107,.35);background:linear-gradient(135deg,rgba(244,199,107,.13),rgba(138,180,255,.10));\">
-  <p class=\"eyebrow\">GoalOS Product Ladder</p>
-  <h2>GoalOS Product Ladder<br><span style=\"color:#aab3cf\">Échelle de produits GoalOS</span></h2>
-  <p class=\"hero-line\"><strong>AI access is not leverage.</strong><br>GoalOS turns AI work into reusable, checked, provable capability.</p>
-  <p class=\"hero-line\"><strong>L’accès à l’IA n’est pas le levier.</strong><br>GoalOS transforme le travail IA en capacité réutilisable, vérifiée et prouvable.</p>
-  <div class=\"nav\" aria-label=\"GoalOS public links\">
-    <a href=\"goalos/\">GoalOS</a>
-    <a href=\"products/\">Product ladder</a>
-    <a href=\"ai-efficiency-score/\">AI Efficiency Score</a>
-    <a href=\"standards/AEP-001/\">AEP-001</a>
-  </div>
-  <p class=\"small\">Paid digital products are delivered through Squarespace + Stripe. GitHub hosts public proof, standards, and product information only.</p>
-</section>
-{end}"""
-    text = path.read_text(encoding="utf-8")
-    if start in text and end in text:
-        before, rest = text.split(start, 1)
-        _, after = rest.split(end, 1)
-        new_text = before + block + after
-    else:
-        marker = "<main>"
-        if marker in text:
-            new_text = text.replace(marker, marker + block, 1)
-        else:
-            new_text = block + text
-    write(path, new_text)
+    """Leave the hand-authored unified homepage intact.
+
+    The canonical homepage owns the product ladder directly, so the generator
+    must not inject a second generated homepage block.
+    """
+    return
 
 def main() -> int:
     products = load_products()

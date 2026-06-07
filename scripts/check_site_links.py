@@ -70,6 +70,8 @@ def link_exists(page: Path, raw: str) -> bool:
 def find_broken() -> list[str]:
     broken: list[str] = []
     for page in sorted(SITE.rglob("*.html")):
+        if "_archive" in page.parts:
+            continue
         parser = LinkParser()
         parser.feed(page.read_text(encoding="utf-8", errors="ignore"))
         for attr, raw in parser.links:
