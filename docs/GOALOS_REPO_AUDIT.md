@@ -64,3 +64,10 @@ Branch: `feature/goalos-public-site-mvp-unification`
 - No browser screenshot was captured in this headless container because no Chromium/Chrome executable was available. Local HTML was validated by static checks and test suites.
 - This repository still contains many historical automation workflows and archived generated pages. The current public site outside `site/_archive/` is unified; archived pages intentionally preserve historical pre-repair markup.
 - `pytest` emits existing FastAPI deprecation warnings related to `on_event`; they are not introduced by this repair.
+
+## 2026 validation hotfix
+
+- Fixed false positive on AEP `complete-package.zip` by allowing only `standards/AEP-###/complete-package.zip` public standard packages.
+- Classified standalone proof HTML pages so immersive RSI proof microsites are not treated as broken marketing pages when they explicitly carry standalone proof metadata.
+- Centralized validation rules in `scripts/goalos_public_site_rules.py` for path normalization, page classification, canonical shell requirements, app-page handling, AEP package allowlisting, paid/private artifact blocking, icon/seal checks, link checks, and claim-boundary checks.
+- Updated workflows to call shared Python validation scripts instead of embedding duplicate paid-file or shell logic in YAML.

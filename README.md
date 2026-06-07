@@ -42,6 +42,23 @@ Run the MVP test:
 node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
 ```
 
+
+## Public-site validation
+
+Public HTML and artifacts are classified before validation. Normal marketing/docs pages are `canonical_page` files and still require exactly one canonical GoalOS shell and footer. Immersive RSI proof microsites can be `standalone_proof_page` files when they include `GOALOS-STANDALONE-PROOF` metadata plus a visible `/proof-gradient/` escape link. Cloud MVP pages under `site/app/goalos-cloud-mvp/` are `app_page` files and use their own app shell.
+
+Public AEP standard packages are allowed only at `standards/AEP-###/complete-package.zip`; all other ZIPs in public deploy roots remain blocked unless explicitly reviewed and added to the shared allowlist in `scripts/goalos_public_site_rules.py`. See `docs/GOALOS_PUBLIC_SITE_VALIDATION.md` and `docs/GOALOS_PAID_ARTIFACT_POLICY.md`.
+
+Run validation locally:
+
+```bash
+python scripts/validate_goalos_public_site.py
+python scripts/check_no_paid_artifacts.py
+python scripts/validate_docs_tables_figures.py
+python scripts/validate_goalos_catalog.py
+python -m pytest tests/test_goalos_public_site_rules.py
+```
+
 ## Public website
 
 The GitHub Pages site root is `site/`. The public site uses one canonical shell:
