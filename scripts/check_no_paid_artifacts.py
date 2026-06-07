@@ -15,25 +15,32 @@ SITE = ROOT / "site"
 PATTERNS = [
     "*.zip",
     "*BUYER*",
+    "*BUYER_OFFICIAL*",
     "*COMPLETE_BUNDLE*",
     "*DELIVERY_KIT*",
     "*SELLER_ASSETS*",
     "*WORKSHOP*",
     "*IMPLEMENTATION*",
     "*ENTERPRISE_PILOT*",
+    "*MASTER_PACK*",
+    "*COMMERCIALIZATION_READY*",
+    "*QUICK_LAUNCH*",
 ]
-# Public documentation/action-kit exceptions. These are standards or docs, not paid buyer products.
-WHITELIST = {
-    "standards/AEP-001/complete-package.zip",
-}
+
+PUBLIC_DOC_EXTENSIONS = {".md", ".html", ".json", ".yaml", ".yml", ".css", ".js", ".mjs", ".svg", ".txt", ".xml"}
 WHITELIST_PREFIXES = (
-    "standards/AEP-",  # public standards implementation documentation and schemas
-    "_archive/",       # historical backup, not linked as paid product material
+    "_archive/",  # historical backup, not deployed as active paid product material
 )
 
 
-def is_whitelisted(rel: str) -> bool:
-    return rel in WHITELIST or any(rel.startswith(prefix) for prefix in WHITELIST_PREFIXES)
+def is_whitelisted(path: Path, rel: str) -> bool:
+    if any(rel.startswith(prefix) for prefix in WHITELIST_PREFIXES):
+        return True
+    if rel.startswith("standards/AEP-") and path.suffix in PUBLIC_DOC_EXTENSIONS:
+        return True
+    if rel.startswith("app/goalos-cloud-mvp/") and path.suffix in PUBLIC_DOC_EXTENSIONS:
+        return True
+    return False
 
 
 def main() -> int:
@@ -42,7 +49,7 @@ def main() -> int:
         if not path.is_file():
             continue
         rel = path.relative_to(SITE).as_posix()
-        if is_whitelisted(rel):
+        if is_whitelisted(path, rel):
             continue
         name = path.name
         full = rel
