@@ -25,7 +25,7 @@ Branch: `feature/goalos-public-site-mvp-unification`
 
 - Paid-risk filename patterns found before repair included standards ZIP material under `site/standards/AEP-001/complete-package.zip` and release ZIP material outside the public site under `releases/`.
 - Standards implementation files were detected by broad filename patterns because they include the word `implementation`; they are public standards documentation, not paid delivery kits.
-- `scripts/check_no_paid_artifacts.py` now blocks ZIPs and paid buyer/workshop/implementation/enterprise bundle patterns from `site/`, with explicit public documentation/action-kit whitelisting only.
+- `scripts/check_no_paid_artifacts.py` now blocks ZIPs and paid buyer/workshop/implementation/enterprise bundle patterns from public deploy roots, with only the narrow `standards/AEP-###/complete-package.zip` public AEP package allowlist.
 
 ## Files changed
 
@@ -77,3 +77,11 @@ Branch: `feature/goalos-public-site-mvp-unification`
 
 - `pytest` now relies on `pythonpath = ["."]` in `pyproject.toml` so the standalone `pytest` command can import both `proof_gradient` and shared `scripts` modules consistently.
 - Installed development dependencies with `python -m pip install -e '.[dev]'` in this validation environment before running full repository tests.
+
+## 2026 validation hotfix v12 local command results
+
+- Required targeted regression command: `python -m pytest tests/test_goalos_public_site_rules.py -q` — passed.
+- Required paid-artifact guard command: `python scripts/check_no_paid_artifacts.py` — passed.
+- Required public-site validator command: `python scripts/validate_goalos_public_site.py` — passed.
+- Existing repository tests: `pytest` — passed with existing FastAPI deprecation warnings.
+- Existing make-based tests: `make test` — passed.
