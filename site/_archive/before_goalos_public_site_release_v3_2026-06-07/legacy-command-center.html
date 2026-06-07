@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Proof Gradient</title>
+    <style>
+    :root {
+      color-scheme: dark;
+      --bg: #05070d;
+      --panel: rgba(11,16,32,.82);
+      --line: rgba(255,255,255,.14);
+      --text: #f7f8ff;
+      --muted: #aab3cf;
+      --gold: #f4c76b;
+      --blue: #8ab4ff;
+      --green: #91f2bf;
+      --violet: #b8a7ff;
+      --red: #ff9c9c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 6%, rgba(138,180,255,.20), transparent 30%),
+        radial-gradient(circle at 88% 8%, rgba(244,199,107,.16), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(184,167,255,.10), transparent 38%),
+        linear-gradient(180deg, #05070d 0%, #090d18 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { width: min(1260px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 90px; }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-weight: 800; font-size: 13px; }
+    h1 { font-size: clamp(48px, 8vw, 112px); line-height: .92; letter-spacing: -.075em; margin: 18px 0 20px; }
+    h2 { font-size: clamp(30px, 4vw, 56px); line-height: 1; letter-spacing: -.055em; margin: 50px 0 20px; }
+    h3 { font-size: 24px; margin-top: 0; }
+    p, li { color: var(--muted); font-size: 18px; line-height: 1.6; }
+    a { color: var(--blue); }
+    .hero-line { max-width: 920px; font-size: 22px; }
+    .nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 36px; }
+    .nav a { text-decoration: none; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; background: rgba(255,255,255,.045); }
+    .nav a:hover { color: #05070d; background: var(--gold); border-color: var(--gold); }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+    .card { border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: var(--panel); min-height: 160px; box-shadow: 0 18px 70px rgba(0,0,0,.25); }
+    .card b { display: block; font-size: 21px; margin-bottom: 10px; }
+    .pill { display: inline-block; border: 1px solid rgba(145,242,191,.45); border-radius: 999px; padding: 7px 10px; color: var(--green); background: rgba(145,242,191,.08); font-weight: 800; margin: 8px 0 18px; }
+    pre { overflow: auto; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #070b14; color: #dbe6ff; max-height: 680px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; color: var(--muted); vertical-align: top; }
+    th { color: var(--text); background: rgba(255,255,255,.07); }
+    tr:last-child td { border-bottom: 0; }
+    .visual { border: 1px solid var(--line); border-radius: 26px; padding: 24px; background: rgba(11,16,32,.86); margin: 24px 0; }
+    svg { width: 100%; height: auto; display: block; }
+    .small { font-size: 15px; }
+    @media (max-width: 1000px) { .grid, .grid3 { grid-template-columns: 1fr; } main { padding: 42px 0; } }
+    </style>
+  
+<style id="rsi-proof-forge-hub-css">
+.rsi-proof-forge-feature{max-width:1180px;margin:32px auto;padding:32px;border:1px solid rgba(255,255,255,.16);border-radius:28px;background:linear-gradient(135deg,rgba(116,245,255,.12),rgba(127,255,176,.08));box-shadow:0 20px 80px rgba(0,0,0,.24)}
+.rsi-proof-forge-feature h2{font-size:clamp(32px,4vw,58px);letter-spacing:-.06em;margin:0 0 12px;color:#eff8ff}.rsi-proof-forge-feature p{color:#bdd0e9;max-width:880px;font-size:18px}.rsi-proof-forge-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:22px 0}.rsi-proof-forge-kpis div{border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:16px;background:rgba(255,255,255,.06)}.rsi-proof-forge-kpis strong{display:block;color:#7fffb0;font-size:28px}.rsi-proof-forge-feature a{display:inline-flex;align-items:center;margin-right:10px;margin-top:8px;padding:12px 16px;border-radius:999px;text-decoration:none;font-weight:900}.rsi-proof-forge-primary{background:#74f5ff;color:#061727}.rsi-proof-forge-secondary{border:1px solid rgba(255,255,255,.18);color:#eff8ff}.rsi-proof-forge-badge{display:inline-flex;padding:7px 12px;border-radius:999px;background:rgba(127,255,176,.16);color:#7fffb0;font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}@media(max-width:800px){.rsi-proof-forge-kpis{grid-template-columns:1fr}}
+</style>
+
+      <link rel="stylesheet" href="/proof-gradient/assets/goalos-site-v2.css" data-goalos-canonical-css>
+  <script defer src="/proof-gradient/assets/goalos-site-v2.js" data-goalos-canonical-js></script>
+</head>
+  <body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- GOALOS-CANONICAL-SHELL:START -->
+<header class="goalos-shell">
+  <nav class="goalos-nav" aria-label="GoalOS canonical navigation">
+    <a class="goalos-brand" href="/proof-gradient/"><span class="goalos-mark">G</span><span>GoalOS · Proof Gradient</span></a>
+    <div class="goalos-links">
+      <a href="/proof-gradient/start-here/">Start</a>
+      <a href="/proof-gradient/products/">Products</a>
+      <a href="/proof-gradient/pricing/">Pricing</a>
+      <a href="/proof-gradient/services/">Services</a>
+      <a href="/proof-gradient/products/goalos-cloud-mvp/">Cloud MVP</a>
+      <a href="/proof-gradient/implementation/goalos-proof-room-implementation-sprint/">Department RSI</a>
+      <a href="/proof-gradient/examples/">Examples</a>
+      <a href="/proof-gradient/standards/">Standards</a>
+      <a class="shop" href="https://www.quebecartificialintelligence.com/shop">Shop</a>
+    </div>
+  </nav>
+</header>
+<!-- GOALOS-CANONICAL-SHELL:END -->
+
+
+
+
+<!-- PG-SITE-SHELL:END -->
+
+
+
+    <main><!-- GOALOS_PRODUCT_LADDER_START -->
+<section id="goalos-product-ladder" class="card" style="margin:48px 0;padding:28px;border:1px solid rgba(244,199,107,.35);background:linear-gradient(135deg,rgba(244,199,107,.13),rgba(138,180,255,.10));">
+  <p class="eyebrow">GoalOS Product Ladder</p>
+  <h2>GoalOS Product Ladder<br><span style="color:#aab3cf">Échelle de produits GoalOS</span></h2>
+  <p class="hero-line"><strong>AI access is not leverage.</strong><br>GoalOS turns AI work into reusable, checked, provable capability.</p>
+  <p class="hero-line"><strong>L’accès à l’IA n’est pas le levier.</strong><br>GoalOS transforme le travail IA en capacité réutilisable, vérifiée et prouvable.</p>
+  <div class="nav" aria-label="GoalOS public links">
+    <a href="goalos/">GoalOS</a>
+    <a href="products/">Product ladder</a>
+    <a href="ai-efficiency-score/">AI Efficiency Score</a>
+    <a href="standards/AEP-001/">AEP-001</a>
+  </div>
+  <p class="small">Paid digital products are delivered through Squarespace + Stripe. GitHub hosts public proof, standards, and product information only.</p>
+</section>
+<!-- GOALOS_PRODUCT_LADDER_END --><!-- skillos-ai-first-blockchain-capital-machine:start -->
+<section id="ai-first-blockchain-capital-machine" class="panel" style="margin:34px 0;background:linear-gradient(140deg,rgba(131,247,255,.16),rgba(166,140,255,.18));">
+  <div style="display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap">
+    <div style="max-width:760px">
+      <div style="color:#83f7ff;font-size:12px;font-weight:950;letter-spacing:.24em;text-transform:uppercase">Flagship autonomous RSI proof</div>
+      <h2 style="font-size:clamp(36px,5vw,70px);line-height:.9;letter-spacing:-.07em;margin:12px 0">AI-First Blockchain Capital Machine</h2>
+      <p style="font-size:18px;color:#d8edf7">A large autonomous specialist-agent protocol organization recursively improves blockchain capital coordination across capital, blockspace, validator security, MEV control, liquidity, bridges, oracles, governance, settlement, validation, risk courts, and reinvestment.</p>
+      <p style="color:#b9d2df">Public benchmark only: not live protocol revenue, token advice, investment advice, achieved superintelligence, or Kardashev Type II civilization.</p>
+      <p><a href="./rsi-ai-first-blockchain-capital-machine-proof.html" style="display:inline-block;background:#83f7ff;color:#061420;border-radius:999px;padding:12px 18px;font-weight:950">Open proof page</a> <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-ai-first-blockchain-capital-machine-proof.yml" style="display:inline-block;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:12px 18px;font-weight:950;color:white">Run on GitHub</a></p>
+    </div>
+    <div class="grid" style="min-width:min(100%,520px);flex:1">
+      <div class="panel" style="padding:18px"><b style="font-size:28px;color:#74ffb4">262,144</b><br/><span>agents</span></div>
+      <div class="panel" style="padding:18px"><b style="font-size:28px;color:#74ffb4">8,192</b><br/><span>roles</span></div>
+      <div class="panel" style="padding:18px"><b style="font-size:28px;color:#74ffb4">99.907%</b><br/><span>holdout capture</span></div>
+      <div class="panel" style="padding:18px"><b style="font-size:28px;color:#74ffb4">$8.41B</b><br/><span>over no-RSI</span></div>
+    </div>
+  </div>
+</section>
+<!-- skillos-ai-first-blockchain-capital-machine:end --><!-- skillos-ai-first-governance-capital-engine:start -->
+<section id="ai-first-governance-capital-engine" class="panel" style="margin:34px 0;background:linear-gradient(140deg,rgba(126,247,255,.18),rgba(121,255,208,.13),rgba(175,164,255,.16));">
+  <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-start;flex-wrap:wrap">
+    <div style="max-width:780px">
+      <div style="color:#7ef7ff;font-size:12px;font-weight:950;letter-spacing:.24em;text-transform:uppercase">Flagship autonomous RSI governance proof</div>
+      <h2 style="font-size:clamp(38px,5vw,76px);line-height:.88;letter-spacing:-.075em;margin:12px 0">AI-First Governance Capital Engine</h2>
+      <p style="font-size:18px;color:#d8edf7">A large specialist-agent governance lattice recursively improves how AI-first institutions coordinate evidence, decision rights, incentives, capital, compute, energy, policy, execution, audit, risk courts, and reinvestment into compounding institutional capability.</p>
+      <p style="color:#ffd887">Public benchmark only: not live revenue, legal advice, investment advice, achieved superintelligence, or Kardashev Type II civilization.</p>
+      <p><a href="./rsi-ai-first-governance-capital-engine-proof.html" style="display:inline-block;background:#7ef7ff;color:#061420;border-radius:999px;padding:12px 18px;font-weight:950">Open proof page</a> <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml" style="display:inline-block;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:12px 18px;font-weight:950;color:white">Run on GitHub</a></p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:14px;min-width:min(100%,430px);flex:1">
+      <div class="panel" style="padding:18px"><b style="font-size:30px;color:#79ffd0">524,288</b><br/><span>virtual specialists</span></div>
+      <div class="panel" style="padding:18px"><b style="font-size:30px;color:#79ffd0">16,384</b><br/><span>governance roles</span></div>
+      <div class="panel" style="padding:18px"><b style="font-size:30px;color:#79ffd0">99.938%</b><br/><span>holdout capture</span></div>
+      <div class="panel" style="padding:18px"><b style="font-size:30px;color:#79ffd0">$3.97T</b><br/><span>over no-RSI</span></div>
+    </div>
+  </div>
+</section>
+<!-- skillos-ai-first-governance-capital-engine:end -->
+      <div class="eyebrow">Proof Gradient · Agent Evolution Protocol</div>
+      
+    <h1>Aim.<br>Act.<br>Prove.<br>Evolve.</h1>
+    <p class="hero-line">GoalOS gives the network Direction. PlanOS gives it Strategy. SkillOS gives it Capability. The Proof Gradient gives it Evolution.</p>
+    <nav class="nav">
+      <a href="index.html">Command Center</a>
+      <a href="production.html">Production Platform</a>
+      <a href="proofs/index.html">Proof Archive</a>
+      <a href="docs/index.html">Docs</a>
+    </nav>
+    <h2>The Four Systems</h2>
+    <div class="grid">
+        <div class="card">
+          <b>Artifact Vault</b>
+          <p>Stores reusable intelligence.</p>
+          <p>Stores immutable, versioned, scoped, auditable, rollbackable artifacts.</p>
+        </div>
+        
+        <div class="card">
+          <b>Run Fabric</b>
+          <p>Executes agents at scale.</p>
+          <p>Resolves artifacts, executes stateless runs, records traces, and emits proof.</p>
+        </div>
+        
+        <div class="card">
+          <b>Proof Ledger</b>
+          <p>Records what happened.</p>
+          <p>Append-only evidence for runs, evals, scores, policy decisions, feedback, costs, latency, and credit assignment.</p>
+        </div>
+        
+        <div class="card">
+          <b>Selection Gate</b>
+          <p>Promotes only what proved itself.</p>
+          <p>Evaluates, approves, canaries, monitors, promotes, pauses, and rolls back upgrades.</p>
+        </div>
+        </div>
+    
+    <section id="proof-11-the-proof-loop">
+      <h2>Latest Proof</h2>
+      <div class="card">
+        <b>Proof #11 — The Proof Loop</b>
+        <p>Aim → Act → Prove → Evolve. The simplest sovereign protocol for compounding agent intelligence.</p>
+        <p><a href="proofs/011-the-proof-loop.html">Open Proof #11 →</a></p>
+      </div>
+    </section>
+    
+    
+    
+<section id="rsi-proof-forge-meta-coordination" class="rsi-proof-forge-feature">
+  <span class="rsi-proof-forge-badge">New autonomous RSI meta-proof</span>
+  <h2>Proof Forge Meta-Coordination</h2>
+  <p>SkillOS now tests the proof system itself: a large specialist-agent proof market recursively improves how hypotheses become verified receipts, public reports, executive webpages, and reusable future proof machinery.</p>
+  <div class="rsi-proof-forge-kpis">
+    <div><strong>4,194,304</strong><span>virtual specialist agents</span></div>
+    <div><strong>256</strong><span>verifier courts</span></div>
+    <div><strong>99.10%</strong><span>holdout value capture</span></div>
+    <div><strong>$6.74T</strong><span>benchmark value captured</span></div>
+  </div>
+  <a class="rsi-proof-forge-primary" href="rsi-proof-forge-meta-coordination-proof.html">View proof</a>
+  <a class="rsi-proof-forge-secondary" href="data/rsi-proof-forge-meta-coordination-proof.json">JSON receipt</a>
+  <a class="rsi-proof-forge-secondary" href="docs/rsi-proof-forge-meta-coordination-proof.md">Report</a>
+</section>
+
+<section id="autonomous-market-readiness" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">100% autonomous proof</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Market-Readiness Proof</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:780px">Runs entirely in GitHub Actions with no human review, no emails sent, no customers contacted, no private data, no API keys, and a deterministic holdout benchmark.</p>
+  <p>
+    <a href="autonomous-market-readiness.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View autonomous proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-market-readiness.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="enterprise-ops-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Autonomous enterprise proof</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Enterprise Ops Market Proof</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:820px">A 100% autonomous GitHub Actions proof for invoice reconciliation and payment-risk triage. No human review, no emails, no customers, no private data, no API keys.</p>
+  <p>
+    <a href="enterprise-ops-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View enterprise proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/enterprise-ops-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-cloudops-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Recursive self-improvement</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI CloudOps Market Proof</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:840px">A 100% autonomous GitHub Actions proof for cloud reliability incident triage and cost remediation. No human review, no emails, no invoices, no customers, no private data, no API keys.</p>
+  <p>
+    <a href="rsi-cloudops-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View RSI proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-cloudops-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-cyberdefense-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Recursive self-improvement</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Cyber Defense Market Proof</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:860px">A 100% autonomous GitHub Actions proof for defensive SOC alert triage and incident containment planning. No human review, no emails, no invoices, no CloudOps reuse, no customers, no private data, no API keys.</p>
+  <p>
+    <a href="rsi-cyberdefense-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View cyber defense proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-cyberdefense-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-silicon-verification-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Recursive self-improvement</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Silicon Verification Market Proof</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:880px">A 100% autonomous GitHub Actions proof for semiconductor RTL verification, bug triage, assertion selection, and fix-plan recommendation. No human review, no emails, no invoices, no CloudOps or cyber reuse, no customers, no private data, no API keys.</p>
+  <p>
+    <a href="rsi-silicon-verification-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View silicon verification proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-silicon-verification-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-metamaterials-discovery-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Recursive self-improvement</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Metamaterials Discovery Market Proof</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:900px">A 100% autonomous GitHub Actions proof for scientific/engineering discovery: lightweight metamaterial design, validation-gated RSI, and holdout frontier improvement. No human review, no customers, no private data, no API keys.</p>
+  <p>
+    <a href="rsi-metamaterials-discovery-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View discovery proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-metamaterials-discovery-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-corporate-os-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Recursive self-improvement</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Corporate Operating System Market Proof</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:900px">A 100% autonomous GitHub Actions proof for corporate operating-system diagnosis and board-ready operating-plan generation. No human review, no customers, no private data, no API keys, and no reuse of previous proof domains.</p>
+  <p>
+    <a href="rsi-corporate-os-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View corporate RSI proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-corporate-os-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-unit-economics-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Recursive self-improvement</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Unit Economics Profit Engine</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:900px">A 100% autonomous GitHub Actions proof for scalable AI workflow marketplace profit capture: pricing, routing, margin, retention, SLA risk, marketplace supply, private skill registries, and value capture. No human review, no customers, no private data, no API keys, and no reuse of previous proof domains.</p>
+  <p>
+    <a href="rsi-unit-economics-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View profit engine proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-unit-economics-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-marketplace-flywheel-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Recursive self-improvement</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Marketplace Flywheel</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:900px">A 100% autonomous GitHub Actions proof for scalable AI-work marketplace liquidity, skill supply, pricing, routing, quality, and compounding business value. No human review, no customers, no private data, no API keys, and no reuse of previous proof domains.</p>
+  <p>
+    <a href="rsi-marketplace-flywheel-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View marketplace flywheel proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-marketplace-flywheel-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-revenue-experiment-factory-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Recursive self-improvement</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Revenue Experiment Factory</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:900px">A 100% autonomous GitHub Actions proof for causal revenue experiments, guardrails, portfolio allocation, and scalable growth-plan selection. No human review, no customers, no private data, no API keys, and no reuse of previous proof domains.</p>
+  <p>
+    <a href="rsi-revenue-experiment-factory-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View experiment factory proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-revenue-experiment-factory-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-capital-to-capability-engine-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Capital-to-capability RSI</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Capital-to-Capability Engine</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:960px">A 100% autonomous GitHub Actions proof that coordinates a 256-agent specialist organization across capital allocation, compute, energy, data, trust, product, distribution, talent, risk, validation, and reinvestment to test capital-to-capability compounding. No human review, no customers, no private data, no API keys, and no reuse of previous proof domains.</p>
+  <p>
+    <a href="rsi-capital-to-capability-engine-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View capital-to-capability proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-capital-to-capability-engine-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-capability-command-center-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Adversarial capital-to-capability RSI</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Capital-to-Capability Command Center</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:980px">A 100% autonomous GitHub Actions proof coordinating a 320-agent specialist organization across 32 roles to test capital, compute, energy, data, trust, talent, product, distribution, validation, risk control, and reinvestment as a compounding business-capability engine. Includes adversarial traps, ablations, pre-registered gates, proof receipts, and safe Kardashev-scale framing.</p>
+  <p>
+    <a href="rsi-capability-command-center-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View capability proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-capability-command-center-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+<section id="rsi-adversarial-multi-agent-market-command-center-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Adversarial large-scale agentic coordination</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Adversarial Multi-Agent Market Command Center</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:960px">A 100% autonomous GitHub Actions proof that coordinates a 160-agent specialist collective across 20 business roles, tests adversarial market-capture traps, compares single-agent, uncoordinated-pool, static-coordination, and coordinated-RSI systems, then releases only validation-gated coordination protocols.</p>
+  <p style="color:#aab8c8;font-size:15px;max-width:960px">No human review, no customers, no private data, no API keys, and no reuse of previous proof domains.</p>
+  <p>
+    <a href="rsi-adversarial-multi-agent-market-command-center-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View adversarial multi-agent proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-adversarial-multi-agent-market-command-center-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+
+<!-- AEP001_HOMEPAGE_LINK_START -->
+<section id="aep-001-constitution" style="margin:56px 0; padding:28px; border:1px solid rgba(255,255,255,.16); border-radius:28px; background:linear-gradient(135deg, rgba(255,215,106,.10), rgba(145,183,255,.08)); box-shadow:0 24px 80px rgba(0,0,0,.22);">
+  <div style="color:#ffd76a; text-transform:uppercase; letter-spacing:.18em; font-weight:900; font-size:12px;">Protocol Standard</div>
+  <h2 style="font-size:clamp(30px,5vw,56px); line-height:.95; letter-spacing:-.055em; margin:12px 0 14px;">AEP-001 — GoalOS Proof-of-Evolution Constitution</h2>
+  <p style="max-width:820px; color:#b8c0da; font-size:18px; line-height:1.55;">
+    Commit → Execute → Prove → Evolve. The canonical standard for Proof-Carrying Intelligence:
+    Artifact Vault, Run Fabric, Proof Ledger, and Selection Gate.
+  </p>
+  <a href="./standards/AEP-001/" style="display:inline-flex; margin-top:12px; padding:11px 16px; border-radius:999px; border:1px solid rgba(255,215,106,.45); color:#f6f7ff; text-decoration:none; font-weight:800; background:rgba(255,255,255,.06);">Read AEP-001 Constitution →</a>
+</section>
+<!-- AEP001_HOMEPAGE_LINK_END -->
+
+<section id="rsi-capability-command-center-v17-proof" style="margin:48px 0;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(255,255,255,.06)">
+  <p style="text-transform:uppercase;letter-spacing:.16em;color:#74f7ff;font-weight:800;font-size:12px;margin:0 0 10px">Capital-to-capability RSI</p>
+  <h2 style="font-size:clamp(30px,4vw,54px);line-height:1;margin:0 0 14px">Autonomous RSI Capital-to-Capability Command Center</h2>
+  <p style="color:#aab8c8;font-size:18px;max-width:960px">A 100% autonomous GitHub Actions proof coordinating a 512-agent specialist organization across 64 roles to test capital, compute, energy, data, trust, talent, product, distribution, validation, risk control, and reinvestment as a compounding productive-capability engine. Includes adversarial traps, ablations, pre-registered gates, proof receipts, and a safe Kardashev-scale boundary.</p>
+  <p>
+    <a href="rsi-capability-command-center-v17-proof.html" style="display:inline-block;margin-right:12px;padding:12px 18px;border-radius:999px;background:#8af7ff;color:#071421;font-weight:800;text-decoration:none">View v17 proof</a>
+    <a href="https://github.com/MontrealAI/proof-gradient/actions/workflows/rsi-capability-command-center-v17-proof.yml" style="display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#eef7ff;font-weight:800;text-decoration:none">Run on GitHub</a>
+  </p>
+</section>
+
+    <!-- AEP-STANDARDS-SECTION:START -->
+    <section id="aep-standards" style="margin:48px auto;max-width:1120px;padding:28px;border:1px solid rgba(255,255,255,.16);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));">
+      <p style="color:#ffd76a;text-transform:uppercase;letter-spacing:.18em;font-weight:900;font-size:12px;">Proof Gradient · Foundational AEP Stack</p>
+      <h2 style="font-size:clamp(30px,5vw,56px);line-height:.95;letter-spacing:-.05em;margin:10px 0 16px;">Machine work should leave proof.</h2>
+      <p style="color:#b8c0da;font-size:19px;line-height:1.5;max-width:820px;">Browse the complete AEP standards stack: protocol, docket, packet, gate, permission, recovery, public proof, and proof room.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;">
+        <a class="btn" href="/proof-gradient/standards/">All Standards</a>
+        <a class="btn" href="/proof-gradient/standards/AEP-001/">AEP-001</a>
+<a class="btn" href="/proof-gradient/standards/AEP-002/">AEP-002</a>
+<a class="btn" href="/proof-gradient/standards/AEP-003/">AEP-003</a>
+<a class="btn" href="/proof-gradient/standards/AEP-004/">AEP-004</a>
+<a class="btn" href="/proof-gradient/standards/AEP-005/">AEP-005</a>
+<a class="btn" href="/proof-gradient/standards/AEP-006/">AEP-006</a>
+<a class="btn" href="/proof-gradient/standards/AEP-007/">AEP-007</a>
+<a class="btn" href="/proof-gradient/standards/AEP-008/">AEP-008</a>
+      </div>
+    </section>
+    <!-- AEP-STANDARDS-SECTION:END -->
+    
+</main>
+  
+<!-- PG-SITE-FOOTER:START -->
+
+
+<!-- PG-SITE-FOOTER:END -->
+
+
+
+
+<!-- GOALOS-CANONICAL-FOOTER:START -->
+<footer class="goalos-footer">
+  <div class="goalos-footer-inner">
+    <div>GoalOS · Recursive Workflow OS · Proof Rooms · Enterprise RSI</div>
+    <div><a href="/proof-gradient/site-map/">Site Map</a><a href="/proof-gradient/pricing/">Pricing</a><a href="https://github.com/MontrealAI/proof-gradient">GitHub</a><a href="https://www.quebecartificialintelligence.com/shop">Shop</a></div>
+  </div>
+</footer>
+<!-- GOALOS-CANONICAL-FOOTER:END -->
+</body>
+</html>
