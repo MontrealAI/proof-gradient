@@ -1,0 +1,4 @@
+rule,status
+AEP complete-package.zip under site/standards/AEP-###,allowed
+buyer ZIPs,blocked
+private delivery bundles,blocked

@@ -1,42 +1,17 @@
-# Roadmap
+# GoalOS Engineering Roadmap
 
-## v1: Local reference implementation
+QUEBEC.AI ⚜️✨ · GoalOS · Proof Gradient.
 
-- [x] SQLite trace store
-- [x] Skill registry
-- [x] Agent runtime
-- [x] Learning inbox
-- [x] Skill trainer
-- [x] Test lab
-- [x] Release center
-- [x] Browser UI
-- [x] CLI
-- [x] Tests
+A model can answer. An agent can act. An institution must prove.
 
-## v2: Real agent integration
+GoalOS is the Recursive Workflow OS for Recursive Self-Improving Workflows. GoalOS does not modify base AI models. GoalOS improves workflows around AI through instructions, prompts, memory, scorecards, proof records, evaluations, approvals, versions, monitoring, and rollback.
 
-- [ ] Plug in LLM provider
-- [ ] Tool-calling runtime
-- [ ] MCP-style tool gateway
-- [ ] Structured eval datasets
-- [ ] Human approval queue
-- [ ] Model-graded evals
+GoalOS ne modifie pas les modèles IA de base. GoalOS améliore les flux autour de l’IA grâce aux instructions, prompts, mémoire, grilles de score, dossiers de preuve, évaluations, approbations, versions, surveillance et rollback.
 
-## v3: Enterprise SkillOS
+Core loop: Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run
 
-- [ ] Multi-tenant isolation
-- [ ] Postgres backend
-- [ ] Auth and RBAC
-- [ ] Audit logs
-- [ ] Canary rollout monitor
-- [ ] Automatic rollback
-- [ ] Skill marketplace
+French loop: Exécuter → Noter → Prouver → Diagnostiquer → Améliorer → Approuver → Versionner → Surveiller → Réexécuter
 
-## v4: Civilization-scale capability network
+Product ladder is maintained in `docs/data/goalos_catalog.yml`; public buy/apply calls point to https://www.quebecartificialintelligence.com/shop.
 
-- [ ] Scientific workflow skills
-- [ ] Robotics task skills
-- [ ] Energy infrastructure skills
-- [ ] Manufacturing skills
-- [ ] Space infrastructure skills
-- [ ] Network-level benefit distribution metrics
+Claim boundary: no guaranteed ROI, revenue, productivity, compliance certification, AI safety certification, regulated advice, uncontrolled autonomous deployment, true AGI RSI, or base-model self-modification.

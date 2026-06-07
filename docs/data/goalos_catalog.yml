@@ -1,0 +1,121 @@
+# GoalOS v10 public catalog: single source of truth
+platform: GoalOS Recursive Workflow OS
+category: Recursive Self-Improving Workflows
+identity: "QUEBEC.AI ⚜️✨"
+public_line: "A model can answer. An agent can act. An institution must prove."
+commercial_line: "ChatGPT gives you answers. GoalOS gives you workflows that get better every time they run."
+enterprise_line: "Enterprise RSI without model self-modification."
+shop_url: "https://www.quebecartificialintelligence.com/shop"
+website_release: "GoalOS Public Site Release v10"
+cloud_mvp: "GoalOS Cloud MVP 0.2"
+legal_payments_buyer_success_package: "GoalOS Legal / Payments / Buyer Success Operating Pack v2.0"
+communications_package: "GoalOS World-Class Communications Firm Briefing Pack v1.0"
+safe_boundary_en: "GoalOS does not modify base AI models. GoalOS improves workflows around AI through instructions, prompts, memory, scorecards, proof records, evaluations, approvals, versions, monitoring, and rollback."
+safe_boundary_fr: "GoalOS ne modifie pas les modèles IA de base. GoalOS améliore les flux autour de l’IA grâce aux instructions, prompts, mémoire, grilles de score, dossiers de preuve, évaluations, approbations, versions, surveillance et rollback."
+core_loop_en: "Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run"
+core_loop_fr: "Exécuter → Noter → Prouver → Diagnostiquer → Améliorer → Approuver → Versionner → Surveiller → Réexécuter"
+product_ladder:
+  - slug: goalos-ai-efficiency-sprint-kit
+    price: "$49"
+    name: "GoalOS AI Efficiency Sprint Kit"
+    version: "v1.4"
+    english_description: "Build one reusable AI workflow."
+    french_description: "Construisez un flux IA réutilisable."
+    public_url: "/proof-gradient/products/goalos-ai-efficiency-sprint-kit/"
+  - slug: goalos-rsi-lite
+    price: "$199"
+    name: "GoalOS RSI Lite"
+    version: "v1.6"
+    english_description: "Build one self-improving AI workflow."
+    french_description: "Construisez un flux IA auto-améliorant."
+    public_url: "/proof-gradient/products/goalos-rsi-lite/"
+  - slug: goalos-proof-room-lite
+    price: "$997"
+    name: "GoalOS Proof Room Lite / Department Pack"
+    version: "v2.0"
+    english_description: "Set up a lightweight department Proof Room."
+    french_description: "Mettez en place une Salle de preuve légère pour un département."
+    public_url: "/proof-gradient/products/goalos-proof-room-lite/"
+  - slug: goalos-rsi-sprint-workshop
+    price: "$2,500+"
+    name: "GoalOS RSI Sprint Workshop"
+    version: "v6.0"
+    english_description: "Build the first self-improving workflow live."
+    french_description: "Construisez le premier flux auto-améliorant en direct."
+    public_url: "/proof-gradient/products/goalos-rsi-sprint-workshop/"
+  - slug: goalos-proof-room-implementation-sprint
+    price: "$9,500+"
+    name: "GoalOS Proof Room Implementation Sprint"
+    version: "v2.0"
+    english_description: "Department RSI in 30 days."
+    french_description: "RSI départemental en 30 jours."
+    public_url: "/proof-gradient/products/goalos-proof-room-implementation-sprint/"
+  - slug: goalos-enterprise-rsi-pilot
+    price: "$49,000+"
+    name: "GoalOS Enterprise RSI Pilot"
+    version: "v2.0"
+    english_description: "Pilot the Recursive Workflow OS."
+    french_description: "Pilotez le Recursive Workflow OS."
+    public_url: "/proof-gradient/products/goalos-enterprise-rsi-pilot/"
+approved_claims:
+  - "Enterprise RSI without model self-modification."
+  - "Recursive self-improving workflows with proof records, scorecards, approvals, versions, monitoring, and rollback."
+  - "Public-safe proof cards and Proof Room records can document workflow evolution."
+prohibited_claims:
+  - guaranteed ROI
+  - guaranteed revenue
+  - guaranteed productivity
+  - compliance certification
+  - AI safety certification
+  - legal / financial / tax / HR / security / medical / regulatory advice
+  - uncontrolled autonomous deployment
+  - true AGI RSI
+  - base-model self-modification
+public_page_urls:
+  - /proof-gradient/
+  - /proof-gradient/start-here/
+  - /proof-gradient/products/
+  - /proof-gradient/pricing/
+  - /proof-gradient/services/
+  - /proof-gradient/examples/
+  - /proof-gradient/standards/
+  - /proof-gradient/command-center/
+  - /proof-gradient/site-map/
+  - /proof-gradient/brand/visual-system/
+asset_references:
+  seal: assets/quebecaisealv5.png
+  site_seal: site/assets/quebecaisealv5.png
+  brand_manifest: site/assets/brand-assets-v10.json
+aep_standards:
+  - code: AEP-001
+    title: "GoalOS Proof-of-Evolution Constitution"
+    package: "site/standards/AEP-001/complete-package.zip"
+  - code: AEP-002
+    title: "Evidence Docket Standard"
+    package: "site/standards/AEP-002/complete-package.zip"
+  - code: AEP-003
+    title: "ProofPacket Schema"
+    package: "site/standards/AEP-003/complete-package.zip"
+  - code: AEP-004
+    title: "Selection Gate Standard"
+    package: "site/standards/AEP-004/complete-package.zip"
+  - code: AEP-005
+    title: "Tool Permission Standard"
+    package: "site/standards/AEP-005/complete-package.zip"
+  - code: AEP-006
+    title: "Rollback Receipt Standard"
+    package: "site/standards/AEP-006/complete-package.zip"
+  - code: AEP-007
+    title: "Public-Safe Proof Report Standard"
+    package: "site/standards/AEP-007/complete-package.zip"
+  - code: AEP-008
+    title: "Proof Room Standard"
+    package: "site/standards/AEP-008/complete-package.zip"
+documentation_inventory:
+  - README.md
+  - docs/GOALOS_REPO_AUDIT.md
+  - docs/GOALOS_PUBLIC_SITE_RELEASE_V10.md
+public_private_file_rules:
+  public_allowed_extensions: [.md, .html, .json, .txt, .yml, .yaml, .css, .js, .svg, .png, .jpg, .jpeg, .webp, .gif, .avif]
+  zip_exception: "site/standards/AEP-###/complete-package.zip"
+  blocked_name_fragments: [buyer, buyer_official, complete_bundle, delivery_kit, seller_assets, master_pack, commercialization_ready, quick_launch, opulent_institutional, institutional_boardroom, implementation_sprint, enterprise_rsi_pilot, workshop_v, buyer_facilitator, private, paid]
