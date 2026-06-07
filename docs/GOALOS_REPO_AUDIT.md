@@ -38,6 +38,9 @@ Branch: `feature/goalos-public-site-mvp-unification`
 - Updated `scripts/check_site_links.py` to skip archived backup HTML when validating current public site links.
 - Updated / added documentation: `README.md`, `docs/GOALOS_COMMERCIALIZATION_STATUS.md`, `docs/GOALOS_CLOUD_MVP_0_2.md`, `docs/GOALOS_PUBLIC_SITE_REPAIR.md`, and this audit.
 - Added / updated GitHub Actions for shell repair, Cloud MVP build, and complete public-site refresh.
+- Follow-up repair restored `proof-gradient-site.css` / `proof-gradient-site.js` on current public pages that still use `pg-*` markup or `data-pg-search`, and made `scripts/validate_goalos_site_v2.py` enforce that compatibility requirement.
+- Follow-up repair updated the GoalOS product page generator so CI regeneration emits the canonical shell directly and no longer reintroduces stale PG shell/footer fragments.
+- Follow-up repair narrowed the AEP-003 ProofPacket CI glob to validate numbered ProofPacket examples while leaving the separate bundle example to chain/bundle tooling.
 
 ## Files preserved
 
@@ -58,6 +61,8 @@ Branch: `feature/goalos-public-site-mvp-unification`
 - `python scripts/check_site_links.py` — passed.
 - `pytest` — passed: 72 tests, 2 warnings.
 - `make test` — passed: 56 unittest tests.
+- AEP-003 numbered ProofPacket validation plus packet-chain verification — passed.
+- Product page builder freshness check — passed after rerunning `python scripts/build_goalos_product_pages.py` and confirming the output diff did not change.
 
 ## Known limitations
 

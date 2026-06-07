@@ -16,6 +16,8 @@ OLD_MARKERS = re.compile(
 CANONICAL_NAV = "GOALOS-CANONICAL-SHELL:START"
 CANONICAL_FOOTER = "GOALOS-CANONICAL-FOOTER:START"
 DUPLICATE_MVP = "GOALOS-CLOUD-MVP homepage duplicate"
+PG_CSS = "proof-gradient-site.css"
+PG_JS = "proof-gradient-site.js"
 LINK_RE = re.compile(r"(?:href|src)=[\"']([^\"']+)[\"']", re.IGNORECASE)
 
 
@@ -55,6 +57,11 @@ def main() -> int:
             failures.append(f"{rel}: old GoalOS shell marker remains")
         if DUPLICATE_MVP in text:
             failures.append(f"{rel}: duplicate Cloud MVP homepage block marker remains")
+        if ("pg-" in text or "data-pg-search" in text or "data-pg-card" in text):
+            if PG_CSS not in text:
+                failures.append(f"{rel}: pg-* markup present without proof-gradient-site.css")
+            if PG_JS not in text:
+                failures.append(f"{rel}: pg-* markup present without proof-gradient-site.js")
         for raw in LINK_RE.findall(text):
             if raw.startswith("http://") or raw.startswith("https://") or raw.startswith("mailto:") or raw.startswith("tel:"):
                 continue

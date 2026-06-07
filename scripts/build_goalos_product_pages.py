@@ -101,6 +101,12 @@ def write(path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8")
 
 def page(title: str, main: str, css_prefix: str = "../") -> str:
+    """Render generated product pages with the canonical GoalOS shell.
+
+    The product pages still load goalos-products.* for their generated product
+    components, but the surrounding public site shell is the same v2 shell used
+    by the rest of site/ so CI regeneration cannot reintroduce stacked navbars.
+    """
     return f"""<!doctype html>
 <html lang=\"en\">
 <head>
@@ -108,27 +114,42 @@ def page(title: str, main: str, css_prefix: str = "../") -> str:
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
   <title>{e(title)}</title>
   <meta name=\"description\" content=\"Public GoalOS proof and product information by QUEBEC.AI / MONTREAL.AI.\">
+  <link rel=\"stylesheet\" href=\"/proof-gradient/assets/goalos-site-v2.css\" data-goalos-canonical-css>
   <link rel=\"stylesheet\" href=\"{css_prefix}assets/goalos-products.css\">
+  <script defer src=\"/proof-gradient/assets/goalos-site-v2.js\" data-goalos-canonical-js></script>
 </head>
 <body class=\"goalos-page\">
 <a class=\"skip-link\" href=\"#main\">Skip to content</a>
-<header class=\"shell topnav\" aria-label=\"GoalOS navigation\">
-  <a class=\"brand\" href=\"{css_prefix}\">QUEBEC.AI / MONTREAL.AI</a>
-  <nav class=\"navlinks\" aria-label=\"Primary\">
-    <a href=\"{css_prefix}goalos/\">GoalOS</a>
-    <a href=\"{css_prefix}products/\">Products</a>
-    <a href=\"{css_prefix}ai-efficiency-score/\">AI Efficiency Score</a>
-    <a href=\"{css_prefix}standards/AEP-001/\">AEP-001</a>
+<!-- GOALOS-CANONICAL-SHELL:START -->
+<header class=\"goalos-shell\">
+  <nav class=\"goalos-nav\" aria-label=\"GoalOS canonical navigation\">
+    <a class=\"goalos-brand\" href=\"/proof-gradient/\"><span class=\"goalos-mark\">G</span><span>GoalOS · Proof Gradient</span></a>
+    <div class=\"goalos-links\">
+      <a href=\"/proof-gradient/start-here/\">Start</a>
+      <a href=\"/proof-gradient/products/\">Products</a>
+      <a href=\"/proof-gradient/pricing/\">Pricing</a>
+      <a href=\"/proof-gradient/services/\">Services</a>
+      <a href=\"/proof-gradient/products/goalos-cloud-mvp/\">Cloud MVP</a>
+      <a href=\"/proof-gradient/implementation/goalos-proof-room-implementation-sprint/\">Department RSI</a>
+      <a href=\"/proof-gradient/examples/\">Examples</a>
+      <a href=\"/proof-gradient/standards/\">Standards</a>
+      <a class=\"shop\" href=\"https://www.quebecartificialintelligence.com/shop\">Shop</a>
+    </div>
   </nav>
 </header>
+<!-- GOALOS-CANONICAL-SHELL:END -->
 <main id=\"main\" class=\"shell\">
 {MARKER}
 {main}
 </main>
-<footer class=\"shell footer\">
-  <p><strong>Commit → Execute → Prove → Evolve</strong></p>
-  <p>No proof, no evolution. No eval, no propagation. No rollback, no release.</p>
+<!-- GOALOS-CANONICAL-FOOTER:START -->
+<footer class=\"goalos-footer\">
+  <div class=\"goalos-footer-inner\">
+    <div>GoalOS · Recursive Workflow OS · Proof Rooms · Enterprise RSI</div>
+    <div><a href=\"/proof-gradient/site-map/\">Site Map</a><a href=\"/proof-gradient/pricing/\">Pricing</a><a href=\"https://github.com/MontrealAI/proof-gradient\">GitHub</a><a href=\"https://www.quebecartificialintelligence.com/shop\">Shop</a></div>
+  </div>
 </footer>
+<!-- GOALOS-CANONICAL-FOOTER:END -->
 <script src=\"{css_prefix}assets/goalos-products.js\"></script>
 </body>
 </html>
@@ -282,13 +303,11 @@ def update_homepage() -> None:
         before, rest = text.split(start, 1)
         _, after = rest.split(end, 1)
         new_text = before + block + after
-    else:
-        marker = "<main>"
-        if marker in text:
-            new_text = text.replace(marker, marker + block, 1)
-        else:
-            new_text = block + text
-    write(path, new_text)
+        write(path, new_text)
+    # The unified GoalOS home page now owns the public ladder directly. Avoid
+    # injecting generated fragments into pages that do not already carry the
+    # product-ladder markers, because CI regeneration must not create duplicate
+    # shells or stale homepage diffs.
 
 def main() -> int:
     products = load_products()
