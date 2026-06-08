@@ -45,8 +45,9 @@ REQUIRED_DOCS = [
 REQUIRED_TABLES = [
     "goalos_product_ladder.csv", "goalos_offer_status.csv", "goalos_claim_boundaries.csv",
     "goalos_public_site_pages.csv", "goalos_paid_file_policy.csv", "goalos_aep_standards.csv",
-    "goalos_document_inventory.csv", "goalos_figure_inventory.csv", "goalos_asset_manifest.csv",
-    "goalos_validation_rules.csv", "goalos_workflow_actions.csv", "goalos_proof_card_001_fields.csv",
+    "goalos_document_inventory.csv", "goalos_figure_inventory.csv", "goalos_badge_inventory.csv",
+    "goalos_asset_manifest.csv", "goalos_validation_rules.csv", "goalos_workflow_actions.csv",
+    "goalos_proof_card_001_fields.csv",
     "goalos_professional_firm_packages.csv", "goalos_autonomous_website_actions.csv",
     "goalos_public_standard_strategy.csv",
 ]
@@ -123,6 +124,48 @@ def local_link_exists(source: Path, target: str) -> bool:
     return candidate.exists()
 
 
+def validate_badge_inventory(errors: list[str]) -> None:
+    """Ensure the badge inventory table names every required badge file exactly."""
+    badge_csv = ROOT / "docs" / "tables" / "goalos_badge_inventory.csv"
+    if not badge_csv.exists():
+        return
+
+    try:
+        with badge_csv.open(encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle)
+            rows = list(reader)
+            fieldnames = reader.fieldnames or []
+    except csv.Error as exc:
+        errors.append(f"badge inventory CSV could not be parsed: {exc}")
+        return
+
+    if "File" not in fieldnames:
+        errors.append("badge inventory CSV missing required File column")
+        return
+
+    expected = {f"badges/{badge}" for badge in REQUIRED_BADGES}
+    actual = {str(row.get("File", "")).strip() for row in rows if str(row.get("File", "")).strip()}
+
+    missing = sorted(expected - actual)
+    extra = sorted(actual - expected)
+    if missing:
+        errors.append("badge inventory CSV missing required File values: " + ", ".join(missing))
+    if extra:
+        errors.append("badge inventory CSV contains non-required or renamed File values: " + ", ".join(extra))
+
+    seen: set[str] = set()
+    duplicates: set[str] = set()
+    for row in rows:
+        value = str(row.get("File", "")).strip()
+        if not value:
+            continue
+        if value in seen:
+            duplicates.add(value)
+        seen.add(value)
+    if duplicates:
+        errors.append("badge inventory CSV contains duplicate File values: " + ", ".join(sorted(duplicates)))
+
+
 def main() -> int:
     errors: list[str] = []
     for rel in REQUIRED_DOCS:
@@ -138,6 +181,7 @@ def main() -> int:
     for badge in REQUIRED_BADGES:
         if not (ROOT / "badges" / badge).is_file():
             errors.append(f"missing required badge: badges/{badge}")
+    validate_badge_inventory(errors)
 
     readme = text(ROOT / "README.md")
     for section in README_SECTIONS:
