@@ -1,4 +1,4 @@
-name: Validate GoalOS Public Site v12
+name: OBSOLETE — do not run — v12 validation
 
 on:
   workflow_dispatch:

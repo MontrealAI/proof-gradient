@@ -1,4 +1,4 @@
-name: GoalOS Validation Hotfix v13 No Pytest
+name: OBSOLETE — do not run — v13 no-pytest validation
 
 on:
   workflow_dispatch:

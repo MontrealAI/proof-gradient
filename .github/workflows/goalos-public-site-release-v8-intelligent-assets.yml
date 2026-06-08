@@ -1,4 +1,4 @@
-name: GoalOS Public Site Release (v8-intelligent-assets, obsolete compatibility validation)
+name: Validate GoalOS Public Site Release v8 Intelligent Assets (No Deploy)
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   validate-only:
-    name: Obsolete release path; validate with shared v12 scripts
+    name: Validate v8 intelligent-assets package only; no Pages deploy
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -17,5 +17,5 @@ jobs:
         run: python scripts/validate_goalos_public_site.py
       - name: Check paid/private artifact boundary with shared rules
         run: python scripts/check_no_paid_artifacts.py
-      - name: Explain obsolete workflow
-        run: echo "This legacy release workflow is retained only as a compatibility validator. Use goalos-public-site-release-v12.yml for deployment."
+      - name: Explain validate-only scope
+        run: echo "This workflow validates the v8 intelligent-assets public-site package only. It does not configure, upload, or deploy GitHub Pages. Use the actual autonomous deployment workflow for release."
