@@ -1,54 +1,30 @@
-# QA verification
+# QA Verification
 
-This package was verified locally before delivery.
-
-Commands run:
+## Required GoalOS validation commands
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python scripts/qa_check.py
-python -m skillos.cli wealth-proof
-node --check site/app.js
+python scripts/check_no_paid_artifacts.py
+python scripts/validate_goalos_public_site.py
+python scripts/validate_docs_tables_figures.py
+python scripts/validate_goalos_catalog.py
 ```
 
-Expected result:
+## Current validation baseline
 
-```text
-✅ Repository file verification passed
-Ran 6 tests ... OK
-✅ Agent SkillOS verification passed
-✅ Verified GitHub Pages output at dist
-✅ Repository QA passed
+- Current: GoalOS Validation Hotfix v14 Microsite Compatibility.
+- Obsolete as current references: v12, v13, and obsolete v8 compatibility validation.
+- Canonical pages require one canonical shell and footer.
+- Standalone proof/microsite pages may use standalone metadata and a visible `/proof-gradient/` escape link.
+- App pages may use app shell.
+- Public AEP packages are allowed only at `standards/AEP-###/complete-package.zip`.
+- Paid/private artifacts are blocked from public deploy roots.
+
+## Optional tests when tooling is available
+
+```bash
+pytest
+make test
+node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
 ```
 
-What is checked:
-
-- End-to-end SkillOS loop: Work → Trace → Learn → Skill → Test → Release.
-- SQLite storage initialization.
-- GitHub Pages demo snapshot generation.
-- reference workflow proof generation at `data/wealth_proof.json` and `dist/data/wealth_proof.json`.
-- Monotonic economic checks: every release decreases cost, decreases minutes, increases quality, and increases accepted rate.
-- `dist/index.html`, `dist/styles.css`, `dist/app.js`, `dist/data/demo.json`, `dist/data/wealth_proof.json`, `.nojekyll`, and manifest creation.
-- Repository targets `MontrealAI/proof-gradient` and `https://montrealai.github.io/proof-gradient/`.
-- JavaScript syntax for the static website.
-- Root-level fallback website mirror is included for branch-root GitHub Pages deployment.
-
-GitHub Actions re-runs the same QA path during deployment.
-
-## v3.0 reference workflow proof
-
-This repository includes `scripts/prove_wealth_loop.py`, `skillos/wealth_proof.py`, `tests/test_wealth_proof.py`, and `data/wealth_proof.json`.
-
-The proof uses the sales follow-up workflow to verify that each completed job creates a tested release and that the workflow gets cheaper, faster, and better after every release.
-
-Current proof result:
-
-```text
-Workflow: Sales follow-up email from call notes
-Final skill version: v6
-Quality: 0.50 → 0.96
-Minutes/job: 6.75 → 2.55
-Cost/job: $8.48 → $3.23
-projected annual savings under demo assumptions vs human baseline at 10,000 jobs: $117,700
-```
-
-The GitHub Pages deploy refuses to publish if the reference workflow proof fails.
+If a tool is unavailable, document the skip in `docs/GOALOS_REPO_AUDIT.md`.

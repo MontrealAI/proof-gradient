@@ -1,0 +1,13 @@
+flowchart LR
+  n0["Goal"] --> n1["Workflow"]
+  n1["Workflow"] --> n2["Execution"]
+  n2["Execution"] --> n3["Output"]
+  n3["Output"] --> n4["Evaluation"]
+  n4["Evaluation"] --> n5["Proof"]
+  n5["Proof"] --> n6["Diagnosis"]
+  n6["Diagnosis"] --> n7["Improvement Proposal"]
+  n7["Improvement Proposal"] --> n8["Approval"]
+  n8["Approval"] --> n9["New Version"]
+  n9["New Version"] --> n10["Re-Test"]
+  n10["Re-Test"] --> n11["Monitor"]
+  n11["Monitor"] --> n12["Rollback"]

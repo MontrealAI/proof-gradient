@@ -1,0 +1,5 @@
+Rule,Public status,Notes
+standards/AEP-###/complete-package.zip,Allowed,Narrow public AEP package allowlist.
+Paid buyer ZIPs,Blocked,Sell through QUEBEC.AI shop only.
+Workshop/delivery/implementation/enterprise bundles,Blocked,Private buyer or delivery materials.
+Commercialization/professional firm packs,Blocked unless explicitly reviewed as public,Do not expose via GitHub Pages.

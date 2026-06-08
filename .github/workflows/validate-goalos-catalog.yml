@@ -1,0 +1,29 @@
+name: Validate GoalOS Catalog
+
+on:
+  pull_request:
+    paths:
+      - 'README.md'
+      - 'docs/**'
+      - 'site/**'
+      - 'scripts/**'
+      - '.github/workflows/validate-goalos-catalog.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate GoalOS catalog consistency
+        run: python scripts/validate_goalos_catalog.py
+      - name: Validate public site v14 rules
+        run: python scripts/validate_goalos_public_site.py
