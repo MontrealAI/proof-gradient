@@ -1,4 +1,4 @@
-name: GoalOS Public Site Release v12
+name: OBSOLETE — do not run — v12 public-site release
 
 on:
   workflow_dispatch:

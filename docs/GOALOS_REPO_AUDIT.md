@@ -64,7 +64,7 @@ No paid buyer product was uploaded by this work. Public route for buyers is http
 
 ## 16. Obsolete workflow findings
 
-v12, v13, and old v8 compatibility validation existed as confusing historical references. This refresh documents them as obsolete and updates selected names/validation paths to avoid presenting them as current.
+v12, v13, and old v8 compatibility validation existed as confusing historical references. This refresh documents them as obsolete and updates selected workflow names/messages so legacy release and validation wrappers point operators toward v14 validation and the GoalOS Public Site Release v8 Intelligent Assets path instead of v12 deployment.
 
 ## 17. Broken-link findings
 
@@ -96,22 +96,27 @@ Paid buyer products, private delivery materials, generated public site pages as 
 
 ## 24. Risks before merge
 
-Main risk is future drift between catalog, tables, README, docs, and autonomous site templates. Run validation before every PR.
+Main risk is future drift between catalog, tables, README, docs, workflows, and autonomous site templates. Run validation before every PR. Optional Python test suites also require the Starlette/FastAPI test-client dependency (`httpx2` or compatible `httpx`) in the local environment.
 
 ## 25. Commands run
 
-- `find . -maxdepth 3 -type f` for structure audit.
-- `sed -n` on README and validation scripts.
-- `python /tmp/generate_goalos_docs.py` to generate docs/tables/figures/badges.
-- `python scripts/check_no_paid_artifacts.py`.
-- `python scripts/validate_goalos_public_site.py`.
-- `python scripts/validate_docs_tables_figures.py`.
-- `python scripts/validate_goalos_catalog.py`.
-- `python -m pip install httpx` to satisfy the local Starlette/FastAPI test-client dependency.
-- `pytest`.
-- `make test`.
-- `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs`.
+Audit and validation commands run on 2026-06-08:
+
+- `pwd && find .. -name AGENTS.md -print && git status --short --branch`.
+- `git branch --show-current && git checkout -B feature/goalos-official-docs-readme-figures-tables-badges && find /workspace -name AGENTS.md -print`.
+- `rg --files -g '!**/.git/**' | sed -n '1,200p'` for file inventory sampling.
+- `find .github/workflows -maxdepth 1 -type f -print` for workflow inventory.
+- `find . -maxdepth 2 -type d -not -path './.git*' | sort` for directory inventory.
+- `sed -n` on README, catalog, validation scripts, QA docs, audit docs, and selected workflow files.
+- `rg -n "name:.*v8|compatibility|v12|v13|OBSOLETE" .github/workflows docs/GOALOS_VALIDATION_HOTFIX_V14.md docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md`.
+- `python scripts/check_no_paid_artifacts.py` — passed.
+- `python scripts/validate_goalos_public_site.py` — passed.
+- `python scripts/validate_docs_tables_figures.py` — passed.
+- `python scripts/validate_goalos_catalog.py` — passed.
+- `pytest` — failed during collection because `starlette.testclient` could not import `httpx2` or `httpx` in this environment.
+- `make test` — failed for the same missing test-client dependency after 56 unittest checks passed and `tests/test_proof_gradient_api.py` failed to import.
+- `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed.
 
 ## 26. Tests skipped and why
 
-Mermaid CLI SVG export was not required because committed SVG companions were generated directly and editable `.mmd` sources are present. No required validation command was skipped.
+No required validation command was skipped. Mermaid CLI SVG export was not required because committed SVG companions and editable `.mmd` sources are present. Optional Python suites were attempted rather than skipped, but `pytest` and `make test` could not complete because the local Starlette/FastAPI test-client dependency (`httpx2` or compatible `httpx`) is not installed.

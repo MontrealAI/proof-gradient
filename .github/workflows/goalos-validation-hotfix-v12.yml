@@ -1,4 +1,4 @@
-name: GoalOS Validation Hotfix v12
+name: OBSOLETE — do not run — v12 validation
 
 on:
   workflow_dispatch:
