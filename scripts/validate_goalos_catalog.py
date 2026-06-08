@@ -11,6 +11,7 @@ from goalos_public_site_rules import is_blocked_paid_or_private_artifact, normal
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "docs" / "data" / "goalos_catalog.yml"
+MD_LINK_RE = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 PRODUCTS = [
     ("$49", "GoalOS AI Efficiency Sprint Kit", "v1.4"), ("$199", "GoalOS RSI Lite", "v1.6"),
     ("$997", "GoalOS Proof Room Lite / Department Pack", "v2.0"), ("$2,500+", "GoalOS RSI Sprint Workshop", "v7.0"),
@@ -90,8 +91,9 @@ def main() -> int:
     for path in [ROOT / "README.md", *list((ROOT / "docs").rglob("*.md"))]:
         rel = path.relative_to(ROOT).as_posix()
         body = read(path)
-        for raw in re.findall(r"\(([^)]+)\)", body):
-            if is_blocked_paid_or_private_artifact(raw):
+        for raw in MD_LINK_RE.findall(body):
+            target = raw.split("#", 1)[0].split("?", 1)[0].strip()
+            if target and is_blocked_paid_or_private_artifact(target):
                 errors.append(f"{rel}: public paid/private artifact link {raw}")
         for pat in OBSOLETE_CURRENT_PATTERNS:
             if re.search(pat, body, flags=re.IGNORECASE):
