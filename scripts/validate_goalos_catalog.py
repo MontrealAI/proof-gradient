@@ -23,9 +23,11 @@ REQUIRED_DOCS = [
     "docs/GOALOS_PROOF_CARD_001_PLAN.md", "docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md",
     "docs/GOALOS_VALIDATION_HOTFIX_V14.md", "docs/GOALOS_PAID_ARTIFACT_POLICY.md",
     "docs/GOALOS_CLAIMS_AND_SAFE_BOUNDARY.md", "docs/GOALOS_REPO_AUDIT.md",
+    "docs/GOALOS_INSTITUTIONAL_POSITIONING.md", "docs/GOALOS_PUBLIC_STANDARD_STRATEGY.md",
+    "docs/GOALOS_PROOF_GRAPH_CONCEPT.md", "docs/GOALOS_AEP_STANDARDS_INDEX.md",
 ]
-REQUIRED_TABLES = ["goalos_product_ladder.csv", "goalos_offer_status.csv", "goalos_claim_boundaries.csv", "goalos_autonomous_website_actions.csv"]
-REQUIRED_FIGURES = ["goalos_recursive_workflow_loop", "goalos_product_ladder", "goalos_validation_architecture"]
+REQUIRED_TABLES = ["goalos_product_ladder.csv", "goalos_offer_status.csv", "goalos_claim_boundaries.csv", "goalos_autonomous_website_actions.csv", "goalos_public_standard_strategy.csv"]
+REQUIRED_FIGURES = ["goalos_recursive_workflow_loop", "goalos_product_ladder", "goalos_validation_architecture", "goalos_institutional_stack", "goalos_aep_standards_map"]
 OBSOLETE_CURRENT_PATTERNS = [
     r"v12[^\n]{0,40}is current", r"v13[^\n]{0,40}is current", r"old v8[^\n]{0,80}is current",
     r"Use goalos-public-site-release-v12\.yml for deployment",

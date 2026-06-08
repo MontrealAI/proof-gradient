@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AEP Standards Map" width="980" height="574" viewBox="0 0 980 574">
+<title>AEP Standards Map</title><rect width="100%" height="100%" rx="18" fill="#f8fafc"/><text x="32" y="42" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="24" font-weight="800" fill="#111827">AEP Standards Map</text>
+<rect x="32" y="72" width="880" height="42" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<circle cx="55" cy="93" r="10" fill="#2563eb"/><text x="76" y="98" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">AEP-001 — Proof Records</text>
+<path d="M55 114v14" stroke="#64748b" stroke-width="2"/>
+<rect x="32" y="128" width="880" height="42" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<circle cx="55" cy="149" r="10" fill="#2563eb"/><text x="76" y="154" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">AEP-002 — Evidence</text>
+<path d="M55 170v14" stroke="#64748b" stroke-width="2"/>
+<rect x="32" y="184" width="880" height="42" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<circle cx="55" cy="205" r="10" fill="#2563eb"/><text x="76" y="210" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">AEP-003 — Selection</text>
+<path d="M55 226v14" stroke="#64748b" stroke-width="2"/>
+<rect x="32" y="240" width="880" height="42" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<circle cx="55" cy="261" r="10" fill="#2563eb"/><text x="76" y="266" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">AEP-004 — Permission</text>
+<path d="M55 282v14" stroke="#64748b" stroke-width="2"/>
+<rect x="32" y="296" width="880" height="42" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<circle cx="55" cy="317" r="10" fill="#2563eb"/><text x="76" y="322" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">AEP-005 — Versioning</text>
+<path d="M55 338v14" stroke="#64748b" stroke-width="2"/>
+<rect x="32" y="352" width="880" height="42" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<circle cx="55" cy="373" r="10" fill="#2563eb"/><text x="76" y="378" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">AEP-006 — Rollback</text>
+<path d="M55 394v14" stroke="#64748b" stroke-width="2"/>
+<rect x="32" y="408" width="880" height="42" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<circle cx="55" cy="429" r="10" fill="#2563eb"/><text x="76" y="434" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">AEP-007 — Public-Safe Reporting</text>
+<path d="M55 450v14" stroke="#64748b" stroke-width="2"/>
+<rect x="32" y="464" width="880" height="42" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<circle cx="55" cy="485" r="10" fill="#2563eb"/><text x="76" y="490" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">AEP-008 — Proof Rooms</text>
+<path d="M55 506v14" stroke="#64748b" stroke-width="2"/>
+<rect x="32" y="520" width="880" height="42" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<circle cx="55" cy="541" r="10" fill="#2563eb"/><text x="76" y="546" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">Proof Gradient — Public standardization layer</text>
+</svg>

@@ -102,3 +102,11 @@ See [GOALOS_REPO_AUDIT.md](GOALOS_REPO_AUDIT.md).
 - **Autonomous website action commands:** use GitHub Actions, not manual public-site edits, when refreshing generated site content.
 - **Next actions:** keep catalog, tables, docs, figures, badges, and validation aligned before every release.
 - **Risk notes:** avoid unsupported claims and preserve v14 validation plus the public AEP package allowlist.
+
+## Proof Graph and AEP index additions
+
+- [GoalOS Proof Graph Concept](GOALOS_PROOF_GRAPH_CONCEPT.md)
+- [GoalOS AEP Standards Index](GOALOS_AEP_STANDARDS_INDEX.md)
+- [GoalOS public standard strategy table](tables/goalos_public_standard_strategy.csv)
+- [GoalOS institutional stack figure](figures/goalos_institutional_stack.svg)
+- [GoalOS AEP standards map figure](figures/goalos_aep_standards_map.svg)

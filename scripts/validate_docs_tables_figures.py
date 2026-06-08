@@ -37,6 +37,10 @@ REQUIRED_DOCS = [
     "docs/GOALOS_WEB3_HYBRID_ARCHITECTURE.md",
     "docs/GOALOS_ENGINEERING_ROADMAP.md",
     "docs/GOALOS_REPO_AUDIT.md",
+    "docs/GOALOS_INSTITUTIONAL_POSITIONING.md",
+    "docs/GOALOS_PUBLIC_STANDARD_STRATEGY.md",
+    "docs/GOALOS_PROOF_GRAPH_CONCEPT.md",
+    "docs/GOALOS_AEP_STANDARDS_INDEX.md",
 ]
 REQUIRED_TABLES = [
     "goalos_product_ladder.csv", "goalos_offer_status.csv", "goalos_claim_boundaries.csv",
@@ -44,18 +48,21 @@ REQUIRED_TABLES = [
     "goalos_document_inventory.csv", "goalos_figure_inventory.csv", "goalos_asset_manifest.csv",
     "goalos_validation_rules.csv", "goalos_workflow_actions.csv", "goalos_proof_card_001_fields.csv",
     "goalos_professional_firm_packages.csv", "goalos_autonomous_website_actions.csv",
+    "goalos_public_standard_strategy.csv",
 ]
 REQUIRED_FIGURES = [
     "goalos_recursive_workflow_loop", "goalos_product_ladder", "goalos_proof_led_revenue_loop",
     "goalos_public_site_architecture", "goalos_autonomous_github_actions_website_flow",
     "goalos_validation_architecture", "goalos_cloud_mvp_architecture",
     "goalos_enterprise_safety_boundary", "goalos_web3_hybrid_architecture", "goalos_proof_graph_concept",
+    "goalos_institutional_stack", "goalos_aep_standards_map",
 ]
 REQUIRED_BADGES = [
     "goalos.svg", "proof-gradient.svg", "aep-standards.svg", "no-paid-artifacts.svg",
     "validation-v14.svg", "public-site-release-v8.svg", "cloud-mvp-0-2.svg", "quebec-ai.svg",
     "proof-bounded.svg", "no-model-self-modification.svg", "website-via-github-actions.svg",
-    "proof-card-001-next.svg",
+    "proof-card-001-next.svg", "enterprise-rsi-boundary.svg", "recursive-workflow-os.svg",
+    "aep-public-standard.svg",
 ]
 README_SECTIONS = [
     "# Proof Gradient · GoalOS", "What this repository is", "What GoalOS is", "What Proof Gradient is",

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AEP Public Standard" width="200" height="28" viewBox="0 0 200 28">
+  <title>AEP Public Standard</title>
+  <rect width="200" height="28" rx="8" fill="#1f2937"/>
+  <rect x="112" width="88" height="28" rx="8" fill="#0f766e"/>
+  <path d="M112 0h8v28h-8z" fill="#0f766e"/>
+  <text x="14" y="18" fill="#fff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">AEP</text>
+  <text x="124" y="18" fill="#fff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">Public Standard</text>
+</svg>
