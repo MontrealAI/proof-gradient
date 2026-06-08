@@ -38,9 +38,9 @@ Run `pytest`, `make test`, and `node site/app/goalos-cloud-mvp/tests/enterprise-
 `pytest` and `make test` exercise FastAPI/Starlette test-client code. In a fresh environment, install the compatible transport package before treating optional Python test failures as product regressions:
 
 ```bash
-python -m pip install httpx
+python -m pip install httpx2 httpx
 pytest
 make test
 ```
 
-Current run note: before `httpx` was installed, both Python test commands failed at import time with the Starlette/FastAPI test-client dependency missing. After installing `httpx`, both commands passed.
+Current run note: before `httpx2` and `httpx` were installed, both Python test commands failed at import time with the Starlette/FastAPI test-client dependency missing. After installing `httpx2` and `httpx`, both commands passed.
