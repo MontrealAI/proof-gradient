@@ -100,7 +100,7 @@ Required figure sources, SVG companions, and CSV tables are present and pass val
 
 ## 22. Missing badge findings
 
-Required static SVG badges are present under `badges/`, listed in `docs/tables/goalos_badge_inventory.csv`, and referenced by README. No missing required badge was found in the latest validation run.
+Required static SVG badges are present under `badges/`, listed in `docs/tables/goalos_badge_inventory.csv`, recorded in `docs/data/goalos_catalog.yml`, and referenced by README. `scripts/validate_goalos_catalog.py` now parses the top-level `badge_inventory` list explicitly and fails if a required institutional badge file is missing or absent from that catalog badge inventory. No missing required badge was found in the latest validation run.
 
 ## 23. Public trust risks
 
@@ -144,7 +144,7 @@ Validation/test commands:
 - `python scripts/check_no_paid_artifacts.py` — passed.
 - `python scripts/validate_goalos_public_site.py` — passed; validated 207 HTML pages.
 - `python scripts/validate_docs_tables_figures.py` — passed.
-- `python scripts/validate_goalos_catalog.py` — passed.
+- `python scripts/validate_goalos_catalog.py` — passed; now checks the complete required table and figure inventory and explicitly parses the `badge_inventory` list in `docs/data/goalos_catalog.yml`.
 - `pytest` — first attempt failed because `httpx2`/`httpx` were missing; passed after dependency installation with 85 tests and 2 warnings.
 - `make test` — first attempt failed because `httpx2`/`httpx` were missing; passed after dependency installation with 56 unittest tests.
 - `python -m pip install httpx2 httpx` — installed optional test-client transport dependencies in the local environment.
