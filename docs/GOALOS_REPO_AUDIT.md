@@ -143,7 +143,7 @@ Validation/test commands:
 
 - `python scripts/check_no_paid_artifacts.py` — passed.
 - `python scripts/validate_goalos_public_site.py` — passed; validated 207 HTML pages.
-- `python scripts/validate_docs_tables_figures.py` — passed.
+- `python scripts/validate_docs_tables_figures.py` — passed; the required table inventory now explicitly includes `docs/tables/goalos_badge_inventory.csv` so badge-table drift is caught by docs/table/figure validation as well as catalog validation.
 - `python scripts/validate_goalos_catalog.py` — passed; now checks the complete required table and figure inventory and explicitly parses the `badge_inventory` list in `docs/data/goalos_catalog.yml`.
 - `pytest` — first attempt failed because `httpx2`/`httpx` were missing; passed after dependency installation with 85 tests and 2 warnings.
 - `make test` — first attempt failed because `httpx2`/`httpx` were missing; passed after dependency installation with 56 unittest tests.
@@ -152,7 +152,7 @@ Validation/test commands:
 
 ## 29. Tests skipped and why
 
-No required validation command was skipped. Mermaid CLI SVG export was not run because committed SVG companions and editable `.mmd` sources are already present. No optional command remained skipped after installing the local Python test-client dependencies.
+No required validation command was skipped. Mermaid CLI SVG export was not run because committed SVG companions and editable `.mmd` sources are already present. No optional command remained skipped after installing the local Python test-client dependencies. The initial `pytest` collection failure before installing `httpx2`/`httpx` is documented above as an environment dependency issue, not a product regression.
 
 ## 30. Risks before merge
 
