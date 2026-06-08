@@ -45,8 +45,8 @@ REQUIRED_DOCS = [
 REQUIRED_TABLES = [
     "goalos_product_ladder.csv", "goalos_offer_status.csv", "goalos_claim_boundaries.csv",
     "goalos_public_site_pages.csv", "goalos_paid_file_policy.csv", "goalos_aep_standards.csv",
-    "goalos_document_inventory.csv", "goalos_figure_inventory.csv", "goalos_asset_manifest.csv",
-    "goalos_validation_rules.csv", "goalos_workflow_actions.csv", "goalos_proof_card_001_fields.csv",
+    "goalos_document_inventory.csv", "goalos_figure_inventory.csv", "goalos_badge_inventory.csv",
+    "goalos_asset_manifest.csv", "goalos_validation_rules.csv", "goalos_workflow_actions.csv", "goalos_proof_card_001_fields.csv",
     "goalos_professional_firm_packages.csv", "goalos_autonomous_website_actions.csv",
     "goalos_public_standard_strategy.csv",
 ]

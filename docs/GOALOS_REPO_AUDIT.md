@@ -168,3 +168,20 @@ Commands run in this verification pass:
 - `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed; GoalOS Cloud MVP v0.2 enterprise-core proof remains intact.
 
 Merge risk after this pass is low if future edits continue to update `docs/data/goalos_catalog.yml` first, preserve the autonomous website release path, and avoid committing paid buyer deliverables.
+
+## 31. Catalog validator hardening — 2026-06-08
+
+The repository was rechecked on the requested feature branch and the catalog validator was tightened so drift is caught earlier. `scripts/validate_goalos_catalog.py` now requires every institutional table, all required figure `.mmd`/`.svg` pairs, every static badge, and the exact names of the three repository-governance workflows. `scripts/validate_docs_tables_figures.py` now also treats `docs/tables/goalos_badge_inventory.csv` as a required table. `docs/data/goalos_catalog.yml` was updated with an explicit `badge_inventory` and the badge inventory table entry so the source of truth covers docs, tables, figures, badges, scripts, workflows, validation status, public/private artifact rules, and release policy.
+
+Commands run in this hardening pass:
+
+- `python scripts/validate_goalos_catalog.py` — intentionally failed before the catalog was updated, proving the new badge/table inventory checks were active.
+- `python scripts/check_no_paid_artifacts.py` — passed after changes.
+- `python scripts/validate_goalos_public_site.py` — passed after changes; 207 public HTML pages validated.
+- `python scripts/validate_docs_tables_figures.py` — passed after changes, including the badge inventory table requirement.
+- `python scripts/validate_goalos_catalog.py` — passed after catalog alignment with expanded table, figure, badge, and workflow checks.
+- `pytest` — initially failed because `httpx2`/`httpx` were not installed; passed after `python -m pip install httpx2 httpx` with 85 tests and 2 FastAPI deprecation warnings.
+- `make test` — passed with 56 unittest tests.
+- `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed.
+
+No useful code, tests, schemas, AEP standards, public proof pages, public microsites, scripts, assets, autonomous website workflows, public AEP package allowlists, QUEBEC.AI assets, or production foundation code were deleted in this pass. No paid buyer product, private delivery bundle, workshop ZIP, implementation bundle, enterprise pilot bundle, or commercialization pack was added.
