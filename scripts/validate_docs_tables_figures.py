@@ -118,8 +118,8 @@ def main() -> int:
         if phrase not in readme:
             errors.append(f"README missing required phrase: {phrase}")
     for price, name, version in PRODUCTS:
-        if price not in readme or version not in readme:
-            errors.append(f"README missing current price/version for {name}: {price} {version}")
+        if price not in readme or name not in readme or version not in readme:
+            errors.append(f"README missing current product name/price/version for {name}: {price} {version}")
 
     combined_docs = readme + "\n" + "\n".join(text(p) for p in DOCS.rglob("*.md"))
     for phrase in REQUIRED_PHRASES[:2]:

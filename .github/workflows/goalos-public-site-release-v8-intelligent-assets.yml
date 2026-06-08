@@ -5,17 +5,41 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: goalos-public-site-release-v8-intelligent-assets
+  cancel-in-progress: false
 
 jobs:
-  validate-only:
-    name: Current release package; validate with shared v14 scripts
+  release:
+    name: Validate and deploy v8 intelligent public-site assets
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Validate public site with shared rules
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate public site with shared v14 rules
         run: python scripts/validate_goalos_public_site.py
       - name: Check paid/private artifact boundary with shared rules
         run: python scripts/check_no_paid_artifacts.py
-      - name: Explain obsolete workflow
-        run: echo "This legacy release workflow is retained only as a compatibility validator. Use the documented v8 intelligent-assets release path with v14 validation."
+      - name: Validate GoalOS docs, tables, and figures
+        run: python scripts/validate_docs_tables_figures.py
+      - name: Validate GoalOS catalog
+        run: python scripts/validate_goalos_catalog.py
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload public site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy public site to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

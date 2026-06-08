@@ -52,12 +52,12 @@ See [the recursive workflow loop figure](docs/figures/goalos_recursive_workflow_
 
 | Layer | Offer | Outcome | Status |
 |---|---|---|---|
-| Self-serve | $49 Kit v1.4 | Build one reusable workflow | Ready |
-| Self-serve | $199 RSI Lite v1.6 | Build one self-improving workflow | Ready |
-| Self-serve / department | $997 Proof Room Lite v2.0 | Set up lightweight Proof Room | Ready |
-| Gated workshop | $2,500+ RSI Sprint Workshop v7.0 | Build first workflow live | Ready |
-| Gated implementation | $9,500+ Implementation Sprint v2.0 | Department RSI in 30 days | Ready |
-| Gated enterprise | $49,000+ Enterprise RSI Pilot v2.0 | Pilot Recursive Workflow OS | Ready as pilot |
+| Self-serve | $49 GoalOS AI Efficiency Sprint Kit v1.4 | Build one reusable workflow | Ready |
+| Self-serve | $199 GoalOS RSI Lite v1.6 | Build one self-improving workflow | Ready |
+| Self-serve / department | $997 GoalOS Proof Room Lite / Department Pack v2.0 | Set up lightweight Proof Room | Ready |
+| Gated workshop | $2,500+ GoalOS RSI Sprint Workshop v7.0 | Build first workflow live | Ready |
+| Gated implementation | $9,500+ GoalOS Proof Room Implementation Sprint v2.0 | Department RSI in 30 days | Ready |
+| Gated enterprise | $49,000+ GoalOS Enterprise RSI Pilot v2.0 | Pilot Recursive Workflow OS | Ready as pilot |
 
 The buyer products are not stored in this public repository. They are sold through: https://www.quebecartificialintelligence.com/shop
 

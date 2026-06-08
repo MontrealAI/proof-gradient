@@ -49,8 +49,8 @@ def main() -> int:
         if price not in cat or name not in cat or version not in cat:
             errors.append(f"catalog missing product: {price} {name} {version}")
         for label, body in (("README", readme), ("documentation", corpus)):
-            if price not in body or version not in body:
-                errors.append(f"{label} missing current price/version for {name}: {price} {version}")
+            if price not in body or name not in body or version not in body:
+                errors.append(f"{label} missing current product name/price/version for {name}: {price} {version}")
 
     for phrase in [
         "GoalOS does not modify base AI models",
