@@ -150,3 +150,21 @@ Latest branch validation after adding the README “What this is not” section,
 ## 26. Tests skipped and why
 
 No required validation command was skipped. Mermaid CLI SVG export was not required because committed SVG companions and editable `.mmd` sources are present. Optional Python suites were initially missing the local Starlette/FastAPI test-client dependency; `httpx` was installed with `python -m pip install httpx`, after which `pytest` and `make test` passed.
+
+## 30. Current branch verification — 2026-06-08
+
+This branch was re-audited after checkout to `feature/goalos-institutional-public-foundation`. The institutional documentation, catalog, figures, tables, badges, public-site validation, and paid-file guard were preserved. The first optional Python test attempts (`pytest` and `make test`) failed because the local environment did not have the Starlette/FastAPI test-client transport dependency (`httpx`/`httpx2`) installed. The dependency was then installed with `python -m pip install httpx`; the optional Python suites were re-run and passed.
+
+Commands run in this verification pass:
+
+- `git checkout -B feature/goalos-institutional-public-foundation` — branch created/reset for the requested PR branch.
+- `rg --files docs/data scripts .github/workflows badges docs/tables | sort` — inventory sampled for catalog, scripts, workflows, badges, and tables.
+- `python scripts/check_no_paid_artifacts.py` — passed; paid/private artifact guard preserved the public AEP package allowlist.
+- `python scripts/validate_goalos_public_site.py` — passed; validated 207 public HTML pages.
+- `python scripts/validate_docs_tables_figures.py` — passed; required docs, tables, figure sources/exports, badges, README sections, safe-boundary language, paid-file policy, and internal links remain present.
+- `python scripts/validate_goalos_catalog.py` — passed; catalog values remain aligned with README, docs, and tables.
+- `pytest` — initially failed before `httpx` was installed; passed after dependency installation with 85 tests and 3 warnings.
+- `make test` — initially failed before `httpx` was installed; passed after dependency installation with 56 unittest tests.
+- `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed; GoalOS Cloud MVP v0.2 enterprise-core proof remains intact.
+
+Merge risk after this pass is low if future edits continue to update `docs/data/goalos_catalog.yml` first, preserve the autonomous website release path, and avoid committing paid buyer deliverables.

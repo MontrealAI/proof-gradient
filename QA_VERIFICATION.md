@@ -32,3 +32,15 @@ Do not manually upload paid buyer products to GitHub Pages.
 ## Optional checks
 
 Run `pytest`, `make test`, and `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` when available. If unavailable, document the environment limitation in `docs/GOALOS_REPO_AUDIT.md` and PR notes.
+
+## Optional test-client dependency note
+
+`pytest` and `make test` exercise FastAPI/Starlette test-client code. In a fresh environment, install the compatible transport package before treating optional Python test failures as product regressions:
+
+```bash
+python -m pip install httpx
+pytest
+make test
+```
+
+Current run note: before `httpx` was installed, both Python test commands failed at import time with the Starlette/FastAPI test-client dependency missing. After installing `httpx`, both commands passed.
