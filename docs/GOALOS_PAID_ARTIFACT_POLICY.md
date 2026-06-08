@@ -1,35 +1,53 @@
 # GoalOS Paid Artifact Policy
 
-Date: 2026-06-07
+## Purpose
 
-GoalOS public deploy roots (`site/` or `public/`) must not contain buyer-paid, private, delivery-kit, workshop, facilitator, master-pack, or other commercial ZIP artifacts. The paid-file guard is centralized in `scripts/goalos_public_site_rules.py` and consumed by the validation scripts and GitHub Actions.
+Define the public/private artifact boundary.
 
-## Public ZIP allowlist
+## Current status
 
-Allowed public ZIP:
+Strict guard is required for public deploy roots.
 
-```text
-standards/AEP-###/complete-package.zip
-```
+## Key decisions
 
-Blocked:
+Public GitHub Pages may include public standards, docs, schemas, examples, proof pages, site assets, and public AEP standard packages matching `standards/AEP-###/complete-package.zip`. Public GitHub Pages must not include paid buyer ZIPs, paid digital products, paid workshop bundles, buyer/facilitator delivery kits, implementation bundles, enterprise pilot bundles, commercialization packs, or private files.
 
-```text
-all other ZIPs in public deploy roots unless explicitly reviewed and added to a narrow public allowlist.
-```
+## Files involved
 
-## Blocked examples
+- `README.md`
+- `docs/data/goalos_catalog.yml`
+- `docs/tables/`
+- `docs/figures/`
+- `scripts/check_no_paid_artifacts.py`
+- `scripts/validate_goalos_public_site.py`
+- `scripts/validate_docs_tables_figures.py`
+- `scripts/validate_goalos_catalog.py`
 
-The following examples must remain blocked from public deploy roots:
 
-```text
-site/GoalOS_RSI_Sprint_Workshop_v6_0_COMPLETE_BUNDLE.zip
-site/GoalOS_RSI_Sprint_Workshop_v6_0_BUYER_FACILITATOR_DELIVERY_KIT.zip
-site/GoalOS_Enterprise_RSI_Pilot_v2_0_BUYER_DELIVERY_KIT.zip
-site/GoalOS_Commercialization_Ready_Master_Pack.zip
-site/private-anything.zip
-```
+## What is public
 
-## Safe publication rule
+Public: standards, public docs, schemas, examples, public proof pages, public site assets, product names, safe status language, and shop/application links to QUEBEC.AI.
 
-Public pages may describe offers and link to the QUEBEC.AI shop, but buyer deliverables and private bundles must not be stored, linked, or deployed from the public site. If a new public standards package is needed, add it only under the AEP allowlist shape and add regression tests.
+## What must remain private
+
+Private: paid buyer ZIPs, workshop bundles, delivery kits, implementation bundles, enterprise pilot bundles, commercial operating packs, buyer data, private evidence, and private professional-firm package ZIPs.
+
+## Next actions
+
+Keep `scripts/check_no_paid_artifacts.py` strict and run it before release.
+
+
+## Regression examples
+
+Allowed: `standards/AEP-001/complete-package.zip`. Blocked filename examples include paid kit, RSI Lite, Proof Room Lite, RSI Sprint Workshop, and Enterprise RSI Pilot buyer or complete-bundle ZIP names; do not publish or link them from public roots.
+
+## Validation checklist
+
+- [ ] Safe AI boundary is present.
+- [ ] Product names, prices, and versions match `docs/data/goalos_catalog.yml`.
+- [ ] Paid buyer files are not uploaded or linked.
+- [ ] Public AEP package allowlist remains `standards/AEP-###/complete-package.zip`.
+- [ ] `python scripts/check_no_paid_artifacts.py` passes.
+- [ ] `python scripts/validate_docs_tables_figures.py` passes.
+- [ ] `python scripts/validate_goalos_catalog.py` passes.
+

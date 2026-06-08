@@ -1,0 +1,5 @@
+Page class,Rule,Examples
+canonical_page,Requires canonical shell and footer,marketing/docs pages
+standalone_proof_page,Requires standalone proof metadata and escape link,proof/readiness microsites
+app_page,May use app shell,site/app/goalos-cloud-mvp/
+AEP package,Only standards/AEP-###/complete-package.zip,standards/AEP-001/complete-package.zip
