@@ -1,0 +1,5 @@
+Rule,Status,Pattern
+AEP complete package,Allowed,standards/AEP-###/complete-package.zip
+Paid buyer ZIP,Blocked,*_BUYER_*.zip
+Private bundle,Blocked,*COMPLETE_BUNDLE*.zip
+Shop link,Allowed,https://www.quebecartificialintelligence.com/shop

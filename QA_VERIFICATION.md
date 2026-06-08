@@ -1,54 +1,34 @@
-# QA verification
+# QA Verification
 
-This package was verified locally before delivery.
+## Current validation state
 
-Commands run:
+GoalOS Validation Hotfix v14 Microsite Compatibility is current. v12, v13, and old v8 compatibility validation are obsolete and must not be used as the current path.
+
+## Required commands
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python scripts/qa_check.py
-python -m skillos.cli wealth-proof
-node --check site/app.js
+python scripts/check_no_paid_artifacts.py
+python scripts/validate_goalos_public_site.py
+python scripts/validate_docs_tables_figures.py
+python scripts/validate_goalos_catalog.py
 ```
 
-Expected result:
+## Paid-file guard
 
-```text
-✅ Repository file verification passed
-Ran 6 tests ... OK
-✅ Agent SkillOS verification passed
-✅ Verified GitHub Pages output at dist
-✅ Repository QA passed
-```
+The paid-file guard blocks public paid/private artifacts and preserves the narrow public AEP package allowlist: `standards/AEP-###/complete-package.zip`.
 
-What is checked:
+## Website autonomous action workflow
 
-- End-to-end SkillOS loop: Work → Trace → Learn → Skill → Test → Release.
-- SQLite storage initialization.
-- GitHub Pages demo snapshot generation.
-- reference workflow proof generation at `data/wealth_proof.json` and `dist/data/wealth_proof.json`.
-- Monotonic economic checks: every release decreases cost, decreases minutes, increases quality, and increases accepted rate.
-- `dist/index.html`, `dist/styles.css`, `dist/app.js`, `dist/data/demo.json`, `dist/data/wealth_proof.json`, `.nojekyll`, and manifest creation.
-- Repository targets `MontrealAI/proof-gradient` and `https://montrealai.github.io/proof-gradient/`.
-- JavaScript syntax for the static website.
-- Root-level fallback website mirror is included for branch-root GitHub Pages deployment.
+Use GitHub Actions in this order when refreshing the public site:
 
-GitHub Actions re-runs the same QA path during deployment.
+1. GoalOS Validation Hotfix v14 Microsite Compatibility.
+2. GoalOS Public Site Release v8 Intelligent Assets.
+3. Validate GoalOS Public Site v8, only if it uses shared v14 rules.
+4. Check No Paid Artifacts.
+5. Validate GoalOS Docs, Tables, Figures.
 
-## v3.0 reference workflow proof
+Do not manually upload paid buyer products to GitHub Pages.
 
-This repository includes `scripts/prove_wealth_loop.py`, `skillos/wealth_proof.py`, `tests/test_wealth_proof.py`, and `data/wealth_proof.json`.
+## Optional checks
 
-The proof uses the sales follow-up workflow to verify that each completed job creates a tested release and that the workflow gets cheaper, faster, and better after every release.
-
-Current proof result:
-
-```text
-Workflow: Sales follow-up email from call notes
-Final skill version: v6
-Quality: 0.50 → 0.96
-Minutes/job: 6.75 → 2.55
-Cost/job: $8.48 → $3.23
-projected annual savings under demo assumptions vs human baseline at 10,000 jobs: $117,700
-```
-
-The GitHub Pages deploy refuses to publish if the reference workflow proof fails.
+Run `pytest`, `make test`, and `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` when available. If unavailable, document the environment limitation in `docs/GOALOS_REPO_AUDIT.md` and PR notes.

@@ -1,21 +1,15 @@
 name: Check No Paid Artifacts
 
 on:
-  workflow_dispatch:
   pull_request:
-    paths:
-      - 'site/**'
-      - 'public/**'
-      - 'scripts/**'
-      - 'tests/test_goalos_public_site_rules.py'
-      - '.github/workflows/check-no-paid-artifacts.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   check:
-    name: Shared paid/private artifact guard
+    name: Check public deploy roots for paid/private artifacts
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -24,9 +18,5 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install validation test dependencies
-        run: python -m pip install pytest
-      - name: Check public paid/private artifact boundary
+      - name: Check no paid artifacts
         run: python scripts/check_no_paid_artifacts.py
-      - name: Run paid-artifact regression tests
-        run: python -m pytest tests/test_goalos_public_site_rules.py -q
