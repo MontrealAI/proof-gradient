@@ -1,0 +1,6 @@
+Layer,Public role,Primary files,Boundary,Next action
+Proof Gradient,Public proof and standards layer,"README.md; docs/; standards/",No paid buyer deliverables,Keep docs and tables synchronized with catalog
+AEP Standards,Public standard interface,"standards/; docs/tables/goalos_aep_standards.csv",Only standards/AEP-###/complete-package.zip is allowed as public ZIP,Validate AEP package allowlist
+Proof Cards,Public-safe proof reporting,"docs/GOALOS_PROOF_CARD_001_PLAN.md; schemas/",No private evidence or buyer data,Publish Proof Card 001 after approval
+Proof Graph,Future interoperable evidence graph,"docs/GOALOS_PROOF_GRAPH_CONCEPT.md; docs/figures/goalos_proof_graph_concept.mmd",No investment or certification claims,Define minimal proof-node schema
+GoalOS,Recursive Workflow OS direction,"docs/GOALOS_RECURSIVE_WORKFLOW_OS.md; docs/figures/goalos_institutional_stack.mmd",No base-model self-modification,Use proof to guide workflow evolution

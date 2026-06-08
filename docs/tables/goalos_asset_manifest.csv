@@ -3,3 +3,8 @@ badges/goalos.svg,README badge,public
 assets/quebecaisealv5.png,QUEBEC.AI seal,preserve
 docs/figures/*.svg,Documentation figures,public
 badges/proof-card-001-next.svg,README next-milestone badge,public
+badges/enterprise-rsi-boundary.svg,README enterprise safety badge,public
+badges/recursive-workflow-os.svg,README platform direction badge,public
+badges/aep-public-standard.svg,README public standard badge,public
+docs/figures/goalos_institutional_stack.svg,Institutional stack figure,public
+docs/figures/goalos_aep_standards_map.svg,AEP standards map figure,public

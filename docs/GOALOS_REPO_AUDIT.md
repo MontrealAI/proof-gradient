@@ -96,7 +96,7 @@ Required GoalOS docs were created or refreshed.
 
 ## 20. Missing figures/tables findings
 
-Required figures and tables were created or refreshed.
+Required figures and tables were created or refreshed. The institutional stack, AEP standards map, and public standard strategy table are now included in validation inventories.
 
 ## 21. Files to preserve
 
@@ -124,13 +124,13 @@ Latest branch validation after adding the README “What this is not” section,
 - `python scripts/validate_goalos_public_site.py` — passed.
 - `python scripts/validate_docs_tables_figures.py` — passed.
 - `python scripts/validate_goalos_catalog.py` — passed.
-- `python -m pip install -e '.[dev]'` — installed the declared development test dependencies after the first optional test attempt found missing `httpx2`/`httpx`.
-- `pytest` — passed: 85 passed, 2 warnings.
+- `python -m pip install httpx` — installed the missing Starlette/FastAPI test-client compatibility dependency after the first optional test attempt found missing `httpx2`/`httpx`.
+- `pytest` — passed: 85 passed, 3 warnings.
 - `make test` — passed: 56 unittest tests passed.
 - `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed.
 
 - `pwd && find .. -name AGENTS.md -print && git status --short --branch`.
-- `git branch --show-current && git checkout -B feature/goalos-institutional-docs-readme-figures-tables-badges && find /workspace -name AGENTS.md -print`.
+- `git checkout -B feature/goalos-institutional-public-foundation`.
 - `rg --files -g '!**/.git/**' | sed -n '1,200p'` for file inventory sampling.
 - `find .github/workflows -maxdepth 1 -type f -print` for workflow inventory.
 - `find . -maxdepth 2 -type d -not -path './.git*' | sort` for directory inventory.
@@ -142,11 +142,11 @@ Latest branch validation after adding the README “What this is not” section,
 - `python scripts/validate_goalos_public_site.py` — passed.
 - `python scripts/validate_docs_tables_figures.py` — passed, including the static `badges/proof-card-001-next.svg` requirement.
 - `python scripts/validate_goalos_catalog.py` — passed.
-- `python -m pip install -e '.[dev]'` — installed declared dev dependencies for optional Python tests.
-- `pytest` — passed: 85 passed, 2 warnings about FastAPI `on_event` deprecation.
+- `python -m pip install httpx` — installed the missing test-client compatibility dependency for optional Python tests.
+- `pytest` — passed: 85 passed, 3 warnings about Starlette test-client compatibility and FastAPI `on_event` deprecation.
 - `make test` — passed: 56 unittest tests passed.
 - `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed on the current documentation branch.
 
 ## 26. Tests skipped and why
 
-No required validation command was skipped. Mermaid CLI SVG export was not required because committed SVG companions and editable `.mmd` sources are present. Optional Python suites were initially missing the local Starlette/FastAPI test-client dependency; the declared dev dependencies were installed with `python -m pip install -e '.[dev]'`, after which `pytest` and `make test` passed.
+No required validation command was skipped. Mermaid CLI SVG export was not required because committed SVG companions and editable `.mmd` sources are present. Optional Python suites were initially missing the local Starlette/FastAPI test-client dependency; `httpx` was installed with `python -m pip install httpx`, after which `pytest` and `make test` passed.
