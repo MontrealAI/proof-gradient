@@ -5,23 +5,22 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: goalos-public-site-release-v12
+  group: goalos-public-site-release-v12-obsolete-validate-only
   cancel-in-progress: false
 
 jobs:
-  validate-and-deploy:
-    name: Validate shared rules and deploy Pages artifact
+  validate-only:
+    name: Obsolete v12 path; validate only and do not deploy
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Explain obsolete workflow
+        run: |
+          echo "This obsolete v12 workflow is validate-only and cannot deploy GitHub Pages."
+          echo "Use GoalOS Validation Hotfix v14 Microsite Compatibility, then the GoalOS Public Site Release v8 Intelligent Assets path."
       - name: Validate public site classification and shell rules
         run: python scripts/validate_goalos_public_site.py
       - name: Check paid/private artifact boundary
@@ -30,10 +29,3 @@ jobs:
         run: python scripts/validate_docs_tables_figures.py
       - name: Validate GoalOS catalog
         run: python scripts/validate_goalos_catalog.py
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
