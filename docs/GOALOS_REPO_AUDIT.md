@@ -1,6 +1,6 @@
 # GoalOS Repository Audit
 
-Audit date: 2026-06-08. Branch: `feature/goalos-institutional-public-foundation`. No files were deleted during audit.
+Audit date: 2026-06-08. Branch: `feature/goalos-institutional-repository-upgrade`. No files were deleted during audit.
 
 ## 1. Repository structure
 
@@ -98,32 +98,36 @@ Required GoalOS docs are present and linked from `docs/GOALOS_DOCUMENTATION_INDE
 
 Required figure sources, SVG companions, and CSV tables are present and pass validation.
 
-## 22. Public trust risks
+## 22. Missing badge findings
+
+Required static SVG badges are present under `badges/`, listed in `docs/tables/goalos_badge_inventory.csv`, and referenced by README. No missing required badge was found in the latest validation run.
+
+## 23. Public trust risks
 
 Trust risks are primarily drift risks: catalog values, README tables, CSV tables, website release copy, badges, and generated site pages must remain synchronized. The public repository must continue avoiding paid buyer artifacts, unsupported claims, stale validation paths, and manual website-release bypasses.
 
-## 23. Claims risks
+## 24. Claims risks
 
 The repository must not claim guaranteed ROI, guaranteed revenue, guaranteed profit, guaranteed productivity, investment returns, legal/tax/financial advice, compliance certification, AI safety certification, autonomous AGI, achieved AGI/ASI, base-model self-modification, uncontrolled autonomous deployment, independently unproven real-world profit, or completed enterprise SaaS when only the MVP exists.
 
-## 24. Files to preserve
+## 25. Files to preserve
 
 Preserve AEP standards, schemas, scripts, tests, public site, `proof_gradient` package, validation hotfix logic, public AEP package allowlist, QUEBEC.AI seal/assets, public proof pages/microsites, autonomous website release workflows, useful examples, and production foundation code.
 
-## 25. Files to update
+## 26. Files to update
 
 Update `README.md`, root governance/setup docs, GoalOS docs, `docs/data/goalos_catalog.yml`, docs tables, docs figures, badges, validation scripts, and CI workflows when the public foundation changes.
 
-## 26. Files not to touch
+## 27. Files not to touch
 
 Do not upload or expose paid buyer products, private delivery materials, paid ZIPs, workshop bundles, implementation bundles, enterprise pilot bundles, commercialization packs, or generated public site pages as a manual rewrite path.
 
-## 27. Commands run
+## 28. Commands run
 
 Audit/inventory commands:
 
 - `pwd && find .. -name AGENTS.md -print && git status --short --branch`
-- `git checkout -B feature/goalos-institutional-public-foundation`
+- `git switch -c feature/goalos-institutional-repository-upgrade || git switch feature/goalos-institutional-repository-upgrade`
 - `rg --files -g '!*node_modules*' | sed -n '1,200p'`
 - `find . -maxdepth 1 -type f -printf '%f\\n' | sort`
 - `find docs -maxdepth 2 -type f | sort | sed -n '1,220p'`
@@ -131,7 +135,9 @@ Audit/inventory commands:
 - `find scripts -maxdepth 1 -type f -printf '%f\\n' | sort`
 - `find . -type f -name '*.zip' | sort`
 - `sed -n` inspections of README, catalog, validation scripts, QA docs, audit docs, and selected workflows.
-- `rg -n "85 passed|httpx2|make test.*passed|pytest.*passed|Current branch verification|installed" docs README.md QA_VERIFICATION.md`
+- `git remote add origin https://github.com/MontrealAI/proof-gradient.git || true`
+- `git fetch origin main --prune`
+- `git diff --stat origin/main...HEAD`
 
 Validation/test commands:
 
@@ -144,10 +150,10 @@ Validation/test commands:
 - `python -m pip install httpx2 httpx` — installed optional test-client transport dependencies in the local environment.
 - `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed.
 
-## 28. Tests skipped and why
+## 29. Tests skipped and why
 
 No required validation command was skipped. Mermaid CLI SVG export was not run because committed SVG companions and editable `.mmd` sources are already present. No optional command remained skipped after installing the local Python test-client dependencies.
 
-## 29. Risks before merge
+## 30. Risks before merge
 
 Merge risk is low if future edits continue to update `docs/data/goalos_catalog.yml` first, preserve the autonomous website release path, avoid committing paid buyer deliverables, and rerun all required validation scripts. The remaining operational risk is future drift between catalog, tables, README, docs, workflows, and autonomous site templates.
