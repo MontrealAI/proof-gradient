@@ -112,6 +112,43 @@ def artifact_check_target(target: str) -> str:
     return target.split("#", 1)[0].split("?", 1)[0]
 
 
+def catalog_string_list(catalog_text: str, key: str) -> list[str]:
+    """Parse a top-level YAML string-list section from the catalog.
+
+    The catalog validator is intentionally dependency-free, so this small parser
+    only accepts the simple top-level list shape used for inventory sections:
+
+    ``key:`` followed by indented ``- "value"`` entries. It does not treat
+    raw substring matches elsewhere in the catalog as inventory membership.
+    """
+    values: list[str] = []
+    in_section = False
+    section_header = f"{key}:"
+
+    for line in catalog_text.splitlines():
+        stripped = line.strip()
+        if not in_section:
+            if line == section_header:
+                in_section = True
+            continue
+
+        if line and not line.startswith((" ", "	")):
+            break
+        if not stripped or stripped.startswith("#"):
+            continue
+        if not stripped.startswith("-"):
+            continue
+
+        item = stripped[1:].strip()
+        if " #" in item:
+            item = item.split(" #", 1)[0].strip()
+        if (item.startswith('"') and item.endswith('"')) or (item.startswith("'") and item.endswith("'")):
+            item = item[1:-1]
+        values.append(item)
+
+    return values
+
+
 def main() -> int:
     errors: list[str] = []
     if not CATALOG.exists():
@@ -147,11 +184,15 @@ def main() -> int:
     for fig in REQUIRED_FIGURES:
         if not (ROOT / "docs" / "figures" / f"{fig}.mmd").exists() or not (ROOT / "docs" / "figures" / f"{fig}.svg").exists():
             errors.append(f"missing required figure source/export for {fig}")
+    catalog_badges = set(catalog_string_list(cat, "badge_inventory"))
+    if not catalog_badges:
+        errors.append("catalog missing top-level badge_inventory list")
     for badge in REQUIRED_BADGES:
+        badge_path = f"badges/{badge}"
         if not (ROOT / "badges" / badge).exists():
-            errors.append(f"missing required badge: badges/{badge}")
-        if f"badges/{badge}" not in cat:
-            errors.append(f"catalog badge inventory missing badges/{badge}")
+            errors.append(f"missing required badge: {badge_path}")
+        if badge_path not in catalog_badges:
+            errors.append(f"catalog badge_inventory missing {badge_path}")
 
     product_csv = ROOT / "docs" / "tables" / "goalos_product_ladder.csv"
     if product_csv.exists():
