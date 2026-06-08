@@ -4,84 +4,91 @@ This is the human-friendly map for Proof Gradient · GoalOS.
 
 ## 1. Start here
 
-Begin with README.md, docs/data/goalos_catalog.yml, and this index.
+Begin with [README.md](../README.md), [docs/data/goalos_catalog.yml](data/goalos_catalog.yml), and this index.
 
-## 2. Product ladder
+## 2. Institutional thesis
 
-See [GOALOS_PRODUCT_LADDER.md](GOALOS_PRODUCT_LADDER.md).
+See [GOALOS_INSTITUTIONAL_POSITIONING.md](GOALOS_INSTITUTIONAL_POSITIONING.md) and [GOALOS_PUBLIC_STANDARD_STRATEGY.md](GOALOS_PUBLIC_STANDARD_STRATEGY.md). The public line is: a model can answer, an agent can act, and an institution must prove.
 
-## 3. Ready-to-sell status
+## 3. Product ladder
 
-See [GOALOS_READY_TO_SELL_STATUS.md](GOALOS_READY_TO_SELL_STATUS.md).
+See [GOALOS_PRODUCT_LADDER.md](GOALOS_PRODUCT_LADDER.md) and [goalos_product_ladder.csv](tables/goalos_product_ladder.csv).
 
-## 4. Proof Card 001
+## 4. Ready-to-sell status
+
+See [GOALOS_READY_TO_SELL_STATUS.md](GOALOS_READY_TO_SELL_STATUS.md). Paid buyer products are sold through https://www.quebecartificialintelligence.com/shop, not from this public repository.
+
+## 5. Proof Card 001
 
 See [GOALOS_PROOF_CARD_001_PLAN.md](GOALOS_PROOF_CARD_001_PLAN.md).
 
-## 5. AEP standards
+## 6. AEP standards
 
-See ../standards/ and docs/tables/goalos_aep_standards.csv.
+See [docs/standards/](standards/) and [goalos_aep_standards.csv](tables/goalos_aep_standards.csv).
 
-## 6. GoalOS Recursive Workflow OS
+## 7. GoalOS Recursive Workflow OS
 
 See [GOALOS_RECURSIVE_WORKFLOW_OS.md](GOALOS_RECURSIVE_WORKFLOW_OS.md).
 
-## 7. Cloud MVP
+## 8. Cloud MVP
 
-See [GOALOS_CLOUD_MVP_0_2.md](GOALOS_CLOUD_MVP_0_2.md).
+See [GOALOS_CLOUD_MVP_0_2.md](GOALOS_CLOUD_MVP_0_2.md). GoalOS Cloud MVP 0.2 is public software proof, not a full enterprise SaaS.
 
-## 8. Public site and autonomous GitHub Actions
+## 9. Public site and autonomous GitHub Actions
 
-See [GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md](GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md).
+See [GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md](GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md). Public website changes should flow through the autonomous release workflows.
 
-## 9. Validation and CI
+## 10. Validation and CI
 
-See [GOALOS_VALIDATION_HOTFIX_V14.md](GOALOS_VALIDATION_HOTFIX_V14.md).
+See [GOALOS_VALIDATION_HOTFIX_V14.md](GOALOS_VALIDATION_HOTFIX_V14.md), [validate_docs_tables_figures.py](../scripts/validate_docs_tables_figures.py), and [validate_goalos_catalog.py](../scripts/validate_goalos_catalog.py).
 
-## 10. Paid-file policy
+## 11. Paid-file policy
 
-See [GOALOS_PAID_ARTIFACT_POLICY.md](GOALOS_PAID_ARTIFACT_POLICY.md).
+See [GOALOS_PAID_ARTIFACT_POLICY.md](GOALOS_PAID_ARTIFACT_POLICY.md). Public AEP ZIP packages are only allowed at `standards/AEP-###/complete-package.zip`.
 
-## 11. Figures
+## 12. Figures
 
-See docs/figures/ and docs/tables/goalos_figure_inventory.csv.
+See [docs/figures/](figures/) and [goalos_figure_inventory.csv](tables/goalos_figure_inventory.csv).
 
-## 12. Tables
+## 13. Tables
 
-See docs/tables/ and docs/data/goalos_catalog.yml.
+See [docs/tables/](tables/) and [docs/data/goalos_catalog.yml](data/goalos_catalog.yml).
 
-## 13. Asset system
+## 14. Badges
 
-See [GOALOS_PUBLIC_SITE_ASSET_SYSTEM.md](GOALOS_PUBLIC_SITE_ASSET_SYSTEM.md).
+See [badges/](../badges/) and [goalos_badge_inventory.csv](tables/goalos_badge_inventory.csv). Badges are static SVGs and must not imply certification, guaranteed outcomes, AGI, ASI, or full SaaS completion.
 
-## 14. Legal/payment/support summary
+## 15. Asset system
+
+See [GOALOS_PUBLIC_SITE_ASSET_SYSTEM.md](GOALOS_PUBLIC_SITE_ASSET_SYSTEM.md) and [goalos_asset_manifest.csv](tables/goalos_asset_manifest.csv).
+
+## 16. Legal/payment/support summary
 
 See [GOALOS_LEGAL_PAYMENTS_BUYER_SUCCESS_SUMMARY.md](GOALOS_LEGAL_PAYMENTS_BUYER_SUCCESS_SUMMARY.md).
 
-## 15. Tax/CFO summary
+## 17. Tax/CFO summary
 
 See [GOALOS_TAX_ACCOUNTING_CFO_SUMMARY.md](GOALOS_TAX_ACCOUNTING_CFO_SUMMARY.md).
 
-## 16. Communications summary
+## 18. Communications summary
 
 See [GOALOS_COMMUNICATIONS_FIRM_SUMMARY.md](GOALOS_COMMUNICATIONS_FIRM_SUMMARY.md).
 
-## 17. Professional-firm packages summary
+## 19. Professional-firm packages summary
 
 See [GOALOS_PROFESSIONAL_FIRM_PACKAGES_SUMMARY.md](GOALOS_PROFESSIONAL_FIRM_PACKAGES_SUMMARY.md).
 
-## 18. Web3 / AGI.eth / ASI.eth hybrid architecture
+## 20. Web3 / AGI.eth / ASI.eth hybrid architecture
 
 See [GOALOS_WEB3_HYBRID_ARCHITECTURE.md](GOALOS_WEB3_HYBRID_ARCHITECTURE.md).
 
-## 19. Engineering roadmap
+## 21. Engineering roadmap
 
-See [GOALOS_ENGINEERING_ROADMAP.md](GOALOS_ENGINEERING_ROADMAP.md).
+See [GOALOS_ENGINEERING_ROADMAP.md](GOALOS_ENGINEERING_ROADMAP.md) and [../ROADMAP.md](../ROADMAP.md).
 
-## 20. Repository audit
+## 22. Repository audit
 
 See [GOALOS_REPO_AUDIT.md](GOALOS_REPO_AUDIT.md).
-
 
 ## Required operating frame
 
