@@ -80,11 +80,32 @@ def text(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="ignore")
 
 
+def markdown_link_target(raw: str) -> str:
+    """Return only the destination from a Markdown link target.
+
+    Markdown permits destinations such as `file.zip?download=1`,
+    `<file.zip#anchor>`, and `file.zip "title"`. Validation should classify
+    the destination path, not optional link metadata.
+    """
+    target = raw.strip()
+    if target.startswith("<") and ">" in target:
+        return target[1:target.index(">")].strip()
+    return target.split()[0] if target.split() else ""
+
+
+def artifact_check_target(target: str) -> str:
+    """Strip URL query/fragment metadata before paid-artifact checks."""
+    parsed = urlparse(target)
+    if parsed.scheme or parsed.netloc:
+        return parsed.path
+    return target.split("#", 1)[0].split("?", 1)[0]
+
+
 def local_link_exists(source: Path, target: str) -> bool:
     parsed = urlparse(target)
     if parsed.scheme or parsed.netloc or target.startswith("mailto:"):
         return True
-    clean = target.split("#", 1)[0].split("?", 1)[0]
+    clean = artifact_check_target(target)
     if not clean:
         return True
     if clean.startswith("/"):
@@ -136,10 +157,12 @@ def main() -> int:
     for path in [ROOT / "README.md", *DOCS.rglob("*.md")]:
         rel = path.relative_to(ROOT).as_posix()
         content = text(path)
-        for target in MD_LINK_RE.findall(content):
-            if is_blocked_paid_or_private_artifact(target):
+        for raw_target in MD_LINK_RE.findall(content):
+            target = markdown_link_target(raw_target)
+            check_target = artifact_check_target(target)
+            if check_target and is_blocked_paid_or_private_artifact(check_target):
                 errors.append(f"{rel}: links to blocked paid/private artifact {target}")
-            if not local_link_exists(path, target):
+            if target and not local_link_exists(path, target):
                 errors.append(f"{rel}: broken local link {target}")
 
     if CATALOG.exists():

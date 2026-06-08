@@ -53,6 +53,16 @@ def markdown_link_target(raw: str) -> str:
     return target
 
 
+def artifact_check_target(target: str) -> str:
+    """Strip Markdown URL query/fragment metadata before artifact checks."""
+    from urllib.parse import urlparse
+
+    parsed = urlparse(target)
+    if parsed.scheme or parsed.netloc:
+        return parsed.path
+    return target.split("#", 1)[0].split("?", 1)[0]
+
+
 def main() -> int:
     errors: list[str] = []
     if not CATALOG.exists():
@@ -110,7 +120,8 @@ def main() -> int:
         body = read(path)
         for raw in MD_LINK_RE.findall(body):
             target = markdown_link_target(raw)
-            if target and is_blocked_paid_or_private_artifact(target):
+            check_target = artifact_check_target(target)
+            if check_target and is_blocked_paid_or_private_artifact(check_target):
                 errors.append(f"{rel}: public paid/private artifact link {target}")
         for pat in OBSOLETE_CURRENT_PATTERNS:
             if re.search(pat, body, flags=re.IGNORECASE):
