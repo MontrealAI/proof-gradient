@@ -34,6 +34,18 @@ French:
 
 Proof Gradient is the standards and proof-publication layer: AEP standards, proof records, validation checks, public-safe pages, and reusable documentation that make workflow evolution auditable.
 
+
+## What this is not
+
+This is not:
+
+- a prompt dump
+- a chatbot wrapper
+- a claim of autonomous AGI
+- a model self-modification system
+- a guarantee of ROI
+- a public repository for paid buyer deliverables
+
 ## Safe AI boundary
 
 GoalOS does not modify base AI models. GoalOS improves workflows around AI through instructions, prompts, memory, scorecards, proof records, evaluations, approvals, versions, monitoring, and rollback.

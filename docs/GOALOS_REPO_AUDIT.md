@@ -28,7 +28,7 @@ These notices intentionally do not delete historical documents; they prevent obs
 
 ## 3. Current docs state
 
-Core GoalOS docs now exist under `docs/`, with `docs/GOALOS_DOCUMENTATION_INDEX.md` as the human-friendly map and `docs/data/goalos_catalog.yml` as source of truth.
+Core GoalOS docs now exist under `docs/`, with `docs/GOALOS_DOCUMENTATION_INDEX.md` as the human-friendly map and `docs/data/goalos_catalog.yml` as source of truth. The index now explicitly covers institutional thesis, badges, public-standard strategy, product ladder, Proof Card 001, autonomous website actions, and repository audit links.
 
 ## 4. Current figures state
 
@@ -36,7 +36,7 @@ Required Mermaid sources and SVG companions are present under `docs/figures/`. S
 
 ## 5. Current tables state
 
-Required CSV tables are present under `docs/tables/` and match the catalog product ladder, validation status, paid-file policy, action order, docs inventory, and figure inventory.
+Required CSV tables are present under `docs/tables/` and match the catalog product ladder, validation status, paid-file policy, action order, docs inventory, figure inventory, and badge inventory.
 
 ## 6. Current badge state
 
@@ -118,18 +118,19 @@ Main risk is future drift between catalog, tables, README, docs, workflows, and 
 
 Audit and validation commands run on 2026-06-08:
 
-Latest branch validation after adding obsolete setup-guide notices and the Proof Card 001 badge:
+Latest branch validation after adding the README “What this is not” section, the complete documentation index sections, institutional positioning, public standard strategy, and badge inventory:
 
 - `python scripts/check_no_paid_artifacts.py` — passed.
 - `python scripts/validate_goalos_public_site.py` — passed.
 - `python scripts/validate_docs_tables_figures.py` — passed.
 - `python scripts/validate_goalos_catalog.py` — passed.
-- `pytest` — failed during collection because `starlette.testclient` could not import `httpx2` or `httpx` in this environment.
-- `make test` — failed for the same missing test-client dependency after 56+ unittest checks passed and `tests/test_proof_gradient_api.py` failed to import.
+- `python -m pip install -e '.[dev]'` — installed the declared development test dependencies after the first optional test attempt found missing `httpx2`/`httpx`.
+- `pytest` — passed: 85 passed, 2 warnings.
+- `make test` — passed: 56 unittest tests passed.
 - `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed.
 
 - `pwd && find .. -name AGENTS.md -print && git status --short --branch`.
-- `git branch --show-current && git checkout -B feature/goalos-official-docs-readme-figures-tables-badges && find /workspace -name AGENTS.md -print`.
+- `git branch --show-current && git checkout -B feature/goalos-institutional-docs-readme-figures-tables-badges && find /workspace -name AGENTS.md -print`.
 - `rg --files -g '!**/.git/**' | sed -n '1,200p'` for file inventory sampling.
 - `find .github/workflows -maxdepth 1 -type f -print` for workflow inventory.
 - `find . -maxdepth 2 -type d -not -path './.git*' | sort` for directory inventory.
@@ -141,10 +142,11 @@ Latest branch validation after adding obsolete setup-guide notices and the Proof
 - `python scripts/validate_goalos_public_site.py` — passed.
 - `python scripts/validate_docs_tables_figures.py` — passed, including the static `badges/proof-card-001-next.svg` requirement.
 - `python scripts/validate_goalos_catalog.py` — passed.
-- `pytest` — failed during collection because `starlette.testclient` could not import `httpx2` or `httpx` in this environment.
-- `make test` — failed for the same missing test-client dependency after 56 unittest checks passed and `tests/test_proof_gradient_api.py` failed to import.
+- `python -m pip install -e '.[dev]'` — installed declared dev dependencies for optional Python tests.
+- `pytest` — passed: 85 passed, 2 warnings about FastAPI `on_event` deprecation.
+- `make test` — passed: 56 unittest tests passed.
 - `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed on the current documentation branch.
 
 ## 26. Tests skipped and why
 
-No required validation command was skipped. Mermaid CLI SVG export was not required because committed SVG companions and editable `.mmd` sources are present. Optional Python suites were attempted rather than skipped, but `pytest` and `make test` could not complete because the local Starlette/FastAPI test-client dependency (`httpx2` or compatible `httpx`) is not installed.
+No required validation command was skipped. Mermaid CLI SVG export was not required because committed SVG companions and editable `.mmd` sources are present. Optional Python suites were initially missing the local Starlette/FastAPI test-client dependency; the declared dev dependencies were installed with `python -m pip install -e '.[dev]'`, after which `pytest` and `make test` passed.

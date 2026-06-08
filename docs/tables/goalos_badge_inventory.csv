@@ -1,0 +1,15 @@
+Badge,File,Meaning,Forbidden implication
+GoalOS,badges/goalos.svg,GoalOS public identity,No full SaaS completion claim
+Proof Gradient,badges/proof-gradient.svg,Public proof and standards layer,No certification claim
+AEP Standards,badges/aep-standards.svg,Public standards layer,No compliance certification claim
+No Paid Artifacts,badges/no-paid-artifacts.svg,Paid buyer files are blocked,No guarantee beyond validation scope
+Validation v14,badges/validation-v14.svg,Current validation hotfix,No v12 or v13 current claim
+Public Site Release v8,badges/public-site-release-v8.svg,Current site release package,No manual site bypass claim
+Cloud MVP 0.2,badges/cloud-mvp-0-2.svg,Public software proof,No production enterprise SaaS completion claim
+QUEBEC.AI,badges/quebec-ai.svg,Sovereign Québec AI identity layer,No government endorsement claim
+Proof-Bounded,badges/proof-bounded.svg,Claims remain proof-bounded,No guaranteed result claim
+No Model Self-Modification,badges/no-model-self-modification.svg,Base models remain unchanged,No autonomous AGI claim
+Website via GitHub Actions,badges/website-via-github-actions.svg,Website refresh runs through actions,No manual deploy bypass claim
+Proof Card 001 Next,badges/proof-card-001-next.svg,Next public milestone,No completed public market proof claim
+Enterprise RSI Boundary,badges/enterprise-rsi-boundary.svg,Enterprise RSI stays workflow-layer bounded,No uncontrolled deployment claim
+Recursive Workflow OS,badges/recursive-workflow-os.svg,Formal platform direction,No complete SaaS claim
