@@ -157,3 +157,7 @@ No required validation command was skipped. Mermaid CLI SVG export was not run b
 ## 30. Risks before merge
 
 Merge risk is low if future edits continue to update `docs/data/goalos_catalog.yml` first, preserve the autonomous website release path, avoid committing paid buyer deliverables, and rerun all required validation scripts. The remaining operational risk is future drift between catalog, tables, README, docs, workflows, and autonomous site templates.
+
+## 31. Merge-readiness verification update
+
+A final verification pass on 2026-06-08 confirmed that the required dependency-free GoalOS validators pass, the public site validator scans 207 HTML pages successfully, the paid-file guard preserves the AEP ZIP allowlist, and the GoalOS Cloud MVP 0.2 Node proof test passes. The Python optional test suite required local installation of `httpx2` and `httpx` for Starlette/FastAPI test-client imports; after that environment dependency was installed, `pytest` passed with 85 tests and 2 deprecation warnings, and `make test` passed with 56 unittest tests. No generated website page was manually rewritten during this verification update.
