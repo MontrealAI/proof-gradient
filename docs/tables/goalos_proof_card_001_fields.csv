@@ -1,0 +1,16 @@
+Field,Description
+proof card ID,GoalOS-PC-001
+workflow name,Customer Support Reply Workflow
+workflow owner,Named owner for approval
+input class,Customer support refund/access request
+v1.0 workflow summary,Polite but missed refund/access classification
+first run output summary,Helpful but under-classified policy risk
+scorecard,"Safety, clarity, completeness, reuse"
+diagnosis,Add policy classification and human-review flag
+v1.1 change,Improved instructions and routing
+version diff,Human-readable v1.0 to v1.1 delta
+proof note,Public-safe evidence summary
+claims avoided,No ROI/compliance/autonomy/model modification claims
+public-safe status,Ready after buyer approval
+buyer approval status,Required before publication
+next upsell path,"Workshop, implementation sprint, enterprise pilot"

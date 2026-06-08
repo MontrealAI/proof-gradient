@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" width="1920" height="130" viewBox="0 0 1920 130">
+<title id="title">goalos proof led revenue loop</title>
+<desc id="desc">GoalOS proof-bounded architecture diagram.</desc>
+<rect width="100%" height="100%" rx="18" fill="#0b1020"/>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f5c542"/></marker></defs>
+<rect x="20" y="35" width="180" height="58" rx="12" fill="#121a33" stroke="#66e3ff"/>
+<text x="110" y="64" text-anchor="middle" dominant-baseline="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="13">Small sale</text>
+<path d="M 204 64 L 246 64" stroke="#f5c542" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="240" y="35" width="180" height="58" rx="12" fill="#121a33" stroke="#66e3ff"/>
+<text x="330" y="64" text-anchor="middle" dominant-baseline="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="13">buyer education</text>
+<path d="M 424 64 L 466 64" stroke="#f5c542" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="460" y="35" width="180" height="58" rx="12" fill="#121a33" stroke="#66e3ff"/>
+<text x="550" y="64" text-anchor="middle" dominant-baseline="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="13">workflow success</text>
+<path d="M 644 64 L 686 64" stroke="#f5c542" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="680" y="35" width="180" height="58" rx="12" fill="#121a33" stroke="#66e3ff"/>
+<text x="770" y="64" text-anchor="middle" dominant-baseline="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="13">proof</text>
+<path d="M 864 64 L 906 64" stroke="#f5c542" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="900" y="35" width="180" height="58" rx="12" fill="#121a33" stroke="#66e3ff"/>
+<text x="990" y="64" text-anchor="middle" dominant-baseline="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="13">trust</text>
+<path d="M 1084 64 L 1126 64" stroke="#f5c542" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1120" y="35" width="180" height="58" rx="12" fill="#121a33" stroke="#66e3ff"/>
+<text x="1210" y="64" text-anchor="middle" dominant-baseline="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="13">high-ticket offer</text>
+<path d="M 1304 64 L 1346 64" stroke="#f5c542" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1340" y="35" width="180" height="58" rx="12" fill="#121a33" stroke="#66e3ff"/>
+<text x="1430" y="64" text-anchor="middle" dominant-baseline="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="13">enterprise pilot</text>
+<path d="M 1524 64 L 1566 64" stroke="#f5c542" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1560" y="35" width="180" height="58" rx="12" fill="#121a33" stroke="#66e3ff"/>
+<text x="1650" y="64" text-anchor="middle" dominant-baseline="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="13">software validation</text>
+</svg>

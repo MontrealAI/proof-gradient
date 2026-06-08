@@ -1,0 +1,6 @@
+flowchart LR
+  n0["Base model unchanged"] --> n1["Workflow layer"]
+  n1["Workflow layer"] --> n2["Instructions/prompts"]
+  n2["Instructions/prompts"] --> n3["Scorecards/proof"]
+  n3["Scorecards/proof"] --> n4["Approval/version/rollback"]
+  n4["Approval/version/rollback"] --> n5["Safer release"]

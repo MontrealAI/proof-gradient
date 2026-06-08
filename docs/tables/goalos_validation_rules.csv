@@ -1,0 +1,5 @@
+Rule,Current status,Command
+Paid-file guard,Required,python scripts/check_no_paid_artifacts.py
+Public site validation v14,Required,python scripts/validate_goalos_public_site.py
+Docs/tables/figures validation,Required,python scripts/validate_docs_tables_figures.py
+Catalog contradiction check,Required,python scripts/validate_goalos_catalog.py

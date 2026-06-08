@@ -1,0 +1,6 @@
+Workflow,Status,Purpose
+"Validate GoalOS Docs, Tables, Figures",Current,"Validate docs, CSVs, figure sources, README sections, and internal links."
+Check No Paid Artifacts,Current,Block paid/private artifacts from public deploy roots.
+Validate GoalOS Catalog,Current,Ensure README/docs/tables/site references do not contradict catalog.
+GoalOS Validation Hotfix v14 Microsite Compatibility,Current,Classified public-site validation.
+v12 / v13 validation workflows,Obsolete,Documented as obsolete; do not use as current.

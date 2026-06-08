@@ -1,0 +1,5 @@
+Page class,Requirement,Examples
+canonical_page,Exactly one canonical GoalOS shell and footer.,"site/index.html, product pages"
+standalone_proof_page,"Standalone marker, title, description, visible /proof-gradient/ escape.",proof microsites
+app_page,May use app shell; no marketing shell required.,site/app/goalos-cloud-mvp/
+aep_standard_package,Only standards/AEP-###/complete-package.zip allowed.,standards/AEP-001/complete-package.zip
