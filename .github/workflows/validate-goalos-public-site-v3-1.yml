@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   validate:
-    name: Compatibility wrapper for shared v12 validation
+    name: Compatibility wrapper for shared v14 validation
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
