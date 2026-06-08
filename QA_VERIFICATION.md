@@ -13,6 +13,11 @@ python scripts/validate_docs_tables_figures.py
 python scripts/validate_goalos_catalog.py
 ```
 
+
+## Merge-readiness result — 2026-06-08
+
+Final repository validation for the institutional upgrade used the required GoalOS guardrail commands, the GoalOS Cloud MVP Node test, and optional Python test suites. The only environment note was the need to install `httpx2` and `httpx` locally before running FastAPI/Starlette test-client tests; after installation, `pytest` and `make test` both passed.
+
 ## Paid-file guard
 
 The paid-file guard blocks public paid/private artifacts and preserves the narrow public AEP package allowlist: `standards/AEP-###/complete-package.zip`.
