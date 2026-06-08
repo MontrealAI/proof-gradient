@@ -43,4 +43,4 @@ pytest
 make test
 ```
 
-Current run note: before `httpx2` and `httpx` were installed, both Python test commands failed at import time with the Starlette/FastAPI test-client dependency missing. After installing `httpx2` and `httpx`, both commands passed.
+Current run note for 2026-06-08: `pytest` and `make test` first failed at import time because the local environment lacked `httpx2`/`httpx`. After `python -m pip install httpx2 httpx`, `pytest` passed with 85 tests and 2 warnings, and `make test` passed with 56 unittest tests.
