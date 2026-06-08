@@ -26,8 +26,55 @@ REQUIRED_DOCS = [
     "docs/GOALOS_INSTITUTIONAL_POSITIONING.md", "docs/GOALOS_PUBLIC_STANDARD_STRATEGY.md",
     "docs/GOALOS_PROOF_GRAPH_CONCEPT.md", "docs/GOALOS_AEP_STANDARDS_INDEX.md",
 ]
-REQUIRED_TABLES = ["goalos_product_ladder.csv", "goalos_offer_status.csv", "goalos_claim_boundaries.csv", "goalos_autonomous_website_actions.csv", "goalos_public_standard_strategy.csv"]
-REQUIRED_FIGURES = ["goalos_recursive_workflow_loop", "goalos_product_ladder", "goalos_validation_architecture", "goalos_institutional_stack", "goalos_aep_standards_map"]
+REQUIRED_TABLES = [
+    "goalos_product_ladder.csv",
+    "goalos_offer_status.csv",
+    "goalos_claim_boundaries.csv",
+    "goalos_public_site_pages.csv",
+    "goalos_paid_file_policy.csv",
+    "goalos_aep_standards.csv",
+    "goalos_document_inventory.csv",
+    "goalos_figure_inventory.csv",
+    "goalos_badge_inventory.csv",
+    "goalos_asset_manifest.csv",
+    "goalos_validation_rules.csv",
+    "goalos_workflow_actions.csv",
+    "goalos_proof_card_001_fields.csv",
+    "goalos_professional_firm_packages.csv",
+    "goalos_autonomous_website_actions.csv",
+    "goalos_public_standard_strategy.csv",
+]
+REQUIRED_FIGURES = [
+    "goalos_recursive_workflow_loop",
+    "goalos_product_ladder",
+    "goalos_proof_led_revenue_loop",
+    "goalos_institutional_stack",
+    "goalos_public_site_architecture",
+    "goalos_autonomous_github_actions_website_flow",
+    "goalos_validation_architecture",
+    "goalos_cloud_mvp_architecture",
+    "goalos_enterprise_safety_boundary",
+    "goalos_web3_hybrid_architecture",
+    "goalos_proof_graph_concept",
+    "goalos_aep_standards_map",
+]
+REQUIRED_BADGES = [
+    "goalos.svg",
+    "proof-gradient.svg",
+    "aep-standards.svg",
+    "no-paid-artifacts.svg",
+    "validation-v14.svg",
+    "public-site-release-v8.svg",
+    "cloud-mvp-0-2.svg",
+    "quebec-ai.svg",
+    "proof-bounded.svg",
+    "no-model-self-modification.svg",
+    "website-via-github-actions.svg",
+    "proof-card-001-next.svg",
+    "enterprise-rsi-boundary.svg",
+    "recursive-workflow-os.svg",
+    "aep-public-standard.svg",
+]
 OBSOLETE_CURRENT_PATTERNS = [
     r"v12[^\n]{0,40}is current", r"v13[^\n]{0,40}is current", r"old v8[^\n]{0,80}is current",
     r"Use goalos-public-site-release-v12\.yml for deployment",
@@ -100,6 +147,11 @@ def main() -> int:
     for fig in REQUIRED_FIGURES:
         if not (ROOT / "docs" / "figures" / f"{fig}.mmd").exists() or not (ROOT / "docs" / "figures" / f"{fig}.svg").exists():
             errors.append(f"missing required figure source/export for {fig}")
+    for badge in REQUIRED_BADGES:
+        if not (ROOT / "badges" / badge).exists():
+            errors.append(f"missing required badge: badges/{badge}")
+        if f"badges/{badge}" not in cat:
+            errors.append(f"catalog badge inventory missing badges/{badge}")
 
     product_csv = ROOT / "docs" / "tables" / "goalos_product_ladder.csv"
     if product_csv.exists():
