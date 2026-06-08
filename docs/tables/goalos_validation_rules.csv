@@ -1,0 +1,5 @@
+Rule,Current command,Status
+Paid/private artifacts,python scripts/check_no_paid_artifacts.py,required
+Public site v14 rules,python scripts/validate_goalos_public_site.py,required
+Docs/tables/figures,python scripts/validate_docs_tables_figures.py,required
+Catalog consistency,python scripts/validate_goalos_catalog.py,required

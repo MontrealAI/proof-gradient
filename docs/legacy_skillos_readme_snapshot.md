@@ -45,7 +45,7 @@ SkillOS now includes a public GitHub Actions proof that runs without sending ema
 
 - Visual proof page: https://montrealai.github.io/proof-gradient/shadow-pilot-proof.html
 - GitHub Action: https://github.com/MontrealAI/proof-gradient/actions/workflows/shadow-pilot-proof.yml
-- Proof report: [`docs/shadow_pilot_proof.md`](docs/shadow_pilot_proof.md)
+- Proof report: [`docs/shadow_pilot_proof.md`](shadow_pilot_proof.md)
 
 Safe interpretation: this is a reproducible reference workflow proof, not audited customer results, financial advice, or a guarantee of future outcomes.
 
