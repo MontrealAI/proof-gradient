@@ -55,6 +55,7 @@ REQUIRED_BADGES = [
     "goalos.svg", "proof-gradient.svg", "aep-standards.svg", "no-paid-artifacts.svg",
     "validation-v14.svg", "public-site-release-v8.svg", "cloud-mvp-0-2.svg", "quebec-ai.svg",
     "proof-bounded.svg", "no-model-self-modification.svg", "website-via-github-actions.svg",
+    "proof-card-001-next.svg",
 ]
 README_SECTIONS = [
     "# Proof Gradient · GoalOS", "What this repository is", "What GoalOS is", "What Proof Gradient is",
