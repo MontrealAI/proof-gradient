@@ -80,7 +80,7 @@ No paid buyer product was uploaded by this work. Public route for buyers is http
 
 ## 16. Obsolete workflow findings
 
-v12, v13, and old v8 compatibility validation existed as confusing historical references. This refresh documents them as obsolete and updates selected workflow names/messages so legacy release and validation wrappers point operators toward v14 validation and the GoalOS Public Site Release v8 Intelligent Assets path instead of v12 deployment. The obsolete v12 public-site release workflow is validate-only: Pages write permissions, Pages artifact upload, environment deployment, and `actions/deploy-pages` were removed so the obsolete path cannot replace GitHub Pages if manually dispatched. The obsolete v12 validation hotfix workflow is also validate-only: repository write permissions, embedded script rewrites, site/doc/test patching, commit, and push steps were removed so it cannot overwrite v14 validation rules.
+v12, v13, and old v8 compatibility validation existed as confusing historical references. This refresh documents them as obsolete and updates selected workflow names/messages so legacy release and validation wrappers point operators toward v14 validation and the GoalOS Public Site Release v8 Intelligent Assets path instead of v12 deployment. The obsolete v12 public-site release workflow is validate-only: Pages write permissions, Pages artifact upload, environment deployment, and `actions/deploy-pages` were removed so the obsolete path cannot replace GitHub Pages if manually dispatched. The obsolete v12 and v13 validation hotfix workflows are validate-only: repository write permissions, embedded script rewrites, site/doc/test patching, commit, and push steps were removed so they cannot overwrite v14 validation rules.
 
 ## 17. Broken-link findings
 
@@ -138,6 +138,7 @@ Latest branch validation after adding the README “What this is not” section,
 - `rg -n "name:.*v8|compatibility|v12|v13|OBSOLETE" .github/workflows docs/GOALOS_VALIDATION_HOTFIX_V14.md docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md`.
 - `sed -n '1,260p' .github/workflows/goalos-public-site-release-v12.yml && git status --short --branch` to inspect the obsolete v12 workflow after review feedback.
 - `sed -n '1,220p' .github/workflows/goalos-validation-hotfix-v12.yml && tail -n 120 .github/workflows/goalos-validation-hotfix-v12.yml` to inspect the obsolete v12 writer after review feedback.
+- `sed -n '1,220p' .github/workflows/goalos-validation-hotfix-v13-no-pytest.yml` to inspect and reduce the obsolete v13 writer to validate-only shared v14 checks.
 - `python scripts/check_no_paid_artifacts.py` — passed.
 - `python scripts/validate_goalos_public_site.py` — passed.
 - `python scripts/validate_docs_tables_figures.py` — passed, including the static `badges/proof-card-001-next.svg` requirement.
