@@ -1,0 +1,4 @@
+Page,Role,Update method
+site/index.html,Generated public homepage,Autonomous GitHub Actions
+site/app/goalos-cloud-mvp/index.html,MVP app proof,Build workflow then validate
+proof/microsite pages,Standalone proof pages,v14 shared rules

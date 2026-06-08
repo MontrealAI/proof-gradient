@@ -1,124 +1,170 @@
-# Proof Gradient / GoalOS
+![GoalOS](badges/goalos.svg) ![Proof Gradient](badges/proof-gradient.svg) ![AEP Standards](badges/aep-standards.svg) ![Validation v14](badges/validation-v14.svg) ![Public Site Release v8](badges/public-site-release-v8.svg) ![No Paid Artifacts](badges/no-paid-artifacts.svg) ![Cloud MVP 0.2](badges/cloud-mvp-0-2.svg) ![QUEBEC.AI ⚜️✨](badges/quebec-ai.svg) ![Proof-Bounded](badges/proof-bounded.svg) ![No Model Self-Modification](badges/no-model-self-modification.svg) ![Website via GitHub Actions](badges/website-via-github-actions.svg)
 
-**A model can answer. An agent can act. An institution must prove.**
+# Proof Gradient · GoalOS
 
-Proof Gradient is the public proof and standards layer for GoalOS. GoalOS is the recursive workflow operating layer for the RSI era: it turns repeated AI work into owned, scored, versioned, approved, monitored, and recursively improving workflows.
+**Aim. Act. Prove. Evolve.**
 
-**Commercial line:** ChatGPT gives you answers. GoalOS gives you workflows that get better every time they run.
+> A model can answer. An agent can act. An institution must prove.
 
-**Enterprise line:** Enterprise RSI without model self-modification.
+Proof Gradient is the public proof and standards layer for GoalOS, a recursive workflow operating layer for proof-led AI work. QUEBEC.AI ⚜️✨ is the sovereign Québec AI identity layer that frames the public brand system.
 
-## Safe boundary
+## What this repository is
 
-GoalOS does **not** modify AI models. Recursive improvement happens at the workflow layer: workflow definitions, instructions, prompts, memory, scorecards, proof records, evaluations, evidence standards, operating procedures, approvals, versions, monitoring, and rollback.
+This repository is the public foundation for proof-led AI workflows: standards, schemas, public proof pages, validation scripts, GoalOS Cloud MVP 0.2 proof code, public-site release automation, repository governance, docs, figures, tables, and safe public narrative. It is not a paid-product delivery repository.
 
-Core loop:
+## What GoalOS is
 
-> Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run
+GoalOS is the Recursive Workflow OS: a workflow layer that turns AI-assisted work into versioned, evaluated, proof-backed operating routines. The category is **Recursive Self-Improving Workflows**.
 
-## Public software proof
+Commercial line: **ChatGPT gives you answers. GoalOS gives you workflows that get better every time they run.**
 
-GoalOS Cloud MVP 0.2 is a public static software proof in `site/app/goalos-cloud-mvp/`.
+GoalOS law:
 
-It runs in the browser, uses `localStorage`, requires no secrets, and demonstrates:
+- No proof, no evolution.
+- No eval, no propagation.
+- No rollback, no release.
 
-- organization / workspace / user roles;
-- policy engine and controlled memory;
-- model-provider restrictions;
-- Workflow Studio and workflow versioning;
-- Execution Engine and Evaluation Engine demos;
-- Proof Room records;
-- Recursive Improvement Engine;
-- improvement proposal and human approval gate;
-- version comparison, rollback target, Proof Graph export;
-- public-safe proof card and executive proof report exports;
-- audit log, OpenAPI blueprint, JSON schemas, and Node unit tests.
+French:
 
-Demo story: the **Customer Support Reply Workflow** v1.0 intentionally misses refund/access policy classification. The MVP runs support cases, evaluates outputs, creates proof records, detects the refund-policy failure, proposes v1.1, benchmarks v1.0 vs v1.1, requires human approval, deploys approved v1.1, preserves rollback target v1.0, and exports a public-safe proof card plus Proof Graph.
+- Pas de preuve, pas d’évolution.
+- Pas d’évaluation, pas de propagation.
+- Pas de rollback, pas de publication.
 
-Run the MVP test:
+## What Proof Gradient is
+
+Proof Gradient is the standards and proof-publication layer: AEP standards, proof records, validation checks, public-safe pages, and reusable documentation that make workflow evolution auditable.
+
+## Safe AI boundary
+
+GoalOS does not modify base AI models. GoalOS improves workflows around AI through instructions, prompts, memory, scorecards, proof records, evaluations, approvals, versions, monitoring, and rollback.
+
+French: GoalOS ne modifie pas les modèles IA de base. GoalOS améliore les flux autour de l’IA grâce aux instructions, prompts, mémoire, grilles de score, dossiers de preuve, évaluations, approbations, versions, surveillance et rollback.
+
+Enterprise line: **Enterprise RSI without model self-modification.**
+
+## Recursive workflow loop
+
+Run → Score → Prove → Diagnose → Improve → Approve → Version → Monitor → Re-run.
+
+See [the recursive workflow loop figure](docs/figures/goalos_recursive_workflow_loop.svg) and [GoalOS Recursive Workflow OS](docs/GOALOS_RECURSIVE_WORKFLOW_OS.md).
+
+## Product ladder
+
+| Layer | Offer | Outcome | Status |
+|---|---|---|---|
+| Self-serve | $49 GoalOS AI Efficiency Sprint Kit v1.4 | Build one reusable workflow | Ready |
+| Self-serve | $199 GoalOS RSI Lite v1.6 | Build one self-improving workflow | Ready |
+| Self-serve / department | $997 GoalOS Proof Room Lite / Department Pack v2.0 | Set up lightweight Proof Room | Ready |
+| Gated workshop | $2,500+ GoalOS RSI Sprint Workshop v7.0 | Build first workflow live | Ready |
+| Gated implementation | $9,500+ GoalOS Proof Room Implementation Sprint v2.0 | Department RSI in 30 days | Ready |
+| Gated enterprise | $49,000+ GoalOS Enterprise RSI Pilot v2.0 | Pilot Recursive Workflow OS | Ready as pilot |
+
+The buyer products are not stored in this public repository. They are sold through: https://www.quebecartificialintelligence.com/shop
+
+## AEP standards
+
+The public AEP standards remain preserved as public standards and may include the narrowly allowed public package pattern `standards/AEP-###/complete-package.zip`. See [AEP standards table](docs/tables/goalos_aep_standards.csv) and the `standards/` directory.
+
+## GoalOS Cloud MVP 0.2
+
+GoalOS Cloud MVP 0.2 is a public software proof, not a complete enterprise SaaS. It demonstrates the workflow/proof boundary and supports the roadmap toward a managed Recursive Workflow OS. See [GoalOS Cloud MVP 0.2](docs/GOALOS_CLOUD_MVP_0_2.md).
+
+## Public website release through autonomous GitHub Actions
+
+The public website is generated and refreshed by autonomous GitHub Actions. Do not manually bypass the release workflows for public-site changes.
+
+Current release and validation path:
+
+1. GoalOS Validation Hotfix v14 Microsite Compatibility.
+2. GoalOS Public Site Release v8 Intelligent Assets.
+3. Validate GoalOS Public Site v8, only if it uses current shared v14 rules.
+4. Check No Paid Artifacts.
+5. Validate GoalOS Docs, Tables, Figures.
+
+See [Website Autonomous Actions](docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md).
+
+## Validation and paid-file policy
+
+Public GitHub must not contain paid buyer deliverables, paid workshop bundles, implementation bundles, enterprise pilot bundles, commercialization packs, or private delivery kits. Public buyers should use https://www.quebecartificialintelligence.com/shop.
+
+Allowed public ZIP exception: `standards/AEP-###/complete-package.zip`.
+
+## Repository map
+
+| Area | Purpose |
+|---|---|
+| `README.md` | Official public entry point. |
+| `docs/` | Human-readable operating, governance, product, QA, and architecture docs. |
+| `docs/data/goalos_catalog.yml` | Source of truth for product ladder, claims, docs, figures, tables, validation, and release status. |
+| `docs/figures/` | Mermaid and SVG diagrams. |
+| `docs/tables/` | CSV tables mirrored by markdown docs. |
+| `badges/` | Static truthful SVG badges. |
+| `scripts/` | Dependency-light validation and release-safety scripts. |
+| `.github/workflows/` | CI and autonomous website release workflows. |
+| `standards/` | Public AEP standards and narrow public AEP ZIP packages. |
+| `schemas/` | Public proof/standards schemas. |
+| `site/` | Generated public website deploy root. |
+| `proof_gradient/` | Public package code. |
+
+## Documentation map
+
+Start with [GoalOS Documentation Index](docs/GOALOS_DOCUMENTATION_INDEX.md), then [Product Ladder](docs/GOALOS_PRODUCT_LADDER.md), [Ready-to-Sell Status](docs/GOALOS_READY_TO_SELL_STATUS.md), [Proof Card 001 Plan](docs/GOALOS_PROOF_CARD_001_PLAN.md), [Claims and Safe Boundary](docs/GOALOS_CLAIMS_AND_SAFE_BOUNDARY.md), and [Paid Artifact Policy](docs/GOALOS_PAID_ARTIFACT_POLICY.md).
+
+## Figures and tables
+
+- Figures inventory: [docs/tables/goalos_figure_inventory.csv](docs/tables/goalos_figure_inventory.csv).
+- Table inventory: [docs/tables/goalos_document_inventory.csv](docs/tables/goalos_document_inventory.csv).
+- Source of truth: [docs/data/goalos_catalog.yml](docs/data/goalos_catalog.yml).
+
+## Current status
+
+- Product/service packages are ready to sell, with first public market proof still needed.
+- GoalOS Cloud MVP 0.2 is a public software proof, not full SaaS.
+- Public site release package is GoalOS Public Site Release v8 Intelligent Assets.
+- Current validation fix is GoalOS Validation Hotfix v14 Microsite Compatibility.
+- v12, v13, and old v8 compatibility validation are obsolete and must not be presented as current.
+
+## Next milestone: Proof Card 001
+
+Next milestone: **GoalOS-PC-001**, based on a Customer Support Reply Workflow. See [Proof Card 001 Plan](docs/GOALOS_PROOF_CARD_001_PLAN.md).
+
+## How to validate locally
 
 ```bash
-node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
-```
-
-
-## Public-site validation
-
-Public HTML and artifacts are classified before validation. Normal marketing/docs pages are `canonical_page` files and still require exactly one canonical GoalOS shell and footer. Immersive RSI proof microsites can be `standalone_proof_page` files when they include `GOALOS-STANDALONE-PROOF` metadata plus a visible `/proof-gradient/` escape link. Cloud MVP pages under `site/app/goalos-cloud-mvp/` are `app_page` files and use their own app shell.
-
-Public AEP standard packages are allowed only at `standards/AEP-###/complete-package.zip`; all other ZIPs in public deploy roots remain blocked unless explicitly reviewed and added to the shared allowlist in `scripts/goalos_public_site_rules.py`. See `docs/GOALOS_PUBLIC_SITE_VALIDATION.md` and `docs/GOALOS_PAID_ARTIFACT_POLICY.md`.
-
-Run validation locally:
-
-```bash
-python scripts/validate_goalos_public_site.py
 python scripts/check_no_paid_artifacts.py
+python scripts/validate_goalos_public_site.py
 python scripts/validate_docs_tables_figures.py
 python scripts/validate_goalos_catalog.py
-python -m pytest tests/test_goalos_public_site_rules.py
 ```
 
-## Public website
-
-The GitHub Pages site root is `site/`. The public site uses one canonical shell:
-
-- `site/assets/goalos-site-v2.css`
-- `site/assets/goalos-site-v2.js`
-
-The site is designed as a clean, dark, institutional GoalOS / Proof Gradient foundation with one navigation bar, one footer, public product pages, standards, examples, and the Cloud MVP.
-
-## Product / offer ladder
-
-Paid products are sold on QUEBEC.AI and are **not** stored in this repository. All checkout / apply buttons point to:
-
-<https://www.quebecartificialintelligence.com/shop>
-
-Current ladder:
-
-| Price | Offer | Public outcome |
-|---:|---|---|
-| $49 | GoalOS AI Efficiency Sprint Kit | Build one reusable AI workflow. |
-| $199 | GoalOS RSI Lite | Build one self-improving AI workflow. |
-| $997 | GoalOS Proof Room Lite / Department Pack | Set up a lightweight department Proof Room. |
-| $2,500+ | GoalOS RSI Sprint Workshop | Build the first self-improving workflow live. |
-| $9,500+ | GoalOS Proof Room Implementation Sprint | Department RSI in 30 days. |
-| $49,000+ | GoalOS Enterprise RSI Pilot | Pilot the Recursive Workflow OS for one enterprise workflow family. |
-
-Future platform: **GoalOS Recursive Workflow OS**. Future moat: **Proof Graph**.
-
-## Public standards and proof layer
-
-The AEP standards are the public trust layer. They provide the vocabulary for proof, permission, rollback, public-safe reports, and Proof Rooms.
-
-- AEP-001 — GoalOS Proof-of-Evolution Constitution
-- AEP-002 — Evidence Docket Standard
-- AEP-003 — ProofPacket Schema
-- AEP-004 — Selection Gate Standard
-- AEP-005 — Tool Permission Standard
-- AEP-006 — Rollback Receipt Standard
-- AEP-007 — Public-Safe Proof Report Standard
-- AEP-008 — Proof Room Standard
-
-Existing standards content, schemas, examples, conformance materials, and documentation are preserved.
-
-## Claim boundary
-
-This repository and public site do not claim guaranteed ROI, income, productivity, compliance certification, safety guarantees, legal advice, financial advice, investment advice, autonomous deployment, uncontrolled autonomous AGI, AI model self-modification, real revenue, real profit, or real-world energy capture.
-
-## Validation
-
-Recommended public-site checks:
+Optional checks when available:
 
 ```bash
-node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
-python scripts/validate_goalos_site_v2.py
-python scripts/check_no_paid_artifacts.py
 pytest
+make test
+node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
 ```
 
-The paid-artifact guard blocks paid buyer ZIPs, paid workshop files, implementation bundles, enterprise delivery kits, and seller assets from the GitHub Pages public site, except explicitly whitelisted public standards/action documentation.
+## How to contribute safely
 
-## Repository foundation
+- Do not add paid buyer files or private delivery bundles.
+- Update `docs/data/goalos_catalog.yml` when product names, prices, versions, claims, validation status, or public-site release status change.
+- Update CSV tables and figures when docs change.
+- Use autonomous GitHub Actions for public-site release changes.
+- Run local validation before opening a PR.
 
-The repository also preserves the broader Proof Gradient foundation: GitHub Actions, static site assets, docs, schemas, examples, tests, Python package area, Docker files, data files, and GitHub Pages content.
+## Claims boundary
+
+This repository must not claim guaranteed ROI, guaranteed revenue, guaranteed productivity, investment returns, legal advice, financial advice, tax advice, compliance certification, AI safety certification, autonomous AGI, achieved AGI, achieved ASI, base-model self-modification, or uncontrolled autonomous deployment.
+
+## Shop / apply link
+
+All buyer products are sold through https://www.quebecartificialintelligence.com/shop. Public GitHub may mention offers, but it must not expose paid buyer deliverables.
+
+## License / security / contributing
+
+- [License](LICENSE)
+- [Security](SECURITY.md)
+- [Contributing](CONTRIBUTING.md)
+- [Roadmap](ROADMAP.md)
+- [QA Verification](QA_VERIFICATION.md)

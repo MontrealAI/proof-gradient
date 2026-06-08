@@ -1,36 +1,31 @@
 # GoalOS Commercialization Status
 
-Date: 2026-06-07
+This document defines public-safe status and operating guidance for GoalOS Commercialization Status.
 
-## Positioning
+GoalOS does not modify base AI models. GoalOS improves workflows around AI through instructions, prompts, memory, scorecards, proof records, evaluations, approvals, versions, monitoring, and rollback.
 
-GoalOS is the recursive workflow operating layer for the RSI era. It is not a prompt pack, chatbot wrapper, or generic AI training product.
+Product and buyer references must route to https://www.quebecartificialintelligence.com/shop; no paid buyer deliverables are stored here.
 
-- Public line: A model can answer. An agent can act. An institution must prove.
-- Commercial line: ChatGPT gives you answers. GoalOS gives you workflows that get better every time they run.
-- Enterprise line: Enterprise RSI without model self-modification.
+Commercialization status: ready to sell as product/service packages; first public market proof still needed.
 
-## Safe boundary
+| Layer | Price | Offer | Version | Outcome | Status |
+|---|---:|---|---|---|---|
+| Self-serve | $49 | GoalOS AI Efficiency Sprint Kit | v1.4 | Build one reusable AI workflow | Ready |
+| Self-serve | $199 | GoalOS RSI Lite | v1.6 | Build one self-improving AI workflow | Ready |
+| Self-serve / department | $997 | GoalOS Proof Room Lite / Department Pack | v2.0 | Set up a lightweight department Proof Room | Ready |
+| Gated workshop | $2,500+ | GoalOS RSI Sprint Workshop | v7.0 | Build the first self-improving workflow live | Ready |
+| Gated implementation | $9,500+ | GoalOS Proof Room Implementation Sprint | v2.0 | Department RSI in 30 days | Ready |
+| Gated enterprise | $49,000+ | GoalOS Enterprise RSI Pilot | v2.0 | Pilot the Recursive Workflow OS | Ready as pilot |
 
-GoalOS does not modify AI models. Recursive improvement happens at the workflow layer: workflow definitions, prompts, memory, evaluation criteria, evidence standards, operating procedures, approvals, versions, monitoring, and rollback.
+## Required operating frame
 
-## Current ladder
-
-| Price | Offer | Outcome |
-|---:|---|---|
-| $49 | GoalOS AI Efficiency Sprint Kit | Build one reusable AI workflow. |
-| $199 | GoalOS RSI Lite | Build one self-improving AI workflow. |
-| $997 | GoalOS Proof Room Lite / Department Pack | Set up a lightweight department Proof Room. |
-| $2,500+ | GoalOS RSI Sprint Workshop | Build the first self-improving workflow live. |
-| $9,500+ | GoalOS Proof Room Implementation Sprint | Department RSI in 30 days. |
-| $49,000+ | GoalOS Enterprise RSI Pilot | Pilot the Recursive Workflow OS for one enterprise workflow family. |
-
-All checkout and application buttons point to <https://www.quebecartificialintelligence.com/shop>.
-
-## Public repository boundary
-
-This repository stores public proof, public standards, public pages, schemas, tests, and the static Cloud MVP software proof. It must not store paid buyer ZIPs, paid workshop delivery files, implementation bundles, seller assets, or private enterprise pilot materials.
-
-## Claim boundary
-
-No guaranteed ROI, income, productivity, compliance certification, safety guarantee, legal advice, financial advice, autonomous deployment, or AI model self-modification claims are made.
+- **Purpose:** provide public-safe GoalOS / Proof Gradient guidance for this repository.
+- **Current status:** aligned to `docs/data/goalos_catalog.yml`.
+- **Source of truth:** `docs/data/goalos_catalog.yml`, then CSV tables in `docs/tables/`, then this explanatory document.
+- **Key decisions:** public documentation can describe products and operating packs, but buyer deliverables remain off-repository and are sold through https://www.quebecartificialintelligence.com/shop.
+- **Public/private boundaries:** no paid buyer ZIPs, private delivery kits, implementation bundles, enterprise pilot bundles, or commercialization packs may be exposed publicly.
+- **Files involved:** README.md, docs/data/goalos_catalog.yml, docs/tables/*.csv, docs/figures/*.mmd, docs/figures/*.svg, scripts/*.py, .github/workflows/*.yml.
+- **Validation commands:** `python scripts/check_no_paid_artifacts.py`; `python scripts/validate_goalos_public_site.py`; `python scripts/validate_docs_tables_figures.py`; `python scripts/validate_goalos_catalog.py`.
+- **Autonomous website action commands:** use GitHub Actions, not manual public-site edits, when refreshing generated site content.
+- **Next actions:** keep catalog, tables, docs, figures, badges, and validation aligned before every release.
+- **Risk notes:** avoid unsupported claims and preserve v14 validation plus the public AEP package allowlist.

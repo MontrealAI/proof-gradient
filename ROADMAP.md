@@ -1,42 +1,25 @@
-# Roadmap
+# GoalOS Roadmap
 
-## v1: Local reference implementation
+## Phase 1 — Sell and Proof Card 001
 
-- [x] SQLite trace store
-- [x] Skill registry
-- [x] Agent runtime
-- [x] Learning inbox
-- [x] Skill trainer
-- [x] Test lab
-- [x] Release center
-- [x] Browser UI
-- [x] CLI
-- [x] Tests
+Sell ready product/service packages through the public shop and publish the first public-safe proof card after buyer approval and redaction.
 
-## v2: Real agent integration
+## Phase 2 — Department RSI
 
-- [ ] Plug in LLM provider
-- [ ] Tool-calling runtime
-- [ ] MCP-style tool gateway
-- [ ] Structured eval datasets
-- [ ] Human approval queue
-- [ ] Model-graded evals
+Use Proof Room Lite and implementation sprints to establish department-level recursive workflows with scorecards, proof records, approvals, versions, monitoring, and rollback.
 
-## v3: Enterprise SkillOS
+## Phase 3 — Enterprise RSI Pilot
 
-- [ ] Multi-tenant isolation
-- [ ] Postgres backend
-- [ ] Auth and RBAC
-- [ ] Audit logs
-- [ ] Canary rollout monitor
-- [ ] Automatic rollback
-- [ ] Skill marketplace
+Run gated enterprise pilots for the Recursive Workflow OS while preserving the safe boundary: workflow improvement without base-model self-modification.
 
-## v4: Civilization-scale capability network
+## Phase 4 — GoalOS Cloud SaaS
 
-- [ ] Scientific workflow skills
-- [ ] Robotics task skills
-- [ ] Energy infrastructure skills
-- [ ] Manufacturing skills
-- [ ] Space infrastructure skills
-- [ ] Network-level benefit distribution metrics
+Advance GoalOS Cloud MVP 0.2 from public software proof toward managed SaaS only after validation, security review, buyer proof, and operational readiness.
+
+## Phase 5 — Proof Graph / AEP standardization
+
+Develop proof graph concepts and AEP standardization for interoperable, public-safe evidence records.
+
+## Phase 6 — Partner ecosystem
+
+Build a partner ecosystem across professional firms, evaluators, implementation partners, and proof-led workflow operators.
