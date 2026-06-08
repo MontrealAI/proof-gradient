@@ -1,0 +1,6 @@
+Order,Workflow,Operator note
+1,GoalOS Validation Hotfix v14 Microsite Compatibility,Run current validation fix
+2,GoalOS Public Site Release v8 Intelligent Assets,Refresh public site assets
+3,Validate GoalOS Public Site v8,Only if using shared v14 rules
+4,Check No Paid Artifacts,Required guard
+5,"Validate GoalOS Docs, Tables, Figures",Required docs validation

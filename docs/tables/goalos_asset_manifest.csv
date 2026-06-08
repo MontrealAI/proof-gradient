@@ -1,0 +1,4 @@
+Asset,Purpose,Status
+badges/goalos.svg,README badge,public
+assets/quebecaisealv5.png,QUEBEC.AI seal,preserve
+docs/figures/*.svg,Documentation figures,public

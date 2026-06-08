@@ -1,0 +1,5 @@
+Workflow,Use,Status
+GoalOS Validation Hotfix v14 Microsite Compatibility,Current validation fix,current
+GoalOS Public Site Release v8 Intelligent Assets,Current public release package,current
+Validate GoalOS Public Site v8,Validate with v14 shared rules only,conditional
+v12/v13/old v8 compatibility,Do not run as current path,obsolete
