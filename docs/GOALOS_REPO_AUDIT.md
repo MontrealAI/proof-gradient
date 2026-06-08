@@ -10,6 +10,22 @@ Top-level areas include `.github/workflows/`, `assets/`, `badges/`, `data/`, `do
 
 README was refreshed into the official Proof Gradient · GoalOS public entry point with badge row, thesis, safe boundary, product ladder, validation commands, repository map, docs map, and shop boundary.
 
+
+## Setup document audit detail
+
+The following root setup documents were audited for currentness and public safety:
+
+| File | Finding | Action |
+|---|---|---|
+| `README.md` | Current official entry point. | Preserved as GoalOS / Proof Gradient public foundation. |
+| `README_FIRST_GITHUB_WEB_USERS.md` | Legacy SkillOS web-upload guide can confuse operators. | Marked obsolete/archived and redirected to the GoalOS docs index and autonomous website actions. |
+| `OPEN_ME_FIRST_GITHUB_WEB_SETUP.md` | Legacy manual setup guide can imply manual public-site uploads. | Marked obsolete/archived and redirected to the current autonomous workflow path. |
+| `GITHUB_UPLOAD_GUIDE.md` | Legacy GitHub upload guide can be mistaken for paid-product upload guidance. | Marked obsolete/archived and reinforced no paid buyer products. |
+| `GITHUB_WEB_UPLOAD_CHECKLIST.md` | Legacy upload checklist can be mistaken for the current website release path. | Marked obsolete/archived and redirected to v14 validation plus autonomous actions. |
+| `QA_VERIFICATION.md` | Current QA summary already identifies v14 validation and paid-file guard. | Preserved and validated. |
+
+These notices intentionally do not delete historical documents; they prevent obsolete manual upload guidance from being mistaken for the current GoalOS public-site release process.
+
 ## 3. Current docs state
 
 Core GoalOS docs now exist under `docs/`, with `docs/GOALOS_DOCUMENTATION_INDEX.md` as the human-friendly map and `docs/data/goalos_catalog.yml` as source of truth.
@@ -102,6 +118,16 @@ Main risk is future drift between catalog, tables, README, docs, workflows, and 
 
 Audit and validation commands run on 2026-06-08:
 
+Latest branch validation after adding obsolete setup-guide notices and the Proof Card 001 badge:
+
+- `python scripts/check_no_paid_artifacts.py` — passed.
+- `python scripts/validate_goalos_public_site.py` — passed.
+- `python scripts/validate_docs_tables_figures.py` — passed.
+- `python scripts/validate_goalos_catalog.py` — passed.
+- `pytest` — failed during collection because `starlette.testclient` could not import `httpx2` or `httpx` in this environment.
+- `make test` — failed for the same missing test-client dependency after 56+ unittest checks passed and `tests/test_proof_gradient_api.py` failed to import.
+- `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed.
+
 - `pwd && find .. -name AGENTS.md -print && git status --short --branch`.
 - `git branch --show-current && git checkout -B feature/goalos-official-docs-readme-figures-tables-badges && find /workspace -name AGENTS.md -print`.
 - `rg --files -g '!**/.git/**' | sed -n '1,200p'` for file inventory sampling.
@@ -113,11 +139,11 @@ Audit and validation commands run on 2026-06-08:
 - `sed -n '1,220p' .github/workflows/goalos-validation-hotfix-v12.yml && tail -n 120 .github/workflows/goalos-validation-hotfix-v12.yml` to inspect the obsolete v12 writer after review feedback.
 - `python scripts/check_no_paid_artifacts.py` — passed.
 - `python scripts/validate_goalos_public_site.py` — passed.
-- `python scripts/validate_docs_tables_figures.py` — passed.
+- `python scripts/validate_docs_tables_figures.py` — passed, including the static `badges/proof-card-001-next.svg` requirement.
 - `python scripts/validate_goalos_catalog.py` — passed.
 - `pytest` — failed during collection because `starlette.testclient` could not import `httpx2` or `httpx` in this environment.
 - `make test` — failed for the same missing test-client dependency after 56 unittest checks passed and `tests/test_proof_gradient_api.py` failed to import.
-- `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed.
+- `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed on the current documentation branch.
 
 ## 26. Tests skipped and why
 

@@ -1,3 +1,5 @@
+> **OBSOLETE / ARCHIVED — See [docs/GOALOS_DOCUMENTATION_INDEX.md](docs/GOALOS_DOCUMENTATION_INDEX.md) and [docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md](docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md).** This legacy web-upload guide is retained for historical context only. Current public-site changes must go through autonomous GitHub Actions, must use the v14 validation path, and must not upload paid buyer products.
+
 # GitHub web upload checklist
 
 Use this as a simple checklist while uploading.
