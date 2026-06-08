@@ -1,94 +1,97 @@
-# GoalOS / Proof Gradient Repository Audit
+# GoalOS Repository Audit
 
-Date: 2026-06-07
-Branch: `feature/goalos-public-site-mvp-unification`
+Audit date: 2026-06-08. Branch: feature/goalos-docs-readme-figures-tables-badges-release.
 
-## Current site root
+## 1. Repository structure
 
-- The active public GitHub Pages site root is `site/`.
-- Root-level files such as `404.html`, `START_HERE.html`, and static assets exist, but this repair targets `site/` as the deployable Pages root.
+Top-level structure includes `README.md`, `docs/`, `site/`, `schemas/`, `scripts/`, `tests/`, `badges/`, `assets/`, `.github/workflows/`, `proof_gradient`/`skillos` package code, and public standards/releases.
 
-## Pages and structure found before repair
+## 2. Current README state
 
-- Public HTML pages under `site/` outside `site/_archive/`: 206.
-- Key public areas found: `site/index.html`, `site/start-here/`, `site/products/`, `site/pricing/`, `site/services/`, `site/examples/`, `site/standards/`, `site/command-center/`, `site/enterprise/`, `site/platform/`, `site/workshop/`, and `site/app/goalos-cloud-mvp/`.
-- Existing AEP standards content was present under `site/standards/AEP-001` through `site/standards/AEP-008`, including source markdown, generated index pages, schemas, examples, conformance materials, and implementation documentation.
-- Existing software foundation areas include `.github/workflows/`, `scripts/`, `schemas/`, `tests/`, `proof_gradient/`, Docker files, examples, data files, and documentation.
+README has been refreshed into the official Proof Gradient · GoalOS public entry point with badges, product ladder, safe boundary, validation, repository map, documentation map, and current status.
 
-## Duplicate shell / navigation issue summary
+## 3. Current docs state
 
-- The site had accumulated multiple historical GoalOS shell systems, including `goalos-complete-site`, `goalos-product-ladder`, `goalos-unified-site`, and `goalos-site-v2` assets.
-- A pre-repair scan found 900 old GoalOS shell markers in public `site/**/*.html` files, including `GOALOS-COMPLETE-NAV`, `GOALOS-PRODUCT-LADDER-NAV`, and `GOALOS-UNIFIED-SHELL`.
-- Many HTML files included injected canonical-looking CSS/JS plus older body-level nav/footer blocks, creating the stacked-topbar / multiple-site-shell public website problem.
+`docs/` contains 595 files. Required GoalOS docs and `docs/GOALOS_DOCUMENTATION_INDEX.md` are present.
 
-## Paid or private artifact scan
+## 4. Current figures state
 
-- Paid-risk filename patterns found before repair included standards ZIP material under `site/standards/AEP-001/complete-package.zip` and release ZIP material outside the public site under `releases/`.
-- Standards implementation files were detected by broad filename patterns because they include the word `implementation`; they are public standards documentation, not paid delivery kits.
-- `scripts/check_no_paid_artifacts.py` now blocks ZIPs and paid buyer/workshop/implementation/enterprise bundle patterns from public deploy roots, with only the narrow `standards/AEP-###/complete-package.zip` public AEP package allowlist.
+`docs/figures/` contains Mermaid sources and SVG exports for the required GoalOS architecture diagrams. Mermaid CLI export was not required because lightweight accessible SVGs were generated directly from the same node sequences.
 
-## Files changed
+## 5. Current tables state
 
-- Created / refreshed the canonical public shell assets: `site/assets/goalos-site-v2.css` and `site/assets/goalos-site-v2.js`.
-- Canonicalized all 206 public `site/**/*.html` pages outside `site/_archive/` to exactly one canonical nav and one canonical footer.
-- Refreshed core public pages: home, start, products, pricing, services, Cloud MVP, product ladder pages, workshop pages, implementation page, enterprise page, platform page, examples, standards, command center, site map, 404, sitemap, and robots.
-- Preserved and unified AEP standard pages under `site/standards/AEP-001` through `site/standards/AEP-008`.
-- Verified GoalOS Cloud MVP 0.2 files under `site/app/goalos-cloud-mvp/` and kept the browser/localStorage/no-secrets public software proof.
-- Added validation/security scripts: `scripts/validate_goalos_site_v2.py` and `scripts/check_no_paid_artifacts.py`.
-- Updated `scripts/check_site_links.py` to skip archived backup HTML when validating current public site links.
-- Updated / added documentation: `README.md`, `docs/GOALOS_COMMERCIALIZATION_STATUS.md`, `docs/GOALOS_CLOUD_MVP_0_2.md`, `docs/GOALOS_PUBLIC_SITE_REPAIR.md`, and this audit.
-- Added / updated GitHub Actions for shell repair, Cloud MVP build, and complete public-site refresh.
+`docs/tables/` contains CSV tables for the product ladder, claims, site pages, paid-file policy, standards, docs, figures, assets, validation, workflows, Proof Card 001, and professional packages.
 
-## Files preserved
+## 6. Current badge state
 
-- Existing standards, docs, examples, schemas, tests, package files, Docker files, workflows, data files, and previous public pages were preserved.
-- Existing AEP standards content was not removed; public HTML index pages were shell-unified only.
-- Paid buyer products were not added to the repository. Public buttons point to QUEBEC.AI shop.
+`badges/` contains static SVG badges, including GoalOS, Proof Gradient, AEP Standards, Validation v14, Cloud MVP 0.2, QUEBEC.AI, proof-bounded, no paid artifacts, and no model self-modification.
 
-## Files backed up
+## 7. Current workflows/actions state
 
-- All 206 pre-repair public HTML files were backed up under `site/_archive/before_unified_shell_v2_2026-06-07/` before canonicalization.
+`.github/workflows/` contains 145 workflow files. New/updated dependency-light workflows run docs/tables/figures validation, catalog validation, public-site validation, and paid-file guard checks. v12/v13 hotfix workflows are documented as obsolete.
 
-## Tests run
+## 8. Current public site state
 
-- `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed.
-- `python scripts/validate_goalos_site_v2.py` — passed for 206 public HTML pages.
-- `python scripts/check_no_paid_artifacts.py` — passed.
-- `python scripts/validate_goalos_products.py` — passed.
-- `python scripts/check_site_links.py` — passed.
-- `pytest` — passed: 72 tests, 2 warnings.
-- `make test` — passed: 56 unittest tests.
+`site/` remains the public deploy root with canonical pages, proof/microsite pages, app pages, assets, standards, and GoalOS Cloud MVP 0.2.
 
-## Known limitations
+## 9. Current AEP standards state
 
-- No browser screenshot was captured in this headless container because no Chromium/Chrome executable was available. Local HTML was validated by static checks and test suites.
-- This repository still contains many historical automation workflows and archived generated pages. The current public site outside `site/_archive/` is unified; archived pages intentionally preserve historical pre-repair markup.
-- `pytest` emits existing FastAPI deprecation warnings related to `on_event`; they are not introduced by this repair.
+AEP-001 through AEP-008 are documented as public standards. Public AEP packages remain allowed only at `standards/AEP-###/complete-package.zip`.
 
-## 2026 validation hotfix
+## 10. Current schemas state
 
-- Fixed false positive on AEP `complete-package.zip` by allowing only `standards/AEP-###/complete-package.zip` public standard packages.
-- Classified standalone proof HTML pages so immersive RSI proof microsites are not treated as broken marketing pages when they explicitly carry standalone proof metadata.
-- Centralized validation rules in `scripts/goalos_public_site_rules.py` for path normalization, page classification, canonical shell requirements, app-page handling, AEP package allowlisting, paid/private artifact blocking, icon/seal checks, link checks, and claim-boundary checks.
-- Updated workflows to call shared Python validation scripts instead of embedding duplicate paid-file or shell logic in YAML.
+`schemas/` contains 7 public schemas and is preserved.
 
+## 11. Current tests state
 
-## 2026 validation hotfix v12 verification note
+`tests/` contains 17 test files. Node tests exist for the Cloud MVP.
 
-- `pytest` now relies on `pythonpath = ["."]` in `pyproject.toml` so the standalone `pytest` command can import both `proof_gradient` and shared `scripts` modules consistently.
-- Installed development dependencies with `python -m pip install -e '.[dev]'` in this validation environment before running full repository tests.
+## 12. Current assets state
 
-## 2026 validation hotfix v12 local command results
+`assets/` contains 55 files including QUEBEC.AI identity assets. No deletion performed.
 
-- Required targeted regression command: `python -m pytest tests/test_goalos_public_site_rules.py -q` — passed.
-- Required paid-artifact guard command: `python scripts/check_no_paid_artifacts.py` — passed.
-- Required public-site validator command: `python scripts/validate_goalos_public_site.py` — passed.
-- Existing repository tests: `pytest` — passed with existing FastAPI deprecation warnings.
-- Existing make-based tests: `make test` — passed.
+## 13. Current paid-file guard state
 
-## 2026 validation hotfix v12 dependency verification update
+`scripts/check_no_paid_artifacts.py` scans public deploy roots and blocks paid/private artifacts while preserving the narrow public AEP package allowlist.
 
-- A fresh `pytest` / `make test` attempt initially failed because the local container had Starlette/FastAPI installed without the optional `httpx`/`httpx2` test client dependency available to `fastapi.testclient`.
-- Installed the missing test-client dependency in the validation environment with `python -m pip install httpx`; the project dev extra already declares `httpx` and `httpx2` for normal contributor setup.
-- Re-ran `pytest` successfully after adding validation regression coverage: 85 tests passed with existing FastAPI/Starlette deprecation warnings.
-- Re-ran `make test` successfully: 56 unittest tests passed, with the same existing Starlette `httpx` deprecation warning.
+## 14. Obsolete workflow findings
+
+`goalos-validation-hotfix-v12.yml`, `goalos-validation-hotfix-v13-no-pytest.yml`, and old v8 validation labels are obsolete for current validation. Use GoalOS Validation Hotfix v14 Microsite Compatibility.
+
+## 15. Broken-link findings
+
+Internal README/docs links are validated by `scripts/validate_docs_tables_figures.py`. Broken links should be fixed before merge.
+
+## 16. Stale pricing/version findings
+
+The source of truth is now `docs/data/goalos_catalog.yml`: $49 v1.4, $199 v1.6, $997 v2.0, $2,500+ v7.0, $9,500+ v2.0, $49,000+ v2.0; Cloud MVP 0.2; validation v14; site release v8.
+
+## 17. Missing documentation findings
+
+Required GoalOS docs were added or refreshed.
+
+## 18. Missing figures/tables findings
+
+Required figure sources/SVGs and CSV tables were added.
+
+## 19. Files to preserve
+
+Preserve AEP standards, schemas, scripts, tests, public site, package code, site validation hotfix logic, public AEP package allowlist, QUEBEC.AI seal/assets, and public proof pages/microsites.
+
+## 20. Files to update
+
+Update README, GoalOS docs, `docs/data/goalos_catalog.yml`, `docs/tables/`, `docs/figures/`, `badges/`, validation scripts, and validation workflows when public product or validation facts change.
+
+## 21. Files not to touch
+
+Do not upload or expose paid buyer ZIPs, workshop bundles, delivery kits, implementation bundles, enterprise pilot bundles, private commercial packs, private evidence, buyer data, or private professional-firm package ZIPs.
+
+## 22. Risks before merge
+
+Risks: stale product copy outside the new docs, obsolete workflows still visible in history, and environment-specific test availability. Mitigation: run validation commands, keep v14 as current, and document skipped checks honestly.
+
+## Test/tool availability notes
+
+- Mermaid CLI was not used; SVGs were generated directly and `.mmd` sources are committed.
+- Dependency-free Python validation scripts are expected to run in CI.
+- If `pytest`, `make`, or Node are unavailable locally, record that limitation in the PR/test notes.

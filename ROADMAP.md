@@ -1,42 +1,29 @@
-# Roadmap
+# Proof Gradient · GoalOS Roadmap
 
-## v1: Local reference implementation
+## Phase 1 — Sell / Proof Card 001
 
-- [x] SQLite trace store
-- [x] Skill registry
-- [x] Agent runtime
-- [x] Learning inbox
-- [x] Skill trainer
-- [x] Test lab
-- [x] Release center
-- [x] Browser UI
-- [x] CLI
-- [x] Tests
+Launch the public-safe product/service ladder through the QUEBEC.AI shop and publish GoalOS-PC-001 after buyer approval and evidence review.
 
-## v2: Real agent integration
+## Phase 2 — Department RSI
 
-- [ ] Plug in LLM provider
-- [ ] Tool-calling runtime
-- [ ] MCP-style tool gateway
-- [ ] Structured eval datasets
-- [ ] Human approval queue
-- [ ] Model-graded evals
+Use Proof Room Lite and implementation sprints to prove a department workflow loop with evaluation, approval, versioning, monitoring, and rollback.
 
-## v3: Enterprise SkillOS
+## Phase 3 — Enterprise RSI Pilot
 
-- [ ] Multi-tenant isolation
-- [ ] Postgres backend
-- [ ] Auth and RBAC
-- [ ] Audit logs
-- [ ] Canary rollout monitor
-- [ ] Automatic rollback
-- [ ] Skill marketplace
+Run a gated enterprise pilot for one workflow family with proof records, controls, and no model self-modification.
 
-## v4: Civilization-scale capability network
+## Phase 4 — GoalOS Cloud SaaS
 
-- [ ] Scientific workflow skills
-- [ ] Robotics task skills
-- [ ] Energy infrastructure skills
-- [ ] Manufacturing skills
-- [ ] Space infrastructure skills
-- [ ] Network-level benefit distribution metrics
+Harden GoalOS Cloud MVP 0.2 into a production SaaS only after proof, security, privacy, support, billing, and reliability gates are satisfied.
+
+## Phase 5 — Proof Graph / AEP standardization
+
+Expand AEP-001 through AEP-008 adoption and formalize Proof Graph concepts for workflow versions, proof nodes, approvals, and rollback receipts.
+
+## Phase 6 — Partner ecosystem
+
+Build a partner ecosystem across professional services, evaluation, implementation, accessibility, localization, procurement, and independent proof audit.
+
+## Release safety
+
+No paid buyer files in the public site. No unsupported ROI, revenue, compliance, investment, autonomous AGI, or model self-modification claims.

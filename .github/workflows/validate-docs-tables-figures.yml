@@ -1,12 +1,14 @@
-name: Validate Docs Tables Figures
+name: Validate GoalOS Docs, Tables, Figures
 
 on:
-  workflow_dispatch:
   pull_request:
     paths:
+      - 'README.md'
       - 'docs/**'
-      - 'scripts/**'
+      - 'badges/**'
+      - 'scripts/validate_docs_tables_figures.py'
       - '.github/workflows/validate-docs-tables-figures.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,5 +19,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Validate documentation tables, figures, and artifact links
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate GoalOS documentation tables figures and links
         run: python scripts/validate_docs_tables_figures.py

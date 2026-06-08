@@ -1,36 +1,57 @@
 # GoalOS Commercialization Status
 
-Date: 2026-06-07
+## Purpose
 
-## Positioning
+Maintain a public-safe commercialization summary for GoalOS / Proof Gradient.
 
-GoalOS is the recursive workflow operating layer for the RSI era. It is not a prompt pack, chatbot wrapper, or generic AI training product.
+## Current status
 
-- Public line: A model can answer. An agent can act. An institution must prove.
-- Commercial line: ChatGPT gives you answers. GoalOS gives you workflows that get better every time they run.
-- Enterprise line: Enterprise RSI without model self-modification.
+The ladder is ready to sell as product/service packages through QUEBEC.AI; first public proof is still needed.
 
-## Safe boundary
+## Key decisions
 
-GoalOS does not modify AI models. Recursive improvement happens at the workflow layer: workflow definitions, prompts, memory, evaluation criteria, evidence standards, operating procedures, approvals, versions, monitoring, and rollback.
+Use safe status language, publish no buyer bundles, and keep the shop as the only purchase/application destination.
 
-## Current ladder
+## Files involved
 
-| Price | Offer | Outcome |
-|---:|---|---|
-| $49 | GoalOS AI Efficiency Sprint Kit | Build one reusable AI workflow. |
-| $199 | GoalOS RSI Lite | Build one self-improving AI workflow. |
-| $997 | GoalOS Proof Room Lite / Department Pack | Set up a lightweight department Proof Room. |
-| $2,500+ | GoalOS RSI Sprint Workshop | Build the first self-improving workflow live. |
-| $9,500+ | GoalOS Proof Room Implementation Sprint | Department RSI in 30 days. |
-| $49,000+ | GoalOS Enterprise RSI Pilot | Pilot the Recursive Workflow OS for one enterprise workflow family. |
+- `README.md`
+- `docs/data/goalos_catalog.yml`
+- `docs/tables/`
+- `docs/figures/`
+- `scripts/check_no_paid_artifacts.py`
+- `scripts/validate_goalos_public_site.py`
+- `scripts/validate_docs_tables_figures.py`
+- `scripts/validate_goalos_catalog.py`
 
-All checkout and application buttons point to <https://www.quebecartificialintelligence.com/shop>.
 
-## Public repository boundary
+## What is public
 
-This repository stores public proof, public standards, public pages, schemas, tests, and the static Cloud MVP software proof. It must not store paid buyer ZIPs, paid workshop delivery files, implementation bundles, seller assets, or private enterprise pilot materials.
+Public: standards, public docs, schemas, examples, public proof pages, public site assets, product names, safe status language, and shop/application links to QUEBEC.AI.
 
-## Claim boundary
+## What must remain private
 
-No guaranteed ROI, income, productivity, compliance certification, safety guarantee, legal advice, financial advice, autonomous deployment, or AI model self-modification claims are made.
+Private: paid buyer ZIPs, workshop bundles, delivery kits, implementation bundles, enterprise pilot bundles, commercial operating packs, buyer data, private evidence, and private professional-firm package ZIPs.
+
+## Next actions
+
+Publish Proof Card 001, verify product pages, and keep catalog/tables synchronized.
+
+| Layer | Offer | Version | Outcome | Status |
+|---|---|---:|---|---|
+| Self-serve | $49 — GoalOS AI Efficiency Sprint Kit | v1.4 | Build one reusable AI workflow. / Construisez un flux IA réutilisable. | Ready |
+| Self-serve | $199 — GoalOS RSI Lite | v1.6 | Build one self-improving AI workflow. / Construisez un flux IA auto-améliorant. | Ready |
+| Self-serve / department | $997 — GoalOS Proof Room Lite / Department Pack | v2.0 | Set up a lightweight department Proof Room. / Mettez en place une Salle de preuve légère pour un département. | Ready |
+| Gated workshop | $2,500+ — GoalOS RSI Sprint Workshop | v7.0 | Build the first self-improving workflow live. / Construisez le premier flux auto-améliorant en direct. | Ready |
+| Gated implementation | $9,500+ — GoalOS Proof Room Implementation Sprint | v2.0 | Department RSI in 30 days. / RSI départemental en 30 jours. | Ready |
+| Gated enterprise | $49,000+ — GoalOS Enterprise RSI Pilot | v2.0 | Pilot the Recursive Workflow OS. / Pilotez le Recursive Workflow OS. | Ready as pilot |
+
+## Validation checklist
+
+- [ ] Safe AI boundary is present.
+- [ ] Product names, prices, and versions match `docs/data/goalos_catalog.yml`.
+- [ ] Paid buyer files are not uploaded or linked.
+- [ ] Public AEP package allowlist remains `standards/AEP-###/complete-package.zip`.
+- [ ] `python scripts/check_no_paid_artifacts.py` passes.
+- [ ] `python scripts/validate_docs_tables_figures.py` passes.
+- [ ] `python scripts/validate_goalos_catalog.py` passes.
+

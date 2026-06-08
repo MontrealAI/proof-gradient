@@ -1,0 +1,5 @@
+Asset class,Path,Public rule
+Badges,badges/*.svg,Static GitHub-safe badges only
+QUEBEC.AI assets,assets/Quebec_AI_*.png,Preserve public identity assets
+Site assets,site/assets/,Public shell assets
+Private bundles,not in public roots,Do not upload

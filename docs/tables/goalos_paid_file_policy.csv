@@ -1,0 +1,5 @@
+Artifact,Public site status,Rule
+standards/AEP-001/complete-package.zip,Allowed,Public AEP package allowlist pattern
+paid buyer ZIPs,Blocked,Do not upload/link from public deploy roots
+workshop or implementation bundles,Blocked,Private delivery only
+professional-firm package ZIPs,Blocked,Mention summaries only unless explicitly public

@@ -84,3 +84,16 @@ def test_site_prefixed_rsi_and_app_pages_keep_classification():
     assert not requires_canonical_shell("public/rsi-ai-first-governance-capital-engine-proof.html", "")
     assert is_app_page("site/app/goalos-cloud-mvp/index.html")
     assert not requires_canonical_shell("site/app/goalos-cloud-mvp/index.html", "<html></html>")
+
+
+def test_current_paid_buyer_artifact_examples_are_blocked():
+    blocked = [
+        "GoalOS_AI_Efficiency_Sprint_Kit_v1_4_BUYER_EXCELLENCE_EDITION.zip",
+        "GoalOS_RSI_Lite_Recursive_Self_Improving_Workflow_Kit_v1_6_CLEAN_BUYER_OFFICIAL.zip",
+        "GoalOS_Proof_Room_Lite_Department_Pack_v2_0_WORLD_CLASS_BILINGUAL_BUYER_OFFICIAL.zip",
+        "GoalOS_RSI_Sprint_Workshop_v7_0_PRIME_TIME_PROOF_CARD_EDITION_COMPLETE_BUNDLE.zip",
+        "GoalOS_Enterprise_RSI_Pilot_v2_0_INSTITUTIONAL_BOARDROOM_FINAL_COMPLETE_BUNDLE.zip",
+    ]
+    assert not is_blocked_paid_or_private_artifact("standards/AEP-001/complete-package.zip")
+    for filename in blocked:
+        assert is_blocked_paid_or_private_artifact(filename)
