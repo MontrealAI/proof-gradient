@@ -1,0 +1,5 @@
+Workflow,Use,Status
+GoalOS Validation Hotfix v14 Microsite Compatibility,Current validation fix,current
+Actual autonomous deployment workflow for GoalOS Public Site Release v8 Intelligent Assets,Current public release package deployment path,current
+Validate GoalOS Public Site Release v8 Intelligent Assets (No Deploy),Validate-only compatibility workflow; does not deploy Pages,conditional
+v12/v13/old v8 compatibility,Do not run as current path,obsolete

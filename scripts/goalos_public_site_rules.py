@@ -18,7 +18,7 @@ PUBLIC_AEP_PACKAGE_RE = re.compile(
 )
 
 STANDALONE_PROOF_RE = re.compile(
-    r"^(rsi-ai-first-[a-z0-9-]+-proof\.html|proofs/.+\.html)$",
+    r"^([a-z0-9-]+-proof\.html|autonomous-market-readiness\.html|proofs/.+\.html)$",
     re.IGNORECASE,
 )
 
