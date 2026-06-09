@@ -14,9 +14,13 @@ python scripts/validate_goalos_catalog.py
 ```
 
 
-## Merge-readiness result — 2026-06-08
+## Merge-readiness result — 2026-06-09
 
 Final repository validation for the institutional upgrade used the required GoalOS guardrail commands, the GoalOS Cloud MVP Node test, and optional Python test suites. The only environment note was the need to install `httpx2` and `httpx` locally before running FastAPI/Starlette test-client tests; after installation, `pytest` and `make test` both passed.
+
+## Current branch verification — 2026-06-09
+
+On `feature/goalos-institutional-repository-upgrade`, the required GoalOS validators passed against the institutional README/docs/catalog/tables/figures/badges set, the paid-file guard preserved the AEP ZIP allowlist, and the public site validator scanned 207 HTML pages. After installing the local FastAPI/Starlette test-client transports with `python -m pip install httpx2 httpx`, `pytest`, `make test`, and the GoalOS Cloud MVP 0.2 Node proof test all passed.
 
 ## Paid-file guard
 
@@ -48,4 +52,4 @@ pytest
 make test
 ```
 
-Current run note for 2026-06-08: `pytest` and `make test` first failed at import time because the local environment lacked `httpx2`/`httpx`. After `python -m pip install httpx2 httpx`, `pytest` passed with 85 tests and 2 warnings, and `make test` passed with 56 unittest tests.
+Current run note for 2026-06-09: `pytest` and `make test` first failed at import time because the local environment lacked `httpx2`/`httpx`. After `python -m pip install httpx2 httpx`, `pytest` passed with 85 tests and 2 warnings, and `make test` passed with 56 unittest tests.
