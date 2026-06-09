@@ -1,0 +1,8 @@
+order,workflow,status,operator_note
+1,validate source of truth / docs / paid-file policy,current,run before release
+2,goalos-validation-hotfix-v14-microsite-compat.yml,current,current validation hotfix
+3,goalos-public-site-release-v8-intelligent-assets.yml,current,autonomous release package
+4,validate-goalos-public-site-v8 only if updated to shared v14 rules,conditional,do not use obsolete rules
+5,check-no-paid-artifacts.yml,current,paid-file guard
+6,validate-goalos-catalog.yml,current,catalog consistency
+7,validate-docs-tables-figures.yml,current,docs/tables/figures

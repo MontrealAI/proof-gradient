@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Validation v14" width="238" height="28" viewBox="0 0 238 28">
-  <title>Validation v14</title>
-  <rect width="238" height="28" rx="6" fill="#111827"/>
-  <rect x="1" y="1" width="236" height="26" rx="5" fill="#15803d"/>
-  <text x="119" y="18" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" font-weight="700" fill="#ffffff">Validation v14</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="210" height="28" viewBox="0 0 210 28"><rect width="210" height="28" rx="6" fill="#0f172a"/><rect x="1" y="1" width="208" height="26" rx="5" fill="#1e3a8a" stroke="#60a5fa"/><text x="105" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ffffff">Validation V14</text></svg>

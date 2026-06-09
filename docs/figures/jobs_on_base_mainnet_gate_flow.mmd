@@ -1,0 +1,9 @@
+flowchart LR
+  N0["npm install"] --> N1["npm run compile"]
+  N1["npm run compile"] --> N2["npm test"]
+  N2["npm test"] --> N3["npm run static-check"]
+  N3["npm run static-check"] --> N4["deploy to Base Sepolia"]
+  N4["deploy to Base Sepolia"] --> N5["run full proof-job loop"]
+  N5["run full proof-job loop"] --> N6["external Solidity audit / expert review"]
+  N6["external Solidity audit / expert review"] --> N7["legal/token counsel review"]
+  N7["legal/token counsel review"] --> N8["Mainnet gate approval"]

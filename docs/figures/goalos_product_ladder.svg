@@ -1,5 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Product Ladder" width="1100" height="220" viewBox="0 0 1100 220">
-  <title>Product Ladder</title><rect width="1100" height="220" rx="14" fill="#f8fafc"/><text x="40" y="42" font-family="Inter,Segoe UI,Arial" font-size="22" font-weight="800" fill="#0f172a">Product Ladder</text>
-  <text x="40" y="88" font-family="Inter,Segoe UI,Arial" font-size="16" fill="#334155">See Mermaid source in docs/figures/goalos_product_ladder.mmd for the editable architecture.</text>
-  <rect x="40" y="118" width="1020" height="54" rx="10" fill="#0f766e"/><text x="550" y="152" text-anchor="middle" font-family="Inter,Segoe UI,Arial" font-size="17" font-weight="700" fill="white">A $49 Kit  → B $199 RSI Lite  → C $997 Proof Room Lite  → D $2,500+ Workshop  → E $9,500+ Implementation  → F $49,000+ Enterprise </text>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="120" viewBox="0 0 900 120">
+<rect width="100%" height="100%" fill="#0b1020"/>
+<style>text{font-family:Inter,Arial,sans-serif;font-size:13px;fill:#eef2ff}.box{fill:#172554;stroke:#60a5fa;stroke-width:2}.arrow{stroke:#93c5fd;stroke-width:2;marker-end:url(#a)}</style>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#93c5fd"/></marker></defs>
+<rect class="box" x="20" y="35" rx="10" ry="10" width="125" height="50"/>
+<text x="82" y="58" text-anchor="middle">$49 Kit</text>
+<line class="arrow" x1="150" y1="60" x2="180" y2="60"/>
+<rect class="box" x="175" y="35" rx="10" ry="10" width="125" height="50"/>
+<text x="237" y="58" text-anchor="middle">$199 RSI Lite</text>
+<line class="arrow" x1="305" y1="60" x2="335" y2="60"/>
+<rect class="box" x="330" y="35" rx="10" ry="10" width="125" height="50"/>
+<text x="392" y="58" text-anchor="middle">$997 Proof Room Lite</text>
+<line class="arrow" x1="460" y1="60" x2="490" y2="60"/>
+<rect class="box" x="485" y="35" rx="10" ry="10" width="125" height="50"/>
+<text x="547" y="58" text-anchor="middle">$2,500+ Workshop</text>
+<line class="arrow" x1="615" y1="60" x2="645" y2="60"/>
+<rect class="box" x="640" y="35" rx="10" ry="10" width="125" height="50"/>
+<text x="702" y="58" text-anchor="middle">$9,500+ Implementation</text>
+<line class="arrow" x1="770" y1="60" x2="800" y2="60"/>
+<rect class="box" x="795" y="35" rx="10" ry="10" width="125" height="50"/>
+<text x="857" y="58" text-anchor="middle">$49,000+ Pilot</text>
 </svg>

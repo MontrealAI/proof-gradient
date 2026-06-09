@@ -1,167 +1,87 @@
 # GoalOS Repository Audit
 
-Audit date: 2026-06-09. Branch: `feature/goalos-institutional-repository-upgrade`. No files were deleted during audit.
+No useful files were deleted during this audit. This refresh preserves AEP standards, schemas, scripts, tests, public proof pages, public microsites, assets, QUEBEC.AI seal/assets, autonomous website release workflows, validation hotfix logic, paid-file guard, public AEP package allowlist, GoalOS Cloud MVP code/docs, $JOBS release-candidate references, and paid-file protection logic.
 
 ## 1. Repository structure
+Top-level areas include `.github/workflows/`, `assets/`, `badges/`, `data/`, `docs/`, `schemas/`, `scripts/`, `site/`, `standards/`, tests, and root governance docs.
 
-Top-level areas include `.github/workflows/`, `assets/`, `badges/`, `data/`, `docs/`, `proof_gradient/`, `schemas/`, `scripts/`, `site/`, `standards/`, `tests/`, and root governance docs. The repository contains both the production proof-gradient software foundation and the public GoalOS documentation/governance layer.
+## 2. README state
+README is refreshed as the official entry point with badges, thesis, safe boundary, product ladder, Proof Rooms/Cards, GoalOS Cloud MVP, $JOBS, autonomous website governance, paid-file policy, validation, maps, and claims boundary.
 
-## 2. Current README state
+## 3. Root setup docs state
+Legacy root setup/upload docs are preserved but should defer to `docs/GOALOS_DOCUMENTATION_INDEX.md` and `docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md`.
 
-`README.md` is the official Proof Gradient · GoalOS public entry point. It includes the badge row, institutional thesis, safe AI boundary, product ladder, autonomous website action path, validation commands, repository map, documentation map, paid-file policy, claims boundary, and shop/apply link.
+## 4. Docs state
+Core GoalOS, $JOBS, commercialization, website, paid-file, claims, validation, cloud, and roadmap docs are present and operational.
 
-## 3. Root README / README_FIRST / setup document findings
+## 5. Figures state
+Required Mermaid sources and SVG companions are present under `docs/figures/`. SVGs are committed so CI does not require Mermaid tooling.
 
-| File | Finding | Action |
-|---|---|---|
-| `README.md` | Current official entry point. | Preserved as the public foundation entry point. |
-| `README_FIRST_GITHUB_WEB_USERS.md` | Legacy GitHub web-user guide can confuse operators. | Marked obsolete/archived and redirected to the docs index and autonomous website actions. |
-| `OPEN_ME_FIRST_GITHUB_WEB_SETUP.md` | Legacy setup guide can imply manual public-site uploads. | Marked obsolete/archived and redirected to current workflow guidance. |
-| `GITHUB_UPLOAD_GUIDE.md` | Legacy upload guide can be mistaken for paid-product upload guidance. | Marked obsolete/archived and reinforced no paid buyer products. |
-| `GITHUB_WEB_UPLOAD_CHECKLIST.md` | Legacy upload checklist can be mistaken for the current release path. | Marked obsolete/archived and redirected to v14 validation plus autonomous actions. |
-| `QA_VERIFICATION.md` | Current QA summary identifies v14 validation, paid-file guard, and optional test dependency behavior. | Preserved and updated with current verification results. |
-| `START_HERE.html` | Static landing helper exists. | Preserved; public site remains regenerated through autonomous GitHub Actions. |
-| `repository_manifest.json` | Root manifest exists. | Preserved; do not use it to expose paid artifacts. |
-| `REPO_FILE_TREE.txt` | Root file tree exists. | Preserved as repository map support. |
+## 6. Tables state
+Required CSV source tables are present under `docs/tables/`.
 
-These notices intentionally preserve historical files while preventing obsolete manual upload guidance from being mistaken for the current GoalOS public-site release process.
+## 7. Badges state
+Truthful static badges are present under `badges/`; none implies audited, SOC 2, full SaaS complete, mainnet authorized, legal/tax approval, guaranteed non-security, guaranteed ROI, or token upside.
 
-## 4. Current docs state
+## 8. GitHub Actions state
+Validation workflows exist for catalog, docs/tables/figures, paid artifacts, and public site policy. Autonomous release workflows are preserved.
 
-Core GoalOS docs exist under `docs/`, with `docs/GOALOS_DOCUMENTATION_INDEX.md` as the human-friendly map and `docs/data/goalos_catalog.yml` as the source of truth for product ladder, claims, validation, site release status, public/private artifact rules, documentation inventory, figure inventory, table inventory, badge inventory, and roadmap status.
+## 9. Autonomous website release workflow state
+Current path: v14 validation hotfix, v8 public-site release package, public-site validation only with current shared rules, paid-artifact guard, catalog validation, docs/tables/figures validation.
 
-## 5. Current figures state
+## 10. Validation state
+Required validation commands pass after this refresh. v14 is current. v12/v13 and obsolete compatibility validation are documented as obsolete.
 
-Required Mermaid sources and SVG companions are present under `docs/figures/`. Mermaid source remains editable; committed SVG companions make diagrams viewable without requiring Mermaid tooling in CI.
+## 11. AEP standards state
+AEP standards are preserved. Public AEP package allowlist remains `standards/AEP-###/complete-package.zip`.
 
-## 6. Current tables state
+## 12. Public site source state
+This work updates source-of-truth docs/data/tables/scripts/workflows, not generated site pages as the primary delivery method.
 
-Required CSV tables are present under `docs/tables/` and are validated against the catalog for product ladder, offer status, claim boundaries, paid-file policy, public-site pages, AEP standards, document inventory, figure inventory, badge inventory, validation rules, workflow actions, Proof Card 001 fields, professional-firm packages, autonomous website actions, and public-standard strategy.
+## 13. Paid-file guard state
+`python scripts/check_no_paid_artifacts.py` passes. Public AEP ZIP exception is preserved.
 
-## 7. Current badge state
+## 14. Public/private artifact findings
+No paid buyer products, paid ZIPs, buyer kits, implementation bundles, enterprise pilot bundles, legal/tax packs, keys, treasury secrets, or seed phrases were added.
 
-Static truthful SVG badges are present under `badges/` and used by README. No badge claims a failing workflow, completed enterprise SaaS, certification, guaranteed ROI, AGI, ASI, or model self-modification.
+## 15. Obsolete workflow findings
+v12/v13 validation and old compatibility workflows are not current. They must not be rerun as the current path unless updated to shared v14 rules.
 
-## 8. Current GitHub Actions state
+## 16. Broken link findings
+Internal README and documentation-index links are covered by validation scripts.
 
-Documentation CI workflows exist for docs/tables/figures validation, paid-artifact guard, and catalog validation. Existing autonomous website release workflows are preserved. Obsolete compatibility workflows are documented as obsolete and should not be used as current release paths.
+## 17. Stale price/version/status findings
+Product ladder prices are canonical and unchanged. $JOBS status is v4.2 audit-ready label-clean, not audited or mainnet authorized.
 
-## 9. Current public site state
+## 18. $JOBS documentation findings
+$JOBS docs now cover additive role, utility, market loop, Season 001, technical status, mainnet gates, safe claims, commercialization boundary, and audit handoff.
 
-The public site remains under `site/`. This audit did not manually rewrite generated website pages as the primary delivery method. Public-site changes should be made through source-of-truth data, docs/templates/scripts/action inputs, and then regenerated by autonomous GitHub Actions.
+## 19. Commercialization documentation findings
+Commercialization docs now cover first sale to standard, performance scorecard, proof of value, and the 34% earnable-ceiling pool rule.
 
-## 10. Current autonomous website release workflows
+## 20. GoalOS Cloud documentation findings
+GoalOS Cloud MVP 0.2 is documented as public software proof and future SaaS direction, not full enterprise SaaS.
 
-Current operating path: GoalOS Validation Hotfix v14 Microsite Compatibility, GoalOS Public Site Release v8 Intelligent Assets, Validate GoalOS Public Site v8 only when it uses shared v14 rules, Check No Paid Artifacts, and Validate GoalOS Docs, Tables, Figures. Validate-only compatibility workflows must not be used as deployment workflows.
+## 21. Missing diagrams/tables/badges
+Required diagrams, tables, and badges were added or refreshed.
 
-## 11. Current validation state
+## 22. Risks before merge
+Risks: accidental paid-file exposure, obsolete workflow execution, unsupported token claims, and treating MVP as full SaaS. Mitigation: validators, docs, workflows, and paid-file guard.
 
-GoalOS Validation Hotfix v14 Microsite Compatibility is current. v12, v13, and old v8 compatibility validation are obsolete and documented as obsolete.
+## 23. Files to preserve
+Preserve AEP standards, schemas, scripts, tests, site, assets, badges, validation hotfix logic, public AEP allowlist, and GoalOS Cloud MVP docs/code.
 
-## 12. Current AEP standards state
+## 24. Files to update
+Update catalog, README, docs, tables, figures, badges, validation scripts, and CI workflows when canonical facts change.
 
-AEP standards are preserved. The public AEP package allowlist remains `standards/AEP-###/complete-package.zip`.
+## 25. Files not to touch
+Do not upload paid buyer deliverables, private bundles, legal/tax packs, secrets, keys, seed phrases, or public paid ZIPs.
 
-## 13. Current schemas state
+## 26. Commands run
+- `python scripts/check_no_paid_artifacts.py`
+- `python scripts/validate_goalos_public_site.py`
+- `python scripts/validate_goalos_catalog.py`
+- `python scripts/validate_docs_tables_figures.py`
 
-Schemas are preserved and were not rewritten by this documentation refresh. Schema changes should remain explicit, reviewed, and compatible with public proof and validation workflows.
-
-## 14. Current tests state
-
-Existing tests are preserved. Required validation commands pass. `pytest` and `make test` initially failed in this environment because Starlette/FastAPI test-client transport packages were missing; after installing `httpx2` and `httpx`, `pytest` and `make test` passed. The GoalOS Cloud MVP 0.2 Node test also passed.
-
-## 15. Current assets state
-
-QUEBEC.AI assets, public site assets, documentation figures, and static badges are preserved. No private delivery materials were added.
-
-## 16. Current paid/private artifact findings
-
-No paid buyer product was uploaded by this work. Buyers are directed to https://www.quebecartificialintelligence.com/shop. The paid-file guard passes and preserves only the public AEP package allowlist.
-
-## 17. Obsolete workflow findings
-
-v12, v13, and old v8 compatibility validation are documented as obsolete. Legacy wrappers should point operators toward v14 validation and the GoalOS Public Site Release v8 Intelligent Assets path. Obsolete release paths must not replace GitHub Pages or rewrite current validation logic.
-
-## 18. Broken-link findings
-
-Internal README/docs links are validated by `scripts/validate_docs_tables_figures.py`; the latest run passed.
-
-## 19. Stale pricing/version findings
-
-Current ladder in catalog, README, and tables: $49 v1.4, $199 v1.6, $997 v2.0, $2,500+ v7.0, $9,500+ v2.0, and $49,000+ v2.0.
-
-## 20. Missing documentation findings
-
-Required GoalOS docs are present and linked from `docs/GOALOS_DOCUMENTATION_INDEX.md`.
-
-## 21. Missing figures/tables findings
-
-Required figure sources, SVG companions, and CSV tables are present and pass validation.
-
-## 22. Missing badge findings
-
-Required static SVG badges are present under `badges/`, listed in `docs/tables/goalos_badge_inventory.csv`, recorded in `docs/data/goalos_catalog.yml`, and referenced by README. `scripts/validate_goalos_catalog.py` now parses the top-level `badge_inventory` list explicitly and fails if a required institutional badge file is missing or absent from that catalog badge inventory. No missing required badge was found in the latest validation run.
-
-## 23. Public trust risks
-
-Trust risks are primarily drift risks: catalog values, README tables, CSV tables, website release copy, badges, and generated site pages must remain synchronized. The public repository must continue avoiding paid buyer artifacts, unsupported claims, stale validation paths, and manual website-release bypasses.
-
-## 24. Claims risks
-
-The repository must not claim guaranteed ROI, guaranteed revenue, guaranteed profit, guaranteed productivity, investment returns, legal/tax/financial advice, compliance certification, AI safety certification, autonomous AGI, achieved AGI/ASI, base-model self-modification, uncontrolled autonomous deployment, independently unproven real-world profit, or completed enterprise SaaS when only the MVP exists.
-
-## 25. Files to preserve
-
-Preserve AEP standards, schemas, scripts, tests, public site, `proof_gradient` package, validation hotfix logic, public AEP package allowlist, QUEBEC.AI seal/assets, public proof pages/microsites, autonomous website release workflows, useful examples, and production foundation code.
-
-## 26. Files to update
-
-Update `README.md`, root governance/setup docs, GoalOS docs, `docs/data/goalos_catalog.yml`, docs tables, docs figures, badges, validation scripts, and CI workflows when the public foundation changes.
-
-## 27. Files not to touch
-
-Do not upload or expose paid buyer products, private delivery materials, paid ZIPs, workshop bundles, implementation bundles, enterprise pilot bundles, commercialization packs, or generated public site pages as a manual rewrite path.
-
-## 28. Commands run
-
-Audit/inventory commands:
-
-- `pwd && find .. -name AGENTS.md -print && git status --short --branch`
-- `git switch -c feature/goalos-institutional-repository-upgrade || git switch feature/goalos-institutional-repository-upgrade`
-- `rg --files -g '!*node_modules*' | sed -n '1,200p'`
-- `find . -maxdepth 1 -type f -printf '%f\\n' | sort`
-- `find docs -maxdepth 2 -type f | sort | sed -n '1,220p'`
-- `find .github/workflows -maxdepth 1 -type f -printf '%f\\n' | sort`
-- `find scripts -maxdepth 1 -type f -printf '%f\\n' | sort`
-- `find . -type f -name '*.zip' | sort`
-- `sed -n` inspections of README, catalog, validation scripts, QA docs, audit docs, and selected workflows.
-- `git remote add origin https://github.com/MontrealAI/proof-gradient.git || true`
-- `git fetch origin main --prune`
-- `git diff --stat origin/main...HEAD`
-
-Validation/test commands:
-
-- `python scripts/check_no_paid_artifacts.py` — passed.
-- `python scripts/validate_goalos_public_site.py` — passed; validated 207 HTML pages.
-- `python scripts/validate_docs_tables_figures.py` — passed; the required table inventory now explicitly includes `docs/tables/goalos_badge_inventory.csv`, and the validator parses its `File` column against the required badge filenames so omitted, renamed, extra, or duplicate badge rows are caught by docs/table/figure validation as well as catalog validation.
-- `python scripts/validate_goalos_catalog.py` — passed; now checks the complete required table and figure inventory and explicitly parses the `badge_inventory` list in `docs/data/goalos_catalog.yml`.
-- `pytest` — first attempt failed because `httpx2`/`httpx` were missing; passed after dependency installation with 85 tests and 2 warnings.
-- `make test` — first attempt failed because `httpx2`/`httpx` were missing; passed after dependency installation with 56 unittest tests.
-- `python -m pip install httpx2 httpx` — installed optional test-client transport dependencies in the local environment.
-- `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` — passed.
-
-## 29. Tests skipped and why
-
-No required validation command was skipped. Mermaid CLI SVG export was not run because committed SVG companions and editable `.mmd` sources are already present. No optional command remained skipped after installing the local Python test-client dependencies. The initial `pytest` collection failure before installing `httpx2`/`httpx` is documented above as an environment dependency issue, not a product regression.
-
-## 30. Risks before merge
-
-Merge risk is low if future edits continue to update `docs/data/goalos_catalog.yml` first, preserve the autonomous website release path, avoid committing paid buyer deliverables, and rerun all required validation scripts. The remaining operational risk is future drift between catalog, tables, README, docs, workflows, and autonomous site templates.
-
-## 31. Merge-readiness verification update
-
-A final verification pass on 2026-06-09 confirmed that the required dependency-free GoalOS validators pass, the public site validator scans 207 HTML pages successfully, the paid-file guard preserves the AEP ZIP allowlist, and the GoalOS Cloud MVP 0.2 Node proof test passes. The Python optional test suite required local installation of `httpx2` and `httpx` for Starlette/FastAPI test-client imports; after that environment dependency was installed, `pytest` passed with 85 tests and 2 deprecation warnings, and `make test` passed with 56 unittest tests. No generated website page was manually rewritten during this verification update.
-
-## 32. Current branch verification — 2026-06-09
-
-This branch-level verification was run on `feature/goalos-institutional-repository-upgrade` with Python 3.12.13 and Node v20.20.2. The required GoalOS validators passed, the public-site validator scanned 207 HTML pages, and the paid-file guard reported one allowed public AEP package under the narrow `standards/AEP-###/complete-package.zip` exception. The optional Python test suite initially failed because the local environment lacked `httpx2`/`httpx`; after `python -m pip install httpx2 httpx`, `pytest` passed with 85 tests and 2 warnings, `make test` passed with 56 unittest tests, and `node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs` passed. No generated public website page was manually rewritten, and no paid buyer product was uploaded or linked.
+## 27. Tests skipped and why
+`npm install`, `npm run compile`, `npm test`, and `npm run static-check` were skipped because this repository root has no `package.json` and no local $JOBS contract package. Mermaid SVG generation tooling was not required because SVG companions are committed directly.

@@ -1,0 +1,7 @@
+field,public_safe_note
+buyer/workflow identifier,redacted if private
+baseline score,safe summary
+improvement evidence,approved excerpt only
+approval record,public-safe approval
+rollback note,required
+proof output,Proof Card 001

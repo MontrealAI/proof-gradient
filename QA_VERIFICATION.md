@@ -20,7 +20,8 @@ Final repository validation for the institutional upgrade used the required Goal
 
 ## Current branch verification — 2026-06-09
 
-On `feature/goalos-institutional-repository-upgrade`, the required GoalOS validators passed against the institutional README/docs/catalog/tables/figures/badges set, the paid-file guard preserved the AEP ZIP allowlist, and the public site validator scanned 207 HTML pages. After installing the local FastAPI/Starlette test-client transports with `python -m pip install httpx2 httpx`, `pytest`, `make test`, and the GoalOS Cloud MVP 0.2 Node proof test all passed.
+On `feature/goalos-official-documentation-system-refresh`, the required GoalOS validators passed against the refreshed README, catalog, documentation index, GoalOS/$JOBS/commercialization docs, CSV tables, Mermaid/SVG figures, badges, CI workflow definitions, paid-file guard, and 207-page public site. npm/Solidity checks were skipped because the repository root has no `package.json` and no local $JOBS contract package.
+
 
 ## Paid-file guard
 

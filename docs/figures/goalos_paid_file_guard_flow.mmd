@@ -1,0 +1,4 @@
+flowchart LR
+  N0["Public root scan"] --> N1["AEP ZIP allowlist"]
+  N1["AEP ZIP allowlist"] --> N2["Block paid/private ZIPs"]
+  N2["Block paid/private ZIPs"] --> N3["Pass or fail CI"]
