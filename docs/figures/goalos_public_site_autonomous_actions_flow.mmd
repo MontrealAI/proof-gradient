@@ -1,0 +1,6 @@
+flowchart LR
+  N0["Catalog/docs/tables"] --> N1["v14 validation"]
+  N1["v14 validation"] --> N2["v8 release action"]
+  N2["v8 release action"] --> N3["Public site validation"]
+  N3["Public site validation"] --> N4["Paid-file guard"]
+  N4["Paid-file guard"] --> N5["Catalog/docs validation"]

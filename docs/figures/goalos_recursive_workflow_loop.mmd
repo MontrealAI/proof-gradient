@@ -1,3 +1,10 @@
 flowchart LR
-  Goal[Goal] --> Workflow[Workflow] --> Execution[Execution] --> Output[Output] --> Evaluation[Evaluation] --> Proof[Proof] --> Diagnosis[Diagnosis] --> Proposal[Improvement Proposal] --> Approval[Approval] --> Version[New Version] --> Retest[Re-Test] --> Monitor[Monitor] --> Rollback[Rollback]
-  Rollback --> Workflow
+  N0["Run"] --> N1["Score"]
+  N1["Score"] --> N2["Prove"]
+  N2["Prove"] --> N3["Diagnose"]
+  N3["Diagnose"] --> N4["Improve"]
+  N4["Improve"] --> N5["Approve"]
+  N5["Approve"] --> N6["Version"]
+  N6["Version"] --> N7["Monitor"]
+  N7["Monitor"] --> N8["Re-run"]
+  N8 --> N0

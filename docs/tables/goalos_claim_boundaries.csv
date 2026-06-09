@@ -1,4 +1,5 @@
-Claim type,Allowed public wording,Blocked wording
-Safe boundary,Enterprise RSI without model self-modification,base-model self-modification
-Proof status,Ready to sell; first public market proof still needed,guaranteed ROI or revenue
-Advice boundary,Operational education and workflow documentation,"legal, financial, or tax advice"
+area,safe_claim,prohibited_claim
+GoalOS,Enterprise RSI without model self-modification,guaranteed ROI
+GoalOS,Workflow-level improvement with proof,base-model self-modification
+$JOBS,"utility, coordination, proof",investment/yield/revenue share/price target
+Cloud,MVP 0.2 and future SaaS direction,full enterprise SaaS complete

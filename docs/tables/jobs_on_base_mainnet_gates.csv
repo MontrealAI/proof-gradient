@@ -1,0 +1,15 @@
+gate,required_before_mainnet
+npm install,yes
+npm run compile,yes
+npm test,yes
+npm run static-check,yes
+deploy to Base Sepolia,yes
+run full proof-job loop,yes
+external Solidity audit / expert review,yes
+legal/token counsel review,yes
+tax/accounting review,yes
+treasury/founder address verification,yes
+operator role review,yes
+public claims review,yes
+utility live from genesis,yes
+mainnet gate approval,yes

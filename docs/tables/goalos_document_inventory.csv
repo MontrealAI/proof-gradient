@@ -1,26 +1,31 @@
-Document,Purpose,Required
-docs/GOALOS_DOCUMENTATION_INDEX.md,GoalOS public documentation layer,yes
-docs/GOALOS_COMMERCIALIZATION_STATUS.md,GoalOS public documentation layer,yes
-docs/GOALOS_PRODUCT_LADDER.md,GoalOS public documentation layer,yes
-docs/GOALOS_READY_TO_SELL_STATUS.md,GoalOS public documentation layer,yes
-docs/GOALOS_PROOF_CARD_001_PLAN.md,GoalOS public documentation layer,yes
-docs/GOALOS_RECURSIVE_WORKFLOW_OS.md,GoalOS public documentation layer,yes
-docs/GOALOS_CLOUD_MVP_0_2.md,GoalOS public documentation layer,yes
-docs/GOALOS_RSI_SPRINT_WORKSHOP_PUBLIC_POSITIONING.md,GoalOS public documentation layer,yes
-docs/GOALOS_PUBLIC_SITE_RELEASE_V8.md,GoalOS public documentation layer,yes
-docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md,GoalOS public documentation layer,yes
-docs/GOALOS_VALIDATION_HOTFIX_V14.md,GoalOS public documentation layer,yes
-docs/GOALOS_PUBLIC_SITE_ASSET_SYSTEM.md,GoalOS public documentation layer,yes
-docs/GOALOS_PAID_ARTIFACT_POLICY.md,GoalOS public documentation layer,yes
-docs/GOALOS_CLAIMS_AND_SAFE_BOUNDARY.md,GoalOS public documentation layer,yes
-docs/GOALOS_LEGAL_PAYMENTS_BUYER_SUCCESS_SUMMARY.md,GoalOS public documentation layer,yes
-docs/GOALOS_TAX_ACCOUNTING_CFO_SUMMARY.md,GoalOS public documentation layer,yes
-docs/GOALOS_COMMUNICATIONS_FIRM_SUMMARY.md,GoalOS public documentation layer,yes
-docs/GOALOS_PROFESSIONAL_FIRM_PACKAGES_SUMMARY.md,GoalOS public documentation layer,yes
-docs/GOALOS_WEB3_HYBRID_ARCHITECTURE.md,GoalOS public documentation layer,yes
-docs/GOALOS_ENGINEERING_ROADMAP.md,GoalOS public documentation layer,yes
-docs/GOALOS_REPO_AUDIT.md,GoalOS public documentation layer,yes
-docs/GOALOS_INSTITUTIONAL_POSITIONING.md,GoalOS public documentation layer,yes
-docs/GOALOS_PUBLIC_STANDARD_STRATEGY.md,GoalOS public documentation layer,yes
-docs/GOALOS_PROOF_GRAPH_CONCEPT.md,GoalOS public documentation layer,yes
-docs/GOALOS_AEP_STANDARDS_INDEX.md,GoalOS public documentation layer,yes
+path,status
+docs/GOALOS_COMMERCIALIZATION_STATUS.md,required
+docs/GOALOS_PRODUCT_LADDER.md,required
+docs/GOALOS_READY_TO_SELL_STATUS.md,required
+docs/GOALOS_PROOF_CARD_001_PLAN.md,required
+docs/GOALOS_RECURSIVE_WORKFLOW_OS.md,required
+docs/GOALOS_CLOUD_MVP_0_2.md,required
+docs/GOALOS_PUBLIC_SITE_RELEASE_V8.md,required
+docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md,required
+docs/GOALOS_VALIDATION_HOTFIX_V14.md,required
+docs/GOALOS_PUBLIC_SITE_ASSET_SYSTEM.md,required
+docs/GOALOS_PAID_ARTIFACT_POLICY.md,required
+docs/GOALOS_CLAIMS_AND_SAFE_BOUNDARY.md,required
+docs/GOALOS_LEGAL_PAYMENTS_BUYER_SUCCESS_SUMMARY.md,required
+docs/GOALOS_TAX_ACCOUNTING_CFO_SUMMARY.md,required
+docs/GOALOS_COMMUNICATIONS_SUMMARY.md,required
+docs/GOALOS_ENGINEERING_ROADMAP.md,required
+docs/GOALOS_REPO_AUDIT.md,required
+docs/JOBS_ON_BASE_OVERVIEW.md,required
+docs/JOBS_ON_BASE_UTILITY_MATRIX.md,required
+docs/JOBS_ON_BASE_MARKET_STRATEGY.md,required
+docs/JOBS_ON_BASE_SEASON_001.md,required
+docs/JOBS_ON_BASE_TECHNICAL_STATUS.md,required
+docs/JOBS_ON_BASE_MAINNET_GATES.md,required
+docs/JOBS_ON_BASE_SAFE_CLAIMS.md,required
+docs/JOBS_ON_BASE_COMMERCIALIZATION_BOUNDARY.md,required
+docs/JOBS_ON_BASE_AUDIT_HANDOFF.md,required
+docs/COMMERCIALIZATION_PLAN.md,required
+docs/COMMERCIALIZATION_TEAM_SCORECARD.md,required
+docs/COMMERCIALIZATION_PROOF_OF_VALUE.md,required
+docs/COMMERCIALIZATION_PERFORMANCE_VAULT.md,required

@@ -1,0 +1,8 @@
+flowchart LR
+  N0["Workflow registry"] --> N1["Scorecards"]
+  N1["Scorecards"] --> N2["Evidence dockets"]
+  N2["Evidence dockets"] --> N3["Approvals"]
+  N3["Approvals"] --> N4["Versions"]
+  N4["Versions"] --> N5["Monitoring"]
+  N5["Monitoring"] --> N6["Rollback"]
+  N6["Rollback"] --> N7["Proof Cards"]

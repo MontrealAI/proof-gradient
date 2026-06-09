@@ -1,0 +1,4 @@
+rule,status
+34% is ceiling,"earnable, not upfront"
+0% default,until verified value
+tranche release,requires evidence and approval

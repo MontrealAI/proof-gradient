@@ -23,3 +23,7 @@ Develop proof graph concepts and AEP standardization for interoperable, public-s
 ## Phase 6 — Partner ecosystem
 
 Build a partner ecosystem across professional firms, evaluators, implementation partners, and proof-led workflow operators.
+
+## $JOBS proof-network gate
+
+$JOBS remains additive to the product ladder. It is Base Sepolia first and cannot move to mainnet until compile, test, static-check, Base Sepolia rehearsal, external audit/expert review, legal/token counsel, tax/accounting, treasury/founder address, operator-role, public-claims, utility-live-from-genesis, and mainnet approval gates are complete.

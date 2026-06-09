@@ -1,5 +1,5 @@
-Rule,Status,Pattern
-AEP complete package,Allowed,standards/AEP-###/complete-package.zip
-Paid buyer ZIP,Blocked,*_BUYER_*.zip
-Private bundle,Blocked,*COMPLETE_BUNDLE*.zip
-Shop link,Allowed,https://www.quebecartificialintelligence.com/shop
+classification,rule,examples
+allowed,public docs/standards/schemas/examples/proof pages/assets,"README, AEP docs, public site assets"
+allowed exception,standards/AEP-###/complete-package.zip,public AEP package only
+blocked,paid buyer files and private bundles,"paid ZIPs, workshop kits, implementation bundles"
+blocked,secrets,"keys, treasury secrets, seed phrases"
