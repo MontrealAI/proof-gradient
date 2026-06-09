@@ -1,6 +1,6 @@
 # GoalOS Repository Audit
 
-Audit date: 2026-06-08. Branch: `feature/goalos-institutional-repository-upgrade`. No files were deleted during audit.
+Audit date: 2026-06-09. Branch: `feature/goalos-institutional-repository-upgrade`. No files were deleted during audit.
 
 ## 1. Repository structure
 
@@ -68,7 +68,7 @@ Schemas are preserved and were not rewritten by this documentation refresh. Sche
 
 ## 14. Current tests state
 
-Existing tests are preserved. Required validation commands pass. Optional Python test suites initially failed in this environment because Starlette/FastAPI test-client transport packages were missing; after installing `httpx2` and `httpx`, `pytest` and `make test` passed.
+Existing tests are preserved. Required validation commands pass. `pytest` and `make test` initially failed in this environment because Starlette/FastAPI test-client transport packages were missing; after installing `httpx2` and `httpx`, `pytest` and `make test` passed. The GoalOS Cloud MVP 0.2 Node test also passed.
 
 ## 15. Current assets state
 
@@ -160,4 +160,4 @@ Merge risk is low if future edits continue to update `docs/data/goalos_catalog.y
 
 ## 31. Merge-readiness verification update
 
-A final verification pass on 2026-06-08 confirmed that the required dependency-free GoalOS validators pass, the public site validator scans 207 HTML pages successfully, the paid-file guard preserves the AEP ZIP allowlist, and the GoalOS Cloud MVP 0.2 Node proof test passes. The Python optional test suite required local installation of `httpx2` and `httpx` for Starlette/FastAPI test-client imports; after that environment dependency was installed, `pytest` passed with 85 tests and 2 deprecation warnings, and `make test` passed with 56 unittest tests. No generated website page was manually rewritten during this verification update.
+A final verification pass on 2026-06-09 confirmed that the required dependency-free GoalOS validators pass, the public site validator scans 207 HTML pages successfully, the paid-file guard preserves the AEP ZIP allowlist, and the GoalOS Cloud MVP 0.2 Node proof test passes. The Python optional test suite required local installation of `httpx2` and `httpx` for Starlette/FastAPI test-client imports; after that environment dependency was installed, `pytest` passed with 85 tests and 2 deprecation warnings, and `make test` passed with 56 unittest tests. No generated website page was manually rewritten during this verification update.
