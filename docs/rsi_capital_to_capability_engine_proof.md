@@ -91,11 +91,11 @@ training failures → coordination lessons → candidate capital-to-capability p
 
 ## Proof receipts
 
-- Commit SHA: `0f15bd4e00b968cd011a10de75a3c3b378a3a0be`
-- GitHub Actions run: `https://github.com/MontrealAI/proof-gradient/actions/runs/27148316213`
+- Commit SHA: `09605282c9729a523fbe5bcf8d0e204b9e1a78eb`
+- GitHub Actions run: `https://github.com/MontrealAI/proof-gradient/actions/runs/27216688944`
 - Benchmark seed: `20260530`
 - Source SHA-256: `74aad60eaa0da7b1d98a89499b2efd5b43957daa054efdc32a095e75c9dc37a5`
-- Generated at UTC: `2026-06-08T15:28:06Z`
+- Generated at UTC: `2026-06-09T15:23:59Z`
 
 ## Pre-registered proof gates
 
