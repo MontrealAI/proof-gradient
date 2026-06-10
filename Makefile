@@ -16,6 +16,7 @@ validate:
 	python scripts/check_no_paid_artifacts.py
 	python scripts/validate_goalos_catalog.py
 	python scripts/validate_docs_tables_figures.py
+	python scripts/validate_markdown_links.py
 	python scripts/validate_goalos_public_site.py
 
 pages:

@@ -101,13 +101,14 @@ Public repo may include public docs, standards, schemas, examples, proof pages, 
 python scripts/check_no_paid_artifacts.py
 python scripts/validate_goalos_catalog.py
 python scripts/validate_docs_tables_figures.py
+python scripts/validate_markdown_links.py
 python scripts/validate_goalos_public_site.py
 ```
 
 
 ## Current documentation status
 
-As of 2026-06-10, the public documentation set is maintained through the catalog-first process in [Documentation Maintenance Guide](docs/DOCUMENTATION_MAINTENANCE.md) and the freshness snapshot in [Documentation Healthcheck](docs/DOCUMENTATION_HEALTHCHECK.md). Keep canonical facts in `docs/data/goalos_catalog.yml`, propagate them to tables/figures/docs, and run `make validate` before merging public documentation or website changes.
+As of 2026-06-10, the public documentation set is maintained through the catalog-first process in [Documentation Maintenance Guide](docs/DOCUMENTATION_MAINTENANCE.md) and the freshness snapshot in [Documentation Healthcheck](docs/DOCUMENTATION_HEALTHCHECK.md). Keep canonical facts in `docs/data/goalos_catalog.yml`, propagate them to tables/figures/docs, keep local Markdown links and anchors valid, and run `make validate` before merging public documentation or website changes.
 
 ## Repository map
 
@@ -129,7 +130,7 @@ Start with [GoalOS Documentation Index](docs/GOALOS_DOCUMENTATION_INDEX.md), [Do
 
 ## Figures and tables
 
-Figures live in [`docs/figures/`](docs/figures/). Tables live in [`docs/tables/`](docs/tables/). Markdown tables should match CSV source tables where relevant.
+Figures live in [`docs/figures/`](docs/figures/). Tables live in [`docs/tables/`](docs/tables/). Markdown tables should match CSV source tables where relevant, and local Markdown links/anchors should pass `scripts/validate_markdown_links.py`.
 
 ## How to validate locally
 
@@ -141,7 +142,7 @@ Run the commands in **Validation and QA** from the repository root. Optional npm
 2. Update docs/tables/figures/badges consistently.
 3. Never link or upload paid buyer deliverables.
 4. Use autonomous GitHub Actions for public website releases.
-5. Run validation before opening a PR.
+5. Run validation, including Markdown link checks, before opening a PR.
 
 ## Claims boundary — what this is not
 
