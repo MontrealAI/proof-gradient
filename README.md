@@ -104,6 +104,11 @@ python scripts/validate_docs_tables_figures.py
 python scripts/validate_goalos_public_site.py
 ```
 
+
+## Current documentation status
+
+As of 2026-06-10, the public documentation set is maintained through the catalog-first process in [Documentation Maintenance Guide](docs/DOCUMENTATION_MAINTENANCE.md) and the freshness snapshot in [Documentation Healthcheck](docs/DOCUMENTATION_HEALTHCHECK.md). Keep canonical facts in `docs/data/goalos_catalog.yml`, propagate them to tables/figures/docs, and run `make validate` before merging public documentation or website changes.
+
 ## Repository map
 
 | Area | Purpose |
@@ -120,7 +125,7 @@ python scripts/validate_goalos_public_site.py
 
 ## Documentation map
 
-Start with [GoalOS Documentation Index](docs/GOALOS_DOCUMENTATION_INDEX.md), [Documentation Maintenance Guide](docs/DOCUMENTATION_MAINTENANCE.md), [Product Ladder](docs/GOALOS_PRODUCT_LADDER.md), [Website Autonomous Actions](docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md), [Paid Artifact Policy](docs/GOALOS_PAID_ARTIFACT_POLICY.md), [$JOBS Overview](docs/JOBS_ON_BASE_OVERVIEW.md), and [Repository Audit](docs/GOALOS_REPO_AUDIT.md).
+Start with [GoalOS Documentation Index](docs/GOALOS_DOCUMENTATION_INDEX.md), [Documentation Maintenance Guide](docs/DOCUMENTATION_MAINTENANCE.md), [Documentation Healthcheck](docs/DOCUMENTATION_HEALTHCHECK.md), [Product Ladder](docs/GOALOS_PRODUCT_LADDER.md), [Website Autonomous Actions](docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md), [Paid Artifact Policy](docs/GOALOS_PAID_ARTIFACT_POLICY.md), [$JOBS Overview](docs/JOBS_ON_BASE_OVERVIEW.md), and [Repository Audit](docs/GOALOS_REPO_AUDIT.md).
 
 ## Figures and tables
 

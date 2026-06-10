@@ -1,5 +1,7 @@
 # Documentation Maintenance Guide
 
+Last verified: 2026-06-10.
+
 This guide defines the repeatable best-practice checklist for keeping Proof Gradient · GoalOS documentation current, evidence-bound, public-safe, and release-ready.
 
 ## Source-of-truth order
@@ -27,6 +29,19 @@ Before opening a pull request, verify that the documentation change satisfies al
 - Paid buyer deliverables, private evidence, secrets, and regulated or confidential data are not added to the public repository.
 - Links are relative when pointing inside the repository and stable when pointing outside the repository.
 - New docs are added to the appropriate navigation surface: `README.md`, `docs/GOALOS_DOCUMENTATION_INDEX.md`, or a relevant standards README.
+
+
+## Documentation quality gates
+
+A documentation change is release-ready only when it satisfies these gates:
+
+- **Freshness:** current product, release, validation, audit, legal/tax, and mainnet-status statements match the catalog and current public status.
+- **Traceability:** every major claim points back to a catalog entry, table, figure, proof record, validation script, or explicit limitation.
+- **Navigability:** new official docs are linked from the README, documentation index, or the relevant standards README.
+- **Safety:** public-safe wording avoids unsupported guarantees, investment language, private evidence, paid-deliverable exposure, and base-model self-modification claims.
+- **Reproducibility:** the PR body records the exact validation and test commands that were run.
+
+Use [Documentation Healthcheck](DOCUMENTATION_HEALTHCHECK.md) as the current freshness snapshot before merging documentation-only changes.
 
 ## Validation commands
 
