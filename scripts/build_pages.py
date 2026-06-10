@@ -98,13 +98,13 @@ def build() -> None:
     (DIST / "data" / "demo.json").write_text(json.dumps(snapshot, indent=2, ensure_ascii=False), encoding="utf-8")
     (DIST / "data" / "wealth_proof.json").write_text(json.dumps(wealth_proof, indent=2, ensure_ascii=False), encoding="utf-8")
     manifest = {
-        "site": "Agent SkillOS",
+        "site": "GoalOS · Proof Gradient",
         "generated_by": "scripts/build_pages.py",
         "generated_at": snapshot["generated_at"],
         "entrypoint": "index.html",
         "pages_url": PAGES_URL,
         "repository": REPO_URL,
-        "required_files": ["index.html", "styles.css", "app.js", "data/demo.json", "data/wealth_proof.json", ".nojekyll"],
+        "required_files": ["index.html", "styles.css", "app.js", "data/demo.json", "data/wealth_proof.json", "assets/brand/skillos-mark.svg", ".nojekyll"],
         "wealth_proof_passed": True,
     }
     (DIST / "pages-manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
