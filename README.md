@@ -120,7 +120,7 @@ python scripts/validate_goalos_public_site.py
 
 ## Documentation map
 
-Start with [GoalOS Documentation Index](docs/GOALOS_DOCUMENTATION_INDEX.md), [Product Ladder](docs/GOALOS_PRODUCT_LADDER.md), [Website Autonomous Actions](docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md), [Paid Artifact Policy](docs/GOALOS_PAID_ARTIFACT_POLICY.md), [$JOBS Overview](docs/JOBS_ON_BASE_OVERVIEW.md), and [Repository Audit](docs/GOALOS_REPO_AUDIT.md).
+Start with [GoalOS Documentation Index](docs/GOALOS_DOCUMENTATION_INDEX.md), [Documentation Maintenance Guide](docs/DOCUMENTATION_MAINTENANCE.md), [Product Ladder](docs/GOALOS_PRODUCT_LADDER.md), [Website Autonomous Actions](docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md), [Paid Artifact Policy](docs/GOALOS_PAID_ARTIFACT_POLICY.md), [$JOBS Overview](docs/JOBS_ON_BASE_OVERVIEW.md), and [Repository Audit](docs/GOALOS_REPO_AUDIT.md).
 
 ## Figures and tables
 

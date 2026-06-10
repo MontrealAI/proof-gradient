@@ -19,6 +19,10 @@ Install the project and development dependencies before running API tests or ful
 python -m pip install -e '.[dev]'
 ```
 
+## Documentation maintenance
+
+Documentation updates should follow the repeatable checklist in [Documentation Maintenance Guide](docs/DOCUMENTATION_MAINTENANCE.md), including source-of-truth order, public-safe claim review, navigation updates, and validation requirements.
+
 ## Required local checks
 
 ```bash
