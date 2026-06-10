@@ -46,8 +46,11 @@ v1.0 intentionally misses refund/access policy classification. The MVP runs supp
 
 ## Test
 
+Run both public-safe Node test suites from the repository root:
+
 ```bash
+node site/app/goalos-cloud-mvp/tests/goalos-core.test.mjs
 node site/app/goalos-cloud-mvp/tests/enterprise-core.test.mjs
 ```
 
-The test asserts that v1.0 exposes the refund-policy weakness, v1.1 improves refund-policy compliance, approval requires a rollback target, confidential-data provider restrictions work, the Proof Graph has nodes and edges, and the public-safe proof card avoids ROI, compliance, and model-self-modification claims.
+The tests assert that v1.0 exposes the refund-policy weakness, v1.1 improves refund-policy compliance, approval requires a rollback target, confidential-data provider restrictions work, the Proof Graph has nodes and edges, and the public-safe proof card avoids ROI, compliance, and model-self-modification claims.

@@ -2,7 +2,7 @@
 
 This index is the official navigation map for Proof Gradient · GoalOS. Source of truth: [`docs/data/goalos_catalog.yml`](data/goalos_catalog.yml).
 
-1. **Start here** — [README](../README.md), [Documentation maintenance](DOCUMENTATION_MAINTENANCE.md), [Repository audit](GOALOS_REPO_AUDIT.md)
+1. **Start here** — [README](../README.md), [Documentation maintenance](DOCUMENTATION_MAINTENANCE.md), [Documentation healthcheck](DOCUMENTATION_HEALTHCHECK.md), [Repository audit](GOALOS_REPO_AUDIT.md)
 2. **GoalOS thesis** — [Recursive Workflow OS](GOALOS_RECURSIVE_WORKFLOW_OS.md), [Claims boundary](GOALOS_CLAIMS_AND_SAFE_BOUNDARY.md)
 3. **Product ladder** — [Product ladder](GOALOS_PRODUCT_LADDER.md), [CSV](tables/goalos_product_ladder.csv)
 4. **Ready-to-sell status** — [Ready-to-sell](GOALOS_READY_TO_SELL_STATUS.md)
