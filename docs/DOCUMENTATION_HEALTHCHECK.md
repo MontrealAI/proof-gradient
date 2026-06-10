@@ -11,6 +11,7 @@ This healthcheck captures the current documentation status for Proof Gradient ·
 | Canonical facts | Current | `docs/data/goalos_catalog.yml` remains the first source of truth for product, release, validation, site, and safe-claim facts. |
 | Public documentation | Current | `README.md`, `docs/GOALOS_DOCUMENTATION_INDEX.md`, and this healthcheck define the reader entry points and maintenance path. |
 | Tables and figures | Current | CSV tables in `docs/tables/` and Mermaid/SVG figures in `docs/figures/` are validated together. |
+| Markdown links | Current | `scripts/validate_markdown_links.py` checks local Markdown targets and heading anchors across root docs and `docs/`. |
 | Public site | Current | Public-site checks validate `site/` without manually bypassing autonomous GitHub Actions. |
 | Paid/private artifacts | Current | The paid-file guard allows only public-safe files and the narrow public AEP package exception. |
 | Claims boundary | Current | GoalOS and $JOBS language remains bounded: no base-model self-modification, no guaranteed ROI, no investment promises, no unsupported audit/mainnet/legal/tax claims. |
@@ -21,8 +22,9 @@ This healthcheck captures the current documentation status for Proof Gradient ·
 2. Propagate canonical changes to CSV tables, figures, Markdown docs, badges, scripts, and workflow inputs in that order.
 3. Keep public-safe limitations beside positive claims, especially for GoalOS Cloud MVP, Proof Card 001, $JOBS, audit status, legal/tax status, and mainnet gates.
 4. Add or update navigation links in `README.md` and `docs/GOALOS_DOCUMENTATION_INDEX.md` whenever a new official document becomes part of the operating path.
-5. Do not commit paid buyer deliverables, private evidence, secrets, legal/tax packs, or generated paid ZIPs to the public repository.
-6. Use autonomous GitHub Actions for public website releases; do not manually bypass release workflows for generated public-site changes.
+5. Run the Markdown link validator when moving, renaming, or anchoring documentation so broken local links fail before review.
+6. Do not commit paid buyer deliverables, private evidence, secrets, legal/tax packs, or generated paid ZIPs to the public repository.
+7. Use autonomous GitHub Actions for public website releases; do not manually bypass release workflows for generated public-site changes.
 
 ## Required checks
 
@@ -32,6 +34,7 @@ Run these from the repository root before merging documentation or public-site c
 python scripts/check_no_paid_artifacts.py
 python scripts/validate_goalos_catalog.py
 python scripts/validate_docs_tables_figures.py
+python scripts/validate_markdown_links.py
 python scripts/validate_goalos_public_site.py
 ```
 

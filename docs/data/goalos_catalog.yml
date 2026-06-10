@@ -186,4 +186,4 @@ docs_inventory:
     - "badges/no-model-self-modification.svg"
     - "badges/proof-card-001-next.svg"
     - "badges/recursive-workflow-os.svg"
-  required_validation_scripts: ["scripts/check_no_paid_artifacts.py", "scripts/validate_goalos_catalog.py", "scripts/validate_docs_tables_figures.py", "scripts/validate_goalos_public_site.py"]
+  required_validation_scripts: ["scripts/check_no_paid_artifacts.py", "scripts/validate_goalos_catalog.py", "scripts/validate_docs_tables_figures.py", "scripts/validate_markdown_links.py", "scripts/validate_goalos_public_site.py"]

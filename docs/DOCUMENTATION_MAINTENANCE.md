@@ -27,7 +27,7 @@ Before opening a pull request, verify that the documentation change satisfies al
 - Public-safe proof claims include the evidence boundary, approval state, and any known limitations.
 - $JOBS and token-related language remains utility-first and does not imply investment returns, resale value, yield, equity, revenue share, or mainnet authorization.
 - Paid buyer deliverables, private evidence, secrets, and regulated or confidential data are not added to the public repository.
-- Links are relative when pointing inside the repository and stable when pointing outside the repository.
+- Links are relative when pointing inside the repository, stable when pointing outside the repository, and verified with `scripts/validate_markdown_links.py` after moves or heading changes.
 - New docs are added to the appropriate navigation surface: `README.md`, `docs/GOALOS_DOCUMENTATION_INDEX.md`, or a relevant standards README.
 
 
@@ -37,7 +37,7 @@ A documentation change is release-ready only when it satisfies these gates:
 
 - **Freshness:** current product, release, validation, audit, legal/tax, and mainnet-status statements match the catalog and current public status.
 - **Traceability:** every major claim points back to a catalog entry, table, figure, proof record, validation script, or explicit limitation.
-- **Navigability:** new official docs are linked from the README, documentation index, or the relevant standards README.
+- **Navigability:** new official docs are linked from the README, documentation index, or the relevant standards README, and local Markdown links/anchors validate cleanly.
 - **Safety:** public-safe wording avoids unsupported guarantees, investment language, private evidence, paid-deliverable exposure, and base-model self-modification claims.
 - **Reproducibility:** the PR body records the exact validation and test commands that were run.
 
@@ -51,6 +51,7 @@ Run the public documentation guardrails from the repository root:
 python scripts/check_no_paid_artifacts.py
 python scripts/validate_goalos_catalog.py
 python scripts/validate_docs_tables_figures.py
+python scripts/validate_markdown_links.py
 python scripts/validate_goalos_public_site.py
 ```
 
@@ -74,7 +75,7 @@ Use this cadence to keep public docs current:
 
 | Cadence | Review scope | Required action |
 |---|---|---|
-| Every documentation PR | Changed docs, tables, figures, links, safe-claims boundary | Run validation and update navigation entries. |
+| Every documentation PR | Changed docs, tables, figures, links, safe-claims boundary | Run validation, verify Markdown links/anchors, and update navigation entries. |
 | Before public-site release | Catalog, generated site pages, badges, figures, paid-file policy | Run `make validate` and approved site build/release workflow. |
 | Before product or price changes | Product ladder, shop links, buyer outcomes, delivery boundaries | Update catalog first, then README/docs/tables/site inputs. |
 | Before $JOBS status changes | Technical status, mainnet gates, safe claims, audit status | Confirm legal/tax/audit caveats remain explicit and current. |
