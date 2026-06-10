@@ -95,7 +95,23 @@ Current path: v14 validation hotfix → Public Site Release v8 Intelligent Asset
 
 Public repo may include public docs, standards, schemas, examples, proof pages, site assets, and the narrow AEP package exception `standards/AEP-###/complete-package.zip`. Public repo must not include paid buyer ZIPs, workshop bundles, buyer/facilitator delivery kits, implementation bundles, enterprise pilot bundles, commercialization packs, private legal/tax packs, keys, treasury secrets, or seed phrases.
 
+## Local developer quick start
+
+Install the package with development dependencies in your preferred virtual environment, then use the Make targets as the stable local interface:
+
+```bash
+python -m pip install -e ".[dev]"
+make demo
+make api
+make test
+make validate
+```
+
+The API listens on `http://127.0.0.1:8000` by default when launched with `make api`. See [Proof Gradient API Reference](docs/api_reference.md) for the current endpoint list and CLI companion commands.
+
 ## Validation and QA
+
+Use `make validate` or run the required guardrail commands directly:
 
 ```bash
 python scripts/check_no_paid_artifacts.py
@@ -114,13 +130,15 @@ python scripts/validate_goalos_public_site.py
 | `docs/figures/` | Mermaid sources and SVG companions |
 | `badges/` | truthful static badges |
 | `scripts/` | validation and site automation scripts |
+| `proof_gradient/` | local API, CLI, proof services, database models, and providers |
+| `schemas/` | public JSON schemas for proof/run/release/artifact contracts |
 | `.github/workflows/` | autonomous validation/release workflows |
 | `site/` | generated public site deploy root |
 | `standards/` and `docs/standards/` | AEP public standards |
 
 ## Documentation map
 
-Start with [GoalOS Documentation Index](docs/GOALOS_DOCUMENTATION_INDEX.md), [Product Ladder](docs/GOALOS_PRODUCT_LADDER.md), [Website Autonomous Actions](docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md), [Paid Artifact Policy](docs/GOALOS_PAID_ARTIFACT_POLICY.md), [$JOBS Overview](docs/JOBS_ON_BASE_OVERVIEW.md), and [Repository Audit](docs/GOALOS_REPO_AUDIT.md).
+Start with [GoalOS Documentation Index](docs/GOALOS_DOCUMENTATION_INDEX.md), [Product Ladder](docs/GOALOS_PRODUCT_LADDER.md), [Website Autonomous Actions](docs/GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md), [Paid Artifact Policy](docs/GOALOS_PAID_ARTIFACT_POLICY.md), [$JOBS Overview](docs/JOBS_ON_BASE_OVERVIEW.md), [Proof Gradient API Reference](docs/api_reference.md), and [Repository Audit](docs/GOALOS_REPO_AUDIT.md).
 
 ## Figures and tables
 

@@ -6,13 +6,25 @@ GoalOS Validation Hotfix v14 Microsite Compatibility is current. v12, v13, and o
 
 ## Required commands
 
+Prefer the aggregate Make target:
+
 ```bash
-python scripts/check_no_paid_artifacts.py
-python scripts/validate_goalos_public_site.py
-python scripts/validate_docs_tables_figures.py
-python scripts/validate_goalos_catalog.py
+make validate
 ```
 
+The target runs the required guardrail commands:
+
+```bash
+python scripts/check_no_paid_artifacts.py
+python scripts/validate_goalos_catalog.py
+python scripts/validate_docs_tables_figures.py
+python scripts/validate_goalos_public_site.py
+```
+
+
+## Current branch verification — 2026-06-10
+
+Documentation and developer-command refresh validated the current public-safe guardrail path with `make validate`. A direct `pytest` run initially stopped during collection because this environment did not have the Starlette test-client transport packages (`httpx2`/`httpx`) installed. After installing the project development extras with `python -m pip install -e ".[dev]"`, `pytest` passed with 85 tests and 2 FastAPI/Starlette deprecation warnings.
 
 ## Merge-readiness result — 2026-06-09
 

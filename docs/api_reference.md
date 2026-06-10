@@ -1,95 +1,155 @@
-# API Reference
+# Proof Gradient API Reference
 
-Run the server:
+This reference covers the local FastAPI service exposed by `proof_gradient.api`. It is intentionally limited to public-safe platform endpoints that can be exercised against a local SQLite database.
+
+## Run the server
+
+From the repository root:
 
 ```bash
-python -m skillos.cli serve
+python -m proof_gradient api --host 127.0.0.1 --port 8000
+```
+
+Equivalent Make target:
+
+```bash
+make api
 ```
 
 Base URL:
 
 ```text
-http://127.0.0.1:8765
+http://127.0.0.1:8000
 ```
 
-## Health
+The API initializes the configured database at startup. The default local database is `sqlite:///./proof_gradient.db` unless `PROOF_GRADIENT_DATABASE_URL` is set.
+
+## Operational endpoints
+
+### Health
 
 ```http
-GET /api/health
+GET /healthz
 ```
 
-## Dashboard
+Returns service liveness:
 
-```http
-GET /api/dashboard
+```json
+{
+  "status": "ok",
+  "service": "proof-gradient"
+}
 ```
 
-## Skills
+### Readiness
 
 ```http
-GET /api/skills
+GET /readyz
 ```
 
-## Lessons
+Checks database access and returns:
 
-```http
-GET /api/lessons
+```json
+{
+  "status": "ready"
+}
 ```
 
-## Run job
+### Metrics
 
 ```http
-POST /api/jobs
+GET /metrics
+```
+
+Returns Prometheus-style counters for artifacts, runs, proofs, patches, and rollouts.
+
+## Tenant setup
+
+### Create tenant
+
+```http
+POST /tenants
+Content-Type: application/json
 ```
 
 ```json
 {
-  "goal": "Draft a sales follow-up email from call notes",
-  "agent_id": "sales_agent",
-  "inputs": {
-    "prospect_name": "Maya",
-    "company_name": "Orion Labs",
-    "agreed_next_step": "review the pilot plan on Friday"
-  },
-  "human_edits": "Moved the next step to the opening lines."
+  "name": "demo"
 }
 ```
 
-## Discover lessons
+The service creates the tenant and a local owner identity for that tenant.
+
+## Demo workflow
+
+### Run customer-response demo
 
 ```http
-POST /api/learn
+POST /demo/run
+Content-Type: application/json
 ```
 
 ```json
 {
-  "min_support": 3
+  "tenant": "demo",
+  "prompt": "Draft a response to this angry customer asking for a refund."
 }
 ```
 
-## Train candidate skill
+The demo exercises the proof-led workflow loop and returns the generated run, artifacts, proof, patch, rollout, and selection outputs.
+
+## Query endpoints
+
+All query endpoints accept an optional `tenant` query parameter. If omitted, the default tenant is `demo`.
+
+### List artifacts
 
 ```http
-POST /api/train
+GET /artifacts?tenant=demo
 ```
 
-```json
-{
-  "lesson_id": "lesson_abc123"
-}
-```
+Returns artifact IDs, names, artifact types, and risk classes for the tenant.
 
-## Approve release
+### List runs
 
 ```http
-POST /api/approve
+GET /runs?tenant=demo
 ```
 
-```json
-{
-  "skill_id": "sales_followup_email",
-  "version": 2,
-  "scope": "team",
-  "rollout": "10_percent_canary"
-}
+Returns run IDs, statuses, and job IDs for the tenant.
+
+### List proofs
+
+```http
+GET /proofs?tenant=demo
+```
+
+Returns proof IDs, associated run IDs, and checksums for the tenant.
+
+## CLI companions
+
+The same local platform can be exercised without starting the API:
+
+```bash
+python -m proof_gradient demo --json
+python -m proof_gradient artifact list --tenant demo
+python -m proof_gradient proof list --tenant demo
+python -m proof_gradient selection list --tenant demo
+```
+
+## Validation before publishing docs or site changes
+
+Run the public-safe validation suite before opening a PR:
+
+```bash
+make validate
+```
+
+or run the underlying commands directly:
+
+```bash
+python scripts/check_no_paid_artifacts.py
+python scripts/validate_goalos_catalog.py
+python scripts/validate_docs_tables_figures.py
+python scripts/validate_goalos_public_site.py
 ```

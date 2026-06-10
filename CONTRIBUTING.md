@@ -13,12 +13,29 @@ Contributions must preserve the proof-led, public-safe foundation of the reposit
 
 ## Required local checks
 
+Prefer the maintained aggregate target:
+
+```bash
+make validate
+```
+
+The target runs the required guardrail commands:
+
 ```bash
 python scripts/check_no_paid_artifacts.py
-python scripts/validate_goalos_public_site.py
-python scripts/validate_docs_tables_figures.py
 python scripts/validate_goalos_catalog.py
+python scripts/validate_docs_tables_figures.py
+python scripts/validate_goalos_public_site.py
 ```
+
+Run `make test` for the Python test suite when dependencies are available. If a check cannot run because of a local environment limitation, document the exact command, failure, and limitation in the PR.
+
+
+## Documentation upkeep
+
+- Keep `README.md`, `docs/GOALOS_DOCUMENTATION_INDEX.md`, `docs/api_reference.md`, `QA_VERIFICATION.md`, and `Makefile` synchronized when local commands, API routes, validation order, or canonical product facts change.
+- Prefer current package names (`proof_gradient` / `proof-gradient`) in new instructions; only mention legacy SkillOS names in explicitly archived historical material.
+- Keep generated public-site changes traceable to source docs, catalog data, validation scripts, or GitHub Actions inputs.
 
 ## Public product boundary
 
