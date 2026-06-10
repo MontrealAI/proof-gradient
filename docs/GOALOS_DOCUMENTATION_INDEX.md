@@ -2,7 +2,7 @@
 
 This index is the official navigation map for Proof Gradient · GoalOS. Source of truth: [`docs/data/goalos_catalog.yml`](data/goalos_catalog.yml).
 
-1. **Start here** — [README](../README.md), [Repository audit](GOALOS_REPO_AUDIT.md)
+1. **Start here** — [README](../README.md), [Documentation maintenance](DOCUMENTATION_MAINTENANCE.md), [Repository audit](GOALOS_REPO_AUDIT.md)
 2. **GoalOS thesis** — [Recursive Workflow OS](GOALOS_RECURSIVE_WORKFLOW_OS.md), [Claims boundary](GOALOS_CLAIMS_AND_SAFE_BOUNDARY.md)
 3. **Product ladder** — [Product ladder](GOALOS_PRODUCT_LADDER.md), [CSV](tables/goalos_product_ladder.csv)
 4. **Ready-to-sell status** — [Ready-to-sell](GOALOS_READY_TO_SELL_STATUS.md)
@@ -16,7 +16,7 @@ This index is the official navigation map for Proof Gradient · GoalOS. Source o
 12. **$JOBS technical status and mainnet gates** — [Technical status](JOBS_ON_BASE_TECHNICAL_STATUS.md), [Mainnet gates](JOBS_ON_BASE_MAINNET_GATES.md), [Audit handoff](JOBS_ON_BASE_AUDIT_HANDOFF.md)
 13. **Commercialization plan** — [Plan](COMMERCIALIZATION_PLAN.md), [Status](GOALOS_COMMERCIALIZATION_STATUS.md), [Team scorecard](COMMERCIALIZATION_TEAM_SCORECARD.md), [Proof of value](COMMERCIALIZATION_PROOF_OF_VALUE.md), [Performance vault](COMMERCIALIZATION_PERFORMANCE_VAULT.md)
 14. **Website autonomous GitHub Actions** — [Website autonomous actions](GOALOS_WEBSITE_AUTONOMOUS_ACTIONS.md), [Public site release v8](GOALOS_PUBLIC_SITE_RELEASE_V8.md)
-15. **Validation and CI** — [Validation hotfix v14](GOALOS_VALIDATION_HOTFIX_V14.md), [Catalog validator](../scripts/validate_goalos_catalog.py), [Docs/tables/figures validator](../scripts/validate_docs_tables_figures.py)
+15. **Validation and CI** — [Documentation maintenance](DOCUMENTATION_MAINTENANCE.md), [Validation hotfix v14](GOALOS_VALIDATION_HOTFIX_V14.md), [Catalog validator](../scripts/validate_goalos_catalog.py), [Docs/tables/figures validator](../scripts/validate_docs_tables_figures.py)
 16. **Paid-file policy** — [Paid artifact policy](GOALOS_PAID_ARTIFACT_POLICY.md)
 17. **Figures** — [Figure inventory](tables/goalos_figure_inventory.csv), [Figures directory](figures/)
 18. **Tables** — [Tables directory](tables/)
