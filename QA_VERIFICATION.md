@@ -8,10 +8,12 @@ GoalOS Validation Hotfix v14 Microsite Compatibility is current. v12, v13, and o
 
 ```bash
 python scripts/check_no_paid_artifacts.py
-python scripts/validate_goalos_public_site.py
-python scripts/validate_docs_tables_figures.py
 python scripts/validate_goalos_catalog.py
+python scripts/validate_docs_tables_figures.py
+python scripts/validate_goalos_public_site.py
 ```
+
+The `Makefile` exposes the same guardrail path as `make validate`. Install development dependencies with `python -m pip install -e '.[dev]'` before running API tests in a fresh environment.
 
 
 ## Merge-readiness result — 2026-06-09
