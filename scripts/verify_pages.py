@@ -4,7 +4,7 @@ import json
 import sys
 from pathlib import Path
 
-REQUIRED = ["index.html", "styles.css", "app.js", ".nojekyll", "data/demo.json", "data/wealth_proof.json", "assets/skillos-mark.svg"]
+REQUIRED = ["index.html", "styles.css", "app.js", ".nojekyll", "data/demo.json", "data/wealth_proof.json", "assets/brand/skillos-mark.svg"]
 
 
 def main() -> None:
@@ -13,10 +13,10 @@ def main() -> None:
     if missing:
         raise SystemExit(f"Missing generated GitHub Pages files: {missing}")
     html = (target / "index.html").read_text(encoding="utf-8")
-    if "Agent SkillOS" not in html:
-        raise SystemExit("index.html does not contain Agent SkillOS")
-    if "https://montrealai.github.io/proof-gradient/" not in html:
-        raise SystemExit("index.html does not contain the expected Pages URL")
+    if "GoalOS" not in html or "Proof Gradient" not in html:
+        raise SystemExit("index.html does not contain the expected GoalOS / Proof Gradient markers")
+    if "/proof-gradient/" not in html:
+        raise SystemExit("index.html does not contain the expected Pages path")
     data = json.loads((target / "data" / "demo.json").read_text(encoding="utf-8"))
     for key in ["lessons", "candidate", "test_result", "release", "dashboard"]:
         if not data.get(key):
