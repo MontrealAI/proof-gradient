@@ -18,7 +18,7 @@ The default base URL is:
 http://127.0.0.1:8000
 ```
 
-The API initializes its database on application startup. For a clean local demo state, run `proof-gradient db reset` before starting the server.
+The API initializes its database during the FastAPI lifespan startup hook. For a clean local demo state, run `proof-gradient db reset` before starting the server.
 
 ## Health and readiness
 

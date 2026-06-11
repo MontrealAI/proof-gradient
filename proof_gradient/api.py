@@ -1,3 +1,6 @@
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
+
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from pydantic import BaseModel
@@ -9,7 +12,18 @@ from proof_gradient.db import SessionLocal, init_db
 from proof_gradient.services import RunFabric, create_tenant, create_user
 
 
-app = FastAPI(title="Proof Gradient Platform", description="Artifact Vault, Run Fabric, Proof Ledger, Selection Gate.", version="0.3.1")
+@asynccontextmanager
+async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
+    init_db()
+    yield
+
+
+app = FastAPI(
+    title="Proof Gradient Platform",
+    description="Artifact Vault, Run Fabric, Proof Ledger, Selection Gate.",
+    version="0.3.1",
+    lifespan=lifespan,
+)
 
 
 def get_session():
@@ -27,11 +41,6 @@ class TenantCreate(BaseModel):
 class DemoRunRequest(BaseModel):
     tenant: str = "demo"
     prompt: str = "Draft a response to this angry customer asking for a refund."
-
-
-@app.on_event("startup")
-def startup() -> None:
-    init_db()
 
 
 @app.get("/healthz")
