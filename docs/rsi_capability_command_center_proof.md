@@ -176,10 +176,10 @@ training failures → adversarial coordination lessons → candidate capital-to-
 - **proof version:** `v16.0`
 - **workflow:** `Autonomous RSI Adversarial Capability Command Center Proof`
 - **repository:** `MontrealAI/proof-gradient`
-- **commit sha:** `13ee32609b414b5ecbc163356bf3324d576ca43c`
-- **run id:** `27559777471`
-- **run url:** `https://github.com/MontrealAI/proof-gradient/actions/runs/27559777471`
-- **generated at utc:** `2026-06-15T16:11:53Z`
+- **commit sha:** `43529375c058b2b49b8828ac797240ea88ab96f3`
+- **run id:** `27700202454`
+- **run url:** `https://github.com/MontrealAI/proof-gradient/actions/runs/27700202454`
+- **generated at utc:** `2026-06-17T15:26:46Z`
 - **benchmark seed:** `20260530`
 
 ## Boundary
