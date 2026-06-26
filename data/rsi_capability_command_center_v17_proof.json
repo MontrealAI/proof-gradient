@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-25T15:17:50Z",
+  "generated_at_utc": "2026-06-26T15:11:05Z",
   "status": "PASSED_AUTONOMOUS_RSI_CAPITAL_TO_CAPABILITY_COMMAND_CENTER_V17_PROOF",
   "proved": true,
   "proof_type": "adversarial capital-to-capability command center proof with recursive self-improvement and large-scale specialist-agent coordination",
@@ -191,10 +191,10 @@
   },
   "proof_receipts": {
     "repository": "MontrealAI/proof-gradient",
-    "commit_sha": "2c2ccca5b8e1e45bd0eb2493c690876fb1225f03",
+    "commit_sha": "c5daed32d9c47e5dbdda938b1456e0f65b26db56",
     "workflow": "Autonomous RSI Capital-to-Capability Command Center v17 Proof",
-    "run_id": "28180612036",
-    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/28180612036",
+    "run_id": "28246903716",
+    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/28246903716",
     "ref": "main"
   },
   "train_count": 640,
