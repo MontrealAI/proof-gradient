@@ -9,9 +9,9 @@ Adversarial large-scale agentic coordination for profitable market-capture portf
 ## Proof receipts
 
 - Repository: `MontrealAI/proof-gradient`
-- Commit SHA: `4c5c97b09c4db7e4bad3ab90aece58047a422a90`
-- GitHub Actions run: `https://github.com/MontrealAI/proof-gradient/actions/runs/29029647013`
-- Generated at: `2026-07-09T15:28:50Z`
+- Commit SHA: `e48a0f0f1e1b3825571561ea61183694737a488a`
+- GitHub Actions run: `https://github.com/MontrealAI/proof-gradient/actions/runs/29102854022`
+- Generated at: `2026-07-10T15:13:49Z`
 - Benchmark seed: `20260530`
 
 ## Why this matters
