@@ -1,5 +1,18 @@
 [
   {
+    "coordination_quality": 0.9321799829498979,
+    "fingerprint": "c6ffe8ca95062d9d949391e31af0d9eac3479482c2fd9df9b3a9159720585104",
+    "generated_at_utc": "2026-07-13T06:30:49+00:00",
+    "href": "rsi-proof-forge-meta-coordination-proof.html",
+    "id": "rsi-proof-forge-meta-coordination-proof",
+    "proof_credibility": 0.9994579200067399,
+    "proof_version": "12.0",
+    "status": "passing",
+    "title": "Autonomous RSI Proof Forge Meta-Coordination Proof",
+    "value_capture_rate": 0.9909679137790379,
+    "workflow_url": "https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml"
+  },
+  {
     "agents": 262144,
     "holdout_value_capture": 0.9990703123366625,
     "href": "./rsi-ai-first-blockchain-capital-machine-proof.html",
@@ -21,18 +34,5 @@
     "title": "Autonomous RSI AI-First Governance Capital Engine Proof",
     "updated_at": "2026-07-13T00:59:05Z",
     "workflow": ".github/workflows/autonomous-rsi-ai-first-governance-capital-engine-proof.yml"
-  },
-  {
-    "coordination_quality": 0.9321799829498979,
-    "fingerprint": "c6ffe8ca95062d9d949391e31af0d9eac3479482c2fd9df9b3a9159720585104",
-    "generated_at_utc": "2026-07-12T06:19:09+00:00",
-    "href": "rsi-proof-forge-meta-coordination-proof.html",
-    "id": "rsi-proof-forge-meta-coordination-proof",
-    "proof_credibility": 0.9994579200067399,
-    "proof_version": "12.0",
-    "status": "passing",
-    "title": "Autonomous RSI Proof Forge Meta-Coordination Proof",
-    "value_capture_rate": 0.9909679137790379,
-    "workflow_url": "https://github.com/MontrealAI/proof-gradient/actions/workflows/autonomous-rsi-proof-forge-meta-coordination-proof.yml"
   }
 ]
