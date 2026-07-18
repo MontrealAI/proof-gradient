@@ -1,19 +1,19 @@
 {
-  "generated_at_utc": "2026-07-17T14:52:58Z",
+  "generated_at_utc": "2026-07-18T14:38:11Z",
   "status": "PASSED_AUTONOMOUS_RSI_ADVERSARIAL_MULTI_AGENT_MARKET_COMMAND_CENTER_PROOF",
   "proved": true,
   "proof_type": "fully autonomous recursive self-improvement adversarial large-scale multi-agent market-command-center proof",
   "workflow": "adversarial large-scale agentic coordination for profitable market-capture portfolio selection, resource allocation, risk control, and compounding business strategy",
   "receipts": {
-    "generated_at_utc": "2026-07-17T14:52:58Z",
+    "generated_at_utc": "2026-07-18T14:38:11Z",
     "repository": "MontrealAI/proof-gradient",
-    "commit_sha": "7c00b319c869128c3e7d98a7f392f190db20c266",
+    "commit_sha": "7df5448b8985b2c89a06f06455e0f45142ac8506",
     "ref_name": "main",
     "workflow": "Autonomous RSI Adversarial Multi-Agent Market Command Center Proof",
-    "run_id": "29589798755",
-    "run_number": "47",
+    "run_id": "29648403265",
+    "run_number": "48",
     "run_attempt": "1",
-    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/29589798755",
+    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/29648403265",
     "benchmark_seed": 20260530
   },
   "agent_system": {
