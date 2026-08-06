@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-  <url><loc>https://montrealai.github.io/proof-gradient/</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/rsi-proof-forge-meta-coordination-proof.html</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/./rsi-ai-first-blockchain-capital-machine-proof.html</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://montrealai.github.io/proof-gradient/./rsi-ai-first-governance-capital-engine-proof.html</loc><lastmod>2026-08-06</lastmod></url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://montrealai.github.io/proof-gradient/</loc></url>
+  <url><loc>https://montrealai.github.io/proof-gradient/rsi-ai-first-blockchain-capital-machine-proof.html</loc></url>
+  <url><loc>https://montrealai.github.io/proof-gradient/rsi-ai-first-governance-capital-engine-proof.html</loc></url>
 </urlset>
