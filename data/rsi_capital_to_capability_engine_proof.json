@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-11T14:38:15Z",
+  "generated_at_utc": "2026-08-12T14:38:16Z",
   "status": "PASSED_AUTONOMOUS_RSI_CAPITAL_TO_CAPABILITY_ENGINE_PROOF",
   "proved": true,
   "proof_type": "fully autonomous recursive self-improvement capital-to-capability engine benchmark",
@@ -1020,13 +1020,13 @@
   "decision_cycle_reduction_vs_single_agent_percent": 99.5,
   "benchmark_implied_value_captured_over_single_agent_usd": 94755510849.57,
   "receipts": {
-    "generated_at_utc": "2026-08-11T14:38:15Z",
-    "commit_sha": "364572fadbc1c56da8c703d6951affabf9dbb1d6",
-    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/31502593474",
+    "generated_at_utc": "2026-08-12T14:38:16Z",
+    "commit_sha": "b0e56e64a39ecdb9808861cfdf00f38b55e10567",
+    "run_url": "https://github.com/MontrealAI/proof-gradient/actions/runs/31607853241",
     "repository": "MontrealAI/proof-gradient",
     "workflow": "Autonomous RSI Capital-to-Capability Engine Proof",
     "seed": 20260530,
-    "python": "3.14.7",
+    "python": "3.14.6",
     "source_sha256": "74aad60eaa0da7b1d98a89499b2efd5b43957daa054efdc32a095e75c9dc37a5"
   },
   "gates": {
