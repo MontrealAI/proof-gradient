@@ -125,11 +125,11 @@ The final system uses required-role quorum, specialist consensus, risk-gated pro
 ## Proof receipts
 
 - Repository: `MontrealAI/proof-gradient`
-- Commit SHA: `ff4bf6e41dbbef4e5672cc3e35baebf7d5b40751`
+- Commit SHA: `8ab671f67f7462d633b7d93bb7792a4cd04ee95d`
 - Workflow: `Autonomous RSI Capital-to-Capability Command Center v17 Proof`
-- Run URL: `https://github.com/MontrealAI/proof-gradient/actions/runs/45838068624`
+- Run URL: `https://github.com/MontrealAI/proof-gradient/actions/runs/46014982524`
 - Benchmark seed: `20260530`
-- Generated at: `2026-11-26T14:21:14Z`
+- Generated at: `2026-11-27T14:20:46Z`
 
 ## Boundary
 
